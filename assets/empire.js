@@ -31784,6 +31784,13 @@ class ProductQuickshop {
     this.loaded = true;
     window.requestAnimationFrame(() => {
       this.productDetails = new ProductDetails(options);
+      
+      // Re-initialize app blocks (like Zippy Pincode) by triggering the shopify:section:load event
+      document.dispatchEvent(new CustomEvent('shopify:section:load', {
+        detail: { sectionId: this.id },
+        bubbles: true,
+        cancelable: true
+      }));
     });
   }
 
