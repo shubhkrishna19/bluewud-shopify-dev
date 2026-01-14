@@ -1,1 +1,41 @@
-{"layout":"quickshop","sections":{"main":{"type":"quickshop","blocks":{"title":{"type":"title","settings":{}},"vendor":{"type":"vendor","settings":{}},"price":{"type":"price","settings":{}},"form":{"type":"form","settings":{}},"zippy_zipcode_validator_zippy_widget_Eia679":{"type":"shopify:\/\/apps\/zippy-zipcode-validator\/blocks\/zippy_widget\/14b4faf5-2197-4ce1-b361-3bf431fbc80f","settings":{}},"description":{"type":"description","settings":{}}},"block_order":["title","vendor","price","form","zippy_zipcode_validator_zippy_widget_Eia679","description"],"settings":{}}},"order":["main"]}
+{
+    "layout": "quickshop",
+    "sections": {
+        "main": {
+            "type": "quickshop",
+            "blocks": {
+                "title": {
+                    "type": "title",
+                    "settings": {}
+                },
+                "vendor": {
+                    "type": "vendor",
+                    "settings": {}
+                },
+                "price": {
+                    "type": "price",
+                    "settings": {}
+                },
+                "form": {
+                    "type": "form",
+                    "settings": {}
+                },
+                "description": {
+                    "type": "description",
+                    "settings": {}
+                }
+            },
+            "block_order": [
+                "title",
+                "vendor",
+                "price",
+                "form",
+                "description"
+            ],
+            "settings": {}
+        }
+    },
+    "order": [
+        "main"
+    ]
+}
