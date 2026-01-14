@@ -1,0 +1,14 @@
+# Shopify theme ignores
+*.zip
+node_modules/
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+desktop.ini

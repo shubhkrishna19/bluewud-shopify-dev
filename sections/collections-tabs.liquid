@@ -1,0 +1,283 @@
+<section class="custom-html--container">
+  <ul class="shopify-tabs">
+    {% for block in section.blocks %}
+    <li data-tab="tab-{{ block.id }}" class="collection__item-title {% if forloop.first %} current{% endif %}"><span>{{ block.settings.title }}</span></li>
+    {% endfor %}
+  </ul>
+  {% for block in section.blocks %}
+  <div id="tab-{{ block.id }}" class="shopify-tab-content  {% if forloop.first %} current{% endif %}">
+    <div class="tab-rows">
+      {% for i in (1..8) %}
+      {% capture blk_image %}image_{{ i }}{% endcapture %}
+      {% capture blk_collection %}collection_{{ i }}{% endcapture %}
+      {% capture blk_title %}title_{{ i }}{% endcapture %}
+
+      {%- assign collection = block.settings[blk_collection] -%}
+      {%- assign collection_image = block.settings[blk_image] | default: collection.image | default: collection.products.first.featured_image -%}
+      {%- assign collection = collections[collection] -%}
+      {% if block.settings[blk_collection] != blank %}
+      
+      <div class="tab-rows-column">
+        <div class="tab-rows-column-wrap">
+        <a href="{{ collection.url }}">
+        <div class="tab-rows-column-img">
+          {% if collection_image %}
+          <div class="info-box-icon">
+          <img src="{{ collection_image | img_url: '120x90', crop: 'center' }}" alt="{{ collection_image.alt }}">
+          </div>
+          {% endif %}
+        </div>
+
+        <div class="tab-rows-column-info">
+          <span class="collection__item-title">
+        {% if block.settings[blk_title] != blank %}
+        {{ block.settings[blk_title] }}
+        {% else %}
+        {{ collection.title }}
+        {% endif %}
+          </span>
+        </div>
+          </a>
+        </div>
+      </div>
+      
+      {% endif %}
+    {% endfor %}
+    </div>
+  </div>
+  {% endfor %}
+</section>
+
+<style>
+  #shopify-section-{{ section.id }} .info-box-icon {
+    
+    {% assign color_border = section.settings.border_color %}
+    border: 1px solid {{ color_border | color_modify: 'alpha', 0.16 }};
+    box-shadow: 0 1px 4px {{ color_border | color_modify: 'alpha', 0.11 }};
+}
+  #shopify-section-{{ section.id }} .info-box-icon:hover {
+    border-color: {{ section.settings.border_color_hover }};
+    box-shadow: -7px 6px 5px 0 rgb(0 0 0 / 21%);
+}
+</style>
+<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
+<script type="text/javascript">
+  $(document).ready(function(){
+    $('#shopify-section-{{ section.id }} ul.shopify-tabs > li').click(function(){
+      var tab_id = $(this).attr('data-tab');
+
+      $(this).parent().find('li').removeClass('current');
+      $('#shopify-section-{{ section.id }} .shopify-tab-content').removeClass('current');
+
+      $(this).addClass('current');
+      $("#"+tab_id).addClass('current');
+    })
+  })
+</script>
+
+{% schema %}
+  {
+    "name": "Collections tabs",
+	"max_blocks": 4,
+    "settings": [
+      {
+        "type": "color",
+        "id": "border_color",
+        "label": "Boder Color",
+		"default": "#f04f36"
+      },
+	  {
+        "type": "color",
+        "id": "border_color_hover",
+        "label": "Boder Color Hover",
+		"default": "#046173"
+      }
+	],
+    "blocks": [
+      {
+        "type": "tab",
+        "name": "Tab",
+        "settings": [
+		  {
+            "type": "text",
+            "id": "title",
+            "label": "Tab Name",
+            "default": "Furniture"
+          },
+		  {
+            "type": "header",
+            "content": "Collection 1"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_1",
+            "label": "Image",
+            "info": "540 x 390px recommended"
+          },
+          {
+            "type": "collection",
+            "id": "collection_1",
+            "label": "Collection"
+          },
+          {
+            "type": "text",
+            "id": "title_1",
+            "label": "Collection Title"
+          },
+		  {
+            "type": "header",
+            "content": "Collection 2"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_2",
+            "label": "Image",
+            "info": "540 x 390px recommended"
+          },
+          {
+            "type": "collection",
+            "id": "collection_2",
+            "label": "Collection"
+          },
+          {
+            "type": "text",
+            "id": "title_2",
+            "label": "Collection Title"
+          },
+		  {
+            "type": "header",
+            "content": "Collection 3"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_3",
+            "label": "Image",
+            "info": "540 x 390px recommended"
+          },
+          {
+            "type": "collection",
+            "id": "collection_3",
+            "label": "Collection"
+          },
+          {
+            "type": "text",
+            "id": "title_3",
+            "label": "Collection Title"
+          },
+		  {
+            "type": "header",
+            "content": "Collection 4"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_4",
+            "label": "Image",
+            "info": "540 x 390px recommended"
+          },
+          {
+            "type": "collection",
+            "id": "collection_4",
+            "label": "Collection"
+          },
+          {
+            "type": "text",
+            "id": "title_4",
+            "label": "Collection Title"
+          },
+		  {
+            "type": "header",
+            "content": "Collection 5"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_5",
+            "label": "Image",
+            "info": "540 x 390px recommended"
+          },
+          {
+            "type": "collection",
+            "id": "collection_5",
+            "label": "Collection"
+          },
+          {
+            "type": "text",
+            "id": "title_5",
+            "label": "Collection Title"
+          },
+		  {
+            "type": "header",
+            "content": "Collection 6"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_6",
+            "label": "Image",
+            "info": "540 x 390px recommended"
+          },
+          {
+            "type": "collection",
+            "id": "collection_6",
+            "label": "Collection"
+          },
+          {
+            "type": "text",
+            "id": "title_6",
+            "label": "Collection Title"
+          },
+		  {
+            "type": "header",
+            "content": "Collection 7"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_7",
+            "label": "Image",
+            "info": "540 x 390px recommended"
+          },
+          {
+            "type": "collection",
+            "id": "collection_7",
+            "label": "Collection"
+          },
+          {
+            "type": "text",
+            "id": "title_7",
+            "label": "Collection Title"
+          },
+		  {
+            "type": "header",
+            "content": "Collection 8"
+          },
+          {
+            "type": "image_picker",
+            "id": "image_8",
+            "label": "Image",
+            "info": "540 x 390px recommended"
+          },
+          {
+            "type": "collection",
+            "id": "collection_8",
+            "label": "Collection"
+          },
+          {
+            "type": "text",
+            "id": "title_8",
+            "label": "Collection Title"
+          }
+        ]
+      }
+    ],
+    "presets": [
+      {
+        "category": "Homepage",
+        "name": "Collections tabs"
+      }
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}

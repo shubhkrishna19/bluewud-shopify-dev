@@ -1,0 +1,209 @@
+<section class="custom-reviews--container">
+  <div class="custom-reviews-header {% if section.settings.text != blank %}subtitle-enabled{% endif %}">
+  {% if section.settings.title != blank %}
+    <h2 class="home-section--title">
+      {{ section.settings.title | escape }}
+    </h2>
+  {% endif %}
+  {% if section.settings.text != blank %}
+    <div class="rte">
+      {{ section.settings.text }}
+    </div>
+  {% endif %}
+  </div>
+  
+  <div class="site_reviews">
+    {% for block in section.blocks %}
+    {% if block.type == "amazon" %}
+    <div class="ratings">
+      <picture>
+        <source type="image/png" src="{{ 'amazon-logo.png' | asset_url }}">
+        <img src="{{ 'amazon-logo.png' | asset_url }}" loading="lazy" alt="Amazon logo">
+      </picture>
+      <div class="tooltip">
+        <div class="amazon" style="margin-left: 0px"> 
+          {% if block.settings.start_img != blank %}
+          <div class="review-star-img">
+            <img src="{{ block.settings.start_img | img_url: 'master' }}" alt="">
+          </div>
+          {% else %}
+          <div class="stars-outer" style="margin-left: 0px">
+            <div class="stars-inner" style="margin-left: 0px; width: 100%;"></div>
+          </div>
+          {% endif %}
+        </div>
+        <p>{{ block.settings.review_count }}+ Reviews</p>
+        <span class="tooltiptext">{{ block.settings.average }} out of 5</span>
+      </div>
+    </div>
+    {% elsif block.type == "flipkart" %}
+    <div class="ratings"> 
+      <picture>
+        <source type="image/png" src="{{ 'flipkart-logo.png' | asset_url }}">
+        <img alt="flipkart-logo.png" src="{{ 'flipkart-logo.png' | asset_url }}" loading="lazy">
+      </picture>
+      <div class="tooltip">
+        <div class="flipcart" style="margin-left: 0px"> 
+          {% if block.settings.start_img != blank %}
+          <div class="review-star-img">
+            <img src="{{ block.settings.start_img | img_url: 'master' }}" alt="">
+          </div>
+          {% else %}
+          <div class="stars-outer" style="margin-left: 0px">
+            <div class="stars-inner" style="margin-left: 0px; width: 90%;"></div>
+          </div>
+          {% endif %}
+        </div>
+        <p>{{ block.settings.review_count }}+ Reviews</p>
+        <span class="tooltiptext">{{ block.settings.average }} out of 5</span>
+      </div>
+
+    </div>
+    {% elsif block.type == "google" %}
+    <div class="ratings">
+      <picture>
+        <source type="image/png" src="{{ 'google-logo.png' | asset_url }}">
+        <img src="{{ 'google-logo.png' | asset_url }}" loading="lazy" alt="Google logo">
+      </picture>
+      <div class="tooltip">
+        <div class="google" style="margin-left: 0px"> 
+          {% if block.settings.start_img != blank %}
+          <div class="review-star-img">
+            <img src="{{ block.settings.start_img | img_url: 'master' }}" alt="">
+          </div>
+          {% else %}
+          <div class="stars-outer" style="margin-left: 0px">
+            <div class="stars-inner" style="margin-left: 0px; width: 100%;"></div>
+          </div>
+          {% endif %}
+        </div>
+        <p>{{ block.settings.review_count }}+ Reviews</p>
+        <span class="tooltiptext">{{ block.settings.average }} out of 5</span>
+      </div>
+
+    </div>
+    {% endif %}
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+  {
+    "name": "Reviews Ratings",
+    "settings": [
+	  {
+        "type": "text",
+        "id": "title",
+        "label": "Heading",
+        "default": "Reviews"
+      },
+	  {
+        "type": "text",
+        "id": "text",
+        "label": "Text",
+        "default": "Words of praise and love from our customers.<br>Over 234756 verified reviews of happy customers"
+      }
+	],
+    "blocks": [
+      {
+        "type": "amazon",
+        "name": "Amazon Rating",
+		"limit": 1,
+        "settings": [
+          {            
+            "type": "text",
+			"id": "review_count",
+            "label": "Review Count",
+            "default": "148522"
+          },
+          {
+            "type": "text",
+            "id": "average",
+            "label": "Average Review",
+            "default": "4.8"
+          },
+          {
+            "type": "image_picker",
+            "id": "start_img",
+            "label": "Star Image"
+          }
+      	]
+      },
+	  {
+        "type": "flipkart",
+        "name": "Flipkart Rating",
+		"limit": 1,
+        "settings": [
+          {            
+            "type": "text",
+			"id": "review_count",
+            "label": "Review Count",
+            "default": "56635"
+          },
+          {
+            "type": "text",
+            "id": "average",
+            "label": "Average Review",
+            "default": "4.5"
+          },
+          {
+            "type": "image_picker",
+            "id": "start_img",
+            "label": "Star Image"
+          }
+      	]
+      },
+	  {
+        "type": "google",
+        "name": "Google Rating",
+		"limit": 1,
+        "settings": [
+          {            
+            "type": "text",
+			"id": "review_count",
+            "label": "Review Count",
+            "default": "27556"
+          },
+          {
+            "type": "text",
+            "id": "average",
+            "label": "Average Review",
+            "default": "4.5"
+          },
+          {
+            "type": "image_picker",
+            "id": "start_img",
+            "label": "Star Image"
+          }
+      	]
+      }
+    ],
+    "presets": [
+      {
+        "name": "Reviews Ratings",
+        "category": "Text",
+        "blocks": [
+          {
+            "type": "amazon"
+          },
+          {
+            "type": "flipkart"
+          },
+          {
+            "type": "google"
+          }
+        ]
+      }
+    ],
+    "templates": [
+      "index",
+      "product"
+    ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
