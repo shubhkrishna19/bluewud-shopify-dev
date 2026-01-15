@@ -1,0 +1,173 @@
+{% liquid
+  # Porting Whisper Header logic to Empire Theme
+  # Mapping Whisper snippets with 'whisper-' prefix
+  
+  assign order = 'logo,menu,localization,search,mobile_search,actions'
+
+  if shop.customer_accounts_enabled
+    assign order = 'mobile_search,logo,menu,localization,search,actions'
+  endif
+
+  assign rows = 'top,bottom' | split: ','
+  assign search_style = 'none'
+
+  if section.settings.show_search
+    assign search_style = 'modal'
+  endif
+
+  if section.settings.enable_sticky_header == 'always'
+    assign sticky = 'always'
+  elsif section.settings.enable_sticky_header == 'scroll-up'
+    assign sticky = 'scroll-up'
+  endif
+
+  # Functional Captures
+  capture logo
+    # Fallback to Empire's logo logic for now or Whisper's if settings match
+    render 'rimg', img: section.settings.logo, class: 'site-logo-image', size: '200x'
+  endcapture
+
+  capture menu
+    # Placeholder for menu port (T007/T008)
+    # render 'whisper-mega-menu-list'
+  endcapture
+
+  capture actions
+    render 'whisper-header-actions'
+  endcapture
+
+  capture search
+    render 'whisper-search', style: search_style
+  endcapture
+
+  capture localization_markup
+    render 'whisper-localization-form'
+  endcapture
+%}
+
+<header-component
+  id="header-component"
+  class="header color-{{ section.settings.color_scheme_top }} spacing-style"
+  style="{% render 'whisper-spacing-style', settings: section.settings %}"
+  {% if sticky %}
+    sticky="{{ sticky }}"
+  {% endif %}
+>
+  {% for row in rows %}
+    {% liquid
+       assign row_class = 'header__row header__row--' | append: row
+       if row == 'bottom'
+         assign row_class = row_class | append: ' mobile:hidden'
+       endif
+    %}
+    <div class="{{ row_class }} color-{{ section.settings.row_color_scheme }}">
+       <div class="header__columns header__container container-style">
+          {% render 'whisper-header-row',
+            row: row,
+            order: order,
+            settings: section.settings,
+            logo: logo,
+            menu: menu,
+            actions: actions,
+            localization: localization_markup,
+            search: search
+          %}
+       </div>
+    </div>
+  {% endfor %}
+</header-component>
+
+<script src="{{ 'whisper-header.js' | asset_url }}" type="module"></script>
+<script src="{{ 'whisper-header-menu.js' | asset_url }}" type="module"></script>
+
+{% stylesheet %}
+  /* Embedding Whisper Header CSS directly for isolation */
+  .header { display: block; position: relative; z-index: 100; }
+  .header__row { background: var(--color-background); border-bottom: 1px solid var(--color-border); }
+  .header__columns { display: grid; grid-template-areas: 'left center right'; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 10px 20px; }
+  /* More styles from Whisper will be integrated into theme-update.css in T005 */
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "Whisper Header",
+  "tag": "header",
+  "class": "header-section",
+  "settings": [
+    {
+      "type": "header",
+      "content": "Layout"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo"
+    },
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu",
+      "default": "main-menu"
+    },
+    {
+      "type": "select",
+      "id": "enable_sticky_header",
+      "label": "Sticky Behavior",
+      "options": [
+        { "value": "none", "label": "None" },
+        { "value": "always", "label": "Always" },
+        { "value": "scroll-up", "label": "On Scroll Up" }
+      ],
+      "default": "always"
+    },
+    {
+      "type": "header",
+      "content": "Aesthetics"
+    },
+    {
+      "type": "select",
+      "id": "color_scheme_top",
+      "label": "Color Scheme",
+      "options": [
+        { "value": "default", "label": "Default" },
+        { "value": "inverse", "label": "Inverse" }
+      ],
+      "default": "default"
+    },
+    {
+      "type": "select",
+      "id": "row_color_scheme",
+      "label": "Row Color Scheme",
+      "options": [
+        { "value": "default", "label": "Default" },
+        { "value": "accent", "label": "Accent" }
+      ],
+      "default": "default"
+    },
+    {
+      "type": "header",
+      "content": "Modular Spacing"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Top Padding",
+      "default": 12
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "Bottom Padding",
+      "default": 12
+    }
+  ]
+}
+{% endschema %}

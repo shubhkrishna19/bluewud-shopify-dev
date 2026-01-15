@@ -65,6 +65,7 @@ To prevent collision, we strictly follow this ownership map:
 1. Wrap Empire's functional elements with Whisper's CSS classes.
 2. Keep all `data-` attributes and original `id`s for AJAX/Script compatibility.
 3. Use the `whispertheme` assets (JS/CSS) as siblings to Empire's assets.
+4. **Modular Modernization**: UI updates must be "properly modular and modern." Keep it clean and focused; avoid "fancy" bloat. Aim for better design while keeping the core content familiar and sensible.
 
 ---
 

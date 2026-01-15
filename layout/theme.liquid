@@ -145,6 +145,7 @@
     <a class="skip-to-main" href="#site-main">{{ 'general.accessibility.skip_to_content' | t }}</a>
     {% section 'static-announcement' %}
     {% section 'static-utility-bar' %}
+    {% comment %}
     <header
       class="site-header site-header-nav--open"
       role="banner"
@@ -152,6 +153,8 @@
     >
       {% section 'static-header' %}
     </header>
+    {% endcomment %}
+    {% section 'whisper-header' %}
     <div class="intersection-target" data-header-intersection-target></div>
     <div class="site-main-dimmer" data-site-main-dimmer></div>
     <main id="site-main" class="site-main" aria-label="Main content" tabindex="-1">
