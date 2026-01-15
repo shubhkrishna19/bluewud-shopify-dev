@@ -10,33 +10,44 @@ This file is the **Source of Truth** for the synchronized development between **
 
 ## 🔒 Task Locking & Coordination (CRITICAL)
 To prevent duplication, every agent **MUST** follow this protocol:
-1. **Declare**: Before starting, add `[/] In Progress - [Agent Name]` to the task in this file.
+1. **Declare**: Before starting, add `[/] In Progress - [Agent Name]` next to the **Task ID** in this file.
 2. **Commit**: Sync changes to GitHub immediately after completion.
 3. **Close**: Mark as `[x] Done` and provide the commit hash or file path in the 'Notes' column.
+4. **Sequence**: All new tasks must continue the sequential numbering.
 
-| Task | Status | Agent | Priority | Notes |
-| :--- | :--- | :--- | :--- | :--- |
-| Pincode Widget Restoration | [x] Done | Anti | High | **DON'T TOUCH**: `#zippy_widget_1511`. |
-| **Phase 2: Visual Identity refresh** | [x] Done | Anti | High | **28% Migration Milestone Reached.** |
-| - Typography Overhaul | [x] Done | Anti | High | Inter & Barlow applied. |
-| - Whisper Hero Section | [x] Done | Anti | High | Live with layout logic. |
-| **Phase 3: Structural Porting** | [ ] Pending | **Codex**| High | **NEXT TARGET**: Header. |
-| - [Header] Liquid Port | [ ] Pending | **Codex**| High | Port `sections/header.liquid`. |
-| - [Header] CSS Integration | [ ] Pending | **Codex**| High | Integrate Header styles to `theme-update.css`. |
-| - [Header] Mobile Drawer | [ ] Pending | **Codex**| Med | Port `snippets/header-drawer.liquid`. |
-| - [Navigation] Mega-Menu 1 | [ ] Pending | **Codex**| High | Port 2-column grid menu. |
-| - [Navigation] Mega-Menu 2 | [ ] Pending | **Codex**| High | Port image-based promo menu. |
-| **Phase 4: Product & Browsing UI** | [ ] Pending | Joint | High | Visual parity for cards. |
-| - [Card] Aesthetic Port | [ ] Pending | **Codex**| High | Port `product-card.liquid` UI. |
-| - [Card] Pincode Sync | [ ] Pending | Anti | High | **Wait for Codex**: Re-inject Pincode into new UI. |
-| - [Collection] Sidebar Port | [ ] Pending | **Codex**| Med | Port `sections/main-collection-product-grid.liquid`. |
-| - [Collection] Filter Style | [ ] Pending | **Codex**| Med | Update facet styling in `theme-update.css`. |
+| ID | Task | Status | Agent | Priority | Notes |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| T001 | Pincode Widget Restoration | [x] Done | Anti | High | Verified across all templates. |
+| **P2** | **Phase 2: Visual Identity refresh** | [x] Done | Anti | High | **28% Milestone Reached.** |
+| T002 | - Typography Overhaul | [x] Done | Anti | High | Inter & Barlow applied. |
+| T003 | - Whisper Hero Section | [x] Done | Anti | High | Live with layout logic. |
+| **P3** | **Phase 3: Structural Porting** | [ ] Pending | **Codex**| High | **NEXT TARGET**: Header. |
+| T004 | - [Header] Liquid Port | [ ] Pending | **Codex**| High | Port `sections/header.liquid`. |
+| T005 | - [Header] CSS Integration | [ ] Pending | **Codex**| High | Sync to `theme-update.css`. |
+| T006 | - [Header] Mobile Drawer | [ ] Pending | **Codex**| Med | Port `header-drawer.liquid`. |
+| T007 | - [Navigation] Mega-Menu 1 | [ ] Pending | **Codex**| High | 2-column grid menu. |
+| T008 | - [Navigation] Mega-Menu 2 | [ ] Pending | **Codex**| High | Image-based promo menu. |
+| **P4** | **Phase 4: Product & Browsing UI** | [ ] Pending | Joint | High | Visual parity for cards. |
+| T009 | - [Card] Aesthetic Port | [ ] Pending | **Codex**| High | Port `product-card.liquid`. |
+| T010 | - [Card] Pincode Sync | [ ] Pending | Anti | High | **Wait for T009 completion.** |
+| T011 | - [Collection] Sidebar Port | [ ] Pending | **Codex**| Med | Port collection facets. |
+| T012 | - [Collection] Filter Style | [ ] Pending | **Codex**| Med | Facet CSS in `theme-update.css`. |
 
 ---
 
 ## 🛠 Shared Multi-Agent Strategy
 
-### 1. The Division of Labor
+### 1. The Division of Labor & File Ownership
+To prevent collision, we strictly follow this ownership map:
+
+| Component | Target Files | Primary Agent |
+| :--- | :--- | :--- |
+| **Header** | `sections/header.liquid`, `snippets/header-drawer.liquid` | **Codex** |
+| **Nav/Menu** | `snippets/navigation.liquid`, `snippets/menu-*.liquid` | **Codex** |
+| **Global CSS** | `assets/theme-update.css` | **Joint** (Use BEM) |
+| **Product Grid** | `snippets/product-grid-item.liquid` | **Joint** (Coord Sync) |
+| **Logic/AJAX** | `assets/empire.js`, `snippets/product-form.liquid` | **Antigravity** |
+
 - **Codex**: Primary Liquid Developer. Responsible for porting snippets, blocks, and section schema from `whispertheme` into the active theme.
 - **Antigravity**: Architect & Guardian. Responsible for file mapping, CSS bridging, and ensuring complex apps (like Pincode Zippy) do not break.
 
