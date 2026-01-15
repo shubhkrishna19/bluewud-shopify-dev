@@ -21240,3 +21240,48 @@ color: #353130;
     }
   }
 
+
+/* Zippy Pincode Skeleton Loader */
+#zippy_widget_1511 {
+  min-height: 100px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.zippy-skeleton-loader {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+  border: 1px solid #e8e8e6;
+  border-radius: 4px;
+  background: #f9f9f9;
+}
+
+.zippy-skeleton-header {
+  width: 150px;
+  height: 20px;
+  background: #eee;
+  border-radius: 4px;
+  animation: zippy-pulse 1.5s infinite ease-in-out;
+}
+
+.zippy-skeleton-input {
+  width: 100%;
+  height: 40px;
+  background: #eee;
+  border-radius: 4px;
+  animation: zippy-pulse 1.5s infinite ease-in-out;
+}
+
+@keyframes zippy-pulse {
+  0% { opacity: 0.6; }
+  50% { opacity: 1; }
+  100% { opacity: 0.6; }
+}
+
+/* Hide skeleton when zippy widget is loaded */
+#zippy_widget_1511:not(:empty) .zippy-skeleton-loader {
+  display: none;
+}
+
