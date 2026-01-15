@@ -1,0 +1,44 @@
+/**
+ * Whisper theme bridge for Empire
+ * This file defines design tokens and helper classes to support Whisper components.
+ */
+
+:root {
+    /* Typography - Derived from settings_data.json update */
+    --font-body-family: "Inter", sans-serif;
+    --font-heading-family: "Barlow", sans-serif;
+
+    /* Spacing & Layout */
+    --spacing-scale: 1.0;
+    --gap-scale: 1.0;
+    --section-height-small: 400px;
+    --section-height-medium: 600px;
+    --section-height-large: 800px;
+
+    /* Z-Index Layers */
+    --layer-base: 0;
+    --layer-flat: 1;
+    --layer-raised: 2;
+    --layer-overlay: 10;
+    --layer-header: 100;
+
+    /* Colors - Mapping basic Empire colors to Whisper-like variables */
+    --color-border-rgb: 232, 232, 230;
+    /* #e8e8e6 */
+}
+
+/* Global utility for Whisper-style buttons if needed */
+.whisper-button {
+    font-family: var(--font-body-family);
+    border-radius: 40px;
+    transition: all 0.3s ease;
+}
+
+.whisper-hero .hero__title {
+    font-family: var(--font-heading-family) !important;
+}
+
+.whisper-hero .hero__text,
+.whisper-hero .hero__button {
+    font-family: var(--font-body-family) !important;
+}

@@ -13,12 +13,14 @@ This file is the **Source of Truth** for the synchronized development between **
 | Task | Status | Agent | Priority | Notes |
 | :--- | :--- | :--- | :--- | :--- |
 | Pincode Widget Restoration | [x] Done | Anti | High | **DON'T TOUCH**: `#zippy_widget_1511`. |
-| **Theme Integration (Whisper UI)** | [/] Active | Joint | High | Applying `whispertheme` aesthetics to Empire. |
+| **Theme Integration (Whisper UI)** | [/] Active | Joint | High | Progress: **22% Complete**. |
 | - Design Token Analysis | [x] Done | Anti | Low | Mapped variables in `theme-styles-variables.liquid`. |
+| - **Typography Overhaul** | [/] Active | Anti | High | Switching to Inter (Body) & Barlow (Headings). |
 | - **Header & Nav Porting** | [ ] Pending | **Codex**| High | Replace Empire header logic with Whisper's. |
-| - **Banners & Hero Sections** | [ ] Pending | **Codex**| Med | Port Whisper's `hero.liquid` / `slideshow.liquid`. |
+| - **Whisper Hero Section** | [/] Active | Anti | High | Porting Whisper's `hero.liquid` to Empire. |
+| - **Banners & Slide Sections** | [ ] Pending | **Codex**| Med | Port Whisper's slideshow blocks. |
 | - **Product Card UI** | [ ] Pending | **Codex**| High | Port `product-card.liquid` aesthetics. |
-| - Global CSS Bridge | [ ] Pending | Anti | Med | Creating `theme-update.css`. |
+| - Global CSS Bridge | [/] Active | Anti | Med | Building `theme-update.css`. |
 
 ---
 
@@ -77,4 +79,5 @@ This file is the **Source of Truth** for the synchronized development between **
 ## 📝 Developer Logs
 *Update this section after every major push.*
 
-- **2026-01-15 (Antigravity)**: Completed deep-dive into `whispertheme`. Mapped all CSS variables and identified primary porting targets. Ready for Codex to begin Liquid integration.
+- **2026-01-15 (Antigravity)**: Completed deep-dive into `whispertheme`. Mapped all CSS variables and identified primary porting targets. Ready for Codex to begin Liquid integration. Migration status updated to **22%**.
+- **2026-01-15 (Antigravity)**: Initiated Typography Overhaul. Transitioning store to Inter/Barlow for premium aesthetics. Preparing to port `whisper-hero.liquid`.
