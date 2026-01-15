@@ -21281,7 +21281,7 @@ color: #353130;
 }
 
 /* Hide skeleton when zippy widget is loaded */
-#zippy_widget_1511:not(:empty) .zippy-skeleton-loader {
-  display: none;
+#zippy_widget_1511:not(:empty) + .zippy-skeleton-loader {
+  display: none !important;
 }
 

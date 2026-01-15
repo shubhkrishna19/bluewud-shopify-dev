@@ -228,7 +228,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 766:
 /***/ ((__unused_webpack_module, exports) => {
@@ -272,7 +272,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 741:
 /***/ ((module, exports, __webpack_require__) => {
@@ -331,7 +331,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 158:
 /***/ (function (module, exports, __webpack_require__) {
@@ -449,7 +449,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 387:
 /***/ ((module, exports, __webpack_require__) => {
@@ -1174,7 +1174,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 729:
 /***/ ((module) => {
@@ -1301,7 +1301,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 47:
 /***/ ((module, exports, __webpack_require__) => {
@@ -1539,7 +1539,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 597:
 /***/ ((module, exports, __webpack_require__) => {
@@ -1695,7 +1695,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 880:
 /***/ ((module, exports, __webpack_require__) => {
@@ -1892,7 +1892,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 229:
 /***/ ((module, exports, __webpack_require__) => {
@@ -1990,7 +1990,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 690:
 /***/ ((module, exports, __webpack_require__) => {
@@ -2376,7 +2376,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 217:
 /***/ ((module, exports, __webpack_require__) => {
@@ -3290,7 +3290,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 442:
 /***/ ((module, exports, __webpack_require__) => {
@@ -3332,7 +3332,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 227:
 /***/ ((module, exports, __webpack_require__) => {
@@ -3461,7 +3461,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 573:
 /***/ ((module, exports, __webpack_require__) => {
@@ -3642,7 +3642,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 516:
 /***/ ((module, exports, __webpack_require__) => {
@@ -3828,7 +3828,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 410:
 /***/ ((module, exports, __webpack_require__) => {
@@ -4032,7 +4032,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 714:
 /***/ ((module, exports, __webpack_require__) => {
@@ -4111,7 +4111,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 131:
 /***/ ((module, exports, __webpack_require__) => {
@@ -4324,7 +4324,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 414:
 /***/ ((module) => {
@@ -5224,7 +5224,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 220:
 /***/ (() => {
@@ -5355,7 +5355,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 72:
 /***/ (() => {
@@ -5502,7 +5502,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 755:
 /***/ (function (module, exports) {
@@ -16384,7 +16384,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 405:
 /***/ ((module) => {
@@ -16426,7 +16426,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 411:
 /***/ (function (module, exports, __webpack_require__) {
@@ -17297,7 +17297,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 832:
 /***/ (function (module, exports, __webpack_require__) {
@@ -21039,7 +21039,7 @@
         });
 
         /***/
-}),
+      }),
 
 /***/ 277:
 /***/ ((module, exports, __webpack_require__) => {
@@ -21175,7 +21175,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 637:
 /***/ ((module, exports) => {
@@ -21199,7 +21199,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 842:
 /***/ ((module, exports, __webpack_require__) => {
@@ -21475,7 +21475,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 704:
 /***/ ((module, exports, __webpack_require__) => {
@@ -21773,7 +21773,7 @@
 
 
         /***/
-}),
+      }),
 
 /***/ 529:
 /***/ (function (module, exports) {
@@ -22181,10 +22181,10 @@
 
 
         /***/
-})
+      })
 
     /******/
-});
+  });
 /************************************************************************/
 /******/ 	// The module cache
 /******/ 	var __webpack_module_cache__ = {};
@@ -22195,14 +22195,14 @@
 /******/ 		if (__webpack_module_cache__[moduleId]) {
 /******/ 			return __webpack_module_cache__[moduleId].exports;
       /******/
-}
+    }
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = __webpack_module_cache__[moduleId] = {
 /******/ 			// no module.id needed
 /******/ 			// no module.loaded needed
 /******/ 			exports: {}
       /******/
-};
+    };
 /******/
 /******/ 		// Execute the module function
 /******/ 		__webpack_modules__[moduleId].call(module.exports, module, module.exports, __webpack_require__);
@@ -22210,7 +22210,7 @@
 /******/ 		// Return the exports of the module
 /******/ 		return module.exports;
     /******/
-}
+  }
 /******/
 /************************************************************************/
 /******/ 	/* webpack/runtime/compat get default export */
@@ -22223,9 +22223,9 @@
 /******/ 			__webpack_require__.d(getter, { a: getter });
 /******/ 			return getter;
       /******/
-};
+    };
     /******/
-})();
+  })();
 /******/
 /******/ 	/* webpack/runtime/define property getters */
 /******/ 	(() => {
@@ -22235,13 +22235,13 @@
 /******/ 				if (__webpack_require__.o(definition, key) && !__webpack_require__.o(exports, key)) {
 /******/ 					Object.defineProperty(exports, key, { enumerable: true, get: definition[key] });
           /******/
-}
+        }
         /******/
-}
+      }
       /******/
-};
+    };
     /******/
-})();
+  })();
 /******/
 /******/ 	/* webpack/runtime/global */
 /******/ 	(() => {
@@ -22250,20 +22250,20 @@
 /******/ 			try {
 /******/ 				return this || new Function('return this')();
         /******/
-} catch (e) {
+      } catch (e) {
 /******/ 				if (typeof window === 'object') return window;
         /******/
-}
+      }
       /******/
-})();
+    })();
     /******/
-})();
+  })();
 /******/
 /******/ 	/* webpack/runtime/hasOwnProperty shorthand */
 /******/ 	(() => {
 /******/ 		__webpack_require__.o = (obj, prop) => (Object.prototype.hasOwnProperty.call(obj, prop))
     /******/
-})();
+  })();
   /******/
   /************************************************************************/
   (() => {
@@ -31848,12 +31848,9 @@
           }));
         };
 
-        // Fire immediately to catch fast loading apps
-        dispatchSectionLoad();
-
         this.productDetails = new ProductDetails(options);
 
-        // Fire again after a short delay to catch lagging scripts (like Zippy might be)
+        dispatchSectionLoad();
         setTimeout(dispatchSectionLoad, 500);
         setTimeout(dispatchSectionLoad, 2000);
       }
