@@ -22,8 +22,8 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | T002 | - Typography Overhaul | [x] Done | Anti | High | Inter/Barlow applied. |
 | T003 | - Whisper Hero Section | [x] Done | Anti | High | Live with layout logic. |
 | **P3** | **Phase 3: Structural Header** | [/] Active | Anti | High | **Lead: Antigravity** |
-| T004 | - [Header] Liquid Port | [/] In Progress| Anti | High | Porting Whisper schema. |
-| T005 | - [Header] CSS Mapping | [ ] Pending || High | Port to `theme-update.css`. |
+| T004 | - [Header] Liquid Port | [x] Done | Anti | High | Ported modular logic. |
+| T005 | - [Header] CSS Mapping | [/] Active | Anti | High | Integrating to `theme-update.css`. |
 | T006 | - [Navigation] Mobile Drawer| [ ] Pending || Med | Port `header-drawer.liquid`. |
 | T007 | - [Navigation] Mega-Menu Grid| [ ] Pending || High | T-ID for grid menus. |
 | T008 | - [Navigation] Mega-Promo | [ ] Pending || High | T-ID for image menus. |
