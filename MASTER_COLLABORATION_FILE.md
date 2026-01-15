@@ -17,21 +17,30 @@ To prevent duplication, every agent **MUST** follow this protocol:
 
 | ID | Task | Status | Agent | Priority | Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| T001 | Pincode Widget Restoration | [x] Done | Anti | High | Verified across all templates. |
-| **P2** | **Phase 2: Visual Identity refresh** | [x] Done | Anti | High | **28% Milestone Reached.** |
-| T002 | - Typography Overhaul | [x] Done | Anti | High | Inter & Barlow applied. |
+| T001 | Pincode Widget Restoration | [x] Done | Anti | High | Verified baseline. |
+| **P2** | **Phase 2: Visual Identity** | [x] Done | Anti | High | **28% Reached.** |
+| T002 | - Typography Overhaul | [x] Done | Anti | High | Inter/Barlow applied. |
 | T003 | - Whisper Hero Section | [x] Done | Anti | High | Live with layout logic. |
-| **P3** | **Phase 3: Structural Porting** | [ ] Pending | **Codex**| High | **NEXT TARGET**: Header. |
-| T004 | - [Header] Liquid Port | [ ] Pending | **Codex**| High | Port `sections/header.liquid`. |
-| T005 | - [Header] CSS Integration | [ ] Pending | **Codex**| High | Sync to `theme-update.css`. |
-| T006 | - [Header] Mobile Drawer | [ ] Pending | **Codex**| Med | Port `header-drawer.liquid`. |
-| T007 | - [Navigation] Mega-Menu 1 | [ ] Pending | **Codex**| High | 2-column grid menu. |
-| T008 | - [Navigation] Mega-Menu 2 | [ ] Pending | **Codex**| High | Image-based promo menu. |
-| **P4** | **Phase 4: Product & Browsing UI** | [ ] Pending | Joint | High | Visual parity for cards. |
-| T009 | - [Card] Aesthetic Port | [ ] Pending | **Codex**| High | Port `product-card.liquid`. |
-| T010 | - [Card] Pincode Sync | [ ] Pending | Anti | High | **Wait for T009 completion.** |
-| T011 | - [Collection] Sidebar Port | [ ] Pending | **Codex**| Med | Port collection facets. |
-| T012 | - [Collection] Filter Style | [ ] Pending | **Codex**| Med | Facet CSS in `theme-update.css`. |
+| **P3** | **Phase 3: Structural Header** | [/] Active | Anti | High | **Lead: Antigravity** |
+| T004 | - [Header] Liquid Port | [/] In Progress| Anti | High | Porting Whisper schema. |
+| T005 | - [Header] CSS Mapping | [ ] Pending || High | Port to `theme-update.css`. |
+| T006 | - [Navigation] Mobile Drawer| [ ] Pending || Med | Port `header-drawer.liquid`. |
+| T007 | - [Navigation] Mega-Menu Grid| [ ] Pending || High | T-ID for grid menus. |
+| T008 | - [Navigation] Mega-Promo | [ ] Pending || High | T-ID for image menus. |
+| **P4** | **Phase 4: Global Utilities** | [ ] Pending | Joint | Med | **Codex Takeover Target** |
+| T013 | - [Icons] SVG Library Port | [ ] Pending || Low | Port `snippets/icon.liquid`. |
+| T014 | - [Spacing] Padding Helpers | [ ] Pending || Med | Port `spacing-padding.liquid`. |
+| T015 | - [Badges] Product Badges | [ ] Pending || Med | Port `snippets/badge.liquid`. |
+| **P5** | **Phase 5: Product Page UI** | [ ] Pending | Joint | High | Visual parity for PDP. |
+| T016 | - [Media] Gallery Layout | [ ] Pending || High | Port Whisper gallery logic. |
+| T017 | - [Price] Dynamic Pricing UI| [ ] Pending || High | Port `snippets/price.liquid`. |
+| T018 | - [ATC] Button Styling | [ ] Pending || High | Port `add-to-cart-button`. |
+| **P6** | **Phase 6: Cart & Checkout UX**| [ ] Pending | Codex | Med | Polish transactional UI. |
+| T019 | - [Drawer] Whisper Cart | [ ] Pending || High | Port `cart-drawer.liquid`. |
+| T020 | - [Summary] Cart Summaries | [ ] Pending || Med | Port `cart-summary.liquid`. |
+| **P7** | **Phase 7: Optimization** | [ ] Pending | Joint | Low | Core Web Vitals + Clean. |
+| T021 | - [Asset] CSS Minification | [ ] Pending || Low | Consolidate themes. |
+| T022 | - [JS] Lazy Loading Hydrate | [ ] Pending || Med | Sync `section-hydration.js`. |
 
 ---
 
