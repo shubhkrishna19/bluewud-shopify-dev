@@ -1,1 +1,145 @@
-{"sections":{"main":{"type":"static-product","blocks":{"title":{"type":"title","settings":{}},"8cdc22e5-5f22-48e4-ac00-1b566602d693":{"type":"shopify:\/\/apps\/rivyo-product-reviews-qa\/blocks\/wc-product-review-badge\/f1860e84-309f-40ca-a2df-188435a622f3","settings":{}},"vendor":{"type":"vendor","disabled":true,"settings":{}},"price":{"type":"price","settings":{}},"97ad3cf3-12b5-4cf9-9c63-c25fa7781a89":{"type":"short_description","settings":{"text":"<p>{{ product.metafields.my_fields.short_description | metafield_tag }}<\/p>"}},"form":{"type":"form","settings":{}},"de14d6e6-d911-4c3a-8e9b-00004589a8a2":{"type":"feature_icons","settings":{"title":"Bluewud Promise","icon_1":"https:\/\/cdn.shopify.com\/s\/files\/1\/0532\/7074\/1168\/files\/Free_delivery_icon.svg?v=1618576991","text_1":"Free Delivery","url_1":"","icon_2":"https:\/\/cdn.shopify.com\/s\/files\/1\/0532\/7074\/1168\/files\/6_month_warranty_icon.svg?v=1618576991","text_2":"Warranty (1 Year)","url_2":"","icon_3":"https:\/\/cdn.shopify.com\/s\/files\/1\/0532\/7074\/1168\/files\/Try_n_buy_icon.svg?v=1618576991","text_3":"100% Refund","url_3":""}},"2b22b25a-7d02-470d-9b73-d0b11e58c642":{"type":"feature_icons_row","settings":{"icon_1":"shopify:\/\/shop_images\/offers.png","text_1":"Available Offers","btn_1":"View Offers","html_1":"<div class=\"v-product-offer-list\">\n    <div class=\"v-product-offer-int-list-wrap\">\n      <div class=\"v-product-offer-listitem-heading\"><h2>Available Offers<\/h2><\/div>\n      <div class=\"v-product-offer-listitem \">\n        <span class=\"v-product-offer-listitem-ttl pf-block\">Coupon Code : GET10 <\/span>\n        <span class=\"v-product-offer-listitem-desc pf-block\"><ul>\n<li>Avail additional 10% discount. <\/li>\n<li>Applicable on all Bluewud's products <\/li>\n        <span class=\"v-product-offer-listitem-cpn pf-block\"> \n        <\/span>\n      <\/ul><\/span>\n<\/div>\n      <div class=\"v-product-offer-listitem \">\n  <span class=\"v-product-offer-listitem-ttl pf-block\">Coupon Code : GET12<\/span>\n        <span class=\"v-product-offer-listitem-desc pf-block\"><ul>\n<li>Avail additional 12% discount. <\/li>\n<li>Minimum cart value : Rs 20000 <\/li>\n<li>Applicable on all Bluewud's products <\/li>\n<ul> \n        <span class=\"v-product-offer-listitem-cpn pf-block\"> <b> <\/b>\n        <\/span>\n      <\/ul>\n<\/ul><\/span>\n<\/div>\n      <div class=\"v-product-offer-listitem \">\n        <\/div>\n<\/div>\n<\/div>","url_1":"#AvailableOffers","text_2":"","btn_2":"","html_2":"","url_2":"#","icon_3":"shopify:\/\/shop_images\/offers.png","text_3":"GST  Available for Business Purchase","btn_3":"","html_3":"","url_3":""}},"98fa49f4-fe60-4e9f-8f7e-a9c1d5850463":{"type":"description","settings":{}},"17622ae7-e2bb-4804-a787-933574ed60be":{"type":"share","settings":{}}},"block_order":["title","8cdc22e5-5f22-48e4-ac00-1b566602d693","vendor","price","97ad3cf3-12b5-4cf9-9c63-c25fa7781a89","form","de14d6e6-d911-4c3a-8e9b-00004589a8a2","2b22b25a-7d02-470d-9b73-d0b11e58c642","98fa49f4-fe60-4e9f-8f7e-a9c1d5850463","17622ae7-e2bb-4804-a787-933574ed60be"],"settings":{"Shipping_line":"Estimate shipping between {x} to {y} days","upto_time":"2","gallery_aspect_ratio":"natural","gallery_image_crop":true,"gallery_thumbnail_position":"below","gallery_video_autoplay":true,"gallery_video_looping":true,"gallery_hover_zoom":"separate","gallery_click_to_zoom":"always"}},"recommendations":{"type":"static-product-recommendations","settings":{"show_product_recommendations":true,"product_recommendations_heading":"You may also like"}},"reviews":{"type":"static-product-reviews","settings":{}},"recently-viewed":{"type":"static-recently-viewed","settings":{"enable_recently_viewed_products":true}},"1638197413ed6cd7ef":{"type":"apps","blocks":{"4a00277e-c93d-476c-b37c-271e09bef7f4":{"type":"shopify:\/\/apps\/rivyo-product-reviews-qa\/blocks\/wc-review-section\/f1860e84-309f-40ca-a2df-188435a622f3","settings":{}}},"block_order":["4a00277e-c93d-476c-b37c-271e09bef7f4"],"settings":{"include_padding":true}}},"order":["main","recommendations","reviews","recently-viewed","1638197413ed6cd7ef"]}
+{
+    "sections": {
+        "main": {
+            "type": "static-product",
+            "blocks": {
+                "title": {
+                    "type": "title",
+                    "settings": {}
+                },
+                "8cdc22e5-5f22-48e4-ac00-1b566602d693": {
+                    "type": "shopify:\/\/apps\/rivyo-product-reviews-qa\/blocks\/wc-product-review-badge\/f1860e84-309f-40ca-a2df-188435a622f3",
+                    "settings": {}
+                },
+                "vendor": {
+                    "type": "vendor",
+                    "disabled": true,
+                    "settings": {}
+                },
+                "price": {
+                    "type": "price",
+                    "settings": {}
+                },
+                "97ad3cf3-12b5-4cf9-9c63-c25fa7781a89": {
+                    "type": "short_description",
+                    "settings": {
+                        "text": "<p>{{ product.metafields.my_fields.short_description | metafield_tag }}<\/p>"
+                    }
+                },
+                "form": {
+                    "type": "form",
+                    "settings": {}
+                },
+                "zippy_zipcode_validator_zippy_widget_Eia679": {
+                    "type": "shopify:\/\/apps\/zippy-zipcode-validator\/blocks\/zippy_widget\/Eia679",
+                    "settings": {}
+                },
+                "de14d6e6-d911-4c3a-8e9b-00004589a8a2": {
+                    "type": "feature_icons",
+                    "settings": {
+                        "title": "Bluewud Promise",
+                        "icon_1": "https:\/\/cdn.shopify.com\/s\/files\/1\/0532\/7074\/1168\/files\/Free_delivery_icon.svg?v=1618576991",
+                        "text_1": "Free Delivery",
+                        "url_1": "",
+                        "icon_2": "https:\/\/cdn.shopify.com\/s\/files\/1\/0532\/7074\/1168\/files\/6_month_warranty_icon.svg?v=1618576991",
+                        "text_2": "Warranty (1 Year)",
+                        "url_2": "",
+                        "icon_3": "https:\/\/cdn.shopify.com\/s\/files\/1\/0532\/7074\/1168\/files\/Try_n_buy_icon.svg?v=1618576991",
+                        "text_3": "100% Refund",
+                        "url_3": ""
+                    }
+                },
+                "2b22b25a-7d02-470d-9b73-d0b11e58c642": {
+                    "type": "feature_icons_row",
+                    "settings": {
+                        "icon_1": "shopify:\/\/shop_images\/offers.png",
+                        "text_1": "Available Offers",
+                        "btn_1": "View Offers",
+                        "html_1": "<div class=\"v-product-offer-list\">\n    <div class=\"v-product-offer-int-list-wrap\">\n      <div class=\"v-product-offer-listitem-heading\"><h2>Available Offers<\/h2><\/div>\n      <div class=\"v-product-offer-listitem \">\n        <span class=\"v-product-offer-listitem-ttl pf-block\">Coupon Code : GET10 <\/span>\n        <span class=\"v-product-offer-listitem-desc pf-block\"><ul>\n<li>Avail additional 10% discount. <\/li>\n<li>Applicable on all Bluewud's products <\/li>\n        <span class=\"v-product-offer-listitem-cpn pf-block\"> \n        <\/span>\n      <\/ul><\/span>\n<\/div>\n      <div class=\"v-product-offer-listitem \">\n  <span class=\"v-product-offer-listitem-ttl pf-block\">Coupon Code : GET12<\/span>\n        <span class=\"v-product-offer-listitem-desc pf-block\"><ul>\n<li>Avail additional 12% discount. <\/li>\n<li>Minimum cart value : Rs 20000 <\/li>\n<li>Applicable on all Bluewud's products <\/li>\n<ul> \n        <span class=\"v-product-offer-listitem-cpn pf-block\"> <b> <\/b>\n        <\/span>\n      <\/ul>\n<\/ul><\/span>\n<\/div>\n      <div class=\"v-product-offer-listitem \">\n        <\/div>\n<\/div>\n<\/div>",
+                        "url_1": "#AvailableOffers",
+                        "text_2": "",
+                        "btn_2": "",
+                        "html_2": "",
+                        "url_2": "#",
+                        "icon_3": "shopify:\/\/shop_images\/offers.png",
+                        "text_3": "GST  Available for Business Purchase",
+                        "btn_3": "",
+                        "html_3": "",
+                        "url_3": ""
+                    }
+                },
+                "98fa49f4-fe60-4e9f-8f7e-a9c1d5850463": {
+                    "type": "description",
+                    "settings": {}
+                },
+                "17622ae7-e2bb-4804-a787-933574ed60be": {
+                    "type": "share",
+                    "settings": {}
+                }
+            },
+            "block_order": [
+                "title",
+                "8cdc22e5-5f22-48e4-ac00-1b566602d693",
+                "vendor",
+                "price",
+                "97ad3cf3-12b5-4cf9-9c63-c25fa7781a89",
+                "form",
+                "zippy_zipcode_validator_zippy_widget_Eia679",
+                "de14d6e6-d911-4c3a-8e9b-00004589a8a2",
+                "2b22b25a-7d02-470d-9b73-d0b11e58c642",
+                "98fa49f4-fe60-4e9f-8f7e-a9c1d5850463",
+                "17622ae7-e2bb-4804-a787-933574ed60be"
+            ],
+            "settings": {
+                "Shipping_line": "Estimate shipping between {x} to {y} days",
+                "upto_time": "2",
+                "gallery_aspect_ratio": "natural",
+                "gallery_image_crop": true,
+                "gallery_thumbnail_position": "below",
+                "gallery_video_autoplay": true,
+                "gallery_video_looping": true,
+                "gallery_hover_zoom": "separate",
+                "gallery_click_to_zoom": "always"
+            }
+        },
+        "recommendations": {
+            "type": "static-product-recommendations",
+            "settings": {
+                "show_product_recommendations": true,
+                "product_recommendations_heading": "You may also like"
+            }
+        },
+        "reviews": {
+            "type": "static-product-reviews",
+            "settings": {}
+        },
+        "recently-viewed": {
+            "type": "static-recently-viewed",
+            "settings": {
+                "enable_recently_viewed_products": true
+            }
+        },
+        "1638197413ed6cd7ef": {
+            "type": "apps",
+            "blocks": {
+                "4a00277e-c93d-476c-b37c-271e09bef7f4": {
+                    "type": "shopify:\/\/apps\/rivyo-product-reviews-qa\/blocks\/wc-review-section\/f1860e84-309f-40ca-a2df-188435a622f3",
+                    "settings": {}
+                }
+            },
+            "block_order": [
+                "4a00277e-c93d-476c-b37c-271e09bef7f4"
+            ],
+            "settings": {
+                "include_padding": true
+            }
+        }
+    },
+    "order": [
+        "main",
+        "recommendations",
+        "reviews",
+        "recently-viewed",
+        "1638197413ed6cd7ef"
+    ]
+}

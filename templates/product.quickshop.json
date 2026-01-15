@@ -20,6 +20,10 @@
                     "type": "form",
                     "settings": {}
                 },
+                "zippy_zipcode_validator_zippy_widget_Eia679": {
+                    "type": "shopify:\/\/apps\/zippy-zipcode-validator\/blocks\/zippy_widget\/Eia679",
+                    "settings": {}
+                },
                 "description": {
                     "type": "description",
                     "settings": {}
@@ -30,6 +34,7 @@
                 "vendor",
                 "price",
                 "form",
+                "zippy_zipcode_validator_zippy_widget_Eia679",
                 "description"
             ],
             "settings": {}
