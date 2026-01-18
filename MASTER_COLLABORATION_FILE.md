@@ -8,23 +8,58 @@ This file is the **Source of Truth** for the synchronized development between **
 **URL**: [https://u1p5we6mwmdiusgu-18086469.shopifypreview.com](https://u1p5we6mwmdiusgu-18086469.shopifypreview.com)
 *Use this link to verify all visual and functional changes in real-time.*
 
-## 🚀 Progress & Task Handoff
+## 🔒 Task Locking & Coordination (CRITICAL)
+To prevent duplication, every agent **MUST** follow this protocol:
+1. **Declare**: Before starting, add `[/] In Progress - [Agent Name]` next to the **Task ID** in this file.
+2. **Commit**: Sync changes to GitHub immediately after completion.
+3. **Close**: Mark as `[x] Done` and provide the commit hash or file path in the 'Notes' column.
+4. **Sequence**: All new tasks must continue the sequential numbering.
+5. **Read**: Review `AGENTS.md` for multi-agent coordination rules.
 
-| Task | Status | Agent | Priority | Notes |
-| :--- | :--- | :--- | :--- | :--- |
-| Pincode Widget Restoration | [x] Done | Anti | High | **DON'T TOUCH**: `#zippy_widget_1511`. |
-| **Theme Integration (Whisper UI)** | [/] Active | Joint | High | Applying `whispertheme` aesthetics to Empire. |
-| - Design Token Analysis | [x] Done | Anti | Low | Mapped variables in `theme-styles-variables.liquid`. |
-| - **Header & Nav Porting** | [/] Active | **Codex**| High | Wrapping Empire header markup with Whisper layout classes (no logic replacement). |
-| - **Banners & Hero Sections** | [/] Active | **Codex**| Med | Begin porting Whisper `hero.liquid` / `slideshow.liquid` structures. |
-| - **Product Card UI** | [ ] Pending | **Codex**| High | Port `product-card.liquid` aesthetics. |
-| - Global CSS Bridge | [ ] Pending | Anti | Med | Creating `theme-update.css`. |
+| ID | Task | Status | Agent | Priority | Notes |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| T001 | Pincode Widget Restoration | [x] Done | Anti | High | **DON'T TOUCH**: `#zippy_widget_1511`. |
+| **P2** | **Phase 2: Visual Identity** | [x] Done | Anti | High | **28% Reached.** |
+| T002 | - Typography Overhaul | [x] Done | Anti | High | Inter/Barlow applied. |
+| T003 | - Whisper Hero Section | [x] Done | Anti | High | Live with layout logic. |
+| **P3** | **Phase 3: Structural Header** | [/] Active | Joint | High | Applying `whispertheme` aesthetics to Empire. |
+| T004 | - [Header] Liquid Port | [x] Done | Anti | High | Ported modular logic. |
+| T005 | - [Header] CSS Mapping | [/] Active | Anti | High | Integrating to `theme-update.css`. |
+| T006 | - [Header & Nav] Porting | [/] Active | **Codex** | High | Wrapping Empire header markup with Whisper layout classes. |
+| T007 | - [Banners & Hero] Sections | [/] Active | **Codex** | Med | Porting Whisper `hero.liquid` / `slideshow.liquid` structures. |
+| T008 | - [Navigation] Mobile Drawer| [ ] Pending || Med | Port `header-drawer.liquid`. |
+| T009 | - [Navigation] Mega-Menu Grid| [ ] Pending || High | T-ID for grid menus. |
+| T010 | - [Navigation] Mega-Promo | [ ] Pending || High | T-ID for image menus. |
+| **P4** | **Phase 4: Global Utilities** | [ ] Pending | Joint | Med | **Codex Takeover Target** |
+| T013 | - [Icons] SVG Library Port | [x] Done | Codex | Low | Added `snippets/icon.liquid` (commit 77f04b2). |
+| T014 | - [Spacing] Padding Helpers | [x] Done | Codex | Med | Added `snippets/spacing-padding.liquid`. |
+| T015 | - [Badges] Product Badges | [ ] Pending || Med | Port `snippets/badge.liquid`. |
+| **P5** | **Phase 5: Product Page UI** | [ ] Pending | Joint | High | Visual parity for PDP. |
+| T016 | - [Media] Gallery Layout | [ ] Pending || High | Port Whisper gallery logic. |
+| T017 | - [Price] Dynamic Pricing UI| [x] Done | Codex | High | Added `snippets/price.liquid`. |
+| T018 | - [ATC] Button Styling | [ ] Pending || High | Port `add-to-cart-button`. |
+| **P6** | **Phase 6: Cart & Checkout UX**| [ ] Pending | Codex | Med | Polish transactional UI. |
+| T019 | - [Drawer] Whisper Cart | [ ] Pending || High | Port `cart-drawer.liquid`. |
+| T020 | - [Summary] Cart Summaries | [ ] Pending || Med | Port `cart-summary.liquid`. |
+| **P7** | **Phase 7: Optimization** | [ ] Pending | Joint | Low | Core Web Vitals + Clean. |
+| T021 | - [Asset] CSS Minification | [ ] Pending || Low | Consolidate themes. |
+| T022 | - [JS] Lazy Loading Hydrate | [ ] Pending || Med | Sync `section-hydration.js`. |
 
 ---
 
 ## 🛠 Shared Multi-Agent Strategy
 
-### 1. The Division of Labor
+### 1. The Division of Labor & File Ownership
+To prevent collision, we strictly follow this ownership map:
+
+| Component | Target Files | Primary Agent |
+| :--- | :--- | :--- |
+| **Header** | `sections/header.liquid`, `snippets/header-drawer.liquid` | **Codex** |
+| **Nav/Menu** | `snippets/navigation.liquid`, `snippets/menu-*.liquid` | **Codex** |
+| **Global CSS** | `assets/theme-update.css` | **Joint** (Use BEM) |
+| **Product Grid** | `snippets/product-grid-item.liquid` | **Joint** (Coord Sync) |
+| **Logic/AJAX** | `assets/empire.js`, `snippets/product-form.liquid` | **Antigravity** |
+
 - **Codex**: Primary Liquid Developer. Responsible for porting snippets, blocks, and section schema from `whispertheme` into the active theme.
 - **Antigravity**: Architect & Guardian. Responsible for file mapping, CSS bridging, and ensuring complex apps (like Pincode Zippy) do not break.
 
@@ -33,6 +68,7 @@ This file is the **Source of Truth** for the synchronized development between **
 1. Wrap Empire's functional elements with Whisper's CSS classes.
 2. Keep all `data-` attributes and original `id`s for AJAX/Script compatibility.
 3. Use the `whispertheme` assets (JS/CSS) as siblings to Empire's assets.
+4. **Modular Modernization**: UI updates must be "properly modular and modern." Keep it clean and focused; avoid "fancy" bloat. Aim for better design while keeping the core content familiar and sensible.
 
 ---
 
@@ -77,40 +113,12 @@ This file is the **Source of Truth** for the synchronized development between **
 ## 📝 Developer Logs
 *Update this section after every major push.*
 
-- **2026-01-15 (Antigravity)**: Completed deep-dive into `whispertheme`. Mapped all CSS variables and identified primary porting targets. Ready for Codex to begin Liquid integration.
+- **2026-01-15 (Antigravity)**: Completed deep-dive into `whispertheme`. Mapped all CSS variables and identified primary porting targets. Ready for Codex to begin Liquid integration. Migration status updated to **22%**.
+- **2026-01-15 (Antigravity)**: Initiated Typography Overhaul. Transitioning store to Inter/Barlow for premium aesthetics. Preparing to port `whisper-hero.liquid`.
+- **2026-01-15 (Antigravity)**: **PHASE 2 COMPLETE.** Typography and Hero live. Migration status: **28%**. Expanded roadmap for Phases 3 & 4 with specialized tasks for Codex.
 - **2026-01-15 (Codex)**: Began Header & Nav Porting. Added Whisper structural wrappers for header rows/columns, header actions, and header menu while preserving Empire data attributes and Liquid logic (`sections/static-header.liquid`, `snippets/site-header-actions.liquid`, `snippets/site-mobile-nav.liquid`). Verify Quick Shop and mobile menu behavior after styling changes.
-
----
-
-## 📚 Project Knowledge Base (Shared)
-*Goal: Capture recurring decisions, key files, and how-to patterns so future work avoids duplication.*
-
-### Header & Navigation Porting (Whisper UI → Empire Logic)
-- **Guiding rule**: Wrap Empire markup with Whisper classes; do not replace Liquid logic or data attributes that Empire JS depends on.
-- **Primary files touched (Codex)**:
-  - `sections/static-header.liquid`: Add Whisper layout wrappers (`header`, `header__row`, `header__columns`, `header__column`), wrap actions with `<header-actions>`, and wrap menu with `<header-menu>`.
-  - `snippets/site-header-actions.liquid`: Add Whisper action hooks (`header-actions`, `header-actions__action`) without removing Empire classes.
-  - `snippets/site-mobile-nav.liquid`: Wrap mobile header actions with `<header-actions>` for styling parity.
-- **Data attributes to preserve**: `data-section-id`, `data-section-type`, `data-site-header-main`, `data-site-header-sticky`, `data-menu-toggle`, `data-mobile-search-button`, `data-site-navigation`, `data-header-cart-count`, and live search hooks in `snippets/live-search-form.liquid`.
-
-### JS & App Safeguards
-- **Quick Shop** relies on Empire JS and `shopify:section:load`; do not remove Quick Shop `data-` hooks.
-- **Pincode/Zippy** must keep `#zippy_widget_1511` intact in product-related snippets.
-
-### CSS Strategy
-- New styles go to `assets/theme-update.css`.
-- Prefer Whisper BEM hooks to avoid interfering with Empire defaults.
-
----
-
-## 🧩 Agent Work Logs (Request for Updates)
-**Action Required:** Each agent should append a short entry below when they complete a task:
-- **Name / Date**
-- **What was changed**
-- **Files edited**
-- **How to verify**
-
-_Placeholder entries below — please replace with your updates:_
-- **Antigravity / TBD**: _Describe CSS bridging progress, file paths, and verification steps._
-- **Codex / 2026-01-15**: Header & Nav Porting in progress. Files edited: `sections/static-header.liquid`, `snippets/site-header-actions.liquid`, `snippets/site-mobile-nav.liquid`. Verify header layout, menu toggle, cart count badge, and live search behavior.
-- **Codex / 2026-01-15**: Took ownership of Banners & Hero Sections. Next step is to map Whisper `sections/hero.liquid` + `sections/slideshow.liquid` structure into Empire equivalents. Files to edit: `sections/hero.liquid`, `sections/slideshow.liquid` (Empire). Verify banner layout, CTA links, and slider behavior in the live preview.
+- **2026-01-18 (Codex)**: Ported Whisper SVG icon library to `snippets/icon.liquid` (commit 77f04b2).
+- **2026-01-18 (Codex)**: Ported padding helper snippet from Whisper to `snippets/spacing-padding.liquid`. (Task chosen: T014)
+- **2026-01-18 (Codex)**: Added `AGENTS.md` with multi-agent coordination rules and best-practice contribution requirements.
+- **2026-01-18 (Codex)**: Selected task T017 - Dynamic Pricing UI.
+- **2026-01-18 (Codex)**: Ported Whisper pricing snippet to `snippets/price.liquid`.
