@@ -37,7 +37,7 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | T018 | - [ATC] Button Styling | [x] Done | Codex | High | 0795b6c |
 | **P6** | **Phase 6: Cart & Checkout UX**| [ ] Pending | Codex | Med | Polish transactional UI. |
 | T019 | - [Drawer] Whisper Cart | [ ] Pending || High | Port `cart-drawer.liquid`. |
-| T020 | - [Summary] Cart Summaries | [ ] Pending || Med | Port `cart-summary.liquid`. |
+| T020 | - [Summary] Cart Summaries | [x] Done | Codex | Med | 3fe761b |
 | **P7** | **Phase 7: Optimization** | [ ] Pending | Joint | Low | Core Web Vitals + Clean. |
 | T021 | - [Asset] CSS Minification | [ ] Pending || Low | Consolidate themes. |
 | T022 | - [JS] Lazy Loading Hydrate | [ ] Pending || Med | Sync `section-hydration.js`. |
@@ -118,3 +118,4 @@ To prevent collision, we strictly follow this ownership map:
 - **2026-01-16 (Codex)**: Completed T015 by porting `snippets/badge.liquid`. Commit: 2558d15.
 - **2026-01-16 (Codex)**: Completed T017 by porting `snippets/price.liquid`. Commit: 5ec515e.
 - **2026-01-16 (Codex)**: Completed T018 by porting `snippets/add-to-cart-button.liquid`. Commit: 0795b6c.
+- **2026-01-16 (Codex)**: Completed T020 by porting `snippets/cart-summary.liquid`. Commit: 3fe761b.
