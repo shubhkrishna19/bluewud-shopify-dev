@@ -1,1 +1,584 @@
-{"sections":{"dynamic_slideshow":{"type":"dynamic-slideshow","blocks":{"7579820d-0b45-4ce3-9837-956137d30705":{"type":"slide","settings":{"background_image":"shopify:\/\/shop_images\/Banner_18.png","mobile_background_image":"shopify:\/\/shop_images\/Banner_18.png","title":"","text":"","color":"#ffffff","link":"shopify:\/\/collections\/bluewud-sparkle-sale","text_alignment":"center","button_one_label":"","button_one_link":"","button_one_style":"primary","button_two_label":"","button_two_link":"","button_two_style":"primary","show_overlay":false,"overlay_color":"#000000","overlay_opacity":50}},"slide_fTFmXV":{"type":"slide","disabled":true,"settings":{"background_image":"shopify:\/\/shop_images\/24.jpg","mobile_background_image":"shopify:\/\/shop_images\/24_a6ab17c8-ea54-4042-98ad-4cef7e0ad2d0.jpg","title":"","text":"","color":"#ffffff","link":"shopify:\/\/collections\/study-tables","text_alignment":"center","button_one_label":"","button_one_link":"shopify:\/\/collections\/study-tables","button_one_style":"primary","button_two_label":"","button_two_link":"","button_two_style":"primary","show_overlay":false,"overlay_color":"#000000","overlay_opacity":39}},"slide_bAGpte":{"type":"slide","settings":{"background_image":"shopify:\/\/shop_images\/25.jpg","mobile_background_image":"shopify:\/\/shop_images\/25.jpg","title":"","text":"","color":"#ffffff","link":"shopify:\/\/collections\/bed","text_alignment":"center","button_one_label":"","button_one_link":"","button_one_style":"primary","button_two_label":"","button_two_link":"shopify:\/\/collections\/bed","button_two_style":"primary","show_overlay":false,"overlay_color":"#000000","overlay_opacity":50}},"slide-2":{"type":"slide","disabled":true,"settings":{"background_image":"shopify:\/\/shop_images\/Banner_2.jpg","mobile_background_image":"shopify:\/\/shop_images\/Banner_2.jpg","title":"","text":"","color":"#1d1d1d","link":"shopify:\/\/collections\/coffee-table","text_alignment":"center","button_one_label":"","button_one_link":"","button_one_style":"primary","button_two_label":"","button_two_link":"","button_two_style":"primary","show_overlay":false,"overlay_color":"#000000","overlay_opacity":4}},"340a546a-baf1-4d3e-99e2-ac45ed98ab2b":{"type":"slide","settings":{"background_image":"shopify:\/\/shop_images\/Main_Banner_Tv_Unit_32648697-077e-4ac4-a320-73282911afee.jpg","mobile_background_image":"shopify:\/\/shop_images\/Main_Banner_Tv_Unit_32648697-077e-4ac4-a320-73282911afee.jpg","title":"","text":"","color":"#ffffff","link":"shopify:\/\/collections\/furniture-new","text_alignment":"center","button_one_label":"","button_one_link":"","button_one_style":"primary","button_two_label":"","button_two_link":"","button_two_style":"primary","show_overlay":false,"overlay_color":"#000000","overlay_opacity":50}},"9c93c9f0-3fa7-42fb-be6e-35250c07d6e3":{"type":"slide","settings":{"background_image":"shopify:\/\/shop_images\/Main_Banner_WFH.jpg","mobile_background_image":"shopify:\/\/shop_images\/Main_Banner_WFH.jpg","title":"","text":"","color":"#ffffff","link":"shopify:\/\/collections\/smartly-designed-wfh-furniture","text_alignment":"center","button_one_label":"","button_one_link":"","button_one_style":"primary","button_two_label":"","button_two_link":"","button_two_style":"primary","show_overlay":false,"overlay_color":"#000000","overlay_opacity":50}},"be97fb4c-84c4-41af-8abd-b4636ca1689e":{"type":"slide","settings":{"background_image":"shopify:\/\/shop_images\/Banner_11.png","mobile_background_image":"shopify:\/\/shop_images\/Banner_11.png","title":"","text":"","color":"#ffffff","link":"shopify:\/\/pages\/offers-discount","text_alignment":"center","button_one_label":"","button_one_link":"","button_one_style":"primary","button_two_label":"","button_two_link":"","button_two_style":"primary","show_overlay":false,"overlay_color":"#000000","overlay_opacity":50}}},"block_order":["7579820d-0b45-4ce3-9837-956137d30705","slide_fTFmXV","slide_bAGpte","slide-2","340a546a-baf1-4d3e-99e2-ac45ed98ab2b","9c93c9f0-3fa7-42fb-be6e-35250c07d6e3","be97fb4c-84c4-41af-8abd-b4636ca1689e"],"settings":{"enable_autoplay":true,"autoplay_duration":5,"slideshow_width":"full","slideshow_height":"original","slideshow_height_mobile":"original","slideshow_text_below_image":false}},"16376559468c5a335a":{"type":"collections-tabs","blocks":{"35457581-8a56-4e21-b9dd-101fbe1c6861":{"type":"tab","settings":{"title":"Furniture","image_1":"shopify:\/\/shop_images\/Pollo_Queen_Size_Double_Bed.png","collection_1":"bed","title_1":"","image_2":"shopify:\/\/shop_images\/Coffee_Table_fa61160b-e553-4154-ae73-73a9791c20b7.png","collection_2":"coffee-table","title_2":"","image_3":"shopify:\/\/shop_images\/Maxelle_Bookshelf.png","collection_3":"book-shelves","title_3":"","image_4":"shopify:\/\/shop_images\/Oleye_Shoe_Rack_Cabinet.png","collection_4":"wooden-shoe-rack-shoe-stand-with-door","title_4":"","image_5":"shopify:\/\/shop_images\/Door_Wardrobes_Maltein.png","collection_5":"wardrobe","title_5":"","image_6":"shopify:\/\/shop_images\/Amalet_Study_Table.png","collection_6":"study-tables","title_6":"","image_7":"shopify:\/\/shop_images\/dressing_table_Darci.png","collection_7":"dressing-vanity-mirrors","title_7":"","collection_8":"","title_8":""}},"fc82bd90-3e73-4130-81b7-51addbb2fc38":{"type":"tab","settings":{"title":"Decor","image_1":"shopify:\/\/shop_images\/Wall_Shelf_98010613-eb15-4936-b5c8-a0a6532c31cc.png","collection_1":"wall-shelves","title_1":"","image_2":"shopify:\/\/shop_images\/Key_Holder.png","collection_2":"key-holders","title_2":"Key Holder","image_3":"shopify:\/\/shop_images\/Remote_Holder.png","collection_3":"remote-holders","title_3":"","image_4":"shopify:\/\/shop_images\/Corner_Shelf.png","collection_4":"corner-shelves","title_4":"Corner Shelves","image_5":"shopify:\/\/shop_images\/Monitor_stand_745aed25-1eef-454d-9621-ccce7345dd69.png","collection_5":"monitor-stand","title_5":"Monitor Stand","collection_6":"","title_6":"","collection_7":"","title_7":"","collection_8":"","title_8":""}}},"block_order":["35457581-8a56-4e21-b9dd-101fbe1c6861","fc82bd90-3e73-4130-81b7-51addbb2fc38"],"custom_css":[],"settings":{"border_color":"#ffffff","border_color_hover":"#000000"}},"1638794690172b8b26":{"type":"promo-images","blocks":{"16387946908a2c5628-0":{"type":"promo","settings":{"image":"shopify:\/\/shop_images\/FC_Dressing_Table.jpg","block_link":"shopify:\/\/collections\/dressing-tables"}},"16387946908a2c5628-1":{"type":"promo","settings":{"image":"shopify:\/\/shop_images\/FC_Centre_table_e300fc08-d154-4855-ae51-63e1bfe8a08a.jpg","block_link":"shopify:\/\/collections\/coffee-table"}},"promo_qtG7HB":{"type":"promo","settings":{"block_link":""}},"16387946908a2c5628-2":{"type":"promo","settings":{"image":"shopify:\/\/shop_images\/FC_WFH_2e8b639b-a05a-41cc-a084-3c704fd2d06c.jpg","block_link":"shopify:\/\/collections\/study-tables"}},"16387946908a2c5628-3":{"type":"promo","disabled":true,"settings":{"image":"shopify:\/\/shop_images\/FC_Bedroom.jpg","block_link":"shopify:\/\/collections\/dining-table"}},"16387946908a2c5628-4":{"type":"promo","disabled":true,"settings":{"image":"shopify:\/\/shop_images\/FC_Centre_table.jpg","block_link":"shopify:\/\/collections\/dining-table"}},"16387946908a2c5628-5":{"type":"promo","disabled":true,"settings":{"image":"shopify:\/\/shop_images\/FC_WFH.jpg","block_link":"shopify:\/\/collections\/mirrors"}}},"block_order":["16387946908a2c5628-0","16387946908a2c5628-1","promo_qtG7HB","16387946908a2c5628-2","16387946908a2c5628-3","16387946908a2c5628-4","16387946908a2c5628-5"],"custom_css":["\/* Product Cards *\/.product-card {box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); border-radius: 8px; border: 1px solid #e8e8e6; transition: all 0.3s ease-in-out;}",".product-card:hover {box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12); transform: translateY(-4px);}"," \/* Buttons *\/button {border-radius: 6px; font-weight: 600; transition: all 0.3s ease;}"],"settings":{"title":"FEATURED CATEGORIES","text":"","section_columns":3}},"dynamic_collection_list":{"type":"dynamic-collection-list","blocks":{"collection-1":{"type":"collection","settings":{"collection":"coffee-table","title":""}},"collection-2":{"type":"collection","settings":{"collection":"bathroom","title":""}},"collection-3":{"type":"collection","settings":{"collection":"dining-table","title":""}},"collection-4":{"type":"collection","settings":{"collection":"mirrors","title":""}},"collection-5":{"type":"collection","settings":{"collection":"bed-side-tables","title":""}},"collection-6":{"type":"collection","settings":{"collection":"wall-shelves","title":""}}},"block_order":["collection-1","collection-2","collection-3","collection-4","collection-5","collection-6"],"disabled":true,"settings":{"title":"Collection list","thumbnail_columns_desktop":6,"thumbnail_columns_mobile":3,"image-crop":"circle","cta_label":"View All","cta_link":"","cta_button_style":"secondary"}},"dynamic_featured_collection":{"type":"dynamic-featured-collection","blocks":{"view-all-card":{"type":"view_all_card","settings":{"text_alignment":"center-center","pre_heading":"View all","heading":"Collection","text_color":"#ffffff","overlay_color":"#000000","overlay_opacity":50}}},"block_order":["view-all-card"],"custom_css":["\/* Product Cards *\/.product-card {box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); border-radius: 8px; border: 1px solid #e8e8e6; transition: all 0.3s ease-in-out;}",".product-card:hover {box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12); transform: translateY(-4px);}"," \/* Buttons *\/button {border-radius: 6px; font-weight: 600; transition: all 0.3s ease;}"],"settings":{"title":"BLUEWUD'S BESTSELLER","layout":"slideshow","collection":"hp-bluewuds-bestseller","product_count":25,"cta_label":"","cta_button_style":"secondary"}},"164499676707104bbe":{"type":"dynamic-featured-collection","custom_css":["\/* Product Cards *\/.product-card {box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); border-radius: 8px; border: 1px solid #e8e8e6; transition: all 0.3s ease-in-out;}",".product-card:hover {box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12); transform: translateY(-4px);}"," \/* Buttons *\/button {border-radius: 6px; font-weight: 600; transition: all 0.3s ease;}"],"settings":{"title":"NEW LAUNCHES","layout":"slideshow","collection":"new_launches","product_count":25,"cta_label":"","cta_button_style":"primary"}},"recently-viewed":{"type":"static-recently-viewed","settings":{"enable_recently_viewed_products":true}},"dynamic_highlights_banner":{"type":"dynamic-highlights-banner","blocks":{"highlight-1":{"type":"highlight","settings":{"icon":"icon-delivery","image":"shopify:\/\/shop_images\/free_be0093fc-4fb2-48e8-b9e0-c406dfe5c459.png","title":"","text":"<p>Free Delivery Pan India<\/p>","link":""}},"highlight-2":{"type":"highlight","settings":{"icon":"icon-lock","image":"shopify:\/\/shop_images\/rupee_d7177baf-5e3a-45ce-8aa3-61b9d91b3e2c.png","title":"","text":"<p>Secured Payments<\/p>","link":""}},"highlight-3":{"type":"highlight","settings":{"icon":"icon-thumbs-up","image":"shopify:\/\/shop_images\/inst1_d3e1cfb08a445595569dbab52fdd2b9a_73e36ae0-640b-4848-956a-359396936cca.png","title":"","text":"<p>Easy to Install<\/p>","link":""}},"highlight-4":{"type":"highlight","settings":{"icon":"icon-pin","image":"shopify:\/\/shop_images\/lion2_e3b0f1db38074fe9bd510568a3d6c392_520216f0-a19e-4b16-9063-9c291e14c3fa.png","title":"","text":"<p>Proudly Made in India<\/p>","link":""}},"8d037778-1769-42ff-bd45-58b98f35f010":{"type":"highlight","settings":{"icon":"none","image":"shopify:\/\/shop_images\/check_f947910b-fd60-421a-b61b-56d37bf197e0.png","title":"","text":"<p>Easy Returns<\/p>","link":""}},"08386dbc-b74f-416b-9f7c-5b4a03b873b9":{"type":"highlight","settings":{"icon":"none","image":"shopify:\/\/shop_images\/check_1.png","title":"","text":"<p>Customer Satisfaction<\/p>","link":""}}},"block_order":["highlight-1","highlight-2","highlight-3","highlight-4","8d037778-1769-42ff-bd45-58b98f35f010","08386dbc-b74f-416b-9f7c-5b4a03b873b9"],"settings":{"section_spacing":true,"section_width":"full-width","icon_layout":"center","color":"#1d1d1d","icon_color":"#046e82","background_color":"#ffffff","mobile_layout":"slider"}},"164663705699aabbf1":{"type":"apps","blocks":{"3ef12991-633f-492f-9be6-7acb4f291b7b":{"type":"shopify:\/\/apps\/instafeed\/blocks\/app-block\/c447db20-095d-4a10-9725-b5977662c9d5","disabled":true,"settings":{"title":"","title_color":"","title_size_v2":0,"alignment":"center","instafeed_margin_top":0,"instafeed_margin_bottom":0,"instafeed_margin_sides":0,"show_instagram_link":false,"link_alignment":"left","link_color":"#000000","background_color":"","feed_id":"","html_area":""}}},"block_order":["3ef12991-633f-492f-9be6-7acb4f291b7b"],"settings":{"include_padding":true}},"16387992440027115a":{"type":"custom-reviews","blocks":{"1638799244bfa4c8d4-0":{"type":"amazon","settings":{"review_count":"25000","average":"4.6"}},"1638799244bfa4c8d4-1":{"type":"flipkart","settings":{"review_count":"14000","average":"4.3","start_img":"shopify:\/\/shop_images\/4.5-star.jpg"}},"1638799244bfa4c8d4-2":{"type":"google","settings":{"review_count":"20","average":"4.5"}}},"block_order":["1638799244bfa4c8d4-0","1638799244bfa4c8d4-1","1638799244bfa4c8d4-2"],"settings":{"title":"WHY 39,000+ CUSTOMERS TRUST BLUEWUD","text":"Words of praise and love from our customers.Over 39000 verified reviews of happy customers"}},"dynamic_testimonials":{"type":"dynamic-testimonials","blocks":{"testimonial-1":{"type":"testimonial","settings":{"star_rating":"4.5","text":"<p>Add customer reviews and testimonials to showcase your store's happy customers.<\/p>","author":"<p>Author's name<\/p>"}},"testimonial-2":{"type":"testimonial","settings":{"star_rating":"4.5","text":"<p>Add customer reviews and testimonials to showcase your store's happy customers.<\/p>","author":"<p>Author's name<\/p>"}},"testimonial-3":{"type":"testimonial","settings":{"star_rating":"4.5","text":"<p>Add customer reviews and testimonials to showcase your store's happy customers.<\/p>","author":"<p>Author's name<\/p>"}},"testimonial-4":{"type":"testimonial","settings":{"star_rating":"4.5","text":"<p>Add customer reviews and testimonials to showcase your store's happy customers.<\/p>","author":"<p>Author's name<\/p>"}},"testimonial-5":{"type":"testimonial","settings":{"star_rating":"4.5","text":"<p>Add customer reviews and testimonials to showcase your store's happy customers.<\/p>","author":"<p>Author's name<\/p>"}},"testimonial-6":{"type":"testimonial","settings":{"star_rating":"4.5","text":"<p>Add customer reviews and testimonials to showcase your store's happy customers.<\/p>","author":"<p>Author's name<\/p>"}}},"block_order":["testimonial-1","testimonial-2","testimonial-3","testimonial-4","testimonial-5","testimonial-6"],"disabled":true,"settings":{"title":"Testimonials","image_crop":"circle","text_size":"large"}},"1637218449eb8448c4":{"type":"dynamic-html","disabled":true,"settings":{"title":"India's Loved And Growing Furniture Brand","custom_html":"<img src=\"https:\/\/cdn.shopify.com\/s\/files\/1\/1808\/6469\/files\/Factory_images.jpg?3038178403803621472\">\n<p>Bluewud aims to provide an exceptional online furniture buying experience, from the moment you checkout from our furniture store until the product is delivered to you and installed. With a wide and constantly growing furniture catalog, our offerings are distinctive, elegant and offer enhanced durability at reasonable prices. Browse through our chic and contemporary completion of furniture offerings across categories like center tables, bedside tables, entertainment center cum tv units, laptop &amp; study tables, dressing mirrors, wall mirrors, wall shelves and much more.\n<br>\nThe furniture setup can define a lot about the house and the person living in it. From the lighting, colors on the wall to the wood placed around, it all helps create an aura to reflect you. Thus, choosing the right layout for your living room, bedroom, and even bathroom is essential. It’s all about finding a balance between form &amp; functionality. At bluewud, our design and manufacturing team is always developing compact furniture designs for the increasing numbers of micro mansions and nuclear families in India yet providing optimum functionality with an eye catchy form.\n<br>\nCustomer satisfaction is our top priority. We make special efforts to ensure that you have a comfortable and budget-friendly shopping experience on every purchase from us. Besides, we have a dedicated friendly customer support team for your help. You can contact us between working hours and we would be happy to assist you in regards to our furniture &amp; services.<\/p>"}},"163760321489a81c23":{"type":"pxs-newsletter","settings":{"title":"STAY WITH US","text":"<p>Subscribe to get exclusive offers, designer collections, and latest furniture trends delivered to your inbox!<\/p>","desktop_alignment":"left","mobile_alignment":"top"}},"1639463216b8788705":{"type":"dynamic-shoppable-image","blocks":{"16394632167a5ea7be-0":{"type":"hotspot","disabled":true,"settings":{"product":"bluewud-rowlet-engineered-wood-tv-entertainment-unit-stand-wenge-frosty-white","x_axis":10,"y_axis":65}},"16394632167a5ea7be-1":{"type":"hotspot","settings":{"product":"","x_axis":25,"y_axis":30}},"16394632167a5ea7be-2":{"type":"hotspot","settings":{"product":"","x_axis":85,"y_axis":55}}},"block_order":["16394632167a5ea7be-0","16394632167a5ea7be-1","16394632167a5ea7be-2"],"disabled":true,"custom_css":["\/* Product Cards *\/.product-card {box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); border-radius: 8px; border: 1px solid #e8e8e6; transition: all 0.3s ease-in-out;}",".product-card:hover {box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12); transform: translateY(-4px);}"," \/* Buttons *\/button {border-radius: 6px; font-weight: 600; transition: all 0.3s ease;}"],"settings":{"title":"Shoppable image","image":"shopify:\/\/shop_images\/Main_Banner_Tv_Unit.jpg","image_width":"full","link_text":"View product","textbox_title":"Shop the look","textbox_subheading":"<p>Make an image shoppable by adding hotspots that link to various products.<\/p>","textbox_button_label":"Button","textbox_button_link":"","textbox_button_style":"primary","textbox_text_alignment":"left","textbox_text_position":"right"}}},"order":["dynamic_slideshow","16376559468c5a335a","1638794690172b8b26","dynamic_collection_list","dynamic_featured_collection","164499676707104bbe","recently-viewed","dynamic_highlights_banner","164663705699aabbf1","16387992440027115a","dynamic_testimonials","1637218449eb8448c4","163760321489a81c23","1639463216b8788705"]}
+{
+    "sections": {
+        "whisper_hero": {
+            "type": "whisper-hero",
+            "settings": {
+                "media_type_1": "image",
+                "image_1": "shopify:\/\/shop_images\/Banner_18.png",
+                "custom_mobile_media": true,
+                "media_type_1_mobile": "image",
+                "image_1_mobile": "shopify:\/\/shop_images\/Banner_18.png",
+                "title": "ELEVATE YOUR HOME",
+                "text": "<p>Discover our curated collection of smartly designed furniture. Premium aesthetics meets functional excellence.<\/p>",
+                "button_label": "Explore Collection",
+                "button_link": "shopify:\/\/collections\/bluewud-sparkle-sale"
+            }
+        },
+        "16376559468c5a335a": {
+            "type": "collections-tabs",
+            "blocks": {
+                "35457581-8a56-4e21-b9dd-101fbe1c6861": {
+                    "type": "tab",
+                    "settings": {
+                        "title": "Furniture",
+                        "image_1": "shopify://shop_images/Pollo_Queen_Size_Double_Bed.png",
+                        "collection_1": "bed",
+                        "title_1": "",
+                        "image_2": "shopify://shop_images/Coffee_Table_fa61160b-e553-4154-ae73-73a9791c20b7.png",
+                        "collection_2": "coffee-table",
+                        "title_2": "",
+                        "image_3": "shopify://shop_images/Maxelle_Bookshelf.png",
+                        "collection_3": "book-shelves",
+                        "title_3": "",
+                        "image_4": "shopify://shop_images/Oleye_Shoe_Rack_Cabinet.png",
+                        "collection_4": "wooden-shoe-rack-shoe-stand-with-door",
+                        "title_4": "",
+                        "image_5": "shopify://shop_images/Door_Wardrobes_Maltein.png",
+                        "collection_5": "wardrobe",
+                        "title_5": "",
+                        "image_6": "shopify://shop_images/Amalet_Study_Table.png",
+                        "collection_6": "study-tables",
+                        "title_6": "",
+                        "image_7": "shopify://shop_images/dressing_table_Darci.png",
+                        "collection_7": "dressing-vanity-mirrors",
+                        "title_7": "",
+                        "collection_8": "",
+                        "title_8": ""
+                    }
+                },
+                "fc82bd90-3e73-4130-81b7-51addbb2fc38": {
+                    "type": "tab",
+                    "settings": {
+                        "title": "Decor",
+                        "image_1": "shopify://shop_images/Wall_Shelf_98010613-eb15-4936-b5c8-a0a6532c31cc.png",
+                        "collection_1": "wall-shelves",
+                        "title_1": "",
+                        "image_2": "shopify://shop_images/Key_Holder.png",
+                        "collection_2": "key-holders",
+                        "title_2": "Key Holder",
+                        "image_3": "shopify://shop_images/Remote_Holder.png",
+                        "collection_3": "remote-holders",
+                        "title_3": "",
+                        "image_4": "shopify://shop_images/Corner_Shelf.png",
+                        "collection_4": "corner-shelves",
+                        "title_4": "Corner Shelves",
+                        "image_5": "shopify://shop_images/Monitor_stand_745aed25-1eef-454d-9621-ccce7345dd69.png",
+                        "collection_5": "monitor-stand",
+                        "title_5": "Monitor Stand",
+                        "collection_6": "",
+                        "title_6": "",
+                        "collection_7": "",
+                        "title_7": "",
+                        "collection_8": "",
+                        "title_8": ""
+                    }
+                }
+            },
+            "block_order": [
+                "35457581-8a56-4e21-b9dd-101fbe1c6861",
+                "fc82bd90-3e73-4130-81b7-51addbb2fc38"
+            ],
+            "custom_css": [],
+            "settings": {
+                "border_color": "#ffffff",
+                "border_color_hover": "#000000"
+            }
+        },
+        "1638794690172b8b26": {
+            "type": "promo-images",
+            "blocks": {
+                "16387946908a2c5628-0": {
+                    "type": "promo",
+                    "settings": {
+                        "image": "shopify://shop_images/FC_Dressing_Table.jpg",
+                        "block_link": "shopify://collections/dressing-tables"
+                    }
+                },
+                "16387946908a2c5628-1": {
+                    "type": "promo",
+                    "settings": {
+                        "image": "shopify://shop_images/FC_Centre_table_e300fc08-d154-4855-ae51-63e1bfe8a08a.jpg",
+                        "block_link": "shopify://collections/coffee-table"
+                    }
+                },
+                "promo_qtG7HB": {
+                    "type": "promo",
+                    "settings": {
+                        "block_link": ""
+                    }
+                },
+                "16387946908a2c5628-2": {
+                    "type": "promo",
+                    "settings": {
+                        "image": "shopify://shop_images/FC_WFH_2e8b639b-a05a-41cc-a084-3c704fd2d06c.jpg",
+                        "block_link": "shopify://collections/study-tables"
+                    }
+                },
+                "16387946908a2c5628-3": {
+                    "type": "promo",
+                    "disabled": true,
+                    "settings": {
+                        "image": "shopify://shop_images/FC_Bedroom.jpg",
+                        "block_link": "shopify://collections/dining-table"
+                    }
+                },
+                "16387946908a2c5628-4": {
+                    "type": "promo",
+                    "disabled": true,
+                    "settings": {
+                        "image": "shopify://shop_images/FC_Centre_table.jpg",
+                        "block_link": "shopify://collections/dining-table"
+                    }
+                },
+                "16387946908a2c5628-5": {
+                    "type": "promo",
+                    "disabled": true,
+                    "settings": {
+                        "image": "shopify://shop_images/FC_WFH.jpg",
+                        "block_link": "shopify://collections/mirrors"
+                    }
+                }
+            },
+            "block_order": [
+                "16387946908a2c5628-0",
+                "16387946908a2c5628-1",
+                "promo_qtG7HB",
+                "16387946908a2c5628-2",
+                "16387946908a2c5628-3",
+                "16387946908a2c5628-4",
+                "16387946908a2c5628-5"
+            ],
+            "custom_css": [
+                "/* Product Cards */.product-card {box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); border-radius: 8px; border: 1px solid #e8e8e6; transition: all 0.3s ease-in-out;}",
+                ".product-card:hover {box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12); transform: translateY(-4px);}",
+                " /* Buttons */button {border-radius: 6px; font-weight: 600; transition: all 0.3s ease;}"
+            ],
+            "settings": {
+                "title": "FEATURED CATEGORIES",
+                "text": "",
+                "section_columns": 3
+            }
+        },
+        "dynamic_collection_list": {
+            "type": "dynamic-collection-list",
+            "blocks": {
+                "collection-1": {
+                    "type": "collection",
+                    "settings": {
+                        "collection": "coffee-table",
+                        "title": ""
+                    }
+                },
+                "collection-2": {
+                    "type": "collection",
+                    "settings": {
+                        "collection": "bathroom",
+                        "title": ""
+                    }
+                },
+                "collection-3": {
+                    "type": "collection",
+                    "settings": {
+                        "collection": "dining-table",
+                        "title": ""
+                    }
+                },
+                "collection-4": {
+                    "type": "collection",
+                    "settings": {
+                        "collection": "mirrors",
+                        "title": ""
+                    }
+                },
+                "collection-5": {
+                    "type": "collection",
+                    "settings": {
+                        "collection": "bed-side-tables",
+                        "title": ""
+                    }
+                },
+                "collection-6": {
+                    "type": "collection",
+                    "settings": {
+                        "collection": "wall-shelves",
+                        "title": ""
+                    }
+                }
+            },
+            "block_order": [
+                "collection-1",
+                "collection-2",
+                "collection-3",
+                "collection-4",
+                "collection-5",
+                "collection-6"
+            ],
+            "disabled": true,
+            "settings": {
+                "title": "Collection list",
+                "thumbnail_columns_desktop": 6,
+                "thumbnail_columns_mobile": 3,
+                "image-crop": "circle",
+                "cta_label": "View All",
+                "cta_link": "",
+                "cta_button_style": "secondary"
+            }
+        },
+        "dynamic_featured_collection": {
+            "type": "dynamic-featured-collection",
+            "blocks": {
+                "view-all-card": {
+                    "type": "view_all_card",
+                    "settings": {
+                        "text_alignment": "center-center",
+                        "pre_heading": "View all",
+                        "heading": "Collection",
+                        "text_color": "#ffffff",
+                        "overlay_color": "#000000",
+                        "overlay_opacity": 50
+                    }
+                }
+            },
+            "block_order": [
+                "view-all-card"
+            ],
+            "custom_css": [
+                "/* Product Cards */.product-card {box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); border-radius: 8px; border: 1px solid #e8e8e6; transition: all 0.3s ease-in-out;}",
+                ".product-card:hover {box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12); transform: translateY(-4px);}",
+                " /* Buttons */button {border-radius: 6px; font-weight: 600; transition: all 0.3s ease;}"
+            ],
+            "settings": {
+                "title": "BLUEWUD'S BESTSELLER",
+                "layout": "slideshow",
+                "collection": "hp-bluewuds-bestseller",
+                "product_count": 25,
+                "cta_label": "",
+                "cta_button_style": "secondary"
+            }
+        },
+        "164499676707104bbe": {
+            "type": "dynamic-featured-collection",
+            "custom_css": [
+                "/* Product Cards */.product-card {box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); border-radius: 8px; border: 1px solid #e8e8e6; transition: all 0.3s ease-in-out;}",
+                ".product-card:hover {box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12); transform: translateY(-4px);}",
+                " /* Buttons */button {border-radius: 6px; font-weight: 600; transition: all 0.3s ease;}"
+            ],
+            "settings": {
+                "title": "NEW LAUNCHES",
+                "layout": "slideshow",
+                "collection": "new_launches",
+                "product_count": 25,
+                "cta_label": "",
+                "cta_button_style": "primary"
+            }
+        },
+        "recently-viewed": {
+            "type": "static-recently-viewed",
+            "settings": {
+                "enable_recently_viewed_products": true
+            }
+        },
+        "dynamic_highlights_banner": {
+            "type": "dynamic-highlights-banner",
+            "blocks": {
+                "highlight-1": {
+                    "type": "highlight",
+                    "settings": {
+                        "icon": "icon-delivery",
+                        "image": "shopify://shop_images/free_be0093fc-4fb2-48e8-b9e0-c406dfe5c459.png",
+                        "title": "",
+                        "text": "<p>Free Delivery Pan India</p>",
+                        "link": ""
+                    }
+                },
+                "highlight-2": {
+                    "type": "highlight",
+                    "settings": {
+                        "icon": "icon-lock",
+                        "image": "shopify://shop_images/rupee_d7177baf-5e3a-45ce-8aa3-61b9d91b3e2c.png",
+                        "title": "",
+                        "text": "<p>Secured Payments</p>",
+                        "link": ""
+                    }
+                },
+                "highlight-3": {
+                    "type": "highlight",
+                    "settings": {
+                        "icon": "icon-thumbs-up",
+                        "image": "shopify://shop_images/inst1_d3e1cfb08a445595569dbab52fdd2b9a_73e36ae0-640b-4848-956a-359396936cca.png",
+                        "title": "",
+                        "text": "<p>Easy to Install</p>",
+                        "link": ""
+                    }
+                },
+                "highlight-4": {
+                    "type": "highlight",
+                    "settings": {
+                        "icon": "icon-pin",
+                        "image": "shopify://shop_images/lion2_e3b0f1db38074fe9bd510568a3d6c392_520216f0-a19e-4b16-9063-9c291e14c3fa.png",
+                        "title": "",
+                        "text": "<p>Proudly Made in India</p>",
+                        "link": ""
+                    }
+                },
+                "8d037778-1769-42ff-bd45-58b98f35f010": {
+                    "type": "highlight",
+                    "settings": {
+                        "icon": "none",
+                        "image": "shopify://shop_images/check_f947910b-fd60-421a-b61b-56d37bf197e0.png",
+                        "title": "",
+                        "text": "<p>Easy Returns</p>",
+                        "link": ""
+                    }
+                },
+                "08386dbc-b74f-416b-9f7c-5b4a03b873b9": {
+                    "type": "highlight",
+                    "settings": {
+                        "icon": "none",
+                        "image": "shopify://shop_images/check_1.png",
+                        "title": "",
+                        "text": "<p>Customer Satisfaction</p>",
+                        "link": ""
+                    }
+                }
+            },
+            "block_order": [
+                "highlight-1",
+                "highlight-2",
+                "highlight-3",
+                "highlight-4",
+                "8d037778-1769-42ff-bd45-58b98f35f010",
+                "08386dbc-b74f-416b-9f7c-5b4a03b873b9"
+            ],
+            "settings": {
+                "section_spacing": true,
+                "section_width": "full-width",
+                "icon_layout": "center",
+                "color": "#1d1d1d",
+                "icon_color": "#046e82",
+                "background_color": "#ffffff",
+                "mobile_layout": "slider"
+            }
+        },
+        "164663705699aabbf1": {
+            "type": "apps",
+            "blocks": {
+                "3ef12991-633f-492f-9be6-7acb4f291b7b": {
+                    "type": "shopify://apps/instafeed/blocks/app-block/c447db20-095d-4a10-9725-b5977662c9d5",
+                    "disabled": true,
+                    "settings": {
+                        "title": "",
+                        "title_color": "",
+                        "title_size_v2": 0,
+                        "alignment": "center",
+                        "instafeed_margin_top": 0,
+                        "instafeed_margin_bottom": 0,
+                        "instafeed_margin_sides": 0,
+                        "show_instagram_link": false,
+                        "link_alignment": "left",
+                        "link_color": "#000000",
+                        "background_color": "",
+                        "feed_id": "",
+                        "html_area": ""
+                    }
+                }
+            },
+            "block_order": [
+                "3ef12991-633f-492f-9be6-7acb4f291b7b"
+            ],
+            "settings": {
+                "include_padding": true
+            }
+        },
+        "16387992440027115a": {
+            "type": "custom-reviews",
+            "blocks": {
+                "1638799244bfa4c8d4-0": {
+                    "type": "amazon",
+                    "settings": {
+                        "review_count": "25000",
+                        "average": "4.6"
+                    }
+                },
+                "1638799244bfa4c8d4-1": {
+                    "type": "flipkart",
+                    "settings": {
+                        "review_count": "14000",
+                        "average": "4.3",
+                        "start_img": "shopify://shop_images/4.5-star.jpg"
+                    }
+                },
+                "1638799244bfa4c8d4-2": {
+                    "type": "google",
+                    "settings": {
+                        "review_count": "20",
+                        "average": "4.5"
+                    }
+                }
+            },
+            "block_order": [
+                "1638799244bfa4c8d4-0",
+                "1638799244bfa4c8d4-1",
+                "1638799244bfa4c8d4-2"
+            ],
+            "settings": {
+                "title": "WHY 39,000+ CUSTOMERS TRUST BLUEWUD",
+                "text": "Words of praise and love from our customers.Over 39000 verified reviews of happy customers"
+            }
+        },
+        "dynamic_testimonials": {
+            "type": "dynamic-testimonials",
+            "blocks": {
+                "testimonial-1": {
+                    "type": "testimonial",
+                    "settings": {
+                        "star_rating": "4.5",
+                        "text": "<p>Add customer reviews and testimonials to showcase your store's happy customers.</p>",
+                        "author": "<p>Author's name</p>"
+                    }
+                },
+                "testimonial-2": {
+                    "type": "testimonial",
+                    "settings": {
+                        "star_rating": "4.5",
+                        "text": "<p>Add customer reviews and testimonials to showcase your store's happy customers.</p>",
+                        "author": "<p>Author's name</p>"
+                    }
+                },
+                "testimonial-3": {
+                    "type": "testimonial",
+                    "settings": {
+                        "star_rating": "4.5",
+                        "text": "<p>Add customer reviews and testimonials to showcase your store's happy customers.</p>",
+                        "author": "<p>Author's name</p>"
+                    }
+                },
+                "testimonial-4": {
+                    "type": "testimonial",
+                    "settings": {
+                        "star_rating": "4.5",
+                        "text": "<p>Add customer reviews and testimonials to showcase your store's happy customers.</p>",
+                        "author": "<p>Author's name</p>"
+                    }
+                },
+                "testimonial-5": {
+                    "type": "testimonial",
+                    "settings": {
+                        "star_rating": "4.5",
+                        "text": "<p>Add customer reviews and testimonials to showcase your store's happy customers.</p>",
+                        "author": "<p>Author's name</p>"
+                    }
+                },
+                "testimonial-6": {
+                    "type": "testimonial",
+                    "settings": {
+                        "star_rating": "4.5",
+                        "text": "<p>Add customer reviews and testimonials to showcase your store's happy customers.</p>",
+                        "author": "<p>Author's name</p>"
+                    }
+                }
+            },
+            "block_order": [
+                "testimonial-1",
+                "testimonial-2",
+                "testimonial-3",
+                "testimonial-4",
+                "testimonial-5",
+                "testimonial-6"
+            ],
+            "disabled": true,
+            "settings": {
+                "title": "Testimonials",
+                "image_crop": "circle",
+                "text_size": "large"
+            }
+        },
+        "1637218449eb8448c4": {
+            "type": "dynamic-html",
+            "disabled": true,
+            "settings": {
+                "title": "India's Loved And Growing Furniture Brand",
+                "custom_html": "<img src=\"https://cdn.shopify.com/s/files/1/1808/6469/files/Factory_images.jpg?3038178403803621472\">\n<p>Bluewud aims to provide an exceptional online furniture buying experience, from the moment you checkout from our furniture store until the product is delivered to you and installed. With a wide and constantly growing furniture catalog, our offerings are distinctive, elegant and offer enhanced durability at reasonable prices. Browse through our chic and contemporary completion of furniture offerings across categories like center tables, bedside tables, entertainment center cum tv units, laptop &amp; study tables, dressing mirrors, wall mirrors, wall shelves and much more.\n<br>\nThe furniture setup can define a lot about the house and the person living in it. From the lighting, colors on the wall to the wood placed around, it all helps create an aura to reflect you. Thus, choosing the right layout for your living room, bedroom, and even bathroom is essential. It\u2019s all about finding a balance between form &amp; functionality. At bluewud, our design and manufacturing team is always developing compact furniture designs for the increasing numbers of micro mansions and nuclear families in India yet providing optimum functionality with an eye catchy form.\n<br>\nCustomer satisfaction is our top priority. We make special efforts to ensure that you have a comfortable and budget-friendly shopping experience on every purchase from us. Besides, we have a dedicated friendly customer support team for your help. You can contact us between working hours and we would be happy to assist you in regards to our furniture &amp; services.</p>"
+            }
+        },
+        "163760321489a81c23": {
+            "type": "pxs-newsletter",
+            "settings": {
+                "title": "STAY WITH US",
+                "text": "<p>Subscribe to get exclusive offers, designer collections, and latest furniture trends delivered to your inbox!</p>",
+                "desktop_alignment": "left",
+                "mobile_alignment": "top"
+            }
+        },
+        "1639463216b8788705": {
+            "type": "dynamic-shoppable-image",
+            "blocks": {
+                "16394632167a5ea7be-0": {
+                    "type": "hotspot",
+                    "disabled": true,
+                    "settings": {
+                        "product": "bluewud-rowlet-engineered-wood-tv-entertainment-unit-stand-wenge-frosty-white",
+                        "x_axis": 10,
+                        "y_axis": 65
+                    }
+                },
+                "16394632167a5ea7be-1": {
+                    "type": "hotspot",
+                    "settings": {
+                        "product": "",
+                        "x_axis": 25,
+                        "y_axis": 30
+                    }
+                },
+                "16394632167a5ea7be-2": {
+                    "type": "hotspot",
+                    "settings": {
+                        "product": "",
+                        "x_axis": 85,
+                        "y_axis": 55
+                    }
+                }
+            },
+            "block_order": [
+                "16394632167a5ea7be-0",
+                "16394632167a5ea7be-1",
+                "16394632167a5ea7be-2"
+            ],
+            "disabled": true,
+            "custom_css": [
+                "/* Product Cards */.product-card {box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08); border-radius: 8px; border: 1px solid #e8e8e6; transition: all 0.3s ease-in-out;}",
+                ".product-card:hover {box-shadow: 0 8px 16px rgba(0, 0, 0, 0.12); transform: translateY(-4px);}",
+                " /* Buttons */button {border-radius: 6px; font-weight: 600; transition: all 0.3s ease;}"
+            ],
+            "settings": {
+                "title": "Shoppable image",
+                "image": "shopify://shop_images/Main_Banner_Tv_Unit.jpg",
+                "image_width": "full",
+                "link_text": "View product",
+                "textbox_title": "Shop the look",
+                "textbox_subheading": "<p>Make an image shoppable by adding hotspots that link to various products.</p>",
+                "textbox_button_label": "Button",
+                "textbox_button_link": "",
+                "textbox_button_style": "primary",
+                "textbox_text_alignment": "left",
+                "textbox_text_position": "right"
+            }
+        }
+    },
+    "order": [
+        "whisper_hero",
+        "16376559468c5a335a",
+        "1638794690172b8b26",
+        "dynamic_collection_list",
+        "dynamic_featured_collection",
+        "164499676707104bbe",
+        "recently-viewed",
+        "dynamic_highlights_banner",
+        "164663705699aabbf1",
+        "16387992440027115a",
+        "dynamic_testimonials",
+        "1637218449eb8448c4",
+        "163760321489a81c23",
+        "1639463216b8788705"
+    ]
+}
