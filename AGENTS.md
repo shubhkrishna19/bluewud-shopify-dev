@@ -43,3 +43,4 @@ This repository uses parallel AI agents. To avoid duplicate work, **every agent 
 - **Codex**: When porting a snippet, also port any helper snippets it renders to avoid runtime gaps.
 - **Codex**: Confirm snippet callers supply needed objects (e.g., `section`, `block`) or guard for missing context.
 - **Codex**: Document when a port uses existing theme logic instead of Whisper for traceability.
+- **Codex**: When porting assets, mirror filenames and keep them in the same asset type to avoid broken imports.

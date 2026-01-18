@@ -41,7 +41,7 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | T020 | - [Summary] Cart Summaries | [x] Done | Codex | Med | Added `snippets/cart-summary.liquid`. |
 | **P7** | **Phase 7: Optimization** | [ ] Pending | Joint | Low | Core Web Vitals + Clean. |
 | T021 | - [Asset] CSS Minification | [ ] Pending || Low | Consolidate themes. |
-| T022 | - [JS] Lazy Loading Hydrate | [ ] Pending || Med | Sync `section-hydration.js`. |
+| T022 | - [JS] Lazy Loading Hydrate | [x] Done | Codex | Med | Added `assets/section-hydration.js`. |
 
 ---
 
@@ -119,6 +119,8 @@ To prevent collision, we strictly follow this ownership map:
 - **2026-01-18 (Codex)**: Added `AGENTS.md` with multi-agent coordination rules and best-practice contribution requirements.
 - **2026-01-18 (Codex)**: Selected task T017 - Dynamic Pricing UI.
 - **2026-01-18 (Codex)**: Selected task T015 - Product Badges.
+- **2026-01-18 (Codex)**: Selected task T022 - Lazy Loading Hydrate.
+- **2026-01-18 (Codex)**: Ported `assets/section-hydration.js` from Whisper.
 - **2026-01-18 (Codex)**: Added `snippets/badge.liquid` based on existing product badge logic for compatibility.
 - **2026-01-18 (Codex)**: Selected task T006 - Navigation Mobile Drawer.
 - **2026-01-18 (Codex)**: Ported Whisper header drawer snippet to `snippets/header-drawer.liquid`.
