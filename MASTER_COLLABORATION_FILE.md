@@ -25,8 +25,8 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | **P3** | **Phase 3: Structural Header** | [/] Active | Joint | High | Applying `whispertheme` aesthetics to Empire. |
 | T004 | - [Header] Liquid Port | [x] Done | Anti | High | Ported modular logic. |
 | T005 | - [Header] CSS Mapping | [/] Active | Anti | High | Integrating to `theme-update.css`. |
-| T006 | - [Header & Nav] Porting | [/] Active | **Codex** | High | Wrapping Empire header markup with Whisper layout classes. |
-| T007 | - [Banners & Hero] Sections | [/] Active | **Codex** | Med | Porting Whisper `hero.liquid` / `slideshow.liquid` structures. |
+| T006 | - [Header & Nav] Porting | [x] Done | **Codex** | High | Wrapped Empire header markup with Whisper layout classes. |
+| T007 | - [Banners & Hero] Sections | [x] Done | **Codex** | Med | Ported Whisper `hero.liquid` / `slideshow.liquid` structures. |
 | T008 | - [Navigation] Mobile Drawer| [ ] Pending || Med | Port `header-drawer.liquid`. |
 | T009 | - [Navigation] Mega-Menu Grid| [ ] Pending || High | T-ID for grid menus. |
 | T010 | - [Navigation] Mega-Promo | [ ] Pending || High | T-ID for image menus. |
