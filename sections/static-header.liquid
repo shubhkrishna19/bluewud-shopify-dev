@@ -53,6 +53,8 @@
 <div
   class="
     site-header-main
+    header__row
+    header__row--top
     {% if section.settings.full_width_header %}
       site-header--full-width
     {% endif %}
@@ -100,6 +102,7 @@
   <div
     class="
       site-header-main-content
+      header__columns
       {% if section.settings.small_promo_text != empty %}
         small-promo-enabled
       {% endif %}
@@ -232,6 +235,8 @@
 <div
   class="
     site-navigation-wrapper
+    header__row
+    header__row--bottom
     {% if shop.customer_accounts_enabled %}
       site-navigation--has-actions
     {% endif %}

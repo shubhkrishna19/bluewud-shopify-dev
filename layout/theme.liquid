@@ -79,6 +79,7 @@
     {{ content_for_header }}
 
     {{ 'theme.css' | asset_url | stylesheet_tag }}
+    {{ 'theme-update.css' | asset_url | stylesheet_tag }}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {% comment %} Inject theme-object begin{% endcomment %}
     <script>
@@ -145,7 +146,7 @@
     {% section 'static-announcement' %}
     {% section 'static-utility-bar' %}
     <header
-      class="site-header site-header-nav--open"
+      class="site-header site-header-nav--open header-section"
       role="banner"
       data-site-header
     >

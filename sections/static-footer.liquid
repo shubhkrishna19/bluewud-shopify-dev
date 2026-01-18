@@ -5,10 +5,10 @@
 </script>
 
 <footer role="contentinfo" aria-label="Footer">
-  <section class="site-footer-wrapper">
+  <section class="site-footer-wrapper footer-section">
     {% if section.blocks.size %}
       <div class="site-footer-item">
-        <div class="site-footer-blocks column-count-{{ section.blocks.size }}">
+        <div class="site-footer-blocks footer-content column-count-{{ section.blocks.size }}">
           {% render 'footer-block' for section.blocks as block %}
         </div>
       </div>
