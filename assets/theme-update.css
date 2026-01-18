@@ -1,0 +1,36 @@
+/*
+  Global CSS bridge for Whisper UI styling tweaks.
+  Add incremental overrides here to avoid clobbering Empire defaults.
+*/
+
+/* Product card bridge: align Whisper BEM hooks with Empire markup. */
+.product-card {
+  position: relative;
+  transition: transform var(--hover-transition-duration, 0.2s) var(--hover-transition-timing, ease),
+    box-shadow var(--hover-transition-duration, 0.2s) var(--hover-transition-timing, ease);
+  z-index: var(--layer-flat, 1);
+}
+
+.product-card__content {
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card__image {
+  position: relative;
+  overflow: hidden;
+  transition: transform var(--hover-transition-duration, 0.2s) var(--hover-transition-timing, ease);
+}
+
+.product-card__actions {
+  margin-top: auto;
+}
+
+.product-grid__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--product-card-gap, 16px);
+  align-items: var(--product-card-alignment, flex-start);
+  padding-block: var(--padding-block-start, 0) var(--padding-block-end, 0);
+  padding-inline: var(--padding-inline-start, 0) var(--padding-inline-end, 0);
+}

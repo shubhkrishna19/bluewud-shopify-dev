@@ -78,6 +78,8 @@
 
 {%- capture classes -%}
   productgrid--item
+  product-card
+  product-grid__item
   imagestyle--{% if settings.product_grid_image_crop and settings.product_grid_image_style != 'natural' %}cropped-{% endif %}{{ settings.product_grid_image_style }}
   {% unless product.featured_image %}imagestyle--no-image{% endunless %}
   {% if on_sale %}productitem--sale{% endif %}
@@ -229,7 +231,7 @@
     data-recently-viewed-card
   {% endif %}
 >
-  <div class="productitem" data-product-item-content>
+  <div class="productitem product-card__content product-grid__card" data-product-item-content>
     {{ recently_viewed_header }}
     <a target="_blank"
       class="productitem--image-link"
@@ -237,7 +239,7 @@
       tabindex="-1"
       data-product-page-link
     >
-      <figure class="productitem--image" data-product-item-image>
+      <figure class="productitem--image product-card__image" data-product-item-image>
         {% if initial_image %}
           {% if product_grid_show_second_image and product.media.size > 1 %}
             {% assign second_image = product.media[1].preview_image.src %}
@@ -311,10 +313,10 @@
       %}
     {%- endcapture  -%}
 
-    <div class="productitem--info">
+    <div class="productitem--info product-card__info">
      {{ product_item_swatches }}
 
-      <h2 class="productitem--title">
+      <h2 class="productitem--title product-card__title">
         <a target="_blank" href="{{ product_link }}" data-product-page-link>
           {{ product_title }}
         </a>
@@ -411,7 +413,7 @@
           {% assign quick_buy_classes = quick_buy_classes | append: ' disabled' %}
         {% endunless %}
 
-        <div class="productitem--actions" data-product-actions>
+        <div class="productitem--actions product-card__actions" data-product-actions>
           <div class="productitem--listview-price">
             {{ product_item_price }}
           </div>
