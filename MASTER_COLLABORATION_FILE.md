@@ -15,9 +15,10 @@ This file is the **Source of Truth** for the synchronized development between **
 | Pincode Widget Restoration | [x] Done | Anti | High | **DON'T TOUCH**: `#zippy_widget_1511`. |
 | **Theme Integration (Whisper UI)** | [/] Active | Joint | High | Applying `whispertheme` aesthetics to Empire. |
 | - Design Token Analysis | [x] Done | Anti | Low | Mapped variables in `theme-styles-variables.liquid`. |
-| - **Header & Nav Porting** | [ ] Pending | **Codex**| High | Replace Empire header logic with Whisper's. |
+| - **Header & Nav Porting** | [/] Active | **Codex**| High | Replace Empire header logic with Whisper's. |
 | - **Banners & Hero Sections** | [ ] Pending | **Codex**| Med | Port Whisper's `hero.liquid` / `slideshow.liquid`. |
 | - **Product Card UI** | [/] Active | **Codex**| High | Port `product-card.liquid` aesthetics. |
+| - **Footer** | [x] Done | **Codex**| Med | Ported footer layout hooks and bridge styles. |
 | - Global CSS Bridge | [x] Done | Anti | Med | Creating `theme-update.css`. |
 
 ---
@@ -85,3 +86,4 @@ This file is the **Source of Truth** for the synchronized development between **
 - **2026-01-16 (Codex)**: Started Product Card UI styling bridge in `assets/theme-update.css` using Whisper BEM hooks.
 - **2026-01-16 (Codex)**: Added baseline `.product-grid__card` layout rules to the CSS bridge for Product Card UI alignment.
 - **2026-01-16 (Codex)**: Added Whisper-aligned product card transition defaults in `assets/theme-update.css`.
+- **2026-01-16 (Codex)**: Ported footer layout hooks in `sections/static-footer.liquid` and added footer grid bridge styles.
