@@ -167,3 +167,28 @@
 .whisper-hero .hero__button {
     font-family: var(--font-body-family) !important;
 }
+
+/* Product Card Click-through improvement */
+.productitem {
+    position: relative;
+}
+
+.productitem--master-link:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+}
+
+/* Ensure controls are still interactive */
+.productitem--swatches,
+.productitem--actions,
+.quickshop-button,
+.atc--button,
+.productitem--vendor a {
+    position: relative;
+    z-index: 10;
+}

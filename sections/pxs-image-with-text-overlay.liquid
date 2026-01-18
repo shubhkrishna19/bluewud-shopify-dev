@@ -8,44 +8,48 @@
   class="
     pxs-image-with-text
     pxs-image-with-text-section-height-{{ section.settings.section_height }}
+    hero
+    hero--image-with-text
   "
 >
   <div class="pxs-image-with-text-wrapper">
-    <div
-      class="pxs-image-with-text-background"
-      {% if section.settings.image != blank %}
-        {% capture background_style %}
-          {% if section.settings.section_height == 'original' %}
-            padding-bottom: {{- 100 | divided_by: section.settings.image.aspect_ratio -}}%;
-          {% endif %}
-          background-position: {{ section.settings.position }};
-        {% endcapture %}
+    <div class="pxs-image-with-text-media">
+      <div
+        class="pxs-image-with-text-background"
+        {% if section.settings.image != blank %}
+          {% capture background_style %}
+            {% if section.settings.section_height == 'original' %}
+              padding-bottom: {{- 100 | divided_by: section.settings.image.aspect_ratio -}}%;
+            {% endif %}
+            background-position: {{ section.settings.position }};
+          {% endcapture %}
 
-        {%
-          render 'rimg',
-          img: section.settings.image,
-          size: '1400x',
-          crop: 'center',
-          style: background_style,
-          lazy: true,
-          background: true
-        %}
-      {% endif %}
-      >
-      {% if onboarding %}
-        {{ 'lifestyle-1' | placeholder_svg_tag }}
+          {%
+            render 'rimg',
+            img: section.settings.image,
+            size: '1400x',
+            crop: 'center',
+            style: background_style,
+            lazy: true,
+            background: true
+          %}
+        {% endif %}
+        >
+        {% if onboarding %}
+          {{ 'lifestyle-1' | placeholder_svg_tag }}
+        {% endif %}
+      </div>
+
+      {% if section.settings.overlay_opacity != 0 and section.settings.overlay_background != 'rgba(0,0,0,0)' %}
+        {% assign opacity = section.settings.overlay_opacity | times: 0.01 %}
+        {% assign overlay = section.settings.overlay_background | color_modify: 'alpha', opacity %}
+
+        <div
+          class="pxs-image-with-text-overlay"
+          style="background-color: {{ overlay }};"
+        ></div>
       {% endif %}
     </div>
-
-    {% if section.settings.overlay_opacity != 0 and section.settings.overlay_background != 'rgba(0,0,0,0)' %}
-      {% assign opacity = section.settings.overlay_opacity | times: 0.01 %}
-      {% assign overlay = section.settings.overlay_background | color_modify: 'alpha', opacity %}
-
-      <div
-        class="pxs-image-with-text-overlay"
-        style="background-color: {{ overlay }};"
-      ></div>
-    {% endif %}
 
     <div
       class="
@@ -54,10 +58,10 @@
         pxs-image-with-text-content-position-x-{{ section.settings.content_position | split: '-' | last }}
       "
     >
-        <div
-          class="pxs-image-with-text-content"
-          style="color: {{ section.settings.color }};"
-        >
+      <div
+        class="pxs-image-with-text-content"
+        style="color: {{ section.settings.color }};"
+      >
         {% if section.settings.title != blank %}
           <h2
             class="pxs-image-with-text-heading"
@@ -86,7 +90,7 @@
             href="{{ section.settings.link }}"
           ></a>
         {% endif %}
-        </div>
+      </div>
     </div>
   </div>
 </section>
