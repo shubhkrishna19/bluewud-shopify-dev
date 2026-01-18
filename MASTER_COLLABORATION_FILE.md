@@ -15,8 +15,8 @@ This file is the **Source of Truth** for the synchronized development between **
 | Pincode Widget Restoration | [x] Done | Anti | High | **DON'T TOUCH**: `#zippy_widget_1511`. |
 | **Theme Integration (Whisper UI)** | [/] Active | Joint | High | Applying `whispertheme` aesthetics to Empire. |
 | - Design Token Analysis | [x] Done | Anti | Low | Mapped variables in `theme-styles-variables.liquid`. |
-| - **Header & Nav Porting** | [ ] Pending | **Codex**| High | Replace Empire header logic with Whisper's. |
-| - **Banners & Hero Sections** | [ ] Pending | **Codex**| Med | Port Whisper's `hero.liquid` / `slideshow.liquid`. |
+| - **Header & Nav Porting** | [/] Active | **Codex**| High | Wrapping Empire header markup with Whisper layout classes (no logic replacement). |
+| - **Banners & Hero Sections** | [/] Active | **Codex**| Med | Begin porting Whisper `hero.liquid` / `slideshow.liquid` structures. |
 | - **Product Card UI** | [ ] Pending | **Codex**| High | Port `product-card.liquid` aesthetics. |
 | - Global CSS Bridge | [ ] Pending | Anti | Med | Creating `theme-update.css`. |
 
@@ -78,3 +78,39 @@ This file is the **Source of Truth** for the synchronized development between **
 *Update this section after every major push.*
 
 - **2026-01-15 (Antigravity)**: Completed deep-dive into `whispertheme`. Mapped all CSS variables and identified primary porting targets. Ready for Codex to begin Liquid integration.
+- **2026-01-15 (Codex)**: Began Header & Nav Porting. Added Whisper structural wrappers for header rows/columns, header actions, and header menu while preserving Empire data attributes and Liquid logic (`sections/static-header.liquid`, `snippets/site-header-actions.liquid`, `snippets/site-mobile-nav.liquid`). Verify Quick Shop and mobile menu behavior after styling changes.
+
+---
+
+## 📚 Project Knowledge Base (Shared)
+*Goal: Capture recurring decisions, key files, and how-to patterns so future work avoids duplication.*
+
+### Header & Navigation Porting (Whisper UI → Empire Logic)
+- **Guiding rule**: Wrap Empire markup with Whisper classes; do not replace Liquid logic or data attributes that Empire JS depends on.
+- **Primary files touched (Codex)**:
+  - `sections/static-header.liquid`: Add Whisper layout wrappers (`header`, `header__row`, `header__columns`, `header__column`), wrap actions with `<header-actions>`, and wrap menu with `<header-menu>`.
+  - `snippets/site-header-actions.liquid`: Add Whisper action hooks (`header-actions`, `header-actions__action`) without removing Empire classes.
+  - `snippets/site-mobile-nav.liquid`: Wrap mobile header actions with `<header-actions>` for styling parity.
+- **Data attributes to preserve**: `data-section-id`, `data-section-type`, `data-site-header-main`, `data-site-header-sticky`, `data-menu-toggle`, `data-mobile-search-button`, `data-site-navigation`, `data-header-cart-count`, and live search hooks in `snippets/live-search-form.liquid`.
+
+### JS & App Safeguards
+- **Quick Shop** relies on Empire JS and `shopify:section:load`; do not remove Quick Shop `data-` hooks.
+- **Pincode/Zippy** must keep `#zippy_widget_1511` intact in product-related snippets.
+
+### CSS Strategy
+- New styles go to `assets/theme-update.css`.
+- Prefer Whisper BEM hooks to avoid interfering with Empire defaults.
+
+---
+
+## 🧩 Agent Work Logs (Request for Updates)
+**Action Required:** Each agent should append a short entry below when they complete a task:
+- **Name / Date**
+- **What was changed**
+- **Files edited**
+- **How to verify**
+
+_Placeholder entries below — please replace with your updates:_
+- **Antigravity / TBD**: _Describe CSS bridging progress, file paths, and verification steps._
+- **Codex / 2026-01-15**: Header & Nav Porting in progress. Files edited: `sections/static-header.liquid`, `snippets/site-header-actions.liquid`, `snippets/site-mobile-nav.liquid`. Verify header layout, menu toggle, cart count badge, and live search behavior.
+- **Codex / 2026-01-15**: Took ownership of Banners & Hero Sections. Next step is to map Whisper `sections/hero.liquid` + `sections/slideshow.liquid` structure into Empire equivalents. Files to edit: `sections/hero.liquid`, `sections/slideshow.liquid` (Empire). Verify banner layout, CTA links, and slider behavior in the live preview.
