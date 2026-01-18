@@ -36,11 +36,11 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | **P5** | **Phase 5: Product Page UI** | [/] Active | Joint | High | Visual parity for PDP. |
 | T016 | - [Media] Gallery Layout | [ ] Pending || High | Port Whisper gallery logic. |
 | T017 | - [Price] Dynamic Pricing UI| [x] Done | Codex | High | Added `snippets/price.liquid`. |
-| T018 | - [ATC] Button Styling | [ ] Pending || High | Port `add-to-cart-button`. |
+| T018 | - [ATC] Button Styling | [x] Done | Codex | High | Ported `snippets/add-to-cart-button.liquid`. |
 | T023 | - [Grid] **Product Card UI** | [/] Active | **Codex** | High | Wrapping Empire product grid items with Whisper product-card structure. |
 | **P6** | **Phase 6: Cart & Checkout UX**| [ ] Pending | Codex | Med | Polish transactional UI. |
 | T019 | - [Drawer] Whisper Cart | [ ] Pending || High | Port `cart-drawer.liquid`. |
-| T020 | - [Summary] Cart Summaries | [ ] Pending || Med | Port `cart-summary.liquid`. |
+| T020 | - [Summary] Cart Summaries | [x] Done | Codex | Med | Added `snippets/cart-summary.liquid`. |
 | **P7** | **Phase 7: Optimization** | [ ] Pending | Joint | Low | Core Web Vitals + Clean. |
 | T021 | - [Asset] CSS Minification | [ ] Pending || Low | Consolidate themes. |
 | T022 | - [JS] Lazy Loading Hydrate | [ ] Pending || Med | Sync `section-hydration.js`. |
@@ -128,4 +128,9 @@ To prevent collision, we strictly follow this ownership map:
 - **2026-01-18 (Codex)**: Selected task T015 - Product Badges.
 - **2026-01-18 (Codex)**: Completed task T015 - Product Badges (`snippets/badge.liquid`).
 - **2026-01-18 (Codex)**: Selected task T017 - Dynamic Pricing UI.
+- **2026-01-18 (Codex)**: Ported Whisper pricing snippet to `snippets/price.liquid`.
+- **2026-01-18 (Codex)**: Selected task T020 - Cart Summaries.
+- **2026-01-18 (Codex)**: Ported Whisper cart summary snippet to `snippets/cart-summary.liquid`.
+- **2026-01-18 (Codex)**: Selected task T018 - ATC Button Styling.
+- **2026-01-18 (Codex)**: Ported Whisper add-to-cart button snippet to `snippets/add-to-cart-button.liquid`.
 - **2026-01-18 (Codex)**: Ported Whisper pricing snippet to `snippets/price.liquid`.

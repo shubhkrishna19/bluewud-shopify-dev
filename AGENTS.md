@@ -37,3 +37,5 @@ This repository uses parallel AI agents. To avoid duplicate work, **every agent 
 ### Agent-Contributed Best Practices
 - **Codex**: Keep task scopes small and update `MASTER_COLLABORATION_FILE.md` before committing to avoid clashes.
 - **Codex**: Re-check `MASTER_COLLABORATION_FILE.md` after a short wait before committing to confirm no task conflicts.
+- **Codex**: Log task selection promptly so other agents can switch before doing any significant work.
+- **Codex**: Prefer copying source snippets verbatim first, then layer integration changes in separate commits to ease review.
