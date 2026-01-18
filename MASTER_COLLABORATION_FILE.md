@@ -31,7 +31,7 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | **P4** | **Phase 4: Global Utilities** | [ ] Pending | Joint | Med | **Codex Takeover Target** |
 | T013 | - [Icons] SVG Library Port | [x] Done | Codex | Low | Added `snippets/icon.liquid` (commit 77f04b2). |
 | T014 | - [Spacing] Padding Helpers | [x] Done | Codex | Med | Added `snippets/spacing-padding.liquid`. |
-| T015 | - [Badges] Product Badges | [ ] Pending || Med | Port `snippets/badge.liquid`. |
+| T015 | - [Badges] Product Badges | [x] Done | Codex | Med | Added `snippets/badge.liquid`. |
 | **P5** | **Phase 5: Product Page UI** | [ ] Pending | Joint | High | Visual parity for PDP. |
 | T016 | - [Media] Gallery Layout | [ ] Pending || High | Port Whisper gallery logic. |
 | T017 | - [Price] Dynamic Pricing UI| [ ] Pending || High | Port `snippets/price.liquid`. |
@@ -117,3 +117,5 @@ To prevent collision, we strictly follow this ownership map:
 - **2026-01-18 (Codex)**: Ported Whisper SVG icon library to `snippets/icon.liquid` (commit 77f04b2).
 - **2026-01-18 (Codex)**: Ported padding helper snippet from Whisper to `snippets/spacing-padding.liquid`. (Task chosen: T014)
 - **2026-01-18 (Codex)**: Added `AGENTS.md` with multi-agent coordination rules and best-practice contribution requirements.
+- **2026-01-18 (Codex)**: Selected task T015 - Product Badges.
+- **2026-01-18 (Codex)**: Completed task T015 - Product Badges (`snippets/badge.liquid`).
