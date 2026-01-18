@@ -94,3 +94,4 @@ This file is the **Source of Truth** for the synchronized development between **
 - **2026-01-16 (Codex)**: Added Whisper hero media/image hook classes to slideshow slide media.
 - **2026-01-16 (Codex)**: Added hero media baseline styles in `assets/theme-update.css` for slideshow alignment.
 - **2026-01-16 (Codex)**: Wrapped main navigation in a Whisper `header__columns` container for header alignment.
+- **2026-01-16 (Codex)**: Added Whisper `header__column` hooks to header logo, search, and actions areas.

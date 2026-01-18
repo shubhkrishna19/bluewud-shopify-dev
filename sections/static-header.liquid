@@ -108,7 +108,7 @@
       {% endif %}
     "
   >
-    <div class="site-header-logo">
+    <div class="site-header-logo header__column">
       <a
         class="site-logo"
         href="{{ routes.root_url }}">
@@ -139,12 +139,14 @@
       </a>
     </div>
 
-    {%
-      render 'live-search-form',
-      quick_links: linklists[section.settings.quick_links],
-      enable_images: section.settings.enable_live_search_images,
-      enable_content: section.settings.enable_live_search_articles_pages
-    %}
+    <div class="header__column">
+      {%
+        render 'live-search-form',
+        quick_links: linklists[section.settings.quick_links],
+        enable_images: section.settings.enable_live_search_images,
+        enable_content: section.settings.enable_live_search_articles_pages
+      %}
+    </div>
 
     {% if section.settings.small_promo_text != blank or section.settings.small_promo_heading != blank %}
       {% if section.settings.small_promo_link != blank %}
@@ -208,7 +210,7 @@
     {% comment %}{% include 'iwish_v2' with 'iwishlink' %}{% endcomment %}
   </div>
 
-  <div class="site-header-right">
+  <div class="site-header-right header__column">
     {% render 'site-header-actions' %}
 
     <div class="site-header-cart">
