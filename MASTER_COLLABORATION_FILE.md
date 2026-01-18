@@ -89,3 +89,4 @@ This file is the **Source of Truth** for the synchronized development between **
 - **2026-01-16 (Codex)**: Ported footer layout hooks in `sections/static-footer.liquid` and added footer grid bridge styles.
 - **2026-01-16 (Codex)**: Added Whisper header row/column hook classes in `sections/static-header.liquid` and `layout/theme.liquid`.
 - **2026-01-16 (Codex)**: Added Whisper hero hook classes to the slideshow section (`sections/dynamic-slideshow.liquid`).
+- **2026-01-16 (Codex)**: Added Whisper hero content wrapper hook to slideshow slide content.
