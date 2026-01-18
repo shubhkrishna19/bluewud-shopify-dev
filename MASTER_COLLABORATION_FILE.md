@@ -33,7 +33,7 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | T015 | - [Badges] Product Badges | [x] Done | Codex | Med | 2558d15 |
 | **P5** | **Phase 5: Product Page UI** | [ ] Pending | Joint | High | Visual parity for PDP. |
 | T016 | - [Media] Gallery Layout | [ ] Pending || High | Port Whisper gallery logic. |
-| T017 | - [Price] Dynamic Pricing UI| [ ] Pending || High | Port `snippets/price.liquid`. |
+| T017 | - [Price] Dynamic Pricing UI| [x] Done | Codex | High | 5ec515e |
 | T018 | - [ATC] Button Styling | [ ] Pending || High | Port `add-to-cart-button`. |
 | **P6** | **Phase 6: Cart & Checkout UX**| [ ] Pending | Codex | Med | Polish transactional UI. |
 | T019 | - [Drawer] Whisper Cart | [ ] Pending || High | Port `cart-drawer.liquid`. |
@@ -116,3 +116,4 @@ To prevent collision, we strictly follow this ownership map:
 - **2026-01-16 (Codex)**: Completed T013 by porting `snippets/icon.liquid` into the active theme. Commit: d202c27.
 - **2026-01-16 (Codex)**: Completed T014 by porting `snippets/spacing-padding.liquid`. Commit: b7aea30.
 - **2026-01-16 (Codex)**: Completed T015 by porting `snippets/badge.liquid`. Commit: 2558d15.
+- **2026-01-16 (Codex)**: Completed T017 by porting `snippets/price.liquid`. Commit: 5ec515e.
