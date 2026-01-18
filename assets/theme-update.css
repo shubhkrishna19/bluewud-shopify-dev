@@ -1,36 +1,224 @@
-/*
-  Global CSS bridge for Whisper UI styling tweaks.
-  Add incremental overrides here to avoid clobbering Empire defaults.
-*/
+/**
+ * Whisper theme bridge for Empire
+ * This file defines design tokens and helper classes to support Whisper components.
+ */
 
-/* Product card bridge: align Whisper BEM hooks with Empire markup. */
+:root {
+    /* Typography - Derived from settings_data.json update */
+    --font-body-family: "Inter", sans-serif;
+    --font-heading-family: "Barlow", sans-serif;
+
+    /* Spacing & Layout (Whisper Modular) */
+    --margin-3xs: 0.125rem;
+    --margin-2xs: 0.3rem;
+    --margin-xs: 0.5rem;
+    --margin-sm: 0.7rem;
+    --margin-md: 0.8rem;
+    --margin-lg: 1rem;
+    --margin-xl: 1.25rem;
+    --margin-2xl: 1.5rem;
+    --margin-4xl: 2rem;
+
+    --padding-xs: 0.5rem;
+    --padding-sm: 0.7rem;
+    --padding-md: 0.8rem;
+    --padding-lg: 1rem;
+    --padding-xl: 1.25rem;
+    --padding-4xl: 2rem;
+
+    --gap-xs: 0.5rem;
+    --gap-md: 0.9rem;
+    --gap-lg: 1rem;
+    --gap-xl: 1.25rem;
+
+    /* Font Sizes (Whisper Modular) */
+    --font-size--3xs: 0.625rem;
+    --font-size--2xs: 0.75rem;
+    --font-size--xs: 0.8125rem;
+    --font-size--sm: 0.875rem;
+    --font-size--md: 1rem;
+    --font-size--lg: 1.125rem;
+    --font-size--xl: 1.25rem;
+
+    /* Z-Index Layers */
+    --layer-base: 0;
+    --layer-flat: 1;
+    --layer-raised: 2;
+    --layer-overlay: 16;
+    --layer-header: 100;
+    --layer-sticky: 101;
+    --layer-menu-drawer: 18;
+
+    /* Colors & Opacity */
+    --color-border-rgb: 232, 232, 230;
+    --opacity-70: 0.7;
+    --opacity-subdued-text: var(--opacity-70);
+
+    /* Animation */
+    --animation-speed: 0.125s;
+    --animation-easing: ease-in-out;
+    --animation-values: var(--animation-speed) var(--animation-easing);
+
+    /* Header Specific */
+    --header-height: 70px;
+    --header-padding: var(--padding-sm);
+}
+
+/* Header Base Structure */
+.header-section {
+    position: relative;
+    z-index: var(--layer-header);
+}
+
+.header {
+    display: block;
+    background-color: var(--color-background);
+}
+
+.header__row {
+    position: relative;
+    background-color: var(--color-background);
+    border-bottom: 1px solid rgb(var(--color-border-rgb) / var(--opacity-70));
+}
+
+.header__columns {
+    display: grid;
+    grid-template-areas: 'left center right';
+    grid-template-columns: 1fr auto 1fr;
+    gap: var(--gap-xl);
+    padding: var(--header-padding) var(--padding-lg);
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.header__column {
+    display: flex;
+    align-items: center;
+}
+
+.header__column--left {
+    grid-area: left;
+    gap: var(--gap-xl);
+}
+
+.header__column--center {
+    grid-area: center;
+    justify-content: center;
+}
+
+.header__column--right {
+    grid-area: right;
+    gap: var(--gap-xl);
+    justify-content: flex-end;
+}
+
+/* Header Actions & Icons */
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-md);
+}
+
+.header-actions__action {
+    color: var(--color-foreground);
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    transition: opacity var(--animation-values);
+}
+
+.header-actions__action:hover {
+    opacity: 0.7;
+}
+
+.svg-wrapper {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+}
+
+/* Cart Bubble */
+.cart-bubble {
+    background: var(--color-primary);
+    color: var(--color-primary-text);
+    font-size: 10px;
+    padding: 2px 6px;
+    border-radius: 10px;
+    margin-left: -8px;
+    margin-top: -12px;
+    position: relative;
+    z-index: 1;
+}
+
+/* Global utility for Whisper-style buttons if needed */
+.whisper-button {
+    font-family: var(--font-body-family);
+    border-radius: 40px;
+    transition: all 0.3s ease;
+}
+
+.whisper-hero .hero__title {
+    font-family: var(--font-heading-family) !important;
+}
+
+.whisper-hero .hero__text,
+.whisper-hero .hero__button {
+    font-family: var(--font-body-family) !important;
+}
+
+/* Product Card Click-through improvement */
+.productitem {
+    position: relative;
+}
+
+.productitem--master-link:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 5;
+}
+
+/* Ensure controls are still interactive */
+.productitem--swatches,
+.productitem--actions,
+.quickshop-button,
+.atc--button,
+.productitem--vendor a {
+    position: relative;
+    z-index: 10;
+}
+
+/* Whisper BEM hooks for Product Cards */
 .product-card {
-  position: relative;
-  transition: transform var(--hover-transition-duration, 0.2s) var(--hover-transition-timing, ease),
-    box-shadow var(--hover-transition-duration, 0.2s) var(--hover-transition-timing, ease);
-  z-index: var(--layer-flat, 1);
+    position: relative;
+    transition: transform var(--hover-transition-duration, 0.2s) var(--hover-transition-timing, ease),
+        box-shadow var(--hover-transition-duration, 0.2s) var(--hover-transition-timing, ease);
+    z-index: var(--layer-flat, 1);
 }
 
 .product-card__content {
-  display: flex;
-  flex-direction: column;
+    display: flex;
+    flex-direction: column;
 }
 
 .product-card__image {
-  position: relative;
-  overflow: hidden;
-  transition: transform var(--hover-transition-duration, 0.2s) var(--hover-transition-timing, ease);
+    position: relative;
+    overflow: hidden;
+    transition: transform var(--hover-transition-duration, 0.2s) var(--hover-transition-timing, ease);
 }
 
 .product-card__actions {
-  margin-top: auto;
+    margin-top: auto;
 }
 
 .product-grid__card {
-  display: flex;
-  flex-direction: column;
-  gap: var(--product-card-gap, 16px);
-  align-items: var(--product-card-alignment, flex-start);
-  padding-block: var(--padding-block-start, 0) var(--padding-block-end, 0);
-  padding-inline: var(--padding-inline-start, 0) var(--padding-inline-end, 0);
+    display: flex;
+    flex-direction: column;
+    gap: var(--product-card-gap, 16px);
+    align-items: var(--product-card-alignment, flex-start);
 }
