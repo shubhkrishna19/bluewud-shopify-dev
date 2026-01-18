@@ -33,7 +33,7 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | T014 | - [Spacing] Padding Helpers | [x] Done | Codex | Med | Added `snippets/spacing-padding.liquid`. |
 | T015 | - [Badges] Product Badges | [x] Done | Codex | Med | Added `snippets/badge.liquid` (based on existing product badge logic). |
 | **P5** | **Phase 5: Product Page UI** | [ ] Pending | Joint | High | Visual parity for PDP. |
-| T016 | - [Media] Gallery Layout | [ ] Pending || High | Port Whisper gallery logic. |
+| T016 | - [Media] Gallery Layout | [x] Done | Codex | High | Added media gallery snippets and asset. |
 | T017 | - [Price] Dynamic Pricing UI| [x] Done | Codex | High | Added `snippets/price.liquid`. |
 | T018 | - [ATC] Button Styling | [x] Done | Codex | High | Added `snippets/add-to-cart-button.liquid`. |
 | **P6** | **Phase 6: Cart & Checkout UX**| [ ] Pending | Codex | Med | Polish transactional UI. |
@@ -120,6 +120,8 @@ To prevent collision, we strictly follow this ownership map:
 - **2026-01-18 (Codex)**: Selected task T017 - Dynamic Pricing UI.
 - **2026-01-18 (Codex)**: Selected task T015 - Product Badges.
 - **2026-01-18 (Codex)**: Selected task T022 - Lazy Loading Hydrate.
+- **2026-01-18 (Codex)**: Selected task T016 - Media Gallery Layout.
+- **2026-01-18 (Codex)**: Ported Whisper media gallery snippets and `assets/media-gallery.js`.
 - **2026-01-18 (Codex)**: Ported `assets/section-hydration.js` from Whisper.
 - **2026-01-18 (Codex)**: Added `snippets/badge.liquid` based on existing product badge logic for compatibility.
 - **2026-01-18 (Codex)**: Selected task T006 - Navigation Mobile Drawer.
