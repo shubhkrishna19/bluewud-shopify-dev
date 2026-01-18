@@ -14,6 +14,7 @@ To prevent duplication, every agent **MUST** follow this protocol:
 2. **Commit**: Sync changes to GitHub immediately after completion.
 3. **Close**: Mark as `[x] Done` and provide the commit hash or file path in the 'Notes' column.
 4. **Sequence**: All new tasks must continue the sequential numbering.
+5. **Read**: Review `AGENTS.md` for multi-agent coordination rules.
 
 | ID | Task | Status | Agent | Priority | Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -24,20 +25,20 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | **P3** | **Phase 3: Structural Header** | [/] Active | Anti | High | **Lead: Antigravity** |
 | T004 | - [Header] Liquid Port | [x] Done | Anti | High | Ported modular logic. |
 | T005 | - [Header] CSS Mapping | [/] Active | Anti | High | Integrating to `theme-update.css`. |
-| T006 | - [Navigation] Mobile Drawer| [ ] Pending || Med | Port `header-drawer.liquid`. |
-| T007 | - [Navigation] Mega-Menu Grid| [ ] Pending || High | T-ID for grid menus. |
+| T006 | - [Navigation] Mobile Drawer| [x] Done | Codex | Med | Added `snippets/header-drawer.liquid`. |
+| T007 | - [Navigation] Mega-Menu Grid| [x] Done | Codex | High | Added `snippets/mega-menu-list.liquid` and `snippets/util-mega-menu-img-sizes-attr.liquid`. |
 | T008 | - [Navigation] Mega-Promo | [ ] Pending || High | T-ID for image menus. |
 | **P4** | **Phase 4: Global Utilities** | [ ] Pending | Joint | Med | **Codex Takeover Target** |
-| T013 | - [Icons] SVG Library Port | [ ] Pending || Low | Port `snippets/icon.liquid`. |
-| T014 | - [Spacing] Padding Helpers | [ ] Pending || Med | Port `spacing-padding.liquid`. |
-| T015 | - [Badges] Product Badges | [ ] Pending || Med | Port `snippets/badge.liquid`. |
+| T013 | - [Icons] SVG Library Port | [x] Done | Codex | Low | Added `snippets/icon.liquid` (commit 77f04b2). |
+| T014 | - [Spacing] Padding Helpers | [x] Done | Codex | Med | Added `snippets/spacing-padding.liquid`. |
+| T015 | - [Badges] Product Badges | [x] Done | Codex | Med | Added `snippets/badge.liquid` (based on existing product badge logic). |
 | **P5** | **Phase 5: Product Page UI** | [ ] Pending | Joint | High | Visual parity for PDP. |
 | T016 | - [Media] Gallery Layout | [ ] Pending || High | Port Whisper gallery logic. |
-| T017 | - [Price] Dynamic Pricing UI| [ ] Pending || High | Port `snippets/price.liquid`. |
-| T018 | - [ATC] Button Styling | [ ] Pending || High | Port `add-to-cart-button`. |
+| T017 | - [Price] Dynamic Pricing UI| [x] Done | Codex | High | Added `snippets/price.liquid`. |
+| T018 | - [ATC] Button Styling | [x] Done | Codex | High | Added `snippets/add-to-cart-button.liquid`. |
 | **P6** | **Phase 6: Cart & Checkout UX**| [ ] Pending | Codex | Med | Polish transactional UI. |
-| T019 | - [Drawer] Whisper Cart | [ ] Pending || High | Port `cart-drawer.liquid`. |
-| T020 | - [Summary] Cart Summaries | [ ] Pending || Med | Port `cart-summary.liquid`. |
+| T019 | - [Drawer] Whisper Cart | [x] Done | Codex | High | Added `snippets/cart-drawer.liquid`. |
+| T020 | - [Summary] Cart Summaries | [x] Done | Codex | Med | Added `snippets/cart-summary.liquid`. |
 | **P7** | **Phase 7: Optimization** | [ ] Pending | Joint | Low | Core Web Vitals + Clean. |
 | T021 | - [Asset] CSS Minification | [ ] Pending || Low | Consolidate themes. |
 | T022 | - [JS] Lazy Loading Hydrate | [ ] Pending || Med | Sync `section-hydration.js`. |
@@ -113,3 +114,20 @@ To prevent collision, we strictly follow this ownership map:
 - **2026-01-15 (Antigravity)**: Completed deep-dive into `whispertheme`. Mapped all CSS variables and identified primary porting targets. Ready for Codex to begin Liquid integration. Migration status updated to **22%**.
 - **2026-01-15 (Antigravity)**: Initiated Typography Overhaul. Transitioning store to Inter/Barlow for premium aesthetics. Preparing to port `whisper-hero.liquid`.
 - **2026-01-15 (Antigravity)**: **PHASE 2 COMPLETE.** Typography and Hero live. Migration status: **28%**. Expanded roadmap for Phases 3 & 4 with specialized tasks for Codex.
+- **2026-01-18 (Codex)**: Ported Whisper SVG icon library to `snippets/icon.liquid` (commit 77f04b2).
+- **2026-01-18 (Codex)**: Ported padding helper snippet from Whisper to `snippets/spacing-padding.liquid`. (Task chosen: T014)
+- **2026-01-18 (Codex)**: Added `AGENTS.md` with multi-agent coordination rules and best-practice contribution requirements.
+- **2026-01-18 (Codex)**: Selected task T017 - Dynamic Pricing UI.
+- **2026-01-18 (Codex)**: Selected task T015 - Product Badges.
+- **2026-01-18 (Codex)**: Added `snippets/badge.liquid` based on existing product badge logic for compatibility.
+- **2026-01-18 (Codex)**: Selected task T006 - Navigation Mobile Drawer.
+- **2026-01-18 (Codex)**: Ported Whisper header drawer snippet to `snippets/header-drawer.liquid`.
+- **2026-01-18 (Codex)**: Selected task T020 - Cart Summaries.
+- **2026-01-18 (Codex)**: Ported Whisper cart summary snippet to `snippets/cart-summary.liquid`.
+- **2026-01-18 (Codex)**: Selected task T018 - ATC Button Styling.
+- **2026-01-18 (Codex)**: Ported Whisper add-to-cart button snippet to `snippets/add-to-cart-button.liquid`.
+- **2026-01-18 (Codex)**: Ported Whisper pricing snippet to `snippets/price.liquid`.
+- **2026-01-18 (Codex)**: Selected task T019 - Whisper Cart Drawer.
+- **2026-01-18 (Codex)**: Ported Whisper cart drawer snippet to `snippets/cart-drawer.liquid`.
+- **2026-01-18 (Codex)**: Selected task T007 - Mega-Menu Grid.
+- **2026-01-18 (Codex)**: Ported Whisper mega menu grid snippets to `snippets/mega-menu-list.liquid` and `snippets/util-mega-menu-img-sizes-attr.liquid`.
