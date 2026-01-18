@@ -16,8 +16,6 @@ To prevent duplication, every agent **MUST** follow this protocol:
 4. **Sequence**: All new tasks must continue the sequential numbering.
 5. **Read**: Review `AGENTS.md` for multi-agent coordination rules.
 
-| ID | Task | Status | Agent | Priority | Notes |
-| :--- | :--- | :--- | :--- | :--- | :--- |
 | T001 | Pincode Widget Restoration | [x] Done | Anti | High | **DON'T TOUCH**: `#zippy_widget_1511`. |
 | **P2** | **Phase 2: Visual Identity** | [x] Done | Anti | High | **28% Reached.** |
 | T002 | - Typography Overhaul | [x] Done | Anti | High | Inter/Barlow applied. |
@@ -27,6 +25,7 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | T005 | - [Header] CSS Mapping | [/] Active | Anti | High | Integrating to `theme-update.css`. |
 | T006 | - [Header & Nav] Porting | [x] Done | **Codex** | High | Wrapped Empire header markup with Whisper layout classes. |
 | T007 | - [Banners & Hero] Sections | [x] Done | **Codex** | Med | Ported Whisper `hero.liquid` / `slideshow.liquid` structures. |
+| T011 | - [Footer] Design Port | [x] Done | **Codex** | Med | Ported Whisper footer layout/styling. |
 | T008 | - [Navigation] Mobile Drawer| [ ] Pending || Med | Port `header-drawer.liquid`. |
 | T009 | - [Navigation] Mega-Menu Grid| [ ] Pending || High | T-ID for grid menus. |
 | T010 | - [Navigation] Mega-Promo | [ ] Pending || High | T-ID for image menus. |
@@ -123,6 +122,7 @@ To prevent collision, we strictly follow this ownership map:
 - **2026-01-16 (Codex)**: Started Product Card UI styling bridge in `assets/theme-update.css` using Whisper BEM hooks.
 - **2026-01-16 (Codex)**: Added baseline `.product-grid__card` layout rules to the CSS bridge for Product Card UI alignment.
 - **2026-01-16 (Codex)**: Added Whisper-aligned product card transition defaults in `assets/theme-update.css`.
+- **2026-01-16 (Codex)**: Ported footer layout hooks in `sections/static-footer.liquid` and added footer grid bridge styles.
 - **2026-01-15 (Codex)**: Began Header & Nav Porting. Added Whisper structural wrappers for header rows/columns, header actions, and header menu while preserving Empire data attributes and Liquid logic (`sections/static-header.liquid`, `snippets/site-header-actions.liquid`, `snippets/site-mobile-nav.liquid`). Verify Quick Shop and mobile menu behavior after styling changes.
 - **2026-01-15 (Codex)**: Activated Product Card UI task and aligned product grid item structure with Whisper product-card wrappers.
 - **2026-01-18 (Codex)**: Ported Whisper SVG icon library to `snippets/icon.liquid` (commit 77f04b2).
