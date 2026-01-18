@@ -229,7 +229,20 @@
     data-recently-viewed-card
   {% endif %}
 >
-  <div class="productitem" data-product-item-content>
+  <product-card class="product-card" data-product-id="{{ product.id }}">
+    <div class="product-card__link" aria-hidden="true"></div>
+    <div
+      class="
+        product-card__content
+        layout-panel-flex
+        layout-panel-flex--column
+        product-grid__card
+        spacing-style
+        border-style
+        gap-style
+      "
+    >
+      <div class="productitem" data-product-item-content>
     {{ recently_viewed_header }}
     <a target="_blank"
       class="productitem--image-link"
@@ -484,7 +497,9 @@
         </div>
       {% endif %}
     {% endunless %}
-  </div>
+      </div>
+    </div>
+  </product-card>
 
   {% if atc_button %}
     <script type="application/json" data-quick-buy-settings>

@@ -15,9 +15,9 @@ This file is the **Source of Truth** for the synchronized development between **
 | Pincode Widget Restoration | [x] Done | Anti | High | **DON'T TOUCH**: `#zippy_widget_1511`. |
 | **Theme Integration (Whisper UI)** | [/] Active | Joint | High | Applying `whispertheme` aesthetics to Empire. |
 | - Design Token Analysis | [x] Done | Anti | Low | Mapped variables in `theme-styles-variables.liquid`. |
-| - **Header & Nav Porting** | [ ] Pending | **Codex**| High | Replace Empire header logic with Whisper's. |
+| - **Header & Nav Porting** | [/] Active | **Codex**| High | Replacing Empire header logic with Whisper's (task selected). |
 | - **Banners & Hero Sections** | [ ] Pending | **Codex**| Med | Port Whisper's `hero.liquid` / `slideshow.liquid`. |
-| - **Product Card UI** | [ ] Pending | **Codex**| High | Port `product-card.liquid` aesthetics. |
+| - **Product Card UI** | [/] Active | **Codex**| High | Wrapping Empire product grid items with Whisper product-card structure. |
 | - Global CSS Bridge | [ ] Pending | Anti | Med | Creating `theme-update.css`. |
 
 ---
@@ -78,3 +78,7 @@ This file is the **Source of Truth** for the synchronized development between **
 *Update this section after every major push.*
 
 - **2026-01-15 (Antigravity)**: Completed deep-dive into `whispertheme`. Mapped all CSS variables and identified primary porting targets. Ready for Codex to begin Liquid integration.
+- **2026-01-15 (Codex)**: Activated Product Card UI task and aligned product grid item structure with Whisper product-card wrappers.
+- **2026-01-15 (Codex)**: Switched product-card overlay to a non-link element to avoid nested anchors while keeping Whisper class structure.
+- **2026-01-15 (Codex)**: Selected Header & Nav Porting as the next active task for Whisper integration.
+- **2026-01-15 (Codex)**: Began Header & Nav Porting coordination; migration estimated at ~20% with product card structure in progress.
