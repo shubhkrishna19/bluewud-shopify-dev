@@ -14,6 +14,7 @@ To prevent duplication, every agent **MUST** follow this protocol:
 2. **Commit**: Sync changes to GitHub immediately after completion.
 3. **Close**: Mark as `[x] Done` and provide the commit hash or file path in the 'Notes' column.
 4. **Sequence**: All new tasks must continue the sequential numbering.
+5. **Read**: Review `AGENTS.md` for multi-agent coordination rules.
 
 | ID | Task | Status | Agent | Priority | Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- |
@@ -28,8 +29,8 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | T007 | - [Navigation] Mega-Menu Grid| [ ] Pending || High | T-ID for grid menus. |
 | T008 | - [Navigation] Mega-Promo | [ ] Pending || High | T-ID for image menus. |
 | **P4** | **Phase 4: Global Utilities** | [ ] Pending | Joint | Med | **Codex Takeover Target** |
-| T013 | - [Icons] SVG Library Port | [ ] Pending || Low | Port `snippets/icon.liquid`. |
-| T014 | - [Spacing] Padding Helpers | [ ] Pending || Med | Port `spacing-padding.liquid`. |
+| T013 | - [Icons] SVG Library Port | [x] Done | Codex | Low | Added `snippets/icon.liquid` (commit 77f04b2). |
+| T014 | - [Spacing] Padding Helpers | [x] Done | Codex | Med | Added `snippets/spacing-padding.liquid`. |
 | T015 | - [Badges] Product Badges | [ ] Pending || Med | Port `snippets/badge.liquid`. |
 | **P5** | **Phase 5: Product Page UI** | [ ] Pending | Joint | High | Visual parity for PDP. |
 | T016 | - [Media] Gallery Layout | [ ] Pending || High | Port Whisper gallery logic. |
@@ -113,3 +114,6 @@ To prevent collision, we strictly follow this ownership map:
 - **2026-01-15 (Antigravity)**: Completed deep-dive into `whispertheme`. Mapped all CSS variables and identified primary porting targets. Ready for Codex to begin Liquid integration. Migration status updated to **22%**.
 - **2026-01-15 (Antigravity)**: Initiated Typography Overhaul. Transitioning store to Inter/Barlow for premium aesthetics. Preparing to port `whisper-hero.liquid`.
 - **2026-01-15 (Antigravity)**: **PHASE 2 COMPLETE.** Typography and Hero live. Migration status: **28%**. Expanded roadmap for Phases 3 & 4 with specialized tasks for Codex.
+- **2026-01-18 (Codex)**: Ported Whisper SVG icon library to `snippets/icon.liquid` (commit 77f04b2).
+- **2026-01-18 (Codex)**: Ported padding helper snippet from Whisper to `snippets/spacing-padding.liquid`. (Task chosen: T014)
+- **2026-01-18 (Codex)**: Added `AGENTS.md` with multi-agent coordination rules and best-practice contribution requirements.
