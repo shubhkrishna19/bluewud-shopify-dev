@@ -92,3 +92,4 @@ This file is the **Source of Truth** for the synchronized development between **
 - **2026-01-16 (Codex)**: Added Whisper hero content wrapper hook to slideshow slide content.
 - **2026-01-16 (Codex)**: Added Whisper `header` class on the main header element for base header styling hooks.
 - **2026-01-16 (Codex)**: Added Whisper hero media/image hook classes to slideshow slide media.
+- **2026-01-16 (Codex)**: Added hero media baseline styles in `assets/theme-update.css` for slideshow alignment.
