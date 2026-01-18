@@ -50,21 +50,24 @@
   }
 {% endstyle %}
 
-<div
-  class="
-    site-header-main
-    {% if section.settings.full_width_header %}
-      site-header--full-width
+<header class="header header--empire">
+  <div
+    class="
+      site-header-main
+      header__row
+      header__row--top
+      {% if section.settings.full_width_header %}
+        site-header--full-width
+      {% endif %}
+    "
+    data-site-header-main
+    {% if section.settings.sticky_header %}data-site-header-sticky{% endif %}
+    {% if section.settings.show_mobile_search_bar %}
+      data-site-header-mobile-search-bar
+    {% else %}
+      data-site-header-mobile-search-button
     {% endif %}
-  "
-  data-site-header-main
-  {% if section.settings.sticky_header %}data-site-header-sticky{% endif %}
-  {% if section.settings.show_mobile_search_bar %}
-    data-site-header-mobile-search-bar
-  {% else %}
-    data-site-header-mobile-search-button
-  {% endif %}
->
+  >
   <button class="site-header-menu-toggle" data-menu-toggle>
     <div class="site-header-menu-toggle--button" tabindex="-1">
       <span class="toggle-icon--bar toggle-icon--bar-top"></span>
@@ -97,14 +100,15 @@
     {% endif %}
   {% endunless %}
 
-  <div
-    class="
-      site-header-main-content
-      {% if section.settings.small_promo_text != empty %}
-        small-promo-enabled
-      {% endif %}
-    "
-  >
+    <div
+      class="
+        site-header-main-content
+        header__columns
+        {% if section.settings.small_promo_text != empty %}
+          small-promo-enabled
+        {% endif %}
+      "
+    >
     <div class="site-header-logo">
       <a
         class="site-logo"
@@ -205,10 +209,10 @@
     {% comment %}{% include 'iwish_v2' with 'iwishlink' %}{% endcomment %}
   </div>
 
-  <div class="site-header-right">
-    {% render 'site-header-actions' %}
+    <div class="site-header-right">
+      {% render 'site-header-actions' %}
 
-    <div class="site-header-cart">
+      <div class="site-header-cart">
       
       
       <a class="site-header-cart--button" href="{{ routes.cart_url }}">
@@ -226,49 +230,52 @@
         <span class="visually-hidden">{{ 'general.accessibility.cart' | t }}</span>
       </a>
     </div>
+    </div>
   </div>
-</div>
 
-<div
-  class="
-    site-navigation-wrapper
-    {% if shop.customer_accounts_enabled %}
-      site-navigation--has-actions
-    {% endif %}
-    {% if section.settings.full_width_header %}
-      site-header--full-width
-    {% endif %}
-  "
-  data-site-navigation
-  id="site-header-nav"
->
-  <nav
-    class="site-navigation"
-    aria-label="{{ 'general.accessibility.nav_main' | t }}"
+  <div
+    class="
+      site-navigation-wrapper
+      header__row
+      header__row--bottom
+      {% if shop.customer_accounts_enabled %}
+        site-navigation--has-actions
+      {% endif %}
+      {% if section.settings.full_width_header %}
+        site-header--full-width
+      {% endif %}
+    "
+    data-site-navigation
+    id="site-header-nav"
   >
-    {%
-      render 'navmenu',
-      menu: section.settings.menu,
-      blocks: section.blocks,
-    %}
-
-    {% if section.settings.secondary_menu != blank %}
+    <nav
+      class="site-navigation header__columns"
+      aria-label="{{ 'general.accessibility.nav_main' | t }}"
+    >
       {%
-        render 'navlist',
-        menu_list: linklists[section.settings.secondary_menu].links,
-        depth: 1,
-        max_depth: 1,
-        aria_expanded: true,
-        navmenu_classes: 'site-navigation__secondary-menu',
+        render 'navmenu',
+        menu: section.settings.menu,
+        blocks: section.blocks,
       %}
-    {% endif %}
-  </nav>
-</div>
 
-{%
-  render 'site-mobile-nav',
-  blocks: section.blocks,
-%}
+      {% if section.settings.secondary_menu != blank %}
+        {%
+          render 'navlist',
+          menu_list: linklists[section.settings.secondary_menu].links,
+          depth: 1,
+          max_depth: 1,
+          aria_expanded: true,
+          navmenu_classes: 'site-navigation__secondary-menu',
+        %}
+      {% endif %}
+    </nav>
+  </div>
+
+  {%
+    render 'site-mobile-nav',
+    blocks: section.blocks,
+  %}
+</header>
 
 {% schema %}
 {
