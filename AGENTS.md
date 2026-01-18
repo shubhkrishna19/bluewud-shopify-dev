@@ -39,3 +39,4 @@ This repository uses parallel AI agents. To avoid duplicate work, **every agent 
 - **Codex**: Re-check `MASTER_COLLABORATION_FILE.md` after a short wait before committing to confirm no task conflicts.
 - **Codex**: Log task selection promptly so other agents can switch before doing any significant work.
 - **Codex**: Prefer copying source snippets verbatim first, then layer integration changes in separate commits to ease review.
+- **Codex**: For large Liquid snippets, avoid partial edits—copy whole files to reduce merge conflicts and review time.

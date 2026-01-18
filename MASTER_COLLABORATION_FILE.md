@@ -26,7 +26,7 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | T006 | - [Header & Nav] Porting | [x] Done | **Codex** | High | Wrapped Empire header markup with Whisper layout classes. |
 | T007 | - [Banners & Hero] Sections | [x] Done | **Codex** | Med | Ported Whisper `hero.liquid` / `slideshow.liquid` structures. |
 | T011 | - [Footer] Design Port | [x] Done | **Codex** | Med | Ported Whisper footer layout/styling. |
-| T008 | - [Navigation] Mobile Drawer| [ ] Pending || Med | Port `header-drawer.liquid`. |
+| T008 | - [Navigation] Mobile Drawer| [x] Done | Codex | Med | Added `snippets/header-drawer.liquid`. |
 | T009 | - [Navigation] Mega-Menu Grid| [ ] Pending || High | T-ID for grid menus. |
 | T010 | - [Navigation] Mega-Promo | [ ] Pending || High | T-ID for image menus. |
 | **P4** | **Phase 4: Global Utilities** | [/] Active | Joint | Med | **Codex Takeover Target** |
@@ -128,6 +128,8 @@ To prevent collision, we strictly follow this ownership map:
 - **2026-01-18 (Codex)**: Selected task T015 - Product Badges.
 - **2026-01-18 (Codex)**: Completed task T015 - Product Badges (`snippets/badge.liquid`).
 - **2026-01-18 (Codex)**: Selected task T017 - Dynamic Pricing UI.
+- **2026-01-18 (Codex)**: Selected task T008 - Navigation Mobile Drawer.
+- **2026-01-18 (Codex)**: Ported Whisper header drawer snippet to `snippets/header-drawer.liquid`.
 - **2026-01-18 (Codex)**: Ported Whisper pricing snippet to `snippets/price.liquid`.
 - **2026-01-18 (Codex)**: Selected task T020 - Cart Summaries.
 - **2026-01-18 (Codex)**: Ported Whisper cart summary snippet to `snippets/cart-summary.liquid`.
