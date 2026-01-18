@@ -135,6 +135,5 @@ To prevent collision, we strictly follow this ownership map:
 - **2026-01-18 (Codex)**: Ported Whisper cart summary snippet to `snippets/cart-summary.liquid`.
 - **2026-01-18 (Codex)**: Selected task T018 - ATC Button Styling.
 - **2026-01-18 (Codex)**: Ported Whisper add-to-cart button snippet to `snippets/add-to-cart-button.liquid`.
-- **2026-01-18 (Codex)**: Ported Whisper pricing snippet to `snippets/price.liquid`.
 - **2026-01-18 (Codex)**: Selected task T009 - Mega-Menu Grid.
 - **2026-01-18 (Codex)**: Ported Whisper mega menu grid snippets to `snippets/mega-menu-list.liquid` and `snippets/util-mega-menu-img-sizes-attr.liquid`.
