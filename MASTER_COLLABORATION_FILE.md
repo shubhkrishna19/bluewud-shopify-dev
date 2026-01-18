@@ -27,7 +27,7 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | T007 | - [Banners & Hero] Sections | [x] Done | **Codex** | Med | Ported Whisper `hero.liquid` / `slideshow.liquid` structures. |
 | T011 | - [Footer] Design Port | [x] Done | **Codex** | Med | Ported Whisper footer layout/styling. |
 | T008 | - [Navigation] Mobile Drawer| [x] Done | Codex | Med | Added `snippets/header-drawer.liquid`. |
-| T009 | - [Navigation] Mega-Menu Grid| [ ] Pending || High | T-ID for grid menus. |
+| T009 | - [Navigation] Mega-Menu Grid| [x] Done | Codex | High | Added `snippets/mega-menu-list.liquid` and `snippets/util-mega-menu-img-sizes-attr.liquid`. |
 | T010 | - [Navigation] Mega-Promo | [ ] Pending || High | T-ID for image menus. |
 | **P4** | **Phase 4: Global Utilities** | [/] Active | Joint | Med | **Codex Takeover Target** |
 | T013 | - [Icons] SVG Library Port | [x] Done | Codex | Low | Added `snippets/icon.liquid` (commits 77f04b2, d202c27). |
@@ -136,3 +136,5 @@ To prevent collision, we strictly follow this ownership map:
 - **2026-01-18 (Codex)**: Selected task T018 - ATC Button Styling.
 - **2026-01-18 (Codex)**: Ported Whisper add-to-cart button snippet to `snippets/add-to-cart-button.liquid`.
 - **2026-01-18 (Codex)**: Ported Whisper pricing snippet to `snippets/price.liquid`.
+- **2026-01-18 (Codex)**: Selected task T009 - Mega-Menu Grid.
+- **2026-01-18 (Codex)**: Ported Whisper mega menu grid snippets to `snippets/mega-menu-list.liquid` and `snippets/util-mega-menu-img-sizes-attr.liquid`.
