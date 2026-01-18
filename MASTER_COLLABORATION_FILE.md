@@ -30,7 +30,7 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | T009 | - [Navigation] Mega-Menu Grid| [ ] Pending || High | T-ID for grid menus. |
 | T010 | - [Navigation] Mega-Promo | [ ] Pending || High | T-ID for image menus. |
 | **P4** | **Phase 4: Global Utilities** | [/] Active | Joint | Med | **Codex Takeover Target** |
-| T013 | - [Icons] SVG Library Port | [x] Done | Codex | Low | Added `snippets/icon.liquid` (commit 77f04b2). |
+| T013 | - [Icons] SVG Library Port | [x] Done | Codex | Low | Added `snippets/icon.liquid` (commits 77f04b2, d202c27). |
 | T014 | - [Spacing] Padding Helpers | [x] Done | Codex | Med | Added `snippets/spacing-padding.liquid`. |
 | T015 | - [Badges] Product Badges | [x] Done | Codex | Med | Added `snippets/badge.liquid`. |
 | **P5** | **Phase 5: Product Page UI** | [/] Active | Joint | High | Visual parity for PDP. |
@@ -116,13 +116,10 @@ To prevent collision, we strictly follow this ownership map:
 - **2026-01-15 (Antigravity)**: Completed deep-dive into `whispertheme`. Mapped all CSS variables and identified primary porting targets. Ready for Codex to begin Liquid integration. Migration status updated to **22%**.
 - **2026-01-15 (Antigravity)**: Initiated Typography Overhaul. Transitioning store to Inter/Barlow for premium aesthetics. Preparing to port `whisper-hero.liquid`.
 - **2026-01-15 (Antigravity)**: **PHASE 2 COMPLETE.** Typography and Hero live. Migration status: **28%**. Expanded roadmap for Phases 3 & 4 with specialized tasks for Codex.
-- **2026-01-16 (Codex)**: Added Whisper-style product card class hooks to `snippets/product-grid-item.liquid` to prepare for styling bridge without altering Empire logic.
-- **2026-01-16 (Codex)**: Adopted main branch's product-card wrapper and overlay link in `snippets/product-grid-item.liquid`.
-- **2026-01-16 (Codex)**: Added `assets/theme-update.css` and wired it into `layout/theme.liquid` as the CSS bridge for Whisper overrides.
-- **2026-01-16 (Codex)**: Started Product Card UI styling bridge in `assets/theme-update.css` using Whisper BEM hooks.
 - **2026-01-16 (Codex)**: Added baseline `.product-grid__card` layout rules to the CSS bridge for Product Card UI alignment.
 - **2026-01-16 (Codex)**: Added Whisper-aligned product card transition defaults in `assets/theme-update.css`.
 - **2026-01-16 (Codex)**: Ported footer layout hooks in `sections/static-footer.liquid` and added footer grid bridge styles.
+- **2026-01-16 (Codex)**: Completed T013 by porting `snippets/icon.liquid` into the active theme. Commit: d202c27.
 - **2026-01-15 (Codex)**: Began Header & Nav Porting. Added Whisper structural wrappers for header rows/columns, header actions, and header menu while preserving Empire data attributes and Liquid logic (`sections/static-header.liquid`, `snippets/site-header-actions.liquid`, `snippets/site-mobile-nav.liquid`). Verify Quick Shop and mobile menu behavior after styling changes.
 - **2026-01-15 (Codex)**: Activated Product Card UI task and aligned product grid item structure with Whisper product-card wrappers.
 - **2026-01-18 (Codex)**: Ported Whisper SVG icon library to `snippets/icon.liquid` (commit 77f04b2).
