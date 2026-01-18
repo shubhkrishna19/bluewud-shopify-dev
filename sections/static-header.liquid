@@ -247,10 +247,11 @@
   data-site-navigation
   id="site-header-nav"
 >
-  <nav
-    class="site-navigation header__columns"
-    aria-label="{{ 'general.accessibility.nav_main' | t }}"
-  >
+  <div class="header__columns">
+    <nav
+      class="site-navigation"
+      aria-label="{{ 'general.accessibility.nav_main' | t }}"
+    >
     {%
       render 'navmenu',
       menu: section.settings.menu,
@@ -267,7 +268,8 @@
         navmenu_classes: 'site-navigation__secondary-menu',
       %}
     {% endif %}
-  </nav>
+    </nav>
+  </div>
 </div>
 
 {%
