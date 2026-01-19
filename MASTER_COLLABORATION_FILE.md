@@ -53,8 +53,17 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | T034 | - Global UI Sync (Dark Mode)| [x] Done | Anti | High | theme-update.css + theme.liquid sync. |
 | T035 | - Component Porting (Parallel) | [/] Active | Joint | High | Ported 6 core snippets. |
 | T036 | - [Homepage] Aesthetic Sync | [ ] Pending | Codex | High | Ref: wireframe.onslate.com grid. |
-| T037 | - [PDP] Deep Sync Integration | [/] Active | Anti | High | Injecting Review/UGC/Specs. |
-| T038 | - [Cart] UX Refinement | [ ] Pending | Codex | High | Ref: Cart.tsx drawer port. |
+| T037 | - [PDP] Deep Sync Integration | [x] Done | Anti | High | Injecting Review/UGC/Specs. |
+| T038 | - [Cart] UX Refinement | [/] Active | Codex | High | Ref: Cart.tsx drawer port. |
+| **P11** | **Phase 11: UX & Personalization**| [ ] Pending | Codex | Med | Enhancing conversion. |
+| T042 | - Mobile Bottom Sheet Support | [ ] Pending || Med | Ref: `BottomSheet.tsx`. |
+| T043 | - Size Recommendation Engine | [ ] Pending || High | Ref: `SizeRecommendationEngine.tsx`. |
+| T044 | - Abandoned Cart UI | [ ] Pending || Med | Ref: `AbandonedCartRecovery.tsx`. |
+| **P12** | **Phase 12: Growth & Engagement** | [ ] Pending | Joint | High | Post-launch optimizations. |
+| T045 | - Referral Program Integration | [ ] Pending || High | Ref: `ReferralProgram.tsx`. |
+| T046 | - Spin The Wheel Component | [ ] Pending || Med | Ref: `SpinTheWheel.tsx`. |
+| T047 | - AI Product Recommendations | [ ] Pending || High | Ref: `AIProductRecommendations.tsx`. |
+| T048 | - Styling Assistant Widget | [ ] Pending || Med | Ref: `StylingAssistant.tsx`. |
 
 ---
 
