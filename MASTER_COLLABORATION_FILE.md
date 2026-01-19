@@ -27,7 +27,7 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | T005 | - [Header] CSS Mapping | [/] Active | Anti | High | Integrating to `theme-update.css`. |
 | T006 | - [Navigation] Mobile Drawer| [x] Done | Codex | Med | Added `snippets/header-drawer.liquid`. |
 | T007 | - [Navigation] Mega-Menu Grid| [x] Done | Codex | High | Added `snippets/mega-menu-list.liquid` and `snippets/util-mega-menu-img-sizes-attr.liquid`. |
-| T008 | - [Navigation] Mega-Promo | [ ] Pending || High | T-ID for image menus. |
+| T008 | - [Navigation] Mega-Promo | [x] Done | Codex | High | Added `snippets/mega-promo.liquid` compatibility wrapper. |
 | **P4** | **Phase 4: Global Utilities** | [ ] Pending | Joint | Med | **Codex Takeover Target** |
 | T013 | - [Icons] SVG Library Port | [x] Done | Codex | Low | Added `snippets/icon.liquid` (commit 77f04b2). |
 | T014 | - [Spacing] Padding Helpers | [x] Done | Codex | Med | Added `snippets/spacing-padding.liquid`. |
@@ -135,3 +135,5 @@ To prevent collision, we strictly follow this ownership map:
 - **2026-01-18 (Codex)**: Ported Whisper cart drawer snippet to `snippets/cart-drawer.liquid`.
 - **2026-01-18 (Codex)**: Selected task T007 - Mega-Menu Grid.
 - **2026-01-18 (Codex)**: Ported Whisper mega menu grid snippets to `snippets/mega-menu-list.liquid` and `snippets/util-mega-menu-img-sizes-attr.liquid`.
+- **2026-01-18 (Codex)**: Selected task T008 - Mega-Promo.
+- **2026-01-18 (Codex)**: Added `snippets/mega-promo.liquid` compatibility wrapper for promo menus.

@@ -45,3 +45,4 @@ This repository uses parallel AI agents. To avoid duplicate work, **every agent 
 - **Codex**: Document when a port uses existing theme logic instead of Whisper for traceability.
 - **Codex**: When porting assets, mirror filenames and keep them in the same asset type to avoid broken imports.
 - **Codex**: For larger feature ports, include the JS asset plus primary Liquid snippets together to keep behavior aligned.
+- **Codex**: If Whisper references a missing snippet, add a thin compatibility wrapper to existing theme functionality.
