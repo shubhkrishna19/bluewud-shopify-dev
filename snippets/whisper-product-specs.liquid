@@ -1,0 +1,47 @@
+{% comment %}
+  Whisper Product Specs Tabs
+  Mirrored from ProductDetail.tsx (ecommerce-app)
+{% endcomment %}
+
+<div class="whisper-product-specs mt-12 animate-fade-in-up">
+  <div class="flex border-b-2 border-[var(--color-border-primary)] mb-6">
+    <button class="px-6 py-4 text-xs font-black uppercase tracking-widest border-b-4 border-[var(--color-accent-primary)] text-[var(--color-text-primary)]">Specifications</button>
+    <button class="px-6 py-4 text-xs font-black uppercase tracking-widest text-[var(--color-text-tertiary)] hover:text-[var(--color-text-primary)] transition-colors">Care Instructions</button>
+  </div>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8 p-8 bg-[var(--color-bg-secondary)] rounded-xl border-2 border-[var(--color-border-primary)]">
+    <div>
+      <h4 class="text-sm font-black uppercase tracking-widest text-[var(--color-text-primary)] mb-6 border-l-4 border-[var(--color-accent-primary)] pl-4">Product Details</h4>
+      <dl class="space-y-4">
+        {%- if product.metafields.custom.material -%}
+          <div class="flex justify-between border-b border-[var(--color-border-primary)] pb-2">
+            <dt class="text-xs font-bold uppercase text-[var(--color-text-tertiary)]">Material</dt>
+            <dd class="text-xs font-bold text-[var(--color-text-primary)]">{{ product.metafields.custom.material }}</dd>
+          </div>
+        {%- endif -%}
+        <div class="flex justify-between border-b border-[var(--color-border-primary)] pb-2">
+          <dt class="text-xs font-bold uppercase text-[var(--color-text-tertiary)]">Brand</dt>
+          <dd class="text-xs font-bold text-[var(--color-text-primary)]">{{ product.vendor }}</dd>
+        </div>
+        <div class="flex justify-between border-b border-[var(--color-border-primary)] pb-2">
+          <dt class="text-xs font-bold uppercase text-[var(--color-text-tertiary)]">SKU</dt>
+          <dd class="text-xs font-bold text-[var(--color-text-primary)]">{{ product.selected_or_first_available_variant.sku }}</dd>
+        </div>
+      </dl>
+    </div>
+    
+    <div>
+      <h4 class="text-sm font-black uppercase tracking-widest text-[var(--color-text-primary)] mb-6 border-l-4 border-[var(--color-accent-primary)] pl-4">Dimensions</h4>
+      <dl class="space-y-4">
+        {%- if product.metafields.custom.dimensions -%}
+          <div class="flex justify-between border-b border-[var(--color-border-primary)] pb-2">
+            <dt class="text-xs font-bold uppercase text-[var(--color-text-tertiary)]">Size</dt>
+            <dd class="text-xs font-bold text-[var(--color-text-primary)]">{{ product.metafields.custom.dimensions }}</dd>
+          </div>
+        {%- else -%}
+          <div class="text-xs font-bold text-[var(--color-text-tertiary)] italic">Standard Dimensions Apply</div>
+        {%- endif -%}
+      </dl>
+    </div>
+  </div>
+</div>

@@ -102,9 +102,39 @@
       };
     </script>
 
+    <script type="importmap">
+      {
+        "imports": {
+          "@theme/component": "{{ 'whisper-component.js' | asset_url }}",
+          "@theme/utilities": "{{ 'whisper-utilities.js' | asset_url }}",
+          "@theme/scrolling": "{{ 'whisper-scrolling.js' | asset_url }}",
+          "@theme/events": "{{ 'whisper-events.js' | asset_url }}",
+          "@theme/section-hydration": "{{ 'whisper-section-hydration.js' | asset_url }}",
+          "@theme/view-transitions": "{{ 'whisper-view-transitions.js' | asset_url }}"
+        }
+      }
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quattrocento:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&family=Quattrocento:wght@400;700&display=swap" rel="stylesheet">
+
+    {% comment %} Ecommerce-App Theme Initialization (Dark Mode Support) {% endcomment %}
+    <script>
+      (function() {
+        const savedTheme = localStorage.getItem('bluewud_theme');
+        let mode = 'dark'; // Default to dark as per wireframe.onslate.com
+        
+        if (savedTheme) {
+          try {
+            const theme = JSON.parse(savedTheme);
+            mode = theme.mode || 'dark';
+          } catch (e) {}
+        }
+        
+        document.documentElement.setAttribute('data-theme', mode);
+        window.initialThemeMode = mode;
+      })();
+    </script>
 
     {% comment %}Inject theme-object end{% endcomment %}
 

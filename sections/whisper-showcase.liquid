@@ -1,0 +1,57 @@
+{% comment %}
+  Whisper Component Showcase
+  A high-polish demonstration of the ported ecommerce-app components.
+{% endcomment %}
+
+<section class="whisper-showcase py-20 bg-[var(--color-bg-primary)]">
+  <div class="container mx-auto px-4">
+    <div class="max-w-4xl mx-auto space-y-20">
+      
+      <!-- Trust & Stock Demo -->
+      <div class="grid md:grid-cols-2 gap-12 items-start">
+        <div class="space-y-6">
+          <h2 class="text-3xl font-black text-[var(--color-text-primary)] leading-tight italic">
+            Visual Consistency & <span class="text-[var(--color-accent-primary)]">Social Proof</span>
+          </h2>
+          {% render 'whisper-stock-indicator', stock: 3 %}
+          <div class="pt-6">
+            {% render 'whisper-trust-signals' %}
+          </div>
+        </div>
+        <div class="aspect-square bg-gradient-to-br from-slate-800 to-slate-900 rounded-2xl border-2 border-[var(--color-border-primary)] shadow-2xl flex items-center justify-center relative overflow-hidden group">
+          <div class="absolute inset-0 bg-blue-500/10 group-hover:bg-blue-500/20 transition-colors"></div>
+          <svg class="w-20 h-20 text-[var(--color-accent-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+          </svg>
+        </div>
+      </div>
+
+      <!-- Reviews Integration -->
+      <div class="space-y-12">
+        <div class="text-center">
+          <h2 class="text-4xl font-black text-[var(--color-text-primary)] mb-4">Customer Sentiment</h2>
+          <p class="text-[var(--color-text-secondary)]">Mirroring the Ecommerce-App rating distribution logic.</p>
+        </div>
+        {% render 'whisper-rating-distribution', rating: 4.8, review_count: 1250 %}
+      </div>
+
+      <!-- UGC Gallery Integration -->
+      <div class="pt-12">
+        {% render 'whisper-ugc-gallery' %}
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Whisper Showcase",
+  "settings": [],
+  "presets": [
+    {
+      "name": "Whisper Showcase"
+    }
+  ]
+}
+{% endschema %}

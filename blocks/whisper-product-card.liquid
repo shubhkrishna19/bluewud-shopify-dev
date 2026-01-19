@@ -1,0 +1,180 @@
+
+
+{% liquid
+  assign product = closest.product
+-%}
+
+{% capture children %}
+  {% content_for 'blocks', closest.product: product %}
+{% endcapture %}
+
+{% render 'whisper-product-card', children: children, product: product %}
+
+{% schema %}
+{
+  "name": "Whisper Product Card",
+  "blocks": [
+    {
+      "type": "whisper-product-card-group"
+    },
+    {
+      "type": "whisper-text"
+    },
+    {
+      "type": "whisper-image"
+    },
+    {
+      "type": "whisper-buy-buttons"
+    },
+    {
+      "type": "whisper-price"
+    },
+    {
+      "type": "whisper-review"
+    },
+    {
+      "type": "whisper-sku"
+    },
+    {
+      "type": "whisper-swatches"
+    },
+    {
+      "type": "whisper-product-card-gallery"
+    },
+    {
+      "type": "whisper-product-title"
+    },
+    {
+      "type": "whisper-custom-liquid"
+    },
+    {
+      "type": "@app"
+    }
+  ],
+  "tag": null,
+  "settings": [
+    {
+      "type": "paragraph",
+      "content": "Settings for the product card display."
+    },
+    {
+      "type": "range",
+      "id": "product_card_gap",
+      "label": "Vertical gap",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 16
+    },
+    {
+      "type": "checkbox",
+      "id": "inherit_color_scheme",
+      "label": "Inherit color scheme",
+      "default": true
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "scheme-1",
+      "visible_if": "{{ block.settings.inherit_color_scheme == false }}"
+    },
+    {
+      "type": "header",
+      "content": "Borders"
+    },
+    {
+      "type": "select",
+      "id": "border",
+      "label": "Style",
+      "options": [
+        {
+          "value": "none",
+          "label": "None"
+        },
+        {
+          "value": "solid",
+          "label": "Solid"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "px",
+      "label": "Thickness",
+      "default": 1,
+      "visible_if": "{{ block.settings.border != 'none' }}"
+    },
+    {
+      "type": "range",
+      "id": "border_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "label": "Opacity",
+      "default": 100,
+      "visible_if": "{{ block.settings.border != 'none' }}"
+    },
+    {
+      "type": "range",
+      "id": "border_radius",
+      "label": "Border radius",
+      "min": 0,
+      "max": 32,
+      "step": 1,
+      "default": 0
+    },
+    {
+      "type": "header",
+      "content": "Padding"
+    },
+    {
+      "type": "range",
+      "id": "padding-block-start",
+      "label": "Top",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-block-end",
+      "label": "Bottom",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-start",
+      "label": "Left",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "padding-inline-end",
+      "label": "Right",
+      "min": 0,
+      "max": 50,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    }
+  ]
+}
+{% endschema %}

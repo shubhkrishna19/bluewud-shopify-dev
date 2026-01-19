@@ -5,7 +5,7 @@ This file is the **Source of Truth** for the synchronized development between **
 ---
 
 ## 🔗 Live Preview Link
-**URL**: [https://u1p5we6mwmdiusgu-18086469.shopifypreview.com](https://u1p5we6mwmdiusgu-18086469.shopifypreview.com)
+**URL**: [https://u1p5we6mwmdiusgu-18086469.shopifypreview.com]()
 *Use this link to verify all visual and functional changes in real-time.*
 
 ## 🔒 Task Locking & Coordination (CRITICAL)
@@ -44,6 +44,32 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | **P7** | **Phase 7: Optimization** | [ ] Pending | Joint | Low | Core Web Vitals + Clean. |
 | T021 | - [Asset] CSS Minification | [ ] Pending || Low | Consolidate themes. |
 | T022 | - [JS] Lazy Loading Hydrate | [ ] Pending || Med | Sync `section-hydration.js`. |
+| T023 | - [Homepage] Slideshow | [ ] Pending || High | Port `sections/slideshow.liquid`. |
+| T024 | - [Homepage] Bestsellers | [ ] Pending || High | Port `sections/bestsellers.liquid`. |
+| T025 | - [Homepage] New Launches | [ ] Pending || High | Port `sections/new-launches.liquid`. |
+| T029 | - [Footer] Legacy Footer Port| [ ] Pending || High | Port legacy blocks to Whisper. |
+| **P10** | **Phase 10: Ecommerce Integration**| [/] Active | Anti | High | **"Live Source of Truth"** |
+| T033 | - Structural Audit & Logic | [x] Done | Anti | High | ecommerce-app analysis done. |
+| T034 | - Global UI Sync (Dark Mode)| [x] Done | Anti | High | theme-update.css + theme.liquid sync. |
+| T035 | - Component Porting (Parallel) | [/] Active | Joint | High | Ported 6 core snippets. |
+| T036 | - [Homepage] Aesthetic Sync | [ ] Pending | Codex | High | Ref: wireframe.onslate.com grid. |
+| T037 | - [PDP] Deep Sync Integration | [/] Active | Anti | High | Injecting Review/UGC/Specs. |
+| T038 | - [Cart] UX Refinement | [ ] Pending | Codex | High | Ref: Cart.tsx drawer port. |
+
+---
+
+## 🛡️ Critical Directive: Parity-First & Woodenstreet Benchmark
+> [!IMPORTANT]
+> **Homepage Reconstruction (START: NOW)**: We are currently updating the front page.
+> **The woodenstreet.com Benchmark**: We must surpass Woodenstreet's functionality and UI.
+> 1. **Identify**: Catalog all blocks, settings, and functions in the legacy section.
+> 2. **Rebuild**: Port to Whisper equivalent, ensuring all functional settings (links, counts, behaviors) match.
+> 3. **Woodenstreet Sync**: Audit [Woodenstreet](https://www.woodenstreet.com/) for missing functional features.
+> 4. **Aesthetic Upgrade**: After parity is confirmed, apply "Modular Modern" polish (UI animations/transitions) to exceed the benchmark by 100x.
+
+- **Phase 3 (Header/Nav)**: [ACTIVE] - Porting JS dependencies & Mega-menu.
+- **Phase 10 (Ecommerce Integration)**: [ACTIVE] - Syncing Review/Social Proof logic from `ecommerce-app`.
+- **Phase 8 (Homepage Parity)**: [ACTIVE] - Mirroring `bluewud.com` section-for-section.
 
 ---
 

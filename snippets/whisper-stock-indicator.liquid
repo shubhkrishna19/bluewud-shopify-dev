@@ -1,0 +1,81 @@
+{% comment %}
+  Whisper Stock Indicator
+  Mirrored from StockIndicator.tsx (ecommerce-app)
+  
+  Accepts:
+  - stock: {Number} Current stock level
+{% endcomment %}
+
+{%- liquid
+  assign current_stock = stock | default: product.selected_or_first_available_variant.inventory_quantity | default: 0
+  
+  if current_stock == 0
+    assign status_text = 'Out of Stock'
+    assign status_color = '#EF4444'
+    assign status_bg = 'rgba(239, 68, 68, 0.1)'
+    assign urgent = true
+  elsif current_stock < 5
+    assign status_text = 'Only ' | append: current_stock | append: ' left in stock - Order soon!'
+    assign status_color = '#EF4444'
+    assign status_bg = 'rgba(239, 68, 68, 0.1)'
+    assign urgent = true
+  elsif current_stock < 10
+    assign status_text = current_stock | append: ' in stock'
+    assign status_color = '#F59E0B'
+    assign status_bg = 'rgba(245, 158, 11, 0.1)'
+    assign urgent = false
+  else
+    assign status_text = 'In Stock'
+    assign status_color = '#10B981'
+    assign status_bg = 'rgba(16, 185, 129, 0.1)'
+    assign urgent = false
+  endif
+-%}
+
+<div class="whisper-stock-indicator space-y-3 animate-fade-in-up">
+  <!-- Stock Status -->
+  <div class="inline-flex items-center gap-2 px-4 py-2 rounded-lg font-bold text-sm"
+       style="color: {{ status_color }}; background-color: {{ status_bg }};">
+    {% if current_stock > 0 %}✓{% else %}✗{% endif %} {{ status_text }}
+  </div>
+
+  <!-- Social Proof (Server-side simulation for Liquid parity) -->
+  {% if current_stock > 0 %}
+    <div class="flex flex-wrap gap-3 text-sm">
+      <div class="flex items-center gap-1.5 text-[var(--color-text-secondary)]">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
+        </svg>
+        <span class="font-medium"><span id="whisper-view-count">12</span> people viewing</span>
+      </div>
+
+      <div class="flex items-center gap-1.5 text-[var(--color-text-secondary)]">
+        <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+        </svg>
+        <span class="font-medium">18 sold in last 24 hours</span>
+      </div>
+    </div>
+  {% endif %}
+
+  {% if urgent and current_stock > 0 %}
+    <p class="text-xs font-semibold animate-pulse" style="color: {{ status_color }};">
+      ⚡ High demand - Limited stock available!
+    </p>
+  {% endif %}
+</div>
+
+<script>
+  (function() {
+    // Dynamic mini-script for view count simulation
+    const countEl = document.getElementById('whisper-view-count');
+    if (countEl) {
+      setInterval(() => {
+        let current = parseInt(countEl.innerText);
+        let delta = Math.random() > 0.5 ? 1 : -1;
+        countEl.innerText = Math.max(3, current + delta);
+      }, 5000);
+    }
+  })();
+</script>

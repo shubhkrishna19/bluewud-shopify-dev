@@ -4,16 +4,43 @@
  */
 
 :root {
-    /* Typography - Derived from settings_data.json update */
-    --font-body-family: "Inter", sans-serif;
-    --font-heading-family: "Barlow", sans-serif;
+    /* Typography - Inter (Body) & Poppins (Headings) */
+    --font-heading-family: "Poppins", sans-serif;
+    --font-body-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 
-    /* Spacing & Layout (Whisper Modular) */
+    /* Ecommerce-App Colors (Modern/Fashion Palette) */
+    --color-elegant-black: #000000;
+    --color-elegant-gold: #FFD700;
+    --color-modern-navy: #0D47A1;
+    --color-modern-blue: #2563eb;
+    --color-modern-cyan: #06b6d4;
+
+    /* 60-30-10 Rule - Light Mode Tokens */
+    --color-bg-primary: #FFFFFF;
+    --color-bg-secondary: #F9FAFB;
+    --color-bg-tertiary: #F3F4F6;
+    --color-text-primary: #111827;
+    --color-text-secondary: #4B5563;
+    --color-text-tertiary: #9CA3AF;
+    --color-accent-primary: var(--color-modern-blue);
+    --color-accent-secondary: var(--color-modern-cyan);
+    --color-border-primary: #E5E7EB;
+
+    /* Gradients */
+    --gradient-blue: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
+    --gradient-dark: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+
+    /* Spacing & Layout */
+    --margin-md: 1rem;
+    --padding-md: 1rem;
+    --radius-creative: 0.5rem;
+    --shadow-elegant: 0 10px 40px rgba(0, 0, 0, 0.1);
+
+    /* Original Whisper Spacing (Preserved for compatibility) */
     --margin-3xs: 0.125rem;
     --margin-2xs: 0.3rem;
     --margin-xs: 0.5rem;
     --margin-sm: 0.7rem;
-    --margin-md: 0.8rem;
     --margin-lg: 1rem;
     --margin-xl: 1.25rem;
     --margin-2xl: 1.5rem;
@@ -21,7 +48,6 @@
 
     --padding-xs: 0.5rem;
     --padding-sm: 0.7rem;
-    --padding-md: 0.8rem;
     --padding-lg: 1rem;
     --padding-xl: 1.25rem;
     --padding-4xl: 2rem;
@@ -31,136 +57,130 @@
     --gap-lg: 1rem;
     --gap-xl: 1.25rem;
 
-    /* Font Sizes (Whisper Modular) */
-    --font-size--3xs: 0.625rem;
-    --font-size--2xs: 0.75rem;
-    --font-size--xs: 0.8125rem;
-    --font-size--sm: 0.875rem;
-    --font-size--md: 1rem;
-    --font-size--lg: 1.125rem;
-    --font-size--xl: 1.25rem;
-
-    /* Z-Index Layers */
-    --layer-base: 0;
-    --layer-flat: 1;
-    --layer-raised: 2;
-    --layer-overlay: 16;
-    --layer-header: 100;
-    --layer-sticky: 101;
-    --layer-menu-drawer: 18;
-
-    /* Colors & Opacity */
-    --color-border-rgb: 232, 232, 230;
-    --opacity-70: 0.7;
-    --opacity-subdued-text: var(--opacity-70);
-
-    /* Animation */
-    --animation-speed: 0.125s;
-    --animation-easing: ease-in-out;
-    --animation-values: var(--animation-speed) var(--animation-easing);
-
     /* Header Specific */
     --header-height: 70px;
-    --header-padding: var(--padding-sm);
+    --header-padding: 0.7rem;
+}
+
+/* Dark Mode Overrides - Sync with wireframe.onslate.com */
+[data-theme='dark'] {
+    --color-bg-primary: #0f172a;
+    /* Slate 900 */
+    --color-bg-secondary: #1e293b;
+    /* Slate 800 */
+    --color-bg-tertiary: #334155;
+    /* Slate 700 */
+    --color-text-primary: #F9FAFB;
+    --color-text-secondary: #D1D5DB;
+    --color-text-tertiary: #9CA3AF;
+    --color-border-primary: #334155;
+    --color-card-bg: #1e293b;
+
+    /* Primary colors in dark mode often need slight adjustment for contrast */
+    --color-accent-primary: #3b82f6;
+    /* Lighter blue for dark mode */
+}
+
+/* Base Styles using Tokens */
+body {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    font-family: var(--font-body-family);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading-family);
+    color: var(--color-text-primary);
+}
+
+/* Animation Keyframes from eCommerce App */
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.animate-fade-in-up {
+    animation: fade-in-up 0.6s ease-out;
 }
 
 /* Header Base Structure */
 .header-section {
     position: relative;
-    z-index: var(--layer-header);
+    z-index: 100;
 }
 
 .header {
     display: block;
-    background-color: var(--color-background);
-}
-
-.header__row {
-    position: relative;
-    background-color: var(--color-background);
-    border-bottom: 1px solid rgb(var(--color-border-rgb) / var(--opacity-70));
+    background-color: var(--color-bg-primary);
 }
 
 .header__columns {
     display: grid;
     grid-template-areas: 'left center right';
     grid-template-columns: 1fr auto 1fr;
-    gap: var(--gap-xl);
-    padding: var(--header-padding) var(--padding-lg);
+    gap: 1.25rem;
+    padding: var(--header-padding) 1rem;
     max-width: 1400px;
     margin: 0 auto;
 }
 
-.header__column {
-    display: flex;
-    align-items: center;
-}
-
 .header__column--left {
     grid-area: left;
-    gap: var(--gap-xl);
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
 }
 
 .header__column--center {
     grid-area: center;
+    display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .header__column--right {
     grid-area: right;
-    gap: var(--gap-xl);
+    display: flex;
     justify-content: flex-end;
-}
-
-/* Header Actions & Icons */
-.header-actions {
-    display: flex;
     align-items: center;
-    gap: var(--gap-md);
+    gap: 1.25rem;
 }
 
-.header-actions__action {
-    color: var(--color-foreground);
-    text-decoration: none;
-    display: flex;
-    align-items: center;
-    transition: opacity var(--animation-values);
-}
-
-.header-actions__action:hover {
-    opacity: 0.7;
-}
-
-.svg-wrapper {
-    display: inline-flex;
-    justify-content: center;
-    align-items: center;
-    width: 20px;
-    height: 20px;
-}
-
-/* Cart Bubble */
-.cart-bubble {
-    background: var(--color-primary);
-    color: var(--color-primary-text);
-    font-size: 10px;
-    padding: 2px 6px;
-    border-radius: 10px;
-    margin-left: -8px;
-    margin-top: -12px;
-    position: relative;
-    z-index: 1;
-}
-
-/* Global utility for Whisper-style buttons if needed */
+/* Whisper Buttons */
 .whisper-button {
     font-family: var(--font-body-family);
     border-radius: 40px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
     transition: all 0.3s ease;
+    cursor: pointer;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.whisper-hero .hero__title {
-    font-family: var(--font-heading-family) !important;
+.whisper-button--primary {
+    background: var(--gradient-blue);
+    color: white;
+}
+
+.whisper-button--primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.4);
 }
 
 .whisper-hero .hero__text,

@@ -147,25 +147,16 @@
                 </div>
               {% endif %}
             {% when 'price' %}
-              
-{% comment %}Start automatically added Judge.me widget{% endcomment %}
-  {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', concierge_install: true, product: product %}
-{% comment %}End automatically added Judge.me widget{% endcomment %}
-{% if settings.product_ratings_reviews %}
+              {% if settings.product_ratings_reviews %}
                 <div class="product-ratings">
-                  <span class="shopify-product-reviews-badge" data-id="{{ product.id }}">
-                    <span class="spr-badge">
-                      <span class="spr-starrating spr-badge-starrating">
-                        <i class="spr-icon spr-icon-star-empty"></i>
-                        <i class="spr-icon spr-icon-star-empty"></i>
-                        <i class="spr-icon spr-icon-star-empty"></i>
-                        <i class="spr-icon spr-icon-star-empty"></i>
-                        <i class="spr-icon spr-icon-star-empty"></i>
-                      </span>
-                    </span>
-                  </span>
+                  {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', concierge_install: true, product: product %}
                 </div>
               {% endif %}
+              
+              {% comment %} Ecommerce-App Social Proof Integration {% endcomment %}
+              <div class="product-social-proof my-4">
+                {% render 'whisper-stock-indicator', product: product %}
+              </div>
               <div
                 class="product-pricing"
                 aria-live="polite"

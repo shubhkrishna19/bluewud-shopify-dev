@@ -42,6 +42,37 @@
     gallery_hover_zoom: section.settings.gallery_hover_zoom
   %}
 </section>
+
+{% comment %} Ecommerce-App High-Polish Components Integration {% endcomment %}
+<div class="product-additional-content container mx-auto px-4 space-y-20 pb-20">
+  
+  <!-- Trust Signals Row -->
+  <div class="animate-fade-in-up">
+    {% render 'whisper-trust-signals' %}
+  </div>
+
+  <!-- Review Distribution Summary -->
+  <div id="product-reviews-summary" class="animate-fade-in-up">
+    {% render 'whisper-rating-distribution', product: product %}
+  </div>
+
+  <!-- Detailed Reviews & UGC Split -->
+  <div class="grid lg:grid-cols-12 gap-12">
+    <div class="lg:col-span-8">
+      {% render 'whisper-reviews', product: product, reviews: product.metafields.custom.reviews.value %}
+    </div>
+    <div class="lg:col-span-4">
+      {% render 'whisper-product-specs', product: product %}
+    </div>
+  </div>
+
+  <!-- UGC Social Proof Gallery -->
+  <div class="animate-fade-in-up border-t-2 border-[var(--color-border-primary)] pt-20">
+    {% render 'whisper-ugc-gallery' %}
+  </div>
+
+</div>
+
 {% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: true, product: product %}
 
 <script>
