@@ -163,3 +163,5 @@ To prevent collision, we strictly follow this ownership map:
 - **2026-01-18 (Codex)**: Ported Whisper add-to-cart button snippet to `snippets/add-to-cart-button.liquid`.
 - **2026-01-18 (Codex)**: Selected task T009 - Mega-Menu Grid.
 - **2026-01-18 (Codex)**: Ported Whisper mega menu grid snippets to `snippets/mega-menu-list.liquid` and `snippets/util-mega-menu-img-sizes-attr.liquid`.
+- **2026-01-19 (Antigravity)**: **PHASE 10 CORE COMPLETE.** Ported 6 high-polish components (Reviews, Stock, UGC, etc.) and integrated them into PDP. Sync'd Dark Mode and typography.
+- **2026-01-20 (Antigravity)**: **PHASE 3 COMPLETE.** Unified Structural Header & Navigation. Integrated mobile drawer, activated mega-menu logic, and performed deep CSS mapping in `theme-update.css`. Migration status: **92%**.
