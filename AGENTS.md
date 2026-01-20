@@ -64,6 +64,13 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 
 ---
 
+## 🎯 Current Development Goals (Homepage First)
+1. Finalize homepage section order and remove unused blocks for production review.
+2. Align remaining homepage sections with Whisper tokens and spacing standards.
+3. Verify CTA hierarchy and product grid consistency before inner-page work.
+
+---
+
 ## 🎨 Mandatory Aesthetic Guidelines (The Whisper Standard)
 *Apply these tokens/styles to EVERY new component in `assets/theme-update.css`.*
 
@@ -110,3 +117,6 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 - **2026-01-20 (Codex)**: **T040 COMPLETE.** Finished homepage section styling cleanup for Lookbook and Featured Collection.
 - **2026-01-20 (Codex)**: **T040 REOPENED.** Refactoring Whisper Showcase section into tokenized styling.
 - **2026-01-20 (Codex)**: **T040 COMPLETE.** Finished Whisper Showcase section polish for homepage.
+- **2026-01-20 (Codex)**: **T040 REOPENED.** Finalizing homepage section order for production review.
+- **2026-01-20 (Codex)**: **T040 COMPLETE.** Updated homepage order to include Whisper Showcase for production review.
+- **2026-01-20 (Codex)**: **Homepage Goal Updated.** Prioritizing homepage production polish before inner pages.
