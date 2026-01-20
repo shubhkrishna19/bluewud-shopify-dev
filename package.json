@@ -1,0 +1,37 @@
+{
+    "name": "bluewud-shopify-theme",
+    "version": "1.0.0",
+    "description": "Standardized Shopify Theme Development - Bluewud (Empire x Whisper)",
+    "main": "index.js",
+    "scripts": {
+        "setup": "echo 'Setting up environment...' && npm install --prefix ecommerce-app",
+        "dev:app": "npm run dev --prefix ecommerce-app",
+        "build:app": "npm run build --prefix ecommerce-app",
+        "clean:docs": "cmd /c \"del /q ecommerce-app\\CLAUDE_*.md ecommerce-app\\CLINE_*.md ecommerce-app\\COPILOT_*.md ecommerce-app\\CURSOR_*.md\"",
+        "sync": "git pull origin main",
+        "push": "git add . && git commit -m 'Sync from Agent' && git push origin main"
+    },
+    "keywords": [
+        "shopify",
+        "liquid",
+        "ecommerce",
+        "whisper",
+        "empire"
+    ],
+    "author": "Antigravity",
+    "devDependencies": {
+        "shopify-cli": "^3.0.0"
+    },
+    "project_structure": {
+        "shopify_theme": {
+            "assets": "assets/",
+            "snippets": "snippets/",
+            "templates": "templates/",
+            "sections": "sections/",
+            "config": "config/"
+        },
+        "reference_app": "ecommerce-app/",
+        "instructions": "AI_INSTRUCTIONS.md",
+        "roadmap": "AGENTS.md"
+    }
+}

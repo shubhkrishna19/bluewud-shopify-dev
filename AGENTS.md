@@ -19,33 +19,37 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 
 ---
 
-## 🚀 The Master Roadmap: Phases 11-20 (UX & Production)
+## 🚀 The Master Roadmap: Phases 11-20
 
-| ID | Task Name | Status | Owner | Blueprint / Guide |
+| ID | Task Name | Status | Owner | Blueprint / Roadmap |
 | :--- | :--- | :--- | :--- | :--- |
-| **P11** | **UX & Personalization** | [/] Active | Codex | **High-Priority Engagement** |
-| T042 | - Mobile Quick Add Sheet | [x] Done | Anti | Ported from `BottomSheet.tsx`. |
-| T040 | - Global Aesthetic Bridge | [ ] Pending | Codex | See **Blueprint C** below. |
-| T043 | - Size Prediction Engine | [ ] Pending | Codex | See **Blueprint A** below. |
-| T044 | - Abandoned Cart Recovery | [ ] Pending | Codex | See **Blueprint B** below. |
-...
-### Blueprint C: T040 - Global Aesthetic Bridge
-**Goal**: Move the store from "Basic/Wireframe" to "Whisper Premium" using the new CSS tokens.
-1. **Header/Nav**: Apply `.whisper-glass` to the header background and `.whisper-gradient-text` to the active nav links.
-2. **Product Cards**: Apply `.whisper-card-hover` to all product cards in `product-grid-item.liquid`.
-3. **Buttons**: Ensure all primary buttons use `var(--gradient-vibrant)` and `var(--transition-premium)`.
-4. **Spacing**: Audit all sections for consistent `var(--padding-4xl)` usage for desktop margins to create "breathing room" (Airy UI).
-| T049 | - Haptic Feedback Sync | [ ] Pending || Browser Vibrate API for mobile actions. |
-| **P12** | **Growth & Gamification**| [ ] Pending | Codex | **Sales Velocity Track** |
-| T045 | - Referral Rewards UI | [ ] Pending || Port from `ReferralProgram.tsx`. |
-| T046 | - Spin The Wheel (Daily) | [ ] Pending || Premium interactive gamification. |
-| **P13** | **Performance & A11y** | [ ] Pending | Anti | **Production Hardening** |
-| T051 | - Skeleton Loaders (CLS) | [ ] Pending || Dynamic placeholders for all sections. |
-| T052 | - Critical CSS Inline | [ ] Pending || Score 100/100 on Lighthouse. |
+| **P11** | **UX & Personalization** | [/] Active | Codex | **High-Velocity UI Track** |
+| T040 | - Global Aesthetic Bridge | [/] Active | Codex | **Blueprint C**. Apply Glass + Gradients. |
+| T042 | - Mobile Quick Add Sheet | [x] Done | Anti | Completed (AJAX/Gestures). |
+| T043 | - Size Prediction Engine | [ ] Pending || See **Blueprint A**. |
+| T044 | - Abandoned Cart Recovery | [ ] Pending || See **Blueprint B**. |
+| T047 | - Floating Quick Action Bar | [ ] Pending || Mobile thumb-friendly actions. |
+| T048 | - Micro-interactions (Lottie) | [ ] Pending || SVG animations for icons/buttons. |
+| **P12** | **Growth & Conversions** | [ ] Pending | Codex | **Revenue Optimization** |
+| T045 | - Referral Rewards Portal | [ ] Pending || Port from `ReferralProgram.tsx`. |
+| T046 | - Spin-to-Win Gamification | [ ] Pending || High-engagement lead magnet. |
+| T050 | - Post-Purchase Upsell Box | [ ] Pending || Dynamic "Others also bought" logic. |
+| **P13** | **Product Page Hardening** | [ ] Pending || **PDP Visual Superiority** |
+| T055 | - Dynamic Image Zoom v2 | [ ] Pending || Ultra-high res hover zoom system. |
+| T056 | - Video Player Integration | [ ] Pending || Auto-playing product videos in gallery. |
+| T057 | - Real-time Stock Counter | [ ] Pending || "Only X left!" social proof logic. |
+| **P14** | **Performance & Search** | [ ] Pending | Anti | **Speed & Visibility** |
+| T060 | - Predictive Search UI | [ ] Pending || Visual search results (Aesthetic bridge). |
+| T061 | - Image Optimization Audit | [ ] Pending || WebP migration & lazy loading checks. |
+| T062 | - Critical CSS Inlining | [ ] Pending || Score 95+ on Mobile Lighthouse. |
+| **P15** | **Production QA & Polish** | [ ] Pending || **Final Pre-Launch Audit** |
+| T070 | - Checkout UI Sync | [ ] Pending || Syncing checkout colors with Whisper. |
+| T071 | - Email/SMS Template Sync | [ ] Pending || Whisper-branded notification designs. |
+| T072 | - Error Page (404) Design | [ ] Pending || Create a premium "Lost in space" 404. |
 
 ---
 
-## � Implementation Blueprints for Codex
+## 🛠️ Implementation Blueprints for Codex
 
 ### Blueprint A: T043 - Size Prediction Engine
 **Goal**: Port `SizeRecommendationEngine.tsx` logic into a Liquid component.
@@ -61,6 +65,13 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 2. **Component**: Create `snippets/whisper-cart-recovery.liquid`.
 3. **Reference**: Read `ecommerce-app/src/components/AbandonedCartRecovery.tsx`.
 4. **Sync**: Integrate with Shopify's `cart.js` AJAX api.
+
+### Blueprint C: T040 - Global Aesthetic Bridge
+**Goal**: Move the store from "Basic/Wireframe" to "Whisper Premium" using the new CSS tokens.
+1. **Header/Nav**: Apply `.whisper-glass` to the header background and `.whisper-gradient-text` to active nav links.
+2. **Product Cards**: Apply `.whisper-card-hover` to all product cards in `product-grid-item.liquid`.
+3. **Buttons**: Ensure all primary buttons use `var(--gradient-vibrant)` and `var(--transition-premium)`.
+4. **Spacing**: Audit all sections for consistent `var(--padding-4xl)` usage for desktop margins.
 
 ---
 
@@ -93,7 +104,7 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 ---
 
 ## 🧬 History & Developer Logs
-- **2026-01-20 (Antigravity)**: **T040 INITIAL PASS COMPLETE.** Applied Glassmorphism to Header/Cards and Vibrant Gradients to Buttons. The 'Wireframe' state is officially resolved.
-- **2026-01-20 (Antigravity)**: **ORCHESTRATION REBOOT.** Unified all instructions into this manual. Created "Blueprints" for Codex to ensure automatic success.
+- **2026-01-20 (Antigravity)**: **REPO CLEANUP.** Removed legacy docs, CSVs, and redundant backups. Root is now standardized.
+- **2026-01-20 (Antigravity)**: **T040 INITIAL PASS COMPLETE.** Applied Glassmorphism to Header/Cards and Vibrant Gradients to Buttons.
+- **2026-01-20 (Antigravity)**: **ORCHESTRATION REBOOT.** Unified all instructions. Created "Blueprints" and root `package.json` for Discovery.
 - **2026-01-20 (Antigravity)**: **T042 COMPLETE.** Mobile Quick Add sheet is live and pushed.
-- **2026-01-20 (Antigravity)**: Fixed `theme-update.css` syntax and added Glassmorphism foundation.
