@@ -220,14 +220,18 @@
                 "340a546a-baf1-4d3e-99e2-ac45ed98ab2b",
                 "9c93c9f0-3fa7-42fb-be6e-35250c07d6e3",
                 "be97fb4c-84c4-41af-8abd-b4636ca1689e"
-            ],
+            ]
+        },
+        "hero": {
+            "type": "hero",
             "settings": {
-                "enable_autoplay": true,
-                "autoplay_duration": 5,
-                "slideshow_width": "full",
-                "slideshow_height": "original",
-                "slideshow_height_mobile": "original",
-                "slideshow_text_below_image": false
+                "media_type_1": "image",
+                "image_1": "shopify:\/\/shop_images\/Banner_18.png",
+                "custom_mobile_media": true,
+                "media_type_1_mobile": "image",
+                "image_1_mobile": "shopify:\/\/shop_images\/Banner_18.png",
+                "link": "shopify:\/\/collections\/bluewud-sparkle-sale",
+                "toggle_overlay": false
             }
         },
         "16376559468c5a335a": {
@@ -782,6 +786,7 @@
         }
     },
     "order": [
+        "hero",
         "whisper_hero",
         "16376559468c5a335a",
         "1638794690172b8b26",
