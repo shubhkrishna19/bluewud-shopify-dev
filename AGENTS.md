@@ -60,3 +60,4 @@ This repository uses parallel AI agents. To avoid duplicate work, **every agent 
 - **Codex**: When adjusting review widgets, use grid gaps and padding within the section wrapper to maintain consistent spacing.
 - **Codex**: Scope homepage-only polish with `.template-index` to avoid impacting section reuse on other templates.
 - **Codex**: If a section is reused across templates, avoid scoping styles to a single template unless requested.
+- **Codex**: After amending commits, reconcile any logged commit hashes in coordination files.
