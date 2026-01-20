@@ -916,6 +916,12 @@ h6 {
     gap: 1rem;
 }
 
+@media (min-width: 600px) {
+    .whisper-collections-tabs__grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
 @media (min-width: 900px) {
     .whisper-collections-tabs__grid {
         grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -928,6 +934,16 @@ h6 {
     border: 1px solid var(--color-border-primary);
     background: #ffffff;
     transition: var(--transition-premium);
+}
+
+.whisper-collections-tabs__item-wrap a {
+    display: block;
+    text-decoration: none;
+}
+
+.whisper-collections-tabs__item-media {
+    display: flex;
+    justify-content: center;
 }
 
 .whisper-collections-tabs__item-wrap:hover {
@@ -971,7 +987,20 @@ h6 {
     gap: 1.25rem;
 }
 
+.whisper-promo-grid__item {
+    border-radius: 20px;
+    overflow: hidden;
+    background: var(--gradient-surface);
+    border: 1px solid var(--color-border-primary);
+}
+
+.whisper-promo-grid__item a {
+    display: block;
+}
+
 .whisper-promo-grid__item img {
+    display: block;
+    width: 100%;
     border-radius: 20px;
     transition: var(--transition-premium);
 }
