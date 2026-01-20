@@ -47,6 +47,7 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | T044 | - [UI] Final Presentation Polish | [x] Done | Codex | High | Added size predictor UI polish styles. |
 | T045 | - [Cart] Abandoned Cart Recovery | [x] Done | Codex | High | Added recovery banner + JS restore. |
 | T046 | - [Settings] Abandoned Cart Recovery Toggle | [x] Done | Codex | Med | Added settings toggle for cart recovery banner. |
+| T047 | - [Homepage] Promo Images Polish | [x] Done | Codex | Med | Refined promo images section styling. |
 
 ---
 
@@ -158,3 +159,5 @@ To prevent collision, we strictly follow this ownership map:
 - **2026-01-18 (Codex)**: Selected task T045 - Abandoned Cart Recovery.
 - **2026-01-18 (Codex)**: Implemented abandoned cart recovery banner + JS restore flow.
 - **2026-01-18 (Codex)**: Added setting toggle for abandoned cart recovery banner.
+- **2026-01-18 (Codex)**: Selected task T047 - Homepage Promo Images Polish.
+- **2026-01-18 (Codex)**: Polished promo images section on homepage.
