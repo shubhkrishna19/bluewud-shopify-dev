@@ -1,62 +1,90 @@
-# AGENTS.md: Central Multi-Agent Orchestration
-This file is the **Live Command Center** for all AI agents (Antigravity, Codex, etc.) working on the Bluewud Shopify project.
+# AGENTS.md: The Gold Standard Orchestration Manual
+This is the **Unified Source of Truth** for the Bluewud Shopify development team. Every agent (Antigravity, Codex, etc.) must treat this file as their primary operating instruction.
 
 ---
 
-## 🔗 Project Context
-- **Live Preview**: [https://u1p5we6mwmdiusgu-18086469.shopifypreview.com]()
-- **Tech Stack**: Shopify Liquid + Empire Theme (Base) + Whisper (Aesthetics)
-- **Primary Goal**: "Empire Logic, Whisper Style" - Modernizing the store with 0% functional breakage.
+## 🏛️ Project Vision: "Empire Logic, Whisper Style"
+We are migrating the robust functional core of the **Empire Theme** into the ultra-premium, modern aesthetic of **Whisper**.
+- **The Bar**: We must exceed the functionality and beauty of `woodenstreet.com`.
+- **The UI Level**: Vibrant gradients, Glassmorphism, smooth micro-animations, and mobile-first gesture control.
+- **Zero-Breakage**: Pincode (Zippy), AJAX Cart, and Buy Now buttons must remain 100% functional.
 
 ---
 
-## 🔒 Task Synchronization (STRICT)
-To prevent duplication, follow these steps before starting any work:
-1. **Declare**: Add `[/] In Progress - [Name]` next to the Task ID in the **Master Roadmap** below.
-2. **Commit**: Sync changes regularly. One task = One commit where possible.
-3. **Close**: Mark as `[x] Done` and provide the commit hash.
-4. **Log**: Update the **History & Developer Logs** at the bottom.
+## 🔒 Agent Coordination Protocol (STRICT)
+1. **Claim**: Add `[/] In Progress - [Agent Name]` to a Task ID in the roadmap below.
+2. **Log**: Add a "Developer Log" entry at the bottom when starting and finishing.
+3. **Commit**: Keep commits atomic (one task = one commit/PR).
+4. **Handoff**: If blocked, tag the other agent in `AGENTS.md` log.
 
 ---
 
-## 🚀 Master Roadmap: The 20-Phase "Gold Standard"
+## 🚀 The Master Roadmap: Phases 11-20 (UX & Production)
 
-| Task ID | Component / Task | Status | Owner | Priority | Notes |
-| :--- | :--- | :--- | :--- | :--- | :--- |
-| **P1** | **Phase 1: Foundation** | [x] Done | Anti | High | Pincode Widget (#zippy_widget_1511). |
-| **P2** | **Phase 2: Visual Identity** | [x] Done | Anti | High | Inter/Barlow Typography & Whisper Hero. |
-| **P3** | **Phase 3: Structural Header** | [x] Done | Anti | High | Unified Header/Nav Migration Complete. |
-| **P4** | **Phase 4: Global Utilities** | [x] Done | Joint | Med | Icons, Spacing, & Badges Ported. |
-| **P5** | **Phase 5: Product Page UI** | [/] Active | Codex | High | Media Gallery Done. Price/ATC Done. |
-| **P6** | **Phase 6: Cart & Checkout UX**| [x] Done | Codex | Med | Cart Drawer & Summaries Optimized. |
-| **P7** | **Phase 7: Optimization** | [x] Done | Codex | Med | CSS Minification & Hydration Active. |
-| **P10** | **Phase 10: Ecommerce Sync** | [x] Done | Anti | High | Reviews, UGC, & Specs Integrated. |
-| **P11** | **Phase 11: UX & Personalization** | [/] Active | Codex | Med | **CURRENT FOCUS** |
-| T042 | - [Quick Add] Mobile Bottom Set | [x] Done | Anti | High | Ref: `BottomSheet.tsx`. |
-| T043 | - [Size] Prediction Engine | [ ] Pending || High | Ref: `SizeRecommendationEngine.tsx`. |
-| T044 | - [Cart] Abandoned UI Popups | [ ] Pending || Med | Ref: `AbandonedCartRecovery.tsx`. |
-| **P12-20**| **Production Hardening** | [ ] Pending | Joint | Med | CLS, A11y, SEO, Analytics, QA. |
+| ID | Task Name | Status | Owner | Blueprint / Guide |
+| :--- | :--- | :--- | :--- | :--- |
+| **P11** | **UX & Personalization** | [/] Active | Codex | **High-Priority Engagement** |
+| T042 | - Mobile Quick Add Sheet | [x] Done | Anti | Ported from `BottomSheet.tsx`. |
+| T043 | - Size Prediction Engine | [ ] Pending | Codex | See **Blueprint A** below. |
+| T044 | - Abandoned Cart Recovery | [ ] Pending | Codex | See **Blueprint B** below. |
+| T049 | - Haptic Feedback Sync | [ ] Pending || Browser Vibrate API for mobile actions. |
+| **P12** | **Growth & Gamification**| [ ] Pending | Codex | **Sales Velocity Track** |
+| T045 | - Referral Rewards UI | [ ] Pending || Port from `ReferralProgram.tsx`. |
+| T046 | - Spin The Wheel (Daily) | [ ] Pending || Premium interactive gamification. |
+| **P13** | **Performance & A11y** | [ ] Pending | Anti | **Production Hardening** |
+| T051 | - Skeleton Loaders (CLS) | [ ] Pending || Dynamic placeholders for all sections. |
+| T052 | - Critical CSS Inline | [ ] Pending || Score 100/100 on Lighthouse. |
 
 ---
 
-## 🛠 Collaboration Protocols & Best Practices
+## � Implementation Blueprints for Codex
 
-### Division of Labor
-- **Antigravity**: Architecture, CSS bridging, logical safeguards (Pincode, AJAX).
-- **Codex**: Liquid porting, snippet construction, mobile UI optimization.
+### Blueprint A: T043 - Size Prediction Engine
+**Goal**: Port `SizeRecommendationEngine.tsx` logic into a Liquid component.
+1. **Logic**: Use `localStorage` to store user measurements (height, weight, etc.).
+2. **Component**: Create `snippets/whisper-size-engine.liquid`.
+3. **UI**: A "size recommender" button inside the product options area.
+4. **Reference**: Read `ecommerce-app/src/components/SizeRecommendationEngine.tsx`.
+5. **Aesthetic**: Use a glassmorphic modal for the input form.
 
-### Technical Guardrails
-- **Empire Logic, Whisper Style**: Wrap Empire logic in Whisper BEM classes. Keep all `data-` attributes.
-- **Zero-Breakage**: Features (Cart, Pincode, Buy Now) must remain functional 100% of the time.
-- **CSS Strategy**: Use `assets/theme-update.css`. Do not overwrite Empire's base unless necessary.
-- **Minification**: Keep human-readable sources for review; production assets can be minified.
+### Blueprint B: T044 - Abandoned Cart Recovery
+**Goal**: Port `AbandonedCartRecovery.tsx` functionality.
+1. **Trigger**: If the cart is not empty and the user is inactive/revisiting, show a floating bottom banner.
+2. **Component**: Create `snippets/whisper-cart-recovery.liquid`.
+3. **Reference**: Read `ecommerce-app/src/components/AbandonedCartRecovery.tsx`.
+4. **Sync**: Integrate with Shopify's `cart.js` AJAX api.
+
+---
+
+## 🎨 Mandatory Aesthetic Guidelines (The Whisper Standard)
+*Apply these tokens/styles to EVERY new component in `assets/theme-update.css`.*
+
+```css
+:root {
+  /* Glassmorphism */
+  --glass-bg: rgba(255, 255, 255, 0.7);
+  --glass-blur: blur(12px);
+  --glass-border: 1px solid rgba(255, 255, 255, 0.3);
+  
+  /* Vibrancy */
+  --gradient-premium: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
+  --shadow-float: 0 20px 50px rgba(0, 0, 0, 0.15);
+  
+  /* Interactions */
+  --transition-smooth: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Common Class Patterns */
+.whisper-glass {
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
+  border: var(--glass-border);
+}
+```
 
 ---
 
 ## 🧬 History & Developer Logs
-- **2026-01-20 (Antigravity)**: **T042 COMPLETE.** Ported Mobile Bottom Sheet (Quick Add) from eCommerce-app. Includes Liquid snippet, JS gestures, and CSS bridge.
-- **2026-01-20 (Antigravity)**: **FULL SYNC COMPLETE.** Merged PR-15, PR-16, PR-17. Resolved all roadmap conflicts.
-- **2026-01-20 (Antigravity)**: Centralized all project data into `AGENTS.md`. Defined new `project-config.json` for technical details.
-- **2026-01-19 (Antigravity)**: **PHASE 10 COMPLETE.** Integrated deep ecommerce data into PDP/Homepage.
-- **2026-01-18 (Codex)**: Completed Ports: Media Gallery, Cart Drawer, Header Mega-menus.
-- **2026-01-16 (Codex)**: Completed Ports: Icons, Badges, Pricing UI, ATC Buttons.
+- **2026-01-20 (Antigravity)**: **ORCHESTRATION REBOOT.** Unified all instructions into this manual. Created "Blueprints" for Codex to ensure automatic success.
+- **2026-01-20 (Antigravity)**: **T042 COMPLETE.** Mobile Quick Add sheet is live and pushed.
+- **2026-01-20 (Antigravity)**: Fixed `theme-update.css` syntax and added Glassmorphism foundation.
