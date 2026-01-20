@@ -27,7 +27,7 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 | T042 | - Mobile Quick Add Sheet | [x] Done | Anti | Ported from `BottomSheet.tsx`. |
 | T040 | - Global Aesthetic Bridge | [ ] Pending | Codex | See **Blueprint C** below. |
 | T043 | - Size Prediction Engine | [x] Done - Codex | Codex | See **Blueprint A** below. |
-| T044 | - Abandoned Cart Recovery | [ ] Pending | Codex | See **Blueprint B** below. |
+| T044 | - Abandoned Cart Recovery | [x] Done - Codex | Codex | See **Blueprint B** below. |
 ...
 ### Blueprint C: T040 - Global Aesthetic Bridge
 **Goal**: Move the store from "Basic/Wireframe" to "Whisper Premium" using the new CSS tokens.
@@ -100,3 +100,5 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 - **2026-01-20 (Codex)**: **T043 STARTED.** Added size recommendation component and began layout polish for homepage and cart.
 - **2026-01-20 (Codex)**: **T043 COMPLETE.** Implemented size prediction engine UI and refined homepage/cart presentation.
 - **2026-01-20 (Codex)**: **T043 FOLLOW-UP.** Improved size recommender accessibility and responsive behavior.
+- **2026-01-20 (Codex)**: **T044 STARTED.** Added cart recovery banner snippet and theme styling.
+- **2026-01-20 (Codex)**: **T044 COMPLETE.** Wired cart recovery banner into theme layout with cart.js trigger and dismissal logic.

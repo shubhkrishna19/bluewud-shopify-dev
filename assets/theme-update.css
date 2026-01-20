@@ -222,6 +222,98 @@
     color: var(--color-text-primary);
 }
 
+/* Whisper Cart Recovery */
+.whisper-cart-recovery {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    transform: translateX(-50%) translateY(20px);
+    max-width: min(960px, 92vw);
+    width: 100%;
+    padding: var(--padding-lg);
+    border-radius: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition-premium);
+    z-index: 2200;
+}
+
+.whisper-cart-recovery.is-active {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+}
+
+.whisper-cart-recovery__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--gap-lg);
+}
+
+.whisper-cart-recovery__text {
+    display: grid;
+    gap: 0.2rem;
+}
+
+.whisper-cart-recovery__title {
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.whisper-cart-recovery__subtitle {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+}
+
+.whisper-cart-recovery__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-md);
+}
+
+.whisper-cart-recovery__link {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.whisper-cart-recovery__button {
+    text-decoration: none;
+}
+
+.whisper-cart-recovery__close {
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    font-size: 1.4rem;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+}
+
+@media (max-width: 720px) {
+    .whisper-cart-recovery {
+        bottom: 16px;
+        padding: var(--padding-md);
+    }
+
+    .whisper-cart-recovery__content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .whisper-cart-recovery__actions {
+        width: 100%;
+    }
+
+    .whisper-cart-recovery__button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
 /* Dark Mode Overrides - Sync with wireframe.onslate.com */
 [data-theme='dark'] {
     --color-bg-primary: #0f172a;
