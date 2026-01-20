@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # AGENTS.md: The Gold Standard Orchestration Manual
 This is the **Unified Source of Truth** for the Bluewud Shopify development team. Every agent (Antigravity, Codex, etc.) must treat this file as their primary operating instruction.
 
@@ -95,6 +94,14 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 
 ---
 
+## 🎯 Current Development Goals (Homepage First)
+1. Verify CTA hierarchy and product grid consistency before inner-page work.
+2. Validate homepage spacing rhythm across all sections and remove any leftover utility styles.
+3. Smoke-check interactive elements (tabs, size engine, cart recovery) in theme preview.
+4. Harmonize highlights banner styling with Whisper glass tokens.
+
+---
+
 ## 🎨 Mandatory Aesthetic Guidelines (The Whisper Standard)
 *Apply these tokens/styles to EVERY new component in `assets/theme-update.css`.*
 
@@ -149,7 +156,11 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 - **2026-01-20 (Codex)**: **T040 COMPLETE.** Updated Whisper hero styling for production-ready homepage polish.
 - **2026-01-20 (Antigravity)**: **HOMEPAGE HARDENING.** Resolved Cart Drawer stuck-open bug (White Area blocker). Activated Size Engine & Recovery UI with premium Glassmorphism.
 - **2026-01-20 (Antigravity)**: **FINAL SYNC.** Merged all remaining Codex PR branches and consolidated the repo. Ready for multi-agent development.
-=======
+
+---
+
+## 📜 Codex Coordination Addendum
+
 # Multi-Agent Coordination Rules (Bluewud Shopify)
 
 This repository uses parallel AI agents. To avoid duplicate work, **every agent must follow the rules below**.
@@ -213,4 +224,25 @@ This repository uses parallel AI agents. To avoid duplicate work, **every agent 
 - **Codex**: Scope homepage-only polish with `.template-index` to avoid impacting section reuse on other templates.
 - **Codex**: If a section is reused across templates, avoid scoping styles to a single template unless requested.
 - **Codex**: After amending commits, reconcile any logged commit hashes in coordination files.
->>>>>>> origin/codex/enable-code-mode-for-migrations-odzn0h
+
+- **2026-01-20 (Codex)**: **T043 STARTED.** Added size recommendation component and began layout polish for homepage and cart.
+- **2026-01-20 (Codex)**: **T043 COMPLETE.** Implemented size prediction engine UI and refined homepage/cart presentation.
+- **2026-01-20 (Codex)**: **T043 FOLLOW-UP.** Improved size recommender accessibility and responsive behavior.
+- **2026-01-20 (Codex)**: **T044 STARTED.** Added cart recovery banner snippet and theme styling.
+- **2026-01-20 (Codex)**: **T044 COMPLETE.** Wired cart recovery banner into theme layout with cart.js trigger and dismissal logic.
+- **2026-01-20 (Codex)**: **T040 STARTED.** Applied Whisper aesthetic updates for navigation, buttons, and product cards.
+- **2026-01-20 (Codex)**: **T040 COMPLETE.** Finished Global Aesthetic Bridge styling for homepage presentation.
+- **2026-01-20 (Codex)**: **T040 REOPENED.** Refining homepage hero styling to align with Whisper tokens.
+- **2026-01-20 (Codex)**: **T040 COMPLETE.** Updated Whisper hero styling for production-ready homepage polish.
+- **2026-01-20 (Codex)**: **T040 REOPENED.** Converting Lookbook and Featured Collection sections to Whisper CSS tokens.
+- **2026-01-20 (Codex)**: **T040 COMPLETE.** Finished homepage section styling cleanup for Lookbook and Featured Collection.
+- **2026-01-20 (Codex)**: **T040 REOPENED.** Refactoring Whisper Showcase section into tokenized styling.
+- **2026-01-20 (Codex)**: **T040 COMPLETE.** Finished Whisper Showcase section polish for homepage.
+- **2026-01-20 (Codex)**: **T040 REOPENED.** Finalizing homepage section order for production review.
+- **2026-01-20 (Codex)**: **T040 COMPLETE.** Updated homepage order to include Whisper Showcase for production review.
+- **2026-01-20 (Codex)**: **Homepage Goal Updated.** Prioritizing homepage production polish before inner pages.
+- **2026-01-20 (Codex)**: **Homepage Goal Progress.** Tokenized collections tabs and promo grid for homepage readiness.
+- **2026-01-20 (Codex)**: **T040 REOPENED.** Polished collections tabs and promo grid layout spacing.
+- **2026-01-20 (Codex)**: **T040 COMPLETE.** Added responsive grid, hover, and accessible tabs refinements for homepage collections/promo.
+- **2026-01-20 (Codex)**: **T040 FOLLOW-UP.** Added keyboard navigation support for homepage collections tabs.
+- **2026-01-20 (Codex)**: **Homepage Goal Progress.** Applied Whisper styling to highlights banner.
