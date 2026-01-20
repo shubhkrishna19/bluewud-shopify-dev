@@ -1128,26 +1128,35 @@ h6 {
 }
 
 /* --- CRITICAL: Empire Cart Drawer/Overlay Fix --- */
-/* Resolves the "White Area" bug where the cart drawer initializes as open/opaque */
+/* Resolves the "White Area" bug where the cart drawer initializes as open/opaque in the flow */
 
 .cart-drawer-container,
 .cart-drawer,
 [data-cart-drawer] {
+    position: fixed !important;
+    top: 0 !important;
+    right: 0 !important;
+    height: 100vh !important;
+    z-index: 2200 !important;
     visibility: hidden !important;
     opacity: 0 !important;
+    display: none !important;
     pointer-events: none !important;
     transition: opacity 0.4s ease, visibility 0.4s ease !important;
+    background: transparent !important;
 }
 
 .cart-drawer-container.is-open,
 .cart-drawer.is-open,
 [data-cart-drawer].is-open {
+    display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
     pointer-events: auto !important;
     background: var(--glass-bg) !important;
     backdrop-filter: var(--glass-blur) !important;
     -webkit-backdrop-filter: var(--glass-blur) !important;
+    box-shadow: -10px 0 50px rgba(0, 0, 0, 0.2) !important;
 }
 
 /* Ensure the drawer doesn't take 100% width on desktop */

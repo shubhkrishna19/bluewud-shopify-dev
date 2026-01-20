@@ -8,6 +8,7 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 - **The Bar**: We must exceed the functionality and beauty of `woodenstreet.com`.
 - **The UI Level**: Vibrant gradients, Glassmorphism, smooth micro-animations, and mobile-first gesture control.
 - **Zero-Breakage**: Pincode (Zippy), AJAX Cart, and Buy Now buttons must remain 100% functional.
+- **Architectural Goal**: "Forever Sync". Maintain 100% parity between local branches and origin/main.
 
 ---
 
@@ -31,21 +32,28 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 | T047 | - Floating Quick Action Bar | [ ] Pending || **Mobile UX**. Thumb-friendly bar. |
 | T048 | - Micro-interactions (Lottie) | [ ] Pending || **Delight**. SVG button states. |
 | **P12** | **Growth & Conversions** | [ ] Pending | Codex | **Revenue Optimization** |
-| T045 | - Referral Rewards Portal | [ ] Pending || Port from `ReferralProgram.tsx`. |
 | T046 | - Spin-to-Win Gamification | [ ] Pending || See **Blueprint D**. |
 | T049 | - Haptic Feedback Sync | [ ] Pending || Browser Vibrate API for actions. |
 | T050 | - Post-Purchase Upsell Box | [ ] Pending || Dynamic "Others bought" logic. |
 | T051 | - "Available Offers" Widget | [ ] Pending || See **Blueprint E**. |
+| T052 | - Dynamic Price Thresholds | [ ] Pending || "Add $10 more for free gift!". |
 | **P13** | **Product & Content Polish** | [ ] Pending || **High-Trust Assets** |
 | T055 | - Dynamic Image Zoom v2 | [ ] Pending || Ultra-high res hover zoom. |
 | T056 | - Video Player Integration | [ ] Pending || Auto-playing product videos. |
+| T101 | - "360 View" Simulation | [ ] Pending || Interactive furniture rotation. |
+| T102 | - AR Furniture Placement | [ ] Pending || Link to Shopify AR models. |
 | T057 | - Real-time Stock Counter | [ ] Pending || Social proof "Only X left!". |
 | T058 | - Reviews & Social Proof | [ ] Pending || Glassmorphic Review Cards. |
 | **P14** | **Performance & Search** | [ ] Pending | Anti | **Speed & Visibility** |
 | T060 | - Predictive Search UI | [ ] Pending || Visual search results. |
+| T110 | - Image Blur-up Placeholders | [ ] Pending || Ultra-fast perceived loading. |
 | T061 | - Image Optimization Audit | [ ] Pending || WebP migration & lazy loading. |
 | T062 | - Critical CSS Inlining | [ ] Pending || Score 95+ on Mobile Lighthouse. |
-| **P15** | **Production QA & Polish** | [ ] Pending || **Final Pre-Launch Audit** |
+| **P15** | **Trust & Social Logic** | [ ] Pending || **Brand Integrity** |
+| T120 | - Dynamic Pincode Logic v2 | [ ] Pending || Integrate Zippy with Whisper UI. |
+| T121 | - Verified Buyer Badges | [ ] Pending || Floating badges on mobile PDP. |
+| T122 | - WhatsApp Support Flyout | [ ] Pending || Polished "Chat with us" widget. |
+| **P16** | **Production QA & Polish** | [ ] Pending || **Final Pre-Launch Audit** |
 | T070 | - Checkout UI Sync | [ ] Pending || Syncing checkout with Whisper. |
 | T071 | - Email/SMS Template Sync | [ ] Pending || Whisper-branded notifications. |
 | T072 | - Error Page (404) Design | [ ] Pending || Premium "Lost in space" 404. |
@@ -110,7 +118,24 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
   backdrop-filter: var(--glass-blur);
   border: var(--glass-border);
 }
+
+/* Scroll Snap for Collections */
+.whisper-snap {
+  scroll-snap-type: x mandatory;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
 ```
+
+---
+
+## 🙋 Head Planner Optimization Queries (FOR USER)
+*Review these architectural decisions and provide feedback:*
+
+1. **Brand Voice**: Should Whisper be "Minimalist Luxury" (lots of white space) or "Vibrant Tech-Luxe" (more gradients/neon accents)?
+2. **Animation Budget**: Do we prioritize 60FPS speed (few animations) or "Boutique Experience" (heavy Lottie/Scroll-triggered effects)?
+3. **Pincode Strategy**: Should the Zippy widget remain in its default location, or do we want to "Whisper-fy" it into a bottom-sheet experience on mobile?
+4. **Checkout Experience**: Are we opting for the Shopify 1-page checkout, or are we intending to preserve the 3-step branded flow?
 
 ---
 
