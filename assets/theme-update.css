@@ -128,7 +128,8 @@
 
 /* Base Styles using Tokens */
 body {
-    background-color: var(--color-bg-primary);
+    background-color: #f8fafc;
+    /* Very light slate for premium content contrast */
     color: var(--color-text-primary);
     font-family: var(--font-body-family);
     transition: background-color 0.3s ease, color 0.3s ease;
@@ -169,8 +170,11 @@ h6 {
 
 .header {
     display: block;
-    background-color: var(--color-bg-primary);
-    border-bottom: 2px solid var(--color-border-primary);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border-bottom: 2px solid var(--glass-border);
+    transition: var(--transition-premium);
 }
 
 .header__row {
@@ -182,8 +186,8 @@ h6 {
 }
 
 .header__row--bottom {
-    background-color: var(--color-bg-secondary);
-    border-top: 1px solid var(--color-border-primary);
+    background: var(--gradient-surface);
+    border-top: 1px solid var(--glass-border);
 }
 
 .header__columns {
@@ -251,7 +255,7 @@ h6 {
     position: absolute;
     top: -5px;
     right: -8px;
-    background: var(--gradient-blue);
+    background: var(--gradient-vibrant);
     color: white;
     font-size: 10px;
     font-weight: 900;
@@ -283,10 +287,11 @@ h6 {
     bottom: 1.2rem;
     left: 0.75rem;
     right: 0.75rem;
-    height: 2px;
-    background: var(--color-accent-primary);
+    height: 3px;
+    background: var(--gradient-vibrant);
+    border-radius: 4px;
     transform: scaleX(0);
-    transition: transform 0.3s ease;
+    transition: var(--transition-premium);
 }
 
 .nav-link:hover {
@@ -322,14 +327,15 @@ h6 {
 }
 
 .whisper-button--primary {
-    background: var(--gradient-blue);
+    background: var(--gradient-vibrant);
     color: white;
-    box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+    box-shadow: var(--glass-shadow);
+    transition: var(--transition-premium);
 }
 
 .whisper-button--primary:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(37, 99, 235, 0.5);
+    transform: var(--hover-lift);
+    box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
 }
 
 .whisper-button--secondary {

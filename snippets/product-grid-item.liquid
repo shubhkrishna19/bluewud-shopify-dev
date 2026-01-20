@@ -83,6 +83,7 @@
   imagestyle--{% if settings.product_grid_image_crop and settings.product_grid_image_style != 'natural' %}cropped-{% endif %}{{ settings.product_grid_image_style }}
   {% unless product.featured_image %}imagestyle--no-image{% endunless %}
   {% if on_sale %}productitem--sale{% endif %}
+  whisper-card-hover
   {% if emphasize_price %}productitem--emphasis{% endif %}
   {% if recently_viewed %}product-recently-viewed-card{% endif %}
   {% if atc_display == 'always' or quick_shop_display == 'always' %}show-actions--mobile{% endif %}
@@ -239,6 +240,7 @@
         layout-panel-flex
         layout-panel-flex--column
         product-grid__card
+        whisper-glass
         spacing-style
         border-style
         gap-style
