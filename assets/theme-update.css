@@ -400,168 +400,78 @@ body {
 
 @media (min-width: 1024px) {
     .template-index .shopify-section {
-        padding: calc(var(--padding-4xl) * 1.5) 0;
+        padding: var(--padding-4xl) 0;
     }
 }
 
-/* Cart layout refinements */
-.template-cart .cartitems--container {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--gap-xl);
-}
-
-.template-cart .cartflex {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr);
-    gap: var(--gap-xl);
-    align-items: start;
-}
-
-@media (min-width: 900px) {
-    .template-cart .cartitems--container {
-        grid-template-columns: minmax(0, 2fr) minmax(280px, 1fr);
-    }
-
-    .template-cart .cartflex {
-        grid-template-columns: minmax(0, 2fr) minmax(240px, 1fr);
-    }
-}
-
-.template-cart .cart-final-total,
-.template-cart .cart-shipping,
-.template-cart .cart-checkout {
-    background: #ffffff;
-    border-radius: 16px;
-    padding: var(--padding-lg);
-    box-shadow: var(--shadow-elegant);
-}
-
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+/* Product Card Polish */
+.productitem--info .productitem--title a {
     font-family: var(--font-heading-family);
-    color: var(--color-text-primary);
+    font-weight: 500;
+    transition: color 0.3s ease;
 }
 
-/* Animation Keyframes from eCommerce App */
-@keyframes fade-in-up {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+.productitem--info .productitem--title a:hover {
+    color: var(--color-modern-blue);
 }
 
-.animate-fade-in-up {
-    animation: fade-in-up 0.6s ease-out;
-}
-
-/* Header & Navigation Integration */
-.header-section {
-    position: relative;
-    z-index: 1000;
-}
-
-.header {
-    display: block;
-    background: var(--glass-bg);
-    backdrop-filter: var(--glass-blur);
-    -webkit-backdrop-filter: var(--glass-blur);
-    border-bottom: 2px solid var(--glass-border);
-    transition: var(--transition-premium);
-}
-
-.header__row {
-    transition: all 0.3s ease;
-}
-
-.header__row--top {
-    height: var(--header-height);
-}
-
-.header__row--bottom {
-    background: var(--gradient-surface);
-    border-top: 1px solid var(--glass-border);
-}
-
-/* Whisper hero */
-.whisper-hero {
-    position: relative;
-    width: 100%;
+.productitem--image {
+    border-radius: 12px;
     overflow: hidden;
-    min-height: 420px;
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-.whisper-hero .hero__container {
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: inherit;
+.productitem:hover .productitem--image {
+    transform: scale(1.02);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
 }
 
-.whisper-hero .hero__media-wrapper {
-    position: absolute;
-    inset: 0;
-    display: flex;
-    z-index: 1;
-}
-
-.whisper-hero .hero__image,
-.whisper-hero .hero__video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    flex: 1;
-}
-
+/* Homepage Hero Polish */
 .whisper-hero .hero__content-wrapper {
     position: relative;
     z-index: 2;
-    padding: clamp(1.5rem, 3vw, 2.5rem);
-    width: min(100%, 1200px);
+    padding: var(--padding-4xl);
+    width: min(90%, 1000px);
     display: flex;
     flex-direction: column;
+    align-items: center;
+    text-align: center;
     border-radius: 24px;
+    background: rgba(255, 255, 255, 0.25);
+    backdrop-filter: blur(16px);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
 }
 
 .whisper-hero .hero__title {
     font-family: var(--font-heading-family);
-    font-size: clamp(2rem, 4vw, 3.5rem);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
     margin-bottom: 1rem;
     line-height: 1.1;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
 }
 
 .whisper-hero .hero__text {
-    font-size: clamp(1rem, 1.5vw, 1.2rem);
-    margin-bottom: 1.5rem;
-    max-width: 600px;
-    color: var(--color-text-secondary);
+    font-family: var(--font-body-family);
+    font-size: clamp(1.1rem, 2vw, 1.35rem);
+    margin-bottom: 2rem;
+    max-width: 700px;
+    color: var(--color-text-primary);
 }
 
 .whisper-hero .hero__button {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0.9rem 2.6rem;
+    padding: 1rem 3rem;
+    font-size: 1rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
     background: var(--gradient-vibrant);
-    color: #ffffff;
-    text-decoration: none;
-    border-radius: 999px;
-    font-weight: 600;
-    transition: var(--transition-premium);
+    box-shadow: 0 10px 25px rgba(99, 102, 241, 0.4);
 }
 
 .whisper-hero .hero__button:hover {
-    transform: var(--hover-lift);
+    transform: translateY(-4px);
+    box-shadow: 0 15px 35px rgba(99, 102, 241, 0.6);
 }
 
 /* Active navigation styling */
