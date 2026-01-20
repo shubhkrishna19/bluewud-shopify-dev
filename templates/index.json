@@ -786,20 +786,16 @@
         }
     },
     "order": [
-        "hero",
         "whisper_hero",
-        "16376559468c5a335a",
-        "1638794690172b8b26",
-        "dynamic_collection_list",
+        "whisper_lookbook",
+        "whisper_trending",
         "dynamic_featured_collection",
         "164499676707104bbe",
-        "recently-viewed",
+        "1638794690172b8b26",
         "dynamic_highlights_banner",
-        "164663705699aabbf1",
         "16387992440027115a",
-        "dynamic_testimonials",
-        "1637218449eb8448c4",
         "163760321489a81c23",
-        "1639463216b8788705"
+        "recently-viewed",
+        "164663705699aabbf1"
     ]
 }
