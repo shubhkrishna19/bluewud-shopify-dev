@@ -26,7 +26,7 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 | **P11** | **UX & Personalization** | [/] Active | Codex | **High-Priority Engagement** |
 | T042 | - Mobile Quick Add Sheet | [x] Done | Anti | Ported from `BottomSheet.tsx`. |
 | T040 | - Global Aesthetic Bridge | [ ] Pending | Codex | See **Blueprint C** below. |
-| T043 | - Size Prediction Engine | [ ] Pending | Codex | See **Blueprint A** below. |
+| T043 | - Size Prediction Engine | [x] Done - Codex | Codex | See **Blueprint A** below. |
 | T044 | - Abandoned Cart Recovery | [ ] Pending | Codex | See **Blueprint B** below. |
 ...
 ### Blueprint C: T040 - Global Aesthetic Bridge
@@ -97,3 +97,5 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 - **2026-01-20 (Antigravity)**: **ORCHESTRATION REBOOT.** Unified all instructions into this manual. Created "Blueprints" for Codex to ensure automatic success.
 - **2026-01-20 (Antigravity)**: **T042 COMPLETE.** Mobile Quick Add sheet is live and pushed.
 - **2026-01-20 (Antigravity)**: Fixed `theme-update.css` syntax and added Glassmorphism foundation.
+- **2026-01-20 (Codex)**: **T043 STARTED.** Added size recommendation component and began layout polish for homepage and cart.
+- **2026-01-20 (Codex)**: **T043 COMPLETE.** Implemented size prediction engine UI and refined homepage/cart presentation.
