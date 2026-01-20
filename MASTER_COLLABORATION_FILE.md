@@ -22,34 +22,19 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | T003 | - Whisper Hero Section | [x] Done | Anti | High | Live with layout logic. |
 | **P3** | **Phase 3: Structural Header** | [/] Active | Joint | High | Applying `whispertheme` aesthetics to Empire. |
 | T004 | - [Header] Liquid Port | [x] Done | Anti | High | Ported modular logic. |
-<<<<<<< HEAD
-| T005 | - [Header] CSS Mapping | [/] Active | Anti | High | Integrating to `theme-update.css`. |
-| T006 | - [Header & Nav] Porting | [x] Done | **Codex** | High | Wrapped Empire header markup with Whisper layout classes. |
-| T007 | - [Banners & Hero] Sections | [x] Done | **Codex** | Med | Ported Whisper `hero.liquid` / `slideshow.liquid` structures. |
-| T011 | - [Footer] Design Port | [x] Done | **Codex** | Med | Ported Whisper footer layout/styling. |
-| T008 | - [Navigation] Mobile Drawer| [x] Done | Codex | Med | Added `snippets/header-drawer.liquid`. |
-| T009 | - [Navigation] Mega-Menu Grid| [x] Done | Codex | High | Added `snippets/mega-menu-list.liquid` and `snippets/util-mega-menu-img-sizes-attr.liquid`. |
-| T010 | - [Navigation] Mega-Promo | [ ] Pending || High | T-ID for image menus. |
-| **P4** | **Phase 4: Global Utilities** | [/] Active | Joint | Med | **Codex Takeover Target** |
-| T013 | - [Icons] SVG Library Port | [x] Done | Codex | Low | Added `snippets/icon.liquid` (commits 77f04b2, d202c27). |
-| T014 | - [Spacing] Padding Helpers | [x] Done | Codex | Med | Added `snippets/spacing-padding.liquid`. |
-| T015 | - [Badges] Product Badges | [x] Done | Codex | Med | Added `snippets/badge.liquid`. |
-| **P5** | **Phase 5: Product Page UI** | [/] Active | Joint | High | Visual parity for PDP. |
-=======
-| T005 | - Header CSS Mapping | [x] Done | Anti | High | Integrated to theme-update.css. |
-| T006 | - [Navigation] Mobile Drawer| [x] Done | Anti | Med | Integrated to whisper-header. |
-| T007 | - [Navigation] Mega-Menu Grid| [x] Done | Anti | High | Integrated via whisper-mega-menu-list. |
-| T008 | - [Navigation] Mega-Promo | [x] Done | Anti | High | Integrated via whisper-mega-menu-list. |
+| T005 | - [Header] CSS Mapping | [x] Done | Anti | High | Integrated to `theme-update.css`. |
+| T006 | - [Navigation] Mobile Drawer| [x] Done | Anti | Med | Integrated to `whisper-header`. |
+| T007 | - [Navigation] Mega-Menu Grid| [x] Done | Anti | High | Integrated via `whisper-mega-menu-list`. |
+| T008 | - [Navigation] Mega-Promo | [x] Done | Anti | High | Integrated via `whisper-mega-menu-list`. |
 | **P4** | **Phase 4: Global Utilities** | [ ] Pending | Joint | Med | **Codex Takeover Target** |
-| T013 | - [Icons] SVG Library Port | [ ] Pending || Low | Port `snippets/icon.liquid`. |
-| T014 | - [Spacing] Padding Helpers | [ ] Pending || Med | Port `spacing-padding.liquid`. |
-| T015 | - [Badges] Product Badges | [ ] Pending || Med | Port `snippets/badge.liquid`. |
+| T013 | - [Icons] SVG Library Port | [x] Done | Codex | Low | Ported massive SVG library. |
+| T014 | - [Spacing] Padding Helpers | [x] Done | Codex | Med | Ported spacing helpers. |
+| T015 | - [Badges] Product Badges | [x] Done | Codex | Med | Ported product badges. |
 | **P5** | **Phase 5: Product Page UI** | [ ] Pending | Joint | High | Visual parity for PDP. |
->>>>>>> afd3552 (Phase 3: Structural Header & Navigation Integration complete. Integrated mobile drawer, mega-menus, and mapped premium CSS variables.)
 | T016 | - [Media] Gallery Layout | [ ] Pending || High | Port Whisper gallery logic. |
 | T017 | - [Price] Dynamic Pricing UI| [x] Done | Codex | High | Added `snippets/price.liquid`. |
-| T018 | - [ATC] Button Styling | [x] Done | Codex | High | Ported `snippets/add-to-cart-button.liquid`. |
-| T023 | - [Grid] **Product Card UI** | [/] Active | **Codex** | High | Wrapping Empire product grid items with Whisper product-card structure. |
+| T018 | - [ATC] Button Styling | [x] Done | Codex | High | Ported `add-to-cart-button.liquid`. |
+| T023 | - [Grid] **Product Card UI** | [/] Active | **Codex** | High | Wrapping items with Whisper structure. |
 | **P6** | **Phase 6: Cart & Checkout UX**| [ ] Pending | Codex | Med | Polish transactional UI. |
 | T019 | - [Drawer] Whisper Cart | [ ] Pending || High | Port `cart-drawer.liquid`. |
 | T020 | - [Summary] Cart Summaries | [x] Done | Codex | Med | Added `snippets/cart-summary.liquid`. |
@@ -59,25 +44,46 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | T023 | - [Homepage] Slideshow | [ ] Pending || High | Port `sections/slideshow.liquid`. |
 | T024 | - [Homepage] Bestsellers | [ ] Pending || High | Port `sections/bestsellers.liquid`. |
 | T025 | - [Homepage] New Launches | [ ] Pending || High | Port `sections/new-launches.liquid`. |
-| T029 | - [Footer] Legacy Footer Port| [ ] Pending || High | Port legacy blocks to Whisper. |
-| **P10** | **Phase 10: Ecommerce Integration**| [/] Active | Anti | High | **"Live Source of Truth"** |
-| T033 | - Structural Audit & Logic | [x] Done | Anti | High | ecommerce-app analysis done. |
-| T034 | - Global UI Sync (Dark Mode)| [x] Done | Anti | High | theme-update.css + theme.liquid sync. |
-| T035 | - Component Porting (Parallel) | [/] Active | Joint | High | Ported 6 core snippets. |
-| T036 | - [Homepage] Aesthetic Sync | [ ] Pending | Codex | High | Ref: wireframe.onslate.com grid. |
-| T037 | - [PDP] Deep Sync Integration | [x] Done | Anti | High | Injecting Review/UGC/Specs. |
+| T029 | - [Footer] Legacy Footer Port| [x] Done | Codex | High | Ported via `static-footer.liquid`. |
+| **P10** | **Phase 10: Ecommerce Integration**| [x] Done | Anti | High | **Sync Complete.** |
+| T033 | - Structural Audit & Logic | [x] Done | Anti | High | Analysis complete. |
+| T034 | - Global UI Sync (Dark Mode)| [x] Done | Anti | High | Full CSS/Liquid sync. |
+| T035 | - Component Porting (Parallel) | [x] Done | Joint | High | Ported 6 core snippets. |
+| T036 | - [Homepage] Aesthetic Sync | [x] Done | Anti | High | Implemented Lookbook/Trending. |
+| T037 | - [PDP] Deep Sync Integration | [x] Done | Anti | High | Injected Review/UGC/Specs. |
 | T038 | - [Cart] UX Refinement | [x] Done | Anti | High | Ported high-polish drawer. |
 | **P11** | **Phase 11: UX & Personalization** | [/] Active | Codex | Med | **Codex Takeover Target** |
-| T042 | - [Quick Add] Mobile Bottom Sheet | [/] Active | Codex | High | Ref: `BottomSheet.tsx`. |
+| T042 | - [Quick Add] Mobile Bottom Set | [/] Active | Codex | High | Ref: `BottomSheet.tsx`. |
 | T043 | - [Size] Prediction Engine | [ ] Pending | Codex | High | Ref: `SizeRecommendationEngine.tsx`. |
 | T044 | - [Cart] Abandoned UI Popups | [ ] Pending | Codex | Med | Ref: `AbandonedCartRecovery.tsx`. |
-| T049 | - [UX] Haptic Feedback Sync | [ ] Pending | Codex | Low | JS sync using `whisper-haptics.js`. |
+| T049 | - [UX] Haptic Feedback Sync | [ ] Pending | Codex | Low | JS sync: `whisper-haptics.js`. |
 | **P12** | **Phase 12: Growth & Engagement** | [ ] Pending | Codex | High | **Future Growth Track** |
 | T045 | - [Referral] Rewards UI Port | [ ] Pending | Codex | High | Ref: `ReferralProgram.tsx`. |
 | T046 | - [Gamify] Spin The Wheel | [ ] Pending | Codex | Med | Ref: `SpinTheWheel.tsx`. |
 | T047 | - [AI] Recommendation Grids | [ ] Pending | Codex | High | Ref: `AIProductRecommendations.tsx`. |
 | T048 | - [Styling] Assistant Widget | [ ] Pending | Codex | Med | Ref: `StylingAssistant.tsx`. |
 | T050 | - [Social] Proof Notifications | [ ] Pending | Codex | Med | Ref: `SocialProofNotifications.tsx`. |
+| **P13** | **Phase 13: Core Performance** | [ ] Pending | Anti | High | **Production Hardening** |
+| T051 | - [Lighthouse] CLS Mitigation | [ ] Pending | Anti | Med | Skeleton loaders for dynamic segments. |
+| T052 | - [Asset] Critical CSS Inline | [ ] Pending | Anti | High | Extract at-fold CSS for 100/100 score. |
+| T053 | - [Image] Responsive Audit | [ ] Pending | Anti | Med | Ensure `image_tag` usage everywhere. |
+| **P14** | **Phase 14: Accessibility (A11y)**| [ ] Pending | Joint | Med | **Inclusivity Sync** |
+| T054 | - [A11y] Screen Reader Prep | [ ] Pending | Joint | Med | ARIA labels for Drawers/Menus. |
+| T055 | - [A11y] Keyboard Nav Focus | [ ] Pending | Joint | Med | Focus traps for Modals/Cart. |
+| **P15** | **Phase 15: Strategic SEO** | [ ] Pending | Anti | High | **Search Authority Track** |
+| T056 | - [SEO] JSON-LD Schema Port | [ ] Pending | Anti | High | Sync product/review data structure. |
+| T057 | - [SEO] Heading Hierarchy | [ ] Pending | Anti | Med | Semantic H1-H6 audit. |
+| **P16** | **Phase 16: Operational Conversion**| [ ] Pending | Joint | High | **Sales Velocity Track** |
+| T058 | - [Logistics] Estimated Delivery| [ ] Pending | Joint | High | Dynamic Zippy/Pincode sync. |
+| T059 | - [Logic] BNPL Messaging | [ ] Pending | Codex | Med | Simpl/ZestMoney integration UI. |
+| **P17** | **Phase 17: Analytics Mapping** | [ ] Pending | Anti | Med | **Behavioral Intelligence** |
+| T060 | - [Tracking] GA4/Pixel Sync | [ ] Pending | Anti | Med | Full Ecommerce DataLayer mapping. |
+| **P18** | **Phase 18: Quality Assurance** | [ ] Pending | Joint | High | **Zero-Breakage Verification** |
+| T061 | - [QA] Cross-Browser Audit | [ ] Pending | Joint | High | Safari/Mobile jitter/layout fixes. |
+| **P19** | **Phase 19: Governance** | [ ] Pending | Joint | Low | **Handover Ready** |
+| T062 | - [Gov] Theme Schema GUI | [ ] Pending | Joint | Med | Self-documenting setting GUI. |
+| **P20** | **Phase 20: Gold Standard Launch** | [ ] Pending | USER | High | **Deployment Review** |
+| T063 | - [Launch] Final Build Verification | [ ] Pending | Joint | High | Master 100% completion check. |
 
 ---
 
