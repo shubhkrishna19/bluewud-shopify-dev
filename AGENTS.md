@@ -25,7 +25,7 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 | :--- | :--- | :--- | :--- | :--- |
 | **P11** | **UX & Personalization** | [/] Active | Codex | **High-Priority Engagement** |
 | T042 | - Mobile Quick Add Sheet | [x] Done | Anti | Ported from `BottomSheet.tsx`. |
-| T040 | - Global Aesthetic Bridge | [ ] Pending | Codex | See **Blueprint C** below. |
+| T040 | - Global Aesthetic Bridge | [x] Done - Codex | Codex | See **Blueprint C** below. |
 | T043 | - Size Prediction Engine | [x] Done - Codex | Codex | See **Blueprint A** below. |
 | T044 | - Abandoned Cart Recovery | [x] Done - Codex | Codex | See **Blueprint B** below. |
 ...
@@ -102,3 +102,5 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 - **2026-01-20 (Codex)**: **T043 FOLLOW-UP.** Improved size recommender accessibility and responsive behavior.
 - **2026-01-20 (Codex)**: **T044 STARTED.** Added cart recovery banner snippet and theme styling.
 - **2026-01-20 (Codex)**: **T044 COMPLETE.** Wired cart recovery banner into theme layout with cart.js trigger and dismissal logic.
+- **2026-01-20 (Codex)**: **T040 STARTED.** Applied Whisper aesthetic updates for navigation, buttons, and product cards.
+- **2026-01-20 (Codex)**: **T040 COMPLETE.** Finished Global Aesthetic Bridge styling for homepage presentation.

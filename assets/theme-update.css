@@ -448,6 +448,25 @@ h6 {
     border-top: 1px solid var(--glass-border);
 }
 
+/* Active navigation styling */
+.navmenu-link-active,
+.menu-drawer__menu-item--active {
+    font-weight: 600;
+    background: var(--gradient-vibrant);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Primary button premium gradient */
+.button-primary,
+.button-primary.button,
+.button-primary:hover {
+    background: var(--gradient-vibrant);
+    border: none;
+    transition: var(--transition-premium);
+}
+
 .header__columns {
     display: grid;
     grid-template-areas: 'left center right';
