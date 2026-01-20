@@ -68,6 +68,14 @@
               {{ search }}
             {% when 'mobile_search' %}
               {{ mobile_search }}
+            {% when 'menu_drawer' %}
+              {%- if section.settings.menu != blank -%}
+                {% render 'whisper-header-drawer', 
+                   linklist: section.settings.menu, 
+                   class: 'header-drawer--mobile',
+                   data_header_drawer_type: 'mobile-drawer'
+                %}
+              {%- endif -%}
             {% when 'actions' %}
               {{ actions }}
           {% endcase %}

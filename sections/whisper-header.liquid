@@ -2,10 +2,10 @@
   # Porting Whisper Header logic to Empire Theme
   # Mapping Whisper snippets with 'whisper-' prefix
   
-  assign order = 'logo,menu,localization,search,mobile_search,actions'
+  assign order = 'menu_drawer,logo,menu,localization,search,mobile_search,actions'
 
   if shop.customer_accounts_enabled
-    assign order = 'mobile_search,logo,menu,localization,search,actions'
+    assign order = 'menu_drawer,mobile_search,logo,menu,localization,search,actions'
   endif
 
   assign rows = 'top,bottom' | split: ','
@@ -28,8 +28,13 @@
   endcapture
 
   capture menu
-    # Placeholder for menu port (T007/T008)
-    # render 'whisper-mega-menu-list'
+    {% render 'whisper-mega-menu-list', 
+       parent_link: linklists[section.settings.menu], 
+       id: 'MegaMenu-Header',
+       grid_columns_count: 6,
+       menu_content_type: 'featured_products',
+       section: section
+    %}
   endcapture
 
   capture actions
