@@ -25,8 +25,16 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 | :--- | :--- | :--- | :--- | :--- |
 | **P11** | **UX & Personalization** | [/] Active | Codex | **High-Priority Engagement** |
 | T042 | - Mobile Quick Add Sheet | [x] Done | Anti | Ported from `BottomSheet.tsx`. |
+| T040 | - Global Aesthetic Bridge | [ ] Pending | Codex | See **Blueprint C** below. |
 | T043 | - Size Prediction Engine | [ ] Pending | Codex | See **Blueprint A** below. |
 | T044 | - Abandoned Cart Recovery | [ ] Pending | Codex | See **Blueprint B** below. |
+...
+### Blueprint C: T040 - Global Aesthetic Bridge
+**Goal**: Move the store from "Basic/Wireframe" to "Whisper Premium" using the new CSS tokens.
+1. **Header/Nav**: Apply `.whisper-glass` to the header background and `.whisper-gradient-text` to the active nav links.
+2. **Product Cards**: Apply `.whisper-card-hover` to all product cards in `product-grid-item.liquid`.
+3. **Buttons**: Ensure all primary buttons use `var(--gradient-vibrant)` and `var(--transition-premium)`.
+4. **Spacing**: Audit all sections for consistent `var(--padding-4xl)` usage for desktop margins to create "breathing room" (Airy UI).
 | T049 | - Haptic Feedback Sync | [ ] Pending || Browser Vibrate API for mobile actions. |
 | **P12** | **Growth & Gamification**| [ ] Pending | Codex | **Sales Velocity Track** |
 | T045 | - Referral Rewards UI | [ ] Pending || Port from `ReferralProgram.tsx`. |
