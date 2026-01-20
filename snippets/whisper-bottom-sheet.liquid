@@ -1,0 +1,54 @@
+{% comment %}
+  Renders a reusable, high-polish mobile bottom sheet for Shopify.
+  Usage:
+  {% render 'whisper-bottom-sheet',
+     id: 'quick-add-drawer',
+     title: 'Select Options',
+     mobile_only: true,
+     show_apply: true,
+     apply_label: 'Add to Cart'
+  %}
+
+  @param id {String} Unique identifier for the drawer.
+  @param title {String} Header title.
+  @param mobile_only {Boolean} If true, hidden on desktops.
+  @param show_apply {Boolean} If true, shows a sticky footer button.
+  @param apply_label {String} Label for the apply button.
+{% endcomment %}
+
+<whisper-bottom-sheet
+  id="{{ id }}"
+  class="whisper-bottom-sheet {% if mobile_only %}whisper-bottom-sheet--mobile-only{% endif %}"
+  aria-hidden="true"
+  data-whisper-bottom-sheet
+>
+  <div class="whisper-bottom-sheet__backdrop" data-close-sheet></div>
+  
+  <div class="whisper-bottom-sheet__drawer animate-slide-up-bottom">
+    <div class="whisper-bottom-sheet__handle-wrapper" data-drag-handle>
+      <div class="whisper-bottom-sheet__handle"></div>
+    </div>
+
+    <div class="whisper-bottom-sheet__header">
+      <h2 class="whisper-bottom-sheet__title">{{ title }}</h2>
+      <button class="whisper-bottom-sheet__close" aria-label="Close" data-close-sheet>
+        {% render 'icon-close' %}
+      </button>
+    </div>
+
+    <div class="whisper-bottom-sheet__content" data-sheet-content>
+      {{ content_for_layout }}
+      {% comment %} Content is usually injected via JS or captured blocks {% endcomment %}
+    </div>
+
+    {% if show_apply %}
+      <div class="whisper-bottom-sheet__footer">
+        <button class="whisper-button whisper-button--primary w-full" data-apply-sheet>
+          {{ apply_label | default: 'Apply' }}
+        </button>
+      </div>
+    {% endif %}
+  </div>
+</whisper-bottom-sheet>
+
+<script src="{{ 'whisper-bottom-sheet.js' | asset_url }}" defer="defer"></script>

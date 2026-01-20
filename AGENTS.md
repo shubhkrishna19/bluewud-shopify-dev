@@ -32,7 +32,7 @@ To prevent duplication, follow these steps before starting any work:
 | **P7** | **Phase 7: Optimization** | [x] Done | Codex | Med | CSS Minification & Hydration Active. |
 | **P10** | **Phase 10: Ecommerce Sync** | [x] Done | Anti | High | Reviews, UGC, & Specs Integrated. |
 | **P11** | **Phase 11: UX & Personalization** | [/] Active | Codex | Med | **CURRENT FOCUS** |
-| T042 | - [Quick Add] Mobile Bottom Set | [/] Active | Codex | High | Ref: `BottomSheet.tsx`. |
+| T042 | - [Quick Add] Mobile Bottom Set | [x] Done | Anti | High | Ref: `BottomSheet.tsx`. |
 | T043 | - [Size] Prediction Engine | [ ] Pending || High | Ref: `SizeRecommendationEngine.tsx`. |
 | T044 | - [Cart] Abandoned UI Popups | [ ] Pending || Med | Ref: `AbandonedCartRecovery.tsx`. |
 | **P12-20**| **Production Hardening** | [ ] Pending | Joint | Med | CLS, A11y, SEO, Analytics, QA. |
@@ -54,6 +54,7 @@ To prevent duplication, follow these steps before starting any work:
 ---
 
 ## 🧬 History & Developer Logs
+- **2026-01-20 (Antigravity)**: **T042 COMPLETE.** Ported Mobile Bottom Sheet (Quick Add) from eCommerce-app. Includes Liquid snippet, JS gestures, and CSS bridge.
 - **2026-01-20 (Antigravity)**: **FULL SYNC COMPLETE.** Merged PR-15, PR-16, PR-17. Resolved all roadmap conflicts.
 - **2026-01-20 (Antigravity)**: Centralized all project data into `AGENTS.md`. Defined new `project-config.json` for technical details.
 - **2026-01-19 (Antigravity)**: **PHASE 10 COMPLETE.** Integrated deep ecommerce data into PDP/Homepage.

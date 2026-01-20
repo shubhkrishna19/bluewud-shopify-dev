@@ -481,6 +481,9 @@
                   data-quick-buy
                 {% else %}
                   data-quickshop-slim
+                  data-whisper-quick-add-trigger
+                  data-product-id="{{ product.id }}"
+                  data-product-url="{{ product.url }}"
                 {% endunless %}
                 data-variant-id="{{ product.selected_or_first_available_variant.id }}"
                 {% unless product_available %}disabled{% endunless %}
