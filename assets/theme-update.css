@@ -1017,6 +1017,36 @@ h6 {
     box-shadow: var(--shadow-float);
 }
 
+/* Highlights banner */
+.whisper-highlights-banner {
+    border-radius: 24px;
+    margin: 0 auto;
+}
+
+.whisper-highlights-banner .highlights-banner__content {
+    gap: var(--gap-lg);
+    padding: var(--padding-lg);
+}
+
+.whisper-highlights-banner .highlights-banner__block {
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.75);
+    backdrop-filter: var(--glass-blur);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    padding: 1rem 1.25rem;
+    box-shadow: var(--shadow-elegant);
+}
+
+.whisper-highlights-banner .highlights-banner__icon {
+    margin-bottom: 0.5rem;
+}
+
+.whisper-highlights-banner .highlights-banner__heading {
+    font-weight: 600;
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
 /* Active navigation styling */
 .navmenu-link-active,
 .menu-drawer__menu-item--active {

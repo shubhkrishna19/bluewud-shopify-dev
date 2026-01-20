@@ -68,6 +68,7 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 1. Verify CTA hierarchy and product grid consistency before inner-page work.
 2. Validate homepage spacing rhythm across all sections and remove any leftover utility styles.
 3. Smoke-check interactive elements (tabs, size engine, cart recovery) in theme preview.
+4. Harmonize highlights banner styling with Whisper glass tokens.
 
 ---
 
@@ -124,3 +125,4 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 - **2026-01-20 (Codex)**: **T040 REOPENED.** Polished collections tabs and promo grid layout spacing.
 - **2026-01-20 (Codex)**: **T040 COMPLETE.** Added responsive grid, hover, and accessible tabs refinements for homepage collections/promo.
 - **2026-01-20 (Codex)**: **T040 FOLLOW-UP.** Added keyboard navigation support for homepage collections tabs.
+- **2026-01-20 (Codex)**: **Homepage Goal Progress.** Applied Whisper styling to highlights banner.
