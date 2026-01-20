@@ -45,6 +45,7 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | T022 | - [JS] Lazy Loading Hydrate | [x] Done | Codex | Med | Added `assets/section-hydration.js`. |
 | T043 | - [Engine] Size Prediction | [x] Done | Codex | High | Added size predictor snippet + asset. |
 | T044 | - [UI] Final Presentation Polish | [x] Done | Codex | High | Added size predictor UI polish styles. |
+| T045 | - [Cart] Abandoned Cart Recovery | [x] Done | Codex | High | Added recovery banner + JS restore. |
 
 ---
 
@@ -111,6 +112,12 @@ To prevent collision, we strictly follow this ownership map:
 
 ---
 
+## ✅ UI Finalization Plan (Presentation)
+1. Inventory remaining visual gaps between Whisper preview and Empire theme.
+2. Prioritize PDP, cart, and header UX polish in that order.
+3. Apply scoped CSS updates in `assets/theme-update.css`.
+4. Validate on Live Preview after each push for regressions.
+
 ## 📝 Developer Logs
 *Update this section after every major push.*
 
@@ -147,3 +154,5 @@ To prevent collision, we strictly follow this ownership map:
 - **2026-01-18 (Codex)**: Selected task T043 - Size Prediction Engine.
 - **2026-01-18 (Codex)**: Implemented size prediction UI + logic (snippet + asset) and wired into product form.
 - **2026-01-18 (Codex)**: Finalized T044 with size predictor UI polish styles.
+- **2026-01-18 (Codex)**: Selected task T045 - Abandoned Cart Recovery.
+- **2026-01-18 (Codex)**: Implemented abandoned cart recovery banner + JS restore flow.
