@@ -53,3 +53,4 @@ This repository uses parallel AI agents. To avoid duplicate work, **every agent 
 - **Codex**: For recovery flows, include a clear dismiss action and persist state in localStorage.
 - **Codex**: Add a theme setting toggle when introducing user-facing recovery features.
 - **Codex**: For homepage polish, scope styles to the specific section class to avoid cross-page bleed.
+- **Codex**: Center section headings on the homepage only when the section already uses a dedicated wrapper class.
