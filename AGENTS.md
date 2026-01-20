@@ -57,3 +57,4 @@ This repository uses parallel AI agents. To avoid duplicate work, **every agent 
 - **Codex**: Prefer CSS-only polish for homepage sections unless JS behavior is broken.
 - **Codex**: Avoid overriding section inline styles; layer lightweight class-based tweaks.
 - **Codex**: Use existing section class names when styling testimonials to avoid touching global typography.
+- **Codex**: When adjusting review widgets, use grid gaps and padding within the section wrapper to maintain consistent spacing.
