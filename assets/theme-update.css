@@ -896,11 +896,17 @@ h6 {
     font-weight: 600;
     cursor: pointer;
     transition: var(--transition-premium);
+    border: none;
 }
 
 .whisper-collections-tabs__tab.current {
     background: var(--gradient-vibrant);
     color: #ffffff;
+}
+
+.whisper-collections-tabs__tab:focus-visible {
+    outline: 2px solid rgba(99, 102, 241, 0.5);
+    outline-offset: 2px;
 }
 
 .whisper-collections-tabs__panel {

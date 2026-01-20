@@ -1,13 +1,30 @@
 <section class="custom-html--container whisper-collections-tabs">
-  <ul class="shopify-tabs whisper-collections-tabs__tabs">
+  <ul class="shopify-tabs whisper-collections-tabs__tabs" role="tablist">
     {% for block in section.blocks %}
-    <li data-tab="tab-{{ block.id }}" class="collection__item-title whisper-collections-tabs__tab {% if forloop.first %} current{% endif %}">
-      <span>{{ block.settings.title }}</span>
+    <li class="whisper-collections-tabs__tab-item">
+      <button
+        type="button"
+        data-tab="tab-{{ block.id }}"
+        id="tab-button-{{ block.id }}"
+        class="collection__item-title whisper-collections-tabs__tab {% if forloop.first %} current{% endif %}"
+        role="tab"
+        aria-controls="tab-{{ block.id }}"
+        aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+        tabindex="{% if forloop.first %}0{% else %}-1{% endif %}"
+      >
+        <span>{{ block.settings.title }}</span>
+      </button>
     </li>
     {% endfor %}
   </ul>
   {% for block in section.blocks %}
-  <div id="tab-{{ block.id }}" class="shopify-tab-content whisper-collections-tabs__panel {% if forloop.first %} current{% endif %}">
+  <div
+    id="tab-{{ block.id }}"
+    class="shopify-tab-content whisper-collections-tabs__panel {% if forloop.first %} current{% endif %}"
+    role="tabpanel"
+    aria-labelledby="tab-button-{{ block.id }}"
+    {% if forloop.first == false %}tabindex="-1"{% endif %}
+  >
     <div class="tab-rows whisper-collections-tabs__grid">
       {% for i in (1..8) %}
       {% capture blk_image %}image_{{ i }}{% endcapture %}
@@ -67,18 +84,25 @@
     if (!section) {
       return;
     }
-    const tabs = Array.from(section.querySelectorAll('ul.shopify-tabs > li'));
+    const tabs = Array.from(section.querySelectorAll('.whisper-collections-tabs__tab'));
     const panels = Array.from(section.querySelectorAll('.shopify-tab-content'));
 
     tabs.forEach((tab) => {
       tab.addEventListener('click', () => {
         const tabId = tab.getAttribute('data-tab');
-        tabs.forEach((item) => item.classList.remove('current'));
+        tabs.forEach((item) => {
+          item.classList.remove('current');
+          item.setAttribute('aria-selected', 'false');
+          item.setAttribute('tabindex', '-1');
+        });
         panels.forEach((panel) => panel.classList.remove('current'));
         tab.classList.add('current');
+        tab.setAttribute('aria-selected', 'true');
+        tab.setAttribute('tabindex', '0');
         const activePanel = section.querySelector(`#${tabId}`);
         if (activePanel) {
           activePanel.classList.add('current');
+          activePanel.focus({ preventScroll: true });
         }
       });
     });

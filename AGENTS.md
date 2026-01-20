@@ -25,7 +25,7 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 | :--- | :--- | :--- | :--- | :--- |
 | **P11** | **UX & Personalization** | [/] Active | Codex | **High-Priority Engagement** |
 | T042 | - Mobile Quick Add Sheet | [x] Done | Anti | Ported from `BottomSheet.tsx`. |
-| T040 | - Global Aesthetic Bridge | [/] In Progress - Codex | Codex | See **Blueprint C** below. |
+| T040 | - Global Aesthetic Bridge | [x] Done - Codex | Codex | See **Blueprint C** below. |
 | T043 | - Size Prediction Engine | [x] Done - Codex | Codex | See **Blueprint A** below. |
 | T044 | - Abandoned Cart Recovery | [x] Done - Codex | Codex | See **Blueprint B** below. |
 ...
@@ -122,4 +122,4 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 - **2026-01-20 (Codex)**: **Homepage Goal Updated.** Prioritizing homepage production polish before inner pages.
 - **2026-01-20 (Codex)**: **Homepage Goal Progress.** Tokenized collections tabs and promo grid for homepage readiness.
 - **2026-01-20 (Codex)**: **T040 REOPENED.** Polished collections tabs and promo grid layout spacing.
-- **2026-01-20 (Codex)**: **T040 IN PROGRESS.** Added responsive grid and hover refinements for homepage collections/promo.
+- **2026-01-20 (Codex)**: **T040 COMPLETE.** Added responsive grid, hover, and accessible tabs refinements for homepage collections/promo.
