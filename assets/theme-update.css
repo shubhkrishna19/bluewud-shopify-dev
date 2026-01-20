@@ -127,6 +127,18 @@
     transition: var(--transition-premium);
 }
 
+@media (max-width: 720px) {
+    .whisper-size-engine {
+        width: 100%;
+    }
+
+    .whisper-size-engine__trigger,
+    .whisper-size-engine__submit {
+        width: 100%;
+        text-align: center;
+    }
+}
+
 .whisper-size-engine__modal {
     position: fixed;
     inset: 0;
@@ -154,6 +166,11 @@
     padding: var(--padding-4xl);
     box-shadow: var(--glass-shadow);
     position: relative;
+}
+
+.whisper-size-engine__dialog:focus {
+    outline: 2px solid rgba(99, 102, 241, 0.4);
+    outline-offset: 4px;
 }
 
 .whisper-size-engine__close {

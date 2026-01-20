@@ -7,11 +7,18 @@
     class="whisper-button whisper-size-engine__trigger"
     type="button"
     aria-haspopup="dialog"
+    aria-controls="whisper-size-engine-modal-{{ section.id | default: product.id | default: 'global' }}"
   >
-    Find my size
+    Find your size
   </button>
 
-  <div class="whisper-size-engine__modal" role="dialog" aria-modal="true" aria-hidden="true">
+  <div
+    class="whisper-size-engine__modal"
+    id="whisper-size-engine-modal-{{ section.id | default: product.id | default: 'global' }}"
+    role="dialog"
+    aria-modal="true"
+    aria-hidden="true"
+  >
     <div class="whisper-size-engine__dialog">
       <button class="whisper-size-engine__close" type="button" aria-label="Close size recommender">
         &times;
@@ -56,6 +63,11 @@
 
 <script>
   (() => {
+    if (window.__whisperSizeEngineInitialized) {
+      return;
+    }
+    window.__whisperSizeEngineInitialized = true;
+
     const engines = document.querySelectorAll('[data-size-engine]');
     engines.forEach((engine) => {
       const handle = engine.dataset.productHandle || 'default';
@@ -66,24 +78,32 @@
       const result = engine.querySelector('[data-size-engine-result]');
       const storageKey = `whisper:size-engine:${handle}`;
 
+      const loadSavedData = () => {
+        const saved = window.localStorage.getItem(storageKey);
+        if (!saved) {
+          return;
+        }
+        const data = JSON.parse(saved);
+        form.height.value = data.height || '';
+        form.weight.value = data.weight || '';
+        form.fit.value = data.fit || 'regular';
+        result.textContent = data.recommendation
+          ? `Recommended size: ${data.recommendation}`
+          : 'Your recommendation will appear here.';
+      };
+
       const openModal = () => {
         modal.setAttribute('aria-hidden', 'false');
         modal.classList.add('is-active');
-        const saved = window.localStorage.getItem(storageKey);
-        if (saved) {
-          const data = JSON.parse(saved);
-          form.height.value = data.height || '';
-          form.weight.value = data.weight || '';
-          form.fit.value = data.fit || 'regular';
-          result.textContent = data.recommendation
-            ? `Recommended size: ${data.recommendation}`
-            : 'Your recommendation will appear here.';
-        }
+        modal.setAttribute('tabindex', '-1');
+        modal.focus();
+        loadSavedData();
       };
 
       const closeModal = () => {
         modal.setAttribute('aria-hidden', 'true');
         modal.classList.remove('is-active');
+        trigger.focus();
       };
 
       const getRecommendation = ({ height, weight, fit }) => {
@@ -108,6 +128,11 @@
       closeButton.addEventListener('click', closeModal);
       modal.addEventListener('click', (event) => {
         if (event.target === modal) {
+          closeModal();
+        }
+      });
+      modal.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape') {
           closeModal();
         }
       });
