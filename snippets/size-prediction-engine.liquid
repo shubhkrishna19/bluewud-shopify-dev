@@ -1,0 +1,51 @@
+{%- comment -%}
+  Size prediction engine.
+  Expects product context and tries to infer the size option.
+{%- endcomment -%}
+
+{% liquid
+  assign size_option = null
+  for option in product.options_with_values
+    assign option_name_downcase = option.name | downcase
+    if option_name_downcase contains 'size'
+      assign size_option = option
+      break
+    endif
+  endfor
+%}
+
+{% if size_option != null %}
+  <div
+    class="size-predictor"
+    data-size-predictor
+    data-size-options="{{ size_option.values | json | escape }}"
+  >
+    <h3 class="size-predictor__title">Find your size</h3>
+    <form class="size-predictor__form" data-size-predictor-form>
+      <label class="size-predictor__field">
+        Height (cm)
+        <input type="number" name="height" min="120" max="220" required>
+      </label>
+      <label class="size-predictor__field">
+        Weight (kg)
+        <input type="number" name="weight" min="30" max="200" required>
+      </label>
+      <label class="size-predictor__field">
+        Fit preference
+        <select name="fit">
+          <option value="regular">Regular</option>
+          <option value="snug">Snug</option>
+          <option value="relaxed">Relaxed</option>
+        </select>
+      </label>
+      <button class="button" type="submit">Recommend size</button>
+    </form>
+    <p class="size-predictor__result" data-size-predictor-result></p>
+  </div>
+
+  <script
+    src="{{ 'size-prediction.js' | asset_url }}"
+    type="module"
+    fetchpriority="low"
+  ></script>
+{% endif %}
