@@ -56,3 +56,4 @@ This repository uses parallel AI agents. To avoid duplicate work, **every agent 
 - **Codex**: Center section headings on the homepage only when the section already uses a dedicated wrapper class.
 - **Codex**: Prefer CSS-only polish for homepage sections unless JS behavior is broken.
 - **Codex**: Avoid overriding section inline styles; layer lightweight class-based tweaks.
+- **Codex**: Use existing section class names when styling testimonials to avoid touching global typography.
