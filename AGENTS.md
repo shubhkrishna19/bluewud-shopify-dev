@@ -49,3 +49,4 @@ This repository uses parallel AI agents. To avoid duplicate work, **every agent 
 - **Codex**: When minifying assets, keep source formatting changes documented in the collaboration log.
 - **Codex**: If you add a new setting, update both `settings_schema.json` and `settings_data.json` defaults.
 - **Codex**: For new product UX features, add a snippet + asset pair and wire it into the relevant product template.
+- **Codex**: Keep any UI polish styles minimal and scoped to avoid unintended overrides.
