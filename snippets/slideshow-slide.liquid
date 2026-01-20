@@ -99,6 +99,7 @@
     <div
       class="
         slideshow-slide__image-wrapper
+        hero__media-wrapper
         {% if block_image_position %}
           slideshow-slide__image-wrapper--position-{ block_image_position }
         {% endif %}
@@ -109,21 +110,21 @@
         {%
           render 'rimg',
           img: block_slide_image,
-          class: 'slideshow-slide__image slideshow-slide__image--desktop',
+          class: 'slideshow-slide__image slideshow-slide__image--desktop hero__image hero__image--desktop',
           size: '2000x',
           crop: block_crop_images,
           lazy: true,
           canvas: true,
         %}
       {%- else -%}
-        {{ placeholder |  placeholder_svg_tag: 'slideshow-slide__image slideshow-slide__placeholder' }}
+        {{ placeholder |  placeholder_svg_tag: 'slideshow-slide__image slideshow-slide__placeholder hero__image hero__image--desktop' }}
       {%- endif -%}
 
       {%- if block_slide_image_mobile != blank -%}
         {%
           render 'rimg',
           img: block_slide_image_mobile,
-          class: 'slideshow-slide__image slideshow-slide__image--mobile',
+          class: 'slideshow-slide__image slideshow-slide__image--mobile hero__image hero__image--mobile',
           size: '800x',
           crop: block_crop_images,
           lazy: true,
@@ -154,6 +155,7 @@
   <div
     class="
       slideshow-slide__content
+      hero__content-wrapper
       slideshow-slide__content--{{ block.id }}
       {% if block_text_alignment %}slideshow-slide__content--text-{{ block_text_alignment }}{% endif %}
     "

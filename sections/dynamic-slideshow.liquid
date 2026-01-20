@@ -94,6 +94,8 @@
 <section
   class="
     slideshow
+    hero
+    hero--slideshow
     {{ slideshow_classes }}
     hero
     hero--slideshow
@@ -109,7 +111,7 @@
   {%- endif -%}
 
   <div
-    class="slideshow__wrapper {{ wrapper_classes }}"
+    class="slideshow__wrapper hero__media-wrapper {{ wrapper_classes }}"
     data-slideshow-wrapper
   >
     {%- for block in section.blocks -%}

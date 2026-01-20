@@ -368,3 +368,13 @@ h6 {
         grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
     }
 }
+
+/* Hero bridge: align slideshow hero media wrappers with Whisper hooks. */
+.hero__media-wrapper {
+    position: relative;
+}
+
+.hero__image {
+    display: block;
+    width: 100%;
+}

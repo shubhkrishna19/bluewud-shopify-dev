@@ -51,9 +51,9 @@
 {% endstyle %}
 
 <div
-  class="
-    site-header-main
-    header
+      header
+    header__row
+    header__row--top
     {% if section.settings.full_width_header %}
       site-header--full-width
     {% endif %}
@@ -91,153 +91,6 @@
             >
               {{ search_button }}
             </button>
-          {% else %}
-            <a
-              class="site-header-mobile-search-button"
-              href="{{ routes.search_url }}"
-            >
-              {{ search_button }}
-            </a>
-          {% endif %}
-        {% endunless %}
-      </div>
-
-      <div
-        class="
-          header__column header__column--center
-          site-header-main-content
-          {% if section.settings.small_promo_text != empty %}
-            small-promo-enabled
-          {% endif %}
-        "
-      >
-        <div class="site-header-logo">
-          <a
-            class="site-logo header-logo"
-            href="{{ routes.root_url }}">
-            {% if section.settings.logo %}
-              {% assign logo_alt = section.settings.logo.alt %}
-              {% if logo_alt == '' %}
-                {% assign logo_alt = shop.name | strip %}
-              {% endif %}
-
-              {%
-                render 'rimg',
-                img: section.settings.logo,
-                class: 'site-logo-image',
-                alt: logo_alt,
-                size: logo_size
-              %}
-            {% else %}
-              {% if template == 'index' %}
-                <h1 class="site-logo-text">
-                  {{ shop.name }}
-                </h1>
-              {% else %}
-                <span class="site-logo-text">
-                  {{ shop.name }}
-                </span>
-              {% endif %}
-            {% endif %}
-          </a>
-        </div>
-
-        <div class="search-action">
-          {%
-            render 'live-search-form',
-            quick_links: linklists[section.settings.quick_links],
-            enable_images: section.settings.enable_live_search_images,
-            enable_content: section.settings.enable_live_search_articles_pages
-          %}
-        </div>
-
-        {% if section.settings.small_promo_text != blank or section.settings.small_promo_heading != blank %}
-          {% if section.settings.small_promo_link != blank %}
-            <a
-              class="small-promo-content--link"
-              href="{{ section.settings.small_promo_link }}"
-            >
-          {% endif %}
-          <div class="small-promo">
-            {% if section.settings.small_promo_icon != 'none' or section.settings.image %}
-              <span
-                class="
-                  small-promo-icon
-                  {% if section.settings.image %}
-                    small-promo-icon--custom
-                  {% else %}
-                    small-promo-icon--svg
-                  {% endif %}
-                "
-              >
-                {% if section.settings.image == blank %}
-                  {% render 'icon-library', id: section.settings.small_promo_icon %}
-                {% else %}
-                  {%
-                    render 'rimg',
-                    class: 'small-promo-custom-icon',
-                    img: section.settings.image,
-                    size: '60x'
-                  %}
-                {% endif %}
-              </span>
-            {% endif %}
-
-            <div class="small-promo-content">
-              {% if section.settings.small_promo_heading != blank %}
-                <span class="small-promo-content_heading">
-                  {{ section.settings.small_promo_heading | escape }}
-                </span>
-              {% endif %}
-
-              {% if section.settings.small_promo_text_mobile != blank %}
-                <div class="small-promo-content--mobile">
-                  {{ section.settings.small_promo_text_mobile }}
-                </div>
-              {% endif %}
-
-              {% if section.settings.small_promo_text != blank %}
-                <div class="small-promo-content--desktop">
-                  {{ section.settings.small_promo_text }}
-                </div>
-              {% endif %}
-            </div>
-          </div>
-          {% if section.settings.small_promo_link != blank %}
-            </a>
-          {% endif %}
-        {% endif %}
-        
-        
-        
-        {% comment %}{% include 'iwish_v2' with 'iwishlink' %}{% endcomment %}
-      </div>
-
-      <div class="header__column header__column--right site-header-right">
-        <header-actions>
-          {% render 'site-header-actions' %}
-        </header-actions>
-
-        <div class="site-header-cart">
-          
-          
-          <a class="site-header-cart--button header-actions__action action__cart" href="{{ routes.cart_url }}">
-            <span
-              class="site-header-cart--count {% if cart.item_count > 0 %}visible{% endif %}"
-              data-header-cart-count="{% if cart.item_count > 0 %}{{ cart.item_count }}{% endif %}">
-            </span>
-            <span class="site-header-cart-icon site-header-cart-icon--svg">
-              {% if section.settings.cart_icon == 'icon-bag' %}
-                {% render 'icon-library', id: 'icon-bag' %}
-              {% else %}
-                {% render 'icon-library', id: 'icon-cart' %}
-               {% endif %}
-            </span>
-            <span class="visually-hidden">{{ 'general.accessibility.cart' | t }}</span>
-          </a>
-        </div>
-      </div>
-    </div>
           {% else %}
             <a
               class="site-header-mobile-search-button"

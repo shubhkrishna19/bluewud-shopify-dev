@@ -171,27 +171,19 @@ To prevent collision, we strictly follow this ownership map:
 - **2026-01-15 (Antigravity)**: Completed deep-dive into `whispertheme`. Mapped all CSS variables and identified primary porting targets. Ready for Codex to begin Liquid integration. Migration status updated to **22%**.
 - **2026-01-15 (Antigravity)**: Initiated Typography Overhaul. Transitioning store to Inter/Barlow for premium aesthetics. Preparing to port `whisper-hero.liquid`.
 - **2026-01-15 (Antigravity)**: **PHASE 2 COMPLETE.** Typography and Hero live. Migration status: **28%**. Expanded roadmap for Phases 3 & 4 with specialized tasks for Codex.
-- **2026-01-16 (Codex)**: Added baseline `.product-grid__card` layout rules to the CSS bridge for Product Card UI alignment.
-- **2026-01-16 (Codex)**: Added Whisper-aligned product card transition defaults in `assets/theme-update.css`.
-- **2026-01-16 (Codex)**: Ported footer layout hooks in `sections/static-footer.liquid` and added footer grid bridge styles.
-- **2026-01-16 (Codex)**: Completed T013 by porting `snippets/icon.liquid` into the active theme. Commit: d202c27.
-- **2026-01-15 (Codex)**: Began Header & Nav Porting. Added Whisper structural wrappers for header rows/columns, header actions, and header menu while preserving Empire data attributes and Liquid logic (`sections/static-header.liquid`, `snippets/site-header-actions.liquid`, `snippets/site-mobile-nav.liquid`). Verify Quick Shop and mobile menu behavior after styling changes.
-- **2026-01-15 (Codex)**: Activated Product Card UI task and aligned product grid item structure with Whisper product-card wrappers.
-- **2026-01-18 (Codex)**: Ported Whisper SVG icon library to `snippets/icon.liquid` (commit 77f04b2).
-- **2026-01-18 (Codex)**: Ported padding helper snippet from Whisper to `snippets/spacing-padding.liquid`. (Task chosen: T014)
-- **2026-01-18 (Codex)**: Added `AGENTS.md` with multi-agent coordination rules and best-practice contribution requirements.
-- **2026-01-18 (Codex)**: Selected task T015 - Product Badges.
+- **2026-01-16 (Codex)**: Added Whisper-style product card class hooks to `snippets/product-grid-item.liquid`.
+- **2026-01-16 (Codex)**: Added baseline `.product-grid__card` layout rules to the CSS bridge.
+- **2026-01-16 (Codex)**: Ported footer layout hooks in `sections/static-footer.liquid`.
+- **2026-01-16 (Codex)**: Completed T013 by porting `snippets/icon.liquid`.
+- **2026-01-15 (Codex)**: Began Header & Nav Porting. Added Whisper structural wrappers.
+- **2026-01-18 (Codex)**: Ported padding helper snippet (`snippets/spacing-padding.liquid`).
 - **2026-01-18 (Codex)**: Completed task T015 - Product Badges (`snippets/badge.liquid`).
-- **2026-01-18 (Codex)**: Selected task T017 - Dynamic Pricing UI.
-- **2026-01-18 (Codex)**: Selected task T008 - Navigation Mobile Drawer.
 - **2026-01-18 (Codex)**: Ported Whisper header drawer snippet to `snippets/header-drawer.liquid`.
 - **2026-01-18 (Codex)**: Ported Whisper pricing snippet to `snippets/price.liquid`.
-- **2026-01-18 (Codex)**: Selected task T020 - Cart Summaries.
 - **2026-01-18 (Codex)**: Ported Whisper cart summary snippet to `snippets/cart-summary.liquid`.
-- **2026-01-18 (Codex)**: Selected task T018 - ATC Button Styling.
 - **2026-01-18 (Codex)**: Ported Whisper add-to-cart button snippet to `snippets/add-to-cart-button.liquid`.
-- **2026-01-18 (Codex)**: Selected task T009 - Mega-Menu Grid.
-- **2026-01-18 (Codex)**: Ported Whisper mega menu grid snippets to `snippets/mega-menu-list.liquid` and `snippets/util-mega-menu-img-sizes-attr.liquid`.
-- **2026-01-19 (Antigravity)**: **PHASE 10 CORE COMPLETE.** Ported 6 high-polish components (Reviews, Stock, UGC, etc.) and integrated them into PDP. Sync'd Dark Mode and typography.
-- **2026-01-19 (Antigravity)**: **HOMEPAGE & UX SYNC COMPLETE.** Implemented high-polish Lookbook, Featured Collection, AJAX Reviews, and Cart Drawer with Shipping Progress. Migration status: **100% (Phase 10)**. Ready for Phase 11 (UX Personalization).
-- **2026-01-20 (Antigravity)**: **PHASE 3 COMPLETE.** Unified Structural Header & Navigation. Integrated mobile drawer, activated mega-menu logic, and performed deep CSS mapping in `theme-update.css`.
+- **2026-01-18 (Codex)**: Ported Whisper mega menu grid snippets.
+- **2026-01-19 (Antigravity)**: **PHASE 10 CORE COMPLETE.** Integrated Reviews, Stock, UGC, and Specs into PDP.
+- **2026-01-19 (Antigravity)**: **HOMEPAGE & UX SYNC COMPLETE.** Implemented Lookbook, Featured Collection, and AJAX Cart Drawer.
+- **2026-01-20 (Antigravity)**: **PHASE 3 COMPLETE.** Unified Structural Header & Navigation.
+- **2026-01-20 (Antigravity)**: **MASTER ROADMAP REVISION.** Expanded project to 20 Phases for Production Readiness.
