@@ -786,7 +786,7 @@
         }
     },
     "order": [
-        "whisper_hero",
+        "hero",
         "whisper_lookbook",
         "whisper_trending",
         "dynamic_featured_collection",
