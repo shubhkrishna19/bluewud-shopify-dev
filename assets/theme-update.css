@@ -222,6 +222,98 @@
     color: var(--color-text-primary);
 }
 
+/* Whisper Cart Recovery */
+.whisper-cart-recovery {
+    position: fixed;
+    left: 50%;
+    bottom: 24px;
+    transform: translateX(-50%) translateY(20px);
+    max-width: min(960px, 92vw);
+    width: 100%;
+    padding: var(--padding-lg);
+    border-radius: 20px;
+    opacity: 0;
+    pointer-events: none;
+    transition: var(--transition-premium);
+    z-index: 2200;
+}
+
+.whisper-cart-recovery.is-active {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+    pointer-events: auto;
+}
+
+.whisper-cart-recovery__content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--gap-lg);
+}
+
+.whisper-cart-recovery__text {
+    display: grid;
+    gap: 0.2rem;
+}
+
+.whisper-cart-recovery__title {
+    font-weight: 600;
+    color: var(--color-text-primary);
+}
+
+.whisper-cart-recovery__subtitle {
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+}
+
+.whisper-cart-recovery__actions {
+    display: flex;
+    align-items: center;
+    gap: var(--gap-md);
+}
+
+.whisper-cart-recovery__link {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.whisper-cart-recovery__button {
+    text-decoration: none;
+}
+
+.whisper-cart-recovery__close {
+    position: absolute;
+    top: 10px;
+    right: 16px;
+    background: transparent;
+    border: none;
+    font-size: 1.4rem;
+    color: var(--color-text-secondary);
+    cursor: pointer;
+}
+
+@media (max-width: 720px) {
+    .whisper-cart-recovery {
+        bottom: 16px;
+        padding: var(--padding-md);
+    }
+
+    .whisper-cart-recovery__content {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .whisper-cart-recovery__actions {
+        width: 100%;
+    }
+
+    .whisper-cart-recovery__button {
+        width: 100%;
+        text-align: center;
+    }
+}
+
 /* Dark Mode Overrides - Sync with wireframe.onslate.com */
 [data-theme='dark'] {
     --color-bg-primary: #0f172a;
@@ -354,6 +446,97 @@ h6 {
 .header__row--bottom {
     background: var(--gradient-surface);
     border-top: 1px solid var(--glass-border);
+}
+
+/* Whisper hero */
+.whisper-hero {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    min-height: 420px;
+}
+
+.whisper-hero .hero__container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: inherit;
+}
+
+.whisper-hero .hero__media-wrapper {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    z-index: 1;
+}
+
+.whisper-hero .hero__image,
+.whisper-hero .hero__video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    flex: 1;
+}
+
+.whisper-hero .hero__content-wrapper {
+    position: relative;
+    z-index: 2;
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    width: min(100%, 1200px);
+    display: flex;
+    flex-direction: column;
+    border-radius: 24px;
+}
+
+.whisper-hero .hero__title {
+    font-family: var(--font-heading-family);
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    margin-bottom: 1rem;
+    line-height: 1.1;
+}
+
+.whisper-hero .hero__text {
+    font-size: clamp(1rem, 1.5vw, 1.2rem);
+    margin-bottom: 1.5rem;
+    max-width: 600px;
+    color: var(--color-text-secondary);
+}
+
+.whisper-hero .hero__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.9rem 2.6rem;
+    background: var(--gradient-vibrant);
+    color: #ffffff;
+    text-decoration: none;
+    border-radius: 999px;
+    font-weight: 600;
+    transition: var(--transition-premium);
+}
+
+.whisper-hero .hero__button:hover {
+    transform: var(--hover-lift);
+}
+
+/* Active navigation styling */
+.navmenu-link-active,
+.menu-drawer__menu-item--active {
+    font-weight: 600;
+    background: var(--gradient-vibrant);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+/* Primary button premium gradient */
+.button-primary,
+.button-primary.button,
+.button-primary:hover {
+    background: var(--gradient-vibrant);
+    border: none;
+    transition: var(--transition-premium);
 }
 
 .header__columns {
