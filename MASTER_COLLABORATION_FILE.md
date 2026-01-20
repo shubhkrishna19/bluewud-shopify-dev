@@ -50,6 +50,7 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | T047 | - [Homepage] Promo Images Polish | [x] Done | Codex | Med | Refined promo images section styling. |
 | T048 | - [Homepage] Featured Collection Polish | [x] Done | Codex | Med | Refined featured collection section styling. |
 | T049 | - [Homepage] Collections Tabs Polish | [x] Done | Codex | Med | Refined collections tabs section styling. |
+| T050 | - [Homepage] Highlights Banner Polish | [x] Done | Codex | Med | Refined highlights banner styling. |
 
 ---
 
@@ -167,3 +168,5 @@ To prevent collision, we strictly follow this ownership map:
 - **2026-01-18 (Codex)**: Polished featured collection section on homepage.
 - **2026-01-18 (Codex)**: Selected task T049 - Homepage Collections Tabs Polish.
 - **2026-01-18 (Codex)**: Polished collections tabs section on homepage.
+- **2026-01-18 (Codex)**: Selected task T050 - Homepage Highlights Banner Polish.
+- **2026-01-18 (Codex)**: Polished highlights banner section on homepage.
