@@ -1,12 +1,14 @@
-<section class="custom-html--container">
-  <ul class="shopify-tabs">
+<section class="custom-html--container whisper-collections-tabs">
+  <ul class="shopify-tabs whisper-collections-tabs__tabs">
     {% for block in section.blocks %}
-    <li data-tab="tab-{{ block.id }}" class="collection__item-title {% if forloop.first %} current{% endif %}"><span>{{ block.settings.title }}</span></li>
+    <li data-tab="tab-{{ block.id }}" class="collection__item-title whisper-collections-tabs__tab {% if forloop.first %} current{% endif %}">
+      <span>{{ block.settings.title }}</span>
+    </li>
     {% endfor %}
   </ul>
   {% for block in section.blocks %}
-  <div id="tab-{{ block.id }}" class="shopify-tab-content  {% if forloop.first %} current{% endif %}">
-    <div class="tab-rows">
+  <div id="tab-{{ block.id }}" class="shopify-tab-content whisper-collections-tabs__panel {% if forloop.first %} current{% endif %}">
+    <div class="tab-rows whisper-collections-tabs__grid">
       {% for i in (1..8) %}
       {% capture blk_image %}image_{{ i }}{% endcapture %}
       {% capture blk_collection %}collection_{{ i }}{% endcapture %}
@@ -17,19 +19,19 @@
       {%- assign collection = collections[collection] -%}
       {% if block.settings[blk_collection] != blank %}
       
-      <div class="tab-rows-column">
-        <div class="tab-rows-column-wrap">
+      <div class="tab-rows-column whisper-collections-tabs__item">
+        <div class="tab-rows-column-wrap whisper-collections-tabs__item-wrap">
         <a href="{{ collection.url }}">
-        <div class="tab-rows-column-img">
+        <div class="tab-rows-column-img whisper-collections-tabs__item-media">
           {% if collection_image %}
-          <div class="info-box-icon">
+          <div class="info-box-icon whisper-collections-tabs__item-thumb">
           <img src="{{ collection_image | img_url: '120x90', crop: 'center' }}" alt="{{ collection_image.alt }}">
           </div>
           {% endif %}
         </div>
 
-        <div class="tab-rows-column-info">
-          <span class="collection__item-title">
+        <div class="tab-rows-column-info whisper-collections-tabs__item-info">
+          <span class="collection__item-title whisper-collections-tabs__item-title">
         {% if block.settings[blk_title] != blank %}
         {{ block.settings[blk_title] }}
         {% else %}
@@ -50,7 +52,6 @@
 
 <style>
   #shopify-section-{{ section.id }} .info-box-icon {
-    
     {% assign color_border = section.settings.border_color %}
     border: 1px solid {{ color_border | color_modify: 'alpha', 0.16 }};
     box-shadow: 0 1px 4px {{ color_border | color_modify: 'alpha', 0.11 }};
@@ -60,19 +61,28 @@
     box-shadow: -7px 6px 5px 0 rgb(0 0 0 / 21%);
 }
 </style>
-<script type="text/javascript" src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 <script type="text/javascript">
-  $(document).ready(function(){
-    $('#shopify-section-{{ section.id }} ul.shopify-tabs > li').click(function(){
-      var tab_id = $(this).attr('data-tab');
+  document.addEventListener('DOMContentLoaded', () => {
+    const section = document.getElementById('shopify-section-{{ section.id }}');
+    if (!section) {
+      return;
+    }
+    const tabs = Array.from(section.querySelectorAll('ul.shopify-tabs > li'));
+    const panels = Array.from(section.querySelectorAll('.shopify-tab-content'));
 
-      $(this).parent().find('li').removeClass('current');
-      $('#shopify-section-{{ section.id }} .shopify-tab-content').removeClass('current');
-
-      $(this).addClass('current');
-      $("#"+tab_id).addClass('current');
-    })
-  })
+    tabs.forEach((tab) => {
+      tab.addEventListener('click', () => {
+        const tabId = tab.getAttribute('data-tab');
+        tabs.forEach((item) => item.classList.remove('current'));
+        panels.forEach((panel) => panel.classList.remove('current'));
+        tab.classList.add('current');
+        const activePanel = section.querySelector(`#${tabId}`);
+        if (activePanel) {
+          activePanel.classList.add('current');
+        }
+      });
+    });
+  });
 </script>
 
 {% schema %}

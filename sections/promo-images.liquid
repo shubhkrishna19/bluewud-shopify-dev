@@ -1,22 +1,22 @@
-<section class="promo-grid--container">
-  <div class="promo-images-header {% if section.settings.text != blank %}subtitle-enabled{% endif %}">
+<section class="promo-grid--container whisper-promo-grid">
+  <div class="promo-images-header whisper-promo-grid__header {% if section.settings.text != blank %}subtitle-enabled{% endif %}">
   {% if section.settings.title != blank %}
-    <h2 class="home-section--title">
+    <h2 class="home-section--title whisper-promo-grid__title">
       {{ section.settings.title | escape }}
     </h2>
   {% endif %}
   {% if section.settings.text != blank %}
-    <div class="rte">
+    <div class="rte whisper-promo-grid__subtitle">
       {{ section.settings.text }}
     </div>
   {% endif %}
   </div>
   
   {% if section.blocks.size > 0 %}
-  <div class="promo-grid--inner promo-grid__columns--{{ section.settings.section_columns }}">
+  <div class="promo-grid--inner promo-grid__columns--{{ section.settings.section_columns }} whisper-promo-grid__grid">
     {% for block in section.blocks %}
     {% if block.settings.image != blank %}
-    <div class="promo-grid--promo-img">
+    <div class="promo-grid--promo-img whisper-promo-grid__item">
       <a href="{{ block.settings.block_link }}">
         <img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.image.alt }}">
       </a>
