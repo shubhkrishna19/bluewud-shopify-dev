@@ -99,26 +99,24 @@ To prevent duplication, every agent **MUST** follow this protocol:
 - **Phase 3 (Header/Nav)**: [ACTIVE] - Porting JS dependencies & Mega-menu.
 - **Phase 10 (Ecommerce Integration)**: [ACTIVE] - Syncing Review/Social Proof logic from `ecommerce-app`.
 - **Phase 8 (Homepage Parity)**: [ACTIVE] - Mirroring `bluewud.com` section-for-section.
-=======
-| T005 | - [Header] CSS Mapping | [/] Active | Anti | High | Integrating to `theme-update.css`. |
-| T006 | - [Navigation] Mobile Drawer| [x] Done | Codex | Med | Added `snippets/header-drawer.liquid`. |
-| T007 | - [Navigation] Mega-Menu Grid| [x] Done | Codex | High | Added `snippets/mega-menu-list.liquid` and `snippets/util-mega-menu-img-sizes-attr.liquid`. |
-| T008 | - [Navigation] Mega-Promo | [x] Done | Codex | High | Added `snippets/mega-promo.liquid` compatibility wrapper. |
+| T005 | - [Header] CSS Mapping | [x] Done | Anti | High | Integrated to `theme-update.css`. |
+| T006 | - [Navigation] Mobile Drawer| [x] Done | Codex | Med | Integrated to `whisper-header`. |
+| T007 | - [Navigation] Mega-Menu Grid| [x] Done | Codex | High | Integrated via `whisper-mega-menu-list`. |
+| T008 | - [Navigation] Mega-Promo | [x] Done | Codex | High | Integrated via `whisper-mega-menu-list`. |
 | **P4** | **Phase 4: Global Utilities** | [ ] Pending | Joint | Med | **Codex Takeover Target** |
-| T013 | - [Icons] SVG Library Port | [x] Done | Codex | Low | Added `snippets/icon.liquid` (commit 77f04b2). |
-| T014 | - [Spacing] Padding Helpers | [x] Done | Codex | Med | Added `snippets/spacing-padding.liquid`. |
-| T015 | - [Badges] Product Badges | [x] Done | Codex | Med | Added `snippets/badge.liquid` (based on existing product badge logic). |
+| T013 | - [Icons] SVG Library Port | [x] Done | Codex | Low | d202c27 |
+| T014 | - [Spacing] Padding Helpers | [x] Done | Codex | Med | b7aea30 |
+| T015 | - [Badges] Product Badges | [x] Done | Codex | Med | 2558d15 |
 | **P5** | **Phase 5: Product Page UI** | [ ] Pending | Joint | High | Visual parity for PDP. |
-| T016 | - [Media] Gallery Layout | [x] Done | Codex | High | Added media gallery snippets and asset. |
-| T017 | - [Price] Dynamic Pricing UI| [x] Done | Codex | High | Added `snippets/price.liquid`. |
-| T018 | - [ATC] Button Styling | [x] Done | Codex | High | Added `snippets/add-to-cart-button.liquid`. |
+| T016 | - [Media] Gallery Layout | [x] Done | Codex | High | Ported media gallery snippets. |
+| T017 | - [Price] Dynamic Pricing UI| [x] Done | Codex | High | 5ec515e |
+| T018 | - [ATC] Button Styling | [x] Done | Codex | High | 0795b6c |
 | **P6** | **Phase 6: Cart & Checkout UX**| [ ] Pending | Codex | Med | Polish transactional UI. |
-| T019 | - [Drawer] Whisper Cart | [x] Done | Codex | High | Added `snippets/cart-drawer.liquid`. |
-| T020 | - [Summary] Cart Summaries | [x] Done | Codex | Med | Added `snippets/cart-summary.liquid`. |
+| T019 | - [Drawer] Whisper Cart | [x] Done | Codex | High | e5f2793 |
+| T020 | - [Summary] Cart Summaries | [x] Done | Codex | Med | 3fe761b |
 | **P7** | **Phase 7: Optimization** | [ ] Pending | Joint | Low | Core Web Vitals + Clean. |
 | T021 | - [Asset] CSS Minification | [x] Done | Codex | Low | Minified `assets/theme-update.css`. |
 | T022 | - [JS] Lazy Loading Hydrate | [x] Done | Codex | Med | Added `assets/section-hydration.js`. |
->>>>>>> pr-17
 
 ---
 

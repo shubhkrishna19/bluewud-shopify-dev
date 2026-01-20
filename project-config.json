@@ -1,0 +1,37 @@
+{
+    "project_name": "Bluewud Shopify Development",
+    "version": "1.0.0",
+    "base_theme": "Empire",
+    "aesthetic_theme": "Whisper",
+    "repository": "shubhkrishna19/bluewud-shopify-dev",
+    "preview_url": "https://u1p5we6mwmdiusgu-18086469.shopifypreview.com",
+    "primary_fonts": {
+        "body": "Inter",
+        "headings": "Barlow/Poppins"
+    },
+    "critical_elements": {
+        "pincode_widget": {
+            "id": "zippy_widget_1511",
+            "selector": ".zippy_widget_1511"
+        },
+        "ajax_cart": "Empire JS based",
+        "quickshop": "Empire Logic"
+    },
+    "asset_mappings": {
+        "main_css": "assets/theme-update.css",
+        "main_js_bridge": "assets/section-hydration.js"
+    },
+    "dependencies": {
+        "fonts": "Google Fonts (Inter, Barlow, Poppins)",
+        "icons": "Whisper SVG Library (snippets/icon.liquid)",
+        "utilities": [
+            "snippets/spacing-padding.liquid",
+            "snippets/badge.liquid",
+            "snippets/price.liquid"
+        ]
+    },
+    "agent_roles": {
+        "Antigravity": "Lead Architect, CSS Guardian, Logic Safety",
+        "Codex": "Liquid Developer, Snippet Porter, Mobile UI Specialist"
+    }
+}

@@ -1,49 +1,61 @@
-# Multi-Agent Coordination Rules (Bluewud Shopify)
+# AGENTS.md: Central Multi-Agent Orchestration
+This file is the **Live Command Center** for all AI agents (Antigravity, Codex, etc.) working on the Bluewud Shopify project.
 
-This repository uses parallel AI agents. To avoid duplicate work, **every agent must follow the rules below**.
+---
 
-## 1) Claiming Work (required)
-- Before starting, **claim a unique task** in `MASTER_COLLABORATION_FILE.md` using the Task Locking protocol:
-  - Add `[/] In Progress - <Agent Name>` to the task row.
-  - If you are creating a new task, append the next sequential ID.
-- If a task is already marked in progress by another agent, **pick a different task**.
+## 🔗 Project Context
+- **Live Preview**: [https://u1p5we6mwmdiusgu-18086469.shopifypreview.com]()
+- **Tech Stack**: Shopify Liquid + Empire Theme (Base) + Whisper (Aesthetics)
+- **Primary Goal**: "Empire Logic, Whisper Style" - Modernizing the store with 0% functional breakage.
 
-## 2) Announce Your Task Choice
-- Add a short entry in the **Developer Logs** section:
-  - `YYYY-MM-DD (Agent Name): Selected task <ID> - <short name>.`
+---
 
-## 3) Update Completion
-- When done, mark the task `[x] Done` and include the commit hash in the Notes column.
-- Add a brief completion log entry.
+## 🔒 Task Synchronization (STRICT)
+To prevent duplication, follow these steps before starting any work:
+1. **Declare**: Add `[/] In Progress - [Name]` next to the Task ID in the **Master Roadmap** below.
+2. **Commit**: Sync changes regularly. One task = One commit where possible.
+3. **Close**: Mark as `[x] Done` and provide the commit hash.
+4. **Log**: Update the **History & Developer Logs** at the bottom.
 
-## 4) Commit Discipline
-- Keep each task in **one cohesive commit**.
-- If you must amend, do so **before** updating the task log with the final commit hash.
+---
 
-## 5) Avoid Overlap
-- **Never** pick the same task as another agent in the same batch.
-- If unsure, claim a different task and note the handoff in the Developer Logs.
+## 🚀 Master Roadmap: The 20-Phase "Gold Standard"
 
-## 6) Communication & Best Practices
-- Prefer small, reversible changes.
-- Preserve existing `data-` attributes and IDs for JS compatibility.
-- Use `assets/theme-update.css` for new styles.
-- Keep Liquid changes minimal and modular.
-- Document any assumptions or dependencies in the Developer Logs.
+| Task ID | Component / Task | Status | Owner | Priority | Notes |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **P1** | **Phase 1: Foundation** | [x] Done | Anti | High | Pincode Widget (#zippy_widget_1511). |
+| **P2** | **Phase 2: Visual Identity** | [x] Done | Anti | High | Inter/Barlow Typography & Whisper Hero. |
+| **P3** | **Phase 3: Structural Header** | [x] Done | Anti | High | Unified Header/Nav Migration Complete. |
+| **P4** | **Phase 4: Global Utilities** | [x] Done | Joint | Med | Icons, Spacing, & Badges Ported. |
+| **P5** | **Phase 5: Product Page UI** | [/] Active | Codex | High | Media Gallery Done. Price/ATC Done. |
+| **P6** | **Phase 6: Cart & Checkout UX**| [x] Done | Codex | Med | Cart Drawer & Summaries Optimized. |
+| **P7** | **Phase 7: Optimization** | [x] Done | Codex | Med | CSS Minification & Hydration Active. |
+| **P10** | **Phase 10: Ecommerce Sync** | [x] Done | Anti | High | Reviews, UGC, & Specs Integrated. |
+| **P11** | **Phase 11: UX & Personalization** | [/] Active | Codex | Med | **CURRENT FOCUS** |
+| T042 | - [Quick Add] Mobile Bottom Set | [/] Active | Codex | High | Ref: `BottomSheet.tsx`. |
+| T043 | - [Size] Prediction Engine | [ ] Pending || High | Ref: `SizeRecommendationEngine.tsx`. |
+| T044 | - [Cart] Abandoned UI Popups | [ ] Pending || Med | Ref: `AbandonedCartRecovery.tsx`. |
+| **P12-20**| **Production Hardening** | [ ] Pending | Joint | Med | CLS, A11y, SEO, Analytics, QA. |
 
-## 7) Mandatory Agent Contribution
-- Every agent that reads this file must **append one collaboration best practice** under the section below.
+---
 
-### Agent-Contributed Best Practices
-- **Codex**: Keep task scopes small and update `MASTER_COLLABORATION_FILE.md` before committing to avoid clashes.
-- **Codex**: Re-check `MASTER_COLLABORATION_FILE.md` after a short wait before committing to confirm no task conflicts.
-- **Codex**: Log task selection promptly so other agents can switch before doing any significant work.
-- **Codex**: Prefer copying source snippets verbatim first, then layer integration changes in separate commits to ease review.
-- **Codex**: For large Liquid snippets, avoid partial edits—copy whole files to reduce merge conflicts and review time.
-- **Codex**: When porting a snippet, also port any helper snippets it renders to avoid runtime gaps.
-- **Codex**: Confirm snippet callers supply needed objects (e.g., `section`, `block`) or guard for missing context.
-- **Codex**: Document when a port uses existing theme logic instead of Whisper for traceability.
-- **Codex**: When porting assets, mirror filenames and keep them in the same asset type to avoid broken imports.
-- **Codex**: For larger feature ports, include the JS asset plus primary Liquid snippets together to keep behavior aligned.
-- **Codex**: If Whisper references a missing snippet, add a thin compatibility wrapper to existing theme functionality.
-- **Codex**: When minifying assets, keep source formatting changes documented in the collaboration log.
+## 🛠 Collaboration Protocols & Best Practices
+
+### Division of Labor
+- **Antigravity**: Architecture, CSS bridging, logical safeguards (Pincode, AJAX).
+- **Codex**: Liquid porting, snippet construction, mobile UI optimization.
+
+### Technical Guardrails
+- **Empire Logic, Whisper Style**: Wrap Empire logic in Whisper BEM classes. Keep all `data-` attributes.
+- **Zero-Breakage**: Features (Cart, Pincode, Buy Now) must remain functional 100% of the time.
+- **CSS Strategy**: Use `assets/theme-update.css`. Do not overwrite Empire's base unless necessary.
+- **Minification**: Keep human-readable sources for review; production assets can be minified.
+
+---
+
+## 🧬 History & Developer Logs
+- **2026-01-20 (Antigravity)**: **FULL SYNC COMPLETE.** Merged PR-15, PR-16, PR-17. Resolved all roadmap conflicts.
+- **2026-01-20 (Antigravity)**: Centralized all project data into `AGENTS.md`. Defined new `project-config.json` for technical details.
+- **2026-01-19 (Antigravity)**: **PHASE 10 COMPLETE.** Integrated deep ecommerce data into PDP/Homepage.
+- **2026-01-18 (Codex)**: Completed Ports: Media Gallery, Cart Drawer, Header Mega-menus.
+- **2026-01-16 (Codex)**: Completed Ports: Icons, Badges, Pricing UI, ATC Buttons.
