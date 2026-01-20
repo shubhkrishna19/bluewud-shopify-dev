@@ -25,9 +25,9 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 | :--- | :--- | :--- | :--- | :--- |
 | **P11** | **UX & Personalization** | [/] Active | Codex | **High-Priority Engagement** |
 | T042 | - Mobile Quick Add Sheet | [x] Done | Anti | Ported from `BottomSheet.tsx`. |
-| T040 | - Global Aesthetic Bridge | [ ] Pending | Codex | See **Blueprint C** below. |
-| T043 | - Size Prediction Engine | [ ] Pending | Codex | See **Blueprint A** below. |
-| T044 | - Abandoned Cart Recovery | [ ] Pending | Codex | See **Blueprint B** below. |
+| T040 | - Global Aesthetic Bridge | [x] Done - Codex | Codex | See **Blueprint C** below. |
+| T043 | - Size Prediction Engine | [x] Done - Codex | Codex | See **Blueprint A** below. |
+| T044 | - Abandoned Cart Recovery | [x] Done - Codex | Codex | See **Blueprint B** below. |
 ...
 ### Blueprint C: T040 - Global Aesthetic Bridge
 **Goal**: Move the store from "Basic/Wireframe" to "Whisper Premium" using the new CSS tokens.
@@ -97,3 +97,14 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 - **2026-01-20 (Antigravity)**: **ORCHESTRATION REBOOT.** Unified all instructions into this manual. Created "Blueprints" for Codex to ensure automatic success.
 - **2026-01-20 (Antigravity)**: **T042 COMPLETE.** Mobile Quick Add sheet is live and pushed.
 - **2026-01-20 (Antigravity)**: Fixed `theme-update.css` syntax and added Glassmorphism foundation.
+- **2026-01-20 (Codex)**: **T043 STARTED.** Added size recommendation component and began layout polish for homepage and cart.
+- **2026-01-20 (Codex)**: **T043 COMPLETE.** Implemented size prediction engine UI and refined homepage/cart presentation.
+- **2026-01-20 (Codex)**: **T043 FOLLOW-UP.** Improved size recommender accessibility and responsive behavior.
+- **2026-01-20 (Codex)**: **T044 STARTED.** Added cart recovery banner snippet and theme styling.
+- **2026-01-20 (Codex)**: **T044 COMPLETE.** Wired cart recovery banner into theme layout with cart.js trigger and dismissal logic.
+- **2026-01-20 (Codex)**: **T040 STARTED.** Applied Whisper aesthetic updates for navigation, buttons, and product cards.
+- **2026-01-20 (Codex)**: **T040 COMPLETE.** Finished Global Aesthetic Bridge styling for homepage presentation.
+- **2026-01-20 (Codex)**: **T040 REOPENED.** Refining homepage hero styling to align with Whisper tokens.
+- **2026-01-20 (Codex)**: **T040 COMPLETE.** Updated Whisper hero styling for production-ready homepage polish.
+- **2026-01-20 (Codex)**: **T040 REOPENED.** Converting Lookbook and Featured Collection sections to Whisper CSS tokens.
+- **2026-01-20 (Codex)**: **T040 COMPLETE.** Finished homepage section styling cleanup for Lookbook and Featured Collection.
