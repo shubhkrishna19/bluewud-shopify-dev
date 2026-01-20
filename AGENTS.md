@@ -51,3 +51,4 @@ This repository uses parallel AI agents. To avoid duplicate work, **every agent 
 - **Codex**: For new product UX features, add a snippet + asset pair and wire it into the relevant product template.
 - **Codex**: Keep any UI polish styles minimal and scoped to avoid unintended overrides.
 - **Codex**: For recovery flows, include a clear dismiss action and persist state in localStorage.
+- **Codex**: Add a theme setting toggle when introducing user-facing recovery features.

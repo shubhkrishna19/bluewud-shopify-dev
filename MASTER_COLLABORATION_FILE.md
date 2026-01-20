@@ -46,6 +46,7 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | T043 | - [Engine] Size Prediction | [x] Done | Codex | High | Added size predictor snippet + asset. |
 | T044 | - [UI] Final Presentation Polish | [x] Done | Codex | High | Added size predictor UI polish styles. |
 | T045 | - [Cart] Abandoned Cart Recovery | [x] Done | Codex | High | Added recovery banner + JS restore. |
+| T046 | - [Settings] Abandoned Cart Recovery Toggle | [x] Done | Codex | Med | Added settings toggle for cart recovery banner. |
 
 ---
 
@@ -156,3 +157,4 @@ To prevent collision, we strictly follow this ownership map:
 - **2026-01-18 (Codex)**: Finalized T044 with size predictor UI polish styles.
 - **2026-01-18 (Codex)**: Selected task T045 - Abandoned Cart Recovery.
 - **2026-01-18 (Codex)**: Implemented abandoned cart recovery banner + JS restore flow.
+- **2026-01-18 (Codex)**: Added setting toggle for abandoned cart recovery banner.

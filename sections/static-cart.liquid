@@ -110,27 +110,29 @@
     ]
   {% endcapture %}
 
-  <div
-    class="abandoned-cart-recovery"
-    data-abandoned-cart-recovery
-    data-cart-items='{{ abandoned_cart_items | strip_newlines | strip }}'
-  >
-    <div class="abandoned-cart-recovery__banner" data-abandoned-cart-banner hidden>
-      <div class="abandoned-cart-recovery__content">
-        <p>We saved your cart from a previous visit.</p>
-      </div>
-      <div class="abandoned-cart-recovery__actions">
-        <button class="button-secondary" type="button" data-abandoned-cart-restore>
-          Restore cart
-        </button>
-        <button class="button-link" type="button" data-abandoned-cart-dismiss>
-          Dismiss
-        </button>
+  {% if settings.enable_abandoned_cart_recovery %}
+    <div
+      class="abandoned-cart-recovery"
+      data-abandoned-cart-recovery
+      data-cart-items='{{ abandoned_cart_items | strip_newlines | strip }}'
+    >
+      <div class="abandoned-cart-recovery__banner" data-abandoned-cart-banner hidden>
+        <div class="abandoned-cart-recovery__content">
+          <p>We saved your cart from a previous visit.</p>
+        </div>
+        <div class="abandoned-cart-recovery__actions">
+          <button class="button-secondary" type="button" data-abandoned-cart-restore>
+            Restore cart
+          </button>
+          <button class="button-link" type="button" data-abandoned-cart-dismiss>
+            Dismiss
+          </button>
+        </div>
       </div>
     </div>
-  </div>
 
-  <script src="{{ 'abandoned-cart-recovery.js' | asset_url }}" defer></script>
+    <script src="{{ 'abandoned-cart-recovery.js' | asset_url }}" defer></script>
+  {% endif %}
 
   <section class="cartitems--container {% if has_sidebar %}has-sidebar{% endif %}">
     <div class="cartitems">
