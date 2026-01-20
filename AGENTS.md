@@ -58,3 +58,4 @@ This repository uses parallel AI agents. To avoid duplicate work, **every agent 
 - **Codex**: Avoid overriding section inline styles; layer lightweight class-based tweaks.
 - **Codex**: Use existing section class names when styling testimonials to avoid touching global typography.
 - **Codex**: When adjusting review widgets, use grid gaps and padding within the section wrapper to maintain consistent spacing.
+- **Codex**: Scope homepage-only polish with `.template-index` to avoid impacting section reuse on other templates.
