@@ -28,19 +28,19 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | T007 | - [Navigation] Mega-Menu Grid| [ ] Pending || High | T-ID for grid menus. |
 | T008 | - [Navigation] Mega-Promo | [ ] Pending || High | T-ID for image menus. |
 | **P4** | **Phase 4: Global Utilities** | [ ] Pending | Joint | Med | **Codex Takeover Target** |
-| T013 | - [Icons] SVG Library Port | [ ] Pending || Low | Port `snippets/icon.liquid`. |
-| T014 | - [Spacing] Padding Helpers | [ ] Pending || Med | Port `spacing-padding.liquid`. |
-| T015 | - [Badges] Product Badges | [ ] Pending || Med | Port `snippets/badge.liquid`. |
+| T013 | - [Icons] SVG Library Port | [x] Done | Codex | Low | d202c27 |
+| T014 | - [Spacing] Padding Helpers | [x] Done | Codex | Med | b7aea30 |
+| T015 | - [Badges] Product Badges | [x] Done | Codex | Med | 2558d15 |
 | **P5** | **Phase 5: Product Page UI** | [ ] Pending | Joint | High | Visual parity for PDP. |
-| T016 | - [Media] Gallery Layout | [ ] Pending || High | Port Whisper gallery logic. |
-| T017 | - [Price] Dynamic Pricing UI| [ ] Pending || High | Port `snippets/price.liquid`. |
-| T018 | - [ATC] Button Styling | [ ] Pending || High | Port `add-to-cart-button`. |
+| T016 | - [Media] Gallery Layout | [x] Done | Codex | High | 5af2c7b |
+| T017 | - [Price] Dynamic Pricing UI| [x] Done | Codex | High | 5ec515e |
+| T018 | - [ATC] Button Styling | [x] Done | Codex | High | 0795b6c |
 | **P6** | **Phase 6: Cart & Checkout UX**| [ ] Pending | Codex | Med | Polish transactional UI. |
-| T019 | - [Drawer] Whisper Cart | [ ] Pending || High | Port `cart-drawer.liquid`. |
-| T020 | - [Summary] Cart Summaries | [ ] Pending || Med | Port `cart-summary.liquid`. |
+| T019 | - [Drawer] Whisper Cart | [x] Done | Codex | High | e5f2793 |
+| T020 | - [Summary] Cart Summaries | [x] Done | Codex | Med | 3fe761b |
 | **P7** | **Phase 7: Optimization** | [ ] Pending | Joint | Low | Core Web Vitals + Clean. |
 | T021 | - [Asset] CSS Minification | [ ] Pending || Low | Consolidate themes. |
-| T022 | - [JS] Lazy Loading Hydrate | [ ] Pending || Med | Sync `section-hydration.js`. |
+| T022 | - [JS] Lazy Loading Hydrate | [x] Done | Codex | Med | d2482df |
 
 ---
 
@@ -113,3 +113,12 @@ To prevent collision, we strictly follow this ownership map:
 - **2026-01-15 (Antigravity)**: Completed deep-dive into `whispertheme`. Mapped all CSS variables and identified primary porting targets. Ready for Codex to begin Liquid integration. Migration status updated to **22%**.
 - **2026-01-15 (Antigravity)**: Initiated Typography Overhaul. Transitioning store to Inter/Barlow for premium aesthetics. Preparing to port `whisper-hero.liquid`.
 - **2026-01-15 (Antigravity)**: **PHASE 2 COMPLETE.** Typography and Hero live. Migration status: **28%**. Expanded roadmap for Phases 3 & 4 with specialized tasks for Codex.
+- **2026-01-16 (Codex)**: Completed T013 by porting `snippets/icon.liquid` into the active theme. Commit: d202c27.
+- **2026-01-16 (Codex)**: Completed T014 by porting `snippets/spacing-padding.liquid`. Commit: b7aea30.
+- **2026-01-16 (Codex)**: Completed T015 by porting `snippets/badge.liquid`. Commit: 2558d15.
+- **2026-01-16 (Codex)**: Completed T017 by porting `snippets/price.liquid`. Commit: 5ec515e.
+- **2026-01-16 (Codex)**: Completed T018 by porting `snippets/add-to-cart-button.liquid`. Commit: 0795b6c.
+- **2026-01-16 (Codex)**: Completed T020 by porting `snippets/cart-summary.liquid`. Commit: 3fe761b.
+- **2026-01-16 (Codex)**: Completed T019 by adding Whisper cart drawer supporting scripts. Commit: e5f2793.
+- **2026-01-16 (Codex)**: Completed T016 by porting product media gallery snippets and script. Commit: 5af2c7b.
+- **2026-01-16 (Codex)**: Completed T022 by adding `section-hydration.js`. Commit: d2482df.
