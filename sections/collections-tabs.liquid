@@ -87,22 +87,52 @@
     const tabs = Array.from(section.querySelectorAll('.whisper-collections-tabs__tab'));
     const panels = Array.from(section.querySelectorAll('.shopify-tab-content'));
 
-    tabs.forEach((tab) => {
+    const activateTab = (tab) => {
+      const tabId = tab.getAttribute('data-tab');
+      tabs.forEach((item) => {
+        item.classList.remove('current');
+        item.setAttribute('aria-selected', 'false');
+        item.setAttribute('tabindex', '-1');
+      });
+      panels.forEach((panel) => panel.classList.remove('current'));
+      tab.classList.add('current');
+      tab.setAttribute('aria-selected', 'true');
+      tab.setAttribute('tabindex', '0');
+      const activePanel = section.querySelector(`#${tabId}`);
+      if (activePanel) {
+        activePanel.classList.add('current');
+      }
+    };
+
+    tabs.forEach((tab, index) => {
       tab.addEventListener('click', () => {
-        const tabId = tab.getAttribute('data-tab');
-        tabs.forEach((item) => {
-          item.classList.remove('current');
-          item.setAttribute('aria-selected', 'false');
-          item.setAttribute('tabindex', '-1');
-        });
-        panels.forEach((panel) => panel.classList.remove('current'));
-        tab.classList.add('current');
-        tab.setAttribute('aria-selected', 'true');
-        tab.setAttribute('tabindex', '0');
-        const activePanel = section.querySelector(`#${tabId}`);
-        if (activePanel) {
-          activePanel.classList.add('current');
-          activePanel.focus({ preventScroll: true });
+        activateTab(tab);
+        tab.focus();
+      });
+
+      tab.addEventListener('keydown', (event) => {
+        const { key } = event;
+        if (!['ArrowLeft', 'ArrowRight', 'Home', 'End'].includes(key)) {
+          return;
+        }
+        event.preventDefault();
+        let nextIndex = index;
+        if (key === 'ArrowRight') {
+          nextIndex = (index + 1) % tabs.length;
+        }
+        if (key === 'ArrowLeft') {
+          nextIndex = (index - 1 + tabs.length) % tabs.length;
+        }
+        if (key === 'Home') {
+          nextIndex = 0;
+        }
+        if (key === 'End') {
+          nextIndex = tabs.length - 1;
+        }
+        const nextTab = tabs[nextIndex];
+        if (nextTab) {
+          activateTab(nextTab);
+          nextTab.focus();
         }
       });
     });

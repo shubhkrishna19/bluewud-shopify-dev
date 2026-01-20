@@ -897,6 +897,7 @@ h6 {
     cursor: pointer;
     transition: var(--transition-premium);
     border: none;
+    font: inherit;
 }
 
 .whisper-collections-tabs__tab.current {

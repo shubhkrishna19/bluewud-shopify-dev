@@ -123,3 +123,4 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 - **2026-01-20 (Codex)**: **Homepage Goal Progress.** Tokenized collections tabs and promo grid for homepage readiness.
 - **2026-01-20 (Codex)**: **T040 REOPENED.** Polished collections tabs and promo grid layout spacing.
 - **2026-01-20 (Codex)**: **T040 COMPLETE.** Added responsive grid, hover, and accessible tabs refinements for homepage collections/promo.
+- **2026-01-20 (Codex)**: **T040 FOLLOW-UP.** Added keyboard navigation support for homepage collections tabs.
