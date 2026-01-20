@@ -23,29 +23,32 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 
 | ID | Task Name | Status | Owner | Blueprint / Roadmap |
 | :--- | :--- | :--- | :--- | :--- |
-| **P11** | **UX & Personalization** | [/] Active | Codex | **High-Velocity UI Track** |
-| T040 | - Global Aesthetic Bridge | [/] Active | Codex | **Blueprint C**. Apply Glass + Gradients. |
-| T042 | - Mobile Quick Add Sheet | [x] Done | Anti | Completed (AJAX/Gestures). |
-| T043 | - Size Prediction Engine | [x] Done | Codex | Completed (Ported from reference). |
-| T044 | - Abandoned Cart Recovery | [ ] Pending || See **Blueprint B**. |
-| T047 | - Floating Quick Action Bar | [ ] Pending || Mobile thumb-friendly actions. |
-| T048 | - Micro-interactions (Lottie) | [ ] Pending || SVG animations for icons/buttons. |
+| **P11** | **UX & Personalization** | [/] Active | Codex/Anti | **High-Velocity UI Track** |
+| T040 | - Global Aesthetic Bridge | [x] Done | Codex | Glassmorphism foundation. |
+| T042 | - Mobile Quick Add Sheet | [x] Done | Anti | AJAX + Gesture sheet. |
+| T043 | - Size Prediction Engine | [x] Done | Codex | Polished modal activation. |
+| T044 | - Abandoned Cart Recovery | [x] Done | Codex | Animated banner activation. |
+| T047 | - Floating Quick Action Bar | [ ] Pending || **Mobile UX**. Thumb-friendly bar. |
+| T048 | - Micro-interactions (Lottie) | [ ] Pending || **Delight**. SVG button states. |
 | **P12** | **Growth & Conversions** | [ ] Pending | Codex | **Revenue Optimization** |
 | T045 | - Referral Rewards Portal | [ ] Pending || Port from `ReferralProgram.tsx`. |
-| T046 | - Spin-to-Win Gamification | [ ] Pending || High-engagement lead magnet. |
-| T050 | - Post-Purchase Upsell Box | [ ] Pending || Dynamic "Others also bought" logic. |
-| **P13** | **Product Page Hardening** | [ ] Pending || **PDP Visual Superiority** |
-| T055 | - Dynamic Image Zoom v2 | [ ] Pending || Ultra-high res hover zoom system. |
-| T056 | - Video Player Integration | [ ] Pending || Auto-playing product videos in gallery. |
-| T057 | - Real-time Stock Counter | [ ] Pending || "Only X left!" social proof logic. |
+| T046 | - Spin-to-Win Gamification | [ ] Pending || See **Blueprint D**. |
+| T049 | - Haptic Feedback Sync | [ ] Pending || Browser Vibrate API for actions. |
+| T050 | - Post-Purchase Upsell Box | [ ] Pending || Dynamic "Others bought" logic. |
+| T051 | - "Available Offers" Widget | [ ] Pending || See **Blueprint E**. |
+| **P13** | **Product & Content Polish** | [ ] Pending || **High-Trust Assets** |
+| T055 | - Dynamic Image Zoom v2 | [ ] Pending || Ultra-high res hover zoom. |
+| T056 | - Video Player Integration | [ ] Pending || Auto-playing product videos. |
+| T057 | - Real-time Stock Counter | [ ] Pending || Social proof "Only X left!". |
+| T058 | - Reviews & Social Proof | [ ] Pending || Glassmorphic Review Cards. |
 | **P14** | **Performance & Search** | [ ] Pending | Anti | **Speed & Visibility** |
-| T060 | - Predictive Search UI | [ ] Pending || Visual search results (Aesthetic bridge). |
-| T061 | - Image Optimization Audit | [ ] Pending || WebP migration & lazy loading checks. |
+| T060 | - Predictive Search UI | [ ] Pending || Visual search results. |
+| T061 | - Image Optimization Audit | [ ] Pending || WebP migration & lazy loading. |
 | T062 | - Critical CSS Inlining | [ ] Pending || Score 95+ on Mobile Lighthouse. |
 | **P15** | **Production QA & Polish** | [ ] Pending || **Final Pre-Launch Audit** |
-| T070 | - Checkout UI Sync | [ ] Pending || Syncing checkout colors with Whisper. |
-| T071 | - Email/SMS Template Sync | [ ] Pending || Whisper-branded notification designs. |
-| T072 | - Error Page (404) Design | [ ] Pending || Create a premium "Lost in space" 404. |
+| T070 | - Checkout UI Sync | [ ] Pending || Syncing checkout with Whisper. |
+| T071 | - Email/SMS Template Sync | [ ] Pending || Whisper-branded notifications. |
+| T072 | - Error Page (404) Design | [ ] Pending || Premium "Lost in space" 404. |
 
 ---
 
@@ -117,6 +120,6 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 - **2026-01-20 (Antigravity)**: **ORCHESTRATION REBOOT.** Unified all instructions. Created "Blueprints" and root `package.json` for Discovery.
 - **2026-01-20 (Antigravity)**: **T042 COMPLETE.** Mobile Quick Add sheet is live and pushed.
 - **2026-01-20 (Antigravity)**: Fixed `theme-update.css` syntax and added Glassmorphism foundation.
-- **2026-01-20 (Codex)**: **T043 STARTED.** Added size recommendation component and began layout polish for homepage and cart.
-- **2026-01-20 (Codex)**: **T043 COMPLETE.** Implemented size prediction engine UI and refined homepage/cart presentation.
-- **2026-01-20 (Codex)**: **T043 FOLLOW-UP.** Improved size recommender accessibility and responsive behavior.
+- **2026-01-20 (Codex)**: **T040 COMPLETE.** Updated Whisper hero styling for production-ready homepage polish.
+- **2026-01-20 (Antigravity)**: **HOMEPAGE HARDENING.** Resolved Cart Drawer stuck-open bug (White Area blocker). Activated Size Engine & Recovery UI with premium Glassmorphism.
+- **2026-01-20 (Antigravity)**: **FINAL SYNC.** Merged all remaining Codex PR branches and consolidated the repo. Ready for multi-agent development.

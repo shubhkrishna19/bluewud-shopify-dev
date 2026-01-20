@@ -147,10 +147,8 @@
     -webkit-backdrop-filter: var(--glass-blur);
     border: var(--glass-border);
     border-radius: 24px;
-    /* More rounded */
     padding: var(--padding-4xl);
     box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-    /* Premium shadow */
     position: relative;
     animation: slide-up-premium 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -170,7 +168,6 @@
 .whisper-size-engine__field input,
 .whisper-size-engine__field select {
     background: rgba(255, 255, 255, 0.5);
-    /* Semi-transparent */
     border: 1px solid rgba(0, 0, 0, 0.1);
     backdrop-filter: blur(4px);
     transition: var(--transition-premium);
