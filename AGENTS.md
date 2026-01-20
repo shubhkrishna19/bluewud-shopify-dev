@@ -104,3 +104,5 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 - **2026-01-20 (Codex)**: **T044 COMPLETE.** Wired cart recovery banner into theme layout with cart.js trigger and dismissal logic.
 - **2026-01-20 (Codex)**: **T040 STARTED.** Applied Whisper aesthetic updates for navigation, buttons, and product cards.
 - **2026-01-20 (Codex)**: **T040 COMPLETE.** Finished Global Aesthetic Bridge styling for homepage presentation.
+- **2026-01-20 (Codex)**: **T040 REOPENED.** Refining homepage hero styling to align with Whisper tokens.
+- **2026-01-20 (Codex)**: **T040 COMPLETE.** Updated Whisper hero styling for production-ready homepage polish.
