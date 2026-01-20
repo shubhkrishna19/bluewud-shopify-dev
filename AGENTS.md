@@ -24,6 +24,7 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 
 | ID | Task Name | Status | Owner | Blueprint / Roadmap |
 | :--- | :--- | :--- | :--- | :--- |
+<<<<<<< HEAD
 | **P11** | **UX & Personalization** | [/] Active | Codex/Anti | **High-Velocity UI Track** |
 | T040 | - Global Aesthetic Bridge | [x] Done | Codex | Glassmorphism foundation. |
 | T042 | - Mobile Quick Add Sheet | [x] Done | Anti | AJAX + Gesture sheet. |
@@ -57,6 +58,27 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 | T070 | - Checkout UI Sync | [ ] Pending || Syncing checkout with Whisper. |
 | T071 | - Email/SMS Template Sync | [ ] Pending || Whisper-branded notifications. |
 | T072 | - Error Page (404) Design | [ ] Pending || Premium "Lost in space" 404. |
+=======
+| **P11** | **UX & Personalization** | [/] Active | Codex | **High-Priority Engagement** |
+| T042 | - Mobile Quick Add Sheet | [x] Done | Anti | Ported from `BottomSheet.tsx`. |
+| T040 | - Global Aesthetic Bridge | [x] Done - Codex | Codex | See **Blueprint C** below. |
+| T043 | - Size Prediction Engine | [x] Done - Codex | Codex | See **Blueprint A** below. |
+| T044 | - Abandoned Cart Recovery | [x] Done - Codex | Codex | See **Blueprint B** below. |
+...
+### Blueprint C: T040 - Global Aesthetic Bridge
+**Goal**: Move the store from "Basic/Wireframe" to "Whisper Premium" using the new CSS tokens.
+1. **Header/Nav**: Apply `.whisper-glass` to the header background and `.whisper-gradient-text` to the active nav links.
+2. **Product Cards**: Apply `.whisper-card-hover` to all product cards in `product-grid-item.liquid`.
+3. **Buttons**: Ensure all primary buttons use `var(--gradient-vibrant)` and `var(--transition-premium)`.
+4. **Spacing**: Audit all sections for consistent `var(--padding-4xl)` usage for desktop margins to create "breathing room" (Airy UI).
+| T049 | - Haptic Feedback Sync | [ ] Pending || Browser Vibrate API for mobile actions. |
+| **P12** | **Growth & Gamification**| [ ] Pending | Codex | **Sales Velocity Track** |
+| T045 | - Referral Rewards UI | [ ] Pending || Port from `ReferralProgram.tsx`. |
+| T046 | - Spin The Wheel (Daily) | [ ] Pending || Premium interactive gamification. |
+| **P13** | **Performance & A11y** | [ ] Pending | Anti | **Production Hardening** |
+| T051 | - Skeleton Loaders (CLS) | [ ] Pending || Dynamic placeholders for all sections. |
+| T052 | - Critical CSS Inline | [ ] Pending || Score 100/100 on Lighthouse. |
+>>>>>>> origin/codex/review-project-files-and-documentation-ol080r
 
 ---
 
@@ -91,6 +113,14 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 1. **Container**: Use `.whisper-glass` with `var(--padding-lg)`.
 2. **Icons**: Use Whisper SVG library for "Bank Offer", "No Cost EMI", etc.
 3. **Layout**: Horizontal scrolling flexbox on mobile, grid on desktop.
+
+---
+
+## 🎯 Current Development Goals (Homepage First)
+1. Verify CTA hierarchy and product grid consistency before inner-page work.
+2. Validate homepage spacing rhythm across all sections and remove any leftover utility styles.
+3. Smoke-check interactive elements (tabs, size engine, cart recovery) in theme preview.
+4. Harmonize highlights banner styling with Whisper glass tokens.
 
 ---
 
@@ -153,6 +183,7 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 - **2026-01-20 (Antigravity)**: **ORCHESTRATION REBOOT.** Unified all instructions. Created "Blueprints" and root `package.json` for Discovery.
 - **2026-01-20 (Antigravity)**: **T042 COMPLETE.** Mobile Quick Add sheet is live and pushed.
 - **2026-01-20 (Antigravity)**: Fixed `theme-update.css` syntax and added Glassmorphism foundation.
+<<<<<<< HEAD
 - **2026-01-20 (Codex)**: **T040 COMPLETE.** Updated Whisper hero styling for production-ready homepage polish.
 - **2026-01-20 (Antigravity)**: **HOMEPAGE HARDENING.** Resolved Cart Drawer stuck-open bug (White Area blocker). Activated Size Engine & Recovery UI with premium Glassmorphism.
 - **2026-01-20 (Antigravity)**: **FINAL SYNC.** Merged all remaining Codex PR branches and consolidated the repo. Ready for multi-agent development.
@@ -225,6 +256,8 @@ This repository uses parallel AI agents. To avoid duplicate work, **every agent 
 - **Codex**: If a section is reused across templates, avoid scoping styles to a single template unless requested.
 - **Codex**: After amending commits, reconcile any logged commit hashes in coordination files.
 
+=======
+>>>>>>> origin/codex/review-project-files-and-documentation-ol080r
 - **2026-01-20 (Codex)**: **T043 STARTED.** Added size recommendation component and began layout polish for homepage and cart.
 - **2026-01-20 (Codex)**: **T043 COMPLETE.** Implemented size prediction engine UI and refined homepage/cart presentation.
 - **2026-01-20 (Codex)**: **T043 FOLLOW-UP.** Improved size recommender accessibility and responsive behavior.
