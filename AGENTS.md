@@ -66,12 +66,20 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 3. **Reference**: Read `ecommerce-app/src/components/AbandonedCartRecovery.tsx`.
 4. **Sync**: Integrate with Shopify's `cart.js` AJAX api.
 
-### Blueprint C: T040 - Global Aesthetic Bridge
-**Goal**: Move the store from "Basic/Wireframe" to "Whisper Premium" using the new CSS tokens.
-1. **Header/Nav**: Apply `.whisper-glass` to the header background and `.whisper-gradient-text` to active nav links.
-2. **Product Cards**: Apply `.whisper-card-hover` to all product cards in `product-grid-item.liquid`.
-3. **Buttons**: Ensure all primary buttons use `var(--gradient-vibrant)` and `var(--transition-premium)`.
 4. **Spacing**: Audit all sections for consistent `var(--padding-4xl)` usage for desktop margins.
+
+### Blueprint D: T046 - Spin-to-Win Gamification
+**Goal**: Increase email captures with a fun, interactive wheel.
+1. **Trigger**: Show after 15 seconds or 50% scroll for new users.
+2. **Logic**: Store 'Already Spun' state in `localStorage`.
+3. **Prizes**: Static discount codes defined in a JSON object.
+4. **Style**: Circular canvas with `var(--gradient-vibrant)` segments.
+
+### Blueprint E: T051 - "Available Offers" Widget
+**Goal**: Modernize the bland text blocks on the PDP into glassmorphic cards.
+1. **Container**: Use `.whisper-glass` with `var(--padding-lg)`.
+2. **Icons**: Use Whisper SVG library for "Bank Offer", "No Cost EMI", etc.
+3. **Layout**: Horizontal scrolling flexbox on mobile, grid on desktop.
 
 ---
 

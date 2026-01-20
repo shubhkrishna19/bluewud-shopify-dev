@@ -139,6 +139,48 @@
     }
 }
 
+/* --- T043: Size Prediction Engine Polish --- */
+.whisper-size-engine__dialog {
+    width: min(460px, 90vw);
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    -webkit-backdrop-filter: var(--glass-blur);
+    border: var(--glass-border);
+    border-radius: 24px;
+    /* More rounded */
+    padding: var(--padding-4xl);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    /* Premium shadow */
+    position: relative;
+    animation: slide-up-premium 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+@keyframes slide-up-premium {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.whisper-size-engine__field input,
+.whisper-size-engine__field select {
+    background: rgba(255, 255, 255, 0.5);
+    /* Semi-transparent */
+    border: 1px solid rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(4px);
+    transition: var(--transition-premium);
+}
+
+.whisper-size-engine__field input:focus {
+    border-color: var(--color-modern-blue);
+    box-shadow: 0 0 0 4px rgba(37, 99, 235, 0.1);
+}
+
 .whisper-size-engine__modal {
     position: fixed;
     inset: 0;
@@ -225,17 +267,22 @@
 /* Whisper Cart Recovery */
 .whisper-cart-recovery {
     position: fixed;
-    left: 50%;
-    bottom: 24px;
-    transform: translateX(-50%) translateY(20px);
-    max-width: min(960px, 92vw);
-    width: 100%;
-    padding: var(--padding-lg);
+    right: 32px;
+    /* Bottom right placement */
+    bottom: 32px;
+    max-width: 400px;
+    /* Constrained for desktop mini-banner */
+    width: calc(100% - 64px);
+    padding: var(--padding-xl);
     border-radius: 20px;
     opacity: 0;
     pointer-events: none;
     transition: var(--transition-premium);
     z-index: 2200;
+    background: var(--glass-bg);
+    backdrop-filter: var(--glass-blur);
+    border: var(--glass-border);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 0 20px rgba(99, 102, 241, 0.2);
 }
 
 .whisper-cart-recovery.is-active {
@@ -347,8 +394,8 @@ body {
     padding: var(--padding-4xl) 0;
 }
 
-.template-index .shopify-section > .section--canonical,
-.template-index .shopify-section > .section {
+.template-index .shopify-section>.section--canonical,
+.template-index .shopify-section>.section {
     max-width: 1280px;
     margin: 0 auto;
     padding: 0 var(--padding-xl);
@@ -1081,4 +1128,51 @@ h6 {
 .whisper-hero .hero__text,
 .whisper-hero .hero__button {
     font-family: var(--font-body-family) !important;
+}
+
+/* --- CRITICAL: Empire Cart Drawer/Overlay Fix --- */
+/* Resolves the "White Area" bug where the cart drawer initializes as open/opaque */
+
+.cart-drawer-container,
+.cart-drawer,
+[data-cart-drawer] {
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+    transition: opacity 0.4s ease, visibility 0.4s ease !important;
+}
+
+.cart-drawer-container.is-open,
+.cart-drawer.is-open,
+[data-cart-drawer].is-open {
+    visibility: visible !important;
+    opacity: 1 !important;
+    pointer-events: auto !important;
+    background: var(--glass-bg) !important;
+    backdrop-filter: var(--glass-blur) !important;
+    -webkit-backdrop-filter: var(--glass-blur) !important;
+}
+
+/* Ensure the drawer doesn't take 100% width on desktop */
+@media (min-width: 1024px) {
+
+    .cart-drawer,
+    [data-cart-drawer] {
+        width: 450px !important;
+        left: auto !important;
+        right: 0 !important;
+        box-shadow: -10px 0 50px rgba(0, 0, 0, 0.1) !important;
+    }
+}
+
+/* Fix for invisible overlays blocking the site */
+.site-overlay,
+.modal-backdrop {
+    display: none;
+}
+
+.site-overlay.is-open {
+    display: block;
+    background: rgba(15, 23, 42, 0.4);
+    backdrop-filter: blur(4px);
 }
