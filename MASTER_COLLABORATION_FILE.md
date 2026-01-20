@@ -54,6 +54,7 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | T051 | - [Homepage] Testimonials Polish | [x] Done | Codex | Med | Refined testimonials section styling. |
 | T052 | - [Homepage] Reviews Ratings Polish | [x] Done | Codex | Med | bdb7a87 |
 | T053 | - [Homepage] Reviews Ratings Scope Fix | [x] Done | Codex | Low | 6fd4c89 |
+| T054 | - [Homepage] Reviews Ratings Scope Rollback | [x] Done | Codex | Low | 0d4d743 |
 
 ---
 
@@ -179,3 +180,5 @@ To prevent collision, we strictly follow this ownership map:
 - **2026-01-18 (Codex)**: Completed task T052 - Homepage Reviews Ratings polish (commit bdb7a87).
 - **2026-01-18 (Codex)**: Selected task T053 - Homepage Reviews Ratings scope fix.
 - **2026-01-18 (Codex)**: Completed task T053 - Homepage Reviews Ratings scope fix (commit 6fd4c89).
+- **2026-01-18 (Codex)**: Selected task T054 - Homepage Reviews Ratings scope rollback.
+- **2026-01-18 (Codex)**: Completed task T054 - Homepage Reviews Ratings scope rollback (commit 0d4d743).
