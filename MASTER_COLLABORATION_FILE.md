@@ -23,15 +23,15 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | **P3** | **Phase 3: Structural Header** | [/] Active | Joint | High | Applying `whispertheme` aesthetics to Empire. |
 | T004 | - [Header] Liquid Port | [x] Done | Anti | High | Ported modular logic. |
 | T005 | - [Header] CSS Mapping | [x] Done | Anti | High | Integrated to `theme-update.css`. |
-| T006 | - [Navigation] Mobile Drawer| [x] Done | Anti | Med | Integrated to `whisper-header`. |
-| T007 | - [Navigation] Mega-Menu Grid| [x] Done | Anti | High | Integrated via `whisper-mega-menu-list`. |
-| T008 | - [Navigation] Mega-Promo | [x] Done | Anti | High | Integrated via `whisper-mega-menu-list`. |
+| T006 | - [Navigation] Mobile Drawer| [x] Done | Codex | Med | Integrated to `whisper-header`. |
+| T007 | - [Navigation] Mega-Menu Grid| [x] Done | Codex | High | Integrated via `whisper-mega-menu-list`. |
+| T008 | - [Navigation] Mega-Promo | [x] Done | Codex | High | Integrated via `whisper-mega-menu-list`. |
 | **P4** | **Phase 4: Global Utilities** | [ ] Pending | Joint | Med | **Codex Takeover Target** |
 | T013 | - [Icons] SVG Library Port | [x] Done | Codex | Low | d202c27 |
 | T014 | - [Spacing] Padding Helpers | [x] Done | Codex | Med | b7aea30 |
 | T015 | - [Badges] Product Badges | [x] Done | Codex | Med | 2558d15 |
 | **P5** | **Phase 5: Product Page UI** | [ ] Pending | Joint | High | Visual parity for PDP. |
-| T016 | - [Media] Gallery Layout | [ ] Pending || High | Port Whisper gallery logic. |
+| T016 | - [Media] Gallery Layout | [x] Done | Codex | High | Ported media gallery snippets. |
 | T017 | - [Price] Dynamic Pricing UI| [x] Done | Codex | High | 5ec515e |
 | T018 | - [ATC] Button Styling | [x] Done | Codex | High | 0795b6c |
 | T023 | - [Grid] **Product Card UI** | [/] Active | **Codex** | High | Wrapping items with Whisper structure. |
@@ -39,8 +39,8 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | T019 | - [Drawer] Whisper Cart | [x] Done | Codex | High | e5f2793 |
 | T020 | - [Summary] Cart Summaries | [x] Done | Codex | Med | 3fe761b |
 | **P7** | **Phase 7: Optimization** | [ ] Pending | Joint | Low | Core Web Vitals + Clean. |
-| T021 | - [Asset] CSS Minification | [ ] Pending || Low | Consolidate themes. |
-| T022 | - [JS] Lazy Loading Hydrate | [ ] Pending || Med | Sync `section-hydration.js`. |
+| T021 | - [Asset] CSS Minification | [x] Done | Codex | Low | Minified `assets/theme-update.css`. |
+| T022 | - [JS] Lazy Loading Hydrate | [x] Done | Codex | Med | Added `assets/section-hydration.js`. |
 | T023 | - [Homepage] Slideshow | [ ] Pending || High | Port `sections/slideshow.liquid`. |
 | T024 | - [Homepage] Bestsellers | [ ] Pending || High | Port `sections/bestsellers.liquid`. |
 | T025 | - [Homepage] New Launches | [ ] Pending || High | Port `sections/new-launches.liquid`. |
@@ -99,6 +99,26 @@ To prevent duplication, every agent **MUST** follow this protocol:
 - **Phase 3 (Header/Nav)**: [ACTIVE] - Porting JS dependencies & Mega-menu.
 - **Phase 10 (Ecommerce Integration)**: [ACTIVE] - Syncing Review/Social Proof logic from `ecommerce-app`.
 - **Phase 8 (Homepage Parity)**: [ACTIVE] - Mirroring `bluewud.com` section-for-section.
+=======
+| T005 | - [Header] CSS Mapping | [/] Active | Anti | High | Integrating to `theme-update.css`. |
+| T006 | - [Navigation] Mobile Drawer| [x] Done | Codex | Med | Added `snippets/header-drawer.liquid`. |
+| T007 | - [Navigation] Mega-Menu Grid| [x] Done | Codex | High | Added `snippets/mega-menu-list.liquid` and `snippets/util-mega-menu-img-sizes-attr.liquid`. |
+| T008 | - [Navigation] Mega-Promo | [x] Done | Codex | High | Added `snippets/mega-promo.liquid` compatibility wrapper. |
+| **P4** | **Phase 4: Global Utilities** | [ ] Pending | Joint | Med | **Codex Takeover Target** |
+| T013 | - [Icons] SVG Library Port | [x] Done | Codex | Low | Added `snippets/icon.liquid` (commit 77f04b2). |
+| T014 | - [Spacing] Padding Helpers | [x] Done | Codex | Med | Added `snippets/spacing-padding.liquid`. |
+| T015 | - [Badges] Product Badges | [x] Done | Codex | Med | Added `snippets/badge.liquid` (based on existing product badge logic). |
+| **P5** | **Phase 5: Product Page UI** | [ ] Pending | Joint | High | Visual parity for PDP. |
+| T016 | - [Media] Gallery Layout | [x] Done | Codex | High | Added media gallery snippets and asset. |
+| T017 | - [Price] Dynamic Pricing UI| [x] Done | Codex | High | Added `snippets/price.liquid`. |
+| T018 | - [ATC] Button Styling | [x] Done | Codex | High | Added `snippets/add-to-cart-button.liquid`. |
+| **P6** | **Phase 6: Cart & Checkout UX**| [ ] Pending | Codex | Med | Polish transactional UI. |
+| T019 | - [Drawer] Whisper Cart | [x] Done | Codex | High | Added `snippets/cart-drawer.liquid`. |
+| T020 | - [Summary] Cart Summaries | [x] Done | Codex | Med | Added `snippets/cart-summary.liquid`. |
+| **P7** | **Phase 7: Optimization** | [ ] Pending | Joint | Low | Core Web Vitals + Clean. |
+| T021 | - [Asset] CSS Minification | [x] Done | Codex | Low | Minified `assets/theme-update.css`. |
+| T022 | - [JS] Lazy Loading Hydrate | [x] Done | Codex | Med | Added `assets/section-hydration.js`. |
+>>>>>>> pr-17
 
 ---
 
@@ -171,8 +191,11 @@ To prevent collision, we strictly follow this ownership map:
 - **2026-01-15 (Antigravity)**: Completed deep-dive into `whispertheme`. Mapped all CSS variables and identified primary porting targets. Ready for Codex to begin Liquid integration. Migration status updated to **22%**.
 - **2026-01-15 (Antigravity)**: Initiated Typography Overhaul. Transitioning store to Inter/Barlow for premium aesthetics. Preparing to port `whisper-hero.liquid`.
 - **2026-01-15 (Antigravity)**: **PHASE 2 COMPLETE.** Typography and Hero live. Migration status: **28%**. Expanded roadmap for Phases 3 & 4 with specialized tasks for Codex.
-- **2026-01-16 (Codex)**: Completed T013, T014, T015, T017, T018, T020, T019. Integrated Whisper SVG library, padding helpers, product badges, pricing UI, ATC buttons, and cart summaries.
-- **2026-01-18 (Codex)**: Ported Whisper header drawer snippet and mega menu grid snippets.
+- **2026-01-16 (Codex)**: Completed Phase 4, 5, 6 tasks (T013-T020). Integrated SVG library, pricing, ATC, and cart summaries.
+- **2026-01-18 (Codex)**: Ported Whisper media gallery and lazy loading scripts (T016, T022).
+- **2026-01-18 (Codex)**: Ported Whisper header drawer and mega menu components (T006, T007, T008).
+- **2026-01-18 (Codex)**: Optimized global assets with CSS minification (T021).
+- **2026-01-18 (Codex)**: Initialized `AGENTS.md` for team coordination.
 - **2026-01-19 (Antigravity)**: **PHASE 10 CORE COMPLETE.** Integrated Reviews, Stock, UGC, and Specs into PDP.
 - **2026-01-19 (Antigravity)**: **HOMEPAGE & UX SYNC COMPLETE.** Implemented Lookbook, Featured Collection, and AJAX Cart Drawer.
 - **2026-01-20 (Antigravity)**: **PHASE 3 COMPLETE.** Unified Structural Header & Navigation.

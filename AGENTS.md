@@ -41,3 +41,9 @@ This repository uses parallel AI agents. To avoid duplicate work, **every agent 
 - **Codex**: Prefer copying source snippets verbatim first, then layer integration changes in separate commits to ease review.
 - **Codex**: For large Liquid snippets, avoid partial edits—copy whole files to reduce merge conflicts and review time.
 - **Codex**: When porting a snippet, also port any helper snippets it renders to avoid runtime gaps.
+- **Codex**: Confirm snippet callers supply needed objects (e.g., `section`, `block`) or guard for missing context.
+- **Codex**: Document when a port uses existing theme logic instead of Whisper for traceability.
+- **Codex**: When porting assets, mirror filenames and keep them in the same asset type to avoid broken imports.
+- **Codex**: For larger feature ports, include the JS asset plus primary Liquid snippets together to keep behavior aligned.
+- **Codex**: If Whisper references a missing snippet, add a thin compatibility wrapper to existing theme functionality.
+- **Codex**: When minifying assets, keep source formatting changes documented in the collaboration log.

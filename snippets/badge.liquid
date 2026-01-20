@@ -1,4 +1,8 @@
-{% comment %} Product badge helper ported from Whisper block markup. {% endcomment %}
+{% comment %}
+  Refined product badge helper merging Whisper aesthetics with Empire logic.
+  Supports: sold out, sale (percentage/money/standard).
+{% endcomment %}
+
 {%- liquid
   assign badge_product = product
   if badge_product == blank
@@ -19,18 +23,24 @@
       --badge-text-transform: {{ settings.badge_text_transform }};
     "
   >
-    {%- if badge_product.available == false or badge_product.compare_at_price > badge_product.price -%}
-      <div
-        class="
-          product-badges__badge product-badges__badge--rectangle
-          {% if badge_product.available == false %} color-{{ settings.badge_sold_out_color_scheme }}{% elsif badge_product.compare_at_price > badge_product.price %} color-{{ settings.badge_sale_color_scheme }}{% endif %}
-        "
-      >
-        {%- if badge_product.available == false -%}
-          {{ 'content.product_badge_sold_out' | t }}
-        {%- elsif badge_product.compare_at_price > badge_product.price -%}
-          {{ 'content.product_badge_sale' | t }}
-        {%- endif -%}
+    {%- if badge_product.available == false -%}
+      <div class="product-badges__badge product-badges__badge--rectangle color-{{ settings.badge_sold_out_color_scheme }}">
+        {{ 'product_price.badge.sold_out' | t }}
+      </div>
+    {%- elsif badge_product.compare_at_price > badge_product.price -%}
+      <div class="product-badges__badge product-badges__badge--rectangle color-{{ settings.badge_sale_color_scheme }}">
+        {% liquid
+          assign sales_badge_style = settings.product_sales_badge_style
+          assign savings_money = badge_product.compare_at_price_max | minus: badge_product.price_min
+          assign savings_percentage = savings_money | times: 1.0 | divided_by: badge_product.compare_at_price_max | times: 100.0 | round
+        %}
+        {% if sales_badge_style == 'percent' %}
+          {{ 'product_price.badge.sale_percentage_single_html' | t: savings: savings_percentage | strip_newlines }}
+        {% elsif sales_badge_style == 'money' %}
+          {{ 'product_price.badge.sale_money_single_html' | t: savings: (savings_money | money) | strip_newlines }}
+        {% else %}
+          {{ 'product_price.badge.sale' | t }}
+        {% endif %}
       </div>
     {%- endif -%}
   </div>
@@ -39,7 +49,6 @@
 {% stylesheet %}
   .product-badges {
     --badge-inset: max(var(--padding-xs), calc((var(--border-radius) + var(--padding-xs)) * (1 - cos(45deg))));
-
     position: absolute;
     z-index: var(--layer-flat);
   }
@@ -61,7 +70,6 @@
 
   .product-badges__badge {
     --badge-font-size: var(--font-size--xs);
-
     display: flex;
     align-items: center;
     justify-content: center;
