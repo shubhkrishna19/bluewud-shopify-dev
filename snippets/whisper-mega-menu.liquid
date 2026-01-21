@@ -1,0 +1,176 @@
+{% comment %}
+  Whisper Mega Menu
+  - Implements WoodenStreet-style multi-column dropdowns.
+  - Supports 6-column grid with icons and "Shop by Category" layout.
+{% endcomment %}
+
+<div class="whisper-mega-menu" id="{{ id }}">
+  <ul class="mega-menu-list">
+    {% for link in parent_link.links %}
+      <li class="mega-menu-item {% if link.links != blank %}has-dropdown{% endif %}">
+        <a href="{{ link.url }}" class="mega-menu-link {% if link.active %}active{% endif %}">
+          {{ link.title }}
+          {% if link.links != blank %}
+            <span class="icon-dropdown">{% render 'icon-chevron-down' %}</span>
+          {% endif %}
+        </a>
+
+        {% if link.links != blank %}
+          <div class="mega-menu-dropdown">
+            <div class="page-width">
+              <div class="mega-menu-grid">
+                {% for child_link in link.links %}
+                  <div class="mega-menu-column">
+                    <a href="{{ child_link.url }}" class="mega-menu-column-title">{{ child_link.title }}</a>
+                    <ul class="mega-menu-sublinks">
+                      {% for grandchild_link in child_link.links %}
+                        <li>
+                          <a href="{{ grandchild_link.url }}" class="mega-menu-sublink">{{ grandchild_link.title }}</a>
+                        </li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endfor %}
+                
+                {% comment %} Optional: Featured Product or Image in Mega Menu {% endcomment %}
+                <div class="mega-menu-featured">
+                   <div class="mega-menu-featured-card">
+                      {% if section.settings.menu_promo_image != blank %}
+                        <img src="{{ section.settings.menu_promo_image | img_url: '400x' }}" alt="Featured">
+                        <div class="featured-text">
+                           <span class="featured-badge">New Arrival</span>
+                           <p>Explore the new collection</p>
+                        </div>
+                      {% endif %}
+                   </div>
+                </div>
+
+              </div>
+            </div>
+          </div>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</div>
+
+<style>
+  .whisper-mega-menu {
+    position: relative;
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .mega-menu-list {
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    height: 100%;
+  }
+
+  .mega-menu-item {
+    height: 100%;
+    display: flex;
+    align-items: center;
+  }
+
+  .mega-menu-link {
+    font-family: var(--font-heading-family);
+    font-weight: 500;
+    font-size: 0.95rem;
+    color: var(--color-text-primary);
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    padding: 25px 0; /* Increase hit area */
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .mega-menu-link:hover,
+  .mega-menu-link.active {
+    color: var(--color-modern-blue);
+    border-bottom-color: var(--color-modern-blue);
+  }
+
+  .icon-dropdown svg {
+    width: 10px;
+    height: 10px;
+  }
+
+  /* Dropdown Logic */
+  .mega-menu-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100vw;
+    background: white;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(20px);
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    z-index: 999;
+    border-top: 1px solid rgba(0,0,0,0.05);
+    padding: 40px 0;
+  }
+
+  .mega-menu-item:hover .mega-menu-dropdown {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+  }
+
+  .mega-menu-grid {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr) 1.5fr; /* 5 Columns + 1 Featured */
+    gap: 40px;
+  }
+
+  .mega-menu-column-title {
+    display: block;
+    font-weight: 700;
+    color: #BF360C; /* WoodenStreet Category Color */
+    margin-bottom: 15px;
+    text-decoration: none;
+    font-size: 1rem;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 8px;
+  }
+
+  .mega-menu-sublinks {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .mega-menu-sublink {
+    color: var(--color-text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+
+  .mega-menu-sublink:hover {
+    color: var(--color-modern-blue);
+    padding-left: 5px; /* Slight nudge effect */
+  }
+
+  /* Featured Section */
+  .mega-menu-featured {
+    background: #F9FAFB;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+</style>

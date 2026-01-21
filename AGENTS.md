@@ -22,10 +22,16 @@
 2.  **The Specialist (Worker)**: Picks a single micro-task, executes it, and DOES NOT touch anything else.
 3.  **The Auditor (QA)**: Verifies the work against the "WoodenStreet Standard".
 
-### Interaction Rules
+### Interaction Rules (CRITICAL: READ ME)
+-   **🚨 RULE #1: CLAIM & PUSH FIRST**:
+    1.  **CLAIM**: Mark your task `[/] In Progress` in this file.
+    2.  **PUSH**: Immediately `git commit` and `git push` this file ONLY.
+    3.  **CODE**: Once your claim is on the remote, START coding.
+    *This prevents two agents from working on the same task simultaneously.*
+
 -   **JSON Handshakes**: When passing tasks, define inputs/outputs in JSON format in the logs.
 -   **Atomic Commits**: `git commit -m "feat(pdp): add sticky buy button [T-102]"`
--   **No Hallucinations**: If a file doesn't exist, created it. Do not assume.
+-   **No Hallucinations**: If a file doesn't exist, create it. Do not assume.
 
 ---
 
@@ -35,7 +41,7 @@
 ### 🟢 Phase A: The "WoodenStreet" Homepage (Structure & Trust)
 | ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
 | :--- | :--- | :--- | :--- | :--- |
-| **A-01** | **Mega Menu Architecture** | [ ] Open | High | Multi-column dropdowns with category icons. NOT a simple list. |
+| **A-01** | **Mega Menu Architecture** | [/] In Progress - Antigravity | High | Multi-column dropdowns with category icons. NOT a simple list. |
 | **A-02** | **"Experience Store" Locator** | [ ] Open | Med | A dedicated section/page for finding physical stores (build trust). |
 | **A-03** | **Hero "Hybrid" Layout** | [ ] Open | Med | Main slider (Left) + 2 Static Promo Banners (Right) layout. |
 | **A-04** | **Urgency Countdown Strip** | [/] In Progress - Antigravity | Low | "Sale Ends In: HH:MM:SS" strip immediately below the Hero. |
