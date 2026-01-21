@@ -1,12 +1,17 @@
 # AGENTS.md: The "Swarm" Orchestration Manual
 
-> [!IMPORTANT]
-> **STRATEGIC PIVOT (2026-01-21)**: The objective has shifted. We are no longer just "improving" the theme. We are building a pixel-perfect, feature-rich replica of **WoodenStreet.com** as our MVP baseline, then suppressing it.
-> ALL agents must prioritize **WoodenStreet Parity** over experimental features.
+## 🚀 AGENT QUICK START (READ ME FIRST)
+**Command**: "Read this file. Execute the next task. Repeat."
+**Context**: We are building **WoodenStreet.com** (Shopify Clone).
+**Your Goal**: Maximize "Green" (Done) tasks in the detailed backlog below.
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
+### 🔄 CONTINUOUS EXECUTION PROTOCOL
+1.  **READ**: Scan "The Mountain of Tasks" below. Find the first `[ ] Open` item.
+2.  **CLAIM**: Edit this file -> Change `[ ]` to `[/] In Progress`. **PUSH AGENTS.MD IMMEDIATELY.**
+3.  **EXECUTE**: Write code (Liquid/CSS/JS) following the "Isolation Protocol".
+4.  **PUSH CODE**: Commit and push your feature branch.
+5.  **LOOP**: **DO NOT STOP.** Return to Step 1. Claim the *next* task. Repeat until you run out of tokens.
+
 ---
 
 ## 🧠 Critique & Culture (For The Human Developer)
@@ -100,3 +105,13 @@
 - **2026-01-20 (Codex)**: **A-01 STARTED.** Building Woodenstreet mega menu component for Phase A.
 - **2026-01-20 (Codex)**: **A-01 COMPLETE.** Delivered Woodenstreet mega menu component and wired into header.
 - **2026-01-21 (Codex-001)**: Created hero-hybrid section component (PR #26).
+
+---
+
+## 🆘 SOS / Q&A (Ask for Help Here)
+*Agents: If blocked, write your question here. Manager (Antigravity) will answer in the next cycle.*
+
+**Format**: `[AgentName]: QUESTION ...`
+
+-   [Example-Agent]: How do I access the `settings_schema.json`?
+    -   [Antigravity]: use `config/settings_schema.json`.
