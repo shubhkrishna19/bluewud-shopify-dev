@@ -1,0 +1,57 @@
+{{ 'component-sticky-footer-mobile.css' | asset_url | stylesheet_tag }}
+
+<section class="sticky-footer-mobile" data-section-id="{{ section.id }}">
+  <div class="sticky-footer-mobile__inner">
+    <div class="sticky-footer-mobile__info">
+      {%- if section.settings.heading != blank -%}
+        <span class="sticky-footer-mobile__heading">{{ section.settings.heading }}</span>
+      {%- endif -%}
+      {%- if section.settings.subheading != blank -%}
+        <span class="sticky-footer-mobile__subheading">{{ section.settings.subheading }}</span>
+      {%- endif -%}
+    </div>
+    {%- if section.settings.button_label != blank and section.settings.button_link != blank -%}
+      <a class="sticky-footer-mobile__button" href="{{ section.settings.button_link }}">
+        {{ section.settings.button_label }}
+      </a>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Sticky Footer (Mobile)",
+  "tag": "section",
+  "class": "sticky-footer-mobile-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Ready to buy?"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "See delivery & offers before checkout."
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Add to cart"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Sticky Footer (Mobile)"
+    }
+  ]
+}
+{% endschema %}

@@ -1,0 +1,80 @@
+{{ 'component-visual-variant-swatches.css' | asset_url | stylesheet_tag }}
+
+<section class="visual-variant-swatches" data-section-id="{{ section.id }}">
+  <div class="visual-variant-swatches__inner">
+    {%- if section.settings.heading != blank -%}
+      <h2 class="visual-variant-swatches__heading">{{ section.settings.heading }}</h2>
+    {%- endif -%}
+    {%- if section.settings.subheading != blank -%}
+      <p class="visual-variant-swatches__subheading">{{ section.settings.subheading }}</p>
+    {%- endif -%}
+
+    {%- assign product = section.settings.product -%}
+    {%- if product != blank -%}
+      <div class="visual-variant-swatches__grid" role="list">
+        {%- for option in product.options_with_values -%}
+          {%- assign option_name = option.name | downcase -%}
+          {%- if option_name contains 'color' or option_name contains 'finish' -%}
+            <div class="visual-variant-swatches__option" role="listitem">
+              <span class="visual-variant-swatches__label">{{ option.name }}</span>
+              <div class="visual-variant-swatches__items">
+                {%- for value in option.values -%}
+                  {%- assign variant_image = product.variants[forloop.index0].featured_image -%}
+                  <button class="visual-variant-swatches__swatch" type="button">
+                    {%- if variant_image != blank -%}
+                      {{
+                        variant_image
+                        | image_url: width: 120
+                        | image_tag:
+                          alt: value,
+                          class: 'visual-variant-swatches__image'
+                      }}
+                    {%- else -%}
+                      <span class="visual-variant-swatches__fallback">{{ value }}</span>
+                    {%- endif -%}
+                  </button>
+                {%- endfor -%}
+              </div>
+            </div>
+          {%- endif -%}
+        {%- endfor -%}
+      </div>
+    {%- else -%}
+      <div class="visual-variant-swatches__placeholder">
+        {{ 'products.product.choose_options' | t }}
+      </div>
+    {%- endif -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Visual Variant Swatches",
+  "tag": "section",
+  "class": "visual-variant-swatches-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Choose your finish"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Pick the color or finish that suits your space."
+    },
+    {
+      "type": "product",
+      "id": "product",
+      "label": "Product"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Visual Variant Swatches"
+    }
+  ]
+}
+{% endschema %}

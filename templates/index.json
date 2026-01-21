@@ -1,183 +1,19 @@
 {
     "sections": {
-        "whisper_hero": {
-            "type": "whisper-hero",
+        "hero": {
+            "type": "hero",
             "settings": {
-                "title": "ELEVATE YOUR HOME",
-                "text": "<p>Discover our curated collection of smartly designed furniture. Premium aesthetics meets functional excellence.<\/p>",
-                "button_label": "Explore Collection",
-                "button_link": "shopify:\/\/collections\/furniture-new"
-            }
-        },
-        "dynamic_slideshow": {
-            "type": "dynamic-slideshow",
-            "blocks": {
-                "7579820d-0b45-4ce3-9837-956137d30705": {
-                    "type": "slide",
-                    "settings": {
-                        "background_image": "shopify:\/\/shop_images\/Banner_18.png",
-                        "mobile_background_image": "shopify:\/\/shop_images\/Banner_18.png",
-                        "title": "",
-                        "text": "",
-                        "color": "#ffffff",
-                        "link": "shopify:\/\/collections\/bluewud-sparkle-sale",
-                        "text_alignment": "center",
-                        "button_one_label": "",
-                        "button_one_link": "",
-                        "button_one_style": "primary",
-                        "button_two_label": "",
-                        "button_two_link": "",
-                        "button_two_style": "primary",
-                        "show_overlay": false,
-                        "overlay_color": "#000000",
-                        "overlay_opacity": 50
-                    }
-                },
-                "slide_fTFmXV": {
-                    "type": "slide",
-                    "disabled": true,
-                    "settings": {
-                        "background_image": "shopify:\/\/shop_images\/24.jpg",
-                        "mobile_background_image": "shopify:\/\/shop_images\/24_a6ab17c8-ea54-4042-98ad-4cef7e0ad2d0.jpg",
-                        "title": "",
-                        "text": "",
-                        "color": "#ffffff",
-                        "link": "shopify:\/\/collections\/study-tables",
-                        "text_alignment": "center",
-                        "button_one_label": "",
-                        "button_one_link": "shopify:\/\/collections\/study-tables",
-                        "button_one_style": "primary",
-                        "button_two_label": "",
-                        "button_two_link": "",
-                        "button_two_style": "primary",
-                        "show_overlay": false,
-                        "overlay_color": "#000000",
-                        "overlay_opacity": 39
-                    }
-                },
-                "slide_bAGpte": {
-                    "type": "slide",
-                    "settings": {
-                        "background_image": "shopify:\/\/shop_images\/25.jpg",
-                        "mobile_background_image": "shopify:\/\/shop_images\/25.jpg",
-                        "title": "",
-                        "text": "",
-                        "color": "#ffffff",
-                        "link": "shopify:\/\/collections\/bed",
-                        "text_alignment": "center",
-                        "button_one_label": "",
-                        "button_one_link": "",
-                        "button_one_style": "primary",
-                        "button_two_label": "",
-                        "button_two_link": "shopify:\/\/collections\/bed",
-                        "button_two_style": "primary",
-                        "show_overlay": false,
-                        "overlay_color": "#000000",
-                        "overlay_opacity": 50
-                    }
-                },
-                "slide-2": {
-                    "type": "slide",
-                    "disabled": true,
-                    "settings": {
-                        "background_image": "shopify:\/\/shop_images\/Banner_2.jpg",
-                        "mobile_background_image": "shopify:\/\/shop_images\/Banner_2.jpg",
-                        "title": "",
-                        "text": "",
-                        "color": "#1d1d1d",
-                        "link": "shopify:\/\/collections\/coffee-table",
-                        "text_alignment": "center",
-                        "button_one_label": "",
-                        "button_one_link": "",
-                        "button_one_style": "primary",
-                        "button_two_label": "",
-                        "button_two_link": "",
-                        "button_two_style": "primary",
-                        "show_overlay": false,
-                        "overlay_color": "#000000",
-                        "overlay_opacity": 4
-                    }
-                },
-                "340a546a-baf1-4d3e-99e2-ac45ed98ab2b": {
-                    "type": "slide",
-                    "settings": {
-                        "background_image": "shopify:\/\/shop_images\/Main_Banner_Tv_Unit_32648697-077e-4ac4-a320-73282911afee.jpg",
-                        "mobile_background_image": "shopify:\/\/shop_images\/Main_Banner_Tv_Unit_32648697-077e-4ac4-a320-73282911afee.jpg",
-                        "title": "",
-                        "text": "",
-                        "color": "#ffffff",
-                        "link": "shopify:\/\/collections\/furniture-new",
-                        "text_alignment": "center",
-                        "button_one_label": "",
-                        "button_one_link": "",
-                        "button_one_style": "primary",
-                        "button_two_label": "",
-                        "button_two_link": "",
-                        "button_two_style": "primary",
-                        "show_overlay": false,
-                        "overlay_color": "#000000",
-                        "overlay_opacity": 50
-                    }
-                },
-                "9c93c9f0-3fa7-42fb-be6e-35250c07d6e3": {
-                    "type": "slide",
-                    "settings": {
-                        "background_image": "shopify:\/\/shop_images\/Main_Banner_WFH.jpg",
-                        "mobile_background_image": "shopify:\/\/shop_images\/Main_Banner_WFH.jpg",
-                        "title": "",
-                        "text": "",
-                        "color": "#ffffff",
-                        "link": "shopify:\/\/collections\/smartly-designed-wfh-furniture",
-                        "text_alignment": "center",
-                        "button_one_label": "",
-                        "button_one_link": "",
-                        "button_one_style": "primary",
-                        "button_two_label": "",
-                        "button_two_link": "",
-                        "button_two_style": "primary",
-                        "show_overlay": false,
-                        "overlay_color": "#000000",
-                        "overlay_opacity": 50
-                    }
-                },
-                "be97fb4c-84c4-41af-8abd-b4636ca1689e": {
-                    "type": "slide",
-                    "settings": {
-                        "background_image": "shopify:\/\/shop_images\/Banner_11.png",
-                        "mobile_background_image": "shopify:\/\/shop_images\/Banner_11.png",
-                        "title": "",
-                        "text": "",
-                        "color": "#ffffff",
-                        "link": "shopify:\/\/pages\/offers-discount",
-                        "text_alignment": "center",
-                        "button_one_label": "",
-                        "button_one_link": "",
-                        "button_one_style": "primary",
-                        "button_two_label": "",
-                        "button_two_link": "",
-                        "button_two_style": "primary",
-                        "show_overlay": false,
-                        "overlay_color": "#000000",
-                        "overlay_opacity": 50
-                    }
-                }
-            },
-            "block_order": [
-                "7579820d-0b45-4ce3-9837-956137d30705",
-                "slide_fTFmXV",
-                "slide_bAGpte",
-                "slide-2",
-                "340a546a-baf1-4d3e-99e2-ac45ed98ab2b",
-                "9c93c9f0-3fa7-42fb-be6e-35250c07d6e3",
-                "be97fb4c-84c4-41af-8abd-b4636ca1689e"
-            ],
-            "settings": {
-                "enable_autoplay": true,
-                "autoplay_duration": 5,
-                "slideshow_width": "full",
-                "slideshow_height": "original",
-                "slideshow_height_mobile": "original",
-                "slideshow_text_below_image": false
+                "media_type_1": "image",
+                "image_1": "shopify:\/\/shop_images\/Banner_18.png",
+                "media_type_2": "image",
+                "image_2": "shopify:\/\/shop_images\/25.jpg",
+                "custom_mobile_media": true,
+                "media_type_1_mobile": "image",
+                "image_1_mobile": "shopify:\/\/shop_images\/Banner_18.png",
+                "media_type_2_mobile": "image",
+                "image_2_mobile": "shopify:\/\/shop_images\/25.jpg",
+                "link": "shopify:\/\/collections\/bluewud-sparkle-sale",
+                "toggle_overlay": false
             }
         },
         "16376559468c5a335a": {
@@ -732,8 +568,7 @@
         }
     },
     "order": [
-        "whisper_hero",
-        "dynamic_slideshow",
+        "hero",
         "16376559468c5a335a",
         "1638794690172b8b26",
         "dynamic_collection_list",
