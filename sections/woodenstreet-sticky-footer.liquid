@@ -1,0 +1,56 @@
+<section class="woodenstreet-sticky-footer" data-section-id="{{ section.id }}">
+  <div class="woodenstreet-sticky-footer__inner">
+    <div class="woodenstreet-sticky-footer__info">
+      {% if section.settings.title != blank %}
+        <p class="woodenstreet-sticky-footer__title">{{ section.settings.title }}</p>
+      {% endif %}
+      {% if section.settings.price_text != blank %}
+        <span class="woodenstreet-sticky-footer__price">{{ section.settings.price_text }}</span>
+      {% endif %}
+    </div>
+    {% if section.settings.cta_label != blank %}
+      <a class="woodenstreet-sticky-footer__cta" href="{{ section.settings.cta_link }}">
+        {{ section.settings.cta_label }}
+      </a>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "WoodenStreet Sticky Footer",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Ready to order?"
+    },
+    {
+      "type": "text",
+      "id": "price_text",
+      "label": "Price text",
+      "default": "Starts at ₹12,999"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "Add to cart"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "WoodenStreet Sticky Footer",
+      "category": "Product"
+    }
+  ]
+}
+{% endschema %}

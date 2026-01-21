@@ -1,0 +1,175 @@
+<section class="woodenstreet-hero-hybrid color-{{ section.settings.color_scheme }}">
+  <div class="woodenstreet-hero-hybrid__inner">
+    <div class="woodenstreet-hero-hybrid__content">
+      {% if section.settings.eyebrow != blank %}
+        <p class="woodenstreet-hero-hybrid__eyebrow">{{ section.settings.eyebrow }}</p>
+      {% endif %}
+      {% if section.settings.heading != blank %}
+        <h1 class="woodenstreet-hero-hybrid__heading">{{ section.settings.heading }}</h1>
+      {% endif %}
+      {% if section.settings.subheading != blank %}
+        <p class="woodenstreet-hero-hybrid__subheading">{{ section.settings.subheading }}</p>
+      {% endif %}
+      <div class="woodenstreet-hero-hybrid__actions">
+        {% if section.settings.primary_button_label != blank %}
+          <a class="woodenstreet-hero-hybrid__button button" href="{{ section.settings.primary_button_link }}">
+            {{ section.settings.primary_button_label }}
+          </a>
+        {% endif %}
+        {% if section.settings.secondary_button_label != blank %}
+          <a class="woodenstreet-hero-hybrid__button button button--secondary" href="{{ section.settings.secondary_button_link }}">
+            {{ section.settings.secondary_button_label }}
+          </a>
+        {% endif %}
+      </div>
+    </div>
+    <div class="woodenstreet-hero-hybrid__media">
+      {% if section.settings.primary_image != blank %}
+        {{ section.settings.primary_image | image_url: width: 1600 | image_tag: class: 'woodenstreet-hero-hybrid__image woodenstreet-hero-hybrid__image--primary', loading: 'lazy', alt: section.settings.primary_image.alt }}
+      {% endif %}
+      {% if section.settings.secondary_image != blank %}
+        {{ section.settings.secondary_image | image_url: width: 1000 | image_tag: class: 'woodenstreet-hero-hybrid__image woodenstreet-hero-hybrid__image--secondary', loading: 'lazy', alt: section.settings.secondary_image.alt }}
+      {% endif %}
+    </div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .woodenstreet-hero-hybrid {
+    padding: 48px 0;
+  }
+
+  .woodenstreet-hero-hybrid__inner {
+    display: grid;
+    gap: 32px;
+    align-items: center;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .woodenstreet-hero-hybrid__eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 0.85rem;
+    margin: 0 0 12px;
+  }
+
+  .woodenstreet-hero-hybrid__heading {
+    font-size: clamp(2rem, 4vw, 3.5rem);
+    margin: 0 0 16px;
+  }
+
+  .woodenstreet-hero-hybrid__subheading {
+    font-size: 1.1rem;
+    margin: 0 0 24px;
+  }
+
+  .woodenstreet-hero-hybrid__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .woodenstreet-hero-hybrid__media {
+    position: relative;
+    min-height: 280px;
+  }
+
+  .woodenstreet-hero-hybrid__image {
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    object-fit: cover;
+  }
+
+  .woodenstreet-hero-hybrid__image--secondary {
+    position: absolute;
+    right: 0;
+    bottom: -24px;
+    width: 55%;
+    box-shadow: 0 20px 40px rgb(0 0 0 / 10%);
+  }
+
+  @media screen and (max-width: 749px) {
+    .woodenstreet-hero-hybrid__image--secondary {
+      position: relative;
+      width: 100%;
+      bottom: 0;
+      margin-top: 16px;
+    }
+  }
+{% endstylesheet %}
+
+{% schema %}
+{
+  "name": "WoodenStreet Hero Hybrid",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "New Arrivals"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Crafted for modern living"
+    },
+    {
+      "type": "textarea",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Bring WoodenStreet-inspired comfort home with premium materials and a fresh design story."
+    },
+    {
+      "type": "text",
+      "id": "primary_button_label",
+      "label": "Primary button label",
+      "default": "Shop sofas"
+    },
+    {
+      "type": "url",
+      "id": "primary_button_link",
+      "label": "Primary button link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_button_label",
+      "label": "Secondary button label",
+      "default": "Explore collections"
+    },
+    {
+      "type": "url",
+      "id": "secondary_button_link",
+      "label": "Secondary button link"
+    },
+    {
+      "type": "image_picker",
+      "id": "primary_image",
+      "label": "Primary image"
+    },
+    {
+      "type": "image_picker",
+      "id": "secondary_image",
+      "label": "Secondary image"
+    },
+    {
+      "type": "color_scheme",
+      "id": "color_scheme",
+      "label": "Color scheme",
+      "default": "background-1"
+    }
+  ],
+  "presets": [
+    {
+      "name": "WoodenStreet Hero Hybrid",
+      "category": "Hero"
+    }
+  ]
+}
+{% endschema %}
