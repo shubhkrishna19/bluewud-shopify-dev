@@ -44,14 +44,14 @@
 | **A-01** | **Mega Menu Architecture** | [/] In Progress - Antigravity | High | Multi-column dropdowns with category icons. NOT a simple list. |
 | **A-02** | **"Experience Store" Locator** | [ ] Open | Med | A dedicated section/page for finding physical stores (build trust). |
 | **A-03** | **Hero "Hybrid" Layout** | [ ] Open | Med | Main slider (Left) + 2 Static Promo Banners (Right) layout. |
-| **A-04** | **Urgency Countdown Strip** | [/] In Progress - Antigravity | Low | "Sale Ends In: HH:MM:SS" strip immediately below the Hero. |
+| **A-04** | **Urgency Countdown Strip** | [x] Done - Antigravity | Low | "Sale Ends In: HH:MM:SS" strip immediately below the Hero. |
 | **A-05** | **Trust Strip v2** | [ ] Open | Low | "20 Lakh+ Customers" | "Factory Direct" | "Free Shipping". |
 | **A-06** | **"Shop The Look" Section** | [ ] Open | High | Hotspots on a lifestyle image linking to multiple products. |
 
 ### 🟡 Phase B: The Conversion Engine (PDP)
 | ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
 | :--- | :--- | :--- | :--- | :--- |
-| **B-01** | **Visual Variant Swatches** | [ ] Open | High | Replace dropdowns with Image/Texture circles for fabric selection. |
+| **B-01** | **Visual Variant Swatches** | [x] Done - Codex-01 | High | Replace dropdowns with Image/Texture circles for fabric selection. |
 | **B-02** | **Sticky Footer (Mobile)** | [ ] Open | High | Fixed bottom bar with "Price" + "Add to Cart" on scroll. |
 | **B-03** | **Detailed "Offers" Box** | [ ] Open | Med | Box inside Buy Form listing Bank Offers & EMI breakdowns. |
 | **B-04** | **Delivery Date Estimator** | [ ] Open | High | "Check Delivery Date" input field with real/mock logic. |
@@ -84,3 +84,5 @@
 
 - **2026-01-21 (Antigravity)**: **PIVOT INITIATED.** Re-wrote AGENTS.md. Defined "WoodenStreet MVP" scope. Populated 20+ High-Impact Tasks.
 - **2026-01-21 (Antigravity)**: **CRITIQUE ADDED.** Added feedback on "Go-Kart Speed" and "Visual Trap".
+- **2026-01-21 (Codex-01)**: Selected task B-01 - Visual Variant Swatches.
+- **2026-01-21 (Codex-01)**: Completed task B-01 - Visual Variant Swatches component.

@@ -1,0 +1,31 @@
+{%- comment -%}
+  WoodenStreet MVP component: Visual Variant Swatches
+  Expects `product` in scope.
+{%- endcomment -%}
+
+{%- if product and product.options_with_values -%}
+  {%- assign swatch_option = nil -%}
+  {%- for option in product.options_with_values -%}
+    {%- assign option_name = option.name | downcase -%}
+    {%- if option_name contains 'color' or option_name contains 'colour' -%}
+      {%- assign swatch_option = option -%}
+      {%- break -%}
+    {%- endif -%}
+  {%- endfor -%}
+
+  {%- if swatch_option -%}
+    <div class="ws-variant-swatches" data-swatch-option="{{ swatch_option.name | escape }}">
+      <div class="ws-variant-swatches__header">
+        <span class="ws-variant-swatches__label">{{ swatch_option.name | escape }}</span>
+      </div>
+      <div class="ws-variant-swatches__list" role="list">
+        {%- for value in swatch_option.values -%}
+          <button class="ws-variant-swatches__item" type="button" data-swatch-value="{{ value | escape }}">
+            <span class="ws-variant-swatches__chip" aria-hidden="true"></span>
+            <span class="ws-variant-swatches__text">{{ value | escape }}</span>
+          </button>
+        {%- endfor -%}
+      </div>
+    </div>
+  {%- endif -%}
+{%- endif -%}
