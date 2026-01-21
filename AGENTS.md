@@ -1,5 +1,6 @@
 # AGENTS.md: The "Swarm" Orchestration Manual
 
+<<<<<<< HEAD
 ## 🚀 AGENT QUICK START (READ ME FIRST)
 **Command**: "Read this file. Execute the next task. Repeat."
 **Context**: We are building **WoodenStreet.com** (Shopify Clone).
@@ -65,9 +66,9 @@
 | ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
 | :--- | :--- | :--- | :--- | :--- |
 | **B-01** | **Visual Variant Swatches** | [x] Done - Codex-01 | High | Replace dropdowns with Image/Texture circles for fabric selection. |
-| **B-02** | **Sticky Footer (Mobile)** | [ ] Open | High | Fixed bottom bar with "Price" + "Add to Cart" on scroll. |
-| **B-03** | **Detailed "Offers" Box** | [ ] Open | Med | Box inside Buy Form listing Bank Offers & EMI breakdowns. |
-| **B-04** | **Delivery Date Estimator** | [ ] Open | High | "Check Delivery Date" input field with real/mock logic. |
+| **B-02** | **Sticky Footer (Mobile)** | [x] Done - Codex-01 | High | Fixed bottom bar with "Price" + "Add to Cart" on scroll. |
+| **B-03** | **Detailed "Offers" Box** | [x] Done - Codex-01 | Med | Box inside Buy Form listing Bank Offers & EMI breakdowns. |
+| **B-04** | **Delivery Date Estimator** | [x] Done - Codex-01 | High | "Check Delivery Date" input field with real/mock logic. |
 | **B-05** | **"Compare" Floating Action** | [ ] Open | Low | Ability to add product to a comparison list. |
 | **B-06** | **Review Summary Graph** | [ ] Open | Med | 5-star progress bars showing distribution of ratings. |
 | **B-07** | **Zoom & Pan Gallery** | [ ] Open | Med | Desktop: Hover zoom. Mobile: Pinch zoom + swipe. |
@@ -105,6 +106,7 @@
 - **2026-01-20 (Codex)**: **A-01 STARTED.** Building Woodenstreet mega menu component for Phase A.
 - **2026-01-20 (Codex)**: **A-01 COMPLETE.** Delivered Woodenstreet mega menu component and wired into header.
 - **2026-01-21 (Codex-001)**: Created hero-hybrid section component (PR #26).
+- **2026-01-21 (Codex-01)**: Completed tasks B-01, B-02, B-03, B-04. (PR #30).
 
 ---
 

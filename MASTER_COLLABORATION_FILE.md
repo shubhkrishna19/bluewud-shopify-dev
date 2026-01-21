@@ -29,6 +29,7 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | T007 | - [Navigation] Mega-Menu Grid| [x] Done | Codex | High | Added `snippets/mega-menu-list.liquid` and `snippets/util-mega-menu-img-sizes-attr.liquid`. |
 | T008 | - [Navigation] Mega-Promo | [x] Done | Codex | High | Added `snippets/mega-promo.liquid` compatibility wrapper. |
 | **P4** | **Phase 4: Global Utilities** | [ ] Pending | Joint | Med | **Codex Takeover Target** |
+<<<<<<< HEAD
 | T013 | - [Icons] SVG Library Port | [x] Done | Codex | Low | d202c27 |
 | T014 | - [Spacing] Padding Helpers | [x] Done | Codex | Med | b7aea30 |
 | T015 | - [Badges] Product Badges | [x] Done | Codex | Med | 2558d15 |
@@ -43,6 +44,22 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | T021 | - [Asset] CSS Minification | [x] Done | Codex | Low | Minified `assets/theme-update.css`. |
 | T022 | - [JS] Lazy Loading Hydrate | [x] Done | Codex | Med | d2482df |
 | T023 | - [Settings] Cart Type Toggle | [x] Done | Codex | Med | Added `cart_type` setting (page/drawer). |
+=======
+| T013 | - [Icons] SVG Library Port | [x] Done | Codex | Low | Added `snippets/icon.liquid` (commit 77f04b2). |
+| T014 | - [Spacing] Padding Helpers | [x] Done | Codex | Med | Added `snippets/spacing-padding.liquid`. |
+| T015 | - [Badges] Product Badges | [x] Done | Codex | Med | Added `snippets/badge.liquid` (based on existing product badge logic). |
+| **P5** | **Phase 5: Product Page UI** | [ ] Pending | Joint | High | Visual parity for PDP. |
+| T016 | - [Media] Gallery Layout | [x] Done | Codex | High | Added media gallery snippets and asset. |
+| T017 | - [Price] Dynamic Pricing UI| [x] Done | Codex | High | Added `snippets/price.liquid`. |
+| T018 | - [ATC] Button Styling | [x] Done | Codex | High | Added `snippets/add-to-cart-button.liquid`. |
+| **P6** | **Phase 6: Cart & Checkout UX**| [ ] Pending | Codex | Med | Polish transactional UI. |
+| T019 | - [Drawer] Whisper Cart | [x] Done | Codex | High | Added `snippets/cart-drawer.liquid`. |
+| T020 | - [Summary] Cart Summaries | [x] Done | Codex | Med | Added `snippets/cart-summary.liquid`. |
+| T023 | - [Settings] Cart Type Toggle | [x] Done | Codex | Med | Added `cart_type` setting (page/drawer). |
+| **P7** | **Phase 7: Optimization** | [ ] Pending | Joint | Low | Core Web Vitals + Clean. |
+| T021 | - [Asset] CSS Minification | [x] Done | Codex | Low | Minified `assets/theme-update.css`. |
+| T022 | - [JS] Lazy Loading Hydrate | [x] Done | Codex | Med | Added `assets/section-hydration.js`. |
+>>>>>>> origin/pr/30
 | T043 | - [Engine] Size Prediction | [x] Done | Codex | High | Added size predictor snippet + asset. |
 | T044 | - [UI] Final Presentation Polish | [x] Done | Codex | High | Added size predictor UI polish styles. |
 | T045 | - [Cart] Abandoned Cart Recovery | [x] Done | Codex | High | Added recovery banner + JS restore. |
@@ -56,7 +73,11 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | T053 | - [Homepage] Reviews Ratings Scope Fix | [x] Done | Codex | Low | 6fd4c89 |
 | T054 | - [Homepage] Reviews Ratings Scope Rollback | [x] Done | Codex | Low | 140c015 |
 | T055 | - [Coordination] Update Scope Rollback Hash | [x] Done | Codex | Low | 7411d02 |
+<<<<<<< HEAD
 | T056 | - [PDP] Woodenstreet Visual Swatches | [x] Done | Codex | High | 64d6148 |9
+=======
+| T056 | - [PDP] Woodenstreet Visual Swatches | [x] Done | Codex | High | 64d6148 |
+>>>>>>> origin/pr/30
 
 ---
 
@@ -137,6 +158,7 @@ To prevent collision, we strictly follow this ownership map:
 - **2026-01-15 (Antigravity)**: **PHASE 2 COMPLETE.** Typography and Hero live. Migration status: **28%**. Expanded roadmap for Phases 3 & 4 with specialized tasks for Codex.
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 - **2026-01-16 (Codex)**: Completed T013 by porting `snippets/icon.liquid` into the active theme. Commit: d202c27.
 - **2026-01-16 (Codex)**: Completed T014 by porting `snippets/spacing-padding.liquid`. Commit: b7aea30.
 - **2026-01-16 (Codex)**: Completed T015 by porting `snippets/badge.liquid`. Commit: 2558d15.
@@ -148,6 +170,8 @@ To prevent collision, we strictly follow this ownership map:
 - **2026-01-16 (Codex)**: Completed T022 by adding `section-hydration.js`. Commit: d2482df.
 =======
 >>>>>>> origin/pr/29
+=======
+>>>>>>> origin/pr/30
 - **2026-01-18 (Codex)**: Ported Whisper SVG icon library to `snippets/icon.liquid` (commit 77f04b2).
 - **2026-01-18 (Codex)**: Ported padding helper snippet from Whisper to `snippets/spacing-padding.liquid`. (Task chosen: T014)
 - **2026-01-18 (Codex)**: Added `AGENTS.md` with multi-agent coordination rules and best-practice contribution requirements.
@@ -200,6 +224,7 @@ To prevent collision, we strictly follow this ownership map:
 - **2026-01-18 (Codex)**: Selected task T055 - Coordination update for scope rollback hash.
 - **2026-01-18 (Codex)**: Completed task T055 - Coordination update for scope rollback hash (commit 7411d02).
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
 - **2026-01-18 (Codex)**: Selected task T056 - Woodenstreet Visual Swatches.
 - **2026-01-18 (Codex)**: Completed task T056 - Woodenstreet Visual Swatches (commit 64d6148).
@@ -207,3 +232,7 @@ To prevent collision, we strictly follow this ownership map:
 =======
 - **2026-01-15 (Codex)**: Ported spacing padding helper snippet for shared section/block spacing variables.
 >>>>>>> origin/pr/28
+=======
+- **2026-01-18 (Codex)**: Selected task T056 - Woodenstreet Visual Swatches.
+- **2026-01-18 (Codex)**: Completed task T056 - Woodenstreet Visual Swatches (commit 64d6148).
+>>>>>>> origin/pr/30

@@ -29,7 +29,7 @@
 
 {% render 'breadcrumbs' %}
 
-<section class="product--container" data-product-wrapper>
+<section class="product--container" data-product-wrapper id="product-form">
   {%
     render 'product',
     is_product_modal: false,
@@ -42,6 +42,12 @@
     gallery_hover_zoom: section.settings.gallery_hover_zoom
   %}
 </section>
+
+<!-- WoodenStreet Conversion Modules (PR #30 Integration) -->
+<div class="product-conversion-modules container mx-auto px-4 my-8">
+  {% render 'ws-offers-box', product: product %}
+  {% render 'ws-delivery-estimator' %}
+</div>
 
 {% comment %} Ecommerce-App High-Polish Components Integration {% endcomment %}
 <div class="product-additional-content container mx-auto px-4 space-y-20 pb-20">
@@ -73,6 +79,7 @@
 
 </div>
 
+{% render 'ws-sticky-footer', product: product %}
 {% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: true, product: product %}
 
 <script>

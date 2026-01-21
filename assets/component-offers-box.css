@@ -1,0 +1,48 @@
+/* WoodenStreet MVP: Offers Box (PDP) */
+
+.ws-offers-box{
+  border:1px solid rgb(var(--color-border-rgb)/.35);
+  border-radius:12px;
+  padding:1rem;
+  background:var(--color-background);
+  display:grid;
+  gap:0.75rem;
+}
+
+.ws-offers-box__header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.ws-offers-box__title{
+  margin:0;
+  font-size:1rem;
+  font-weight:600;
+}
+
+.ws-offers-box__list{
+  list-style:none;
+  margin:0;
+  padding:0;
+  display:grid;
+  gap:0.65rem;
+}
+
+.ws-offers-box__item{
+  display:grid;
+  gap:0.25rem;
+  padding:0.6rem 0.75rem;
+  border-radius:10px;
+  background:rgb(var(--color-border-rgb)/.08);
+}
+
+.ws-offers-box__label{
+  font-size:0.85rem;
+  font-weight:600;
+}
+
+.ws-offers-box__text{
+  font-size:0.85rem;
+  color:rgb(var(--color-foreground)/.8);
+}

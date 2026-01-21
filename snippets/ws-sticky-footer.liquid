@@ -1,0 +1,14 @@
+{%- comment -%}
+  WoodenStreet MVP component: Sticky Footer (Mobile)
+  Expects `product` in scope.
+{%- endcomment -%}
+
+{%- if product -%}
+  <div class="ws-sticky-footer" data-ws-sticky-footer>
+    <div class="ws-sticky-footer__content">
+      <span class="ws-sticky-footer__title">{{ product.title | escape }}</span>
+      <span class="ws-sticky-footer__price">{{ product.price | money }}</span>
+      <a class="ws-sticky-footer__action" href="#product-form">Add to cart</a>
+    </div>
+  </div>
+{%- endif -%}
