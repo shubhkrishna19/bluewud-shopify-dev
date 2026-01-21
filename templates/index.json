@@ -618,6 +618,7 @@
     },
     "order": [
         "whisper_hero",
+        "urgency_strip",
         "whisper_lookbook",
         "whisper_trending",
         "whisper_showcase",
