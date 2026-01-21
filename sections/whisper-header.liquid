@@ -28,13 +28,7 @@
   endcapture
 
   capture menu
-    {% render 'whisper-mega-menu-list', 
-       parent_link: linklists[section.settings.menu], 
-       id: 'MegaMenu-Header',
-       grid_columns_count: 6,
-       menu_content_type: 'featured_products',
-       section: section
-    %}
+    {% render 'woodenstreet-mega-menu', menu: linklists[section.settings.menu] %}
   endcapture
 
   capture actions

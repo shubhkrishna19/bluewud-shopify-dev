@@ -1,0 +1,42 @@
+<nav class="woodenstreet-mega-menu" aria-label="Primary">
+  <ul class="woodenstreet-mega-menu__list">
+    {% for link in menu.links %}
+      <li class="woodenstreet-mega-menu__item {% if link.links.size > 0 %}has-children{% endif %}">
+        <a
+          class="woodenstreet-mega-menu__link {% if link.active %}is-active{% endif %}"
+          href="{{ link.url }}"
+          {% if link.active %}aria-current="page"{% endif %}
+        >
+          {{ link.title | escape }}
+        </a>
+
+        {% if link.links.size > 0 %}
+          <div class="woodenstreet-mega-menu__dropdown">
+            <div class="woodenstreet-mega-menu__dropdown-inner">
+              <ul class="woodenstreet-mega-menu__submenu">
+                {% for child in link.links %}
+                  <li class="woodenstreet-mega-menu__submenu-item">
+                    <a class="woodenstreet-mega-menu__submenu-link" href="{{ child.url }}">
+                      {{ child.title | escape }}
+                    </a>
+                    {% if child.links.size > 0 %}
+                      <ul class="woodenstreet-mega-menu__subsubmenu">
+                        {% for grandchild in child.links %}
+                          <li class="woodenstreet-mega-menu__subsubmenu-item">
+                            <a class="woodenstreet-mega-menu__subsubmenu-link" href="{{ grandchild.url }}">
+                              {{ grandchild.title | escape }}
+                            </a>
+                          </li>
+                        {% endfor %}
+                      </ul>
+                    {% endif %}
+                  </li>
+                {% endfor %}
+              </ul>
+            </div>
+          </div>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</nav>

@@ -3,41 +3,40 @@
   A high-polish demonstration of the ported ecommerce-app components.
 {% endcomment %}
 
-<section class="whisper-showcase py-20 bg-[var(--color-bg-primary)]">
-  <div class="container mx-auto px-4">
-    <div class="max-w-4xl mx-auto space-y-20">
-            <!-- Trust, Stock & Product Card Demo -->
-      <div class="grid md:grid-cols-2 gap-12 items-start">
-        <div class="space-y-6">
-          <h2 class="text-3xl font-black text-[var(--color-text-primary)] leading-tight italic">
-            Visual Consistency & <span class="text-[var(--color-accent-primary)]">Social Proof</span>
+<section class="whisper-showcase">
+  <div class="whisper-showcase__container">
+    <div class="whisper-showcase__stack">
+      <!-- Trust, Stock & Product Card Demo -->
+      <div class="whisper-showcase__split">
+        <div class="whisper-showcase__panel">
+          <h2 class="whisper-showcase__title">
+            Visual Consistency & <span class="whisper-showcase__title-accent">Social Proof</span>
           </h2>
           {% render 'whisper-stock-indicator', stock: 3 %}
-          <div class="pt-6">
+          <div class="whisper-showcase__trust">
             {% render 'whisper-trust-signals' %}
           </div>
         </div>
-        <div class="space-y-6">
-          <h3 class="text-xs font-black uppercase tracking-widest text-[var(--color-text-tertiary)]">Featured Card (High-Polish)</h3>
+        <div class="whisper-showcase__panel">
+          <h3 class="whisper-showcase__eyebrow">Featured Card (High-Polish)</h3>
           {% assign demo_product = collections.all.products.first %}
           {% render 'whisper-product-card', product: demo_product %}
         </div>
       </div>
 
       <!-- Reviews Integration -->
-      <div class="space-y-12">
-        <div class="text-center">
-          <h2 class="text-4xl font-black text-[var(--color-text-primary)] mb-4">Customer Sentiment</h2>
-          <p class="text-[var(--color-text-secondary)]">Mirroring the Ecommerce-App rating distribution logic.</p>
+      <div class="whisper-showcase__reviews">
+        <div class="whisper-showcase__reviews-header">
+          <h2 class="whisper-showcase__reviews-title">Customer Sentiment</h2>
+          <p class="whisper-showcase__reviews-copy">Mirroring the Ecommerce-App rating distribution logic.</p>
         </div>
         {% render 'whisper-rating-distribution', rating: 4.8, review_count: 1250 %}
       </div>
 
       <!-- UGC Gallery Integration -->
-      <div class="pt-12">
+      <div class="whisper-showcase__ugc">
         {% render 'whisper-ugc-gallery' %}
       </div>
-
     </div>
   </div>
 </section>

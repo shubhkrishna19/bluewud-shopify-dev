@@ -80,6 +80,8 @@
 
     {{ 'theme.css' | asset_url | stylesheet_tag }}
     {{ 'theme-update.css' | asset_url | stylesheet_tag }}
+    {{ 'component-visual-swatches.css' | asset_url | stylesheet_tag }}
+    {{ 'component-delivery-estimator.css' | asset_url | stylesheet_tag }}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {% comment %} Inject theme-object begin{% endcomment %}
     <script>
@@ -205,6 +207,7 @@
     {% section 'static-footer' %}
 
     {% render 'whisper-bottom-sheet', id: 'whisper-quick-add-sheet', title: 'Quick Add', mobile_only: true, show_apply: true, apply_label: 'Add to Cart' %}
+    {% render 'whisper-cart-recovery' %}
 
     {% comment %}
       Below are various templates used in JavaScript

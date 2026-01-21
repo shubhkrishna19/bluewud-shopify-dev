@@ -1,0 +1,76 @@
+<div class="whisper-cart-recovery whisper-glass" data-cart-recovery hidden>
+  <div class="whisper-cart-recovery__content">
+    <div class="whisper-cart-recovery__text">
+      <span class="whisper-cart-recovery__title">Still thinking it over?</span>
+      <span class="whisper-cart-recovery__subtitle">Your cart is saved. Complete your checkout in one tap.</span>
+    </div>
+    <div class="whisper-cart-recovery__actions">
+      <a class="whisper-cart-recovery__link" href="{{ routes.cart_url }}">View cart</a>
+      <a class="whisper-button whisper-cart-recovery__button" href="{{ routes.cart_url }}/checkout">Checkout</a>
+    </div>
+  </div>
+  <button class="whisper-cart-recovery__close" type="button" aria-label="Dismiss cart reminder">
+    &times;
+  </button>
+</div>
+
+<script>
+  (() => {
+    const banner = document.querySelector('[data-cart-recovery]');
+    if (!banner || window.__whisperCartRecoveryInitialized) {
+      return;
+    }
+    window.__whisperCartRecoveryInitialized = true;
+
+    const lastActiveKey = 'whisper:cart-recovery:last-active';
+    const lastDismissKey = 'whisper:cart-recovery:last-dismiss';
+    const lastShownKey = 'whisper:cart-recovery:last-shown';
+    const inactivityMinutes = 30;
+    const dismissCooldownHours = 12;
+
+    const now = () => Date.now();
+    const setLastActive = () => localStorage.setItem(lastActiveKey, String(now()));
+
+    ['click', 'keydown', 'scroll', 'touchstart'].forEach((eventName) => {
+      window.addEventListener(eventName, setLastActive, { passive: true });
+    });
+    setLastActive();
+
+    const shouldShow = () => {
+      const lastActive = Number(localStorage.getItem(lastActiveKey) || 0);
+      const lastDismiss = Number(localStorage.getItem(lastDismissKey) || 0);
+      const lastShown = Number(localStorage.getItem(lastShownKey) || 0);
+      const inactiveTooLong = now() - lastActive > inactivityMinutes * 60 * 1000;
+      const dismissedRecently = now() - lastDismiss < dismissCooldownHours * 60 * 60 * 1000;
+      const shownRecently = now() - lastShown < 30 * 60 * 1000;
+      return inactiveTooLong && !dismissedRecently && !shownRecently;
+    };
+
+    const showBanner = () => {
+      banner.hidden = false;
+      banner.classList.add('is-active');
+      localStorage.setItem(lastShownKey, String(now()));
+    };
+
+    const hideBanner = () => {
+      banner.hidden = true;
+      banner.classList.remove('is-active');
+      localStorage.setItem(lastDismissKey, String(now()));
+    };
+
+    const closeButton = banner.querySelector('.whisper-cart-recovery__close');
+    closeButton.addEventListener('click', hideBanner);
+
+    fetch('{{ routes.cart_url }}.js', { credentials: 'same-origin' })
+      .then((response) => (response.ok ? response.json() : null))
+      .then((cart) => {
+        if (!cart || cart.item_count === 0) {
+          return;
+        }
+        if (shouldShow()) {
+          showBanner();
+        }
+      })
+      .catch(() => {});
+  })();
+</script>
