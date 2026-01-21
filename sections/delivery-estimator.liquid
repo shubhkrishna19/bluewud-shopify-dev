@@ -1,0 +1,66 @@
+{{ 'component-delivery-estimator.css' | asset_url | stylesheet_tag }}
+
+<section class="ws-delivery-estimator" data-delivery-estimator>
+  <h2 class="ws-delivery-estimator__title">{{ section.settings.title }}</h2>
+
+  <form class="ws-delivery-estimator__form" action="#" method="post">
+    <input
+      class="ws-delivery-estimator__input"
+      type="text"
+      name="pincode"
+      placeholder="{{ section.settings.placeholder }}"
+      aria-label="{{ section.settings.placeholder }}"
+    >
+    <button class="ws-delivery-estimator__button" type="button">
+      {{ section.settings.button_label }}
+    </button>
+  </form>
+
+  <div class="ws-delivery-estimator__result">{{ section.settings.result_text }}</div>
+  <div class="ws-delivery-estimator__note">{{ section.settings.note_text }}</div>
+</section>
+
+{% schema %}
+{
+  "name": "WS Delivery Estimator",
+  "tag": "section",
+  "class": "ws-delivery-estimator-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Check delivery"
+    },
+    {
+      "type": "text",
+      "id": "placeholder",
+      "label": "Placeholder",
+      "default": "Enter pincode"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Check"
+    },
+    {
+      "type": "text",
+      "id": "result_text",
+      "label": "Result text",
+      "default": "Estimated delivery: 3-5 days"
+    },
+    {
+      "type": "text",
+      "id": "note_text",
+      "label": "Note",
+      "default": "Delivery timelines may vary by location."
+    }
+  ],
+  "presets": [
+    {
+      "name": "WS Delivery Estimator"
+    }
+  ]
+}
+{% endschema %}

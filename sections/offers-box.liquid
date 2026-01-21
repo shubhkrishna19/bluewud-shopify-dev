@@ -1,0 +1,93 @@
+{{ 'component-offers-box.css' | asset_url | stylesheet_tag }}
+
+<section class="ws-offers-box" data-offers-box>
+  <header class="ws-offers-box__header">
+    <h2 class="ws-offers-box__title">{{ section.settings.title }}</h2>
+    <span class="ws-offers-box__badge">{{ section.settings.badge }}</span>
+  </header>
+
+  <ul class="ws-offers-box__list">
+    {%- for block in section.blocks -%}
+      <li class="ws-offers-box__item">
+        <span class="ws-offers-box__label">{{ block.settings.label }}</span>
+        <p class="ws-offers-box__text">{{ block.settings.text }}</p>
+      </li>
+    {%- endfor -%}
+  </ul>
+
+  {%- if section.settings.cta_label != blank and section.settings.cta_link != blank -%}
+    <a class="ws-offers-box__cta" href="{{ section.settings.cta_link }}">
+      {{ section.settings.cta_label }}
+    </a>
+  {%- endif -%}
+</section>
+
+{% schema %}
+{
+  "name": "WS Offers Box",
+  "tag": "section",
+  "class": "ws-offers-box-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Title",
+      "default": "Offers & EMI"
+    },
+    {
+      "type": "text",
+      "id": "badge",
+      "label": "Badge",
+      "default": "Limited time"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "View all offers"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "offer",
+      "name": "Offer",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Bank Offer"
+        },
+        {
+          "type": "text",
+          "id": "text",
+          "label": "Text",
+          "default": "Extra 10% off on select cards"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "WS Offers Box",
+      "blocks": [
+        {
+          "type": "offer"
+        },
+        {
+          "type": "offer",
+          "settings": {
+            "label": "EMI",
+            "text": "No-cost EMI available"
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
