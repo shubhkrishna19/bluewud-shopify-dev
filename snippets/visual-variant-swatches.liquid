@@ -1,0 +1,57 @@
+{%- comment -%}
+  Visual variant swatches component.
+
+  Accepts:
+    - product: {product}
+    - option: {product_option}
+    - option_index: {number}
+    - selected_value: {string}
+{%- endcomment -%}
+
+{%- if product == blank or option == blank -%}
+  {%- return -%}
+{%- endif -%}
+
+{%- assign option_index = option_index | default: 1 -%}
+{%- assign swatch_option_key = 'option' | append: option_index -%}
+{%- assign swatch_size = settings.swatches_product_page_size | default: 32 -%}
+
+<div class="ws-variant-swatches" data-variant-swatches data-option-index="{{ option_index }}">
+  <div class="ws-variant-swatches__label">{{ option.name }}</div>
+  <div class="ws-variant-swatches__list" role="radiogroup" aria-label="{{ option.name }}">
+    {%- for value in option.values -%}
+      {%- assign is_selected = false -%}
+      {%- if selected_value != blank and selected_value == value -%}
+        {%- assign is_selected = true -%}
+      {%- endif -%}
+      {%- capture swatch_styles -%}
+        {%- render 'swatch-styles',
+          color_name: value,
+          swatch_product: product,
+          swatch_option_key: swatch_option_key,
+          swatch_size: swatch_size,
+          use_variant_images: settings.swatches_option_style == 'variant_image'
+        -%}
+      {%- endcapture -%}
+      <label class="ws-variant-swatches__item" data-swatch-tooltip="{{ value | escape }}">
+        <input
+          class="ws-variant-swatches__input"
+          type="radio"
+          name="option-{{ option_index }}"
+          value="{{ value | escape }}"
+          {% if is_selected %}checked{% endif %}
+        >
+        <span
+          class="ws-variant-swatches__swatch"
+          style="{{ swatch_styles | split: '/* variables */' | last | remove: '/* variables */' }}"
+          aria-hidden="true"
+        >
+          <span
+            class="ws-variant-swatches__swatch-inner"
+            style="{{ swatch_styles | split: '/* variables */' | first }}"
+          ></span>
+        </span>
+      </label>
+    {%- endfor -%}
+  </div>
+</div>

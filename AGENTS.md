@@ -4,6 +4,7 @@
 > **STRATEGIC PIVOT (2026-01-21)**: The objective has shifted. We are no longer just "improving" the theme. We are building a pixel-perfect, feature-rich replica of **WoodenStreet.com** as our MVP baseline, then suppressing it.
 > ALL agents must prioritize **WoodenStreet Parity** over experimental features.
 
+<<<<<<< HEAD
 ---
 
 ## 🧠 Critique & Culture (For The Human Developer)
@@ -79,10 +80,8 @@
 
 ---
 
-## 📜 Developer Logs (The Blockchain of Work)
-*ALL agents must append their work here.*
-
 - **2026-01-21 (Antigravity)**: **PIVOT INITIATED.** Re-wrote AGENTS.md. Defined "WoodenStreet MVP" scope. Populated 20+ High-Impact Tasks.
 - **2026-01-21 (Antigravity)**: **CRITIQUE ADDED.** Added feedback on "Go-Kart Speed" and "Visual Trap".
 - **2026-01-21 (Codex-01)**: Selected task B-01 - Visual Variant Swatches.
 - **2026-01-21 (Codex-01)**: Completed task B-01 - Visual Variant Swatches component.
+- **2026-01-21 (Codex-001)**: Added visual variant swatches component snippet scaffolding (PR #28).
