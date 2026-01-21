@@ -1,0 +1,138 @@
+{% comment %}
+  Whisper Urgency Strip
+  - Implements WoodenStreet-style "Sale Ends In" countdown.
+  - Position: Immediately below the main hero/header.
+  - Logic: Uses localStorage to persist the timer.
+{% endcomment %}
+
+<div class="whisper-urgency-strip" data-whisper-urgency>
+  <div class="page-width">
+    <div class="urgency-content">
+      <div class="urgency-text">
+        <span class="urgency-badge">ENDING SOON</span>
+        <span class="urgency-label">Republic Day Sale: Flat 55% Off + Extra 20% Off</span>
+      </div>
+      <div class="urgency-timer">
+        <span class="timer-block" id="urgency-hours">04</span>
+        <span class="timer-colon">:</span>
+        <span class="timer-block" id="urgency-minutes">12</span>
+        <span class="timer-colon">:</span>
+        <span class="timer-block" id="urgency-seconds">45</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .whisper-urgency-strip {
+    background: #FFF4E6; /* Light Orange/Peach background */
+    border-bottom: 1px solid #FFE0B2;
+    padding: 10px 0;
+    font-family: var(--font-body-family);
+  }
+
+  .urgency-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .urgency-badge {
+    background: #FF7043; /* Vibrant Orange */
+    color: white;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    animation: pulse-orange 2s infinite;
+  }
+
+  .urgency-label {
+    color: #BF360C; /* Deep Red-Orange text */
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .urgency-timer {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-family: monospace; /* Monospace for fixed width numbers */
+    color: #D84315;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+
+  .timer-block {
+    background: white;
+    padding: 2px 6px;
+    border-radius: 4px;
+    border: 1px solid #FFAB91;
+    min-width: 28px;
+    text-align: center;
+  }
+
+  @keyframes pulse-orange {
+    0% { box-shadow: 0 0 0 0 rgba(255, 112, 67, 0.4); }
+    70% { box-shadow: 0 0 0 6px rgba(255, 112, 67, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(255, 112, 67, 0); }
+  }
+
+  @media (max-width: 767px) {
+    .urgency-content {
+      gap: 10px;
+      flex-direction: column;
+      text-align: center;
+    }
+  }
+</style>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initial Time: 4 hours, 30 minutes
+    const INITIAL_SECONDS = 4 * 3600 + 30 * 60; 
+    let remaining = INITIAL_SECONDS;
+
+    // Check localStorage
+    const savedTime = localStorage.getItem('whisper_urgency_end');
+    const now = Date.now();
+
+    if (savedTime && parseInt(savedTime) > now) {
+      remaining = Math.floor((parseInt(savedTime) - now) / 1000);
+    } else {
+      // Set new end time
+      localStorage.setItem('whisper_urgency_end', now + (INITIAL_SECONDS * 1000));
+    }
+
+    const els = {
+      h: document.getElementById('urgency-hours'),
+      m: document.getElementById('urgency-minutes'),
+      s: document.getElementById('urgency-seconds')
+    };
+
+    function update() {
+      if (remaining <= 0) {
+        // Reset or hide
+        remaining = 14400; // Reset to 4 hours loop
+        localStorage.setItem('whisper_urgency_end', Date.now() + (remaining * 1000));
+      }
+
+      remaining--;
+
+      const h = Math.floor(remaining / 3600);
+      const m = Math.floor((remaining % 3600) / 60);
+      const s = remaining % 60;
+
+      if(els.h) els.h.textContent = h.toString().padStart(2, '0');
+      if(els.m) els.m.textContent = m.toString().padStart(2, '0');
+      if(els.s) els.s.textContent = s.toString().padStart(2, '0');
+    }
+
+    setInterval(update, 1000);
+    update();
+  });
+</script>

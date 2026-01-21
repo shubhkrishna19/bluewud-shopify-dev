@@ -14,6 +14,9 @@
                 "button_link": "shopify:\/\/collections\/furniture-new"
             }
         },
+        "urgency_strip": {
+            "type": "whisper-urgency-strip"
+        },
         "whisper_lookbook": {
             "type": "whisper-lookbook",
             "blocks": {

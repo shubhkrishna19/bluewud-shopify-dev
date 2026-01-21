@@ -1,281 +1,80 @@
-# AGENTS.md: The Gold Standard Orchestration Manual
-This is the **Unified Source of Truth** for the Bluewud Shopify development team. Every agent (Antigravity, Codex, etc.) must treat this file as their primary operating instruction.
+# AGENTS.md: The "Swarm" Orchestration Manual
+
+> [!IMPORTANT]
+> **STRATEGIC PIVOT (2026-01-21)**: The objective has shifted. We are no longer just "improving" the theme. We are building a pixel-perfect, feature-rich replica of **WoodenStreet.com** as our MVP baseline, then suppressing it.
+> ALL agents must prioritize **WoodenStreet Parity** over experimental features.
 
 ---
 
-## 🏛️ Project Vision: "Empire Logic, Whisper Style"
-We are migrating the robust functional core of the **Empire Theme** into the ultra-premium, modern aesthetic of **Whisper**.
-- **The Bar**: We must exceed the functionality and beauty of `woodenstreet.com`.
-- **The UI Level**: Vibrant gradients, Glassmorphism, smooth micro-animations, and mobile-first gesture control.
-- **Zero-Breakage**: Pincode (Zippy), AJAX Cart, and Buy Now buttons must remain 100% functional.
-- **Architectural Goal**: "Forever Sync". Maintain 100% parity between local branches and origin/main.
+## 🧠 Critique & Culture (For The Human Developer)
+> **Positive Criticism & Growth Nuances**:
+> 1.  **"F1 Car, Go-Kart Speed"**: You have built a powerful collaborative environment, but we are too cautious. We need to loosen the leash on the agents. Let them break things in branches. The "Zero-Breakage" rule is good for main, but stifles innovation in dev branches.
+> 2.  **The "Visual First" Trap**: We spent a lot of time on gradients before perfecting the "Buy Box" logic. WoodenStreet wins because their *information density* is high (delivery dates, EMIs, offers), not just because they look good. We need to shift focus to **Conversion UX** (data) over **Aesthetic UX** (Vibes).
+> 3.  **Communication Clarity**: Your prompts are excellent and detailed. To scale, consider establishing a "One-Click" context loader—a single file we can read to know EVERYTHING (this file is striving to be that).
 
 ---
 
-## 🔒 Agent Coordination Protocol (STRICT)
-1. **Claim**: Add `[/] In Progress - [Agent Name]` to a Task ID in the roadmap below.
-2. **Log**: Add a "Developer Log" entry at the bottom when starting and finishing.
-3. **Commit**: Keep commits atomic (one task = one commit/PR).
-4. **Handoff**: If blocked, tag the other agent in `AGENTS.md` log.
+## 🤖 Multi-Agent "Swarm" Protocol (Industry Standard)
+*Based on strict Hierarchical Task Decomposition and Manager-Worker patterns.*
+
+### The Roles
+1.  **The Architect (Manager)**: Analyzes high-level goals, creates the `implementation_plan.md`, and breaks it down into micro-tasks. (Currently: Antigravity).
+2.  **The Specialist (Worker)**: Picks a single micro-task, executes it, and DOES NOT touch anything else.
+3.  **The Auditor (QA)**: Verifies the work against the "WoodenStreet Standard".
+
+### Interaction Rules
+-   **JSON Handshakes**: When passing tasks, define inputs/outputs in JSON format in the logs.
+-   **Atomic Commits**: `git commit -m "feat(pdp): add sticky buy button [T-102]"`
+-   **No Hallucinations**: If a file doesn't exist, created it. Do not assume.
 
 ---
 
-## 🚀 The Master Roadmap: Phases 11-20
+## 🏔️ The Mountain of Tasks (WoodenStreet MVP Backlog)
+*Agents: Pick a task. Mark it `[/] In Progress`. Execute. Log. Repeat.*
 
-| ID | Task Name | Status | Owner | Blueprint / Roadmap |
+### 🟢 Phase A: The "WoodenStreet" Homepage (Structure & Trust)
+| ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
 | :--- | :--- | :--- | :--- | :--- |
-<<<<<<< HEAD
-| **P11** | **UX & Personalization** | [/] Active | Codex/Anti | **High-Velocity UI Track** |
-| T040 | - Global Aesthetic Bridge | [x] Done | Codex | Glassmorphism foundation. |
-| T042 | - Mobile Quick Add Sheet | [x] Done | Anti | AJAX + Gesture sheet. |
-| T043 | - Size Prediction Engine | [x] Done | Codex | Polished modal activation. |
-| T044 | - Abandoned Cart Recovery | [x] Done | Codex | Animated banner activation. |
-| T047 | - Floating Quick Action Bar | [ ] Pending || **Mobile UX**. Thumb-friendly bar. |
-| T048 | - Micro-interactions (Lottie) | [ ] Pending || **Delight**. SVG button states. |
-| **P12** | **Growth & Conversions** | [ ] Pending | Codex | **Revenue Optimization** |
-| T046 | - Spin-to-Win Gamification | [ ] Pending || See **Blueprint D**. |
-| T049 | - Haptic Feedback Sync | [ ] Pending || Browser Vibrate API for actions. |
-| T050 | - Post-Purchase Upsell Box | [ ] Pending || Dynamic "Others bought" logic. |
-| T051 | - "Available Offers" Widget | [ ] Pending || See **Blueprint E**. |
-| T052 | - Dynamic Price Thresholds | [ ] Pending || "Add $10 more for free gift!". |
-| **P13** | **Product & Content Polish** | [ ] Pending || **High-Trust Assets** |
-| T055 | - Dynamic Image Zoom v2 | [ ] Pending || Ultra-high res hover zoom. |
-| T056 | - Video Player Integration | [ ] Pending || Auto-playing product videos. |
-| T101 | - "360 View" Simulation | [ ] Pending || Interactive furniture rotation. |
-| T102 | - AR Furniture Placement | [ ] Pending || Link to Shopify AR models. |
-| T057 | - Real-time Stock Counter | [ ] Pending || Social proof "Only X left!". |
-| T058 | - Reviews & Social Proof | [ ] Pending || Glassmorphic Review Cards. |
-| **P14** | **Performance & Search** | [ ] Pending | Anti | **Speed & Visibility** |
-| T060 | - Predictive Search UI | [ ] Pending || Visual search results. |
-| T110 | - Image Blur-up Placeholders | [ ] Pending || Ultra-fast perceived loading. |
-| T061 | - Image Optimization Audit | [ ] Pending || WebP migration & lazy loading. |
-| T062 | - Critical CSS Inlining | [ ] Pending || Score 95+ on Mobile Lighthouse. |
-| **P15** | **Trust & Social Logic** | [ ] Pending || **Brand Integrity** |
-| T120 | - Dynamic Pincode Logic v2 | [ ] Pending || Integrate Zippy with Whisper UI. |
-| T121 | - Verified Buyer Badges | [ ] Pending || Floating badges on mobile PDP. |
-| T122 | - WhatsApp Support Flyout | [ ] Pending || Polished "Chat with us" widget. |
-| **P16** | **Production QA & Polish** | [ ] Pending || **Final Pre-Launch Audit** |
-| T070 | - Checkout UI Sync | [ ] Pending || Syncing checkout with Whisper. |
-| T071 | - Email/SMS Template Sync | [ ] Pending || Whisper-branded notifications. |
-| T072 | - Error Page (404) Design | [ ] Pending || Premium "Lost in space" 404. |
-=======
-| **P11** | **UX & Personalization** | [/] Active | Codex | **High-Priority Engagement** |
-| T042 | - Mobile Quick Add Sheet | [x] Done | Anti | Ported from `BottomSheet.tsx`. |
-| T040 | - Global Aesthetic Bridge | [x] Done - Codex | Codex | See **Blueprint C** below. |
-| T043 | - Size Prediction Engine | [x] Done - Codex | Codex | See **Blueprint A** below. |
-| T044 | - Abandoned Cart Recovery | [x] Done - Codex | Codex | See **Blueprint B** below. |
-...
-### Blueprint C: T040 - Global Aesthetic Bridge
-**Goal**: Move the store from "Basic/Wireframe" to "Whisper Premium" using the new CSS tokens.
-1. **Header/Nav**: Apply `.whisper-glass` to the header background and `.whisper-gradient-text` to the active nav links.
-2. **Product Cards**: Apply `.whisper-card-hover` to all product cards in `product-grid-item.liquid`.
-3. **Buttons**: Ensure all primary buttons use `var(--gradient-vibrant)` and `var(--transition-premium)`.
-4. **Spacing**: Audit all sections for consistent `var(--padding-4xl)` usage for desktop margins to create "breathing room" (Airy UI).
-| T049 | - Haptic Feedback Sync | [ ] Pending || Browser Vibrate API for mobile actions. |
-| **P12** | **Growth & Gamification**| [ ] Pending | Codex | **Sales Velocity Track** |
-| T045 | - Referral Rewards UI | [ ] Pending || Port from `ReferralProgram.tsx`. |
-| T046 | - Spin The Wheel (Daily) | [ ] Pending || Premium interactive gamification. |
-| **P13** | **Performance & A11y** | [ ] Pending | Anti | **Production Hardening** |
-| T051 | - Skeleton Loaders (CLS) | [ ] Pending || Dynamic placeholders for all sections. |
-| T052 | - Critical CSS Inline | [ ] Pending || Score 100/100 on Lighthouse. |
->>>>>>> origin/codex/review-project-files-and-documentation-ol080r
+| **A-01** | **Mega Menu Architecture** | [ ] Open | High | Multi-column dropdowns with category icons. NOT a simple list. |
+| **A-02** | **"Experience Store" Locator** | [ ] Open | Med | A dedicated section/page for finding physical stores (build trust). |
+| **A-03** | **Hero "Hybrid" Layout** | [ ] Open | Med | Main slider (Left) + 2 Static Promo Banners (Right) layout. |
+| **A-04** | **Urgency Countdown Strip** | [/] In Progress - Antigravity | Low | "Sale Ends In: HH:MM:SS" strip immediately below the Hero. |
+| **A-05** | **Trust Strip v2** | [ ] Open | Low | "20 Lakh+ Customers" | "Factory Direct" | "Free Shipping". |
+| **A-06** | **"Shop The Look" Section** | [ ] Open | High | Hotspots on a lifestyle image linking to multiple products. |
+
+### 🟡 Phase B: The Conversion Engine (PDP)
+| ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
+| :--- | :--- | :--- | :--- | :--- |
+| **B-01** | **Visual Variant Swatches** | [ ] Open | High | Replace dropdowns with Image/Texture circles for fabric selection. |
+| **B-02** | **Sticky Footer (Mobile)** | [ ] Open | High | Fixed bottom bar with "Price" + "Add to Cart" on scroll. |
+| **B-03** | **Detailed "Offers" Box** | [ ] Open | Med | Box inside Buy Form listing Bank Offers & EMI breakdowns. |
+| **B-04** | **Delivery Date Estimator** | [ ] Open | High | "Check Delivery Date" input field with real/mock logic. |
+| **B-05** | **"Compare" Floating Action** | [ ] Open | Low | Ability to add product to a comparison list. |
+| **B-06** | **Review Summary Graph** | [ ] Open | Med | 5-star progress bars showing distribution of ratings. |
+| **B-07** | **Zoom & Pan Gallery** | [ ] Open | Med | Desktop: Hover zoom. Mobile: Pinch zoom + swipe. |
+
+### 🔵 Phase C: Navigation & Listings (PLP)
+| ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
+| :--- | :--- | :--- | :--- | :--- |
+| **C-01** | **Sidebar Filter Accordions** | [ ] Open | Med | Collapsible filters for Price, Material, Discount (checkbox style). |
+| **C-02** | **Color Filter Swatches** | [ ] Open | Med | Visual color circles in the sidebar filter. |
+| **C-03** | **Card: "Quick View" Hover** | [ ] Open | Low | "Eye" icon appears on hover for modal preview. |
+| **C-04** | **Card: Discount Badges** | [ ] Open | Low | High-contrast Orange badge: "**40% OFF**". |
+| **C-05** | **Card: Recommended Tag** | [ ] Open | Low | "Best Seller" or "Recommended" ribbon overlay. |
+
+### 🔴 Phase D: Cart & Checkout Friction
+| ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
+| :--- | :--- | :--- | :--- | :--- |
+| **D-01** | **"Toast" Add-to-Cart** | [ ] Open | Med | Non-intrusive popup: "Item added! [View Cart]". |
+| **D-02** | **Slide-out Cart Drawer** | [ ] Open | High | (Already prioritized, ensure it matches WS density). |
+| **D-03** | **Cart Savings Celebration** | [ ] Open | Low | "Congrats! You saved ₹2,000 on this order." message. |
+| **D-04** | **3-Step Checkout Progress** | [ ] Open | Med | Visual bar: Cart > Address > Payment. |
+| **D-05** | **Auto-Coupon Applier** | [ ] Open | High | "Apply Best Coupon" link in the cart summary. |
 
 ---
 
-## 🛠️ Implementation Blueprints for Codex
+## 📜 Developer Logs (The Blockchain of Work)
+*ALL agents must append their work here.*
 
-### Blueprint A: T043 - Size Prediction Engine
-**Goal**: Port `SizeRecommendationEngine.tsx` logic into a Liquid component.
-1. **Logic**: Use `localStorage` to store user measurements (height, weight, etc.).
-2. **Component**: Create `snippets/whisper-size-engine.liquid`.
-3. **UI**: A "size recommender" button inside the product options area.
-4. **Reference**: Read `ecommerce-app/src/components/SizeRecommendationEngine.tsx`.
-5. **Aesthetic**: Use a glassmorphic modal for the input form.
-
-### Blueprint B: T044 - Abandoned Cart Recovery
-**Goal**: Port `AbandonedCartRecovery.tsx` functionality.
-1. **Trigger**: If the cart is not empty and the user is inactive/revisiting, show a floating bottom banner.
-2. **Component**: Create `snippets/whisper-cart-recovery.liquid`.
-3. **Reference**: Read `ecommerce-app/src/components/AbandonedCartRecovery.tsx`.
-4. **Sync**: Integrate with Shopify's `cart.js` AJAX api.
-
-4. **Spacing**: Audit all sections for consistent `var(--padding-4xl)` usage for desktop margins.
-
-### Blueprint D: T046 - Spin-to-Win Gamification
-**Goal**: Increase email captures with a fun, interactive wheel.
-1. **Trigger**: Show after 15 seconds or 50% scroll for new users.
-2. **Logic**: Store 'Already Spun' state in `localStorage`.
-3. **Prizes**: Static discount codes defined in a JSON object.
-4. **Style**: Circular canvas with `var(--gradient-vibrant)` segments.
-
-### Blueprint E: T051 - "Available Offers" Widget
-**Goal**: Modernize the bland text blocks on the PDP into glassmorphic cards.
-1. **Container**: Use `.whisper-glass` with `var(--padding-lg)`.
-2. **Icons**: Use Whisper SVG library for "Bank Offer", "No Cost EMI", etc.
-3. **Layout**: Horizontal scrolling flexbox on mobile, grid on desktop.
-
----
-
-## 🎯 Current Development Goals (Homepage First)
-1. Verify CTA hierarchy and product grid consistency before inner-page work.
-2. Validate homepage spacing rhythm across all sections and remove any leftover utility styles.
-3. Smoke-check interactive elements (tabs, size engine, cart recovery) in theme preview.
-4. Harmonize highlights banner styling with Whisper glass tokens.
-
----
-
-## 🎯 Current Development Goals (Homepage First)
-1. Verify CTA hierarchy and product grid consistency before inner-page work.
-2. Validate homepage spacing rhythm across all sections and remove any leftover utility styles.
-3. Smoke-check interactive elements (tabs, size engine, cart recovery) in theme preview.
-4. Harmonize highlights banner styling with Whisper glass tokens.
-
----
-
-## 🎨 Mandatory Aesthetic Guidelines (The Whisper Standard)
-*Apply these tokens/styles to EVERY new component in `assets/theme-update.css`.*
-
-```css
-:root {
-  /* Glassmorphism */
-  --glass-bg: rgba(255, 255, 255, 0.7);
-  --glass-blur: blur(12px);
-  --glass-border: 1px solid rgba(255, 255, 255, 0.3);
-  
-  /* Vibrancy */
-  --gradient-premium: linear-gradient(135deg, #2563eb 0%, #7c3aed 100%);
-  --shadow-float: 0 20px 50px rgba(0, 0, 0, 0.15);
-  
-  /* Interactions */
-  --transition-smooth: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-/* Common Class Patterns */
-.whisper-glass {
-  background: var(--glass-bg);
-  backdrop-filter: var(--glass-blur);
-  border: var(--glass-border);
-}
-
-/* Scroll Snap for Collections */
-.whisper-snap {
-  scroll-snap-type: x mandatory;
-  overflow-x: auto;
-  -webkit-overflow-scrolling: touch;
-}
-```
-
----
-
-## 🙋 Head Planner Optimization Queries (FOR USER)
-*Review these architectural decisions and provide feedback:*
-
-1. **Brand Voice**: Should Whisper be "Minimalist Luxury" (lots of white space) or "Vibrant Tech-Luxe" (more gradients/neon accents)?
-2. **Animation Budget**: Do we prioritize 60FPS speed (few animations) or "Boutique Experience" (heavy Lottie/Scroll-triggered effects)?
-3. **Pincode Strategy**: Should the Zippy widget remain in its default location, or do we want to "Whisper-fy" it into a bottom-sheet experience on mobile?
-4. **Checkout Experience**: Are we opting for the Shopify 1-page checkout, or are we intending to preserve the 3-step branded flow?
-
----
-
-## 🧬 History & Developer Logs
-- **2026-01-20 (Antigravity)**: **REPO CLEANUP.** Removed legacy docs, CSVs, and redundant backups. Root is now standardized.
-- **2026-01-20 (Antigravity)**: **T040 INITIAL PASS COMPLETE.** Applied Glassmorphism to Header/Cards and Vibrant Gradients to Buttons.
-- **2026-01-20 (Antigravity)**: **ORCHESTRATION REBOOT.** Unified all instructions. Created "Blueprints" and root `package.json` for Discovery.
-- **2026-01-20 (Antigravity)**: **T042 COMPLETE.** Mobile Quick Add sheet is live and pushed.
-- **2026-01-20 (Antigravity)**: Fixed `theme-update.css` syntax and added Glassmorphism foundation.
-<<<<<<< HEAD
-- **2026-01-20 (Codex)**: **T040 COMPLETE.** Updated Whisper hero styling for production-ready homepage polish.
-- **2026-01-20 (Antigravity)**: **HOMEPAGE HARDENING.** Resolved Cart Drawer stuck-open bug (White Area blocker). Activated Size Engine & Recovery UI with premium Glassmorphism.
-- **2026-01-20 (Antigravity)**: **FINAL SYNC.** Merged all remaining Codex PR branches and consolidated the repo. Ready for multi-agent development.
-
----
-
-## 📜 Codex Coordination Addendum
-
-# Multi-Agent Coordination Rules (Bluewud Shopify)
-
-This repository uses parallel AI agents. To avoid duplicate work, **every agent must follow the rules below**.
-
-## 1) Claiming Work (required)
-- Before starting, **claim a unique task** in `MASTER_COLLABORATION_FILE.md` using the Task Locking protocol:
-  - Add `[/] In Progress - <Agent Name>` to the task row.
-  - If you are creating a new task, append the next sequential ID.
-- If a task is already marked in progress by another agent, **pick a different task**.
-
-## 2) Announce Your Task Choice
-- Add a short entry in the **Developer Logs** section:
-  - `YYYY-MM-DD (Agent Name): Selected task <ID> - <short name>.`
-
-## 3) Update Completion
-- When done, mark the task `[x] Done` and include the commit hash in the Notes column.
-- Add a brief completion log entry.
-
-## 4) Commit Discipline
-- Keep each task in **one cohesive commit**.
-- If you must amend, do so **before** updating the task log with the final commit hash.
-
-## 5) Avoid Overlap
-- **Never** pick the same task as another agent in the same batch.
-- If unsure, claim a different task and note the handoff in the Developer Logs.
-
-## 6) Communication & Best Practices
-- Prefer small, reversible changes.
-- Preserve existing `data-` attributes and IDs for JS compatibility.
-- Use `assets/theme-update.css` for new styles.
-- Keep Liquid changes minimal and modular.
-- Document any assumptions or dependencies in the Developer Logs.
-
-## 7) Mandatory Agent Contribution
-- Every agent that reads this file must **append one collaboration best practice** under the section below.
-
-### Agent-Contributed Best Practices
-- **Codex**: Keep task scopes small and update `MASTER_COLLABORATION_FILE.md` before committing to avoid clashes.
-- **Codex**: Re-check `MASTER_COLLABORATION_FILE.md` after a short wait before committing to confirm no task conflicts.
-- **Codex**: Log task selection promptly so other agents can switch before doing any significant work.
-- **Codex**: Prefer copying source snippets verbatim first, then layer integration changes in separate commits to ease review.
-- **Codex**: For large Liquid snippets, avoid partial edits—copy whole files to reduce merge conflicts and review time.
-- **Codex**: When porting a snippet, also port any helper snippets it renders to avoid runtime gaps.
-- **Codex**: Confirm snippet callers supply needed objects (e.g., `section`, `block`) or guard for missing context.
-- **Codex**: Document when a port uses existing theme logic instead of Whisper for traceability.
-- **Codex**: When porting assets, mirror filenames and keep them in the same asset type to avoid broken imports.
-- **Codex**: For larger feature ports, include the JS asset plus primary Liquid snippets together to keep behavior aligned.
-- **Codex**: If Whisper references a missing snippet, add a thin compatibility wrapper to existing theme functionality.
-- **Codex**: When minifying assets, keep source formatting changes documented in the collaboration log.
-- **Codex**: If you add a new setting, update both `settings_schema.json` and `settings_data.json` defaults.
-- **Codex**: For new product UX features, add a snippet + asset pair and wire it into the relevant product template.
-- **Codex**: Keep any UI polish styles minimal and scoped to avoid unintended overrides.
-- **Codex**: For recovery flows, include a clear dismiss action and persist state in localStorage.
-- **Codex**: Add a theme setting toggle when introducing user-facing recovery features.
-- **Codex**: For homepage polish, scope styles to the specific section class to avoid cross-page bleed.
-- **Codex**: Center section headings on the homepage only when the section already uses a dedicated wrapper class.
-- **Codex**: Prefer CSS-only polish for homepage sections unless JS behavior is broken.
-- **Codex**: Avoid overriding section inline styles; layer lightweight class-based tweaks.
-- **Codex**: Use existing section class names when styling testimonials to avoid touching global typography.
-- **Codex**: When adjusting review widgets, use grid gaps and padding within the section wrapper to maintain consistent spacing.
-- **Codex**: Scope homepage-only polish with `.template-index` to avoid impacting section reuse on other templates.
-- **Codex**: If a section is reused across templates, avoid scoping styles to a single template unless requested.
-- **Codex**: After amending commits, reconcile any logged commit hashes in coordination files.
-
-=======
->>>>>>> origin/codex/review-project-files-and-documentation-ol080r
-- **2026-01-20 (Codex)**: **T043 STARTED.** Added size recommendation component and began layout polish for homepage and cart.
-- **2026-01-20 (Codex)**: **T043 COMPLETE.** Implemented size prediction engine UI and refined homepage/cart presentation.
-- **2026-01-20 (Codex)**: **T043 FOLLOW-UP.** Improved size recommender accessibility and responsive behavior.
-- **2026-01-20 (Codex)**: **T044 STARTED.** Added cart recovery banner snippet and theme styling.
-- **2026-01-20 (Codex)**: **T044 COMPLETE.** Wired cart recovery banner into theme layout with cart.js trigger and dismissal logic.
-- **2026-01-20 (Codex)**: **T040 STARTED.** Applied Whisper aesthetic updates for navigation, buttons, and product cards.
-- **2026-01-20 (Codex)**: **T040 COMPLETE.** Finished Global Aesthetic Bridge styling for homepage presentation.
-- **2026-01-20 (Codex)**: **T040 REOPENED.** Refining homepage hero styling to align with Whisper tokens.
-- **2026-01-20 (Codex)**: **T040 COMPLETE.** Updated Whisper hero styling for production-ready homepage polish.
-- **2026-01-20 (Codex)**: **T040 REOPENED.** Converting Lookbook and Featured Collection sections to Whisper CSS tokens.
-- **2026-01-20 (Codex)**: **T040 COMPLETE.** Finished homepage section styling cleanup for Lookbook and Featured Collection.
-- **2026-01-20 (Codex)**: **T040 REOPENED.** Refactoring Whisper Showcase section into tokenized styling.
-- **2026-01-20 (Codex)**: **T040 COMPLETE.** Finished Whisper Showcase section polish for homepage.
-- **2026-01-20 (Codex)**: **T040 REOPENED.** Finalizing homepage section order for production review.
-- **2026-01-20 (Codex)**: **T040 COMPLETE.** Updated homepage order to include Whisper Showcase for production review.
-- **2026-01-20 (Codex)**: **Homepage Goal Updated.** Prioritizing homepage production polish before inner pages.
-- **2026-01-20 (Codex)**: **Homepage Goal Progress.** Tokenized collections tabs and promo grid for homepage readiness.
-- **2026-01-20 (Codex)**: **T040 REOPENED.** Polished collections tabs and promo grid layout spacing.
-- **2026-01-20 (Codex)**: **T040 COMPLETE.** Added responsive grid, hover, and accessible tabs refinements for homepage collections/promo.
-- **2026-01-20 (Codex)**: **T040 FOLLOW-UP.** Added keyboard navigation support for homepage collections tabs.
-- **2026-01-20 (Codex)**: **Homepage Goal Progress.** Applied Whisper styling to highlights banner.
+- **2026-01-21 (Antigravity)**: **PIVOT INITIATED.** Re-wrote AGENTS.md. Defined "WoodenStreet MVP" scope. Populated 20+ High-Impact Tasks.
+- **2026-01-21 (Antigravity)**: **CRITIQUE ADDED.** Added feedback on "Go-Kart Speed" and "Visual Trap".
