@@ -28,11 +28,11 @@
     1.  **CLAIM**: Mark your task `[/] In Progress` in this file.
     2.  **PUSH**: Immediately `git commit` and `git push` this file ONLY.
     3.  **CODE**: Once your claim is on the remote, START coding.
-    *This prevents two agents from working on the same task simultaneously.*
 
--   **JSON Handshakes**: When passing tasks, define inputs/outputs in JSON format in the logs.
--   **Atomic Commits**: `git commit -m "feat(pdp): add sticky buy button [T-102]"`
--   **No Hallucinations**: If a file doesn't exist, create it. Do not assume.
+-   **🚨 RULE #2: ISOLATION PROTOCOL (AUTO-MERGE FRIENDLY)**:
+    -   **CSS**: NEVER edit `theme-update.css` directly. Create `assets/component-[name].css`.
+    -   **SECTIONS**: Create sections but **DO NOT** add them to `index.json`. (Antigravity will integrate).
+    -   **LOGS**: When logging below, leave **2 EMPTY LINES** between entries to prevent merge conflicts.
 
 ---
 
