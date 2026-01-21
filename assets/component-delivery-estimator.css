@@ -1,0 +1,46 @@
+/* WoodenStreet MVP: Delivery Date Estimator (PDP) */
+
+.ws-delivery-estimator{
+  border:1px solid rgb(var(--color-border-rgb)/.35);
+  border-radius:12px;
+  padding:1rem;
+  display:grid;
+  gap:0.6rem;
+  background:var(--color-background);
+}
+
+.ws-delivery-estimator__title{
+  margin:0;
+  font-size:0.95rem;
+  font-weight:600;
+}
+
+.ws-delivery-estimator__row{
+  display:flex;
+  flex-wrap:wrap;
+  gap:0.5rem;
+  align-items:center;
+}
+
+.ws-delivery-estimator__input{
+  flex:1 1 140px;
+  padding:0.45rem 0.6rem;
+  border:1px solid rgb(var(--color-border-rgb)/.5);
+  border-radius:8px;
+}
+
+.ws-delivery-estimator__button{
+  padding:0.45rem 0.9rem;
+  border-radius:999px;
+  border:none;
+  background:var(--color-foreground);
+  color:var(--color-background);
+  font-size:0.85rem;
+  cursor:pointer;
+}
+
+.ws-delivery-estimator__note{
+  margin:0;
+  font-size:0.85rem;
+  color:rgb(var(--color-foreground)/.7);
+}

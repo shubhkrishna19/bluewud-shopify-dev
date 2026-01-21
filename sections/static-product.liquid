@@ -29,7 +29,7 @@
 
 {% render 'breadcrumbs' %}
 
-<section class="product--container" data-product-wrapper>
+<section class="product--container" data-product-wrapper id="product-form">
   {%
     render 'product',
     is_product_modal: false,
@@ -42,6 +42,9 @@
     gallery_hover_zoom: section.settings.gallery_hover_zoom
   %}
 </section>
+{% render 'ws-offers-box', product: product %}
+{% render 'ws-delivery-estimator' %}
+{% render 'ws-sticky-footer', product: product %}
 {% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: true, product: product %}
 
 <script>

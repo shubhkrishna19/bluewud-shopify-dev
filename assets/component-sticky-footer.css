@@ -1,0 +1,52 @@
+/* WoodenStreet MVP: Sticky Footer (Mobile) */
+
+.ws-sticky-footer{
+  position:fixed;
+  left:0;
+  right:0;
+  bottom:0;
+  z-index:120;
+  background:var(--color-background);
+  border-top:1px solid rgb(var(--color-border-rgb)/.4);
+  box-shadow:0 -6px 20px rgb(0 0 0 / .08);
+  padding:0.75rem 1rem;
+}
+
+.ws-sticky-footer__content{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:0.75rem;
+}
+
+.ws-sticky-footer__title{
+  font-size:0.9rem;
+  font-weight:600;
+  max-width:55%;
+  overflow:hidden;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.ws-sticky-footer__price{
+  font-weight:600;
+}
+
+.ws-sticky-footer__action{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:0.45rem 0.9rem;
+  border-radius:999px;
+  background:var(--color-primary);
+  color:var(--color-primary-text);
+  text-decoration:none;
+  font-size:0.85rem;
+  white-space:nowrap;
+}
+
+@media screen and (min-width: 769px){
+  .ws-sticky-footer{
+    display:none;
+  }
+}
