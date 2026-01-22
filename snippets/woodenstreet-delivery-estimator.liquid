@@ -1,0 +1,55 @@
+<div class="woodenstreet-delivery" data-delivery-estimator>
+  <div class="woodenstreet-delivery__title">Check delivery availability</div>
+  <div class="woodenstreet-delivery__form">
+    <input
+      class="woodenstreet-delivery__input"
+      type="text"
+      inputmode="numeric"
+      pattern="[0-9]*"
+      maxlength="6"
+      placeholder="Enter pincode"
+      aria-label="Enter pincode"
+      data-delivery-input
+    >
+    <button class="woodenstreet-delivery__button" type="button" data-delivery-submit>
+      Check
+    </button>
+  </div>
+  <div class="woodenstreet-delivery__result" data-delivery-result>
+    Enter your pincode to see delivery estimates.
+  </div>
+</div>
+
+<script>
+  (() => {
+    const container = document.querySelector('[data-delivery-estimator]');
+    if (!container || window.__woodenstreetDeliveryEstimatorInitialized) {
+      return;
+    }
+    window.__woodenstreetDeliveryEstimatorInitialized = true;
+    const input = container.querySelector('[data-delivery-input]');
+    const button = container.querySelector('[data-delivery-submit]');
+    const result = container.querySelector('[data-delivery-result]');
+    const storageKey = 'woodenstreet:delivery-estimator:pincode';
+
+    const renderEstimate = (pincode) => {
+      if (!pincode || pincode.length < 5) {
+        result.textContent = 'Enter a valid pincode to see delivery estimates.';
+        return;
+      }
+      result.textContent = `Delivery available. Estimated dispatch in 2-4 days for ${pincode}.`;
+    };
+
+    const saved = window.localStorage.getItem(storageKey);
+    if (saved) {
+      input.value = saved;
+      renderEstimate(saved);
+    }
+
+    button.addEventListener('click', () => {
+      const pincode = input.value.trim();
+      window.localStorage.setItem(storageKey, pincode);
+      renderEstimate(pincode);
+    });
+  })();
+</script>

@@ -1,0 +1,34 @@
+{% assign swatch_options = product.options_with_values %}
+{% assign swatch_index = 0 %}
+
+{% for option in swatch_options %}
+  {% assign option_name = option.name | downcase %}
+  {% if option_name contains 'color' or option_name contains 'colour' %}
+    {% assign swatch_index = forloop.index0 %}
+    <div class="woodenstreet-swatches" data-variant-option data-variant-option-index="{{ swatch_index }}">
+      <span class="woodenstreet-swatches__label">
+        {{ option.name }}: {{ option.selected_value }}
+      </span>
+      <div class="woodenstreet-swatches__list">
+        {% for value in option.values %}
+          {% assign is_selected = false %}
+          {% if option.selected_value == value %}
+            {% assign is_selected = true %}
+          {% endif %}
+          <label class="woodenstreet-swatches__item">
+            <input
+              class="woodenstreet-swatches__input"
+              type="radio"
+              name="woodenstreet-swatch-{{ section.id }}-{{ swatch_index }}"
+              value="{{ value | escape }}"
+              {% if is_selected %}checked{% endif %}
+              data-variant-option-value
+              data-variant-option-value-index="{{ swatch_index }}"
+            >
+            <span class="woodenstreet-swatches__button">{{ value }}</span>
+          </label>
+        {% endfor %}
+      </div>
+    </div>
+  {% endif %}
+{% endfor %}
