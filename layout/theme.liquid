@@ -76,6 +76,7 @@
     <link rel="preload" as="style" href="{{ 'theme.css' | asset_url }}">
     <link rel="preload" as="style" href="{{ 'component-variant-swatches.css' | asset_url }}">
     <link rel="preload" as="style" href="{{ 'component-sticky-footer.css' | asset_url }}">
+    <link rel="preload" as="style" href="{{ 'component-cart-drawer.css' | asset_url }}">
     {% render 'agent-css-loader' %}
     {{ 'theme-update.css' | asset_url | stylesheet_tag }}
     {{ 'component-shop-the-look.css' | asset_url | stylesheet_tag }}
@@ -84,6 +85,7 @@
     {{ 'component-woodenstreet-global.css' | asset_url | stylesheet_tag }}
     {{ 'component-woodenstreet-hero.css' | asset_url | stylesheet_tag }}
     {{ 'component-woodenstreet-engagement.css' | asset_url | stylesheet_tag }}
+    {{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {% comment %} Inject theme-object begin{% endcomment %}
     <script>
