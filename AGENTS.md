@@ -175,6 +175,9 @@
 - **2026-01-20 (Codex)**: **B-03 STARTED.** Claimed Detailed Offers Box for Woodenstreet MVP Phase B.
 - **2026-01-20 (Codex)**: **B-03 STARTED.** Claimed Detailed Offers Box for Woodenstreet MVP Phase B.
 
+
+- **2026-01-22 (Codex-XX)**: Completed task H-05 - global spacing and typography polish for homepage.
+
 ---
 
 ## 🆘 SOS / Q&A (Ask for Help Here)
