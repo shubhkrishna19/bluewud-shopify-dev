@@ -1,0 +1,123 @@
+/* WoodenStreet Global Design System (Typography & Spacing) */
+
+:root {
+    /* Fonts */
+    --font-heading-family: "Poppins", sans-serif;
+    --font-body-family: "Inter", sans-serif;
+
+    /* Spacing (8px Grid) */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --space-16: 64px;
+    --space-20: 80px;
+
+    /* Colors (Enforcement) */
+    --woodenstreet-orange: #C7431A;
+    --woodenstreet-orange-hover: #a63614;
+    --woodenstreet-black: #232323;
+    --woodenstreet-gray: #f4f4f4;
+}
+
+/* Typography Enforcement */
+body {
+    font-family: var(--font-body-family);
+    color: #333;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    font-family: var(--font-heading-family);
+    font-weight: 700;
+    color: var(--woodenstreet-black);
+    margin-bottom: var(--space-4);
+    line-height: 1.2;
+}
+
+/* Section Spacing - Clean up the layout */
+.shopify-section {
+    margin-bottom: var(--space-16);
+}
+
+@media screen and (max-width: 768px) {
+    .shopify-section {
+        margin-bottom: var(--space-10);
+    }
+}
+
+/* Utility Classes */
+.page-width {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--space-5);
+}
+
+.text-orange {
+    color: var(--woodenstreet-orange) !important;
+}
+
+.bg-orange {
+    background-color: var(--woodenstreet-orange) !important;
+}
+
+/* Buttons Standardization */
+.button,
+.btn {
+    font-family: var(--font-body-family);
+    border-radius: 4px;
+    /* Sharp but friendly */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 12px 24px;
+    transition: all 0.3s ease;
+}
+
+.button--primary {
+    background-color: var(--woodenstreet-orange);
+    color: #fff;
+    border: 1px solid var(--woodenstreet-orange);
+}
+
+.button--primary:hover {
+    background-color: var(--woodenstreet-orange-hover);
+    border-color: var(--woodenstreet-orange-hover);
+}
+
+/* Inputs */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+textarea,
+select {
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    padding: 10px 14px;
+    font-family: var(--font-body-family);
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--woodenstreet-black);
+    outline: none;
+}
