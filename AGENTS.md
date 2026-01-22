@@ -83,7 +83,7 @@
 | ID | Task Name | Status | Complexity | Description |
 | :--- | :--- | :--- | :--- | :--- |
 | **F-01** | **Mobile Bottom Navigation** | [x] Done | High | App-like bottom nav: Home | Categories | Wishlist | Cart | Account. |
-| **F-02** | **Search Overlay Polish** | [ ] Open | Med | Full-screen search overlay with "Trending Searches" and "Popular Products". |
+| **F-02** | **Search Overlay Polish** | [/] In Progress - Codex-01 | Med | Full-screen search overlay with "Trending Searches" and "Popular Products". |
 | **F-03** | **Product Card Badges** | [x] Done | Low | "Best Seller", "New Arrival", "50% OFF" badges with correct WS styling. |
 | **F-04** | **Footer Mobile Accordion** | [ ] Open | Low | Ensure footer links collapse into accordions on mobile automatically. |
 | **F-05** | **Global Icon Refresh** | [ ] Open | Med | Replace generic icons with WoodenStreet-style thin line icons (Feather/Phosphor). |
