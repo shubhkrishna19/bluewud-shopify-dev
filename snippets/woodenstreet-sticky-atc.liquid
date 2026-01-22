@@ -1,0 +1,151 @@
+{% comment %}
+  WoodenStreet Sticky Add-To-Cart (Desktop)
+  - Visible on scroll past the main buy box
+  - Shows Product Image, Title, Price, and ATC Button
+{% endcomment %}
+
+{% if template contains 'product' and product.available %}
+  <div class="sticky-atc hidden" id="StickyATC">
+    <div class="sticky-atc__container page-width">
+      <div class="sticky-atc__product">
+        {% if product.featured_image %}
+          {{ product.featured_image | image_url: width: 60 | image_tag: class: 'sticky-atc__image', loading: 'lazy' }}
+        {% endif %}
+        <div class="sticky-atc__info">
+          <h3 class="sticky-atc__title">{{ product.title }}</h3>
+          <div class="sticky-atc__price">
+            {% if product.compare_at_price > product.price %}
+              <span class="sticky-atc__compare-price">{{ product.compare_at_price | money }}</span>
+            {% endif %}
+            <span class="sticky-atc__current-price">{{ product.price | money }}</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="sticky-atc__actions">
+        <form action="/cart/add" method="post" class="sticky-atc__form">
+          <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
+          <div class="sticky-atc__qty-wrapper">
+             <label for="StickyQty" class="visually-hidden">Quantity</label>
+             <input type="number" id="StickyQty" name="quantity" value="1" min="1" class="sticky-atc__qty">
+          </div>
+          <button type="submit" name="add" class="sticky-atc__button button button--primary">
+            Add to Cart
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .sticky-atc {
+      position: fixed;
+      bottom: 0; 
+      left: 0;
+      width: 100%;
+      background: #fff;
+      border-top: 1px solid #e2e2e2;
+      box-shadow: 0 -4px 10px rgba(0,0,0,0.05);
+      z-index: 100;
+      transform: translateY(100%);
+      transition: transform 0.3s ease-in-out;
+      padding: 12px 0;
+    }
+    .sticky-atc.visible {
+      transform: translateY(0);
+    }
+    .sticky-atc__container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    .sticky-atc__product {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+    .sticky-atc__image {
+      width: 50px;
+      height: 50px;
+      object-fit: cover;
+      border-radius: 4px;
+      border: 1px solid #eee;
+    }
+    .sticky-atc__title {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 0;
+      color: #333;
+    }
+    .sticky-atc__price {
+      font-size: 0.95rem;
+      color: #C7431A; /* Primary Orange */
+      font-weight: 700;
+    }
+    .sticky-atc__compare-price {
+      text-decoration: line-through;
+      color: #999;
+      font-size: 0.85rem;
+      margin-right: 8px;
+    }
+    .sticky-atc__actions {
+      display: flex;
+      align-items: center;
+    }
+    .sticky-atc__form {
+      display: flex;
+      gap: 12px;
+    }
+    .sticky-atc__qty {
+      width: 60px;
+      text-align: center;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      font-family: 'Inter', sans-serif;
+    }
+    .sticky-atc__button {
+      background-color: #C7431A;
+      color: #fff;
+      border: none;
+      padding: 0 24px;
+      height: 44px;
+      border-radius: 4px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .sticky-atc__button:hover {
+      background-color: #a63615;
+    }
+    @media screen and (max-width: 768px) {
+      .sticky-atc {
+        display: none !important; /* Hide on mobile as requested by task E-01 (Desktop) */
+      }
+    }
+  </style>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const stickyAtc = document.getElementById('StickyATC');
+      const mainAtc = document.querySelector('[data-product-atc]'); // Helper to find main ATC
+      
+      if (stickyAtc && mainAtc) {
+        window.addEventListener('scroll', function() {
+          const mainAtcRect = mainAtc.getBoundingClientRect();
+          // Show when main ATC is scrolled out of view (above viewport)
+          if (mainAtcRect.bottom < 0) {
+            stickyAtc.classList.add('visible');
+            stickyAtc.classList.remove('hidden');
+          } else {
+            stickyAtc.classList.remove('visible');
+             // optional delay hiding?
+          }
+        });
+      }
+    });
+  </script>
+{% endif %}

@@ -66,36 +66,46 @@
 
 ---
 
-## 🏔️ The Mountain of Tasks (WoodenStreet MVP Backlog)
 ## 🏔️ The Mountain of Tasks (Phase 2: Conversion & Polish)
 *Agents: Pick a task. Mark it `[/] In Progress`. Execute. Log. Repeat.*
 
 ### 🚀 Phase E: Conversion Boosters (PDP & Cart)
 | ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
 | :--- | :--- | :--- | :--- | :--- |
-| **E-01** | **Sticky Add-to-Cart (Desktop)** | [x] Done | Med | Floating bar on scroll (Desktop) with Product Title | Price | Add to Cart. |
-| **E-02** | **"Check Pincode" Widget** | [x] Done | High | Real-time serviceability check input below price. (Mock Data for now). |
-| **E-03** | **EMI & Bank Offers Accordion** | [x] Done | Med | Detailed breakdown of EMI plans and Bank Offers in an accordion. |
-| **E-04** | **Cart Drawer Upsells** | [/] In Progress - Codex-05 | High | "Frequently Bought Together" slider inside the Cart Drawer. |
-| **E-05** | **Free Shipping Progress Bar** | [/] In Progress - Codex-06 | Low | Dynamic progress bar in Cart Drawer: "Add ₹X more for Free Shipping". |
+| **E-01** | **Sticky Add-to-Cart (Desktop)** | [/] In Progress - Local-Agent-01 | Med | Floating bar on scroll (Desktop) with Product Title \| Price \| Add to Cart. |
+| **E-02** | **"Check Pincode" Widget** | [/] In Progress - Codex-02 | High | Real-time serviceability check input below price. (Mock Data for now). |
+| **E-03** | **EMI & Bank Offers Accordion** | [/] In Progress - Local-Agent-01 | Med | Detailed breakdown of EMI plans and Bank Offers in an accordion. |
+| **E-04** | **Cart Drawer Upsells** | [ ] Open | High | "Frequently Bought Together" slider inside the Cart Drawer. |
+| **E-05** | **Free Shipping Progress Bar** | [ ] Open | Low | Dynamic progress bar in Cart Drawer: "Add ₹X more for Free Shipping". |
 
 ### 🎨 Phase F: Visual Perfection (Global)
 | ID | Task Name | Status | Complexity | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| **F-01** | **Mobile Bottom Navigation** | [x] Done | High | App-like bottom nav: Home | Categories | Wishlist | Cart | Account. |
-| **F-02** | **Search Overlay Polish** | [x] Done | Med | Full-screen search overlay with "Trending Searches" and "Popular Products". |
-| **F-03** | **Product Card Badges** | [x] Done | Low | "Best Seller", "New Arrival", "50% OFF" badges with correct WS styling. |
-| **F-04** | **Footer Mobile Accordion** | [/] In Progress - Local-Agent-02 | Low | Ensure footer links collapse into accordions on mobile automatically. |
+| **F-01** | **Mobile Bottom Navigation** | [/] In Progress - Codex-03 | High | App-like bottom nav: Home \| Categories \| Wishlist \| Cart \| Account. |
+| **F-02** | **Search Overlay Polish** | [ ] Open | Med | Full-screen search overlay with "Trending Searches" and "Popular Products". |
+| **F-03** | **Product Card Badges** | [/] In Progress - Codex-04 | Low | "Best Seller", "New Arrival", "50% OFF" badges with correct WS styling. |
+| **F-04** | **Footer Mobile Accordion** | [ ] Open | Low | Ensure footer links collapse into accordions on mobile automatically. |
 | **F-05** | **Global Icon Refresh** | [ ] Open | Med | Replace generic icons with WoodenStreet-style thin line icons (Feather/Phosphor). |
 
 ### ⚡ Phase G: Performance & Technical
 | ID | Task Name | Status | Complexity | Description |
 | :--- | :--- | :--- | :--- | :--- |
-<<<<<<< HEAD
 | **G-01** | **Lazy Load Optimization** | [ ] Open | High | Ensure all off-screen images/iframes have `loading="lazy"`. |
 | **G-02** | **Critical CSS Extraction** | [ ] Open | High | Inline critical CSS for First Contentful Paint (FCP) improvement. |
 | **G-03** | **Script Deferral** | [ ] Open | Med | Defer non-essential JS (Reviews, Chat bots) to reduce TBT. |
-=======
+
+### 💎 Phase H: Homepage Polish & Beautification
+| ID | Task Name | Status | Complexity | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| **H-01** | **Hero Section Upgrade** | [x] Done | High | Implement `woodenstreet-hero-hybrid` with proper overlay, typography, and mobile responsiveness. |
+| **H-02** | **Engagement Sections** | [x] Done | High | Implement `woodenstreet-shop-the-look` and `woodenstreet-experience-store` sections. |
+| **H-03** | **Header & Mega Menu Polish** | [x] Done | Med | Fix alignment, icon spacing, search bar styling, and mobile menu transitions. |
+| **H-04** | **Product Card Standardization** | [x] Done | High | Unify all product cards to match WoodenStreet design (hover effects, badges, price styling). |
+| **H-05** | **Global Spacing & Typography** | [x] Done | Med | Enforce 8px grid system, consistent section spacing, and correct font usage (Poppins/Inter). |
+
+### 🟢 Phase A: The "WoodenStreet" Homepage (Structure & Trust)
+| ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
+| :--- | :--- | :--- | :--- | :--- |
 | **A-01** | **Mega Menu Architecture** | [x] Done - Codex | High | Multi-column dropdowns with category icons. NOT a simple list. |
 | **A-02** | **"Experience Store" Locator** | [x] Done - GPT-5.2-Codex | Med | A dedicated section/page for finding physical stores (build trust). |
 | **A-03** | **Hero "Hybrid" Layout** | [x] Done - Codex | Med | Main slider (Left) + 2 Static Promo Banners (Right) layout. |
@@ -106,7 +116,6 @@
 ### 🟡 Phase B: The Conversion Engine (PDP)
 | ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
 | :--- | :--- | :--- | :--- | :--- |
-<<<<<<< HEAD
 | **B-01** | **Visual Variant Swatches** | [x] Done - Codex-01 | High | Replace dropdowns with Image/Texture circles for fabric selection. |
 | **B-02** | **Sticky Footer (Mobile)** | [x] Done - Codex-01 | High | Fixed bottom bar with "Price" + "Add to Cart" on scroll. |
 | **B-03** | **Detailed "Offers" Box** | [ ] Open - Codex-01 | Med | Box inside Buy Form listing Bank Offers & EMI breakdowns. |
@@ -133,8 +142,6 @@
 | **D-04** | **3-Step Checkout Progress** | [ ] Open | Med | Visual bar: Cart > Address > Payment. |
 | **D-05** | **Auto-Coupon Applier** | [x] Done - GPT-5.2-Codex | High | "Apply Best Coupon" link in the cart summary. |
 
->>>>>>> origin/pr/44
-
 ---
 
 ## 📜 Developer Logs (The Blockchain of Work)
@@ -143,17 +150,4 @@
 - **2026-01-23 (Local-Agent-01)**: Claimed tasks E-01 (Sticky Add-to-Cart) and E-03 (EMI & Bank Offers Accordion).
 - **2026-01-23 (Antigravity)**: **PHASE 1 COMPLETE.** Refreshed backlog for Phase 2 (Conversion & Polish).
 - **2026-01-23 (Antigravity)**: Completed H-01 through H-09 (Homepage Polish).
-- **2026-01-21 (Antigravity)**: **PIVOT INITIATED.** Re-wrote AGENTS.md. Defined "WoodenStreet MVP" scope.
-- **2026-01-21 (Codex-01)**: Completed task B-01 - Visual Variant Swatches component.
-- **2026-01-20 (Codex)**: **A-03 COMPLETE.** Delivered Woodenstreet Hybrid Hero component.
-- **2026-01-20 (Codex)**: **A-01 COMPLETE.** Delivered Woodenstreet mega menu component.
-
-
 - **2026-01-22 (GPT-5.2-Codex)**: Completed task D-05 - Auto-Coupon Applier snippet, styling, and cart integrations.
-
----
-
-## 🆘 SOS / Q&A
-*Agents: If blocked, write your question here.*
-
-- [Current]: Ready for Phase 2 assignments.
