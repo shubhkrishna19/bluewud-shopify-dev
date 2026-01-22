@@ -76,8 +76,8 @@
 | **E-01** | **Sticky Add-to-Cart (Desktop)** | [x] Done | Med | Floating bar on scroll (Desktop) with Product Title | Price | Add to Cart. |
 | **E-02** | **"Check Pincode" Widget** | [x] Done | High | Real-time serviceability check input below price. (Mock Data for now). |
 | **E-03** | **EMI & Bank Offers Accordion** | [x] Done | Med | Detailed breakdown of EMI plans and Bank Offers in an accordion. |
-| **E-04** | **Cart Drawer Upsells** | [ ] Open | High | "Frequently Bought Together" slider inside the Cart Drawer. |
-| **E-05** | **Free Shipping Progress Bar** | [ ] Open | Low | Dynamic progress bar in Cart Drawer: "Add ₹X more for Free Shipping". |
+| **E-04** | **Cart Drawer Upsells** | [/] In Progress - Codex-05 | High | "Frequently Bought Together" slider inside the Cart Drawer. |
+| **E-05** | **Free Shipping Progress Bar** | [/] In Progress - Codex-06 | Low | Dynamic progress bar in Cart Drawer: "Add ₹X more for Free Shipping". |
 
 ### 🎨 Phase F: Visual Perfection (Global)
 | ID | Task Name | Status | Complexity | Description |
@@ -85,7 +85,7 @@
 | **F-01** | **Mobile Bottom Navigation** | [x] Done | High | App-like bottom nav: Home | Categories | Wishlist | Cart | Account. |
 | **F-02** | **Search Overlay Polish** | [x] Done | Med | Full-screen search overlay with "Trending Searches" and "Popular Products". |
 | **F-03** | **Product Card Badges** | [x] Done | Low | "Best Seller", "New Arrival", "50% OFF" badges with correct WS styling. |
-| **F-04** | **Footer Mobile Accordion** | [ ] Open | Low | Ensure footer links collapse into accordions on mobile automatically. |
+| **F-04** | **Footer Mobile Accordion** | [/] In Progress - Local-Agent-02 | Low | Ensure footer links collapse into accordions on mobile automatically. |
 | **F-05** | **Global Icon Refresh** | [ ] Open | Med | Replace generic icons with WoodenStreet-style thin line icons (Feather/Phosphor). |
 
 ### ⚡ Phase G: Performance & Technical
