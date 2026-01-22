@@ -40,3 +40,78 @@
   color: var(--color-text-primary);
   font-weight: 600;
 }
+
+/* WoodenStreet PDP offers box v2 */
+.offers-box {
+  margin-top: 1rem;
+  padding: 1.1rem 1.2rem;
+  border: 1px solid rgba(120, 120, 120, 0.18);
+  border-radius: 14px;
+  background: #fffaf5;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.04);
+}
+
+.offers-box__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 0.85rem;
+}
+
+.offers-box__title {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--color-text-primary);
+}
+
+.offers-box__badge {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  padding: 0.2rem 0.5rem;
+  border-radius: 999px;
+  background: rgba(233, 155, 84, 0.15);
+  color: #b56121;
+}
+
+.offers-box__items {
+  display: grid;
+  gap: 0.75rem;
+}
+
+.offers-box__item {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 0.7rem;
+  align-items: start;
+}
+
+.offers-box__icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  background: rgba(35, 90, 120, 0.08);
+  color: #1b5a73;
+}
+
+.offers-box__icon svg {
+  width: 22px;
+  height: 22px;
+}
+
+.offers-box__label {
+  display: block;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin-bottom: 0.2rem;
+}
+
+.offers-box__text {
+  display: block;
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+  line-height: 1.35;
+}
