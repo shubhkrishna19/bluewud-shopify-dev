@@ -24,7 +24,7 @@
 - **B-02 Sticky Footer (Mobile)** | [x] Done (Codex-01) | Fixed bottom bar.
 - **B-03 Detailed "Offers" Box** | [x] Done (Codex-01) | Bank Offers & EMI.
 - **B-04 Delivery Date Estimator** | [x] Done (Codex-01)
-- **B-05 "Compare" Floating Action** | [ ] Open
+- **B-05 "Compare" Floating Action** | [x] Done (Codex-01)
 - **B-07 Zoom & Pan Gallery** | [ ] Open
 
 ## 📜 Developer Logs
@@ -53,3 +53,9 @@
 
 
 - 2026-01-21 (Codex-01): Completed task B-04 - Delivery Date Estimator component.
+
+
+- 2026-01-21 (Codex-01): Selected task B-05 - Compare Floating Action.
+
+
+- 2026-01-21 (Codex-01): Completed task B-05 - Compare Floating Action component.
