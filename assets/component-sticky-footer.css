@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /* WoodenStreet MVP: Sticky Footer (Mobile) */
 
 .ws-sticky-footer{
@@ -48,5 +49,57 @@
 @media screen and (min-width: 769px){
   .ws-sticky-footer{
     display:none;
+=======
+.ws-sticky-footer {
+  position: fixed;
+  inset-inline: 0;
+  bottom: 0;
+  z-index: 40;
+  background: var(--color-background, #ffffff);
+  border-top: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: 0 -8px 24px rgba(0, 0, 0, 0.08);
+}
+
+.ws-sticky-footer__content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 16px;
+}
+
+.ws-sticky-footer__info {
+  display: grid;
+  gap: 2px;
+}
+
+.ws-sticky-footer__title {
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+.ws-sticky-footer__price {
+  font-size: 0.875rem;
+  color: var(--color-foreground, #1d1d1d);
+}
+
+.ws-sticky-footer__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 44px;
+  padding: 0 18px;
+  border-radius: 999px;
+  background: var(--color-primary, #c7431a);
+  color: #fff;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+}
+
+@media screen and (min-width: 990px) {
+  .ws-sticky-footer {
+    display: none;
+>>>>>>> origin/pr/31
   }
 }

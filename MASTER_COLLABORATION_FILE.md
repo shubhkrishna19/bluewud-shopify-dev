@@ -30,9 +30,15 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | T008 | - [Navigation] Mega-Promo | [x] Done | Codex | High | Added `snippets/mega-promo.liquid` compatibility wrapper. |
 | **P4** | **Phase 4: Global Utilities** | [ ] Pending | Joint | Med | **Codex Takeover Target** |
 <<<<<<< HEAD
+<<<<<<< HEAD
 | T013 | - [Icons] SVG Library Port | [x] Done | Codex | Low | d202c27 |
 | T014 | - [Spacing] Padding Helpers | [x] Done | Codex | Med | b7aea30 |
 | T015 | - [Badges] Product Badges | [x] Done | Codex | Med | 2558d15 |
+=======
+| T013 | - [Icons] SVG Library Port | [ ] Pending || Low | Port `snippets/icon.liquid`. |
+| T014 | - [Spacing] Padding Helpers | [x] Done | Codex | Med | Port `spacing-padding.liquid`. Commit: f714f2e |
+| T015 | - [Badges] Product Badges | [ ] Pending || Med | Port `snippets/badge.liquid`. |
+>>>>>>> origin/pr/31
 | **P5** | **Phase 5: Product Page UI** | [ ] Pending | Joint | High | Visual parity for PDP. |
 | T016 | - [Media] Gallery Layout | [x] Done | Codex | High | 5af2c7b |
 | T017 | - [Price] Dynamic Pricing UI| [x] Done | Codex | High | 5ec515e |
@@ -159,6 +165,7 @@ To prevent collision, we strictly follow this ownership map:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 - **2026-01-16 (Codex)**: Completed T013 by porting `snippets/icon.liquid` into the active theme. Commit: d202c27.
 - **2026-01-16 (Codex)**: Completed T014 by porting `snippets/spacing-padding.liquid`. Commit: b7aea30.
 - **2026-01-16 (Codex)**: Completed T015 by porting `snippets/badge.liquid`. Commit: 2558d15.
@@ -236,3 +243,6 @@ To prevent collision, we strictly follow this ownership map:
 - **2026-01-18 (Codex)**: Selected task T056 - Woodenstreet Visual Swatches.
 - **2026-01-18 (Codex)**: Completed task T056 - Woodenstreet Visual Swatches (commit 64d6148).
 >>>>>>> origin/pr/30
+=======
+- **2026-01-15 (Codex)**: Ported spacing padding helper snippet for shared section/block spacing variables.
+>>>>>>> origin/pr/31

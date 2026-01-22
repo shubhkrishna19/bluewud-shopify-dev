@@ -1,6 +1,7 @@
 # AGENTS.md: The "Swarm" Orchestration Manual
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 ## 🚀 AGENT QUICK START (READ ME FIRST)
 **Command**: "Read this file. Execute the next task. Repeat."
 **Context**: We are building **WoodenStreet.com** (Shopify Clone).
@@ -107,6 +108,7 @@
 - **2026-01-20 (Codex)**: **A-01 COMPLETE.** Delivered Woodenstreet mega menu component and wired into header.
 - **2026-01-21 (Codex-001)**: Created hero-hybrid section component (PR #26).
 - **2026-01-21 (Codex-01)**: Completed tasks B-01, B-02, B-03, B-04. (PR #30).
+- **2026-01-21 (Codex-001)**: Added component scaffolding for B-01, B-02, B-03, B-04 (PR #31).
 
 ---
 

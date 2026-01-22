@@ -3,10 +3,14 @@
         "hero": {
             "type": "hero",
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> origin/pr/31
             "blocks": {},
             "block_order": [],
             "settings": {
                 "media_type_1": "image",
+<<<<<<< HEAD
 <<<<<<< HEAD
                 "image_1": "shopify:\/\/shop_images\/Banner_18.png",
                 "custom_mobile_media": true,
@@ -112,6 +116,23 @@
                 "link": "shopify:\/\/collections\/bluewud-sparkle-sale",
                 "toggle_overlay": false
 >>>>>>> origin/pr/26
+=======
+                "image_1": "shopify://shop_images/Banner_18.png",
+                "link": "shopify://collections/bluewud-sparkle-sale",
+                "custom_mobile_media": true,
+                "media_type_1_mobile": "image",
+                "image_1_mobile": "shopify://shop_images/Banner_18.png",
+                "toggle_overlay": false,
+                "overlay_color": "#000000",
+                "media_type_2": "image",
+                "image_2": "shopify://shop_images/25.jpg",
+                "media_type_2_mobile": "image",
+                "image_2_mobile": "shopify://shop_images/25.jpg",
+                "section_width": "full-width",
+                "section_height": "auto",
+                "stack_media_on_mobile": false,
+                "open_in_new_tab": false
+>>>>>>> origin/pr/31
             }
         },
         "whisper_showcase": {
@@ -675,12 +696,15 @@
     "order": [
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
         "whisper_hero",
         "urgency_strip",
         "whisper_lookbook",
         "whisper_trending",
         "whisper_showcase",
 =======
+=======
+>>>>>>> origin/pr/31
         "hero",
         "16376559468c5a335a",
         "1638794690172b8b26",
