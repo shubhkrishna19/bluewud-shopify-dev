@@ -61,10 +61,12 @@
 
     <link rel="preload" href="{{ settings.type_menu | font_url }}" as="font" crossorigin="anonymous">
     <link rel="preload" as="style" href="{{ 'theme.css' | asset_url }}">
+    <link rel="preload" as="style" href="{{ 'component-cart-toast.css' | asset_url }}">
 
     {{ content_for_header }}
 
     {{ 'theme.css' | asset_url | stylesheet_tag }}
+    {{ 'component-cart-toast.css' | asset_url | stylesheet_tag }}
 
     {% comment %}Inject theme-object begin{% endcomment %}
     <script>
@@ -218,6 +220,7 @@
         </div>
       </section>
       {% comment %}Inject atc-banner end{% endcomment %}
+      {% render 'whisper-cart-toast' %}
 
     </div>
 
@@ -412,5 +415,6 @@
       defer
     >
     </script>
+    {{ 'component-cart-toast.js' | asset_url | script_tag }}
   <link rel="stylesheet" href="https://gravity-software.com/js/shopify/rondell/jquery.rondellf85.css?v=123"/></body>
 </html>

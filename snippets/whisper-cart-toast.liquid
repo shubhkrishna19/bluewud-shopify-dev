@@ -1,0 +1,12 @@
+<div class="cart-toast" data-cart-toast role="status" aria-live="polite" aria-hidden="true">
+  <div class="cart-toast__content">
+    <span class="cart-toast__title">Item added!</span>
+    <span class="cart-toast__meta" data-cart-toast-count>{{ cart.item_count }} item{% if cart.item_count != 1 %}s{% endif %} in cart</span>
+  </div>
+  <div class="cart-toast__actions">
+    <a class="cart-toast__link" href="{{ routes.cart_url }}">View cart</a>
+    <button class="cart-toast__close" type="button" aria-label="Dismiss notification" data-cart-toast-close>
+      &times;
+    </button>
+  </div>
+</div>
