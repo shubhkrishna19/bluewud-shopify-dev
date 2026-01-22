@@ -1,0 +1,77 @@
+{% comment %}
+  WoodenStreet Sticky Add-To-Cart Bar (E-01)
+{% endcomment %}
+
+{{ 'component-sticky-atc.css' | asset_url | stylesheet_tag }}
+
+<div class="ws-sticky-atc" data-ws-sticky-atc>
+  <div class="ws-sticky-atc__inner page-width">
+    <div class="ws-sticky-atc__product">
+      {% if product.featured_image %}
+        <img class="ws-sticky-atc__image" src="{{ product.featured_image | img_url: '100x' }}" alt="{{ product.title | escape }}">
+      {% endif %}
+      <div class="ws-sticky-atc__info">
+        <span class="ws-sticky-atc__title">{{ product.title }}</span>
+        <span class="ws-sticky-atc__price">{{ product.price | money }}</span>
+      </div>
+    </div>
+
+    <div class="ws-sticky-atc__actions">
+      <!-- Quantity Selector (Desktop Only) -->
+      <div class="ws-sticky-atc__qty">
+        <button type="button" class="ws-sticky-atc__qty-btn" onclick="document.getElementById('ws-sticky-qty').stepDown()">-</button>
+        <input id="ws-sticky-qty" type="number" class="ws-sticky-atc__qty-input" value="1" min="1" readonly>
+        <button type="button" class="ws-sticky-atc__qty-btn" onclick="document.getElementById('ws-sticky-qty').stepUp()">+</button>
+      </div>
+
+      <button type="button" class="ws-sticky-atc__btn" data-ws-sticky-add>
+        Add to Cart
+      </button>
+    </div>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const stickyBar = document.querySelector('[data-ws-sticky-atc]');
+    const trigger = document.querySelector('[data-product-form-area]'); // Observe main buy button area
+    const addBtn = document.querySelector('[data-ws-sticky-add]');
+    
+    if (!trigger || !stickyBar) return;
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        // If trigger (main buy button) IS visible, Hide sticky bar
+        // If trigger IS NOT visible (scrolled past), Show sticky bar
+        if (entry.isIntersecting) {
+          stickyBar.classList.remove('is-visible');
+        } else {
+          // Only show if we've scrolled PAST it, not before it
+          if (entry.boundingClientRect.top < 0) {
+            stickyBar.classList.add('is-visible');
+          }
+        }
+      });
+    }, { threshold: 0 });
+
+    observer.observe(trigger);
+
+    // Sync Add to Cart
+    addBtn.addEventListener('click', () => {
+      // Find the main form's add to cart button and click it
+      // or submit the form via AJAX
+      const mainForm = document.querySelector('form[action="/cart/add"]');
+      if (mainForm) {
+        // Update hidden Quantity input in main form
+        const qty = document.getElementById('ws-sticky-qty').value;
+        const mainQty = mainForm.querySelector('[name="quantity"]');
+        if (mainQty) mainQty.value = qty;
+
+        mainForm.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+        // Or find the submit button and click it
+        const submitBtn = mainForm.querySelector('[type="submit"]');
+        if (submitBtn) submitBtn.click();
+      }
+    });
+  });
+</script>
