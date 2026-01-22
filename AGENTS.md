@@ -85,12 +85,12 @@
 | **F-02** | **Search Overlay Polish** | [ ] Open | Med | Full-screen search overlay with "Trending Searches" and "Popular Products". |
 | **F-03** | **Product Card Badges** | [/] In Progress - Codex-04 | Low | "Best Seller", "New Arrival", "50% OFF" badges with correct WS styling. |
 | **F-04** | **Footer Mobile Accordion** | [ ] Open | Low | Ensure footer links collapse into accordions on mobile automatically. |
-| **F-05** | **Global Icon Refresh** | [ ] Open | Med | Replace generic icons with WoodenStreet-style thin line icons (Feather/Phosphor). |
+| **F-05** | **Global Icon Refresh** | [/] In Progress - Codex-07 | Med | Replace generic icons with WoodenStreet-style thin line icons (Feather/Phosphor). |
 
 ### ⚡ Phase G: Performance & Technical
 | ID | Task Name | Status | Complexity | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| **G-01** | **Lazy Load Optimization** | [ ] Open | High | Ensure all off-screen images/iframes have `loading="lazy"`. |
+| **G-01** | **Lazy Load Optimization** | [/] In Progress - Codex-08 | High | Ensure all off-screen images/iframes have `loading="lazy"`. |
 | **G-02** | **Critical CSS Extraction** | [ ] Open | High | Inline critical CSS for First Contentful Paint (FCP) improvement. |
 | **G-03** | **Script Deferral** | [ ] Open | Med | Defer non-essential JS (Reviews, Chat bots) to reduce TBT. |
 
