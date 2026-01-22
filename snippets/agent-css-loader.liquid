@@ -1,0 +1,17 @@
+{% comment %}
+  AGENTS: Add your component styles here.
+  Strict ordering is NOT required, but try to keep it neat.
+  This file is included in layout/theme.liquid.
+{% endcomment %}
+
+<link rel="preload" as="style" href="{{ 'component-cart-toast.css' | asset_url }}">
+<link rel="preload" as="style" href="{{ 'component-collection-filter-swatches.css' | asset_url }}">
+<link rel="preload" as="style" href="{{ 'component-quick-view.css' | asset_url }}">
+<link rel="preload" as="style" href="{{ 'component-review-summary-graph.css' | asset_url }}">
+<link rel="preload" as="style" href="{{ 'component-sidebar-filter-accordions.css' | asset_url }}">
+
+{{ 'component-cart-toast.css' | asset_url | stylesheet_tag }}
+{{ 'component-collection-filter-swatches.css' | asset_url | stylesheet_tag }}
+{{ 'component-quick-view.css' | asset_url | stylesheet_tag }}
+{{ 'component-review-summary-graph.css' | asset_url | stylesheet_tag }}
+{{ 'component-sidebar-filter-accordions.css' | asset_url | stylesheet_tag }}
