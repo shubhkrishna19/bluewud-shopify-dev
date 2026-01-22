@@ -1,64 +1,42 @@
-.ws-offers-box {
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 12px;
-  background: #fff;
-  padding: 16px;
-  display: grid;
-  gap: 12px;
+/* WoodenStreet PDP offers box */
+.woodenstreet-offers {
+  margin-top: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: 16px;
+  border: 1px solid var(--color-border-primary);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: var(--glass-blur);
 }
 
-.ws-offers-box__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-}
-
-.ws-offers-box__title {
-  font-size: 1rem;
+.woodenstreet-offers__title {
   font-weight: 700;
-  margin: 0;
+  margin-bottom: 0.75rem;
 }
 
-.ws-offers-box__badge {
-  font-size: 0.75rem;
+.woodenstreet-offers__section {
+  margin-bottom: 0.75rem;
+}
+
+.woodenstreet-offers__label {
   font-weight: 600;
-  color: #c7431a;
-  background: rgba(199, 67, 26, 0.08);
-  padding: 4px 8px;
-  border-radius: 999px;
+  margin-bottom: 0.35rem;
+  display: block;
 }
 
-.ws-offers-box__list {
-  display: grid;
-  gap: 10px;
+.woodenstreet-offers__list {
+  list-style: none;
   margin: 0;
   padding: 0;
-  list-style: none;
-}
-
-.ws-offers-box__item {
   display: grid;
-  gap: 4px;
+  gap: 0.35rem;
 }
 
-.ws-offers-box__label {
-  font-size: 0.875rem;
+.woodenstreet-offers__item {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+}
+
+.woodenstreet-offers__item strong {
+  color: var(--color-text-primary);
   font-weight: 600;
-}
-
-.ws-offers-box__text {
-  font-size: 0.875rem;
-  color: rgba(0, 0, 0, 0.7);
-  margin: 0;
-}
-
-.ws-offers-box__cta {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  font-size: 0.875rem;
-  font-weight: 600;
-  color: #1d1d1d;
-  text-decoration: none;
 }

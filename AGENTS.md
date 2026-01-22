@@ -82,6 +82,7 @@
 ### 🟡 Phase B: The Conversion Engine (PDP)
 | ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
 | :--- | :--- | :--- | :--- | :--- |
+<<<<<<< HEAD
 | **B-01** | **Visual Variant Swatches** | [x] Done - Codex-01 | High | Replace dropdowns with Image/Texture circles for fabric selection. |
 | **B-02** | **Sticky Footer (Mobile)** | [x] Done - Codex-01 | High | Fixed bottom bar with "Price" + "Add to Cart" on scroll. |
 | **B-03** | **Detailed "Offers" Box** | [ ] Open - Codex-01 | Med | Box inside Buy Form listing Bank Offers & EMI breakdowns. |
@@ -107,6 +108,7 @@
 | **D-03** | **Cart Savings Celebration** | [ ] Open | Low | "Congrats! You saved ₹2,000 on this order." message. |
 | **D-04** | **3-Step Checkout Progress** | [ ] Open | Med | Visual bar: Cart > Address > Payment. |
 | **D-05** | **Auto-Coupon Applier** | [ ] Open | High | "Apply Best Coupon" link in the cart summary. |
+
 
 ---
 
@@ -145,23 +147,23 @@
 
 
 
+- **2026-01-20 (Codex)**: **B-04 COMPLETE.** Added delivery estimator component and wired into product form.
 - **2026-01-22 (Codex-XX)**: Claimed task B-05 - Compare Floating Action and added PDP compare FAB.
-
-
 - **2026-01-22 (Codex-XX)**: Claimed task D-01 - Toast Add-to-Cart.
 - **2026-01-22 (Codex-XX)**: Added non-intrusive add-to-cart toast notification with View Cart action.
-
-
 - **2026-01-22 (Codex-XX)**: Claimed task C-02 - Color Filter Swatches.
-
-
 - **2026-01-22 (Codex-XX)**: Claimed task C-03 - Quick View hover eye icon and modal trigger.
-
-
 - **2026-01-22 (Codex-XX)**: Claimed task B-06 - Review Summary Graph.
-
-
 - **2026-01-22 (Codex-XX)**: Completed task C-01 - Sidebar filter accordions for collection filters.
+
+- **2026-01-20 (Codex)**: **B-04 FOLLOW-UP.** Added keyboard submission and aria-live updates for delivery estimator.
+
+
+- **2026-01-20 (Codex)**: **PHASE B BLOCKED.** No open Phase B tasks available to claim; awaiting new assignments.
+
+
+- **2026-01-20 (Codex)**: **B-03 STARTED.** Claimed Detailed Offers Box for Woodenstreet MVP Phase B.
+- **2026-01-20 (Codex)**: **B-03 STARTED.** Claimed Detailed Offers Box for Woodenstreet MVP Phase B.
 
 ---
 
