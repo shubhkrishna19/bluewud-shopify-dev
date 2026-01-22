@@ -82,7 +82,11 @@
 | **B-02** | **Sticky Footer (Mobile)** | [x] Done - Codex-01 | High | Fixed bottom bar with "Price" + "Add to Cart" on scroll. |
 | **B-03** | **Detailed "Offers" Box** | [ ] Open - Codex-01 | Med | Box inside Buy Form listing Bank Offers & EMI breakdowns. |
 | **B-04** | **Delivery Date Estimator** | [x] Done - Codex-01 | High | "Check Delivery Date" input field with real/mock logic. |
+<<<<<<< HEAD
 | **B-05** | **"Compare" Floating Action** | [x] Done - Codex-01 | Low | Ability to add product to a comparison list. |
+=======
+| **B-05** | **"Compare" Floating Action** | [x] Done - Codex-XX | Low | Ability to add product to a comparison list. |
+>>>>>>> origin/pr/38
 | **B-06** | **Review Summary Graph** | [ ] Open | Med | 5-star progress bars showing distribution of ratings. |
 | **B-07** | **Zoom & Pan Gallery** | [x] Done - Codex-01 | Med | Desktop: Hover zoom. Mobile: Pinch zoom + swipe. |
 
@@ -139,6 +143,9 @@
 - **2026-01-21 (GPT-5.2-Codex)**: Completed task A-06 - Shop The Look section with hotspots.
 
 
+
+
+- **2026-01-22 (Codex-XX)**: Claimed task B-05 - Compare Floating Action and added PDP compare FAB.
 
 ---
 
