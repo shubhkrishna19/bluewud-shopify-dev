@@ -74,7 +74,7 @@
 | ID | Task Name | Status | Complexity | Description |
 | :--- | :--- | :--- | :--- | :--- |
 | **H-01** | **Hero Section Upgrade** | [x] Done | High | Implement `woodenstreet-hero-hybrid` with proper overlay, typography, and mobile responsiveness. |
-| **H-02** | **Engagement Sections** | [/] In Progress | High | Implement `woodenstreet-shop-the-look` and `woodenstreet-experience-store` sections. |
+| **H-02** | **Engagement Sections** | [x] Done | High | Implement `woodenstreet-shop-the-look` and `woodenstreet-experience-store` sections. |
 | **H-03** | **Header & Mega Menu Polish** | [x] Done | Med | Fix alignment, icon spacing, search bar styling, and mobile menu transitions. |
 | **H-04** | **Product Card Standardization** | [x] Done | High | Unify all product cards to match WoodenStreet design (hover effects, badges, price styling). |
 | **H-05** | **Global Spacing & Typography** | [ ] Open | Med | Enforce 8px grid system, consistent section spacing, and correct font usage (Poppins/Inter). |
