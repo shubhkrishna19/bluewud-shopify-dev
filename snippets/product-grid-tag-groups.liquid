@@ -73,6 +73,8 @@
 
 {% assign grid_categories = grid_categories | remove_first: '|' | split:  '|' | uniq %}
 
+{% assign accordion_priority_groups = 'price,material,discount' | split: ',' %}
+
 {% for cat_item in cat_array %}
   {%- if cat_item == 'searchfilter' or cat_item == blank or excluded_groups contains cat_item -%}
     {%- continue -%}
@@ -93,9 +95,21 @@
       {% assign display_as_grid = false %}
     {% endif %}
   {% endif %}
+  {% assign cat_item_handle = cat_item | handleize %}
+  {% assign is_priority_group = false %}
+  {% if accordion_priority_groups contains cat_item_handle %}
+    {% assign is_priority_group = true %}
+  {% endif %}
   <div
-    class="productgrid--sidebar-group"
+    class="
+      productgrid--sidebar-group
+      productgrid--sidebar-group--accordion
+      {% if is_priority_group %}
+        productgrid--sidebar-group--priority
+      {% endif %}
+    "
     data-productgrid-sidebar-group
+    data-filter-label="{{ cat_item_handle }}"
   >
     {% assign tag_count = 0 %}
     <button
@@ -140,7 +154,6 @@
             assign cat = tag | split: '_' | first
             assign cat_handle = cat | handleize
             assign tag_handle = tag | handleize
-            assign cat_item_handle = cat_item | handleize
             assign within_group = false
             assign active_tag_in_group = nil
           %}
