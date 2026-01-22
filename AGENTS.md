@@ -69,7 +69,7 @@
 | ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
 | :--- | :--- | :--- | :--- | :--- |
 | **A-01** | **Mega Menu Architecture** | [x] Done - Codex | High | Multi-column dropdowns with category icons. NOT a simple list. |
-| **A-02** | **"Experience Store" Locator** | [ ] Open | Med | A dedicated section/page for finding physical stores (build trust). |
+| **A-02** | **"Experience Store" Locator** | [/] In Progress | Med | A dedicated section/page for finding physical stores (build trust). |
 | **A-03** | **Hero "Hybrid" Layout** | [x] Done - Codex | Med | Main slider (Left) + 2 Static Promo Banners (Right) layout. |
 | **A-04** | **Urgency Countdown Strip** | [x] Done - Antigravity | Low | "Sale Ends In: HH:MM:SS" strip immediately below the Hero. |
 | **A-05** | **Trust Strip v2** | [ ] Open | Low | "20 Lakh+ Customers" | "Factory Direct" | "Free Shipping". |
@@ -124,6 +124,7 @@
 - **2026-01-21 (Codex-WSH1)**: Added WoodenStreet Hero Hybrid section scaffold.
 - **2026-01-21 (Codex-WSH1)**: Implemented visual variant swatches for PDP.
 - **2026-01-21 (Codex-WSH1)**: Added WoodenStreet sticky footer section scaffold.
+- **2026-01-22 (Antigravity)**: Claimed task A-02 - Experience Store Locator.
 
 ---
 
