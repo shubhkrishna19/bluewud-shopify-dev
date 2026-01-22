@@ -18,6 +18,37 @@
         "urgency_strip": {
             "type": "whisper-urgency-strip"
         },
+        "trust_strip": {
+            "type": "trust-strip-v2",
+            "blocks": {
+                "trust_1": {
+                    "type": "trust_item",
+                    "settings": {
+                        "heading": "20 Lakh+ Customers",
+                        "subheading": "Happy & Satisfied"
+                    }
+                },
+                "trust_2": {
+                    "type": "trust_item",
+                    "settings": {
+                        "heading": "Factory Direct",
+                        "subheading": "No Middlemen"
+                    }
+                },
+                "trust_3": {
+                    "type": "trust_item",
+                    "settings": {
+                        "heading": "Free Shipping",
+                        "subheading": "All Over India"
+                    }
+                }
+            },
+            "block_order": [
+                "trust_1",
+                "trust_2",
+                "trust_3"
+            ]
+        },
         "whisper_lookbook": {
             "type": "whisper-lookbook",
             "blocks": {
@@ -70,6 +101,7 @@
     "order": [
         "whisper_hero",
         "urgency_strip",
+        "trust_strip",
         "whisper_lookbook",
         "whisper_trending",
         "whisper_showcase"

@@ -1,0 +1,31 @@
+.collection-filters__filter-list--swatches {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.collection-filters__filter-list--swatches .collection-filters__filter-link {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0;
+}
+
+.collection-filters__filter-list--swatches .collection-filters__filter-list-item-text {
+  font-size: var(--font-size-body-small);
+  line-height: 1.2;
+}
+
+.collection-filters__filter-list--swatches .filter-item--swatch-wrapper {
+  width: 28px;
+  height: 28px;
+  border-radius: 999px;
+}
+
+.collection-filters__filter-list--swatches .filter-item--swatch,
+.collection-filters__filter-list--swatches .filter-item--swatch-inner {
+  border-radius: 999px;
+}
+
+.collection-filters__filter-list--swatches [data-filter-active='true'] .filter-item--swatch-wrapper {
+  box-shadow: 0 0 0 2px rgba(17, 17, 17, 0.4);
+}

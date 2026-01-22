@@ -72,7 +72,7 @@
 | **A-02** | **"Experience Store" Locator** | [x] Done - GPT-5.2-Codex | Med | A dedicated section/page for finding physical stores (build trust). |
 | **A-03** | **Hero "Hybrid" Layout** | [x] Done - Codex | Med | Main slider (Left) + 2 Static Promo Banners (Right) layout. |
 | **A-04** | **Urgency Countdown Strip** | [x] Done - Antigravity | Low | "Sale Ends In: HH:MM:SS" strip immediately below the Hero. |
-| **A-05** | **Trust Strip v2** | [/] In Progress | Low | "20 Lakh+ Customers" | "Factory Direct" | "Free Shipping". |
+| **A-05** | **Trust Strip v2** | [x] Done - Antigravity | Low | "20 Lakh+ Customers" | "Factory Direct" | "Free Shipping". |
 | **A-06** | **"Shop The Look" Section** | [x] Done - GPT-5.2-Codex | High | Hotspots on a lifestyle image linking to multiple products. |
 
 ### 🟡 Phase B: The Conversion Engine (PDP)
@@ -82,11 +82,7 @@
 | **B-02** | **Sticky Footer (Mobile)** | [x] Done - Codex-01 | High | Fixed bottom bar with "Price" + "Add to Cart" on scroll. |
 | **B-03** | **Detailed "Offers" Box** | [ ] Open - Codex-01 | Med | Box inside Buy Form listing Bank Offers & EMI breakdowns. |
 | **B-04** | **Delivery Date Estimator** | [x] Done - Codex-01 | High | "Check Delivery Date" input field with real/mock logic. |
-<<<<<<< HEAD
 | **B-05** | **"Compare" Floating Action** | [x] Done - Codex-01 | Low | Ability to add product to a comparison list. |
-=======
-| **B-05** | **"Compare" Floating Action** | [x] Done - Codex-XX | Low | Ability to add product to a comparison list. |
->>>>>>> origin/pr/38
 | **B-06** | **Review Summary Graph** | [ ] Open | Med | 5-star progress bars showing distribution of ratings. |
 | **B-07** | **Zoom & Pan Gallery** | [x] Done - Codex-01 | Med | Desktop: Hover zoom. Mobile: Pinch zoom + swipe. |
 
@@ -94,7 +90,7 @@
 | ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
 | :--- | :--- | :--- | :--- | :--- |
 | **C-01** | **Sidebar Filter Accordions** | [ ] Open | Med | Collapsible filters for Price, Material, Discount (checkbox style). |
-| **C-02** | **Color Filter Swatches** | [ ] Open | Med | Visual color circles in the sidebar filter. |
+| **C-02** | **Color Filter Swatches** | [/] In Progress | Med | Visual color circles in the sidebar filter. |
 | **C-03** | **Card: "Quick View" Hover** | [ ] Open | Low | "Eye" icon appears on hover for modal preview. |
 | **C-04** | **Card: Discount Badges** | [ ] Open | Low | High-contrast Orange badge: "**40% OFF**". |
 | **C-05** | **Card: Recommended Tag** | [ ] Open | Low | "Best Seller" or "Recommended" ribbon overlay. |
@@ -150,6 +146,9 @@
 
 - **2026-01-22 (Codex-XX)**: Claimed task D-01 - Toast Add-to-Cart.
 - **2026-01-22 (Codex-XX)**: Added non-intrusive add-to-cart toast notification with View Cart action.
+
+
+- **2026-01-22 (Codex-XX)**: Claimed task C-02 - Color Filter Swatches.
 
 ---
 

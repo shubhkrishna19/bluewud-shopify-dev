@@ -1,0 +1,122 @@
+.ws-trust-strip {
+    background-color: var(--bg-color, #ffffff);
+    color: var(--text-color, #1F2937);
+    padding: 16px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.ws-trust-strip__grid {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 24px;
+}
+
+.ws-trust-strip__item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    max-width: 320px;
+}
+
+.ws-trust-strip__icon {
+    flex-shrink: 0;
+    width: 48px;
+    height: 48px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: rgba(var(--color-primary-rgb, 0, 0, 0), 0.05);
+    /* Subtle bg */
+    border-radius: 50%;
+    /* Circle icon bg */
+    padding: 10px;
+    color: var(--color-primary, #000);
+    /* Accent color if available */
+}
+
+.ws-trust-strip__icon svg {
+    width: 100%;
+    height: 100%;
+    stroke-width: 1.5px;
+}
+
+.ws-trust-strip__icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.ws-trust-strip__content {
+    text-align: left;
+}
+
+.ws-trust-strip__heading {
+    font-family: var(--font-heading-family);
+    font-size: 1rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin: 0;
+    color: inherit;
+}
+
+.ws-trust-strip__subheading {
+    font-size: 0.85rem;
+    margin: 2px 0 0 0;
+    opacity: 0.8;
+    line-height: 1.2;
+}
+
+/* Mobile responsiveness */
+@media screen and (max-width: 767px) {
+    .ws-trust-strip {
+        padding: 12px 0;
+    }
+
+    .ws-trust-strip__grid {
+        gap: 16px;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 8px;
+        /* For scrollbar space */
+        scrollbar-width: none;
+        /* Hide scrollbar Firefox */
+        -ms-overflow-style: none;
+        /* Hide scrollbar IE */
+        flex-wrap: nowrap;
+        /* Horizontal scroll */
+        padding-left: 16px;
+        /* Offset for peek */
+        padding-right: 16px;
+    }
+
+    .ws-trust-strip__grid::-webkit-scrollbar {
+        display: none;
+        /* Hide scrollbar Chrome/Safari */
+    }
+
+    .ws-trust-strip__item {
+        flex: 0 0 auto;
+        /* Don't shrink */
+        background: #f9f9f9;
+        /* Card style on mobile? Optional */
+        padding: 12px;
+        border-radius: 8px;
+        border: 1px solid rgba(0, 0, 0, 0.05);
+    }
+
+    .ws-trust-strip__heading {
+        font-size: 0.9rem;
+    }
+
+    .ws-trust-strip__subheading {
+        font-size: 0.75rem;
+    }
+
+    .ws-trust-strip__icon {
+        width: 36px;
+        height: 36px;
+        padding: 8px;
+    }
+}
