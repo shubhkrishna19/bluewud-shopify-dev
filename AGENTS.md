@@ -69,11 +69,11 @@
 | ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
 | :--- | :--- | :--- | :--- | :--- |
 | **A-01** | **Mega Menu Architecture** | [x] Done - Codex | High | Multi-column dropdowns with category icons. NOT a simple list. |
-| **A-02** | **"Experience Store" Locator** | [ ] Open | Med | A dedicated section/page for finding physical stores (build trust). |
+| **A-02** | **"Experience Store" Locator** | [x] Done - GPT-5.2-Codex | Med | A dedicated section/page for finding physical stores (build trust). |
 | **A-03** | **Hero "Hybrid" Layout** | [x] Done - Codex | Med | Main slider (Left) + 2 Static Promo Banners (Right) layout. |
 | **A-04** | **Urgency Countdown Strip** | [x] Done - Antigravity | Low | "Sale Ends In: HH:MM:SS" strip immediately below the Hero. |
 | **A-05** | **Trust Strip v2** | [/] In Progress | Low | "20 Lakh+ Customers" | "Factory Direct" | "Free Shipping". |
-| **A-06** | **"Shop The Look" Section** | [ ] Open | High | Hotspots on a lifestyle image linking to multiple products. |
+| **A-06** | **"Shop The Look" Section** | [x] Done - GPT-5.2-Codex | High | Hotspots on a lifestyle image linking to multiple products. |
 
 ### 🟡 Phase B: The Conversion Engine (PDP)
 | ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
@@ -130,6 +130,15 @@
 - **2026-01-21 (Codex-001)**: Added compare floating action section and component stylesheet.
 - **2026-01-21 (Codex-001)**: Added zoom & pan gallery section and component stylesheet.
 - **2026-01-21 (Codex-001)**: Added mega menu section scaffold and component stylesheet.
+
+
+- **2026-01-21 (GPT-5.2-Codex)**: Completed task A-02 - Experience Store Locator section component.
+
+
+
+- **2026-01-21 (GPT-5.2-Codex)**: Completed task A-06 - Shop The Look section with hotspots.
+
+
 
 ---
 

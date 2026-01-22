@@ -1,0 +1,204 @@
+{% comment %}
+  Woodenstreet Experience Store Locator (Phase A-02)
+{% endcomment %}
+
+<section class="experience-store">
+  <div class="experience-store__inner page-width">
+    <div class="experience-store__intro">
+      {% if section.settings.eyebrow != blank %}
+        <span class="experience-store__eyebrow">{{ section.settings.eyebrow | escape }}</span>
+      {% endif %}
+      {% if section.settings.title != blank %}
+        <h2 class="experience-store__title">{{ section.settings.title | escape }}</h2>
+      {% endif %}
+      {% if section.settings.body != blank %}
+        <div class="experience-store__body">{{ section.settings.body }}</div>
+      {% endif %}
+      <div class="experience-store__stats">
+        {% if section.settings.stat_one_label != blank %}
+          <div class="experience-store__stat">
+            <span class="experience-store__stat-value">{{ section.settings.stat_one_value | escape }}</span>
+            <span class="experience-store__stat-label">{{ section.settings.stat_one_label | escape }}</span>
+          </div>
+        {% endif %}
+        {% if section.settings.stat_two_label != blank %}
+          <div class="experience-store__stat">
+            <span class="experience-store__stat-value">{{ section.settings.stat_two_value | escape }}</span>
+            <span class="experience-store__stat-label">{{ section.settings.stat_two_label | escape }}</span>
+          </div>
+        {% endif %}
+      </div>
+      {% if section.settings.cta_label != blank %}
+        <a class="experience-store__cta button-primary" href="{{ section.settings.cta_link }}">
+          {{ section.settings.cta_label | escape }}
+        </a>
+      {% endif %}
+    </div>
+    <div class="experience-store__panel">
+      <div class="experience-store__map">
+        {% if section.settings.map_image != blank %}
+          {{ section.settings.map_image | image_url: width: 1200 | image_tag: class: 'experience-store__map-image', loading: 'lazy' }}
+        {% else %}
+          {{ 'lifestyle-2' | placeholder_svg_tag: 'experience-store__map-image experience-store__map-image--placeholder' }}
+        {% endif %}
+        {% if section.settings.map_caption != blank %}
+          <span class="experience-store__map-caption">{{ section.settings.map_caption | escape }}</span>
+        {% endif %}
+      </div>
+      <div class="experience-store__cards">
+        {% for block in section.blocks %}
+          <article class="experience-store__card" {{ block.shopify_attributes }}>
+            {% if block.settings.city != blank %}
+              <h3 class="experience-store__card-title">{{ block.settings.city | escape }}</h3>
+            {% endif %}
+            {% if block.settings.address != blank %}
+              <p class="experience-store__card-address">{{ block.settings.address | escape }}</p>
+            {% endif %}
+            {% if block.settings.phone != blank %}
+              <p class="experience-store__card-contact">{{ block.settings.phone | escape }}</p>
+            {% endif %}
+            {% if block.settings.hours != blank %}
+              <p class="experience-store__card-hours">{{ block.settings.hours | escape }}</p>
+            {% endif %}
+            {% if block.settings.link_label != blank %}
+              <a class="experience-store__card-link" href="{{ block.settings.link }}">
+                {{ block.settings.link_label | escape }}
+              </a>
+            {% endif %}
+          </article>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Woodenstreet Experience Store",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Experience store locator"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Visit a Woodenstreet experience store near you"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>Walk in to explore curated room setups, fabric swatches, and expert guidance from our in-store designers.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "map_image",
+      "label": "Map or store image"
+    },
+    {
+      "type": "text",
+      "id": "map_caption",
+      "label": "Map caption",
+      "default": "50+ stores across 45 cities"
+    },
+    {
+      "type": "text",
+      "id": "stat_one_value",
+      "label": "Stat one value",
+      "default": "45+"
+    },
+    {
+      "type": "text",
+      "id": "stat_one_label",
+      "label": "Stat one label",
+      "default": "cities covered"
+    },
+    {
+      "type": "text",
+      "id": "stat_two_value",
+      "label": "Stat two value",
+      "default": "50+"
+    },
+    {
+      "type": "text",
+      "id": "stat_two_label",
+      "label": "Stat two label",
+      "default": "experience stores"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "Find a store"
+    },
+    {
+      "type": "url",
+      "id": "cta_link",
+      "label": "CTA link"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "store",
+      "name": "Store card",
+      "settings": [
+        {
+          "type": "text",
+          "id": "city",
+          "label": "City",
+          "default": "Bengaluru"
+        },
+        {
+          "type": "text",
+          "id": "address",
+          "label": "Address",
+          "default": "100 Feet Road, Indiranagar, Bengaluru"
+        },
+        {
+          "type": "text",
+          "id": "phone",
+          "label": "Phone",
+          "default": "+91 90000 12345"
+        },
+        {
+          "type": "text",
+          "id": "hours",
+          "label": "Hours",
+          "default": "11:00 AM - 9:00 PM"
+        },
+        {
+          "type": "text",
+          "id": "link_label",
+          "label": "Link label",
+          "default": "Get directions"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Woodenstreet Experience Store",
+      "blocks": [
+        {
+          "type": "store"
+        },
+        {
+          "type": "store"
+        },
+        {
+          "type": "store"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
