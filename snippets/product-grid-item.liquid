@@ -298,6 +298,18 @@
           include_range: true,
           compare_at_price_varies: compare_at_price_varies,
         %}
+
+        {% if enable_quickshop %}
+          <button
+            class="product-card__quick-view"
+            type="button"
+            aria-label="Quick view"
+            data-quickshop-full
+            {% if settings.gallery_thumbnail_position == 'left' %}data-thumbs-left{% endif %}
+          >
+            {% render 'icon', icon: 'eye' %}
+          </button>
+        {% endif %}
         
         {%- for tag in product.tags -%}
           {%- if tag contains '__label' -%}
