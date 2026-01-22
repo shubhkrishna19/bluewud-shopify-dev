@@ -317,9 +317,11 @@
       data-rimg-crop="{{ crop }}"
       {% if placeholder %}data-rimg-placeholder="{{ placeholder }}"{% endif %}
       srcset="{{ rimg_placeholder }}"
+      loading="lazy"
     {% else %}
       data-rimg
       srcset="{{ rimg_density_srcset }}"
+      loading="eager"
     {% endif %}
 
     {% if class != blank %}class="{{ class }}"{% endif %}
