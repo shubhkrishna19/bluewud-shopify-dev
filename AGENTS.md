@@ -155,3 +155,6 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 
 
 - **2026-01-20 (Codex)**: **B-04 COMPLETE.** Added delivery estimator component and wired into product form.
+
+
+- **2026-01-20 (Codex)**: **B-04 FOLLOW-UP.** Added keyboard submission and aria-live updates for delivery estimator.

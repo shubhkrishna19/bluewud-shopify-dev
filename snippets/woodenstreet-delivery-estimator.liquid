@@ -15,24 +15,21 @@
       Check
     </button>
   </div>
-  <div class="woodenstreet-delivery__result" data-delivery-result>
+  <div class="woodenstreet-delivery__result" data-delivery-result aria-live="polite">
     Enter your pincode to see delivery estimates.
   </div>
 </div>
 
 <script>
   (() => {
-    const container = document.querySelector('[data-delivery-estimator]');
-    if (!container || window.__woodenstreetDeliveryEstimatorInitialized) {
+    const containers = document.querySelectorAll('[data-delivery-estimator]');
+    if (containers.length === 0 || window.__woodenstreetDeliveryEstimatorInitialized) {
       return;
     }
     window.__woodenstreetDeliveryEstimatorInitialized = true;
-    const input = container.querySelector('[data-delivery-input]');
-    const button = container.querySelector('[data-delivery-submit]');
-    const result = container.querySelector('[data-delivery-result]');
     const storageKey = 'woodenstreet:delivery-estimator:pincode';
 
-    const renderEstimate = (pincode) => {
+    const renderEstimate = (result, pincode) => {
       if (!pincode || pincode.length < 5) {
         result.textContent = 'Enter a valid pincode to see delivery estimates.';
         return;
@@ -40,16 +37,30 @@
       result.textContent = `Delivery available. Estimated dispatch in 2-4 days for ${pincode}.`;
     };
 
-    const saved = window.localStorage.getItem(storageKey);
-    if (saved) {
-      input.value = saved;
-      renderEstimate(saved);
-    }
+    containers.forEach((container) => {
+      const input = container.querySelector('[data-delivery-input]');
+      const button = container.querySelector('[data-delivery-submit]');
+      const result = container.querySelector('[data-delivery-result]');
 
-    button.addEventListener('click', () => {
-      const pincode = input.value.trim();
-      window.localStorage.setItem(storageKey, pincode);
-      renderEstimate(pincode);
+      const saved = window.localStorage.getItem(storageKey);
+      if (saved) {
+        input.value = saved;
+        renderEstimate(result, saved);
+      }
+
+      const handleSubmit = () => {
+        const pincode = input.value.trim();
+        window.localStorage.setItem(storageKey, pincode);
+        renderEstimate(result, pincode);
+      };
+
+      button.addEventListener('click', handleSubmit);
+      input.addEventListener('keydown', (event) => {
+        if (event.key === 'Enter') {
+          event.preventDefault();
+          handleSubmit();
+        }
+      });
     });
   })();
 </script>
