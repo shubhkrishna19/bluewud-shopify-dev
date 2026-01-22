@@ -1,0 +1,91 @@
+<div
+  class="coupon-applier"
+  data-coupon-applier
+  data-demo-code="WS20"
+  data-demo-savings="₹500"
+>
+  <div class="coupon-applier__header">
+    <span class="coupon-applier__title">Apply Best Coupon</span>
+    <button class="coupon-applier__toggle" type="button" data-coupon-toggle>
+      Apply Best Coupon
+    </button>
+  </div>
+
+  <div class="coupon-applier__body" data-coupon-body hidden>
+    <div class="coupon-applier__input-row">
+      <input
+        class="coupon-applier__input"
+        type="text"
+        name="discount"
+        placeholder="Enter coupon code"
+        value="WS20"
+        data-coupon-input
+        autocomplete="off"
+        aria-label="Coupon code"
+      >
+      <button class="coupon-applier__apply" type="button" data-coupon-apply>
+        Apply
+      </button>
+    </div>
+    <p class="coupon-applier__hint">Try code WS20 for ₹500 savings.</p>
+  </div>
+
+  <div class="coupon-applier__success" role="status" aria-live="polite" data-coupon-success hidden>
+    ₹500 saved with code WS20!
+  </div>
+</div>
+
+<script>
+  (function() {
+    var containers = document.querySelectorAll('[data-coupon-applier]:not([data-coupon-ready])');
+    if (!containers.length) return;
+
+    containers.forEach(function(container) {
+      container.setAttribute('data-coupon-ready', 'true');
+      var toggle = container.querySelector('[data-coupon-toggle]');
+      var body = container.querySelector('[data-coupon-body]');
+      var applyButton = container.querySelector('[data-coupon-apply]');
+      var input = container.querySelector('[data-coupon-input]');
+      var success = container.querySelector('[data-coupon-success]');
+      var demoCode = container.getAttribute('data-demo-code') || 'WS20';
+      var demoSavings = container.getAttribute('data-demo-savings') || '₹500';
+
+      var showSuccess = function() {
+        if (success) {
+          success.textContent = demoSavings + ' saved with code ' + demoCode + '!';
+          success.hidden = false;
+        }
+        container.classList.add('is-applied');
+      };
+
+      var applyCode = function() {
+        if (input) {
+          input.value = demoCode;
+        }
+        if (body) {
+          body.hidden = false;
+        }
+        showSuccess();
+      };
+
+      var toggleBody = function() {
+        if (!body) return;
+        body.hidden = !body.hidden;
+      };
+
+      if (toggle) {
+        toggle.addEventListener('click', function() {
+          if (container.classList.contains('is-applied')) {
+            toggleBody();
+          } else {
+            applyCode();
+          }
+        });
+      }
+
+      if (applyButton) {
+        applyButton.addEventListener('click', applyCode);
+      }
+    });
+  })();
+</script>
