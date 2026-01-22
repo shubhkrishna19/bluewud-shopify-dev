@@ -1,0 +1,183 @@
+{% comment %}
+  Woodenstreet Shop The Look Section (Phase A-06)
+{% endcomment %}
+
+<section class="shop-the-look">
+  <div class="shop-the-look__inner page-width">
+    <div class="shop-the-look__header">
+      {% if section.settings.eyebrow != blank %}
+        <span class="shop-the-look__eyebrow">{{ section.settings.eyebrow | escape }}</span>
+      {% endif %}
+      {% if section.settings.title != blank %}
+        <h2 class="shop-the-look__title">{{ section.settings.title | escape }}</h2>
+      {% endif %}
+      {% if section.settings.body != blank %}
+        <div class="shop-the-look__body">{{ section.settings.body }}</div>
+      {% endif %}
+    </div>
+
+    <div class="shop-the-look__layout">
+      <div class="shop-the-look__image-wrapper">
+        {% if section.settings.image != blank %}
+          {{ section.settings.image | image_url: width: 2000 | image_tag: class: 'shop-the-look__image', loading: 'lazy' }}
+        {% else %}
+          {{ 'lifestyle-1' | placeholder_svg_tag: 'shop-the-look__image shop-the-look__image--placeholder' }}
+        {% endif %}
+
+        {% for block in section.blocks %}
+          {% liquid
+            assign block_product = block.settings.product
+            assign block_label = block.settings.label
+            if block_label == blank and block_product != blank
+              assign block_label = block_product.title
+            endif
+          %}
+          <a
+            class="shop-the-look__hotspot"
+            href="{% if block_product != blank %}{{ block_product.url }}{% else %}{{ block.settings.link }}{% endif %}"
+            style="--hotspot-x: {{ block.settings.x_position }}%; --hotspot-y: {{ block.settings.y_position }}%;"
+            {{ block.shopify_attributes }}
+          >
+            <span class="shop-the-look__hotspot-dot" aria-hidden="true"></span>
+            <span class="shop-the-look__hotspot-label">
+              {{ block_label | escape }}
+            </span>
+          </a>
+        {% endfor %}
+      </div>
+
+      <div class="shop-the-look__list">
+        {% for block in section.blocks %}
+          {% assign list_product = block.settings.product %}
+          <div class="shop-the-look__card" {{ block.shopify_attributes }}>
+            <div class="shop-the-look__card-media">
+              {% if list_product != blank and list_product.featured_image != blank %}
+                {{ list_product.featured_image | image_url: width: 400 | image_tag: class: 'shop-the-look__card-image', loading: 'lazy' }}
+              {% else %}
+                {{ 'product-1' | placeholder_svg_tag: 'shop-the-look__card-image shop-the-look__card-image--placeholder' }}
+              {% endif %}
+            </div>
+            <div class="shop-the-look__card-content">
+              <span class="shop-the-look__card-title">
+                {% if list_product != blank %}
+                  {{ list_product.title | escape }}
+                {% else %}
+                  {{ block.settings.label | escape }}
+                {% endif %}
+              </span>
+              {% if list_product != blank %}
+                <span class="shop-the-look__card-price">{{ list_product.price | money }}</span>
+              {% endif %}
+              <a class="shop-the-look__card-link" href="{% if list_product != blank %}{{ list_product.url }}{% else %}{{ block.settings.link }}{% endif %}">
+                View product
+              </a>
+            </div>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Woodenstreet Shop The Look",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Shop the look"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Complete the room in one go"
+    },
+    {
+      "type": "richtext",
+      "id": "body",
+      "label": "Body",
+      "default": "<p>Tap the hotspots to explore each piece used in our curated living room setup.</p>"
+    },
+    {
+      "type": "image_picker",
+      "id": "image",
+      "label": "Lifestyle image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "hotspot",
+      "name": "Hotspot",
+      "settings": [
+        {
+          "type": "range",
+          "id": "x_position",
+          "label": "Horizontal position",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 30
+        },
+        {
+          "type": "range",
+          "id": "y_position",
+          "label": "Vertical position",
+          "min": 0,
+          "max": 100,
+          "step": 1,
+          "unit": "%",
+          "default": 45
+        },
+        {
+          "type": "product",
+          "id": "product",
+          "label": "Product"
+        },
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Fallback label",
+          "default": "Featured piece"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Fallback link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Woodenstreet Shop The Look",
+      "blocks": [
+        {
+          "type": "hotspot",
+          "settings": {
+            "x_position": 28,
+            "y_position": 52
+          }
+        },
+        {
+          "type": "hotspot",
+          "settings": {
+            "x_position": 60,
+            "y_position": 36
+          }
+        },
+        {
+          "type": "hotspot",
+          "settings": {
+            "x_position": 72,
+            "y_position": 68
+          }
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

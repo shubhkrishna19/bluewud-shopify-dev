@@ -59,7 +59,7 @@
 | **A-03** | **Hero "Hybrid" Layout** | [x] Done - Codex | Med | Main slider (Left) + 2 Static Promo Banners (Right) layout. |
 | **A-04** | **Urgency Countdown Strip** | [x] Done - Antigravity | Low | "Sale Ends In: HH:MM:SS" strip immediately below the Hero. |
 | **A-05** | **Trust Strip v2** | [ ] Open | Low | "20 Lakh+ Customers" | "Factory Direct" | "Free Shipping". |
-| **A-06** | **"Shop The Look" Section** | [ ] Open | High | Hotspots on a lifestyle image linking to multiple products. |
+| **A-06** | **"Shop The Look" Section** | [x] Done - GPT-5.2-Codex | High | Hotspots on a lifestyle image linking to multiple products. |
 
 ### 🟡 Phase B: The Conversion Engine (PDP)
 | ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
@@ -108,6 +108,10 @@
 
 
 - **2026-01-21 (GPT-5.2-Codex)**: Completed task A-02 - Experience Store Locator section component.
+
+
+
+- **2026-01-21 (GPT-5.2-Codex)**: Completed task A-06 - Shop The Look section with hotspots.
 
 
 
