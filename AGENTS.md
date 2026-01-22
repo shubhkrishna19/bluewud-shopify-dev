@@ -77,7 +77,7 @@
 | **H-02** | **Engagement Sections** | [x] Done | High | Implement `woodenstreet-shop-the-look` and `woodenstreet-experience-store` sections. |
 | **H-03** | **Header & Mega Menu Polish** | [x] Done | Med | Fix alignment, icon spacing, search bar styling, and mobile menu transitions. |
 | **H-04** | **Product Card Standardization** | [x] Done | High | Unify all product cards to match WoodenStreet design (hover effects, badges, price styling). |
-| **H-05** | **Global Spacing & Typography** | [/] In Progress | Med | Enforce 8px grid system, consistent section spacing, and correct font usage (Poppins/Inter). |
+| **H-05** | **Global Spacing & Typography** | [x] Done | Med | Enforce 8px grid system, consistent section spacing, and correct font usage (Poppins/Inter). |
 
 ### �🟢 Phase A: The "WoodenStreet" Homepage (Structure & Trust)
 | ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
