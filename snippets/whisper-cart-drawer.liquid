@@ -101,6 +101,7 @@
     <!-- Footer -->
     {% if cart.item_count > 0 %}
       <div class="p-6 bg-[var(--color-bg-secondary)] border-t-2 border-[var(--color-border-primary)] space-y-4">
+        {% render 'coupon-applier' %}
         <div class="flex justify-between items-end">
           <span class="text-xs font-black uppercase tracking-widest text-[var(--color-text-tertiary)]">Subtotal</span>
           <span class="text-3xl font-black italic tracking-tighter text-[var(--color-text-primary)]">{{ cart.total_price | money }}</span>

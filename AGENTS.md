@@ -117,7 +117,7 @@
 | **D-02** | **Slide-out Cart Drawer** | [ ] Open | High | (Already prioritized, ensure it matches WS density). |
 | **D-03** | **Cart Savings Celebration** | [ ] Open | Low | "Congrats! You saved ₹2,000 on this order." message. |
 | **D-04** | **3-Step Checkout Progress** | [ ] Open | Med | Visual bar: Cart > Address > Payment. |
-| **D-05** | **Auto-Coupon Applier** | [ ] Open | High | "Apply Best Coupon" link in the cart summary. |
+| **D-05** | **Auto-Coupon Applier** | [x] Done - GPT-5.2-Codex | High | "Apply Best Coupon" link in the cart summary. |
 
 
 ---
@@ -174,6 +174,9 @@
 
 - **2026-01-20 (Codex)**: **B-03 STARTED.** Claimed Detailed Offers Box for Woodenstreet MVP Phase B.
 - **2026-01-20 (Codex)**: **B-03 STARTED.** Claimed Detailed Offers Box for Woodenstreet MVP Phase B.
+
+
+- **2026-01-22 (GPT-5.2-Codex)**: Completed task D-05 - Auto-Coupon Applier snippet, styling, and cart integrations.
 
 ---
 
