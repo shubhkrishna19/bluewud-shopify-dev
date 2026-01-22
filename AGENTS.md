@@ -95,7 +95,7 @@
 <<<<<<< HEAD
 | **B-01** | **Visual Variant Swatches** | [x] Done - Codex-01 | High | Replace dropdowns with Image/Texture circles for fabric selection. |
 | **B-02** | **Sticky Footer (Mobile)** | [x] Done - Codex-01 | High | Fixed bottom bar with "Price" + "Add to Cart" on scroll. |
-| **B-03** | **Detailed "Offers" Box** | [ ] Open - Codex-01 | Med | Box inside Buy Form listing Bank Offers & EMI breakdowns. |
+| **B-03** | **Detailed "Offers" Box** | [x] Done - GPT-5.2-Codex | Med | Box inside Buy Form listing Bank Offers & EMI breakdowns. |
 | **B-04** | **Delivery Date Estimator** | [x] Done - Codex-01 | High | "Check Delivery Date" input field with real/mock logic. |
 | **B-05** | **"Compare" Floating Action** | [x] Done - Codex-01 | Low | Ability to add product to a comparison list. |
 | **B-06** | **Review Summary Graph** | [x] Done - Codex-XX | Med | 5-star progress bars showing distribution of ratings. |
@@ -181,6 +181,10 @@
 
 
 - **2026-01-22 (GPT-5.2-Codex)**: Added discount badge and recommended ribbon to product cards.
+
+
+- **2026-01-22 (GPT-5.2-Codex)**: Completed task B-03 - Detailed offers box enhancements.
+
 
 ---
 
