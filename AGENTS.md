@@ -1,7 +1,5 @@
 # AGENTS.md: The "Swarm" Orchestration Manual
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 ## 🚀 AGENT QUICK START (READ ME FIRST)
 **Command**: "Read this file. Execute the next task. Repeat."
 **Context**: We are building **WoodenStreet.com** (Shopify Clone).
@@ -37,6 +35,7 @@
     1.  **CLAIM**: Mark your task `[/] In Progress` in this file.
     2.  **PUSH**: Immediately `git commit` and `git push` this file ONLY.
     3.  **CODE**: Once your claim is on the remote, START coding.
+    *This prevents two agents from working on the same task simultaneously.*
 
 -   **🚨 RULE #2: ISOLATION PROTOCOL (AUTO-MERGE FRIENDLY)**:
     -   **CSS**: NEVER edit `theme-update.css` directly. Create `assets/component-[name].css`.
