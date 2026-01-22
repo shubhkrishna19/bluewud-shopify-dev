@@ -75,8 +75,8 @@
 | **H-02** | **Hero Section Layout** | [/] In Progress | Med | Fix "sloppy" overlay/buttons. Ensure pixel-match with WoodenStreet hero. |
 | **H-03** | **Header & Mega Menu Polish** | [/] In Progress | Med | Fix alignment, icon spacing, and hover states. |
 | **H-04** | **Trust Strip Styling** | [x] Done | Low | Center align, fix icons, ensuring elegant spacing. |
-| **H-05** | **Product Card Standardization** | [/] In Progress | High | Unify all product cards (Home & PLP) to single "WoodenStreet" design. |
-| **H-06** | **Footer Layout Cleanup** | [ ] Open | Med | Fix grid alignment, remove broken links, unify colors. |
+| **H-05** | **Product Card Standardization** | [x] Done | High | Unify all product cards (Home & PLP) to single "WoodenStreet" design. |
+| **H-06** | **Footer Layout Cleanup** | [/] In Progress | Med | Fix grid alignment, remove broken links, unify colors. |
 | **H-07** | **Spacing & Whitespace** | [ ] Open | Med | Enforce 8px/16px/32px grid system. Remove random margins. |
 | **H-08** | **Mobile Responsiveness Check** | [ ] Open | High | unexpected overflows, horizontal scrolls, bad padding on < 768px. |
 | **H-09** | **Color Palette Unification** | [ ] Open | Med | Enforce primary Orange (#C7431A) usage. Remove random blues/greens. |
