@@ -1,0 +1,101 @@
+{{ 'component-mega-menu.css' | asset_url | stylesheet_tag }}
+
+<div class="ws-mega-menu" data-mega-menu>
+  <div class="ws-mega-menu__trigger">{{ section.settings.trigger_label }}</div>
+  <div class="ws-mega-menu__panel">
+    <div class="ws-mega-menu__columns">
+      {%- for block in section.blocks -%}
+        <div class="ws-mega-menu__column">
+          <h3 class="ws-mega-menu__column-title">{{ block.settings.title }}</h3>
+          <ul class="ws-mega-menu__link-list">
+            {%- if block.settings.link_1_label != blank -%}
+              <li><a class="ws-mega-menu__link" href="{{ block.settings.link_1_url }}">{{ block.settings.link_1_label }}</a></li>
+            {%- endif -%}
+            {%- if block.settings.link_2_label != blank -%}
+              <li><a class="ws-mega-menu__link" href="{{ block.settings.link_2_url }}">{{ block.settings.link_2_label }}</a></li>
+            {%- endif -%}
+            {%- if block.settings.link_3_label != blank -%}
+              <li><a class="ws-mega-menu__link" href="{{ block.settings.link_3_url }}">{{ block.settings.link_3_label }}</a></li>
+            {%- endif -%}
+          </ul>
+        </div>
+      {%- endfor -%}
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "WS Mega Menu",
+  "tag": "section",
+  "class": "ws-mega-menu-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "trigger_label",
+      "label": "Trigger label",
+      "default": "Shop"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "column",
+      "name": "Column",
+      "settings": [
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Category"
+        },
+        {
+          "type": "text",
+          "id": "link_1_label",
+          "label": "Link 1 label",
+          "default": "Beds"
+        },
+        {
+          "type": "url",
+          "id": "link_1_url",
+          "label": "Link 1 URL"
+        },
+        {
+          "type": "text",
+          "id": "link_2_label",
+          "label": "Link 2 label",
+          "default": "Sofas"
+        },
+        {
+          "type": "url",
+          "id": "link_2_url",
+          "label": "Link 2 URL"
+        },
+        {
+          "type": "text",
+          "id": "link_3_label",
+          "label": "Link 3 label",
+          "default": "Dining"
+        },
+        {
+          "type": "url",
+          "id": "link_3_url",
+          "label": "Link 3 URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "WS Mega Menu",
+      "blocks": [
+        {
+          "type": "column"
+        },
+        {
+          "type": "column"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}

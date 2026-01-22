@@ -1,0 +1,64 @@
+{{ 'component-zoom-pan-gallery.css' | asset_url | stylesheet_tag }}
+
+<section class="ws-zoom-pan-gallery" data-zoom-pan-gallery>
+  <div class="ws-zoom-pan-gallery__main">
+    {%- if section.settings.main_image != blank -%}
+      {{ section.settings.main_image | image_url: width: 1200 | image_tag: class: 'ws-zoom-pan-gallery__image', loading: 'lazy' }}
+    {%- else -%}
+      {{ 'product-1' | placeholder_svg_tag: 'ws-zoom-pan-gallery__image' }}
+    {%- endif -%}
+  </div>
+
+  <div class="ws-zoom-pan-gallery__thumbnails">
+    {%- for block in section.blocks -%}
+      <div class="ws-zoom-pan-gallery__thumb">
+        {%- if block.settings.image != blank -%}
+          {{ block.settings.image | image_url: width: 200 | image_tag: loading: 'lazy' }}
+        {%- else -%}
+          {{ 'product-1' | placeholder_svg_tag }}
+        {%- endif -%}
+      </div>
+    {%- endfor -%}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "WS Zoom & Pan Gallery",
+  "tag": "section",
+  "class": "ws-zoom-pan-gallery-section",
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "main_image",
+      "label": "Main image"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "thumbnail",
+      "name": "Thumbnail",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "WS Zoom & Pan Gallery",
+      "blocks": [
+        {
+          "type": "thumbnail"
+        },
+        {
+          "type": "thumbnail"
+        }
+      ]
+    }
+  ]
+}
+{% endschema %}
