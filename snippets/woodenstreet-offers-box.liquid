@@ -1,19 +1,51 @@
 <aside class="woodenstreet-offers" aria-label="Offers and EMI details">
-  <div class="woodenstreet-offers__title">Offers &amp; EMI</div>
-  <div class="woodenstreet-offers__section">
-    <span class="woodenstreet-offers__label">Bank Offers</span>
-    <ul class="woodenstreet-offers__list">
-      <li class="woodenstreet-offers__item"><strong>10% Instant Discount</strong> on select credit cards.</li>
-      <li class="woodenstreet-offers__item">Extra ₹1,000 off on UPI orders above ₹15,000.</li>
-      <li class="woodenstreet-offers__item">No cost EMI on 6 &amp; 9 months.</li>
-    </ul>
+  <div class="woodenstreet-offers__header">
+    <h3 class="woodenstreet-offers__title">Offers &amp; Discounts</h3>
   </div>
-  <div class="woodenstreet-offers__section">
-    <span class="woodenstreet-offers__label">EMI Breakdown</span>
-    <ul class="woodenstreet-offers__list">
-      <li class="woodenstreet-offers__item"><strong>₹1,999/mo</strong> for 12 months</li>
-      <li class="woodenstreet-offers__item"><strong>₹2,699/mo</strong> for 9 months</li>
-      <li class="woodenstreet-offers__item"><strong>₹3,899/mo</strong> for 6 months</li>
-    </ul>
+
+  <div class="woodenstreet-offers__accordion">
+    <details class="woodenstreet-offers__details" open>
+      <summary class="woodenstreet-offers__summary">
+        <div class="woodenstreet-offers__summary-content">
+            <span class="woodenstreet-offers__icon">🏷️</span>
+            <span class="woodenstreet-offers__label">Bank Offers</span>
+        </div>
+        <span class="woodenstreet-offers__chevron">▼</span>
+      </summary>
+      <div class="woodenstreet-offers__content">
+        <ul class="woodenstreet-offers__list">
+          <li class="woodenstreet-offers__item"><strong>10% Instant Discount</strong> on HDFC Credit Cards.</li>
+          <li class="woodenstreet-offers__item">Flat ₹500 off on UPI payments. Code: <strong>UPI500</strong></li>
+          <li class="woodenstreet-offers__item">5% Unlimited Cashback on Flipkart Axis Bank Card.</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="woodenstreet-offers__details">
+      <summary class="woodenstreet-offers__summary">
+        <div class="woodenstreet-offers__summary-content">
+            <span class="woodenstreet-offers__icon">💳</span>
+            <span class="woodenstreet-offers__label">No Cost EMI</span>
+        </div>
+        <span class="woodenstreet-offers__chevron">▼</span>
+      </summary>
+      <div class="woodenstreet-offers__content">
+        <div class="woodenstreet-offers__emi-table">
+            <div class="woodenstreet-offers__emi-row">
+                <span>3 Months</span>
+                <strong>₹7,999/mo</strong>
+            </div>
+            <div class="woodenstreet-offers__emi-row">
+                <span>6 Months</span>
+                <strong>₹4,000/mo</strong>
+            </div>
+            <div class="woodenstreet-offers__emi-row">
+                <span>9 Months</span>
+                <strong>₹2,666/mo</strong>
+            </div>
+             <p class="woodenstreet-offers__emi-note">Standard EMI also available from major banks.</p>
+        </div>
+      </div>
+    </details>
   </div>
 </aside>
