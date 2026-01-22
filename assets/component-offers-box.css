@@ -1,0 +1,41 @@
+.woodenstreet-offers {
+  margin-top: 1rem;
+  padding: 1rem 1.25rem;
+  border-radius: 16px;
+  border: 1px solid var(--color-border-primary);
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: var(--glass-blur);
+}
+
+.woodenstreet-offers__title {
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+}
+
+.woodenstreet-offers__section {
+  margin-bottom: 0.75rem;
+}
+
+.woodenstreet-offers__label {
+  font-weight: 600;
+  margin-bottom: 0.35rem;
+  display: block;
+}
+
+.woodenstreet-offers__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.woodenstreet-offers__item {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+}
+
+.woodenstreet-offers__item strong {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}

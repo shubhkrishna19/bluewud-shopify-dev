@@ -54,6 +54,7 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 | A-03 | Hybrid Hero | [x] Done - Codex-01 | Codex | Pixel-match hero layout and CTA stack. |
 | **Phase B (PDP)** | | | | |
 | B-01 | Visual Swatches | [x] Done - Codex-01 | Codex | Variant swatch UI parity. |
+| B-03 | Detailed Offers Box | [/] In Progress - Codex-01 | Codex | Bank offers + EMI breakdown box. |
 | B-04 | Delivery Estimator | [x] Done - Codex-01 | Codex | Pincode-based delivery ETA block. |
 
 ---
@@ -161,3 +162,6 @@ We are migrating the robust functional core of the **Empire Theme** into the ult
 
 
 - **2026-01-20 (Codex)**: **PHASE B BLOCKED.** No open Phase B tasks available to claim; awaiting new assignments.
+
+
+- **2026-01-20 (Codex)**: **B-03 STARTED.** Claimed Detailed Offers Box for Woodenstreet MVP Phase B.
