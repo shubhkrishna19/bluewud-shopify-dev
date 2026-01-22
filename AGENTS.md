@@ -12,7 +12,7 @@
 ## 🏔️ The Mountain of Tasks (WoodenStreet MVP Backlog)
 
 ### 🟢 Phase A: The "WoodenStreet" Homepage
-- **A-01 Mega Menu Architecture** | [ ] Open
+- **A-01 Mega Menu Architecture** | [x] Done (Codex-01)
 - **A-02 "Experience Store" Locator** | [ ] Open
 - **A-03 Hero "Hybrid" Layout** | [ ] Open
 - **A-04 Urgency Countdown Strip** | [/] In Progress (Antigravity)
@@ -29,6 +29,12 @@
 
 ## 📜 Developer Logs
 - 2026-01-21 (Antigravity): PIVOT INITIATED. Re-wrote AGENTS.md.
+
+
+- 2026-01-21 (Codex-01): Selected task A-01 - Mega Menu Architecture.
+
+
+- 2026-01-21 (Codex-01): Completed task A-01 - Mega Menu Architecture component.
 
 
 - 2026-01-21 (Codex-01): Selected task B-01 - Visual Variant Swatches.

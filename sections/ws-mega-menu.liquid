@@ -1,0 +1,31 @@
+{%- comment -%}
+  WoodenStreet MVP section: Mega Menu
+{%- endcomment -%}
+
+<nav class="ws-mega-menu" aria-label="Primary">
+  <ul class="ws-mega-menu__list">
+    {%- for link in section.settings.menu.links -%}
+      <li class="ws-mega-menu__item">
+        <a class="ws-mega-menu__link" href="{{ link.url }}">{{ link.title }}</a>
+      </li>
+    {%- endfor -%}
+  </ul>
+</nav>
+
+{% schema %}
+{
+  "name": "WS Mega Menu",
+  "settings": [
+    {
+      "type": "link_list",
+      "id": "menu",
+      "label": "Menu"
+    }
+  ],
+  "presets": [
+    {
+      "name": "WS Mega Menu"
+    }
+  ]
+}
+{% endschema %}
