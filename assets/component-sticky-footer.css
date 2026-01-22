@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /* WoodenStreet MVP: Sticky Footer (Mobile) */
 
 .ws-sticky-footer{
@@ -61,6 +62,22 @@
 }
 
 .ws-sticky-footer__content {
+=======
+/* WoodenStreet PDP sticky footer (mobile) */
+.woodenstreet-sticky-footer {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 50;
+  background: #fff;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 -8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.woodenstreet-sticky-footer__inner {
+>>>>>>> origin/pr/36
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -68,6 +85,7 @@
   padding: 12px 16px;
 }
 
+<<<<<<< HEAD
 .ws-sticky-footer__info {
   display: grid;
   gap: 2px;
@@ -101,5 +119,46 @@
   .ws-sticky-footer {
     display: none;
 >>>>>>> origin/pr/31
+=======
+.woodenstreet-sticky-footer__info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.woodenstreet-sticky-footer__title {
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin: 0;
+}
+
+.woodenstreet-sticky-footer__price {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+
+.woodenstreet-sticky-footer__cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 140px;
+  padding: 10px 16px;
+  border-radius: 999px;
+  background: #1b1b1b;
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.woodenstreet-sticky-footer__cta:hover,
+.woodenstreet-sticky-footer__cta:focus {
+  background: #000;
+  color: #fff;
+}
+
+@media screen and (max-width: 749px) {
+  .woodenstreet-sticky-footer {
+    display: block;
+>>>>>>> origin/pr/36
   }
 }

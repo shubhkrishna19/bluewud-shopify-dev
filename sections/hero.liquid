@@ -496,10 +496,14 @@
   <div
     class="hero__container spacing-style section section--full-width"
 <<<<<<< HEAD
+<<<<<<< HEAD
     style="{% render 'spacing-style', settings: section.settings %}"
 =======
     style="{% render 'whisper-spacing-style', settings: section.settings %}"
 >>>>>>> origin/pr/32
+=======
+    style="{% render 'spacing-style', settings: section.settings %}"
+>>>>>>> origin/pr/36
   >
     {%- if section.settings.link != blank -%}
       <a
@@ -518,10 +522,14 @@
       {% liquid
         if section.settings.toggle_overlay
 <<<<<<< HEAD
+<<<<<<< HEAD
           render 'overlay', settings: section.settings
 =======
           render 'whisper-overlay', settings: section.settings
 >>>>>>> origin/pr/32
+=======
+          render 'overlay', settings: section.settings
+>>>>>>> origin/pr/36
         endif
       %}
       {{ media }}
@@ -537,10 +545,14 @@
         {% if request.design_mode %}hero__content-wrapper--design-mode{% endif %}
       "
 <<<<<<< HEAD
+<<<<<<< HEAD
       style="{% render 'layout-panel-style', settings: section.settings %}"
 =======
       style="{% render 'whisper-layout-panel-style', settings: section.settings %}"
 >>>>>>> origin/pr/32
+=======
+      style="{% render 'layout-panel-style', settings: section.settings %}"
+>>>>>>> origin/pr/36
     >
       {% content_for 'blocks' %}
     </div>

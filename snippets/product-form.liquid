@@ -77,6 +77,18 @@
   {% assign swatches_option_style = settings.swatches_option_style %}
   {% assign swatches_product_page_size = settings.swatches_product_page_size %}
   {% assign swatches_custom_colors = settings.swatches_custom_colors %}
+  {% assign has_variant_images = false %}
+  {% for variant in product.variants %}
+    {% if variant.image != blank %}
+      {% assign has_variant_images = true %}
+      {% break %}
+    {% endif %}
+  {% endfor %}
+  {% if has_variant_images %}
+    {% assign enable_swatches = true %}
+    {% assign swatches_option_style = 'variant_image' %}
+    {% assign swatches_shape = 'square' %}
+  {% endif %}
   {% assign select_main_classes = 'form-options' %}
   {% assign select_classes = 'form-field form-options' %}
   {% assign input_select_wrapper_classes = 'form-field-select-wrapper' %}
@@ -193,6 +205,7 @@
     <div
       class="
         variants-ui
+        {% if has_variant_images %}woodenstreet-variant-swatches{% endif %}
         {%
           if enable_swatches
           and swatches_shape == 'square'
@@ -238,8 +251,11 @@
         {% if enable_swatches %}
           {%- assign swatches_option_trigger = swatches_option_trigger | strip | downcase -%}
           {%- assign option_name = option.name | strip | downcase -%}
-    
+
           {% if option_name == swatches_option_trigger %}
+            {% assign show_swatches = true %}
+            {% assign swatch_option_key = 'option' | append: forloop.index %}
+          {% elsif has_variant_images and swatches_option_style == 'variant_image' %}
             {% assign show_swatches = true %}
             {% assign swatch_option_key = 'option' | append: forloop.index %}
           {% endif %}
@@ -600,6 +616,7 @@
                           >
                           </div>
                         </div>
+                        <span class="woodenstreet-variant-swatch-label">{{ value }}</span>
                       {% endunless %}
                     </span>
                   </label>
@@ -618,11 +635,8 @@
   {% comment %}Inject @pixelunion/shopify-variants-ui/variants-ui end{% endcomment %}
 
   {% render 'whisper-size-engine' %}
-<<<<<<< HEAD
-=======
   {% render 'woodenstreet-visual-swatches', product: product %}
   {% render 'woodenstreet-delivery-estimator' %}
->>>>>>> origin/pr/35
 
 <div class="qty-wish">
 <div class="product-form--atc-qty form-fields--qty" data-quantity-wrapper>
