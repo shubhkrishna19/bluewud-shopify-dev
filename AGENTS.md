@@ -90,8 +90,13 @@
 | ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
 | :--- | :--- | :--- | :--- | :--- |
 | **C-01** | **Sidebar Filter Accordions** | [ ] Open | Med | Collapsible filters for Price, Material, Discount (checkbox style). |
+<<<<<<< HEAD
 | **C-02** | **Color Filter Swatches** | [/] In Progress | Med | Visual color circles in the sidebar filter. |
 | **C-03** | **Card: "Quick View" Hover** | [ ] Open | Low | "Eye" icon appears on hover for modal preview. |
+=======
+| **C-02** | **Color Filter Swatches** | [ ] Open | Med | Visual color circles in the sidebar filter. |
+| **C-03** | **Card: "Quick View" Hover** | [/] In Progress | Low | "Eye" icon appears on hover for modal preview. |
+>>>>>>> origin/pr/42
 | **C-04** | **Card: Discount Badges** | [ ] Open | Low | High-contrast Orange badge: "**40% OFF**". |
 | **C-05** | **Card: Recommended Tag** | [ ] Open | Low | "Best Seller" or "Recommended" ribbon overlay. |
 
@@ -149,6 +154,9 @@
 
 
 - **2026-01-22 (Codex-XX)**: Claimed task C-02 - Color Filter Swatches.
+
+
+- **2026-01-22 (Codex-XX)**: Claimed task C-03 - Quick View hover eye icon and modal trigger.
 
 ---
 
