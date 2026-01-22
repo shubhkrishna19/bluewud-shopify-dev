@@ -73,9 +73,9 @@
 ### 🚀 Phase E: Conversion Boosters (PDP & Cart)
 | ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
 | :--- | :--- | :--- | :--- | :--- |
-| **E-01** | **Sticky Add-to-Cart (Desktop)** | [/] In Progress - Local-Agent-01 | Med | Floating bar on scroll (Desktop) with Product Title | Price | Add to Cart. |
+| **E-01** | **Sticky Add-to-Cart (Desktop)** | [x] Done | Med | Floating bar on scroll (Desktop) with Product Title | Price | Add to Cart. |
 | **E-02** | **"Check Pincode" Widget** | [x] Done | High | Real-time serviceability check input below price. (Mock Data for now). |
-| **E-03** | **EMI & Bank Offers Accordion** | [/] In Progress - Local-Agent-01 | Med | Detailed breakdown of EMI plans and Bank Offers in an accordion. |
+| **E-03** | **EMI & Bank Offers Accordion** | [x] Done | Med | Detailed breakdown of EMI plans and Bank Offers in an accordion. |
 | **E-04** | **Cart Drawer Upsells** | [ ] Open | High | "Frequently Bought Together" slider inside the Cart Drawer. |
 | **E-05** | **Free Shipping Progress Bar** | [ ] Open | Low | Dynamic progress bar in Cart Drawer: "Add ₹X more for Free Shipping". |
 
@@ -83,7 +83,7 @@
 | ID | Task Name | Status | Complexity | Description |
 | :--- | :--- | :--- | :--- | :--- |
 | **F-01** | **Mobile Bottom Navigation** | [x] Done | High | App-like bottom nav: Home | Categories | Wishlist | Cart | Account. |
-| **F-02** | **Search Overlay Polish** | [/] In Progress - Codex-01 | Med | Full-screen search overlay with "Trending Searches" and "Popular Products". |
+| **F-02** | **Search Overlay Polish** | [x] Done | Med | Full-screen search overlay with "Trending Searches" and "Popular Products". |
 | **F-03** | **Product Card Badges** | [x] Done | Low | "Best Seller", "New Arrival", "50% OFF" badges with correct WS styling. |
 | **F-04** | **Footer Mobile Accordion** | [ ] Open | Low | Ensure footer links collapse into accordions on mobile automatically. |
 | **F-05** | **Global Icon Refresh** | [ ] Open | Med | Replace generic icons with WoodenStreet-style thin line icons (Feather/Phosphor). |
