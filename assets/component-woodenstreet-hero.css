@@ -1,0 +1,166 @@
+/* WoodenStreet Hero Hybrid Styles */
+.woodenstreet-hero-hybrid {
+    padding: 60px 0;
+    background-color: #FDFBF7;
+    /* Warm off-white */
+    overflow: hidden;
+}
+
+.woodenstreet-hero-hybrid__inner {
+    display: grid;
+    gap: 40px;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    position: relative;
+}
+
+.woodenstreet-hero-hybrid__content {
+    z-index: 2;
+    padding-right: 20px;
+}
+
+.woodenstreet-hero-hybrid__eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #C7431A;
+    /* WS Orange */
+    margin: 0 0 16px;
+    display: inline-block;
+    background: rgba(199, 67, 26, 0.1);
+    padding: 6px 12px;
+    border-radius: 4px;
+}
+
+.woodenstreet-hero-hybrid__heading {
+    font-family: var(--font-heading-family, "Poppins", sans-serif);
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    color: #232323;
+    margin: 0 0 24px;
+}
+
+.woodenstreet-hero-hybrid__subheading {
+    font-family: var(--font-body-family, "Inter", sans-serif);
+    font-size: 1.125rem;
+    line-height: 1.6;
+    color: #555;
+    margin: 0 0 32px;
+    max-width: 540px;
+}
+
+.woodenstreet-hero-hybrid__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.woodenstreet-hero-hybrid__button {
+    padding: 14px 32px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    border-radius: 4px;
+    /* Slightly grounded */
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.woodenstreet-hero-hybrid__button:not(.button--secondary) {
+    background-color: #C7431A;
+    color: #fff;
+    border: 2px solid #C7431A;
+}
+
+.woodenstreet-hero-hybrid__button:not(.button--secondary):hover {
+    background-color: #a63614;
+    border-color: #a63614;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px rgba(199, 67, 26, 0.2);
+}
+
+.woodenstreet-hero-hybrid__button.button--secondary {
+    background-color: transparent;
+    color: #232323;
+    border: 2px solid #232323;
+}
+
+.woodenstreet-hero-hybrid__button.button--secondary:hover {
+    background-color: #232323;
+    color: #fff;
+}
+
+.woodenstreet-hero-hybrid__media {
+    position: relative;
+    min-height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.woodenstreet-hero-hybrid__image {
+    border-radius: 12px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    object-fit: cover;
+}
+
+.woodenstreet-hero-hybrid__image--primary {
+    width: 85%;
+    height: auto;
+    z-index: 1;
+    position: relative;
+}
+
+.woodenstreet-hero-hybrid__image--secondary {
+    position: absolute;
+    right: 0;
+    bottom: -40px;
+    width: 50%;
+    z-index: 2;
+    border: 4px solid #fff;
+}
+
+/* Response to "sloppy overlay" - Ensure text doesn't overlap weirdly on tablet */
+@media screen and (max-width: 989px) {
+    .woodenstreet-hero-hybrid__inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 40px;
+    }
+
+    .woodenstreet-hero-hybrid__content {
+        padding-right: 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .woodenstreet-hero-hybrid__actions {
+        justify-content: center;
+    }
+
+    .woodenstreet-hero-hybrid__heading {
+        font-size: 2.5rem;
+    }
+
+    .woodenstreet-hero-hybrid__media {
+        min-height: auto;
+        margin-bottom: 40px;
+    }
+
+    .woodenstreet-hero-hybrid__image--primary {
+        width: 100%;
+    }
+
+    .woodenstreet-hero-hybrid__image--secondary {
+        width: 60%;
+        bottom: -30px;
+        right: -10px;
+    }
+}
