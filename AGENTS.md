@@ -107,7 +107,7 @@
 | **C-01** | **Sidebar Filter Accordions** | [x] Done - Codex-XX | Med | Collapsible filters for Price, Material, Discount (checkbox style). |
 | **C-02** | **Color Filter Swatches** | [/] In Progress | Med | Visual color circles in the sidebar filter. |
 | **C-03** | **Card: "Quick View" Hover** | [/] In Progress | Low | "Eye" icon appears on hover for modal preview. |
-| **C-04** | **Card: Discount Badges** | [ ] Open | Low | High-contrast Orange badge: "**40% OFF**". |
+| **C-04** | **Card: Discount Badges** | [x] Done - Codex-XX | Low | High-contrast Orange badge: "**40% OFF**". |
 | **C-05** | **Card: Recommended Tag** | [ ] Open | Low | "Best Seller" or "Recommended" ribbon overlay. |
 
 ### 🔴 Phase D: Cart & Checkout Friction
@@ -177,6 +177,9 @@
 
 
 - **2026-01-22 (Codex-XX)**: Completed task B-03 - Detailed Offers Box inside PDP buy box with bank offers and EMI plans.
+
+
+- **2026-01-22 (Codex-XX)**: Completed task C-04 - Added high-contrast discount badge on product cards.
 
 ---
 

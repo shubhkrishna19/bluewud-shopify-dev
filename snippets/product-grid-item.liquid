@@ -255,6 +255,9 @@
       data-product-page-link
     >
       <figure class="productitem--image product-card__image" data-product-item-image>
+        {% if on_sale %}
+          <span class="productitem__badge productitem__badge--discount">40% OFF</span>
+        {% endif %}
         {% if initial_image %}
           {% if product_grid_show_second_image and product.media.size > 1 %}
             {% assign second_image = product.media[1].preview_image.src %}
