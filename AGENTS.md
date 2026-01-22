@@ -68,19 +68,7 @@
 
 ## 🏔️ The Mountain of Tasks (WoodenStreet MVP Backlog)
 *Agents: Pick a task. Mark it `[/] In Progress`. Execute. Log. Repeat.*
-### 💎 Phase H: Homepage Polish & Beautification (HIGHEST PRIORITY)
-| ID | Task Name | Status | Complexity | Description |
-| :--- | :--- | :--- | :--- | :--- |
-| **H-01** | **Global Typography Fix** | [ ] Open | Med | Fix font weights/sizes globally. Ensure 'Poppins' headings & 'Inter' body. |
-| **H-02** | **Hero Section Layout** | [/] In Progress | Med | Fix "sloppy" overlay/buttons. Ensure pixel-match with WoodenStreet hero. |
-| **H-03** | **Header & Mega Menu Polish** | [/] In Progress | Med | Fix alignment, icon spacing, and hover states. |
-| **H-04** | **Trust Strip Styling** | [x] Done | Low | Center align, fix icons, ensuring elegant spacing. |
-| **H-05** | **Product Card Standardization** | [x] Done | High | Unify all product cards (Home & PLP) to single "WoodenStreet" design. |
-| **H-06** | **Footer Layout Cleanup** | [x] Done | Med | Fix grid alignment, remove broken links, unify colors. |
-| **H-07** | **Spacing & Whitespace** | [/] In Progress | Med | Enforce 8px/16px/32px grid system. Remove random margins. |
-| **H-08** | **Mobile Responsiveness Check** | [ ] Open | High | unexpected overflows, horizontal scrolls, bad padding on < 768px. |
-| **H-09** | **Color Palette Unification** | [ ] Open | Med | Enforce primary Orange (#C7431A) usage. Remove random blues/greens. |
-| **H-10** | **Homepage Load Performance** | [ ] Open | High | Optimize LCP. Preload key assets. Fix layout shifts (CLS). |
+
 
 ### � Phase H: Homepage Polish & Beautification (HIGHEST PRIORITY)
 | ID | Task Name | Status | Complexity | Description |
