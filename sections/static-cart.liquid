@@ -169,6 +169,8 @@
               </button>
             </noscript>
 
+            {% render 'coupon-applier' %}
+
             <ul class="discount-list" data-cart-discounts aria-label="{{ 'product.general.discounts' | t }}">
               {%
                 render 'cart-discounts',

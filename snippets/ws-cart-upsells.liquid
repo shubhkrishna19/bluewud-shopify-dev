@@ -1,0 +1,37 @@
+{%- comment -%}
+  WoodenStreet Component: Cart Drawer Upsells (E-04)
+{%- endcomment -%}
+{{ 'component-cart-upsells.css' | asset_url | stylesheet_tag }}
+
+<div class="ws-cart-upsells">
+  <div class="ws-cart-upsells__title">Frequently Bought Together</div>
+  
+  <div class="ws-cart-upsells__list">
+    {% comment %}
+      Logic: Show products from specific collection or related products.
+      Fallback: Best Selling products or Manual list.
+    {% endcomment %}
+    
+    {% assign upsell_limit = 4 %}
+    
+    {% for product in collections['all'].products limit: upsell_limit %}
+       {% unless cart.item_ids contains product.variants.first.id %}
+          <div class="ws-cart-upsells__item">
+            <a href="{{ product.url }}" tabindex="-1">
+              <img class="ws-cart-upsells__image" src="{{ product.featured_image | img_url: '200x200', crop: 'center' }}" alt="{{ product.title }}" loading="lazy">
+            </a>
+            <div class="ws-cart-upsells__info">
+              <a href="{{ product.url }}" class="ws-cart-upsells__item-title">{{ product.title }}</a>
+              <span class="ws-cart-upsells__price">{{ product.price | money }}</span>
+              <button 
+                type="button" 
+                class="ws-cart-upsells__add"
+                onclick="window.whisperCart.update('{{ product.selected_or_first_available_variant.id }}', 1)">
+                Add +
+              </button>
+            </div>
+          </div>
+       {% endunless %}
+    {% endfor %}
+  </div>
+</div>

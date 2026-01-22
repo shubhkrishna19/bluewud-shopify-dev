@@ -91,9 +91,49 @@
 ### ⚡ Phase G: Performance & Technical
 | ID | Task Name | Status | Complexity | Description |
 | :--- | :--- | :--- | :--- | :--- |
+<<<<<<< HEAD
 | **G-01** | **Lazy Load Optimization** | [ ] Open | High | Ensure all off-screen images/iframes have `loading="lazy"`. |
 | **G-02** | **Critical CSS Extraction** | [ ] Open | High | Inline critical CSS for First Contentful Paint (FCP) improvement. |
 | **G-03** | **Script Deferral** | [ ] Open | Med | Defer non-essential JS (Reviews, Chat bots) to reduce TBT. |
+=======
+| **A-01** | **Mega Menu Architecture** | [x] Done - Codex | High | Multi-column dropdowns with category icons. NOT a simple list. |
+| **A-02** | **"Experience Store" Locator** | [x] Done - GPT-5.2-Codex | Med | A dedicated section/page for finding physical stores (build trust). |
+| **A-03** | **Hero "Hybrid" Layout** | [x] Done - Codex | Med | Main slider (Left) + 2 Static Promo Banners (Right) layout. |
+| **A-04** | **Urgency Countdown Strip** | [x] Done - Antigravity | Low | "Sale Ends In: HH:MM:SS" strip immediately below the Hero. |
+| **A-05** | **Trust Strip v2** | [x] Done - Antigravity | Low | "20 Lakh+ Customers" | "Factory Direct" | "Free Shipping". |
+| **A-06** | **"Shop The Look" Section** | [x] Done - GPT-5.2-Codex | High | Hotspots on a lifestyle image linking to multiple products. |
+
+### 🟡 Phase B: The Conversion Engine (PDP)
+| ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
+| :--- | :--- | :--- | :--- | :--- |
+<<<<<<< HEAD
+| **B-01** | **Visual Variant Swatches** | [x] Done - Codex-01 | High | Replace dropdowns with Image/Texture circles for fabric selection. |
+| **B-02** | **Sticky Footer (Mobile)** | [x] Done - Codex-01 | High | Fixed bottom bar with "Price" + "Add to Cart" on scroll. |
+| **B-03** | **Detailed "Offers" Box** | [ ] Open - Codex-01 | Med | Box inside Buy Form listing Bank Offers & EMI breakdowns. |
+| **B-04** | **Delivery Date Estimator** | [x] Done - Codex-01 | High | "Check Delivery Date" input field with real/mock logic. |
+| **B-05** | **"Compare" Floating Action** | [x] Done - Codex-01 | Low | Ability to add product to a comparison list. |
+| **B-06** | **Review Summary Graph** | [x] Done - Codex-XX | Med | 5-star progress bars showing distribution of ratings. |
+| **B-07** | **Zoom & Pan Gallery** | [x] Done - Codex-01 | Med | Desktop: Hover zoom. Mobile: Pinch zoom + swipe. |
+
+### 🔵 Phase C: Navigation & Listings (PLP)
+| ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
+| :--- | :--- | :--- | :--- | :--- |
+| **C-01** | **Sidebar Filter Accordions** | [x] Done - Codex-XX | Med | Collapsible filters for Price, Material, Discount (checkbox style). |
+| **C-02** | **Color Filter Swatches** | [/] In Progress | Med | Visual color circles in the sidebar filter. |
+| **C-03** | **Card: "Quick View" Hover** | [/] In Progress | Low | "Eye" icon appears on hover for modal preview. |
+| **C-04** | **Card: Discount Badges** | [ ] Open | Low | High-contrast Orange badge: "**40% OFF**". |
+| **C-05** | **Card: Recommended Tag** | [ ] Open | Low | "Best Seller" or "Recommended" ribbon overlay. |
+
+### 🔴 Phase D: Cart & Checkout Friction
+| ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
+| :--- | :--- | :--- | :--- | :--- |
+| **D-01** | **"Toast" Add-to-Cart** | [/] In Progress | Med | Non-intrusive popup: "Item added! [View Cart]". |
+| **D-02** | **Slide-out Cart Drawer** | [ ] Open | High | (Already prioritized, ensure it matches WS density). |
+| **D-03** | **Cart Savings Celebration** | [ ] Open | Low | "Congrats! You saved ₹2,000 on this order." message. |
+| **D-04** | **3-Step Checkout Progress** | [ ] Open | Med | Visual bar: Cart > Address > Payment. |
+| **D-05** | **Auto-Coupon Applier** | [x] Done - GPT-5.2-Codex | High | "Apply Best Coupon" link in the cart summary. |
+
+>>>>>>> origin/pr/44
 
 ---
 
@@ -107,6 +147,9 @@
 - **2026-01-21 (Codex-01)**: Completed task B-01 - Visual Variant Swatches component.
 - **2026-01-20 (Codex)**: **A-03 COMPLETE.** Delivered Woodenstreet Hybrid Hero component.
 - **2026-01-20 (Codex)**: **A-01 COMPLETE.** Delivered Woodenstreet mega menu component.
+
+
+- **2026-01-22 (GPT-5.2-Codex)**: Completed task D-05 - Auto-Coupon Applier snippet, styling, and cart integrations.
 
 ---
 
