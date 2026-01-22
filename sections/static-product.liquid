@@ -89,7 +89,7 @@
   data-product-image="{{ product.featured_image | img_url: '200x' }}"
   data-product-price="{{ product.price | money_without_trailing_zeros }}"
 >
-  <button class="ws-compare-fab__button" type="button">
+  <button class="ws-compare-fab__button" type="button" aria-pressed="false">
     <span class="ws-compare-fab__icon">≡</span>
     <span class="ws-compare-fab__label">Add to Compare</span>
     <span class="ws-compare-fab__count" aria-live="polite">0</span>
@@ -140,7 +140,20 @@
     const button = compareFab.querySelector('.ws-compare-fab__button');
     const productHandle = compareFab.dataset.productHandle;
 
+    const canUseStorage = () => {
+      try {
+        localStorage.setItem('__ws_compare_test__', '1');
+        localStorage.removeItem('__ws_compare_test__');
+        return true;
+      } catch (error) {
+        return false;
+      }
+    };
+
     const getList = () => {
+      if (!canUseStorage()) {
+        return [];
+      }
       try {
         return JSON.parse(localStorage.getItem(compareKey)) || [];
       } catch (error) {
@@ -149,13 +162,21 @@
     };
 
     const saveList = (list) => {
-      localStorage.setItem(compareKey, JSON.stringify(list));
+      if (!canUseStorage()) {
+        return;
+      }
+      try {
+        localStorage.setItem(compareKey, JSON.stringify(list));
+      } catch (error) {
+        return;
+      }
     };
 
     const updateUI = () => {
       const list = getList();
       const isActive = list.some((item) => item.handle === productHandle);
       compareFab.dataset.active = String(isActive);
+      button.setAttribute('aria-pressed', String(isActive));
       label.textContent = isActive ? 'Remove from Compare' : 'Add to Compare';
       count.textContent = list.length;
     };
