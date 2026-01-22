@@ -98,6 +98,32 @@
     -webkit-text-fill-color: transparent;
 }
 
+/* Global Layout Resets for "Seamless" Feel */
+body,
+html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+/* Remove default Shopify section gaps if any */
+.shopify-section-group-header-group {
+    margin-bottom: 0 !important;
+}
+
+/* Ensure Header meets Hero seamlessly */
+#shopify-section-whisper-header,
+.shopify-section--header {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.site-main {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
 .whisper-card-hover {
     transition: var(--transition-premium);
 }
@@ -1330,20 +1356,26 @@ h6 {
 }
 
 .whisper-hero .hero__button {
-    <<<<<<< HEAD display: inline-flex;
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 0.9rem 2.6rem;
-    background: var(--gradient-vibrant);
+    padding: 1rem 2.8rem;
+    background: #C7431A;
+    /* WoodenStreet Orange */
     color: #ffffff;
     text-decoration: none;
     border-radius: 999px;
-    font-weight: 600;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
     transition: var(--transition-premium);
+    box-shadow: 0 8px 20px rgba(199, 67, 26, 0.25);
 }
 
 .whisper-hero .hero__button:hover {
-    transform: var(--hover-lift);
+    background: #a63614;
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(199, 67, 26, 0.35);
 }
 
 /* Whisper lookbook */
