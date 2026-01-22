@@ -1,0 +1,45 @@
+{% comment %}
+  WoodenStreet Search Polish Snippet (F-02)
+{% endcomment %}
+{{ 'component-search-polish.css' | asset_url | stylesheet_tag }}
+
+<div class="ws-search-suggestions">
+  <div class="ws-search-section">
+    <span class="ws-search-title">Trending Searches</span>
+    <div class="ws-trending-tags">
+      <a href="/search?q=Sofa" class="ws-trending-tag">🔥 Sofa Sets</a>
+      <a href="/search?q=Bed" class="ws-trending-tag">Double Beds</a>
+      <a href="/search?q=Dining" class="ws-trending-tag">Dining Tables</a>
+      <a href="/search?q=Shoe Rack" class="ws-trending-tag">Shoe Racks</a>
+      <a href="/search?q=Study Table" class="ws-trending-tag">Study Tables</a>
+      <a href="/search?q=Bookshelf" class="ws-trending-tag">Bookshelves</a>
+    </div>
+  </div>
+
+  <div class="ws-search-section">
+    <span class="ws-search-title">Popular Products</span>
+    <div class="ws-popular-products">
+      {% comment %} Mocking popular products since we can't easily query collections in snippets without context {% endcomment %}
+      {% for product in collections['all'].products limit: 4 %}
+        <a href="{{ product.url }}" class="ws-pop-product">
+          <img class="ws-pop-product__image" src="{{ product.featured_image | img_url: '200x200', crop: 'center' }}" alt="{{ product.title }}">
+          <div class="ws-pop-product__info">
+            <div class="ws-pop-product__title">{{ product.title }}</div>
+            <div class="ws-pop-product__price">{{ product.price | money }}</div>
+          </div>
+        </a>
+      {% else %}
+         {% comment %} Fallback if collection is empty or not accessible {% endcomment %}
+         {% for i in (1..4) %}
+            <a href="#" class="ws-pop-product">
+              {{ 'product-' | append: i | placeholder_svg_tag: 'ws-pop-product__image' }}
+              <div class="ws-pop-product__info">
+                <div class="ws-pop-product__title">Popular Item {{ i }}</div>
+                <div class="ws-pop-product__price">Rs. 12,999</div>
+              </div>
+            </a>
+         {% endfor %}
+      {% endfor %}
+    </div>
+  </div>
+</div>
