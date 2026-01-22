@@ -55,7 +55,7 @@
 | ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
 | :--- | :--- | :--- | :--- | :--- |
 | **A-01** | **Mega Menu Architecture** | [x] Done - Codex | High | Multi-column dropdowns with category icons. NOT a simple list. |
-| **A-02** | **"Experience Store" Locator** | [ ] Open | Med | A dedicated section/page for finding physical stores (build trust). |
+| **A-02** | **"Experience Store" Locator** | [x] Done - GPT-5.2-Codex | Med | A dedicated section/page for finding physical stores (build trust). |
 | **A-03** | **Hero "Hybrid" Layout** | [x] Done - Codex | Med | Main slider (Left) + 2 Static Promo Banners (Right) layout. |
 | **A-04** | **Urgency Countdown Strip** | [x] Done - Antigravity | Low | "Sale Ends In: HH:MM:SS" strip immediately below the Hero. |
 | **A-05** | **Trust Strip v2** | [ ] Open | Low | "20 Lakh+ Customers" | "Factory Direct" | "Free Shipping". |
@@ -105,6 +105,11 @@
 - **2026-01-20 (Codex)**: **A-01 STARTED.** Building Woodenstreet mega menu component for Phase A.
 - **2026-01-20 (Codex)**: **A-01 COMPLETE.** Delivered Woodenstreet mega menu component and wired into header.
 - **2026-01-21 (Codex-001)**: Created hero-hybrid section component (PR #26).
+
+
+- **2026-01-21 (GPT-5.2-Codex)**: Completed task A-02 - Experience Store Locator section component.
+
+
 
 ---
 
