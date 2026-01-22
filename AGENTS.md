@@ -76,13 +76,22 @@
 | **H-03** | **Header & Mega Menu Polish** | [/] In Progress | Med | Fix alignment, icon spacing, and hover states. |
 | **H-04** | **Trust Strip Styling** | [x] Done | Low | Center align, fix icons, ensuring elegant spacing. |
 | **H-05** | **Product Card Standardization** | [x] Done | High | Unify all product cards (Home & PLP) to single "WoodenStreet" design. |
-| **H-06** | **Footer Layout Cleanup** | [/] In Progress | Med | Fix grid alignment, remove broken links, unify colors. |
-| **H-07** | **Spacing & Whitespace** | [ ] Open | Med | Enforce 8px/16px/32px grid system. Remove random margins. |
+| **H-06** | **Footer Layout Cleanup** | [x] Done | Med | Fix grid alignment, remove broken links, unify colors. |
+| **H-07** | **Spacing & Whitespace** | [/] In Progress | Med | Enforce 8px/16px/32px grid system. Remove random margins. |
 | **H-08** | **Mobile Responsiveness Check** | [ ] Open | High | unexpected overflows, horizontal scrolls, bad padding on < 768px. |
 | **H-09** | **Color Palette Unification** | [ ] Open | Med | Enforce primary Orange (#C7431A) usage. Remove random blues/greens. |
 | **H-10** | **Homepage Load Performance** | [ ] Open | High | Optimize LCP. Preload key assets. Fix layout shifts (CLS). |
 
-### 🟢 Phase A: The "WoodenStreet" Homepage (Structure & Trust)
+### � Phase H: Homepage Polish & Beautification (HIGHEST PRIORITY)
+| ID | Task Name | Status | Complexity | Description |
+| :--- | :--- | :--- | :--- | :--- |
+| **H-01** | **Hero Section Upgrade** | [ ] Open | High | Implement `woodenstreet-hero-hybrid` with proper overlay, typography, and mobile responsiveness. |
+| **H-02** | **Engagement Sections** | [ ] Open | High | Implement `woodenstreet-shop-the-look` and `woodenstreet-experience-store` sections. |
+| **H-03** | **Header & Mega Menu Polish** | [ ] Open | Med | Fix alignment, icon spacing, search bar styling, and mobile menu transitions. |
+| **H-04** | **Product Card Standardization** | [ ] Open | High | Unify all product cards to match WoodenStreet design (hover effects, badges, price styling). |
+| **H-05** | **Global Spacing & Typography** | [ ] Open | Med | Enforce 8px grid system, consistent section spacing, and correct font usage (Poppins/Inter). |
+
+### �🟢 Phase A: The "WoodenStreet" Homepage (Structure & Trust)
 | ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
 | :--- | :--- | :--- | :--- | :--- |
 | **A-01** | **Mega Menu Architecture** | [x] Done - Codex | High | Multi-column dropdowns with category icons. NOT a simple list. |
