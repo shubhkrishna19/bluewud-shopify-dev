@@ -102,7 +102,7 @@
 ### 🔴 Phase D: Cart & Checkout Friction
 | ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
 | :--- | :--- | :--- | :--- | :--- |
-| **D-01** | **"Toast" Add-to-Cart** | [ ] Open | Med | Non-intrusive popup: "Item added! [View Cart]". |
+| **D-01** | **"Toast" Add-to-Cart** | [/] In Progress | Med | Non-intrusive popup: "Item added! [View Cart]". |
 | **D-02** | **Slide-out Cart Drawer** | [ ] Open | High | (Already prioritized, ensure it matches WS density). |
 | **D-03** | **Cart Savings Celebration** | [ ] Open | Low | "Congrats! You saved ₹2,000 on this order." message. |
 | **D-04** | **3-Step Checkout Progress** | [ ] Open | Med | Visual bar: Cart > Address > Payment. |
@@ -146,6 +146,10 @@
 
 
 - **2026-01-22 (Codex-XX)**: Claimed task B-05 - Compare Floating Action and added PDP compare FAB.
+
+
+- **2026-01-22 (Codex-XX)**: Claimed task D-01 - Toast Add-to-Cart.
+- **2026-01-22 (Codex-XX)**: Added non-intrusive add-to-cart toast notification with View Cart action.
 
 ---
 

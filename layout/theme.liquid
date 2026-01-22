@@ -76,6 +76,7 @@
     <link rel="preload" as="style" href="{{ 'theme.css' | asset_url }}">
     <link rel="preload" as="style" href="{{ 'component-variant-swatches.css' | asset_url }}">
     <link rel="preload" as="style" href="{{ 'component-sticky-footer.css' | asset_url }}">
+    <link rel="preload" as="style" href="{{ 'component-cart-toast.css' | asset_url }}">
 
     {% include 'buddha-megamenu' %}
     {{ content_for_header }}
@@ -83,6 +84,7 @@
     {{ 'theme.css' | asset_url | stylesheet_tag }}
     {{ 'component-variant-swatches.css' | asset_url | stylesheet_tag }}
     {{ 'component-sticky-footer.css' | asset_url | stylesheet_tag }}
+    {{ 'component-cart-toast.css' | asset_url | stylesheet_tag }}
     {{ 'theme-update.css' | asset_url | stylesheet_tag }}
     {{ 'component-sticky-footer.css' | asset_url | stylesheet_tag }}
     {{ 'component-offers-box.css' | asset_url | stylesheet_tag }}
@@ -168,6 +170,7 @@
     {% endif %}
   >
     {% render 'whisper-cart-drawer' %}
+    {% render 'whisper-cart-toast' %}
     <!-- Google Tag Manager (noscript) -->
     <noscript
       ><iframe
@@ -535,6 +538,7 @@
     {% comment %}{% include 'iwish_v2' with 'iwishfooter' %}{% endcomment %}
 
     {{ 'sticky.js' | asset_url | script_tag }}
+    {{ 'component-cart-toast.js' | asset_url | script_tag }}
 
     <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css">
