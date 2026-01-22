@@ -55,9 +55,13 @@
     -   **SECTIONS**: Create sections but **DO NOT** add them to `index.json`. (Antigravity will integrate).
     -   **LOGS**: When logging below, leave **2 EMPTY LINES** between entries to prevent merge conflicts.
 
--   **🚨 RULE #3: ATOMIC PUSH & AUTO-MERGE**:
-    -   **PUSH OFTEN**: Do not wait for perfection. Push your branch after every sub-task (Scaffolding -> Push, Logic -> Push, Styles -> Push).
-    -   **AUTO-MERGE**: If you have permissions, enable "Auto-merge" on your PR. If not, ensure your PR is "Green" (No Conflicts) so the Human can 1-click merge.
+-   **🚨 RULE #3: STRICT AUTO-MERGE ELIGIBILITY**:
+    -   **PRE-PUSH SYNC**: ALWAYS `git pull origin main` before starting.
+    -   **AUTO-MERGE**: Branches are ONLY eligible for auto-merge if they:
+        1.  touch DIFFERENT files than other active agents (check `AGENTS.md` logs).
+        2.  pass all automated tests (if any).
+        3.  have NO conflicts with `main`.
+    -   **CONFLICTS**: If you create a conflict, YOU are responsible for resolving it locally before re-pushing. DO NOT push broken builds.
 
 
 ---
