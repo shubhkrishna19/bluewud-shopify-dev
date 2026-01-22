@@ -28,6 +28,7 @@
 </script>
 
 {% render 'breadcrumbs' %}
+{{ 'component-compare-fab.css' | asset_url | stylesheet_tag }}
 
 <section class="product--container" data-product-wrapper id="product-form">
   {%
@@ -79,6 +80,23 @@
 
 </div>
 
+<div
+  class="ws-compare-fab"
+  data-compare-fab
+  data-product-handle="{{ product.handle }}"
+  data-product-title="{{ product.title | escape }}"
+  data-product-url="{{ product.url }}"
+  data-product-image="{{ product.featured_image | img_url: '200x' }}"
+  data-product-price="{{ product.price | money_without_trailing_zeros }}"
+>
+  <button class="ws-compare-fab__button" type="button">
+    <span class="ws-compare-fab__icon">≡</span>
+    <span class="ws-compare-fab__label">Add to Compare</span>
+    <span class="ws-compare-fab__count" aria-live="polite">0</span>
+  </button>
+  <div class="ws-compare-fab__hint">Compare your picks</div>
+</div>
+
 {% render 'ws-sticky-footer', product: product %}
 {% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: true, product: product %}
 
@@ -110,6 +128,60 @@
       
     });
   });
+
+  (function() {
+    const compareKey = 'wsCompareList';
+    const compareFab = document.querySelector('[data-compare-fab]');
+
+    if (!compareFab) return;
+
+    const label = compareFab.querySelector('.ws-compare-fab__label');
+    const count = compareFab.querySelector('.ws-compare-fab__count');
+    const button = compareFab.querySelector('.ws-compare-fab__button');
+    const productHandle = compareFab.dataset.productHandle;
+
+    const getList = () => {
+      try {
+        return JSON.parse(localStorage.getItem(compareKey)) || [];
+      } catch (error) {
+        return [];
+      }
+    };
+
+    const saveList = (list) => {
+      localStorage.setItem(compareKey, JSON.stringify(list));
+    };
+
+    const updateUI = () => {
+      const list = getList();
+      const isActive = list.some((item) => item.handle === productHandle);
+      compareFab.dataset.active = String(isActive);
+      label.textContent = isActive ? 'Remove from Compare' : 'Add to Compare';
+      count.textContent = list.length;
+    };
+
+    const toggleCompare = () => {
+      const list = getList();
+      const existingIndex = list.findIndex((item) => item.handle === productHandle);
+      if (existingIndex >= 0) {
+        list.splice(existingIndex, 1);
+      } else {
+        list.push({
+          handle: productHandle,
+          title: compareFab.dataset.productTitle,
+          url: compareFab.dataset.productUrl,
+          image: compareFab.dataset.productImage,
+          price: compareFab.dataset.productPrice
+        });
+      }
+      saveList(list.slice(0, 6));
+      updateUI();
+    };
+
+    button.addEventListener('click', toggleCompare);
+    window.addEventListener('storage', updateUI);
+    updateUI();
+  })();
 </script>
 {% schema %}
 {

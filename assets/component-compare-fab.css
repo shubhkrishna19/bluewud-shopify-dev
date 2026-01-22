@@ -1,0 +1,91 @@
+.ws-compare-fab {
+  position: fixed;
+  right: 24px;
+  bottom: 120px;
+  z-index: 60;
+  font-family: var(--font-body, "Inter", sans-serif);
+}
+
+.ws-compare-fab__button {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: 999px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  background: #ffffff;
+  color: #1f2933;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.18);
+  font-size: 14px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.ws-compare-fab__button:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 14px 40px rgba(15, 23, 42, 0.2);
+}
+
+.ws-compare-fab__button:focus-visible {
+  outline: 2px solid #1f2933;
+  outline-offset: 2px;
+}
+
+.ws-compare-fab__icon {
+  width: 16px;
+  height: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 6px;
+  background: #0f172a;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.ws-compare-fab__count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  background: #f97316;
+  color: #fff;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 0 6px;
+}
+
+.ws-compare-fab__hint {
+  margin-top: 8px;
+  font-size: 12px;
+  color: #475569;
+  text-align: right;
+}
+
+.ws-compare-fab[data-active="true"] .ws-compare-fab__button {
+  background: #0f172a;
+  color: #fff;
+  border-color: #0f172a;
+}
+
+.ws-compare-fab[data-active="true"] .ws-compare-fab__icon {
+  background: #fff;
+  color: #0f172a;
+}
+
+@media (max-width: 768px) {
+  .ws-compare-fab {
+    right: 16px;
+    bottom: 150px;
+  }
+
+  .ws-compare-fab__button {
+    padding: 10px 14px;
+    font-size: 13px;
+  }
+}
