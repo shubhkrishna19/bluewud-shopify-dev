@@ -14,6 +14,8 @@
     --color-modern-navy: #0D47A1;
     --color-modern-blue: #2563eb;
     --color-modern-cyan: #06b6d4;
+    --color-primary-orange: #C7431A;
+    /* WoodenStreet Brand Color */
 
     /* 60-30-10 Rule - Light Mode Tokens */
     --color-bg-primary: #FFFFFF;
@@ -105,6 +107,21 @@ html {
     padding: 0;
     width: 100%;
     overflow-x: hidden;
+    font-family: var(--font-body-family);
+    color: var(--color-text-primary);
+    -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: var(--font-heading-family);
+    color: var(--color-elegant-black);
+    margin-bottom: 0.5em;
+    font-weight: 700;
 }
 
 /* Remove default Shopify section gaps if any */
@@ -1905,7 +1922,7 @@ h6 {
     margin-bottom: 0.25rem;
 }
 
-<<<<<<< HEAD=======
+
 
 /* Woodenstreet hybrid hero */
 .woodenstreet-hero {
@@ -2066,7 +2083,7 @@ h6 {
     color: var(--color-accent-primary);
 }
 
->>>>>>>origin/pr/27
+
 
 /* Active navigation styling */
 .navmenu-link-active,

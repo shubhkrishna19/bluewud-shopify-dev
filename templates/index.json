@@ -1,18 +1,17 @@
 {
     "sections": {
-        "whisper_hero": {
-            "type": "whisper-hero",
-            "blocks": {},
-            "block_order": [],
+        "woodenstreet_hero": {
+            "type": "woodenstreet-hero-hybrid",
             "settings": {
-                "media_type_1": "image",
-                "image_1": "shopify:\/\/shop_images\/Banner_18.png",
-                "image_1_mobile": "shopify:\/\/shop_images\/Banner_18.png",
-                "title": "ELEVATE YOUR HOME",
-                "text": "<p>Discover our curated collection of smartly designed furniture. Premium aesthetics meets functional excellence.<\/p>",
-                "button_label": "Explore Collection",
-                "button_link": "shopify:\/\/collections\/bluewud-sparkle-sale",
-                "custom_mobile_media": true
+                "eyebrow": "Grand Republic Sale",
+                "heading": "Up to 55% Off + Extra 10%",
+                "subheading": "Celebrate with India's finest furniture, crafted for your dream home.",
+                "primary_button_label": "Shop Sale",
+                "primary_button_link": "shopify:\/\/collections\/all",
+                "secondary_button_label": "Explore Designs",
+                "secondary_button_link": "shopify:\/\/collections\/living-room",
+                "primary_image": "shopify:\/\/shop_images\/hero_primary_2.jpg",
+                "secondary_image": "shopify:\/\/shop_images\/hero_secondary_2.jpg"
             }
         },
         "urgency_strip": {
@@ -94,16 +93,86 @@
                 "product_limit": 8
             }
         },
+        "shop_the_look": {
+            "type": "woodenstreet-shop-the-look",
+            "blocks": {
+                "hotspot_1": {
+                    "type": "hotspot",
+                    "settings": {
+                        "x_position": 25,
+                        "y_position": 40,
+                        "label": "Sheesham Wood Sofa"
+                    }
+                },
+                "hotspot_2": {
+                    "type": "hotspot",
+                    "settings": {
+                        "x_position": 55,
+                        "y_position": 65,
+                        "label": "Coffee Table"
+                    }
+                },
+                "hotspot_3": {
+                    "type": "hotspot",
+                    "settings": {
+                        "x_position": 70,
+                        "y_position": 30,
+                        "label": "Floor Lamp"
+                    }
+                }
+            },
+            "block_order": [
+                "hotspot_1",
+                "hotspot_2",
+                "hotspot_3"
+            ]
+        },
+        "experience_store": {
+            "type": "woodenstreet-experience-store",
+            "blocks": {
+                "store_1": {
+                    "type": "store",
+                    "settings": {
+                        "city": "Mumbai",
+                        "address": "Andheri West, Mumbai",
+                        "phone": "+91 99999 88888"
+                    }
+                },
+                "store_2": {
+                    "type": "store",
+                    "settings": {
+                        "city": "Bengaluru",
+                        "address": "Indiranagar, Bengaluru",
+                        "phone": "+91 88888 77777"
+                    }
+                },
+                "store_3": {
+                    "type": "store",
+                    "settings": {
+                        "city": "Delhi",
+                        "address": "Kirti Nagar, Delhi",
+                        "phone": "+91 77777 66666"
+                    }
+                }
+            },
+            "block_order": [
+                "store_1",
+                "store_2",
+                "store_3"
+            ]
+        },
         "whisper_showcase": {
             "type": "whisper-showcase"
         }
     },
     "order": [
-        "whisper_hero",
+        "woodenstreet_hero",
         "urgency_strip",
         "trust_strip",
         "whisper_lookbook",
+        "shop_the_look",
         "whisper_trending",
+        "experience_store",
         "whisper_showcase"
     ]
 }

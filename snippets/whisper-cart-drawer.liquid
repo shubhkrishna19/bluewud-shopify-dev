@@ -3,12 +3,12 @@
   Mirrored from Cart.tsx (ecommerce-app)
 {% endcomment %}
 
-<div id="whisper-cart-drawer" class="fixed inset-0 z-[100] invisible group-[.is-open]:visible transition-all duration-300">
+<div id="whisper-cart-drawer" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: 9999;">
   <!-- Overlay -->
-  <div class="absolute inset-0 bg-black/60 backdrop-blur-sm opacity-0 group-[.is-open]:opacity-100 transition-opacity duration-300" onclick="window.whisperCart.close()"></div>
+  <div class="whisper-drawer-overlay" onclick="window.whisperCart.close()" style="position: absolute; inset: 0; background: rgba(0,0,0,0.5);"></div>
   
   <!-- Drawer Content -->
-  <div class="absolute top-0 right-0 w-full max-w-md h-full bg-[var(--color-bg-primary)] shadow-2xl translate-x-full group-[.is-open]:translate-x-0 transition-transform duration-500 ease-out flex flex-col">
+  <div class="whisper-drawer-content" style="position: absolute; top: 0; right: 0; width: 100%; max-width: 420px; height: 100%; background: #ffffff; display: flex; flex-direction: column;">
     <!-- Header -->
     <div class="p-6 border-b-2 border-[var(--color-border-primary)] flex justify-between items-center bg-[var(--color-bg-secondary)]">
       <h2 class="text-2xl font-black uppercase tracking-tighter italic text-[var(--color-text-primary)]">
@@ -124,12 +124,22 @@
 <script>
   window.whisperCart = {
     open: function() {
-      document.getElementById('whisper-cart-drawer').classList.add('is-open');
+      var drawer = document.getElementById('whisper-cart-drawer');
+      drawer.style.display = 'block';
+      // Small timeout to allow display change to register before animating visibility
+      setTimeout(() => {
+        drawer.classList.add('is-open');
+      }, 10);
       document.body.classList.add('overflow-hidden');
     },
     close: function() {
-      document.getElementById('whisper-cart-drawer').classList.remove('is-open');
+      var drawer = document.getElementById('whisper-cart-drawer');
+      drawer.classList.remove('is-open');
       document.body.classList.remove('overflow-hidden');
+      // Wait for transitions to finish before hiding
+      setTimeout(() => {
+        drawer.style.display = 'none';
+      }, 300);
     },
     update: function(key, qty) {
       document.getElementById('whisper-cart-drawer').classList.add('opacity-50', 'pointer-events-none');
@@ -153,7 +163,32 @@
 </script>
 
 <style>
+  #whisper-cart-drawer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    visibility: hidden;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
   #whisper-cart-drawer.is-open {
     visibility: visible;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  /* Ensure the inner drawer transforms correctly */
+  #whisper-cart-drawer > div:last-child {
+    transform: translateX(100%);
+    transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  #whisper-cart-drawer.is-open > div:last-child {
+    transform: translateX(0);
   }
 </style>
