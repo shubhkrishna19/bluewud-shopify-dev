@@ -12,7 +12,7 @@
 ## 🏔️ The Mountain of Tasks (WoodenStreet MVP Backlog)
 
 ### 🟢 Phase A: The "WoodenStreet" Homepage
-- **A-01 Mega Menu Architecture** | [ ] Open
+- **A-01 Mega Menu Architecture** | [x] Done
 - **A-02 "Experience Store" Locator** | [ ] Open
 - **A-03 Hero "Hybrid" Layout** | [ ] Open
 - **A-04 Urgency Countdown Strip** | [/] In Progress (Antigravity)
@@ -47,3 +47,6 @@
 
 
 - 2026-01-21 (Codex-001): Added zoom & pan gallery section and component stylesheet.
+
+
+- 2026-01-21 (Codex-001): Added mega menu section scaffold and component stylesheet.
