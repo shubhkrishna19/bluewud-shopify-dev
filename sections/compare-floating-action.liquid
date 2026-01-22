@@ -1,0 +1,38 @@
+{{ 'component-compare-fab.css' | asset_url | stylesheet_tag }}
+
+<a class="ws-compare-fab" href="{{ section.settings.link }}" data-compare-fab>
+  {{ section.settings.label }}
+  <span class="ws-compare-fab__count">{{ section.settings.count }}</span>
+</a>
+
+{% schema %}
+{
+  "name": "WS Compare Floating Action",
+  "tag": "section",
+  "class": "ws-compare-fab-section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "label",
+      "label": "Label",
+      "default": "Compare"
+    },
+    {
+      "type": "text",
+      "id": "count",
+      "label": "Count",
+      "default": "0"
+    },
+    {
+      "type": "url",
+      "id": "link",
+      "label": "Link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "WS Compare Floating Action"
+    }
+  ]
+}
+{% endschema %}
