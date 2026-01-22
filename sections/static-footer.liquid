@@ -146,6 +146,33 @@
       </div>
     </div>
   </section>
+  
+  {{ 'component-footer-accordion.css' | asset_url | stylesheet_tag }}
+  
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const triggers = document.querySelectorAll('.site-footer-block-title[data-accordion-trigger]');
+      
+      triggers.forEach(trigger => {
+        trigger.addEventListener('click', () => {
+          if (window.innerWidth >= 768) return; // Disable on desktop
+          
+          const content = trigger.nextElementSibling;
+          const isOpen = content.classList.contains('is-open');
+          
+          // Close others (optional - specific to standard accordion behavior)
+          /* 
+          document.querySelectorAll('.site-footer-block-content').forEach(c => c.classList.remove('is-open'));
+          document.querySelectorAll('.site-footer-block-title').forEach(t => t.classList.remove('is-active'));
+          */
+          
+          // Toggle current
+          trigger.classList.toggle('is-active');
+          content.classList.toggle('is-open');
+        });
+      });
+    });
+  </script>
 </footer>
 
 {% schema %}
