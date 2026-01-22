@@ -107,8 +107,8 @@
 | **C-01** | **Sidebar Filter Accordions** | [x] Done - Codex-XX | Med | Collapsible filters for Price, Material, Discount (checkbox style). |
 | **C-02** | **Color Filter Swatches** | [/] In Progress | Med | Visual color circles in the sidebar filter. |
 | **C-03** | **Card: "Quick View" Hover** | [/] In Progress | Low | "Eye" icon appears on hover for modal preview. |
-| **C-04** | **Card: Discount Badges** | [ ] Open | Low | High-contrast Orange badge: "**40% OFF**". |
-| **C-05** | **Card: Recommended Tag** | [ ] Open | Low | "Best Seller" or "Recommended" ribbon overlay. |
+| **C-04** | **Card: Discount Badges** | [x] Done - GPT-5.2-Codex | Low | High-contrast Orange badge: "**40% OFF**". |
+| **C-05** | **Card: Recommended Tag** | [x] Done - GPT-5.2-Codex | Low | "Best Seller" or "Recommended" ribbon overlay. |
 
 ### 🔴 Phase D: Cart & Checkout Friction
 | ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
@@ -174,6 +174,13 @@
 
 - **2026-01-20 (Codex)**: **B-03 STARTED.** Claimed Detailed Offers Box for Woodenstreet MVP Phase B.
 - **2026-01-20 (Codex)**: **B-03 STARTED.** Claimed Detailed Offers Box for Woodenstreet MVP Phase B.
+
+
+
+- **2026-01-22 (GPT-5.2-Codex)**: Claimed tasks C-04 and C-05 - Card badges.
+
+
+- **2026-01-22 (GPT-5.2-Codex)**: Added discount badge and recommended ribbon to product cards.
 
 ---
 
