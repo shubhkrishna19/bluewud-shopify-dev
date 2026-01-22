@@ -83,7 +83,7 @@
 | **B-03** | **Detailed "Offers" Box** | [ ] Open - Codex-01 | Med | Box inside Buy Form listing Bank Offers & EMI breakdowns. |
 | **B-04** | **Delivery Date Estimator** | [x] Done - Codex-01 | High | "Check Delivery Date" input field with real/mock logic. |
 | **B-05** | **"Compare" Floating Action** | [ ] Open | Low | Ability to add product to a comparison list. |
-| **B-06** | **Review Summary Graph** | [ ] Open | Med | 5-star progress bars showing distribution of ratings. |
+| **B-06** | **Review Summary Graph** | [/] In Progress | Med | 5-star progress bars showing distribution of ratings. |
 | **B-07** | **Zoom & Pan Gallery** | [ ] Open | Med | Desktop: Hover zoom. Mobile: Pinch zoom + swipe. |
 
 ### 🔵 Phase C: Navigation & Listings (PLP)
@@ -126,6 +126,9 @@
 - **2026-01-21 (Codex-WSH1)**: Added WoodenStreet sticky footer section scaffold.
 - **2026-01-22 (Antigravity)**: Claimed task A-02 - Experience Store Locator.
 - **2026-01-22 (Antigravity)**: SWITCHED TASK. Released A-02. Claimed A-05 - Trust Strip v2.
+
+
+- **2026-01-22 (Codex-XX)**: Claimed task B-06 - Review Summary Graph.
 
 ---
 
