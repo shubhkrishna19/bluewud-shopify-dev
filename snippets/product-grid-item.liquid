@@ -287,16 +287,8 @@
         {% endif %}
 
         {%
-          render 'product-badge',
-          class_root: 'productitem',
-          product: product,
-          product_available: product_available,
-          on_sale: on_sale,
-          price: price,
-          compare_at_price: compare_at_price,
-          show_saved: consistent_saved,
-          include_range: true,
-          compare_at_price_varies: compare_at_price_varies,
+          render 'woodenstreet-badges',
+          product: product
         %}
 
         {% if enable_quickshop %}

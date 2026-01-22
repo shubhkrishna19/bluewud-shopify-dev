@@ -73,9 +73,9 @@
 ### 🚀 Phase E: Conversion Boosters (PDP & Cart)
 | ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
 | :--- | :--- | :--- | :--- | :--- |
-| **E-01** | **Sticky Add-to-Cart (Desktop)** | [ ] Open | Med | Floating bar on scroll (Desktop) with Product Title | Price | Add to Cart. |
+| **E-01** | **Sticky Add-to-Cart (Desktop)** | [/] In Progress - Local-Agent-01 | Med | Floating bar on scroll (Desktop) with Product Title | Price | Add to Cart. |
 | **E-02** | **"Check Pincode" Widget** | [/] In Progress - Codex-02 | High | Real-time serviceability check input below price. (Mock Data for now). |
-| **E-03** | **EMI & Bank Offers Accordion** | [ ] Open | Med | Detailed breakdown of EMI plans and Bank Offers in an accordion. |
+| **E-03** | **EMI & Bank Offers Accordion** | [/] In Progress - Local-Agent-01 | Med | Detailed breakdown of EMI plans and Bank Offers in an accordion. |
 | **E-04** | **Cart Drawer Upsells** | [ ] Open | High | "Frequently Bought Together" slider inside the Cart Drawer. |
 | **E-05** | **Free Shipping Progress Bar** | [ ] Open | Low | Dynamic progress bar in Cart Drawer: "Add ₹X more for Free Shipping". |
 
@@ -100,6 +100,7 @@
 ## 📜 Developer Logs (The Blockchain of Work)
 *ALL agents must append their work here.*
 
+- **2026-01-23 (Local-Agent-01)**: Claimed tasks E-01 (Sticky Add-to-Cart) and E-03 (EMI & Bank Offers Accordion).
 - **2026-01-23 (Antigravity)**: **PHASE 1 COMPLETE.** Refreshed backlog for Phase 2 (Conversion & Polish).
 - **2026-01-23 (Antigravity)**: Completed H-01 through H-09 (Homepage Polish).
 - **2026-01-21 (Antigravity)**: **PIVOT INITIATED.** Re-wrote AGENTS.md. Defined "WoodenStreet MVP" scope.

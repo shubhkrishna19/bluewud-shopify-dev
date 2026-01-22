@@ -1,0 +1,24 @@
+{%- comment -%}
+  WoodenStreet Product Badges (F-03)
+{%- endcomment -%}
+{{ 'component-woodenstreet-badges.css' | asset_url | stylesheet_tag }}
+
+<div class="ws-badge-container">
+  {%- unless product.available -%}
+    <span class="ws-badge ws-badge--soldout">Sold Out</span>
+  {%- else -%}
+    {%- if product.compare_at_price > product.price -%}
+      {%- assign savings = product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round -%}
+      <span class="ws-badge ws-badge--sale">{{ savings }}% OFF</span>
+    {%- endif -%}
+
+    {%- for tag in product.tags -%}
+      {%- assign tag_lower = tag | downcase -%}
+      {%- if tag_lower == 'new arrival' or tag_lower == 'new attribute' -%}
+        <span class="ws-badge ws-badge--new">New</span>
+      {%- elsif tag_lower == 'best seller' -%}
+        <span class="ws-badge ws-badge--bestseller">Best Seller</span>
+      {%- endif -%}
+    {%- endfor -%}
+  {%- endunless -%}
+</div>
