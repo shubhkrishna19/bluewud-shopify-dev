@@ -58,11 +58,41 @@
 | **H-03** | **Header & Mega Menu Polish** | [x] Done | Med | Fix alignment, icon spacing, search bar styling, and mobile menu transitions. |
 | **H-04** | **Product Card Standardization** | [x] Done | High | Unify all product cards to match WoodenStreet design (hover effects, badges, price styling). |
 | **H-05** | **Global Spacing & Typography** | [x] Done | Med | Enforce 8px grid system, consistent section spacing, and correct font usage (Poppins/Inter). |
-| **H-06** | **Category Navigation Strip** | [ ] Open | Med | Horizontal strip of circular category icons above the hero or below. |
+| **H-06** | **Category Navigation Strip** | [x] Done | Med | Horizontal strip of circular category icons above the hero or below. |
 | **H-07** | **WoodenStreet Testimonials** | [ ] Open | High | Clean testimonial slider with customer photos and review text. |
 | **H-08** | **HP Video Section** | [ ] Open | Med | Furniture demo video section with autoplay and "Shop the Look" overlay. |
 
 ---
+
+### 🟢 Phase A: The "WoodenStreet" Homepage (Structure & Trust)
+| ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
+| :--- | :--- | :--- | :--- | :--- |
+| **A-01** | **Mega Menu Architecture** | [x] Done - Codex | High | Multi-column dropdowns with category icons. NOT a simple list. |
+| **A-02** | **"Experience Store" Locator** | [x] Done - GPT-5.2-Codex | Med | A dedicated section/page for finding physical stores (build trust). |
+| **A-03** | **Hero "Hybrid" Layout** | [x] Done - Codex | Med | Main slider (Left) + 2 Static Promo Banners (Right) layout. |
+| **A-04** | **Urgency Countdown Strip** | [x] Done - Antigravity | Low | "Sale Ends In: HH:MM:SS" strip immediately below the Hero. |
+| **A-05** | **Trust Strip v2** | [x] Done - Antigravity | Low | "20 Lakh+ Customers" | "Factory Direct" | "Free Shipping". |
+| **A-06** | **"Shop The Look" Section** | [x] Done - GPT-5.2-Codex | High | Hotspots on a lifestyle image linking to multiple products. |
+
+### 🟡 Phase B: The Conversion Engine (PDP)
+| ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
+| :--- | :--- | :--- | :--- | :--- |
+| **B-01** | **Visual Variant Swatches** | [x] Done - Codex-01 | High | Replace dropdowns with Image/Texture circles for fabric selection. |
+| **B-02** | **Sticky Footer (Mobile)** | [x] Done - Codex-01 | High | Fixed bottom bar with "Price" + "Add to Cart" on scroll. |
+| **B-03** | **Detailed "Offers" Box** | [x] Done | Med | Box inside Buy Form listing Bank Offers & EMI breakdowns. |
+| **B-04** | **Delivery Date Estimator** | [x] Done - Codex-01 | High | "Check Delivery Date" input field with real/mock logic. |
+| **B-05** | **"Compare" Floating Action** | [x] Done - Codex-01 | Low | Ability to add product to a comparison list. |
+| **B-06** | **Review Summary Graph** | [x] Done - Codex-XX | Med | 5-star progress bars showing distribution of ratings. |
+| **B-07** | **Zoom & Pan Gallery** | [x] Done - Codex-01 | Med | Desktop: Hover zoom. Mobile: Pinch zoom + swipe. |
+
+### 🔵 Phase C: Navigation & Listings (PLP)
+| ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
+| :--- | :--- | :--- | :--- | :--- |
+| **C-01** | **Sidebar Filter Accordions** | [x] Done - Codex-XX | Med | Collapsible filters for Price, Material, Discount (checkbox style). |
+| **C-02** | **Color Filter Swatches** | [/] In Progress | Med | Visual color circles in the sidebar filter. |
+| **C-03** | **Card: "Quick View" Hover** | [/] In Progress | Low | "Eye" icon appears on hover for modal preview. |
+| **C-04** | **Card: Discount Badges** | [x] Done | Low | High-contrast Orange badge: "**40% OFF**". |
+| **C-05** | **Card: Recommended Tag** | [ ] Open | Low | "Best Seller" or "Recommended" ribbon overlay. |
 
 ### 🔴 Phase D: Cart & Checkout Friction
 | ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
@@ -76,6 +106,7 @@
 ---
 
 ## 📜 Developer Logs
+- **2026-01-23 (Antigravity)**: Fixed merge conflicts in AGENTS.md. Confirmed H-06 (Category Strip) and B-03 (Offers Box) are DONE.
 - **2026-01-23 (Swarm)**: Multi-agent cycle complete. Implemented Phase E (E-01-E-05), Phase F (F-01-F-05), and G-01.
 - **2026-01-23 (GPT-5.2-Codex)**: Completed task D-02 - Slide-out Cart Drawer (Refined in PR 49).
 - **2026-01-23 (Antigravity)**: **PHASE 1 COMPLETE.** Refreshed backlog for Phase 2 (Conversion & Polish).
@@ -83,6 +114,8 @@
 - **2026-01-22 (GPT-5.2-Codex)**: Completed task D-05 - Auto-Coupon Applier snippet, styling, and cart integrations.
 - **2026-01-22 (GPT-5.2-Codex)**: Added discount badge and recommended ribbon to product cards.
 - **2026-01-22 (GPT-5.2-Codex)**: Completed task B-03 - Detailed offers box enhancements.
+- **2026-01-22 (Codex-XX)**: Completed task H-05 - global spacing and typography polish for homepage.
+- **2026-01-22 (Codex-XX)**: Completed task C-04 - high-contrast discount badge styling for product cards.
 
 ---
 

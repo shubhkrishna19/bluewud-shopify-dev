@@ -1,0 +1,99 @@
+/* Global spacing + typography polish for WoodenStreet homepage */
+
+:root {
+  --ws-space-8: 8px;
+  --ws-space-16: 16px;
+  --ws-space-32: 32px;
+}
+
+body {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+}
+
+p,
+li,
+span,
+input,
+textarea,
+select,
+label,
+.rte {
+  font-family: "Inter", sans-serif;
+  font-weight: 400;
+}
+
+strong,
+.b-text-strong,
+.rte strong {
+  font-weight: 500;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6,
+.home-section--title {
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  margin-bottom: var(--ws-space-16);
+}
+
+h3,
+h4,
+h5,
+h6,
+.h3,
+.h4,
+.h5,
+.h6 {
+  font-weight: 600;
+}
+
+.template-index .shopify-section {
+  margin: 0;
+  padding-block: var(--ws-space-32);
+}
+
+.template-index .shopify-section + .shopify-section {
+  margin-top: var(--ws-space-32);
+}
+
+.template-index .shopify-section .page-width {
+  padding-inline: var(--ws-space-16);
+}
+
+.template-index .shopify-section .rte,
+.template-index .shopify-section .rte p {
+  margin-bottom: var(--ws-space-16);
+}
+
+.template-index .shopify-section .rte p:last-child {
+  margin-bottom: 0;
+}
+
+.custom-reviews--container .amazon,
+.custom-reviews--container .flipcart,
+.custom-reviews--container .google,
+.custom-reviews--container .stars-outer,
+.custom-reviews--container .stars-inner {
+  margin-left: 0;
+}
+
+@media screen and (max-width: 768px) {
+  .template-index .shopify-section {
+    padding-block: var(--ws-space-16);
+  }
+
+  .template-index .shopify-section + .shopify-section {
+    margin-top: var(--ws-space-16);
+  }
+}

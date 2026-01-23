@@ -1,0 +1,26 @@
+/* WoodenStreet Discount Badge Styling */
+
+.woodenstreet-card__badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #c7431a;
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  padding: 6px 10px;
+  border-radius: 4px;
+  box-shadow: 0 6px 16px rgba(199, 67, 26, 0.28);
+}
+
+@media screen and (max-width: 768px) {
+  .woodenstreet-card__badge {
+    top: 8px;
+    left: 8px;
+    font-size: 11px;
+    padding: 4px 8px;
+  }
+}
