@@ -163,9 +163,73 @@
         },
         "whisper_showcase": {
             "type": "whisper-showcase"
+        },
+        "category_strip": {
+            "type": "woodenstreet-category-strip",
+            "blocks": {
+                "sofa": {
+                    "type": "category",
+                    "settings": {
+                        "title": "Sofa Sets",
+                        "link": "shopify:\/\/collections\/sofas"
+                    }
+                },
+                "bed": {
+                    "type": "category",
+                    "settings": {
+                        "title": "Beds",
+                        "link": "shopify:\/\/collections\/bed"
+                    }
+                },
+                "dining": {
+                    "type": "category",
+                    "settings": {
+                        "title": "Dining Sets",
+                        "link": "shopify:\/\/collections\/dining-table-sets"
+                    }
+                },
+                "study": {
+                    "type": "category",
+                    "settings": {
+                        "title": "Study Tables",
+                        "link": "shopify:\/\/collections\/study-tables"
+                    }
+                },
+                "tv": {
+                    "type": "category",
+                    "settings": {
+                        "title": "TV Units",
+                        "link": "shopify:\/\/collections\/tv-units"
+                    }
+                },
+                "wardrobe": {
+                    "type": "category",
+                    "settings": {
+                        "title": "Wardrobes",
+                        "link": "shopify:\/\/collections\/wardrobes"
+                    }
+                },
+                "shoe": {
+                    "type": "category",
+                    "settings": {
+                        "title": "Shoe Racks",
+                        "link": "shopify:\/\/collections\/shoe-racks"
+                    }
+                }
+            },
+            "block_order": [
+                "sofa",
+                "bed",
+                "dining",
+                "study",
+                "tv",
+                "wardrobe",
+                "shoe"
+            ]
         }
     },
     "order": [
+        "category_strip",
         "woodenstreet_hero",
         "urgency_strip",
         "trust_strip",

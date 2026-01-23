@@ -98,7 +98,11 @@
 | **D-03** | **Cart Savings Celebration** | [ ] Open | Low | "Congrats! You saved ₹2,000 on this order." message. |
 | **D-04** | **3-Step Checkout Progress** | [ ] Open | Med | Visual bar: Cart > Address > Payment. |
 | **D-05** | **Auto-Coupon Applier** | [x] Done - GPT-5.2-Codex | High | "Apply Best Coupon" link in the cart summary. |
+<<<<<<< HEAD
 | **D-06** | **Toast Add-to-Cart** | [ ] Open | Med | Non-intrusive popup: "Item added! [View Cart]". |
+=======
+
+>>>>>>> origin/pr/49
 
 ---
 
@@ -110,6 +114,9 @@
 - **2026-01-22 (GPT-5.2-Codex)**: Completed task D-05 - Auto-Coupon Applier snippet, styling, and cart integrations.
 - **2026-01-22 (GPT-5.2-Codex)**: Added discount badge and recommended ribbon to product cards.
 - **2026-01-22 (GPT-5.2-Codex)**: Completed task B-03 - Detailed offers box enhancements.
+
+
+- **2026-01-22 (GPT-5.2-Codex)**: Completed task D-05 - Auto-Coupon Applier snippet, styling, and cart integrations.
 
 ---
 
