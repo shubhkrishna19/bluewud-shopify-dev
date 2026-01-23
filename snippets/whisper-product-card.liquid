@@ -4,6 +4,13 @@
 {% endcomment %}
 
 <div class="woodenstreet-card group">
+  {% assign product_tags = product.tags | join: ',' | downcase %}
+  {% assign ribbon_label = '' %}
+  {% if product_tags contains 'best seller' or product_tags contains 'best-seller' or product_tags contains 'bestseller' %}
+    {% assign ribbon_label = 'Best Seller' %}
+  {% elsif product_tags contains 'recommended' or product_tags contains 'recommend' %}
+    {% assign ribbon_label = 'Recommended' %}
+  {% endif %}
   <div class="woodenstreet-card__media-wrapper">
     <a href="{{ product.url }}" class="woodenstreet-card__link">
       <img 
@@ -14,9 +21,12 @@
       >
     </a>
     {% if product.compare_at_price > product.price %}
-      <div class="woodenstreet-card__badge">
+      <div class="woodenstreet-card__badge woodenstreet-card__badge--discount">
         {{ product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round }}% OFF
       </div>
+    {% endif %}
+    {% if ribbon_label != blank %}
+      <div class="woodenstreet-card__ribbon">{{ ribbon_label }}</div>
     {% endif %}
     <div class="woodenstreet-card__actions">
       <button class="woodenstreet-card__quick-view" data-product-handle="{{ product.handle }}">
