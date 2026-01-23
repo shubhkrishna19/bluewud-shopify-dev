@@ -82,6 +82,30 @@
     /* Animations */
     --transition-premium: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
     --hover-lift: translateY(-4px) scale(1.02);
+
+    /* Font Sizes */
+    --font-size--3xs: 0.625rem;
+    --font-size--2xs: 0.75rem;
+    --font-size--xs: 0.8125rem;
+    --font-size--sm: 0.875rem;
+    --font-size--md: 1rem;
+    --font-size--lg: 1.125rem;
+    --font-size--xl: 1.25rem;
+
+    /* Layers */
+    --layer-base: 0;
+    --layer-flat: 1;
+    --layer-raised: 2;
+    --layer-overlay: 16;
+    --layer-header: 100;
+    --layer-sticky: 101;
+    --layer-menu-drawer: 18;
+
+    /* Auxiliary */
+    --color-border-rgb: 232, 232, 230;
+    --opacity-70: 0.7;
+    --opacity-subdued-text: var(--opacity-70);
+    --animation-speed: 0.125s;
 }
 
 /* Global Utility Classes for Perfection */
@@ -2751,7 +2775,6 @@ h6 {
     font-family: var(--font-body-family) !important;
 }
 
-<<<<<<< HEAD <<<<<<< HEAD
 /* --- CRITICAL: Empire Cart Drawer/Overlay Fix --- */
 /* Resolves the "White Area" bug where the cart drawer initializes as open/opaque in the flow */
 
@@ -2808,50 +2831,10 @@ h6 {
     backdrop-filter: blur(4px);
 }
 
-=======:root {
-    --font-body-family: "Inter", sans-serif;
-    --font-heading-family: "Barlow", sans-serif;
-    --margin-3xs: 0.125rem;
-    --margin-2xs: 0.3rem;
-    --margin-xs: 0.5rem;
-    --margin-sm: 0.7rem;
-    --margin-md: 0.8rem;
-    --margin-lg: 1rem;
-    --margin-xl: 1.25rem;
-    --margin-2xl: 1.5rem;
-    --margin-4xl: 2rem;
-    --padding-xs: 0.5rem;
-    --padding-sm: 0.7rem;
-    --padding-md: 0.8rem;
-    --padding-lg: 1rem;
-    --padding-xl: 1.25rem;
-    --padding-4xl: 2rem;
-    --gap-xs: 0.5rem;
-    --gap-md: 0.9rem;
-    --gap-lg: 1rem;
-    --gap-xl: 1.25rem;
-    --font-size--3xs: 0.625rem;
-    --font-size--2xs: 0.75rem;
-    --font-size--xs: 0.8125rem;
-    --font-size--sm: 0.875rem;
-    --font-size--md: 1rem;
-    --font-size--lg: 1.125rem;
-    --font-size--xl: 1.25rem;
-    --layer-base: 0;
-    --layer-flat: 1;
-    --layer-raised: 2;
-    --layer-overlay: 16;
-    --layer-header: 100;
-    --layer-sticky: 101;
-    --layer-menu-drawer: 18;
-    --color-border-rgb: 232, 232, 230;
-    --opacity-70: 0.7;
-    --opacity-subdued-text: var(--opacity-70);
-    --animation-speed: 0.125s;
-    --animation-easing: ease-in-out;
-    --animation-values: var(--animation-speed) var(--animation-easing);
-    --header-height: 70px;
-    --header-padding: var(--padding-sm)
+--animation-easing: ease-in-out;
+--animation-values: var(--animation-speed) var(--animation-easing);
+--header-height: 70px;
+--header-padding: var(--padding-sm)
 }
 
 .header-section {
@@ -3796,4 +3779,175 @@ h6 {
     background: #fee;
     border-color: #fcc;
     color: #d00;
+}
+
+/* WoodenStreet Testimonials */
+.ws-testimonials {
+    padding: 72px 0;
+    background: #fffdf9;
+}
+
+.ws-testimonials__header {
+    text-align: center;
+    margin-bottom: 36px;
+}
+
+.ws-testimonials__eyebrow {
+    font-size: 12px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: #c66a2c;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.ws-testimonials__title {
+    font-size: clamp(28px, 3vw, 36px);
+    font-weight: 700;
+    color: #2f2217;
+    margin-bottom: 8px;
+}
+
+.ws-testimonials__subtitle {
+    font-size: 14px;
+    color: #6b5d52;
+    margin: 0 auto;
+    max-width: 520px;
+    line-height: 1.6;
+}
+
+.ws-testimonials__slider {
+    overflow: hidden;
+}
+
+.ws-testimonials__track {
+    display: flex;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 4px 8px 20px;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+}
+
+.ws-testimonials__track::-webkit-scrollbar {
+    height: 6px;
+}
+
+.ws-testimonials__track::-webkit-scrollbar-thumb {
+    background: rgba(198, 106, 44, 0.3);
+    border-radius: 999px;
+}
+
+.ws-testimonial-card {
+    flex: 0 0 min(320px, 82vw);
+    background: #ffffff;
+    border: 1px solid #efe7de;
+    border-radius: 20px;
+    padding: 22px 22px 20px;
+    box-shadow: 0 18px 30px rgba(47, 34, 23, 0.08);
+    scroll-snap-align: start;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.ws-testimonial-card__rating {
+    display: flex;
+    gap: 6px;
+    color: #f07b21;
+    font-size: 16px;
+    letter-spacing: 0.1em;
+}
+
+.ws-testimonial-card__text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #4b3a2e;
+    margin: 0;
+}
+
+.ws-testimonial-card__meta {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.ws-testimonial-card__photo {
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 2px solid #f07b21;
+    background: #fff6ee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ws-testimonial-card__photo img,
+.ws-testimonial-card__photo svg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.ws-testimonial-card__identity {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.ws-testimonial-card__name {
+    font-size: 14px;
+    font-weight: 700;
+    color: #2f2217;
+    margin: 0;
+}
+
+.ws-testimonial-card__location {
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: #8a7b6f;
+    margin: 0;
+}
+
+.ws-testimonial-card__verified {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: #2f2217;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.ws-testimonial-card__verified-icon {
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #f07b21;
+    color: #fff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    line-height: 1;
+}
+
+@media screen and (min-width: 768px) {
+    .ws-testimonials__track {
+        padding: 4px 4px 16px;
+    }
+
+    .ws-testimonial-card {
+        flex-basis: 300px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .ws-testimonial-card {
+        flex-basis: 320px;
+    }
 }
