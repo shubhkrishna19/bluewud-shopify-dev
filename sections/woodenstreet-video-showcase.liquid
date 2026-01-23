@@ -1,0 +1,193 @@
+{% liquid
+  assign video_url = section.settings.video_url
+  assign poster = section.settings.poster
+  assign heading = section.settings.heading
+  assign subheading = section.settings.subheading
+  assign button_label = section.settings.button_label
+  assign button_link = section.settings.button_link
+%}
+
+<section class="ws-video-showcase" aria-label="{{ section.settings.aria_label | escape }}">
+  <div class="ws-video-showcase__media">
+    {% if video_url != blank %}
+      <video
+        class="ws-video-showcase__video"
+        autoplay
+        muted
+        loop
+        playsinline
+        preload="metadata"
+        {% if poster != blank %}poster="{{ poster | image_url: width: 1600 }}"{% endif %}
+      >
+        <source src="{{ video_url }}" type="video/mp4">
+      </video>
+    {% elsif poster != blank %}
+      <img
+        class="ws-video-showcase__poster"
+        src="{{ poster | image_url: width: 1600 }}"
+        alt="{{ poster.alt | escape }}"
+        loading="lazy"
+      >
+    {% endif %}
+    <div class="ws-video-showcase__overlay"></div>
+  </div>
+
+  <div class="ws-video-showcase__content">
+    {% if subheading != blank %}
+      <p class="ws-video-showcase__subheading">{{ subheading }}</p>
+    {% endif %}
+    {% if heading != blank %}
+      <h2 class="ws-video-showcase__heading">{{ heading }}</h2>
+    {% endif %}
+    {% if button_label != blank %}
+      <a class="ws-video-showcase__button" href="{{ button_link | default: '#' }}">
+        {{ button_label }}
+      </a>
+    {% endif %}
+  </div>
+</section>
+
+<style>
+  .ws-video-showcase {
+    position: relative;
+    overflow: hidden;
+    border-radius: 24px;
+    margin: 0 auto;
+    max-width: 1200px;
+    background: #1f1f1f;
+  }
+
+  .ws-video-showcase__media {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    min-height: 320px;
+    background: #1f1f1f;
+  }
+
+  .ws-video-showcase__video,
+  .ws-video-showcase__poster {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .ws-video-showcase__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(110deg, rgba(0, 0, 0, 0.55) 0%, rgba(0, 0, 0, 0.1) 60%);
+  }
+
+  .ws-video-showcase__content {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: clamp(24px, 6vw, 64px);
+    color: #fff;
+    gap: 12px;
+    z-index: 1;
+  }
+
+  .ws-video-showcase__subheading {
+    font-size: clamp(12px, 1.4vw, 14px);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+
+  .ws-video-showcase__heading {
+    font-size: clamp(28px, 4vw, 52px);
+    line-height: 1.1;
+    margin: 0;
+    max-width: 520px;
+  }
+
+  .ws-video-showcase__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 28px;
+    border-radius: 999px;
+    background: #f9d277;
+    color: #1b1b1b;
+    text-decoration: none;
+    font-weight: 600;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .ws-video-showcase__button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+  }
+
+  @media (max-width: 768px) {
+    .ws-video-showcase {
+      border-radius: 16px;
+    }
+
+    .ws-video-showcase__media {
+      aspect-ratio: 4 / 5;
+    }
+
+    .ws-video-showcase__heading {
+      max-width: 100%;
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "WoodenStreet Video Showcase",
+  "settings": [
+    {
+      "type": "text",
+      "id": "aria_label",
+      "label": "Aria label",
+      "default": "Video showcase"
+    },
+    {
+      "type": "url",
+      "id": "video_url",
+      "label": "Video URL (MP4)"
+    },
+    {
+      "type": "image_picker",
+      "id": "poster",
+      "label": "Poster image"
+    },
+    {
+      "type": "text",
+      "id": "subheading",
+      "label": "Subheading",
+      "default": "Premium Living"
+    },
+    {
+      "type": "text",
+      "id": "heading",
+      "label": "Heading",
+      "default": "Bring home the calm of crafted luxury"
+    },
+    {
+      "type": "text",
+      "id": "button_label",
+      "label": "Button label",
+      "default": "Shop the Look"
+    },
+    {
+      "type": "url",
+      "id": "button_link",
+      "label": "Button link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "WoodenStreet Video Showcase"
+    }
+  ]
+}
+{% endschema %}
