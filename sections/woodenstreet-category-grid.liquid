@@ -1,0 +1,99 @@
+<section class="ws-category-grid" aria-label="Shop by Category">
+  <div class="page-width">
+    <div class="ws-category-grid__header">
+      <h2 class="ws-category-grid__title uppercase italic font-black text-3xl tracking-tighter">Shop by Room & Category</h2>
+      <p class="ws-category-grid__subtitle text-gray-500 font-bold uppercase tracking-widest text-xs">Explore curated collections for every corner</p>
+    </div>
+
+    <div class="ws-category-grid__items">
+      {% for block in section.blocks %}
+        <a href="{{ block.settings.link }}" class="ws-category-card group">
+          <div class="ws-category-card__image-wrapper overflow-hidden rounded-2xl aspect-square relative shadow-md group-hover:shadow-xl transition-all duration-300">
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | image_url: width: 400 }}" alt="{{ block.settings.title }}" class="ws-category-card__image object-cover w-full h-full group-hover:scale-110 transition-transform duration-500" loading="lazy">
+            {% else %}
+              <div class="w-full h-full bg-gray-100 flex items-center justify-center text-gray-400">
+                {{ 'image' | placeholder_svg_tag: 'w-20 h-20' }}
+              </div>
+            {% endif %}
+            <div class="ws-category-card__overlay absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            <div class="ws-category-card__content absolute bottom-0 left-0 p-6">
+              <h3 class="ws-category-card__title text-white font-black italic uppercase text-lg leading-tight">{{ block.settings.title }}</h3>
+              <p class="ws-category-card__count text-white/70 text-[10px] font-bold tracking-widest uppercase mt-1">{{ block.settings.count_text | default: 'Explore Now' }}</p>
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<style>
+  .ws-category-grid {
+    padding: 60px 0;
+    background: #fff;
+  }
+  .ws-category-grid__header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  .ws-category-grid__items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+  @media screen and (min-width: 768px) {
+    .ws-category-grid__items {
+      grid-template-columns: repeat(4, 1fr);
+    }
+  }
+</style>
+
+{% schema %}
+{
+  "name": "WS Category Grid",
+  "max_blocks": 8,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Living Room"
+        },
+        {
+          "type": "text",
+          "id": "count_text",
+          "label": "Subtitle",
+          "default": "200+ Designs"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "WS Category Grid",
+      "blocks": [
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "category" },
+        { "type": "category" }
+      ]
+    }
+  ]
+}
+{% endschema %}

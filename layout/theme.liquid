@@ -82,7 +82,6 @@
     {{ 'theme-update.css' | asset_url | stylesheet_tag }}
     {{ 'component-shop-the-look.css' | asset_url | stylesheet_tag }}
     {{ 'component-offers-box.css' | asset_url | stylesheet_tag }}
-<<<<<<< HEAD
     {{ 'component-discount-badge.css' | asset_url | stylesheet_tag }}
     {{ 'component-woodenstreet-footer.css' | asset_url | stylesheet_tag }}
     {{ 'component-woodenstreet-global.css' | asset_url | stylesheet_tag }}
@@ -92,12 +91,11 @@
     {{ 'component-woodenstreet-hero.css' | asset_url | stylesheet_tag }}
     {{ 'component-woodenstreet-engagement.css' | asset_url | stylesheet_tag }}
     {{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
-=======
     {{ 'component-delivery-estimator.css' | asset_url | stylesheet_tag }}
     {{ 'component-compare-float.css' | asset_url | stylesheet_tag }}
     {{ 'component-zoom-pan.css' | asset_url | stylesheet_tag }}
     {{ 'component-mega-menu.css' | asset_url | stylesheet_tag }}
->>>>>>> origin/pr/30
+    {{ 'component-woodenstreet-ui-overrides.css' | asset_url | stylesheet_tag }}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {% comment %} Inject theme-object begin{% endcomment %}
     <script>
@@ -221,7 +219,7 @@
       {% endunless %}
     </main>
 
-    {% section 'static-footer' %}
+    {% section 'woodenstreet-footer' %}
 
     {% render 'whisper-bottom-sheet', id: 'whisper-quick-add-sheet', title: 'Quick Add', mobile_only: true, show_apply: true, apply_label: 'Add to Cart' %}
     {% render 'whisper-cart-recovery' %}

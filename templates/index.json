@@ -231,12 +231,56 @@
             ]
         },
         "hp_video": {
-            "type": "woodenstreet-hp-video"
+            "type": "woodenstreet-video-showcase"
+        },
+        "woodenstreet_category_grid": {
+            "type": "woodenstreet-category-grid",
+            "blocks": {
+                "living": {
+                    "type": "category",
+                    "settings": {
+                        "title": "Living Room",
+                        "count_text": "300+ Designs"
+                    }
+                },
+                "bedroom": {
+                    "type": "category",
+                    "settings": {
+                        "title": "Bedroom",
+                        "count_text": "150+ Designs"
+                    }
+                },
+                "dining": {
+                    "type": "category",
+                    "settings": {
+                        "title": "Dining Room",
+                        "count_text": "80+ Designs"
+                    }
+                },
+                "storage": {
+                    "type": "category",
+                    "settings": {
+                        "title": "Storage",
+                        "count_text": "100+ Designs"
+                    }
+                }
+            },
+            "block_order": [
+                "living",
+                "bedroom",
+                "dining",
+                "storage"
+            ]
+        },
+        "woodenstreet_press": {
+            "type": "woodenstreet-press"
         }
     },
     "order": [
         "category_strip",
         "woodenstreet_hero",
+        "woodenstreet_category_grid",
+        "woodenstreet_press",
         "urgency_strip",
         "trust_strip",
         "whisper_lookbook",

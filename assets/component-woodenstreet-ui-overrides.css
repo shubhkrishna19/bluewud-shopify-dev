@@ -1,0 +1,200 @@
+/* WoodenStreet Premium UI Overrides */
+
+:root {
+    --ws-orange: #C7431A;
+    --ws-orange-hover: #a63614;
+    --ws-black: #232323;
+    --ws-text: #333333;
+    --ws-bg-light: #F8F8F8;
+    --ws-border: #EEEEEE;
+    --ws-radius: 12px;
+    --ws-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Global Reset */
+body {
+    background-color: var(--ws-bg-light);
+    color: var(--ws-text);
+    line-height: 1.6;
+}
+
+/* Section Styling - "The Card Look" */
+.template-index .shopify-section {
+    background: transparent;
+    padding: 40px 0;
+}
+
+/* Wrap section content in a card style if it has a page-width */
+.template-index .shopify-section:not(.woodenstreet-hero-hybrid)>div:not(.ws-category-strip) {
+    /* background: #fff; */
+    /* border-radius: var(--ws-radius); */
+    /* box-shadow: var(--ws-shadow); */
+    /* padding: 40px 0; */
+}
+
+/* Header Polish */
+.header__row--top {
+    background: #fff;
+    border-bottom: 1px solid var(--ws-border);
+    padding: 10px 0;
+}
+
+.site-header-logo {
+    flex: 0 0 auto;
+}
+
+.header-logo img {
+    max-height: 50px !important;
+}
+
+.search-action {
+    flex: 1;
+    max-width: 600px;
+    margin: 0 40px;
+}
+
+.search-form {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex !important;
+    background: #fff;
+}
+
+.search-form__input {
+    border: none !important;
+    padding: 12px 20px !important;
+    font-size: 14px !important;
+}
+
+.search-form__submit {
+    background: var(--ws-orange) !important;
+    color: #fff !important;
+    border: none !important;
+    padding: 0 20px !important;
+}
+
+/* Navigation - Modern Minimalist */
+.header__row--bottom {
+    background: #fff;
+    border-bottom: 1px solid var(--ws-border);
+}
+
+.site-navigation__link {
+    font-weight: 600 !important;
+    font-size: 13px !important;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--ws-black) !important;
+    padding: 15px 20px !important;
+}
+
+.site-navigation__link:hover {
+    color: var(--ws-orange) !important;
+}
+
+/* Product Cards Refresh */
+.product-card {
+    background: #fff;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+    border-color: #eee;
+}
+
+.product-card__title {
+    font-size: 14px !important;
+    font-weight: 600 !important;
+    margin: 12px 12px 4px !important;
+    color: #333 !important;
+}
+
+.productitem--price {
+    margin: 0 12px 12px !important;
+}
+
+.productitem--price .price--main {
+    color: var(--ws-orange) !important;
+    font-weight: 700 !important;
+}
+
+/* Badges */
+.productitem__badge--discount {
+    background: #FF5722 !important;
+    color: #fff !important;
+    font-weight: 800 !important;
+    padding: 4px 8px !important;
+    border-radius: 4px !important;
+    font-size: 11px !important;
+    left: 10px !important;
+    top: 10px !important;
+}
+
+/* Hero Section Refinement */
+.woodenstreet-hero-hybrid {
+    margin-bottom: 0 !important;
+    padding-bottom: 80px !important;
+    background: linear-gradient(to bottom, #fff, #f9f9f9) !important;
+}
+
+.woodenstreet-hero-hybrid__heading {
+    letter-spacing: -0.02em !important;
+}
+
+/* Footer Polish */
+.site-footer {
+    background: #232323 !important;
+    color: #bbb !important;
+    padding: 60px 0 !important;
+}
+
+.site-footer__heading {
+    color: #fff !important;
+    font-size: 16px !important;
+    text-transform: uppercase;
+    margin-bottom: 24px !important;
+}
+
+.site-footer__link {
+    color: #999 !important;
+    font-size: 13px !important;
+    display: block;
+    margin-bottom: 10px;
+    text-decoration: none;
+}
+
+.site-footer__link:hover {
+    color: #fff !important;
+}
+
+/* Buttons */
+.button--primary {
+    background-color: var(--ws-orange) !important;
+    border-color: var(--ws-orange) !important;
+    border-radius: 4px !important;
+    font-weight: 700 !important;
+}
+
+.button--primary:hover {
+    background-color: var(--ws-orange-hover) !important;
+}
+
+/* Mobile Adjustments */
+@media screen and (max-width: 768px) {
+    .search-action {
+        margin: 10px 20px;
+        order: 3;
+        width: calc(100% - 40px);
+    }
+
+    .header__row--top {
+        flex-wrap: wrap;
+    }
+}
