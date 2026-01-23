@@ -1,18 +1,73 @@
-<section class="ws-press bg-white py-12 border-t border-gray-100">
+<section class="ws-press">
   <div class="page-width">
-    <div class="ws-press__header text-center mb-10">
-      <h2 class="text-[10px] font-black uppercase tracking-[0.2em] text-gray-400">As Seen In</h2>
+    <div class="ws-press__header">
+      <h2 class="ws-press__title">Recognized by the best</h2>
     </div>
-    <div class="ws-press__items flex flex-wrap justify-between items-center gap-10 opacity-40 hover:opacity-100 transition-opacity duration-500 overflow-hidden grayscale">
-      <div class="ws-press-item h-6"><img src="https://cdn.shopify.com/s/files/1/1808/6469/files/press-logo-1.png?v=1" class="h-full object-contain" alt="Press 1"></div>
-      <div class="ws-press-item h-6"><img src="https://cdn.shopify.com/s/files/1/1808/6469/files/press-logo-2.png?v=1" class="h-full object-contain" alt="Press 2"></div>
-      <div class="ws-press-item h-6"><img src="https://cdn.shopify.com/s/files/1/1808/6469/files/press-logo-3.png?v=1" class="h-full object-contain" alt="Press 3"></div>
-      <div class="ws-press-item h-6"><img src="https://cdn.shopify.com/s/files/1/1808/6469/files/press-logo-4.png?v=1" class="h-full object-contain" alt="Press 4"></div>
-      <div class="ws-press-item h-6"><img src="https://cdn.shopify.com/s/files/1/1808/6469/files/press-logo-5.png?v=1" class="h-full object-contain" alt="Press 5"></div>
-      <div class="ws-press-item h-6"><img src="https://cdn.shopify.com/s/files/1/1808/6469/files/press-logo-6.png?v=1" class="h-full object-contain" alt="Press 6"></div>
+    <div class="ws-press__container">
+        <div class="ws-press__items">
+          <div class="ws-press-item"><img src="https://cdn.shopify.com/s/files/1/1808/6469/files/press-logo-1.png?v=1" alt="Press 1"></div>
+          <div class="ws-press-item"><img src="https://cdn.shopify.com/s/files/1/1808/6469/files/press-logo-2.png?v=1" alt="Press 2"></div>
+          <div class="ws-press-item"><img src="https://cdn.shopify.com/s/files/1/1808/6469/files/press-logo-3.png?v=1" alt="Press 3"></div>
+          <div class="ws-press-item"><img src="https://cdn.shopify.com/s/files/1/1808/6469/files/press-logo-4.png?v=1" alt="Press 4"></div>
+          <div class="ws-press-item"><img src="https://cdn.shopify.com/s/files/1/1808/6469/files/press-logo-5.png?v=1" alt="Press 5"></div>
+          <div class="ws-press-item"><img src="https://cdn.shopify.com/s/files/1/1808/6469/files/press-logo-6.png?v=1" alt="Press 6"></div>
+        </div>
     </div>
   </div>
 </section>
+
+<style>
+  .ws-press {
+      background: #fff;
+      padding: 60px 0;
+      border-bottom: 1px solid #f0f0f0;
+  }
+  .ws-press__header {
+      text-align: center;
+      margin-bottom: 40px;
+  }
+  .ws-press__title {
+      font-family: 'Inter', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      text-transform: uppercase;
+      letter-spacing: 0.3em;
+      color: #aaa;
+  }
+  .ws-press__items {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+  }
+  .ws-press-item {
+      flex: 1 1 150px;
+      display: flex;
+      justify-content: center;
+      opacity: 0.4;
+      filter: grayscale(1);
+      transition: all 0.4s ease;
+  }
+  .ws-press-item:hover {
+      opacity: 1;
+      filter: grayscale(0);
+      transform: scale(1.1);
+  }
+  .ws-press-item img {
+      max-height: 24px;
+      width: auto;
+      object-fit: contain;
+  }
+  @media screen and (max-width: 768px) {
+      .ws-press__items {
+          gap: 24px;
+      }
+      .ws-press-item {
+          flex: 1 1 120px;
+      }
+  }
+</style>
 
 {% schema %}
 {
