@@ -4,6 +4,8 @@
 
   const countTarget = toast.querySelector('[data-cart-toast-count]');
   const closeButton = toast.querySelector('[data-cart-toast-close]');
+  const imageTarget = toast.querySelector('[data-cart-toast-image]');
+  const titleTarget = toast.querySelector('[data-cart-toast-title]');
   let hideTimer = null;
 
   const hideToast = () => {
@@ -18,6 +20,20 @@
 
     if (countTarget && cartData?.item_count !== undefined) {
       countTarget.textContent = `${cartData.item_count} item${cartData.item_count === 1 ? '' : 's'} in cart`;
+    }
+
+    if (cartData?.items?.length) {
+      const lastItem = cartData.items[cartData.items.length - 1];
+      const itemTitle = lastItem?.product_title || lastItem?.title || '';
+      const imageUrl = lastItem?.image;
+      if (titleTarget) {
+        titleTarget.textContent = itemTitle;
+      }
+      if (imageTarget && imageUrl) {
+        const sizedImage = imageUrl.replace(/(\.[^/.]+)$/, '_120x$1');
+        imageTarget.src = sizedImage;
+        imageTarget.alt = itemTitle;
+      }
     }
 
     toast.classList.add('is-visible');

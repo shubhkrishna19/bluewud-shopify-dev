@@ -1,10 +1,22 @@
+{% assign toast_item = cart.items | last %}
 <div class="cart-toast" data-cart-toast role="status" aria-live="polite" aria-hidden="true">
+  <div class="cart-toast__media">
+    <img
+      src="{% if toast_item %}{{ toast_item.image | img_url: '120x' }}{% endif %}"
+      alt="{% if toast_item %}{{ toast_item.product.title | escape }}{% endif %}"
+      data-cart-toast-image
+    >
+  </div>
   <div class="cart-toast__content">
     <span class="cart-toast__title">Item added!</span>
+    <span class="cart-toast__meta" data-cart-toast-title>
+      {% if toast_item %}{{ toast_item.product.title }}{% endif %}
+    </span>
     <span class="cart-toast__meta" data-cart-toast-count>{{ cart.item_count }} item{% if cart.item_count != 1 %}s{% endif %} in cart</span>
   </div>
   <div class="cart-toast__actions">
-    <a class="cart-toast__link" href="{{ routes.cart_url }}">View cart</a>
+    <a class="cart-toast__button cart-toast__button--secondary" href="{{ routes.cart_url }}">View cart</a>
+    <a class="cart-toast__button cart-toast__button--primary" href="{{ routes.checkout_url }}">Checkout</a>
     <button class="cart-toast__close" type="button" aria-label="Dismiss notification" data-cart-toast-close>
       &times;
     </button>
