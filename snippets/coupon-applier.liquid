@@ -49,20 +49,6 @@
       var success = container.querySelector('[data-coupon-success]');
       var demoCode = container.getAttribute('data-demo-code') || 'WS20';
       var demoSavings = container.getAttribute('data-demo-savings') || '₹500';
-<<<<<<< HEAD
-
-      var showSuccess = function() {
-        if (success) {
-          success.textContent = demoSavings + ' saved with code ' + demoCode + '!';
-          success.hidden = false;
-        }
-        container.classList.add('is-applied');
-      };
-
-      var applyCode = function() {
-        if (input) {
-          input.value = demoCode;
-=======
       var toggleText = toggle ? toggle.textContent : '';
 
       var showSuccess = function(codeValue) {
@@ -81,38 +67,23 @@
         var enteredCode = input && input.value ? input.value.trim() : '';
         if (input) {
           input.value = enteredCode || demoCode;
->>>>>>> origin/pr/49
         }
         if (body) {
           body.hidden = false;
         }
-<<<<<<< HEAD
-        showSuccess();
-=======
         showSuccess(input ? input.value : demoCode);
->>>>>>> origin/pr/49
       };
 
       var toggleBody = function() {
         if (!body) return;
         body.hidden = !body.hidden;
-<<<<<<< HEAD
-=======
         if (!body.hidden && input) {
           input.focus();
         }
->>>>>>> origin/pr/49
       };
 
       if (toggle) {
         toggle.addEventListener('click', function() {
-<<<<<<< HEAD
-          if (container.classList.contains('is-applied')) {
-            toggleBody();
-          } else {
-            applyCode();
-          }
-=======
           if (!body) return;
           if (body.hidden) {
             body.hidden = false;
@@ -123,15 +94,12 @@
             return;
           }
           toggleBody();
->>>>>>> origin/pr/49
         });
       }
 
       if (applyButton) {
         applyButton.addEventListener('click', applyCode);
       }
-<<<<<<< HEAD
-=======
 
       if (input) {
         input.addEventListener('input', function() {
@@ -146,7 +114,6 @@
           }
         });
       }
->>>>>>> origin/pr/49
     });
   })();
 </script>
