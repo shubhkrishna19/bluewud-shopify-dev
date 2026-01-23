@@ -56,6 +56,9 @@
 | **H-03** | **Header & Mega Menu Polish** | [x] Done | Med | Fix alignment, icon spacing, search bar styling, and mobile menu transitions. |
 | **H-04** | **Product Card Standardization** | [x] Done | High | Unify all product cards to match WoodenStreet design (hover effects, badges, price styling). |
 | **H-05** | **Global Spacing & Typography** | [x] Done | Med | Enforce 8px grid system, consistent section spacing, and correct font usage (Poppins/Inter). |
+| **H-06** | **Category Navigation Strip** | [ ] Open | Med | Horizontal strip of circular category icons above the hero or below. |
+| **H-07** | **WoodenStreet Testimonials** | [ ] Open | High | Clean testimonial slider with customer photos and review text. |
+| **H-08** | **HP Video Section** | [ ] Open | Med | Furniture demo video section with autoplay and "Shop the Look" overlay. |
 
 ### 🟢 Phase A: The "WoodenStreet" Homepage (Structure & Trust)
 | ID | Task Name | Status | Complexity | Description to Match WoodenStreet |
@@ -95,6 +98,7 @@
 | **D-03** | **Cart Savings Celebration** | [ ] Open | Low | "Congrats! You saved ₹2,000 on this order." message. |
 | **D-04** | **3-Step Checkout Progress** | [ ] Open | Med | Visual bar: Cart > Address > Payment. |
 | **D-05** | **Auto-Coupon Applier** | [x] Done - GPT-5.2-Codex | High | "Apply Best Coupon" link in the cart summary. |
+| **D-06** | **Toast Add-to-Cart** | [ ] Open | Med | Non-intrusive popup: "Item added! [View Cart]". |
 
 ---
 
