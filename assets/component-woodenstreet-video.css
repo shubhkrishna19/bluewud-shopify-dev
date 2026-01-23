@@ -1,0 +1,25 @@
+/* WoodenStreet HP Video */
+.ws-video {
+    padding: 60px 0;
+    background: #fff;
+}
+
+.ws-video__container {
+    background: #000;
+}
+
+.animate-pulse {
+    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+    }
+
+    50% {
+        transform: translate(-50%, -50%) scale(1.1);
+    }
+}

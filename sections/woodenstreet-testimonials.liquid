@@ -1,0 +1,50 @@
+{% comment %}
+  WoodenStreet: Testimonials Section (H-07)
+{% endcomment %}
+
+{{ 'component-woodenstreet-testimonials.css' | asset_url | stylesheet_tag }}
+
+<section class="ws-testimonials" aria-label="Customer Reviews">
+  <div class="page-width">
+    <div class="ws-testimonials__header">
+      <h2 class="ws-testimonials__title italic font-black uppercase tracking-tighter text-3xl">What Our Customers Say</h2>
+      <p class="ws-testimonials__subtitle font-bold text-gray-500 uppercase tracking-widest text-xs mt-2">20 Lakh+ Happy Homes</p>
+    </div>
+
+    <div class="ws-testimonials__grid">
+      {% for i in (1..3) %}
+        {% capture name %}{% cycle 'Anjali Sharma', 'Rahul Mehta', 'Priya Iyer' %}{% endcapture %}
+        {% capture city %}{% cycle 'Mumbai', 'Bangalore', 'Delhi' %}{% endcapture %}
+        {% capture review %}{% cycle 'The sofa is just amazing! The fabric quality and the wood finish are top-notch. Highly recommended.', 'Great experience buying the dining set. Delivery was on time and the product is sturdy.', 'Loved the design! It fits perfectly in my study room. The storage space is also very good.' %}{% endcapture %}
+        
+        <div class="ws-testimonial-card shadow-lg hover:shadow-2xl transition-all duration-300 rounded-2xl p-8 border border-gray-100 bg-white">
+          <div class="ws-testimonial-card__rating text-orange-500 flex gap-1 mb-4">
+            {% for j in (1..5) %}<span>★</span>{% endfor %}
+          </div>
+          <p class="ws-testimonial-card__text italic font-medium text-gray-700 leading-relaxed mb-6">"{{ review }}"</p>
+          <div class="ws-testimonial-card__user flex items-center gap-4">
+            <div class="ws-testimonial-card__avatar w-12 h-12 rounded-full bg-gray-200 border-2 border-orange-500 overflow-hidden">
+               <img src="https://ui-avatars.com/api/?name={{ name }}&background=C7431A&color=fff" alt="{{ name }}" loading="lazy">
+            </div>
+            <div>
+              <h4 class="ws-testimonial-card__name font-black uppercase text-sm">{{ name }}</h4>
+              <p class="ws-testimonial-card__city text-[10px] font-bold text-gray-400 uppercase tracking-widest">{{ city }}</p>
+            </div>
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "WS Testimonials",
+  "settings": [],
+  "presets": [
+    {
+      "name": "WS Testimonials"
+    }
+  ]
+}
+{% endschema %}

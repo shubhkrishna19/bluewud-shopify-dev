@@ -77,6 +77,7 @@
     <link rel="preload" as="style" href="{{ 'component-variant-swatches.css' | asset_url }}">
     <link rel="preload" as="style" href="{{ 'component-sticky-footer.css' | asset_url }}">
     <link rel="preload" as="style" href="{{ 'component-cart-drawer.css' | asset_url }}">
+    {% render 'critical-css' %}
     {% render 'agent-css-loader' %}
     {{ 'theme-update.css' | asset_url | stylesheet_tag }}
     {{ 'component-shop-the-look.css' | asset_url | stylesheet_tag }}
@@ -506,6 +507,7 @@
       data-shopify-common="{{ 'shopify_common.js' | shopify_asset_url }}"
       data-shopify-cart="{{ 'jquery.cart.js' | asset_url }}"
       data-pxu-polyfills="{{ 'polyfills.js' | asset_url }}"
+      defer
     ></script>
 
     {% render 'structured-data' %}
@@ -535,10 +537,10 @@
 
     {% comment %}{% include 'iwish_v2' with 'iwishfooter' %}{% endcomment %}
 
-    {{ 'sticky.js' | asset_url | script_tag }}
-    {{ 'component-cart-toast.js' | asset_url | script_tag }}
+    <script src="{{ 'sticky.js' | asset_url }}" defer></script>
+    <script src="{{ 'component-cart-toast.js' | asset_url }}" defer></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js" defer></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css">
     {% include 'social-login' -%}
     <link rel="stylesheet" href="https://gravity-software.com/js/shopify/rondell/jquery.rondellf85.css?v=123">
