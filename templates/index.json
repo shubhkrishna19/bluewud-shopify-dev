@@ -226,6 +226,12 @@
                 "wardrobe",
                 "shoe"
             ]
+        },
+        "hp_video": {
+            "type": "woodenstreet-hp-video"
+        },
+        "testimonials": {
+            "type": "woodenstreet-testimonials"
         }
     },
     "order": [
@@ -236,6 +242,8 @@
         "whisper_lookbook",
         "shop_the_look",
         "whisper_trending",
+        "hp_video",
+        "testimonials",
         "experience_store",
         "whisper_showcase"
     ]

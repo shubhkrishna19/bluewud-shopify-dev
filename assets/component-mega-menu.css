@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 .ws-mega-menu {
   position: relative;
 }
@@ -49,4 +50,31 @@
   font-size: 0.875rem;
   color: rgba(0, 0, 0, 0.72);
   text-decoration: none;
+=======
+/* WoodenStreet MVP: Mega Menu */
+
+.ws-mega-menu{
+  border-bottom:1px solid rgb(var(--color-border-rgb)/.3);
+  background:var(--color-background);
+}
+
+.ws-mega-menu__list{
+  display:flex;
+  gap:1.5rem;
+  list-style:none;
+  margin:0;
+  padding:0.75rem 1.5rem;
+  align-items:center;
+}
+
+.ws-mega-menu__item{
+  position:relative;
+}
+
+.ws-mega-menu__link{
+  text-decoration:none;
+  color:var(--color-foreground);
+  font-weight:600;
+  font-size:0.9rem;
+>>>>>>> origin/pr/30
 }

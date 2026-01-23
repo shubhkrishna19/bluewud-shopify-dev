@@ -18,6 +18,7 @@
 **Context**: We are building **WoodenStreet.com** (Shopify Clone).
 **Your Goal**: Maximize "Green" (Done) tasks in the detailed backlog below.
 
+<<<<<<< HEAD
 ---
 
 ## 🏔️ The Mountain of Tasks (Phase 2: Conversion & Polish) - ALL PHASES COMPLETE ✅
@@ -101,6 +102,23 @@
 | **D-05** | **Auto-Coupon Applier** | [x] Done | High | "Apply Best Coupon" link in the cart summary. |
 
 ---
+=======
+### 🟢 Phase A: The "WoodenStreet" Homepage
+- **A-01 Mega Menu Architecture** | [x] Done (Codex-01)
+- **A-02 "Experience Store" Locator** | [ ] Open
+- **A-03 Hero "Hybrid" Layout** | [ ] Open
+- **A-04 Urgency Countdown Strip** | [/] In Progress (Antigravity)
+- **A-05 Trust Strip v2** | [ ] Open | "20 Lakh+ Customers"
+- **A-06 "Shop The Look" Section** | [ ] Open
+
+### 🟡 Phase B: The Conversion Engine (PDP)
+- **B-01 Visual Variant Swatches** | [x] Done (Codex-01)
+- **B-02 Sticky Footer (Mobile)** | [x] Done (Codex-01) | Fixed bottom bar.
+- **B-03 Detailed "Offers" Box** | [x] Done (Codex-01) | Bank Offers & EMI.
+- **B-04 Delivery Date Estimator** | [x] Done (Codex-01)
+- **B-05 "Compare" Floating Action** | [x] Done (Codex-01)
+- **B-07 Zoom & Pan Gallery** | [x] Done (Codex-01)
+>>>>>>> origin/pr/30
 
 ## 📜 Developer Logs
 - **2026-01-23 (Antigravity)**: **MISSION ACCOMPLISHED.** All 40+ tasks for the WoodenStreet MVP are complete. Final sweep of performance (G-02, G-03), homepage polish (H-07, H-08), and cart UX (D-03, D-04) delivered.
@@ -111,5 +129,48 @@
 
 ---
 
+<<<<<<< HEAD
 ## 🆘 SOS / Q&A
 - [Current]: Project complete. Ready for client review.
+=======
+- 2026-01-21 (Codex-01): Selected task A-01 - Mega Menu Architecture.
+
+
+- 2026-01-21 (Codex-01): Completed task A-01 - Mega Menu Architecture component.
+
+
+- 2026-01-21 (Codex-01): Selected task B-01 - Visual Variant Swatches.
+
+
+- 2026-01-21 (Codex-01): Completed task B-01 - Visual Variant Swatches component.
+
+
+- 2026-01-21 (Codex-01): Selected task B-02 - Sticky Footer (Mobile).
+
+
+- 2026-01-21 (Codex-01): Completed task B-02 - Sticky Footer (Mobile) component.
+
+
+- 2026-01-21 (Codex-01): Selected task B-03 - Detailed "Offers" Box.
+
+
+- 2026-01-21 (Codex-01): Completed task B-03 - Detailed "Offers" Box component.
+
+
+- 2026-01-21 (Codex-01): Selected task B-04 - Delivery Date Estimator.
+
+
+- 2026-01-21 (Codex-01): Completed task B-04 - Delivery Date Estimator component.
+
+
+- 2026-01-21 (Codex-01): Selected task B-05 - Compare Floating Action.
+
+
+- 2026-01-21 (Codex-01): Completed task B-05 - Compare Floating Action component.
+
+
+- 2026-01-21 (Codex-01): Selected task B-07 - Zoom & Pan Gallery.
+
+
+- 2026-01-21 (Codex-01): Completed task B-07 - Zoom & Pan Gallery component.
+>>>>>>> origin/pr/30

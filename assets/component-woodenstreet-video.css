@@ -1,25 +1,44 @@
-/* WoodenStreet HP Video */
+/* WoodenStreet: Homepage Video Section CSS */
 .ws-video {
-    padding: 60px 0;
+    padding: 40px 0;
     background: #fff;
 }
 
 .ws-video__container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
     background: #000;
 }
 
-.animate-pulse {
-    animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+.ws-video__overlay {
+    z-index: 2;
 }
 
-@keyframes pulse {
+.ws-video video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
 
-    0%,
-    100% {
-        transform: translate(-50%, -50%) scale(1);
+@keyframes pulse-custom {
+    0% {
+        transform: scale(1);
+        opacity: 0.8;
     }
 
     50% {
-        transform: translate(-50%, -50%) scale(1.1);
+        transform: scale(1.1);
+        opacity: 1;
     }
+
+    100% {
+        transform: scale(1);
+        opacity: 0.8;
+    }
+}
+
+.animate-pulse {
+    animation: pulse-custom 2s infinite ease-in-out;
 }

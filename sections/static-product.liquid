@@ -43,6 +43,7 @@
     gallery_hover_zoom: section.settings.gallery_hover_zoom
   %}
 </section>
+<<<<<<< HEAD
 
 <!-- WoodenStreet Conversion Modules (PR #30 Integration) -->
 <div class="product-conversion-modules container mx-auto px-4 my-8">
@@ -99,6 +100,13 @@
 
 
 {% render 'ws-sticky-atc', product: product %}
+=======
+{% render 'ws-offers-box', product: product %}
+{% render 'ws-delivery-estimator' %}
+{% render 'ws-zoom-pan-gallery' %}
+{% render 'ws-compare-float' %}
+{% render 'ws-sticky-footer', product: product %}
+>>>>>>> origin/pr/30
 {% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: true, product: product %}
 
 <script>
