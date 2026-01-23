@@ -127,6 +127,9 @@
                 "hotspot_3"
             ]
         },
+        "woodenstreet_testimonials": {
+            "type": "woodenstreet-testimonials"
+        },
         "experience_store": {
             "type": "woodenstreet-experience-store",
             "blocks": {
@@ -236,6 +239,7 @@
         "whisper_lookbook",
         "shop_the_look",
         "whisper_trending",
+        "woodenstreet_testimonials",
         "experience_store",
         "whisper_showcase"
     ]
