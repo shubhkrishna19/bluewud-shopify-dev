@@ -29,13 +29,10 @@
     --color-border-primary: #E5E7EB;
 
     /* Gradients */
-    --gradient-blue: linear-gradient(135deg, #2563eb 0%, #06b6d4 100%);
-    --gradient-dark: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
-
-    /* Spacing & Layout */
-    --margin-md: 1rem;
-    --padding-md: 1rem;
-    --radius-creative: 0.5rem;
+    --gradient-vibrant: linear-gradient(135deg, #C7431A 0%, #E65100 100%);
+    --gradient-soft: linear-gradient(135deg, #FDFBF7 0%, #F5F3ED 100%);
+    --shadow-float: 0 10px 30px -10px rgba(0, 0, 0, 0.15);
+    --transition-premium: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
     --shadow-elegant: 0 10px 40px rgba(0, 0, 0, 0.1);
 
     /* Original Whisper Spacing (Preserved for compatibility) */
@@ -137,6 +134,20 @@ html {
 }
 
 /* Cart Toast Enhancements (D-06) */
+/* Header Polish - Glassmorphism */
+.header-wrapper--glass {
+    background: rgba(255, 255, 255, 0.8) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
+    transition: all 0.4s var(--ws-ease);
+}
+
+.header-wrapper--glass.is-sticky {
+    background: rgba(255, 255, 255, 0.95) !important;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
 .cart-toast {
     align-items: flex-start;
     gap: 14px;
@@ -3661,6 +3672,11 @@ h6 {
 .woodenstreet-card__title a {
     text-decoration: none;
     color: inherit;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
     transition: color 0.2s;
 }
 

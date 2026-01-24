@@ -57,7 +57,8 @@
                         "tag": "BEDROOM",
                         "title": "Beds & Wardrobes",
                         "text": "Create your perfect sanctuary with our elegant bed frames.",
-                        "link": "shopify:\/\/collections\/bed"
+                        "link": "shopify:\/\/collections\/bed",
+                        "link_text": "Shop Bedroom"
                     }
                 },
                 "living": {
@@ -66,7 +67,8 @@
                         "tag": "LIVING ROOM",
                         "title": "TV Units & Tables",
                         "text": "Elevate your living space with sleek and modern designs.",
-                        "link": "shopify:\/\/collections\/living-room"
+                        "link": "shopify:\/\/collections\/living-room",
+                        "link_text": "Shop Living"
                     }
                 },
                 "office": {
@@ -75,7 +77,8 @@
                         "tag": "OFFICE",
                         "title": "Study & Bookshelves",
                         "text": "Boost productivity with ergonomic and organized workspaces.",
-                        "link": "shopify:\/\/collections\/study-tables"
+                        "link": "shopify:\/\/collections\/study-tables",
+                        "link_text": "Shop Office"
                     }
                 }
             },

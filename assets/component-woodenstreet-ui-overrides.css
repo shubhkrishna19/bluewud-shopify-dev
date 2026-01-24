@@ -162,72 +162,125 @@ h6,
 }
 
 /* Product Card - The "Gallery" Look */
-.product-card {
-    border: none !important;
-    background: #fff !important;
-    border-radius: var(--ws-radius-lg) !important;
-    padding: 12px !important;
-    box-shadow: var(--ws-shadow-sm) !important;
-    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) !important;
-    display: flex;
-    flex-direction: column;
+.woodenstreet-card {
+    border: 1px solid #F1F5F9 !important;
+    background: #ffffff !important;
+    border-radius: 8px !important;
+    padding: 0 !important;
+    overflow: hidden;
+    transition: all 0.5s var(--ws-ease) !important;
+    position: relative;
 }
 
-.product-card:hover {
+.woodenstreet-card:hover {
     transform: translateY(-8px);
-    box-shadow: var(--ws-shadow-lg) !important;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08) !important;
+    border-color: var(--ws-orange) !important;
 }
 
-.productitem--image {
-    border-radius: var(--ws-radius-md) !important;
-    overflow: hidden !important;
+.woodenstreet-card__media-wrapper {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: #F8FAFC;
 }
 
-.productitem--title {
-    font-size: 14px !important;
-    font-weight: 700 !important;
-    margin-top: 16px !important;
-    line-height: 1.3 !important;
+.woodenstreet-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s var(--ws-ease);
 }
 
-.product-card__price {
-    margin-top: 4px !important;
+.woodenstreet-card:hover .woodenstreet-card__image {
+    transform: scale(1.1);
 }
 
-.price--main {
+.woodenstreet-card__badge--discount {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(199, 67, 26, 0.9);
+    backdrop-filter: blur(8px);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    z-index: 2;
+}
+
+.woodenstreet-card__wishlist {
+    background: #ffffff !important;
+    border-radius: 50% !important;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1A1A1A;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s var(--ws-ease);
+}
+
+.woodenstreet-card__wishlist:hover {
+    background: var(--ws-orange) !important;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.woodenstreet-card__content {
+    padding: 16px;
+}
+
+.woodenstreet-card__title {
     font-family: 'Poppins', sans-serif !important;
-    font-weight: 800 !important;
-    font-style: italic !important;
-    font-size: 1.1rem !important;
-    color: var(--ws-orange) !important;
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 8px !important;
+    color: #1A1A1A;
 }
 
-/* Badges - Floating Style */
-.productitem__badge--discount {
-    background: var(--ws-black) !important;
-    color: #fff !important;
-    border-radius: 100px !important;
-    padding: 4px 12px !important;
-    font-style: italic !important;
-    font-weight: 800 !important;
-    box-shadow: var(--ws-glow) !important;
+.woodenstreet-card__title a {
+    text-decoration: none;
+    color: inherit;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
 
-/* Product Card Text Visibility Fix (Surgical) */
-.product-card .productitem--title,
-.product-card .productitem--title a,
-.product-card .productitem--price,
-.product-card .productitem--ratings,
-.product-card .price--main,
-.product-card .price--compare-at {
-    color: var(--ws-black) !important;
-    opacity: 1 !important;
-    visibility: visible !important;
+.woodenstreet-card__rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #F59E0B;
 }
 
-.product-card .productitem--ratings {
-    color: #FBBF24 !important;
-    /* Gold for stars */
+.woodenstreet-card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.woodenstreet-card__price {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--ws-orange);
+}
+
+.woodenstreet-card__compare-price {
+    font-size: 0.8rem;
+    text-decoration: line-through;
+    color: #94A3B8;
+    margin-left: 6px;
 }
 
 /* Trust Strip Icon Fix */
