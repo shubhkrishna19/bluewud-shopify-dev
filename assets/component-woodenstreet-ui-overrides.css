@@ -55,17 +55,32 @@ h6,
 }
 
 .header__row--top {
-    background: var(--ws-glass-bg) !important;
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--ws-glass-border) !important;
-    padding: 12px 0 !important;
-    transition: all 0.3s ease;
+    background: #ffffff !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+    padding: 16px 0 !important;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.header__columns {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.header-logo {
+    display: flex;
+    justify-content: center;
 }
 
 .header-logo img {
-    max-height: 44px !important;
-    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.05));
+    max-height: 40px !important;
+    width: auto !important;
 }
 
 /* Animated Ultra-Search */
@@ -198,6 +213,37 @@ h6,
     box-shadow: var(--ws-glow) !important;
 }
 
+/* Product Card Text Visibility Fix (Surgical) */
+.product-card .productitem--title,
+.product-card .productitem--title a,
+.product-card .productitem--price,
+.product-card .productitem--ratings,
+.product-card .price--main,
+.product-card .price--compare-at {
+    color: var(--ws-black) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.product-card .productitem--ratings {
+    color: #FBBF24 !important;
+    /* Gold for stars */
+}
+
+/* Trust Strip Icon Fix */
+.trust-item__icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #FFF6EE;
+    border: 2px solid var(--ws-orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    color: var(--ws-orange);
+}
+
 /* Buttons - Custom Curve */
 .button--primary {
     border-radius: 100px !important;
@@ -217,10 +263,60 @@ h6,
     box-shadow: 0 8px 25px rgba(199, 67, 26, 0.4) !important;
 }
 
-/* Section Spacing Polish */
-.template-index .shopify-section {
-    margin-bottom: 80px !important;
-    padding: 0 !important;
+/* Category Strip Polish */
+.woodenstreet-category-strip {
+    padding: 30px 0 !important;
+    background: #fff !important;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.woodenstreet-category-strip__list {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 10px 0;
+}
+
+.woodenstreet-category-item {
+    flex: 0 0 auto;
+    text-align: center;
+    width: 100px;
+}
+
+.woodenstreet-category-item__image-wrapper {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #fdf5f0;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.woodenstreet-category-item:hover .woodenstreet-category-item__image-wrapper {
+    transform: scale(1.1);
+    border-color: var(--ws-orange);
+}
+
+.woodenstreet-category-item__title {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: var(--ws-black) !important;
+}
+
+/* Global Section Buffer to prevent clumping */
+.shopify-section {
+    margin-bottom: 0px !important;
+    /* Managed by component padding */
+}
+
+.site-main>.shopify-section {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
 }
 
 /* Footer Polish */
@@ -230,7 +326,8 @@ h6,
 
 /* Mobile Optimizations */
 @media screen and (max-width: 768px) {
-    .template-index .shopify-section {
-        margin-bottom: 40px !important;
+    .site-main>.shopify-section {
+        padding-top: 40px !important;
+        padding-bottom: 40px !important;
     }
 }

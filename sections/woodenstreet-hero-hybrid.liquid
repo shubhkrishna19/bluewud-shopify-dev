@@ -1,34 +1,53 @@
-<section class="woodenstreet-hero-hybrid color-{{ section.settings.color_scheme }}">
+<section id="ws-hero-{{ section.id }}" class="woodenstreet-hero-hybrid color-{{ section.settings.color_scheme }}" data-ws-hero>
   <div class="woodenstreet-hero-hybrid__inner">
     <div class="woodenstreet-hero-hybrid__content">
       {% if section.settings.eyebrow != blank %}
-        <p class="woodenstreet-hero-hybrid__eyebrow">{{ section.settings.eyebrow }}</p>
+        <p class="woodenstreet-hero-hybrid__eyebrow" data-aos="fade-up">{{ section.settings.eyebrow }}</p>
       {% endif %}
       {% if section.settings.heading != blank %}
-        <h1 class="woodenstreet-hero-hybrid__heading">{{ section.settings.heading }}</h1>
+        <h1 class="woodenstreet-hero-hybrid__heading" data-aos="fade-up" data-aos-delay="100">
+          {{ section.settings.heading | escape }}
+        </h1>
       {% endif %}
       {% if section.settings.subheading != blank %}
-        <p class="woodenstreet-hero-hybrid__subheading">{{ section.settings.subheading }}</p>
+        <p class="woodenstreet-hero-hybrid__subheading" data-aos="fade-up" data-aos-delay="200">
+          {{ section.settings.subheading | escape }}
+        </p>
       {% endif %}
-      <div class="woodenstreet-hero-hybrid__actions">
+      <div class="woodenstreet-hero-hybrid__actions" data-aos="fade-up" data-aos-delay="300">
         {% if section.settings.primary_button_label != blank %}
           <a class="woodenstreet-hero-hybrid__button button" href="{{ section.settings.primary_button_link }}">
-            {{ section.settings.primary_button_label }}
+            {{ section.settings.primary_button_label | escape }}
           </a>
         {% endif %}
         {% if section.settings.secondary_button_label != blank %}
           <a class="woodenstreet-hero-hybrid__button button button--secondary" href="{{ section.settings.secondary_button_link }}">
-            {{ section.settings.secondary_button_label }}
+            {{ section.settings.secondary_button_label | escape }}
           </a>
         {% endif %}
       </div>
     </div>
-    <div class="woodenstreet-hero-hybrid__media">
+    <div class="woodenstreet-hero-hybrid__media" data-aos="fade-left">
       {% if section.settings.primary_image != blank %}
-        {{ section.settings.primary_image | image_url: width: 1600 | image_tag: class: 'woodenstreet-hero-hybrid__image woodenstreet-hero-hybrid__image--primary', loading: 'lazy', alt: section.settings.primary_image.alt }}
+        <div class="woodenstreet-hero-hybrid__image-wrapper woodenstreet-hero-hybrid__image-wrapper--primary">
+           {{ section.settings.primary_image | image_url: width: 2000 | image_tag: 
+             class: 'woodenstreet-hero-hybrid__image woodenstreet-hero-hybrid__image--primary', 
+             loading: 'eager', 
+             fetchpriority: 'high',
+             widths: '800, 1200, 1600, 2000',
+             alt: section.settings.primary_image.alt 
+           }}
+        </div>
       {% endif %}
       {% if section.settings.secondary_image != blank %}
-        {{ section.settings.secondary_image | image_url: width: 1000 | image_tag: class: 'woodenstreet-hero-hybrid__image woodenstreet-hero-hybrid__image--secondary', loading: 'lazy', alt: section.settings.secondary_image.alt }}
+        <div class="woodenstreet-hero-hybrid__image-wrapper woodenstreet-hero-hybrid__image-wrapper--secondary">
+           {{ section.settings.secondary_image | image_url: width: 1200 | image_tag: 
+             class: 'woodenstreet-hero-hybrid__image woodenstreet-hero-hybrid__image--secondary', 
+             loading: 'lazy', 
+             widths: '400, 800, 1200',
+             alt: section.settings.secondary_image.alt 
+           }}
+        </div>
       {% endif %}
     </div>
   </div>

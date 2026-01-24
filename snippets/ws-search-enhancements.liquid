@@ -5,37 +5,57 @@
 
 <div class="ws-search-suggestions">
   <div class="ws-search-section">
-    <span class="ws-search-title">Trending Searches</span>
-    <div class="ws-trending-tags">
-      <a href="/search?q=Sofa" class="ws-trending-tag">🔥 Sofa Sets</a>
-      <a href="/search?q=Bed" class="ws-trending-tag">Double Beds</a>
-      <a href="/search?q=Dining" class="ws-trending-tag">Dining Tables</a>
-      <a href="/search?q=Shoe Rack" class="ws-trending-tag">Shoe Racks</a>
-      <a href="/search?q=Study Table" class="ws-trending-tag">Study Tables</a>
-      <a href="/search?q=Bookshelf" class="ws-trending-tag">Bookshelves</a>
+    <span class="ws-search-title">Shop by Category</span>
+    <div class="ws-search-categories">
+       {% assign search_cats = 'Sofas,Beds,Dining,Study,Storage,Decor' | split: ',' %}
+       {% for cat in search_cats %}
+         <a href="/collections/{{ cat | handleize }}" class="ws-search-cat">
+           <div class="ws-search-cat__icon">
+             {% capture placeholder_name %}product-{{ forloop.index | plus: 1 }}{% endcapture %}
+             {{ placeholder_name | placeholder_svg_tag: 'ws-search-cat__img' }}
+           </div>
+           <span class="ws-search-cat__title">{{ cat }}</span>
+         </a>
+       {% endfor %}
     </div>
   </div>
 
   <div class="ws-search-section">
-    <span class="ws-search-title">Popular Products</span>
+    <span class="ws-search-title">Trending Searches</span>
+    <div class="ws-trending-tags">
+      <a href="/search?q=Sofa" class="ws-trending-tag">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
+        Sofa Sets
+      </a>
+      <a href="/search?q=Double Bed" class="ws-trending-tag">Double Beds</a>
+      <a href="/search?q=Dining Table" class="ws-trending-tag">Dining Tables</a>
+      <a href="/search?q=Office Chair" class="ws-trending-tag">Office Chairs</a>
+      <a href="/search?q=TV Unit" class="ws-trending-tag">TV Units</a>
+    </div>
+  </div>
+
+  <div class="ws-search-section">
+    <span class="ws-search-title">Popular Selection</span>
     <div class="ws-popular-products">
-      {% comment %} Mocking popular products since we can't easily query collections in snippets without context {% endcomment %}
-      {% for product in collections['all'].products limit: 4 %}
+      {% for product in collections['all'].products limit: 3 %}
         <a href="{{ product.url }}" class="ws-pop-product">
-          <img class="ws-pop-product__image" src="{{ product.featured_image | img_url: '200x200', crop: 'center' }}" alt="{{ product.title }}">
+          <div class="ws-pop-product__media">
+            <img class="ws-pop-product__image" src="{{ product.featured_image | img_url: '240x240', crop: 'center' }}" alt="{{ product.title }}">
+          </div>
           <div class="ws-pop-product__info">
             <div class="ws-pop-product__title">{{ product.title }}</div>
             <div class="ws-pop-product__price">{{ product.price | money }}</div>
           </div>
         </a>
       {% else %}
-         {% comment %} Fallback if collection is empty or not accessible {% endcomment %}
-         {% for i in (1..4) %}
+         {% for i in (1..3) %}
             <a href="#" class="ws-pop-product">
-              {{ 'product-' | append: i | placeholder_svg_tag: 'ws-pop-product__image' }}
+              <div class="ws-pop-product__media">
+                {{ 'product-' | append: i | placeholder_svg_tag: 'ws-pop-product__image' }}
+              </div>
               <div class="ws-pop-product__info">
-                <div class="ws-pop-product__title">Popular Item {{ i }}</div>
-                <div class="ws-pop-product__price">Rs. 12,999</div>
+                <div class="ws-pop-product__title">Premium Furniture Item {{ i }}</div>
+                <div class="ws-pop-product__price">Rs. 24,999</div>
               </div>
             </a>
          {% endfor %}
