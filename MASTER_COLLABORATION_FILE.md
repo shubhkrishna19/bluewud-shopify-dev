@@ -24,6 +24,11 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | R-05 | - [Restoration] Trust Icons | [x] Done | Anti | Low | Fixed giant icons in overrides.css. |
 | R-06 | - [Restoration] Spacing Normalization | [x] Done | Anti | High | Global padding applied with exceptions for Hero/Urgency strips. |
 
+| **P9** | **Phase 9: Mobile & Performance** | [/] In Progress | Anti | CRITICAL | **Ensuring 100/100 Mobile Score** |
+| P9-01 | - [Mobile] Header & Menu UX | [x] Done | Anti | High | Refined animations and touch targets (Step 401). |
+| P9-02 | - [SEO] Meta & Semantic Structure | [ ] Pending | Liquifier | Med | Audit H1 tags and JSON-LD structured data. |
+| P9-03 | - [Perf] Core Web Vitals | [ ] Pending | Anti | High | Optimize CLS on Hero and LCP (font loading). |
+
 ---
 
 ## 🛠 Shared Multi-Agent Strategy
