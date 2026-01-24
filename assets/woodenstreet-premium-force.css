@@ -1,0 +1,76 @@
+/* 
+  WOODENSTREET PREMIUM - FORCE VISIBILITY & HIGH PRIORITY OVERRIDES
+  This file ensures that the premium aesthetic is enforced over theme defaults.
+*/
+
+:root {
+    --ws-orange: #C7431A;
+    --ws-black: #1A1A1A;
+}
+
+/* 1. Header Transparency for Glassmorphism */
+.header-wrapper--glass .header__row {
+    background: transparent !important;
+    border-bottom: none !important;
+}
+
+.header-wrapper--glass {
+    background: rgba(255, 255, 255, 0.7) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* 2. Hero Section Refinement */
+.woodenstreet-hero-hybrid {
+    background: #ffffff !important;
+    position: relative;
+    overflow: hidden;
+}
+
+.woodenstreet-hero-hybrid__content-box {
+    text-align: center;
+    margin: 0 auto;
+}
+
+/* 3. Trust Strip Guarantee */
+.ws-trust-strip__icon svg {
+    display: block !important;
+    width: 28px !important;
+    height: 28px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    stroke: currentColor !important;
+}
+
+/* 4. Lookbook (Shop by Room) Contrast */
+.whisper-lookbook {
+    background: #0F172A !important;
+    /* Dark Slate Blue */
+    color: #ffffff !important;
+}
+
+.whisper-lookbook__card {
+    background: #1e293b !important;
+}
+
+.whisper-lookbook__tag {
+    color: var(--ws-orange) !important;
+}
+
+/* 5. Product Cards Visibility */
+.woodenstreet-card {
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.woodenstreet-card__price {
+    color: var(--ws-orange) !important;
+    opacity: 1 !important;
+}
+
+.woodenstreet-card__title a {
+    color: var(--ws-black) !important;
+}

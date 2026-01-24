@@ -19,10 +19,10 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | **P8** | **Phase 8: Premium Restoration** | [/] Active | Anti | CRITICAL | **Fixing "AI Slop" State** |
 | R-01 | - [Restoration] Header & Void Fix | [/] In Progress | Anti | CRITICAL | Fixing 200px gap and collapsed header. |
 | R-02 | - [Restoration] Contrast Fix | [/] In Progress | Anti | High | Fixing invisible text on product cards. |
-| R-03 | - [Restoration] Lookbook Logic | [ ] Open | Liquifier | Med | Mapping room links and labels correctly. |
-| R-04 | - [Restoration] Showcase Cleanup | [ ] Open | Artist | High | Restore SVG icons and UGC images (fix blobs). |
-| R-05 | - [Restoration] Trust Icons | [ ] Open | Artist | Low | Restore circular SVG trust placeholders. |
-| R-06 | - [Restoration] Spacing Normalization | [ ] Open | Artist | High | Apply 8px grid to all section margins. |
+| R-03 | - [Restoration] Lookbook Logic | [/] In Progress | Anti | Med | Mapping room links and labels correctly. |
+| R-04 | - [Restoration] Showcase Cleanup | [/] In Progress | Anti | High | Restore SVG icons and UGC images (fix blobs). |
+| R-05 | - [Restoration] Trust Icons | [/] In Progress | Anti | Low | Restore circular SVG trust placeholders. |
+| R-06 | - [Restoration] Spacing Normalization | [/] In Progress | Anti | High | Apply 8px grid to all section margins. |
 
 ---
 

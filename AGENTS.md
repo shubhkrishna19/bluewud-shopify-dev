@@ -25,10 +25,10 @@
 | :--- | :--- | :--- | :--- | :--- |
 | **R-01** | **Header & Gap Fix** | [/] In Progress | High | Solve the 200px white void below announcement bar. Fix collapsed header. |
 | **R-02** | **Contrast Restoration** | [/] In Progress | Low | Fix white-on-white text in Trending Now cards. Force Slate-900. |
-| **R-03** | **Lookbook Logic Fix** | [ ] Open | Med | Fix "Shop Bedroom" repeating on all cards. Map links correctly. |
-| **R-04** | **Showcase Blob Cleanup** | [ ] Open | Med | Remove giant black/blue placeholder blobs. Restore SVG icons & UGC images. |
-| **R-05** | **Trust Signal Icons** | [ ] Open | Low | Restore missing SVG icons in the "20 Lakh+ Customers" strip. |
-| **R-06** | **Social Proof Grid** | [ ] Open | Med | Fix #BluewudStyle grid overflow and image scaling. |
+| **R-03** | **Lookbook Logic Fix** | [/] In Progress | Med | Fix "Shop Bedroom" repeating on all cards. Map links correctly. |
+| **R-04** | **Showcase Blob Cleanup** | [/] In Progress | Med | Remove giant black/blue placeholder blobs. Restore SVG icons & UGC images. |
+| **R-05** | **Trust Signal Icons** | [/] In Progress | Low | Restore missing SVG icons in the "20 Lakh+ Customers" strip. |
+| **R-06** | **Social Proof Grid** | [/] In Progress | Med | Fix #BluewudStyle grid overflow and image scaling. |
 
 ### 🧠 Phase I: Mega Brain Integration
 | ID | Task Name | Status | Complexity | Description |
@@ -41,6 +41,7 @@
 ---
 
 ## 📜 Developer Logs
+- **2026-01-25 (Antigravity)**: **EMERGENCY RESTORATION STARTED.** Claimed R-03, R-04, R-05, R-06 for surgical restoration.
 - **2026-01-25 (Antigravity)**: **EMERGENCY RESTORATION STARTED.** Screenshots revealed critical failures: Header collapse, invisible product text, and broken showcase blobs. Switching all available agents to "Premium Restoration" protocol.
 - **2026-01-24 (Antigravity)**: **MEGA BRAIN DEPLOYED.** Cloned 243+ professional skills. Resolved codebase technical debt.
 - **2026-01-23 (Antigravity)**: **MISSION ACCOMPLISHED (MVP).** Initial 40+ tasks complete.

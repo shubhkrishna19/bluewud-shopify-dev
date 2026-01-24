@@ -1,30 +1,42 @@
-{% comment %}
-  Whisper Trust Signals
-  Mirrored from TrustSignals.tsx (ecommerce-app)
-{% endcomment %}
-
-<div class="whisper-trust-signals grid grid-cols-2 lg:grid-cols-4 gap-4 my-6">
-  <div class="flex flex-col items-center text-center p-4 rounded-lg border-2 border-[var(--color-border-primary)] bg-[var(--color-bg-secondary)] hover:shadow-md transition-all duration-300 animate-fade-in-up" style="animation-delay: 100ms;">
-    <span class="text-3xl mb-2">🔒</span>
-    <p class="font-bold text-sm mb-1 text-[var(--color-text-primary)]">Secure Payment</p>
-    <p class="text-[10px] font-bold uppercase tracking-widest text-[var(--color-text-tertiary)]">256-bit SSL encrypted</p>
+<div class="whisper-trust-signals grid grid-cols-2 lg:grid-cols-4 gap-6 my-10">
+  <div class="flex flex-col items-center text-center p-6 rounded-2xl border border-[var(--color-border-primary)] bg-[var(--color-bg-secondary)] hover:shadow-xl transition-all duration-500 animate-fade-in-up group" style="animation-delay: 100ms;">
+    <div class="w-14 h-14 rounded-full bg-blue-50 flex items-center justify-center mb-4 group-hover:bg-blue-600 group-hover:text-white transition-colors duration-300">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-7 h-7">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0110 0v4" />
+      </svg>
+    </div>
+    <p class="font-bold text-base mb-1 text-[var(--color-text-primary)]">Secure Payment</p>
+    <p class="text-xs font-medium text-[var(--color-text-tertiary)] uppercase tracking-widest">256-bit SSL encrypted</p>
   </div>
   
-  <div class="flex flex-col items-center text-center p-4 rounded-lg border-2 border-[var(--color-border-primary)] bg-[var(--color-bg-secondary)] hover:shadow-md transition-all duration-300 animate-fade-in-up" style="animation-delay: 200ms;">
-    <span class="text-3xl mb-2">📦</span>
-    <p class="font-bold text-sm mb-1 text-[var(--color-text-primary)]">Free Shipping</p>
-    <p class="text-[10px] font-bold uppercase tracking-widest text-[var(--color-text-tertiary)]">On orders above ₹10,000</p>
+  <div class="flex flex-col items-center text-center p-6 rounded-2xl border border-[var(--color-border-primary)] bg-[var(--color-bg-secondary)] hover:shadow-xl transition-all duration-500 animate-fade-in-up group" style="animation-delay: 200ms;">
+    <div class="w-14 h-14 rounded-full bg-green-50 flex items-center justify-center mb-4 group-hover:bg-green-600 group-hover:text-white transition-colors duration-300">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-7 h-7">
+        <path d="M5 10l7 7m0 0l7-7m-7 7V3" />
+        <path d="M21 17l-1.5 4.5h-15L3 17" />
+      </svg>
+    </div>
+    <p class="font-bold text-base mb-1 text-[var(--color-text-primary)]">Free Shipping</p>
+    <p class="text-xs font-medium text-[var(--color-text-tertiary)] uppercase tracking-widest">On orders above ₹10,000</p>
   </div>
   
-  <div class="flex flex-col items-center text-center p-4 rounded-lg border-2 border-[var(--color-border-primary)] bg-[var(--color-bg-secondary)] hover:shadow-md transition-all duration-300 animate-fade-in-up" style="animation-delay: 300ms;">
-    <span class="text-3xl mb-2">↩️</span>
-    <p class="font-bold text-sm mb-1 text-[var(--color-text-primary)]">Easy Returns</p>
-    <p class="text-[10px] font-bold uppercase tracking-widest text-[var(--color-text-tertiary)]">30-day return policy</p>
+  <div class="flex flex-col items-center text-center p-6 rounded-2xl border border-[var(--color-border-primary)] bg-[var(--color-bg-secondary)] hover:shadow-xl transition-all duration-500 animate-fade-in-up group" style="animation-delay: 300ms;">
+    <div class="w-14 h-14 rounded-full bg-purple-50 flex items-center justify-center mb-4 group-hover:bg-purple-600 group-hover:text-white transition-colors duration-300">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-7 h-7">
+        <path d="M1 4v6h6" /><path d="M3.51 15a9 9 0 102.13-9.36L1 10" />
+      </svg>
+    </div>
+    <p class="font-bold text-base mb-1 text-[var(--color-text-primary)]">Easy Returns</p>
+    <p class="text-xs font-medium text-[var(--color-text-tertiary)] uppercase tracking-widest">30-day return policy</p>
   </div>
   
-  <div class="flex flex-col items-center text-center p-4 rounded-lg border-2 border-[var(--color-border-primary)] bg-[var(--color-bg-secondary)] hover:shadow-md transition-all duration-300 animate-fade-in-up" style="animation-delay: 400ms;">
-    <span class="text-3xl mb-2">✓</span>
-    <p class="font-bold text-sm mb-1 text-[var(--color-text-primary)]">Quality Assured</p>
-    <p class="text-[10px] font-bold uppercase tracking-widest text-[var(--color-text-tertiary)]">1-year warranty</p>
+  <div class="flex flex-col items-center text-center p-6 rounded-2xl border border-[var(--color-border-primary)] bg-[var(--color-bg-secondary)] hover:shadow-xl transition-all duration-500 animate-fade-in-up group" style="animation-delay: 400ms;">
+    <div class="w-14 h-14 rounded-full bg-orange-50 flex items-center justify-center mb-4 group-hover:bg-orange-600 group-hover:text-white transition-colors duration-300">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="w-7 h-7">
+        <path d="M20 7l-8-4-8 4m16 0l-8 4-8-4m16 0v10l-8 4-8-4V7" />
+      </svg>
+    </div>
+    <p class="font-bold text-base mb-1 text-[var(--color-text-primary)]">Quality Assured</p>
+    <p class="text-xs font-medium text-[var(--color-text-tertiary)] uppercase tracking-widest">1-year warranty</p>
   </div>
 </div>

@@ -70,11 +70,13 @@
               {{ mobile_search }}
             {% when 'menu_drawer' %}
               {%- if section.settings.menu != blank -%}
-                {% render 'whisper-header-drawer', 
-                   linklist: section.settings.menu, 
-                   class: 'header-drawer--mobile',
-                   data_header_drawer_type: 'mobile-drawer'
-                %}
+                <div ref="headerDrawerContainer">
+                  {% render 'whisper-header-drawer', 
+                     linklist: section.settings.menu, 
+                     class: 'header-drawer--mobile',
+                     data_header_drawer_type: 'mobile-drawer'
+                  %}
+                </div>
               {%- endif -%}
             {% when 'actions' %}
               {{ actions }}

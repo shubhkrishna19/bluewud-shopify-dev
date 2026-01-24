@@ -94,6 +94,79 @@ h6,
     transform: scale(1.02);
 }
 
+/* Trust Signals & Stock Indicator icon fixes */
+.whisper-trust-signals svg {
+    width: 28px !important;
+    height: 28px !important;
+}
+
+.whisper-stock-indicator svg {
+    width: 16px !important;
+    height: 16px !important;
+}
+
+.whisper-trust-signals .w-14 {
+    width: 56px !important;
+}
+
+.whisper-trust-signals .h-14 {
+    height: 56px !important;
+}
+
+.whisper-trust-signals .rounded-full {
+    border-radius: 50% !important;
+}
+
+.whisper-trust-signals .flex {
+    display: flex !important;
+}
+
+.whisper-trust-signals .items-center {
+    align-items: center !important;
+}
+
+.whisper-trust-signals .justify-center {
+    justify-content: center !important;
+}
+
+.whisper-stock-indicator .flex {
+    display: flex !important;
+}
+
+.whisper-stock-indicator .items-center {
+    align-items: center !important;
+}
+
+.whisper-stock-indicator .gap-1\.5 {
+    gap: 6px !important;
+}
+
+.whisper-stock-indicator .gap-2 {
+    gap: 8px !important;
+}
+
+/* Product Card Text Visibility Fix (Surgical) */
+.product-card .productitem--title,
+.product-card .productitem--title a,
+.product-card .productitem--price,
+.product-card .productitem--ratings,
+.product-card .price--main,
+.product-card .price--compare-at,
+.woodenstreet-card__title,
+.woodenstreet-card__title a,
+.woodenstreet-card__price,
+.woodenstreet-card__compare-price {
+    color: #1a1a1a !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.product-card .productitem--ratings,
+.woodenstreet-card__rating {
+    color: #FBBF24 !important;
+    /* Gold for stars */
+}
+
 .search-form {
     border: none !important;
     background: #fff !important;

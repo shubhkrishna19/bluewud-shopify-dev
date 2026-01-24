@@ -3,59 +3,46 @@
   Mirrored from UserContentGallery.tsx (ecommerce-app)
 {% endcomment %}
 
-<section class="whisper-ugc-gallery py-16 bg-gradient-to-b from-[var(--color-bg-primary)] to-[var(--color-bg-secondary)] border-t border-[var(--color-border-primary)]" id="whisper-ugc">
-  <div class="container mx-auto px-4">
+<section class="whisper-ugc-gallery" id="whisper-ugc">
+  <div class="whisper-ugc-gallery__container">
     <!-- Header -->
-    <div class="text-center mb-12 animate-fade-in-up">
-      <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-pink-500 to-purple-500 rounded-full mb-4 shadow-lg">
-        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
+    <div class="whisper-ugc-gallery__header">
+      <div class="whisper-ugc-gallery__icon-main">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 9a2 2 0 012-2h.93a2 2 0 001.664-.89l.812-1.22A2 2 0 0110.07 4h3.86a2 2 0 011.664.89l.812 1.22A2 2 0 0018.07 7H19a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V9z" />
+          <path d="M15 13a3 3 0 11-6 0 3 3 0 016 0z" />
         </svg>
       </div>
-      <h2 class="text-4xl font-black text-[var(--color-text-primary)] mb-4 tracking-tighter italic">
-        #BluewudStyle
-      </h2>
-      <p class="text-lg text-[var(--color-text-secondary)] mb-6 font-medium">
-        See how our customers are styling their favorites
-      </p>
-      <button class="whisper-button whisper-button--primary gap-2 bg-gradient-to-r from-pink-500 to-purple-500 hover:from-pink-600 hover:to-purple-600 border-none shadow-xl">
-        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a2 2 0 002 2h12a2 2 0 002-2v-1m-4-8l-4-4m0 0L8 8m4-4v12" />
-        </svg>
+      <h2 class="whisper-ugc-gallery__title">#WoodenStreetStyle</h2>
+      <p class="whisper-ugc-gallery__subtitle">See how our customers are styling their favorites</p>
+      <button class="button button--primary whisper-ugc-gallery__btn">
         Share Your Style
       </button>
     </div>
 
-    <!-- Gallery Grid (Mobile 2-col, Desktop 6-col) -->
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-      {%- for i in (1..6) -%}
-        <div class="group relative aspect-square cursor-pointer overflow-hidden rounded-xl animate-fade-in-up" style="animation-delay: {{ i | times: 100 }}ms;">
-          <!-- Using placehold.co gradient for demo since we can't upload assets yet -->
-          <div class="absolute inset-0 bg-gradient-to-br from-pink-400 to-purple-400 opacity-80 group-hover:scale-110 transition-transform duration-700"></div>
-          
-          <!-- Overlay -->
-          <div class="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-all duration-300 flex items-center justify-center">
-            <div class="opacity-0 group-hover:opacity-100 transition-opacity duration-300 scale-75 group-hover:scale-100 transform text-white flex gap-4">
-              <div class="flex items-center gap-1 font-bold">
-                <svg class="w-5 h-5 fill-current" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" /></svg>
-                <span>{{ i | times: 42 | plus: 100 }}</span>
-              </div>
+    <!-- Gallery Grid -->
+    <div class="whisper-ugc-gallery__grid">
+      {%- assign ugc_images = "https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&q=80&w=600,https://images.unsplash.com/photo-1524758631624-e2822e304c36?auto=format&fit=crop&q=80&w=600,https://images.unsplash.com/photo-1505691723518-36a5ac3be353?auto=format&fit=crop&q=80&w=600,https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&q=80&w=600,https://images.unsplash.com/photo-1538688549343-ad081c72f170?auto=format&fit=crop&q=80&w=600,https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=600" | split: ',' -%}
+      {%- for i in (0..5) -%}
+        <div class="whisper-ugc-gallery__item animate-fade-in-up" style="animation-delay: {{ i | times: 100 }}ms;">
+          <div class="whisper-ugc-gallery__image-container">
+            <img src="{{ ugc_images[i] }}" alt="Customer Style {{ i | plus: 1 }}" class="whisper-ugc-gallery__image" loading="lazy">
+          </div>
+          <div class="whisper-ugc-gallery__overlay">
+            <div class="whisper-ugc-gallery__stats">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" /></svg>
+              <span>{{ i | times: 42 | plus: 100 }}</span>
             </div>
           </div>
-
-          <!-- Username Badge -->
-          <div class="absolute bottom-3 left-3 bg-white/90 dark:bg-black/60 backdrop-blur-md px-3 py-1 rounded-full text-[10px] font-extrabold text-[var(--color-text-primary)] uppercase tracking-wider">
-            @customer_{{ i }}
-          </div>
+          <div class="whisper-ugc-gallery__badge">@customer_{{ i | plus: 1 }}</div>
         </div>
       {%- endfor -%}
     </div>
     
     <!-- Instagram Link -->
-    <div class="mt-12 text-center">
-      <a href="#" class="inline-flex items-center gap-2 text-sm font-bold uppercase tracking-widest text-[var(--color-text-tertiary)] hover:text-[var(--color-accent-primary)] transition-colors">
-        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
+    <div class="whisper-ugc-gallery__footer">
+      <a href="https://instagram.com/bluewud" class="whisper-ugc-gallery__insta-link" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z" /></svg>
         Follow us on Instagram
       </a>
     </div>
