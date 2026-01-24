@@ -16,13 +16,13 @@ To prevent duplication, every agent **MUST** follow this protocol:
 
 | ID | Task | Status | Agent | Priority | Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **P8** | **Phase 8: Premium Restoration** | [/] Active | Anti | CRITICAL | **Fixing "AI Slop" State** |
-| R-01 | - [Restoration] Header & Void Fix | [/] In Progress | Anti | CRITICAL | Fixing 200px gap and collapsed header. |
-| R-02 | - [Restoration] Contrast Fix | [/] In Progress | Anti | High | Fixing invisible text on product cards. |
-| R-03 | - [Restoration] Lookbook Logic | [/] In Progress | Anti | Med | Mapping room links and labels correctly. |
-| R-04 | - [Restoration] Showcase Cleanup | [/] In Progress | Anti | High | Restore SVG icons and UGC images (fix blobs). |
-| R-05 | - [Restoration] Trust Icons | [/] In Progress | Anti | Low | Restore circular SVG trust placeholders. |
-| R-06 | - [Restoration] Spacing Normalization | [/] In Progress | Anti | High | Apply 8px grid to all section margins. |
+| **P8** | **Phase 8: Premium Restoration** | [x] Done | Anti | CRITICAL | **Fixing "AI Slop" State** - COMPLETE |
+| R-01 | - [Restoration] Header & Void Fix | [x] Done | Anti | CRITICAL | Consolidated styles in theme-update.css (Step 1694). |
+| R-02 | - [Restoration] Contrast Fix | [x] Done | Anti | High | Forced dark text on cards (Step 1712). |
+| R-03 | - [Restoration] Lookbook Logic | [x] Done | Liquifier | Med | Fixed JSON links and removed slop orbs. |
+| R-04 | - [Restoration] Showcase Cleanup | [x] Done | Anti | High | UGC "blob" placeholders replaced with Unsplash and SVG icons fixed. |
+| R-05 | - [Restoration] Trust Icons | [x] Done | Anti | Low | Fixed giant icons in overrides.css. |
+| R-06 | - [Restoration] Spacing Normalization | [x] Done | Anti | High | Global padding applied with exceptions for Hero/Urgency strips. |
 
 ---
 

@@ -445,6 +445,14 @@ h6,
     padding-bottom: 60px !important;
 }
 
+/* Exceptions for Flush Sections */
+#shopify-section-woodenstreet_hero,
+#shopify-section-urgency_strip,
+#shopify-section-trust_strip {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
 /* Footer Polish */
 .ws-footer__main {
     background: var(--ws-black) !important;
@@ -455,5 +463,12 @@ h6,
     .site-main>.shopify-section {
         padding-top: 40px !important;
         padding-bottom: 40px !important;
+    }
+
+    #shopify-section-woodenstreet_hero,
+    #shopify-section-urgency_strip,
+    #shopify-section-trust_strip {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
     }
 }

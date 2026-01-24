@@ -1,13 +1,13 @@
 <section class="ws-category-grid" aria-label="Shop by Category">
   <div class="page-width">
-    <div class="ws-category-grid__header">
+    <div class="ws-category-grid__header" data-aos="fade-up">
       <h2 class="ws-category-grid__title uppercase italic font-black text-3xl tracking-tighter">Shop by Room & Category</h2>
       <p class="ws-category-grid__subtitle text-gray-500 font-bold uppercase tracking-widest text-xs">Explore curated collections for every corner</p>
     </div>
 
     <div class="ws-category-grid__items">
       {% for block in section.blocks %}
-        <a href="{{ block.settings.link }}" class="ws-category-card group">
+        <a href="{{ block.settings.link }}" class="ws-category-card group" data-aos="fade-up" data-aos-delay="{{ forloop.index | times: 100 }}">
           <div class="ws-category-card__image-wrapper overflow-hidden rounded-2xl aspect-square relative shadow-md group-hover:shadow-xl transition-all duration-300">
             {% if block.settings.image != blank %}
               <img src="{{ block.settings.image | image_url: width: 400 }}" alt="{{ block.settings.title }}" class="ws-category-card__image object-cover w-full h-full group-hover:scale-110 transition-transform duration-500" loading="lazy">

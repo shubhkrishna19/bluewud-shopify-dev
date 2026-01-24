@@ -6,23 +6,23 @@
 
 <section class="ws-video" aria-label="Product Showcase">
   <div class="page-width">
-    <div class="ws-video__container rounded-[2.5rem] overflow-hidden relative shadow-2xl border-4 border-white">
-      <div class="ws-video__overlay absolute inset-0 bg-gradient-to-t from-black/60 to-transparent z-10 p-12 flex flex-col justify-end">
-        <h2 class="text-4xl md:text-6xl font-black text-white italic uppercase tracking-tighter max-w-2xl leading-[0.9]">Experience Real Furniture in Your Home</h2>
-        <p class="text-white/80 font-bold uppercase tracking-[0.2em] text-xs mt-6 flex items-center gap-4">
-          <span class="w-12 h-[2px] bg-orange-500"></span>
+    <div class="ws-video__container">
+      <div class="ws-video__overlay">
+        <h2 class="ws-video__title">Experience Real Furniture in Your Home</h2>
+        <p class="ws-video__subtitle">
+          <span class="ws-video__subtitle-line"></span>
           Factory Direct Quality
         </p>
       </div>
       
-      <video class="w-full h-[500px] object-cover" autoplay muted loop playsinline>
+      <video class="ws-video__media" autoplay muted loop playsinline>
         <source src="https://cdn.shopify.com/s/files/1/0533/2089/files/placeholder-video.mp4?v=1" type="video/mp4">
         Your browser does not support the video tag.
       </video>
       
-      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
-         <div class="w-24 h-24 bg-white/20 backdrop-blur-md border-2 border-white/50 rounded-full flex items-center justify-center animate-pulse">
-            <svg class="w-8 h-8 text-white fill-current" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+      <div class="ws-video__play-button-wrapper">
+         <div class="ws-video__play-button">
+            <svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
          </div>
       </div>
     </div>
