@@ -3,22 +3,20 @@
   @param filter_group_classes
 {% endcomment %}
 
-<<<<<<< HEAD
 {% liquid
   assign filter_label_downcase = filter.label | downcase
+  assign filter_label_handle = filter.label | handleize
   assign is_color_filter = false
   if filter_label_downcase contains 'color' or filter_label_downcase contains 'colour'
     assign is_color_filter = true
   endif
+
+  assign accordion_priority_groups = 'price,material,discount' | split: ','
+  assign is_priority_group = false
+  if accordion_priority_groups contains filter_label_handle
+    assign is_priority_group = true
+  endif
 %}
-=======
-{% assign filter_label_handle = filter.label | handleize %}
-{% assign accordion_priority_groups = 'price,material,discount' | split: ',' %}
-{% assign is_priority_group = false %}
-{% if accordion_priority_groups contains filter_label_handle %}
-  {% assign is_priority_group = true %}
-{% endif %}
->>>>>>> origin/pr/40
 
 <div
   class="

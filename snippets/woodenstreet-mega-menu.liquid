@@ -1,38 +1,45 @@
-<nav class="woodenstreet-mega-menu" aria-label="Primary">
-  <ul class="woodenstreet-mega-menu__list">
+<nav class="ws-mega-menu" aria-label="Primary Navigation">
+  <ul class="ws-mega-menu__list">
     {% for link in menu.links %}
-      <li class="woodenstreet-mega-menu__item {% if link.links.size > 0 %}has-children{% endif %}">
+      <li class="ws-mega-menu__item {% if link.links.size > 0 %}has-children{% endif %}">
         <a
-          class="woodenstreet-mega-menu__link {% if link.active %}is-active{% endif %}"
+          class="ws-mega-menu__link {% if link.active %}is-active{% endif %}"
           href="{{ link.url }}"
           {% if link.active %}aria-current="page"{% endif %}
         >
           {{ link.title | escape }}
+          {% if link.links.size > 0 %}
+            <span class="ws-mega-menu__caret">
+              <svg viewBox="0 0 10 6" width="10" height="6" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path d="M1 1L5 5L9 1" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          {% endif %}
         </a>
 
         {% if link.links.size > 0 %}
-          <div class="woodenstreet-mega-menu__dropdown">
-            <div class="woodenstreet-mega-menu__dropdown-inner">
-              <ul class="woodenstreet-mega-menu__submenu">
+          <div class="ws-mega-menu__panel">
+            <div class="ws-mega-menu__container">
+              <div class="ws-mega-menu__columns">
                 {% for child in link.links %}
-                  <li class="woodenstreet-mega-menu__submenu-item">
-                    <a class="woodenstreet-mega-menu__submenu-link" href="{{ child.url }}">
-                      {{ child.title | escape }}
-                    </a>
+                  <div class="ws-mega-menu__column">
+                    <h3 class="ws-mega-menu__column-title">
+                      <a href="{{ child.url }}">{{ child.title | escape }}</a>
+                    </h3>
                     {% if child.links.size > 0 %}
-                      <ul class="woodenstreet-mega-menu__subsubmenu">
+                      <ul class="ws-mega-menu__link-list">
                         {% for grandchild in child.links %}
-                          <li class="woodenstreet-mega-menu__subsubmenu-item">
-                            <a class="woodenstreet-mega-menu__subsubmenu-link" href="{{ grandchild.url }}">
+                          <li class="ws-mega-menu__link-item">
+                            <a class="ws-mega-menu__link-sub" href="{{ grandchild.url }}">
                               {{ grandchild.title | escape }}
                             </a>
                           </li>
                         {% endfor %}
                       </ul>
                     {% endif %}
-                  </li>
+                  </div>
                 {% endfor %}
-              </ul>
+              </div>
             </div>
           </div>
         {% endif %}

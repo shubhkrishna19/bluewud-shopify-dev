@@ -1,80 +1,138 @@
-<<<<<<< HEAD
-.ws-mega-menu {
-  position: relative;
+/* WoodenStreet MVP: Premium Mega Menu */
+:root {
+  --ws-orange: #C7431A;
+  --ws-black: #121212;
+  --ws-text-muted: #64748B;
+  --ws-header-bg: rgba(255, 255, 255, 0.85);
 }
 
-.ws-mega-menu__trigger {
-  display: inline-flex;
+.ws-mega-menu {
+  position: relative;
+  background: transparent;
+}
+
+.ws-mega-menu__list {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
   align-items: center;
-  gap: 6px;
-  font-size: 0.875rem;
+}
+
+.ws-mega-menu__item {
+  position: static;
+  /* For full-width panel */
+}
+
+.ws-mega-menu__link {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  text-decoration: none;
+  color: var(--ws-black);
+  font-family: 'Poppins', sans-serif;
   font-weight: 600;
-  cursor: pointer;
+  font-size: 0.95rem;
+  padding: 1.5rem 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  letter-spacing: 0.01em;
+}
+
+.ws-mega-menu__link:hover {
+  color: var(--ws-orange);
+}
+
+.ws-mega-menu__caret {
+  transition: transform 0.3s ease;
+  opacity: 0.6;
+}
+
+.ws-mega-menu__item:hover .ws-mega-menu__caret {
+  transform: rotate(180deg);
+  opacity: 1;
 }
 
 .ws-mega-menu__panel {
   position: absolute;
   left: 0;
+  right: 0;
   top: 100%;
-  width: min(100%, 1100px);
-  background: #fff;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 12px;
-  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.12);
-  padding: 20px;
-  display: grid;
-  gap: 16px;
+  width: 100%;
+  background: #ffffff;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+  padding: 3rem 0;
+  z-index: 1000;
+  visibility: hidden;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.ws-mega-menu__item:hover .ws-mega-menu__panel {
+  visibility: visible;
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.ws-mega-menu__container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
 .ws-mega-menu__columns {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 16px;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2.5rem;
 }
 
 .ws-mega-menu__column-title {
-  font-size: 0.875rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
   font-weight: 700;
-  margin: 0 0 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 1.25rem;
+  color: var(--ws-black);
+}
+
+.ws-mega-menu__column-title a {
+  text-decoration: none;
+  color: inherit;
 }
 
 .ws-mega-menu__link-list {
   list-style: none;
   padding: 0;
   margin: 0;
-  display: grid;
-  gap: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }
 
-.ws-mega-menu__link {
-  font-size: 0.875rem;
-  color: rgba(0, 0, 0, 0.72);
+.ws-mega-menu__link-sub {
+  font-family: 'Inter', sans-serif;
+  font-size: 0.9rem;
+  color: var(--ws-text-muted);
   text-decoration: none;
-=======
-/* WoodenStreet MVP: Mega Menu */
-
-.ws-mega-menu{
-  border-bottom:1px solid rgb(var(--color-border-rgb)/.3);
-  background:var(--color-background);
+  transition: all 0.2s ease;
+  display: block;
 }
 
-.ws-mega-menu__list{
-  display:flex;
-  gap:1.5rem;
-  list-style:none;
-  margin:0;
-  padding:0.75rem 1.5rem;
-  align-items:center;
+.ws-mega-menu__link-sub:hover {
+  color: var(--ws-orange);
+  transform: translateX(4px);
 }
 
-.ws-mega-menu__item{
-  position:relative;
-}
-
-.ws-mega-menu__link{
-  text-decoration:none;
-  color:var(--color-foreground);
-  font-weight:600;
-  font-size:0.9rem;
->>>>>>> origin/pr/30
+/* Glassmorphism for the actual header wrapper */
+.header-wrapper--glass {
+  background: var(--ws-header-bg) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1100;
 }
