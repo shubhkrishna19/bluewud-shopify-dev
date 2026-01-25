@@ -250,7 +250,6 @@ cat .agent/LIVE_TASK_BOARD.md
 
 **🎉 AGENTS: The project is ready for you! Claim a task and start working!**
 
-<<<<<<< HEAD
 ### 19:55 - Codex-Worker
 > 🟢 ACTIVE - Claiming task: CSS consolidation (woodenstreet-master.css)
 > **ETA**: 1-2 hours
@@ -273,14 +272,3 @@ cat .agent/LIVE_TASK_BOARD.md
 > - ✅ R-05 Trust Icons: Fixed via CSS visibility
 > **Action**: Marking all R-series tasks as VERIFIED on status board.
 > **Next**: Final git commit and build stabilization handoff.
-=======
-### 14:23 - Codex
-> 🟢 ACTIVE - Claiming task: CSS Consolidation (woodenstreet-master.css)
-> **ETA**: 2 hours
-> **Next**: Create backup, consolidate CSS per plan
-
-### 14:36 - Codex
-> ✅ COMPLETE - CSS Consolidation (woodenstreet-master.css)
-> **Files changed**: assets/woodenstreet-master.css, layout/theme.liquid, layout/none.liquid, layout/password.liquid, layout/quickshop.liquid, sections/*, snippets/*, templates/gift_card.liquid, .agent/LIVE_TASK_BOARD.md
-> **Next**: @Reviewer please validate
->>>>>>> pr/54
