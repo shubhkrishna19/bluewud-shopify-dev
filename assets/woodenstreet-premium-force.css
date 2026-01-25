@@ -8,6 +8,30 @@
     --ws-black: #1A1A1A;
 }
 
+/* R-01: HEADER GAP FIX - Remove excessive spacing */
+.announcement-bar {
+    margin-bottom: 0 !important;
+    padding: 8px 0 !important;
+}
+
+.header-section,
+.whisper-header,
+header-component {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+.site-header-main {
+    padding-top: 0 !important;
+}
+
+/* Fix any shopify-section spacing that creates gaps */
+.shopify-section.site-announcement,
+.shopify-section.header-section {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
 /* 1. Header Transparency for Glassmorphism */
 .header-wrapper--glass .header__row {
     background: transparent !important;
@@ -26,6 +50,7 @@
     background: #ffffff !important;
     position: relative;
     overflow: hidden;
+    margin-top: 0 !important;
 }
 
 .woodenstreet-hero-hybrid__content-box {
@@ -72,5 +97,30 @@
 }
 
 .woodenstreet-card__title a {
+    color: var(--ws-black) !important;
+}
+
+/* R-04: SHOWCASE BLOB CLEANUP - Remove black backgrounds */
+.whisper-showcase {
+    background: #ffffff !important;
+}
+
+.whisper-showcase__panel {
+    background: transparent !important;
+}
+
+.whisper-showcase__split {
+    background: transparent !important;
+}
+
+/* Ensure UGC gallery has proper background */
+.whisper-ugc-gallery {
+    background: #F9FAFB !important;
+}
+
+/* Fix any dark overlays or blobs */
+.whisper-showcase__title,
+.whisper-showcase__eyebrow,
+.whisper-showcase__reviews-title {
     color: var(--ws-black) !important;
 }
