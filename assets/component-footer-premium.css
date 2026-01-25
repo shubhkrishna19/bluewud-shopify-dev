@@ -1,0 +1,204 @@
+/* ==========================================================================
+   WOODENSTREET FOOTER - PREMIUM STYLING
+   Replaces Tailwind utility classes with efficient CSS
+   ========================================================================== */
+
+.ws-footer {
+    font-family: var(--font-body-family, sans-serif);
+}
+
+/* Trust Strip */
+.ws-footer__trust-strip {
+    background-color: #F9FAFB;
+    border-top: 1px solid #E5E7EB;
+    border-bottom: 1px solid #E5E7EB;
+    padding: 48px 0;
+}
+
+.ws-footer__trust-strip .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+}
+
+@media (min-width: 768px) {
+    .ws-footer__trust-strip .grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.ws-trust-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.ws-trust-item__icon {
+    margin-bottom: 16px;
+    color: #EA580C;
+    /* Orange 600 */
+}
+
+.ws-trust-item__icon svg {
+    width: 40px;
+    height: 40px;
+}
+
+.ws-trust-item h4 {
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: -0.025em;
+    margin: 0;
+    color: #111827;
+}
+
+.ws-trust-item p {
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    font-weight: 700;
+    color: #9CA3AF;
+    /* Gray 400 */
+    margin: 4px 0 0;
+}
+
+/* Main Footer */
+.ws-footer__main {
+    background-color: #232323;
+    color: #ffffff;
+    padding: 80px 0;
+}
+
+.ws-footer__main .grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 48px;
+}
+
+@media (min-width: 768px) {
+    .ws-footer__main .grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+/* Brand Column */
+.ws-footer-brand h3 {
+    font-size: 1.5rem;
+    font-weight: 900;
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: -0.05em;
+    margin-bottom: 24px;
+    color: #ffffff;
+}
+
+.ws-footer-brand p {
+    font-size: 0.75rem;
+    color: #9CA3AF;
+    line-height: 1.625;
+    max-width: 20rem;
+}
+
+.ws-footer-social {
+    display: flex;
+    gap: 16px;
+    margin-top: 32px;
+}
+
+.ws-footer-social a {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid #4B5563;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.875rem;
+}
+
+.ws-footer-social a:hover {
+    background-color: #EA580C;
+    border-color: #EA580C;
+}
+
+/* Footer Links */
+.ws-footer-links h4 {
+    font-size: 0.75rem;
+    font-weight: 900;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 24px;
+    border-bottom: 1px solid #1F2937;
+    padding-bottom: 8px;
+    color: #ffffff;
+}
+
+.ws-footer-links ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.ws-footer-links a {
+    font-size: 0.75rem;
+    color: #9CA3AF;
+    text-decoration: none;
+    transition: color 0.2s;
+}
+
+.ws-footer-links a:hover {
+    color: #EA580C;
+}
+
+/* Footer Bottom */
+.ws-footer-bottom {
+    margin-top: 80px;
+    padding-top: 32px;
+    border-top: 1px solid #1F2937;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+}
+
+@media (min-width: 768px) {
+    .ws-footer-bottom {
+        flex-direction: row;
+        justify-content: space-between;
+    }
+}
+
+.ws-footer-bottom p {
+    font-size: 0.625rem;
+    color: #6B7280;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin: 0;
+}
+
+.ws-footer-payments {
+    display: flex;
+    gap: 16px;
+    filter: grayscale(100%);
+    opacity: 0.5;
+    transition: all 0.3s;
+}
+
+.ws-footer-payments:hover {
+    filter: grayscale(0%);
+    opacity: 1;
+}
+
+.ws-footer-payments img {
+    height: 16px;
+    width: auto;
+}

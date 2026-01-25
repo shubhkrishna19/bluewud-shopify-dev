@@ -9,8 +9,9 @@
 **Welcome!** Read these files in order:
 1. `.agent/README_AGENTS.md` - **START HERE** (onboarding guide)
 2. `.agent/LIVE_TASK_BOARD.md` - This file (current status)
-3. `.agent/tasks/css-consolidation-plan.md` - First priority task
-4. `.agent/workflows/agent-collaboration.md` - How we work together
+3. `.agent/tasks/phase-10-polish.md` - **Current Phase** (Pick tasks from here)
+4. `.agent/tasks/mobile-performance-plan.md` - Previous Phase (Reference)
+5. `.agent/workflows/agent-collaboration.md` - How we work together
 
 ---
 
@@ -295,3 +296,20 @@ cat .agent/LIVE_TASK_BOARD.md
 > - CSS Consolidated into `woodenstreet-master.css`.
 > - Feature branches deleted.
 > **Next**: Proceeding to Final Build Verification (Phase 3 of Plan).
+
+### 03:35 - Antigravity (Performance Lead)
+> 🚀 PHASE 9 STARTED - Mobile & Performance
+> **Focus**: Perfect SEO, Mobile UX, and Core Web Vitals.
+> **Status**:
+> - ✅ P9-01 Mobile Menu: Verified `whisper-header-drawer.liquid`.
+> - 🔄 P9-02 SEO: Audited `theme.liquid` and `structured-data.liquid`. Added Organization schema.
+> - ⏳ P9-03 Performance: Next up, auditing font loading and image LCP.
+### 03:52 - Antigravity (Performance Lead)
+> ✅ PHASE 9 COMPLETE - Mobile & Performance Base
+> **Output**: 
+> - Optimized `theme.liquid` fonts (preconnect + link tags).
+> - Added Organization Schema & Social Links to `structured-data.liquid`.
+> - Fixed missing CSS for `ws-press` and `ws-category-strip` in `woodenstreet-master.css`.
+> **Next Phase**: 🚀 PREPARING PHASE 10 (Polish & Pre-Launch)
+> **Action**: Created `.agent/tasks/phase-10-polish.md` with 7 fresh tasks for the next agent run.
+> **Instruction**: Next agents, please verify mobile menu animations and pick tasks from Phase 10 board.

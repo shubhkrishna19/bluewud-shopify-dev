@@ -321,7 +321,7 @@
     {% endif %}
     {% if product.vendor %}
       "brand": {
-        "@type": "Thing",
+        "@type": "Brand",
         "name": {{ product.vendor | json }}
       },
     {% endif %}
@@ -357,6 +357,32 @@
     "@context": "http://schema.org",
     "@type": "WebSite",
     "name": "{{ shop.name }}",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "{{ shop.url }}/search?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    },
     "url": "{{ shop.url }}"
+  }
+</script>
+
+<script type="application/ld+json">
+  {
+    "@context": "http://schema.org",
+    "@type": "Organization",
+    "name": "{{ shop.name }}",
+    "url": "{{ shop.url }}",
+    "logo": "https:{{ settings.logo | image_url: width: 500 }}",
+    "sameAs": [
+      "{{ settings.social_twitter_link }}",
+      "{{ settings.social_facebook_link }}",
+      "{{ settings.social_pinterest_link }}",
+      "{{ settings.social_instagram_link }}",
+      "{{ settings.social_tiktok_link }}",
+      "{{ settings.social_tumblr_link }}",
+      "{{ settings.social_snapchat_link }}",
+      "{{ settings.social_youtube_link }}",
+      "{{ settings.social_vimeo_link }}"
+    ]
   }
 </script>
