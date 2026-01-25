@@ -1,81 +1,51 @@
-/*!
- * WoodenStreet Master Stylesheet
- * Version: 1.0.0
- * Last Updated: 2026-01-25
- * 
- * SINGLE SOURCE OF TRUTH for WoodenStreet custom styles
- * Consolidates all woodenstreet-* and whisper-* component CSS
- * 
- * Structure:
- * 1. CSS Variables
- * 2. Global Styles
- * 3. Header & Navigation
- * 4. Hero Section
- * 5. Category Components
- * 6. Product Components
- * 7. Trust & Social Proof
- * 8. Footer
- * 9. Utilities & Overrides
- * 10. Responsive
- */
+/* ==========================================================================
+   WOODENSTREET MASTER STYLESHEET
+   Consolidated: Global, Hero, Footer, Premium Overrides
+   Updated: 2026-01-23
+   ========================================================================== */
 
-/* ========================================
-   1. CSS VARIABLES
-   ======================================== */
+/* --------------------------------------------------------------------------
+   1. GLOBAL DESIGN SYSTEM
+   -------------------------------------------------------------------------- */
+/* WoodenStreet Global Design System (Typography & Spacing) */
+
 :root {
-  /* Brand Colors */
-  --ws-orange: #C7431A;
-  --ws-orange-hover: #A63614;
-  --ws-black: #121212;
-  --ws-text-muted: #64748B;
-  --ws-gray-light: #F4F4F4;
-  --ws-border-light: rgba(0, 0, 0, 0.06);
+    /* Fonts */
+    --font-heading-family: "Poppins", sans-serif;
+    --font-body-family: "Inter", sans-serif;
 
-  /* Typography */
-  --font-heading: 'Poppins', sans-serif;
-  --font-body: 'Inter', sans-serif;
+    /* Spacing (8px Grid) */
+    --space-1: 4px;
+    --space-2: 8px;
+    --space-3: 12px;
+    --space-4: 16px;
+    --space-5: 20px;
+    --space-6: 24px;
+    --space-8: 32px;
+    --space-10: 40px;
+    --space-12: 48px;
+    --space-16: 64px;
+    --space-20: 80px;
 
-  /* Spacing (8px grid) */
-  --space-1: 8px;
-  --space-2: 16px;
-  --space-3: 24px;
-  --space-4: 32px;
-  --space-5: 40px;
-  --space-6: 48px;
-  --space-8: 64px;
+    /* Colors (Enforcement) */
+    --woodenstreet-orange: #C7431A;
+    --woodenstreet-orange-hover: #a63614;
+    --woodenstreet-black: #232323;
+    --woodenstreet-gray: #f4f4f4;
 
-  /* Layout */
-  --page-width: 1400px;
-  --header-height: 80px;
-
-  /* Animations */
-  --ws-ease-premium: cubic-bezier(0.23, 1, 0.32, 1);
-  --ws-transition-fast: 0.2s;
-  --ws-transition-normal: 0.3s;
-  --ws-transition-slow: 0.4s;
-
-  /* Shadows */
-  --ws-shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
-  --ws-shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
-  --ws-shadow-lg: 0 10px 40px -10px rgba(0, 0, 0, 0.12);
+    /* Hero Specific Variables */
+    --ws-ease: cubic-bezier(0.23, 1, 0.32, 1);
+    --ws-shadow-lg: 0 30px 60px rgba(0, 0, 0, 0.12);
+    --ws-font-heading: 'Poppins', sans-serif;
+    --ws-font-body: 'Inter', sans-serif;
 }
 
-/* ========================================
-   2. GLOBAL STYLES
-   ======================================== */
-
-/* Ensure consistent box-sizing */
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-/* Typography Base */
+/* Typography Enforcement */
 body {
-  font-family: var(--font-body);
-  color: var(--ws-black);
-  line-height: 1.6;
+    font-family: var(--font-body-family);
+    color: #333;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
 }
 
 h1,
@@ -83,409 +53,527 @@ h2,
 h3,
 h4,
 h5,
-h6 {
-  font-family: var(--font-heading);
-  font-weight: 700;
-  line-height: 1.2;
-  margin: 0;
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+    font-family: var(--font-heading-family);
+    font-weight: 700;
+    color: var(--woodenstreet-black);
+    margin-bottom: var(--space-4);
+    line-height: 1.2;
 }
 
-/* Layout Utilities */
-.page-width {
-  max-width: var(--page-width);
-  margin: 0 auto;
-  padding: 0 var(--space-3);
-}
-
-@media (min-width: 750px) {
-  .page-width {
-    padding: 0 var(--space-5);
-  }
-}
-
-/* ========================================
-   3. HEADER & NAVIGATION
-   ======================================== */
-
-/* Glassmorphism Header */
-.header-wrapper--glass {
-  background: rgba(255, 255, 255, 0.9) !important;
-  backdrop-filter: blur(20px) saturate(180%);
-  -webkit-backdrop-filter: blur(20px) saturate(180%);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.03);
-  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.03);
-  transition: background 0.3s ease, padding 0.3s ease, box-shadow 0.3s ease;
-}
-
-header-component[data-sticky-state="active"] .header-wrapper--glass {
-  background: rgba(255, 255, 255, 0.95) !important;
-  box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.08);
-  padding-top: 10px !important;
-  padding-bottom: 10px !important;
-}
-
-/* Mega Menu Styles */
-.ws-mega-menu {
-  position: relative;
-  background: transparent;
-  height: 100%;
-}
-
-.ws-mega-menu__list {
-  display: flex;
-  gap: 3rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  align-items: center;
-  height: 100%;
-}
-
-.ws-mega-menu__item {
-  position: static;
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-
-.ws-mega-menu__link {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-  text-decoration: none;
-  color: var(--ws-black);
-  font-family: var(--font-heading);
-  font-weight: 500;
-  font-size: 0.9375rem;
-  padding: 0.5rem 0;
-  transition: color var(--ws-transition-normal) var(--ws-ease-premium);
-  letter-spacing: 0.02em;
-  position: relative;
-}
-
-.ws-mega-menu__link::after {
-  content: '';
-  position: absolute;
-  bottom: 0px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: var(--ws-orange);
-  transition: width var(--ws-transition-normal) var(--ws-ease-premium);
-}
-
-.ws-mega-menu__item:hover .ws-mega-menu__link {
-  color: var(--ws-orange);
-}
-
-.ws-mega-menu__item:hover .ws-mega-menu__link::after {
-  width: 100%;
-}
-
-.ws-mega-menu__panel {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 100%;
-  width: 100%;
-  background: #ffffff;
-  border-top: 1px solid rgba(0, 0, 0, 0.04);
-  box-shadow: var(--ws-shadow-lg);
-  padding: 3.5rem 0;
-  z-index: 1000;
-  visibility: hidden;
-  opacity: 0;
-  transform: translateY(15px);
-  transition: all var(--ws-transition-slow) var(--ws-ease-premium);
-  pointer-events: none;
-}
-
-.ws-mega-menu__item:hover .ws-mega-menu__panel {
-  visibility: visible;
-  opacity: 1;
-  transform: translateY(0);
-  pointer-events: auto;
-}
-
-.ws-mega-menu__container {
-  max-width: var(--page-width);
-  margin: 0 auto;
-  padding: 0 40px;
-}
-
-.ws-mega-menu__columns {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 3rem;
-}
-
-.ws-mega-menu__column-title {
-  font-family: var(--font-heading);
-  font-size: 0.8125rem;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  margin: 0 0 1.5rem;
-  color: var(--ws-black);
-  border-bottom: 1px solid var(--ws-border-light);
-  padding-bottom: 0.75rem;
-  display: inline-block;
-  width: 100%;
-}
-
-.ws-mega-menu__link-sub {
-  font-family: var(--font-body);
-  font-size: 0.9375rem;
-  color: var(--ws-text-muted);
-  text-decoration: none;
-  transition: all var(--ws-transition-fast) cubic-bezier(0.2, 0.8, 0.2, 1);
-  display: inline-block;
-}
-
-.ws-mega-menu__link-sub:hover {
-  color: var(--ws-orange);
-  transform: translateX(6px);
-  font-weight: 500;
-}
-
-/* Mobile Menu */
-.menu-drawer {
-  background-color: #ffffff;
-  border-right: 1px solid var(--ws-border-light);
-  box-shadow: 2px 0 12px rgba(0, 0, 0, 0.05);
-}
-
-.menu-drawer__animated-element {
-  opacity: 0;
-  transform: translateY(10px);
-  transition: opacity var(--ws-transition-slow) var(--ws-ease-premium),
-    transform var(--ws-transition-slow) var(--ws-ease-premium);
-  transition-delay: calc(var(--menu-drawer-animation-index) * 0.05s);
-}
-
-#Details-menu-drawer-container[open] .menu-drawer__animated-element {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.menu-drawer__menu-item {
-  font-family: var(--font-heading);
-  font-weight: 500;
-  padding: 1rem 1.5rem;
-  border-bottom: 1px solid var(--ws-border-light);
-  transition: background-color var(--ws-transition-fast) ease;
-}
-
-.menu-drawer__menu-item:active {
-  background-color: rgba(0, 0, 0, 0.03);
-}
-
-.menu-drawer__menu-item--active {
-  color: var(--ws-orange);
-  background-color: rgba(199, 67, 26, 0.04);
-}
-
-/* ========================================
-   4. HERO SECTION
-   ======================================== */
-
-.ws-hero {
-  position: relative;
-  min-height: 500px;
-  display: flex;
-  align-items: center;
-  overflow: hidden;
-}
-
-.ws-hero__content {
-  position: relative;
-  z-index: 2;
-  max-width: 600px;
-}
-
-.ws-hero__eyebrow {
-  font-size: 0.875rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--ws-orange);
-  margin-bottom: var(--space-2);
-}
-
-.ws-hero__heading {
-  font-size: clamp(2rem, 5vw, 3.5rem);
-  margin-bottom: var(--space-3);
-  line-height: 1.1;
-}
-
-.ws-hero__subheading {
-  font-size: 1.125rem;
-  color: var(--ws-text-muted);
-  margin-bottom: var(--space-4);
-}
-
-.ws-hero__buttons {
-  display: flex;
-  gap: var(--space-2);
-  flex-wrap: wrap;
-}
-
-/* ========================================
-   5. CATEGORY COMPONENTS
-   ======================================== */
-
-.ws-category-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: var(--space-3);
-  padding: var(--space-5) 0;
-}
-
-.ws-category-card {
-  position: relative;
-  overflow: hidden;
-  border-radius: 8px;
-  transition: transform var(--ws-transition-normal) var(--ws-ease-premium),
-    box-shadow var(--ws-transition-normal) var(--ws-ease-premium);
-}
-
-.ws-category-card:hover {
-  transform: translateY(-4px);
-  box-shadow: var(--ws-shadow-md);
-}
-
-/* ========================================
-   6. PRODUCT COMPONENTS
-   ======================================== */
-
-/* Force readable product card text */
-.product-card .productitem--title,
-.product-card .price--main {
-  color: var(--ws-black) !important;
-  opacity: 1 !important;
-}
-
-/* ========================================
-   7. TRUST & SOCIAL PROOF
-   ======================================== */
-
-.ws-trust-strip {
-  padding: var(--space-4) 0;
-  background: var(--ws-gray-light);
-}
-
-.ws-trust-strip__grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-  gap: var(--space-4);
-}
-
-.ws-trust-strip__item {
-  display: flex;
-  align-items: center;
-  gap: var(--space-2);
-}
-
-.ws-trust-strip__icon {
-  width: 48px;
-  height: 48px;
-  flex-shrink: 0;
-  color: var(--ws-orange);
-}
-
-.ws-trust-strip__icon svg {
-  width: 100%;
-  height: 100%;
-}
-
-.ws-trust-strip__heading {
-  font-size: 1.125rem;
-  font-weight: 700;
-  margin: 0 0 0.25rem;
-}
-
-.ws-trust-strip__subheading {
-  font-size: 0.875rem;
-  color: var(--ws-text-muted);
-  margin: 0;
-}
-
-/* ========================================
-   8. FOOTER
-   ======================================== */
-
-.ws-footer {
-  background: var(--ws-black);
-  color: #ffffff;
-  padding: var(--space-6) 0 var(--space-4);
-}
-
-/* ========================================
-   9. UTILITIES & OVERRIDES
-   ======================================== */
-
-/* Header Gap Fix */
-.announcement-bar {
-  margin-bottom: 0 !important;
-}
-
+/* Section Spacing - Clean up the layout */
 .shopify-section {
-  margin-bottom: 0 !important;
+    margin-bottom: var(--space-16);
 }
 
-/* Text Utilities */
-.text-center {
-  text-align: center;
+@media screen and (max-width: 768px) {
+    .shopify-section {
+        margin-bottom: var(--space-10);
+    }
+}
+
+/* Utility Classes */
+.page-width {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 var(--space-5);
 }
 
 .text-orange {
-  color: var(--ws-orange);
+    color: var(--woodenstreet-orange) !important;
 }
 
-/* Spacing Utilities */
-.mt-4 {
-  margin-top: var(--space-4);
+.bg-orange {
+    background-color: var(--woodenstreet-orange) !important;
 }
 
-.mb-4 {
-  margin-bottom: var(--space-4);
+/* Buttons Standardization */
+.button,
+.btn {
+    font-family: var(--font-body-family);
+    border-radius: 4px;
+    /* Sharp but friendly */
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    padding: 12px 24px;
+    transition: all 0.3s ease;
 }
 
-.py-5 {
-  padding-top: var(--space-5);
-  padding-bottom: var(--space-5);
+.button--primary {
+    background-color: var(--woodenstreet-orange);
+    color: #fff;
+    border: 1px solid var(--woodenstreet-orange);
 }
 
-/* ========================================
-   10. RESPONSIVE
-   ======================================== */
-
-@media (max-width: 749px) {
-  .ws-mega-menu {
-    display: none;
-  }
-
-  .ws-hero__heading {
-    font-size: 2rem;
-  }
-
-  .ws-category-grid {
-    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-    gap: var(--space-2);
-  }
-
-  .ws-trust-strip__grid {
-    grid-template-columns: 1fr;
-    gap: var(--space-3);
-  }
+.button--primary:hover {
+    background-color: var(--woodenstreet-orange-hover);
+    border-color: var(--woodenstreet-orange-hover);
 }
 
-@media (min-width: 750px) and (max-width: 1024px) {
-  .ws-mega-menu__list {
-    gap: 2rem;
-  }
+/* Inputs */
+input[type="text"],
+input[type="email"],
+input[type="number"],
+input[type="password"],
+textarea,
+select {
+    border-radius: 4px;
+    border: 1px solid #ddd;
+    padding: 10px 14px;
+    font-family: var(--font-body-family);
+}
 
-  .ws-mega-menu__columns {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  }
+input:focus,
+textarea:focus,
+select:focus {
+    border-color: var(--woodenstreet-black);
+    outline: none;
+}
+
+/* --------------------------------------------------------------------------
+   2. HERO SECTION STYLES
+   -------------------------------------------------------------------------- */
+/* WoodenStreet Hero Hybrid Styles - Premium Refinement */
+
+.woodenstreet-hero-hybrid {
+    padding: clamp(60px, 10vw, 140px) 0;
+    background: #ffffff;
+    overflow: hidden;
+    position: relative;
+    /* Ensure overrides from premium force work if needed, but keeping clean here */
+}
+
+.woodenstreet-hero-hybrid::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 70% 30%, rgba(199, 67, 26, 0.03) 0%, transparent 60%);
+    z-index: 0;
+}
+
+.woodenstreet-hero-hybrid__content-box {
+    max-width: 700px;
+    padding: 60px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 2;
+}
+
+.woodenstreet-hero-hybrid__inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 700px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.woodenstreet-hero-hybrid__eyebrow {
+    font-family: var(--ws-font-body);
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--ws-orange, #C7431A);
+    margin: 0 0 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.woodenstreet-hero-hybrid__eyebrow::before {
+    content: '';
+    width: 24px;
+    height: 1.5px;
+    background: currentColor;
+}
+
+.woodenstreet-hero-hybrid__heading {
+    font-family: var(--ws-font-heading);
+    font-size: clamp(2.5rem, 5vw, 4.25rem);
+    font-weight: 800;
+    line-height: 1.05;
+    color: var(--ws-black, #1A1A1A);
+    margin: 0 0 24px;
+    letter-spacing: -0.03em;
+}
+
+.woodenstreet-hero-hybrid__subheading {
+    font-family: var(--ws-font-body);
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    line-height: 1.6;
+    color: var(--ws-text-muted, #44546A);
+    margin: 0 0 48px;
+    max-width: 520px;
+    opacity: 0.85;
+}
+
+.woodenstreet-hero-hybrid__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.woodenstreet-hero-hybrid__button {
+    padding: 20px 48px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    border-radius: 4px;
+    /* Premium Squared-off radius */
+    text-decoration: none;
+    transition: all 0.4s var(--ws-ease);
+    display: inline-block;
+}
+
+.woodenstreet-hero-hybrid__button:not(.button--secondary) {
+    background-color: var(--ws-orange, #C7431A);
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(199, 67, 26, 0.2);
+}
+
+.woodenstreet-hero-hybrid__button:not(.button--secondary):hover {
+    background-color: var(--ws-black);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.woodenstreet-hero-hybrid__button.button--secondary {
+    background-color: transparent;
+    color: var(--ws-black);
+    border: 1.5px solid rgba(0, 0, 0, 0.15);
+}
+
+.woodenstreet-hero-hybrid__button.button--secondary:hover {
+    border-color: var(--ws-black);
+    transform: translateY(-4px);
+}
+
+.woodenstreet-hero-hybrid__media {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.woodenstreet-hero-hybrid__image-wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+.woodenstreet-hero-hybrid__image-wrapper--primary {
+    width: 90%;
+    aspect-ratio: 4/5;
+    border-radius: 2px;
+    box-shadow: var(--ws-shadow-lg);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 8% 100%);
+}
+
+.woodenstreet-hero-hybrid__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s var(--ws-ease);
+}
+
+.woodenstreet-hero-hybrid__image-wrapper--secondary {
+    position: absolute;
+    left: -15%;
+    bottom: 10%;
+    width: 55%;
+    aspect-ratio: 1/1;
+    border: 12px solid #fff;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+.woodenstreet-hero-hybrid:hover .woodenstreet-hero-hybrid__image {
+    transform: scale(1.08);
+}
+
+@media screen and (max-width: 989px) {
+    .woodenstreet-hero-hybrid {
+        padding: 60px 0;
+    }
+
+    .woodenstreet-hero-hybrid__inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 60px;
+        padding: 0 24px;
+    }
+
+    .woodenstreet-hero-hybrid__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .woodenstreet-hero-hybrid__actions {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .woodenstreet-hero-hybrid__button {
+        width: 100%;
+    }
+
+    .woodenstreet-hero-hybrid__heading {
+        font-size: clamp(2.5rem, 10vw, 3.5rem);
+    }
+
+    .woodenstreet-hero-hybrid__media {
+        min-height: auto;
+        margin-top: 20px;
+    }
+
+    .woodenstreet-hero-hybrid__image--primary {
+        width: 100%;
+    }
+
+    .woodenstreet-hero-hybrid__image--secondary {
+        width: 60%;
+        bottom: -20px;
+        right: 0;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   3. FOOTER STYLES
+   -------------------------------------------------------------------------- */
+/* WoodenStreet Footer Styles - H-06 */
+.site-footer-wrapper.footer-section {
+    background-color: #232323;
+    /* WoodenStreet Dark Footer */
+    color: #ffffff;
+    padding-top: 60px;
+    padding-bottom: 30px;
+}
+
+.site-footer-block-title {
+    color: #ffffff;
+    font-family: var(--font-heading-family, "Poppins", sans-serif);
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+/* Underline decoration for titles similar to WS */
+.site-footer-block-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: #C7431A;
+    /* WoodenStreet Orange */
+}
+
+.site-footer-block-content a {
+    color: #cccccc;
+    text-decoration: none;
+    transition: color 0.3s, padding-left 0.3s;
+    font-size: 0.9rem;
+    display: inline-block;
+}
+
+.site-footer-block-content a:hover {
+    color: #C7431A;
+    padding-left: 5px;
+}
+
+/* Newsletter Styles */
+.newsletter-form-group {
+    display: flex;
+    gap: 0;
+}
+
+.newsletter-input {
+    border-radius: 4px 0 0 4px;
+    border: 1px solid #444;
+    background: #333;
+    color: #fff;
+    padding: 10px;
+}
+
+.newsletter-submit {
+    background: #C7431A;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    color: #fff;
+    padding: 0 20px;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.newsletter-submit:hover {
+    background: #a63614;
+}
+
+.site-footer-credits {
+    color: #888;
+    font-size: 0.8rem;
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+}
+
+/* Mobile Accordion Overrides */
+@media screen and (max-width: 767px) {
+    .site-footer-block-title {
+        border-bottom: 1px solid #333;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+    }
+
+    .site-footer-block-title::after {
+        display: none;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   4. PREMIUM FORCE / OVERRIDES
+   -------------------------------------------------------------------------- */
+/* 
+  WOODENSTREET PREMIUM - FORCE VISIBILITY & HIGH PRIORITY OVERRIDES
+  This file ensures that the premium aesthetic is enforced over theme defaults.
+*/
+
+/* R-01: HEADER GAP FIX - Remove excessive spacing */
+.announcement-bar {
+    margin-bottom: 0 !important;
+    padding: 8px 0 !important;
+}
+
+.header-section,
+.whisper-header,
+header-component {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+.site-header-main {
+    padding-top: 0 !important;
+}
+
+/* Fix any shopify-section spacing that creates gaps */
+.shopify-section.site-announcement,
+.shopify-section.header-section {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* 1. Header Transparency for Glassmorphism */
+.header-wrapper--glass .header__row {
+    background: transparent !important;
+    border-bottom: none !important;
+}
+
+.header-wrapper--glass {
+    background: rgba(255, 255, 255, 0.7) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* 2. Hero Section Refinement */
+.woodenstreet-hero-hybrid {
+    background: #ffffff !important;
+    position: relative;
+    overflow: hidden;
+    margin-top: 0 !important;
+}
+
+.woodenstreet-hero-hybrid__content-box {
+    text-align: center;
+    margin: 0 auto;
+}
+
+/* 3. Trust Strip Guarantee */
+.ws-trust-strip__icon svg {
+    display: block !important;
+    width: 28px !important;
+    height: 28px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    stroke: currentColor !important;
+}
+
+/* 4. Lookbook (Shop by Room) Contrast */
+.whisper-lookbook {
+    background: #0F172A !important;
+    /* Dark Slate Blue */
+    color: #ffffff !important;
+}
+
+.whisper-lookbook__card {
+    background: #1e293b !important;
+    /* Slightly lighter for cards */
+}
+
+.whisper-lookbook__tag {
+    color: var(--ws-orange) !important;
+}
+
+/* 5. Product Cards Visibility */
+.woodenstreet-card {
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.woodenstreet-card__price {
+    color: var(--ws-orange) !important;
+    opacity: 1 !important;
+}
+
+.woodenstreet-card__title a {
+    color: var(--ws-black) !important;
+}
+
+/* R-04: SHOWCASE BLOB CLEANUP - Remove black backgrounds */
+.whisper-showcase {
+    background: #ffffff !important;
+}
+
+.whisper-showcase__panel {
+    background: transparent !important;
+}
+
+.whisper-showcase__split {
+    background: transparent !important;
+}
+
+/* Ensure UGC gallery has proper background */
+.whisper-ugc-gallery {
+    background: #F9FAFB !important;
+}
+
+/* Fix any dark overlays or blobs */
+.whisper-showcase__title,
+.whisper-showcase__eyebrow,
+.whisper-showcase__reviews-title {
+    color: var(--ws-black) !important;
 }

@@ -73,11 +73,8 @@
     {% render 'social-meta-tags', twitter_handle: twitter_handle %}
 
     <link rel="preload" href="{{ settings.type_menu | font_url }}" as="font" crossorigin="anonymous">
-    <link rel="preload" as="style" href="{{ 'theme.css' | asset_url }}">
-    <link rel="preload" as="style" href="{{ 'component-variant-swatches.css' | asset_url }}">
-    <link rel="preload" as="style" href="{{ 'component-sticky-footer.css' | asset_url }}">
-    <link rel="preload" as="style" href="{{ 'component-cart-drawer.css' | asset_url }}">
     {% render 'critical-css' %}
+<<<<<<< HEAD
     {% render 'agent-css-loader' %}
     
     {%- comment -%} WoodenStreet Master CSS - Consolidated custom styles {%- endcomment -%}
@@ -108,6 +105,9 @@
     {{ 'woodenstreet-premium-force.css' | asset_url | stylesheet_tag }}
     {%- endcomment -%}
     
+=======
+    {{ 'woodenstreet-master.css' | asset_url | stylesheet_tag }}
+>>>>>>> origin/pr/53
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {% comment %} Inject theme-object begin{% endcomment %}
     <script>
@@ -183,7 +183,6 @@
 
     {% comment %}Inject theme-object end{% endcomment %}
 
-    {{ 'paymentfont.scss.css' | asset_url | stylesheet_tag }}
 
     <!-- whatsapp -->
 
@@ -559,7 +558,6 @@
     </script>
 
     {% unless settings.reduce_animations %}
-      {{ 'ripple.css' | asset_url | stylesheet_tag }}
     {% endunless %}
 
     <script
