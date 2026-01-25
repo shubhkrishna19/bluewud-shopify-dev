@@ -36,7 +36,7 @@
 | **I-01** | **Skill Inventory Audit** | [x] Done | Low | Analyze cloned skills and map relevance to project. |
 | **I-02** | **Swarm Workflow Setup** | [x] Done | Med | Defined subagent roles: Liquifier, Artist, Logic. |
 | **I-03** | **Premium UI Audit** | [x] Done | High | Review entire site using `ui-ux-pro-max` guidelines. |
-| **I-04** | **Advanced Search Overlay** | [ ] Open | High | Replace standard search with high-polish suggestions modal. |
+| **I-04** | **Advanced Search Overlay** | [/] In Progress | High | Replace standard search with high-polish suggestions modal. |
 
 ---
 
@@ -52,4 +52,3 @@
 ## 🆘 SOS / Q&A
 - **Issue**: The current "Whisper" sections are bleeding raw Tailwind classes that don't match the Empire Theme's compiled CSS.
 - **Solution**: Forcing standard Liquid/CSS overrides in `woodenstreet-ui-overrides.css`.
-
