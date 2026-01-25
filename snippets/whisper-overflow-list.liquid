@@ -27,7 +27,6 @@
 >
   <template shadowrootmode="open">
     {% comment %} CSS assuming it is in assets or handled globally {% endcomment %}
-    {{ 'overflow-list.css' | asset_url | stylesheet_tag }}
 
     <ul part="list">
       <slot></slot>
