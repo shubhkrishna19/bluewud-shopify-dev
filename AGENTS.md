@@ -23,11 +23,11 @@
 ### 🚨 EMERGENCY: UI Restoration (Fixed "AI Slop" State)
 | ID | Task Name | Status | Complexity | Description |
 | :--- | :--- | :--- | :--- | :--- |
-| **R-01** | **Header & Gap Fix** | [/] In Progress | High | Solve the 200px white void below announcement bar. Fix collapsed header. |
-| **R-02** | **Contrast Restoration** | [/] In Progress | Low | Fix white-on-white text in Trending Now cards. Force Slate-900. |
+| **R-01** | **Header & Gap Fix** | [x] Done | High | Solve the 200px white void below announcement bar. Fix collapsed header. |
+| **R-02** | **Contrast Restoration** | [x] Done | Low | Fix white-on-white text in Trending Now cards. Force Slate-900. |
 | **R-03** | **Lookbook Logic Fix** | [/] In Progress | Med | Fix "Shop Bedroom" repeating on all cards. Map links correctly. |
-| **R-04** | **Showcase Blob Cleanup** | [/] In Progress | Med | Remove giant black/blue placeholder blobs. Restore SVG icons & UGC images. |
-| **R-05** | **Trust Signal Icons** | [/] In Progress | Low | Restore missing SVG icons in the "20 Lakh+ Customers" strip. |
+| **R-04** | **Showcase Blob Cleanup** | [x] Done | Med | Remove giant black/blue placeholder blobs. Restore SVG icons & UGC images. |
+| **R-05** | **Trust Signal Icons** | [x] Done | Low | Restore missing SVG icons in the "20 Lakh+ Customers" strip. |
 | **R-06** | **Social Proof Grid** | [/] In Progress | Med | Fix #BluewudStyle grid overflow and image scaling. |
 
 ### 🧠 Phase I: Mega Brain Integration
