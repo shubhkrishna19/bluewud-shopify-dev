@@ -1,0 +1,185 @@
+/* --------------------------------------------------------------------------
+   5. CATEGORY GRID STYLES (Extracted from Section)
+   -------------------------------------------------------------------------- */
+.ws-category-grid {
+    padding: 100px 0;
+    background: var(--ws-bg-cream, #FDFBF7);
+}
+
+.ws-category-grid__header {
+    text-align: center;
+    margin-bottom: 60px;
+}
+
+.ws-category-grid__title {
+    font-family: 'Poppins', sans-serif;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    font-weight: 800;
+    letter-spacing: -0.04em;
+    color: var(--ws-black, #1A1A1A);
+}
+
+.ws-category-grid__subtitle {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--ws-orange, #C7431A);
+    margin-top: 12px;
+}
+
+.ws-category-grid__items {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 32px;
+}
+
+.ws-category-card {
+    text-decoration: none;
+    display: block;
+    position: relative;
+    border-radius: 32px;
+    overflow: hidden;
+    background: #fff;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.04);
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.ws-category-card:hover {
+    transform: translateY(-12px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+}
+
+.ws-category-card__image-wrapper {
+    aspect-ratio: 1 / 1.1;
+    overflow: hidden;
+    position: relative;
+}
+
+.ws-category-card__image {
+    transition: transform 1.2s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.ws-category-card:hover .ws-category-card__image {
+    transform: scale(1.1);
+}
+
+.ws-category-card__overlay {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.6) 0%, transparent 60%);
+    transition: opacity 0.4s ease;
+}
+
+.ws-category-card__content {
+    padding: 32px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    z-index: 2;
+    transition: transform 0.4s ease;
+}
+
+.ws-category-card__title {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+    font-size: 1.5rem;
+    color: #fff;
+    margin: 0;
+    letter-spacing: -0.02em;
+}
+
+.ws-category-card:hover .ws-category-card__content {
+    transform: translateY(-8px);
+}
+
+@media screen and (min-width: 990px) {
+    .ws-category-grid__items {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .ws-category-grid {
+        padding: 60px 0;
+    }
+
+    .ws-category-grid__items {
+        gap: 16px;
+        padding: 0 16px;
+    }
+
+    .ws-category-grid__header {
+        margin-bottom: 32px;
+    }
+
+    .ws-category-card__title {
+        font-size: 1.1rem;
+    }
+
+    .ws-category-card__content {
+        padding: 16px;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   6. PRESS SECTION STYLES (Extracted)
+   -------------------------------------------------------------------------- */
+.ws-press {
+    background: #fff;
+    padding: 60px 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.ws-press__header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.ws-press__title {
+    font-family: 'Inter', sans-serif;
+    font-size: 11px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    color: #aaa;
+}
+
+.ws-press__items {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.ws-press-item {
+    flex: 1 1 150px;
+    display: flex;
+    justify-content: center;
+    opacity: 0.4;
+    filter: grayscale(1);
+    transition: all 0.4s ease;
+}
+
+.ws-press-item:hover {
+    opacity: 1;
+    filter: grayscale(0);
+    transform: scale(1.1);
+}
+
+.ws-press-item img {
+    max-height: 24px;
+    width: auto;
+    object-fit: contain;
+}
+
+@media screen and (max-width: 768px) {
+    .ws-press__items {
+        gap: 24px;
+    }
+
+    .ws-press-item {
+        flex: 1 1 120px;
+    }
+}

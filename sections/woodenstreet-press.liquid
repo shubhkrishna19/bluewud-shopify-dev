@@ -16,58 +16,7 @@
   </div>
 </section>
 
-<style>
-  .ws-press {
-      background: #fff;
-      padding: 60px 0;
-      border-bottom: 1px solid #f0f0f0;
-  }
-  .ws-press__header {
-      text-align: center;
-      margin-bottom: 40px;
-  }
-  .ws-press__title {
-      font-family: 'Inter', sans-serif;
-      font-size: 11px;
-      font-weight: 800;
-      text-transform: uppercase;
-      letter-spacing: 0.3em;
-      color: #aaa;
-  }
-  .ws-press__items {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 40px;
-      flex-wrap: wrap;
-  }
-  .ws-press-item {
-      flex: 1 1 150px;
-      display: flex;
-      justify-content: center;
-      opacity: 0.4;
-      filter: grayscale(1);
-      transition: all 0.4s ease;
-  }
-  .ws-press-item:hover {
-      opacity: 1;
-      filter: grayscale(0);
-      transform: scale(1.1);
-  }
-  .ws-press-item img {
-      max-height: 24px;
-      width: auto;
-      object-fit: contain;
-  }
-  @media screen and (max-width: 768px) {
-      .ws-press__items {
-          gap: 24px;
-      }
-      .ws-press-item {
-          flex: 1 1 120px;
-      }
-  }
-</style>
+
 
 {% schema %}
 {

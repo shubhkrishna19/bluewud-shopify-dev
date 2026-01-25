@@ -74,16 +74,15 @@
 
     <link rel="preload" href="{{ settings.type_menu | font_url }}" as="font" crossorigin="anonymous">
     {% render 'critical-css' %}
-<<<<<<< HEAD
     {% render 'agent-css-loader' %}
+    
+    {%- comment -%} Empire/Whisper Base Styles {%- endcomment -%}
+    {{ 'theme-update.css' | asset_url | stylesheet_tag }}
     
     {%- comment -%} WoodenStreet Master CSS - Consolidated custom styles {%- endcomment -%}
     {{ 'woodenstreet-master.css' | asset_url | stylesheet_tag }}
     
-    {%- comment -%} Empire Theme Core {%- endcomment -%}
-    {{ 'theme-update.css' | asset_url | stylesheet_tag }}
-    
-    {%- comment -%} Essential Component CSS (Empire theme components) {%- endcomment -%}
+    {%- comment -%} Essential Component CSS (Empire theme components - Keep these) {%- endcomment -%}
     {{ 'component-shop-the-look.css' | asset_url | stylesheet_tag }}
     {{ 'component-offers-box.css' | asset_url | stylesheet_tag }}
     {{ 'component-discount-badge.css' | asset_url | stylesheet_tag }}
@@ -94,7 +93,7 @@
     {{ 'component-compare-float.css' | asset_url | stylesheet_tag }}
     {{ 'component-zoom-pan.css' | asset_url | stylesheet_tag }}
     
-    {%- comment -%} Deprecated - Consolidated into woodenstreet-master.css
+    {%- comment -%} DEPRECATED: Consolidated into woodenstreet-master.css
     {{ 'component-woodenstreet-footer.css' | asset_url | stylesheet_tag }}
     {{ 'component-woodenstreet-global.css' | asset_url | stylesheet_tag }}
     {{ 'home-polish.css' | asset_url | stylesheet_tag }}
@@ -103,11 +102,9 @@
     {{ 'component-mega-menu.css' | asset_url | stylesheet_tag }}
     {{ 'component-woodenstreet-ui-overrides.css' | asset_url | stylesheet_tag }}
     {{ 'woodenstreet-premium-force.css' | asset_url | stylesheet_tag }}
+    {{ 'component-trust-strip-v2.css' | asset_url | stylesheet_tag }}
+    {{ 'component-woodenstreet-video.css' | asset_url | stylesheet_tag }}
     {%- endcomment -%}
-    
-=======
-    {{ 'woodenstreet-master.css' | asset_url | stylesheet_tag }}
->>>>>>> origin/pr/53
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {% comment %} Inject theme-object begin{% endcomment %}
     <script>
