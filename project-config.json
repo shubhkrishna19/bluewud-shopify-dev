@@ -18,7 +18,7 @@
         "quickshop": "Empire Logic"
     },
     "asset_mappings": {
-        "main_css": "assets/theme-update.css",
+        "main_css": "assets/woodenstreet-master.css",
         "main_js_bridge": "assets/section-hydration.js"
     },
     "dependencies": {
