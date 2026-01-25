@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 /*!
  * WoodenStreet Master Stylesheet
  * Version: 1.0.0
@@ -43949,17 +43950,27 @@ header-component {
  }  
  
 =======
+=======
+>>>>>>> pr/57
 /*!
  * WoodenStreet Master Stylesheet
  * Version: 1.0.0
  * Last Updated: 2026-01-25
  *
+<<<<<<< HEAD
  * SINGLE SOURCE OF TRUTH - Do not create additional CSS files
  * All styles consolidated from multiple sources
  */
 
 
 /* ==== Source: assets/theme.css ==== */
+=======
+ * SINGLE SOURCE OF TRUTH - Do not create additional CSS files.
+ * Consolidated from theme.css, theme-update.css, and WoodenStreet component styles.
+ */
+
+/* ===== theme.css ===== */
+>>>>>>> pr/57
 @font-face {
   font-family: Poppins;
   font-weight: 400;
@@ -68943,7 +68954,11 @@ body {
   }
 }
 
+<<<<<<< HEAD
 /* ==== Source: assets/theme-update.css ==== */
+=======
+/* ===== theme-update.css ===== */
+>>>>>>> pr/57
 /**
  * Whisper theme bridge for Empire
  * This file defines design tokens and helper classes to support Whisper components.
@@ -72768,7 +72783,11 @@ h6 {
     }
 }
 
+<<<<<<< HEAD
 /* ==== Source: assets/component-woodenstreet-global.css ==== */
+=======
+/* ===== component-woodenstreet-global.css ===== */
+>>>>>>> pr/57
 /* WoodenStreet Global Design System (Typography & Spacing) */
 
 :root {
@@ -72893,7 +72912,775 @@ select:focus {
     outline: none;
 }
 
+<<<<<<< HEAD
 /* ==== Source: assets/component-woodenstreet-ui-overrides.css ==== */
+=======
+/* ===== component-woodenstreet-footer.css ===== */
+/* WoodenStreet Footer Styles - H-06 */
+.site-footer-wrapper.footer-section {
+    background-color: #232323;
+    /* WoodenStreet Dark Footer */
+    color: #ffffff;
+    padding-top: 60px;
+    padding-bottom: 30px;
+}
+
+.site-footer-block-title {
+    color: #ffffff;
+    font-family: var(--font-heading-family, "Poppins", sans-serif);
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+/* Underline decoration for titles similar to WS */
+.site-footer-block-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: #C7431A;
+    /* WoodenStreet Orange */
+}
+
+.site-footer-block-content a {
+    color: #cccccc;
+    text-decoration: none;
+    transition: color 0.3s, padding-left 0.3s;
+    font-size: 0.9rem;
+    display: inline-block;
+}
+
+.site-footer-block-content a:hover {
+    color: #C7431A;
+    padding-left: 5px;
+}
+
+/* Newsletter Styles */
+.newsletter-form-group {
+    display: flex;
+    gap: 0;
+}
+
+.newsletter-input {
+    border-radius: 4px 0 0 4px;
+    border: 1px solid #444;
+    background: #333;
+    color: #fff;
+    padding: 10px;
+}
+
+.newsletter-submit {
+    background: #C7431A;
+    border: none;
+    border-radius: 0 4px 4px 0;
+    color: #fff;
+    padding: 0 20px;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.newsletter-submit:hover {
+    background: #a63614;
+}
+
+.site-footer-credits {
+    color: #888;
+    font-size: 0.8rem;
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    border-top: 1px solid #333;
+}
+
+/* Mobile Accordion Overrides */
+@media screen and (max-width: 767px) {
+    .site-footer-block-title {
+        border-bottom: 1px solid #333;
+        padding-bottom: 15px;
+        margin-bottom: 15px;
+    }
+
+    .site-footer-block-title::after {
+        display: none;
+    }
+}
+
+/* ===== component-woodenstreet-hero.css ===== */
+/* WoodenStreet Hero Hybrid Styles - Premium Refinement */
+:root {
+    --ws-ease: cubic-bezier(0.23, 1, 0.32, 1);
+    --ws-shadow-lg: 0 30px 60px rgba(0, 0, 0, 0.12);
+    --ws-font-heading: 'Poppins', sans-serif;
+    --ws-font-body: 'Inter', sans-serif;
+}
+
+.woodenstreet-hero-hybrid {
+    padding: clamp(60px, 10vw, 140px) 0;
+    background: #ffffff;
+    overflow: hidden;
+    position: relative;
+}
+
+.woodenstreet-hero-hybrid::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 70% 30%, rgba(199, 67, 26, 0.03) 0%, transparent 60%);
+    z-index: 0;
+}
+
+.woodenstreet-hero-hybrid__content-box {
+    max-width: 700px;
+    padding: 60px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 40px 100px rgba(0, 0, 0, 0.1);
+    position: relative;
+    z-index: 2;
+}
+
+.woodenstreet-hero-hybrid__inner {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 700px;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 40px;
+    position: relative;
+    z-index: 1;
+}
+
+.woodenstreet-hero-hybrid__eyebrow {
+    font-family: var(--ws-font-body);
+    text-transform: uppercase;
+    letter-spacing: 0.3em;
+    font-size: 0.75rem;
+    font-weight: 800;
+    color: var(--ws-orange, #C7431A);
+    margin: 0 0 24px;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.woodenstreet-hero-hybrid__eyebrow::before {
+    content: '';
+    width: 24px;
+    height: 1.5px;
+    background: currentColor;
+}
+
+.woodenstreet-hero-hybrid__heading {
+    font-family: var(--ws-font-heading);
+    font-size: clamp(2.5rem, 5vw, 4.25rem);
+    font-weight: 800;
+    line-height: 1.05;
+    color: var(--ws-black, #1A1A1A);
+    margin: 0 0 24px;
+    letter-spacing: -0.03em;
+}
+
+.woodenstreet-hero-hybrid__subheading {
+    font-family: var(--ws-font-body);
+    font-size: clamp(1rem, 1.5vw, 1.25rem);
+    line-height: 1.6;
+    color: var(--ws-text-muted, #44546A);
+    margin: 0 0 48px;
+    max-width: 520px;
+    opacity: 0.85;
+}
+
+.woodenstreet-hero-hybrid__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.woodenstreet-hero-hybrid__button {
+    padding: 20px 48px;
+    font-size: 0.8rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    border-radius: 4px;
+    /* Premium Squared-off radius */
+    text-decoration: none;
+    transition: all 0.4s var(--ws-ease);
+    display: inline-block;
+}
+
+.woodenstreet-hero-hybrid__button:not(.button--secondary) {
+    background-color: var(--ws-orange, #C7431A);
+    color: #fff;
+    box-shadow: 0 10px 30px rgba(199, 67, 26, 0.2);
+}
+
+.woodenstreet-hero-hybrid__button:not(.button--secondary):hover {
+    background-color: var(--ws-black);
+    transform: translateY(-4px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+}
+
+.woodenstreet-hero-hybrid__button.button--secondary {
+    background-color: transparent;
+    color: var(--ws-black);
+    border: 1.5px solid rgba(0, 0, 0, 0.15);
+}
+
+.woodenstreet-hero-hybrid__button.button--secondary:hover {
+    border-color: var(--ws-black);
+    transform: translateY(-4px);
+}
+
+.woodenstreet-hero-hybrid__media {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.woodenstreet-hero-hybrid__image-wrapper {
+    overflow: hidden;
+    position: relative;
+}
+
+.woodenstreet-hero-hybrid__image-wrapper--primary {
+    width: 90%;
+    aspect-ratio: 4/5;
+    border-radius: 2px;
+    box-shadow: var(--ws-shadow-lg);
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 8% 100%);
+}
+
+.woodenstreet-hero-hybrid__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s var(--ws-ease);
+}
+
+.woodenstreet-hero-hybrid__image-wrapper--secondary {
+    position: absolute;
+    left: -15%;
+    bottom: 10%;
+    width: 55%;
+    aspect-ratio: 1/1;
+    border: 12px solid #fff;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+    z-index: 2;
+}
+
+.woodenstreet-hero-hybrid:hover .woodenstreet-hero-hybrid__image {
+    transform: scale(1.08);
+}
+
+@media screen and (max-width: 989px) {
+    .woodenstreet-hero-hybrid {
+        padding: 60px 0;
+    }
+
+    .woodenstreet-hero-hybrid__inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 60px;
+        padding: 0 24px;
+    }
+
+    .woodenstreet-hero-hybrid__content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .woodenstreet-hero-hybrid__actions {
+        justify-content: center;
+        width: 100%;
+    }
+
+    .woodenstreet-hero-hybrid__button {
+        width: 100%;
+    }
+
+    .woodenstreet-hero-hybrid__heading {
+        font-size: clamp(2.5rem, 10vw, 3.5rem);
+    }
+
+    .woodenstreet-hero-hybrid__media {
+        min-height: auto;
+        margin-top: 20px;
+    }
+
+    .woodenstreet-hero-hybrid__image--primary {
+        width: 100%;
+    }
+
+    .woodenstreet-hero-hybrid__image--secondary {
+        width: 60%;
+        bottom: -20px;
+        right: 0;
+    }
+}
+
+/* ===== component-woodenstreet-engagement.css ===== */
+/* WoodenStreet Engagement Sections Styles (Shop The Look & Experience Store) */
+
+/* --- Shop The Look --- */
+.shop-the-look {
+    padding: 60px 0;
+    background-color: #ffffff;
+}
+
+.shop-the-look__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+.shop-the-look__header {
+    text-align: center;
+    margin-bottom: 48px;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.shop-the-look__eyebrow {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #C7431A;
+    margin-bottom: 8px;
+}
+
+.shop-the-look__title {
+    font-family: var(--font-heading-family, "Poppins", sans-serif);
+    font-size: 2.25rem;
+    font-weight: 700;
+    color: #232323;
+    margin-bottom: 16px;
+}
+
+.shop-the-look__body {
+    color: #555;
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+.shop-the-look__layout {
+    display: grid;
+    grid-template-columns: 1fr 340px;
+    gap: 32px;
+    align-items: start;
+}
+
+.shop-the-look__image-wrapper {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+}
+
+.shop-the-look__image {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.shop-the-look__hotspot {
+    position: absolute;
+    top: var(--hotspot-y);
+    left: var(--hotspot-x);
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+    cursor: pointer;
+    text-decoration: none;
+}
+
+.shop-the-look__hotspot-dot {
+    width: 12px;
+    height: 12px;
+    background-color: #fff;
+    border-radius: 50%;
+    position: relative;
+    z-index: 2;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s ease;
+}
+
+.shop-the-look__hotspot-dot::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 32px;
+    height: 32px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+    z-index: 1;
+}
+
+@keyframes pulse {
+    0% {
+        transform: translate(-50%, -50%) scale(0.5);
+        opacity: 1;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(1.5);
+        opacity: 0;
+    }
+}
+
+.shop-the-look__hotspot:hover .shop-the-look__hotspot-dot {
+    transform: scale(1.2);
+    background-color: #C7431A;
+}
+
+.shop-the-look__hotspot-label {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%) translateY(10px);
+    background: #fff;
+    padding: 6px 12px;
+    border-radius: 4px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #232323;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    white-space: nowrap;
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    pointer-events: none;
+}
+
+.shop-the-look__hotspot:hover .shop-the-look__hotspot-label {
+    opacity: 1;
+    visibility: visible;
+    transform: translateX(-50%) translateY(5px);
+}
+
+.shop-the-look__list {
+    display: grid;
+    gap: 16px;
+    height: 100%;
+    /* Fill height */
+    overflow-y: auto;
+    align-content: start;
+}
+
+.shop-the-look__card {
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    background: #fff;
+    padding: 12px;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    transition: all 0.2s ease;
+}
+
+.shop-the-look__card:hover {
+    border-color: #C7431A;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.shop-the-look__card-media {
+    width: 80px;
+    height: 80px;
+    border-radius: 6px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.shop-the-look__card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.shop-the-look__card-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.shop-the-look__card-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #232323;
+    margin-bottom: 4px;
+}
+
+.shop-the-look__card-price {
+    font-size: 0.95rem;
+    color: #C7431A;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.shop-the-look__card-link {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #555;
+    text-decoration: none;
+    border-bottom: 1px solid #ddd;
+    align-self: flex-start;
+    transition: all 0.2s;
+}
+
+.shop-the-look__card-link:hover {
+    color: #C7431A;
+    border-color: #C7431A;
+}
+
+/* --- Experience Store Locator --- */
+.experience-store {
+    padding: 60px 0;
+    background-color: #F8F8F8;
+    border-top: 1px solid #E5E5E5;
+}
+
+.experience-store__inner {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: grid;
+    grid-template-columns: 1fr 1.5fr;
+    gap: 60px;
+    align-items: center;
+}
+
+.experience-store__intro {
+    display: flex;
+    flex-direction: column;
+}
+
+.experience-store__eyebrow {
+    display: block;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: #C7431A;
+    margin-bottom: 16px;
+}
+
+.experience-store__title {
+    font-family: var(--font-heading-family, "Poppins", sans-serif);
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #232323;
+    line-height: 1.2;
+    margin-bottom: 24px;
+}
+
+.experience-store__body {
+    color: #555;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    margin-bottom: 32px;
+}
+
+.experience-store__stats {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 40px;
+    padding-bottom: 40px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.experience-store__stat {
+    display: flex;
+    flex-direction: column;
+}
+
+.experience-store__stat-value {
+    font-size: 2.5rem;
+    font-weight: 800;
+    color: #C7431A;
+    line-height: 1;
+    margin-bottom: 4px;
+}
+
+.experience-store__stat-label {
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #777;
+    letter-spacing: 0.05em;
+}
+
+.experience-store__cta {
+    align-self: flex-start;
+    background-color: #232323;
+    color: #fff;
+    padding: 14px 32px;
+    border-radius: 4px;
+    text-decoration: none;
+    font-weight: 600;
+    text-transform: uppercase;
+    transition: background 0.3s ease;
+}
+
+.experience-store__cta:hover {
+    background-color: #C7431A;
+}
+
+.experience-store__panel {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+.experience-store__map {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.06);
+}
+
+.experience-store__map-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.experience-store__map-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 12px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+    backdrop-filter: blur(4px);
+}
+
+.experience-store__cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.experience-store__card {
+    background: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    border: 1px solid #eee;
+    transition: all 0.3s ease;
+}
+
+.experience-store__card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.06);
+    border-color: #C7431A;
+}
+
+.experience-store__card-title {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #232323;
+    margin-bottom: 8px;
+}
+
+.experience-store__card-address {
+    font-size: 0.9rem;
+    color: #666;
+    margin-bottom: 8px;
+    line-height: 1.4;
+}
+
+.experience-store__card-contact,
+.experience-store__card-hours {
+    font-size: 0.85rem;
+    color: #888;
+    margin-bottom: 4px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.experience-store__card-link {
+    display: inline-block;
+    margin-top: 12px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #C7431A;
+    text-decoration: none;
+}
+
+.experience-store__card-link:hover {
+    text-decoration: underline;
+}
+
+/* Mobile Responsiveness */
+@media screen and (max-width: 989px) {
+    .shop-the-look__layout {
+        grid-template-columns: 1fr;
+    }
+
+    .shop-the-look__list {
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    }
+
+    .experience-store__inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .experience-store__intro {
+        text-align: center;
+        align-items: center;
+    }
+
+    .experience-store__stats {
+        justify-content: center;
+    }
+
+    .experience-store__cta {
+        align-self: center;
+    }
+}
+
+@media screen and (max-width: 599px) {
+    .experience-store__cards {
+        grid-template-columns: 1fr;
+    }
+
+    .experience-store__stat-value {
+        font-size: 2rem;
+    }
+}
+
+/* ===== component-woodenstreet-ui-overrides.css ===== */
+>>>>>>> pr/57
 /* 
   WOODENSTREET PREMIUM UI OVERHAUL 
   Goal: Luxury, High-Trust, Modern Aesthetic
@@ -73369,6 +74156,7 @@ h6,
     }
 }
 
+<<<<<<< HEAD
 /* ==== Source: assets/woodenstreet-premium-force.css ==== */
 /* 
   WOODENSTREET PREMIUM - FORCE VISIBILITY & HIGH PRIORITY OVERRIDES
@@ -74502,6 +75290,9 @@ body.overflow-hidden .header-wrapper--glass {
 }
 
 /* ==== Source: assets/component-woodenstreet-video.css ==== */
+=======
+/* ===== component-woodenstreet-video.css ===== */
+>>>>>>> pr/57
 /* WoodenStreet: Homepage Video Section CSS */
 .ws-video {
     padding: 60px 0;
@@ -74629,6 +75420,7 @@ body.overflow-hidden .header-wrapper--glass {
     }
 }
 
+<<<<<<< HEAD
 /* ==== Source: assets/component-footer-accordion.css ==== */
 /* WoodenStreet Footer Accordion (Mobile) */
 
@@ -74772,6 +75564,147 @@ body.overflow-hidden .header-wrapper--glass {
 }
 
 /* ==== Source: assets/component-trust-strip-v2.css ==== */
+=======
+/* ===== component-woodenstreet-mobile-menu.css ===== */
+/* WoodenStreet Mobile Menu Refinement */
+:root {
+    --ws-drawer-transition: cubic-bezier(0.23, 1, 0.32, 1);
+    --ws-bg-primary: #ffffff;
+    --ws-border-light: rgba(0, 0, 0, 0.06);
+}
+
+.menu-drawer {
+    background-color: var(--ws-bg-primary);
+    border-right: 1px solid var(--ws-border-light);
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.05);
+}
+
+/* Animations */
+.menu-drawer__animated-element {
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.4s var(--ws-drawer-transition), transform 0.4s var(--ws-drawer-transition);
+    transition-delay: calc(var(--menu-drawer-animation-index) * 0.05s);
+}
+
+#Details-menu-drawer-container[open] .menu-drawer__animated-element {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Menu Items */
+.menu-drawer__menu-item {
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid var(--ws-border-light);
+    transition: background-color 0.2s ease;
+}
+
+.menu-drawer__menu-item:active {
+    background-color: rgba(0, 0, 0, 0.03);
+}
+
+.menu-drawer__menu-item--active {
+    color: var(--ws-orange);
+    background-color: rgba(199, 67, 26, 0.04);
+}
+
+/* Icons */
+.menu-drawer .icon-plus,
+.menu-drawer .icon-caret {
+    width: 14px;
+    height: 14px;
+    opacity: 0.6;
+}
+
+/* Utility Links (Language/Currency) */
+.menu-drawer__utility-links {
+    border-top: 1px solid var(--ws-border-light);
+    padding: 1.5rem;
+    background-color: #fafafa;
+}
+
+/* Fix sticky header jump on mobile */
+.header-wrapper--glass {
+    transition: transform 0.3s var(--ws-drawer-transition);
+}
+
+body.overflow-hidden .header-wrapper--glass {
+    transform: translateY(0) !important;
+    /* Prevent header hiding when drawer opens */
+}
+
+/* ===== component-woodenstreet-badges.css ===== */
+/* WoodenStreet Product Badges */
+.ws-badge-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.ws-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+    font-family: var(--font-body-family, "Inter", sans-serif);
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    line-height: 1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ws-badge--sale {
+    background-color: #C7431A;
+    /* WS Orange */
+    color: #fff;
+}
+
+.ws-badge--soldout {
+    background-color: #333;
+    color: #fff;
+}
+
+.ws-badge--new {
+    background-color: #2196F3;
+    color: #fff;
+}
+
+.ws-badge--bestseller {
+    background-color: #FFC107;
+    color: #222;
+}
+
+.ws-badge--custom {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+/* Ribbon Style for "Recommended" */
+.ws-badge--ribbon {
+    position: absolute;
+    top: 10px;
+    right: -6px;
+    /* Hang off edge if container allows, else right align */
+    left: auto;
+    background: #C7431A;
+    color: #fff;
+    padding: 4px 12px;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 10px 50%, 0 0);
+    font-size: 0.65rem;
+}
+
+/* ===== component-trust-strip-v2.css ===== */
+>>>>>>> pr/57
 .ws-trust-strip {
     background-color: var(--bg-color, #ffffff);
     color: var(--text-color, #1A1A1A);
@@ -74885,6 +75818,7 @@ body.overflow-hidden .header-wrapper--glass {
     }
 }
 
+<<<<<<< HEAD
 /* ==== Source: assets/component-shop-the-look.css ==== */
 .shop-the-look {
   padding: 72px 0;
@@ -78381,3 +79315,132 @@ rgb(255, 255, 255)
 @font-face{font-family:PaymentFont;src:url(paymentfont-webfont.eot);src:url(paymentfont-webfont.eot#iefix) format('embedded-opentype'),url(paymentfont-webfont.woff) format('woff2'),url(paymentfont-webfont.woff) format('woff'),url(paymentfont-webfont.tff) format('truetype'),url(paymentfont-webfont.svg#paymentfont-webfont) format('svg');font-weight:400;font-style:normal}
 .pf{display:inline-block;font:normal normal normal 14px/1 PaymentFont;font-size:inherit;text-rendering:auto;-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.pf-lg{font-size:1.33333333em;line-height:.75em;vertical-align:-15%}.pf-2x{font-size:2em}.pf-3x{font-size:3em}.pf-4x{font-size:4em}.pf-5x{font-size:5em}.pf-amazon:before{content:'\f000'}.pf-american-express:before{content:'\f001'}.pf-american-express-alt:before{content:'\f002'}.pf-atm:before{content:'\f003'}.pf-bankomat:before{content:'\f004'}.pf-bank-transfer:before{content:'\f005'}.pf-bitcoin:before{content:'\f006'}.pf-bitcoin-sign:before{content:'\f007'}.pf-braintree:before{content:'\f008'}.pf-btc:before{content:'\f009'}.pf-card:before{content:'\f00a'}.pf-carta-si:before{content:'\f00b'}.pf-cash:before{content:'\f00c'}.pf-cash-on-delivery:before{content:'\f00d'}.pf-cb:before{content:'\f00e'}.pf-cirrus:before{content:'\f00f'}.pf-cirrus-alt:before{content:'\f010'}.pf-clickandbuy:before{content:'\f011'}.pf-credit-card:before{content:'\f012'}.pf-diners:before{content:'\f013'}.pf-discover:before{content:'\f014'}.pf-ec:before{content:'\f015'}.pf-eps:before{content:'\f016'}.pf-eur:before{content:'\f017'}.pf-facture:before{content:'\f018'}.pf-fattura:before{content:'\f019'}.pf-flattr:before{content:'\f01a'}.pf-giropay:before{content:'\f01b'}.pf-google-wallet:before{content:'\f01c'}.pf-google-wallet-alt:before{content:'\f01d'}.pf-gpb:before{content:'\f01e'}.pf-gratipay:before{content:'\f01f'}.pf-ideal:before{content:'\f020'}.pf-ils:before{content:'\f021'}.pf-inr:before{content:'\f022'}.pf-invoice:before{content:'\f023'}.pf-invoice-sign:before{content:'\f024'}.pf-invoice-sign-alt:before{content:'\f025'}.pf-invoice-sign-alt-o:before{content:'\f026'}.pf-invoice-sign-o:before{content:'\f027'}.pf-jcb:before{content:'\f028'}.pf-jpy:before{content:'\f029'}.pf-krw:before{content:'\f02a'}.pf-maestro:before{content:'\f02b'}.pf-maestro-alt:before{content:'\f02c'}.pf-mastercard:before{content:'\f02d'}.pf-mastercard-alt:before{content:'\f02e'}.pf-mastercard-securecode:before{content:'\f02f'}.pf-ogone:before{content:'\f030'}.pf-paybox:before{content:'\f031'}.pf-paylife:before{content:'\f032'}.pf-paypal:before{content:'\f033'}.pf-paypal-alt:before{content:'\f034'}.pf-paysafecard:before{content:'\f035'}.pf-postepay:before{content:'\f036'}.pf-quick:before{content:'\f037'}.pf-rechnung:before{content:'\f038'}.pf-ripple:before{content:'\f039'}.pf-rub:before{content:'\f03a'}.pf-skrill:before{content:'\f03b'}.pf-sofort:before{content:'\f03c'}.pf-square:before{content:'\f03d'}.pf-stripe:before{content:'\f03e'}.pf-truste:before{content:'\f03f'}.pf-try:before{content:'\f040'}.pf-unionpay:before{content:'\f041'}.pf-usd:before{content:'\f042'}.pf-verified-by-visa:before{content:'\f043'}.pf-verisign:before{content:'\f044'}.pf-visa:before{content:'\f045'}.pf-visa-electron:before{content:'\f046'}.pf-western-union:before{content:'\f047'}.pf-western-union-alt:before{content:'\f048'}.pf-wirecard:before{content:'\f049'}.pf-sepa:before{content:'\f04a'}.pf-sepa-alt:before{content:'\f04b'}.pf-apple-pay:before{content:'\f04c'}.pf-interac:before{content:'\f04d'}.pf-paymill:before{content:'\f04e'}.pf-dankort:before{content:'\f04f'}.pf-bancontact-mister-cash:before{content:'\f050'}.pf-moip:before{content:'\f051'}.pf-pagseguro:before{content:'\f052'}.pf-cash-on-pickup:before{content:'\f053'}.pf-sage:before{content:'\f054'}.pf-elo:before{content:'\f055'}.pf-elo-alt:before{content:'\f056'}.pf-payu:before{content:'\f057'}.pf-mercado-pago:before{content:'\f058'}.pf-mercado-pago-sign:before{content:'\f059'}.pf-payshop:before{content:'\f05a'}.pf-multibanco:before{content:'\f05b'}.pf-gratipay-sign:before{content:'\f05c'}.pf-six:before{content:'\f05d'}.pf-cashcloud:before{content:'\f05e'}.pf-interac-alt:before{content:'\f05f'}.pf-klarna:before{content:'\f060'}.pf-bitpay:before{content:'\f061'}.pf-venmo:before{content:'\f062'}.pf-visa-debit:before{content:'\f063'}.pf-alipay:before{content:'\f064'}.pf-diners-alt:before{content:'\f065'}.pf-hipercard:before{content:'\f066'}.pf-skrill-alt:before{content:'\f067'}.pf-shopify:before{content:'\f068'}.pf-direct-debit:before{content:'\f069'}.pf-sodexo:before{content:'\f06a'}.pf-bpay:before{content:'\f06b'}.pf-contactless:before{content:'\f06c'}.pf-contactless-alt:before{content:'\f06d'}.pf-eth:before{content:'\f06e'}.pf-ltc:before{content:'\f06f'}.pf-visa-pay:before{content:'\f070'}.pf-wechat-pay:before{content:'\f071'}.pf-amazon-pay:before{content:'\f072'}.pf-amazon-pay-alt:before{content:'\f073'}
 >>>>>>> pr/56
+=======
+/* ===== woodenstreet-premium-force.css ===== */
+/* 
+  WOODENSTREET PREMIUM - FORCE VISIBILITY & HIGH PRIORITY OVERRIDES
+  This file ensures that the premium aesthetic is enforced over theme defaults.
+*/
+
+:root {
+    --ws-orange: #C7431A;
+    --ws-black: #1A1A1A;
+}
+
+/* R-01: HEADER GAP FIX - Remove excessive spacing */
+.announcement-bar {
+    margin-bottom: 0 !important;
+    padding: 8px 0 !important;
+}
+
+.header-section,
+.whisper-header,
+header-component {
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+}
+
+.site-header-main {
+    padding-top: 0 !important;
+}
+
+/* Fix any shopify-section spacing that creates gaps */
+.shopify-section.site-announcement,
+.shopify-section.header-section {
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* 1. Header Transparency for Glassmorphism */
+.header-wrapper--glass .header__row {
+    background: transparent !important;
+    border-bottom: none !important;
+}
+
+.header-wrapper--glass {
+    background: rgba(255, 255, 255, 0.7) !important;
+    backdrop-filter: blur(25px) !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* 2. Hero Section Refinement */
+.woodenstreet-hero-hybrid {
+    background: #ffffff !important;
+    position: relative;
+    overflow: hidden;
+    margin-top: 0 !important;
+}
+
+.woodenstreet-hero-hybrid__content-box {
+    text-align: center;
+    margin: 0 auto;
+}
+
+/* 3. Trust Strip Guarantee */
+.ws-trust-strip__icon svg {
+    display: block !important;
+    width: 28px !important;
+    height: 28px !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    stroke: currentColor !important;
+}
+
+/* 4. Lookbook (Shop by Room) Contrast */
+.whisper-lookbook {
+    background: #0F172A !important;
+    /* Dark Slate Blue */
+    color: #ffffff !important;
+}
+
+.whisper-lookbook__card {
+    background: #1e293b !important;
+}
+
+.whisper-lookbook__tag {
+    color: var(--ws-orange) !important;
+}
+
+/* 5. Product Cards Visibility */
+.woodenstreet-card {
+    background: #ffffff !important;
+    border: 1px solid #e2e8f0 !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.woodenstreet-card__price {
+    color: var(--ws-orange) !important;
+    opacity: 1 !important;
+}
+
+.woodenstreet-card__title a {
+    color: var(--ws-black) !important;
+}
+
+/* R-04: SHOWCASE BLOB CLEANUP - Remove black backgrounds */
+.whisper-showcase {
+    background: #ffffff !important;
+}
+
+.whisper-showcase__panel {
+    background: transparent !important;
+}
+
+.whisper-showcase__split {
+    background: transparent !important;
+}
+
+/* Ensure UGC gallery has proper background */
+.whisper-ugc-gallery {
+    background: #F9FAFB !important;
+}
+
+/* Fix any dark overlays or blobs */
+.whisper-showcase__title,
+.whisper-showcase__eyebrow,
+.whisper-showcase__reviews-title {
+    color: var(--ws-black) !important;
+}
+>>>>>>> pr/57
