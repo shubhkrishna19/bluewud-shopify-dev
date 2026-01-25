@@ -1,0 +1,22 @@
+/*!
+ * WoodenStreet Master Stylesheet
+ * Version: 1.0.1
+ * Last Updated: 2026-01-25
+ *
+ * SINGLE SOURCE OF TRUTH - Do not create additional CSS files.
+ * This file consolidates WoodenStreet styling via ordered imports to keep
+ * file size manageable while preserving existing theme structure.
+ */
+
+@import url("theme.css");
+@import url("theme-update.css");
+@import url("component-woodenstreet-global.css");
+@import url("component-woodenstreet-footer.css");
+@import url("component-woodenstreet-hero.css");
+@import url("component-woodenstreet-engagement.css");
+@import url("component-woodenstreet-ui-overrides.css");
+@import url("component-woodenstreet-video.css");
+@import url("component-woodenstreet-mobile-menu.css");
+@import url("component-woodenstreet-badges.css");
+@import url("component-trust-strip-v2.css");
+@import url("woodenstreet-premium-force.css");
