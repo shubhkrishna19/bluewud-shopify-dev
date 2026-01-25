@@ -76,6 +76,7 @@
     {% render 'social-meta-tags', twitter_handle: twitter_handle %}
 
     <link rel="preload" href="{{ settings.type_menu | font_url }}" as="font" crossorigin="anonymous">
+<<<<<<< HEAD
     {% render 'critical-css' %}
     {% render 'agent-css-loader' %}
     
@@ -107,6 +108,12 @@
     {{ 'component-woodenstreet-video.css' | asset_url | stylesheet_tag }}
     {%- endcomment -%}
 
+=======
+    <link rel="preload" as="style" href="{{ 'woodenstreet-master.css' | asset_url }}">
+    {% render 'critical-css' %}
+    {% render 'agent-css-loader' %}
+    {{ 'woodenstreet-master.css' | asset_url | stylesheet_tag }}
+>>>>>>> pr/60
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {% comment %} Inject theme-object begin{% endcomment %}
     <script>
@@ -186,6 +193,10 @@
 
     {% comment %}Inject theme-object end{% endcomment %}
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> pr/60
     <!-- whatsapp -->
 
     <!--

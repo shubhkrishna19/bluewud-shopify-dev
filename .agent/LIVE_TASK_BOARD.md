@@ -271,6 +271,7 @@ cat .agent/LIVE_TASK_BOARD.md
 
 **🎉 AGENTS: The project is ready for you! Claim a task and start working!**
 
+<<<<<<< HEAD
 ### 19:55 - Codex-Worker
 > 🟢 ACTIVE - Claiming task: CSS consolidation (woodenstreet-master.css)
 > **ETA**: 1-2 hours
