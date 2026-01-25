@@ -1,20 +1,41 @@
-/* ==========================================================================
-   WOODENSTREET MASTER STYLESHEET
-   Consolidated: Global, Hero, Footer, Premium Overrides
-   Updated: 2026-01-23
-   ========================================================================== */
+/*!
+ * WoodenStreet Master Stylesheet
+ * Version: 1.0.0
+ * Last Updated: 2026-01-25
+ * 
+ * SINGLE SOURCE OF TRUTH - Do not create additional CSS files
+ * All styles consolidated from multiple sources
+ */
 
-/* --------------------------------------------------------------------------
-   1. GLOBAL DESIGN SYSTEM
-   -------------------------------------------------------------------------- */
-/* WoodenStreet Global Design System (Typography & Spacing) */
-
+/* =========================================================================
+   1. VARIABLES & DESIGN SYSTEM
+   ========================================================================= */
 :root {
-    /* Fonts */
-    --font-heading-family: "Poppins", sans-serif;
-    --font-body-family: "Inter", sans-serif;
+    /* -- Modern Variables (Inter/Poppins) -- */
+    --ws-orange: #C7431A;
+    --ws-orange-hover: #a63614;
+    --ws-black: #1A1A1A;
+    --ws-text-main: #333333;
+    --ws-text-muted: #666666;
+    --ws-bg-cream: #FDFBF7;
+    --ws-glass-bg: rgba(255, 255, 255, 0.85);
+    --ws-glass-border: rgba(255, 255, 255, 0.3);
+    --ws-glow: 0 0 20px rgba(199, 67, 26, 0.15);
+    --ws-shadow-sm: 0 2px 40px rgba(0, 0, 0, 0.04);
+    --ws-shadow-md: 0 10px 40px rgba(0, 0, 0, 0.08);
+    --ws-shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
+    --ws-radius-lg: 20px;
+    --ws-radius-md: 12px;
+    --ws-radius-sm: 8px;
+    --ws-ease: cubic-bezier(0.23, 1, 0.32, 1);
 
-    /* Spacing (8px Grid) */
+    /* -- Legacy/Global Variables (Compatibility) -- */
+    --woodenstreet-orange: #C7431A;
+    --woodenstreet-orange-hover: #a63614;
+    --woodenstreet-black: #232323;
+    --woodenstreet-gray: #f4f4f4;
+
+    /* Spacing */
     --space-1: 4px;
     --space-2: 8px;
     --space-3: 12px;
@@ -27,25 +48,23 @@
     --space-16: 64px;
     --space-20: 80px;
 
-    /* Colors (Enforcement) */
-    --woodenstreet-orange: #C7431A;
-    --woodenstreet-orange-hover: #a63614;
-    --woodenstreet-black: #232323;
-    --woodenstreet-gray: #f4f4f4;
-
-    /* Hero Specific Variables */
-    --ws-ease: cubic-bezier(0.23, 1, 0.32, 1);
-    --ws-shadow-lg: 0 30px 60px rgba(0, 0, 0, 0.12);
-    --ws-font-heading: 'Poppins', sans-serif;
-    --ws-font-body: 'Inter', sans-serif;
+    /* Fonts */
+    --font-heading-family: "Poppins", sans-serif;
+    --font-body-family: "Inter", sans-serif;
 }
 
-/* Typography Enforcement */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:ital,wght@0,600;0,700;0,800;1,700&display=swap');
+
+/* =========================================================================
+   2. BASE TYPOGRAPHY & RESET
+   ========================================================================= */
 body {
-    font-family: var(--font-body-family);
-    color: #333;
-    line-height: 1.5;
+    background-color: var(--ws-bg-cream);
+    color: var(--ws-text-main);
+    font-family: 'Inter', sans-serif !important;
     -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.01em;
+    line-height: 1.5;
 }
 
 h1,
@@ -57,40 +76,47 @@ h6,
 .h1,
 .h2,
 .h3,
-.h4,
-.h5,
-.h6 {
-    font-family: var(--font-heading-family);
-    font-weight: 700;
-    color: var(--woodenstreet-black);
+.h4 {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 700 !important;
+    color: var(--ws-black) !important;
     margin-bottom: var(--space-4);
     line-height: 1.2;
 }
 
-/* Section Spacing - Clean up the layout */
-.shopify-section {
-    margin-bottom: var(--space-16);
-}
-
-@media screen and (max-width: 768px) {
-    .shopify-section {
-        margin-bottom: var(--space-10);
-    }
-}
-
-/* Utility Classes */
+/* =========================================================================
+   3. LAYOUT & UTILITIES
+   ========================================================================= */
 .page-width {
     max-width: 1400px;
     margin: 0 auto;
-    padding: 0 var(--space-5);
+    padding: 0 24px;
+}
+
+/* Section Spacing - Prevent clumping */
+.shopify-section {
+    margin-bottom: 0px !important;
+}
+
+.site-main>.shopify-section {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+}
+
+/* Exceptions for Flush Sections */
+#shopify-section-woodenstreet_hero,
+#shopify-section-urgency_strip,
+#shopify-section-trust_strip {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
 }
 
 .text-orange {
-    color: var(--woodenstreet-orange) !important;
+    color: var(--ws-orange) !important;
 }
 
 .bg-orange {
-    background-color: var(--woodenstreet-orange) !important;
+    background-color: var(--ws-orange) !important;
 }
 
 /* Buttons Standardization */
@@ -98,7 +124,6 @@ h6,
 .btn {
     font-family: var(--font-body-family);
     border-radius: 4px;
-    /* Sharp but friendly */
     font-weight: 600;
     text-transform: uppercase;
     letter-spacing: 0.05em;
@@ -106,48 +131,126 @@ h6,
     transition: all 0.3s ease;
 }
 
-.button--primary {
-    background-color: var(--woodenstreet-orange);
-    color: #fff;
-    border: 1px solid var(--woodenstreet-orange);
+.button--primary,
+.btn--primary {
+    border-radius: 100px !important;
+    padding: 14px 32px !important;
+    font-weight: 800 !important;
+    background: var(--ws-orange) !important;
+    box-shadow: 0 4px 15px rgba(199, 67, 26, 0.3) !important;
+    border: none !important;
+    color: #fff !important;
 }
 
-.button--primary:hover {
-    background-color: var(--woodenstreet-orange-hover);
-    border-color: var(--woodenstreet-orange-hover);
+.button--primary:hover,
+.btn--primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(199, 67, 26, 0.4) !important;
+    background: var(--ws-orange-hover) !important;
 }
 
-/* Inputs */
-input[type="text"],
-input[type="email"],
-input[type="number"],
-input[type="password"],
-textarea,
-select {
-    border-radius: 4px;
-    border: 1px solid #ddd;
-    padding: 10px 14px;
-    font-family: var(--font-body-family);
+/* =========================================================================
+   4. COMPONENT: HEADER (Glassmorphism & Fixes)
+   ========================================================================= */
+.header-section {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
+    margin-bottom: 0 !important;
 }
 
-input:focus,
-textarea:focus,
-select:focus {
-    border-color: var(--woodenstreet-black);
-    outline: none;
+/* Gap Fix (R-01) */
+.announcement-bar {
+    margin-bottom: 0 !important;
+    padding: 8px 0 !important;
 }
 
-/* --------------------------------------------------------------------------
-   2. HERO SECTION STYLES
-   -------------------------------------------------------------------------- */
-/* WoodenStreet Hero Hybrid Styles - Premium Refinement */
+.header__row--top {
+    background: #ffffff !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+    padding: 16px 0 !important;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+}
 
+.header-wrapper--glass {
+    background: rgba(255, 255, 255, 0.85) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Navigation Links */
+.navmenu-link {
+    font-size: 11px !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    color: var(--ws-black) !important;
+    padding: 16px 20px !important;
+    position: relative;
+    text-decoration: none !important;
+}
+
+.navmenu-link::after {
+    content: '';
+    position: absolute;
+    bottom: 12px;
+    left: 20px;
+    right: 20px;
+    height: 2px;
+    background: var(--ws-orange);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.navmenu-link:hover::after {
+    transform: scaleX(1);
+}
+
+.navmenu-link:hover {
+    color: var(--ws-orange) !important;
+}
+
+/* Search Bar Polish */
+.search-form {
+    border: none !important;
+    background: #fff !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
+    border-radius: 100px !important;
+    padding: 4px !important;
+    display: flex !important;
+}
+
+.search-form__input {
+    border: none !important;
+    padding: 10px 24px !important;
+    font-weight: 500 !important;
+    color: var(--ws-black) !important;
+    background: transparent !important;
+}
+
+.search-form__submit {
+    background: var(--ws-orange) !important;
+    border-radius: 100px !important;
+    height: 40px !important;
+    width: 40px !important;
+    border: none !important;
+    color: #fff !important;
+}
+
+/* =========================================================================
+   5. COMPONENT: HERO (Hybrid)
+   ========================================================================= */
 .woodenstreet-hero-hybrid {
     padding: clamp(60px, 10vw, 140px) 0;
     background: #ffffff;
     overflow: hidden;
     position: relative;
-    /* Ensure overrides from premium force work if needed, but keeping clean here */
+    margin-top: 0 !important;
 }
 
 .woodenstreet-hero-hybrid::before {
@@ -169,6 +272,8 @@ select:focus {
     box-shadow: 0 40px 100px rgba(0, 0, 0, 0.1);
     position: relative;
     z-index: 2;
+    text-align: center;
+    margin: 0 auto;
 }
 
 .woodenstreet-hero-hybrid__inner {
@@ -183,97 +288,13 @@ select:focus {
     z-index: 1;
 }
 
-.woodenstreet-hero-hybrid__eyebrow {
-    font-family: var(--ws-font-body);
-    text-transform: uppercase;
-    letter-spacing: 0.3em;
-    font-size: 0.75rem;
-    font-weight: 800;
-    color: var(--ws-orange, #C7431A);
-    margin: 0 0 24px;
-    display: inline-flex;
-    align-items: center;
-    gap: 12px;
-}
-
-.woodenstreet-hero-hybrid__eyebrow::before {
-    content: '';
-    width: 24px;
-    height: 1.5px;
-    background: currentColor;
-}
-
 .woodenstreet-hero-hybrid__heading {
-    font-family: var(--ws-font-heading);
+    font-family: var(--font-heading-family);
     font-size: clamp(2.5rem, 5vw, 4.25rem);
     font-weight: 800;
-    line-height: 1.05;
-    color: var(--ws-black, #1A1A1A);
-    margin: 0 0 24px;
-    letter-spacing: -0.03em;
-}
-
-.woodenstreet-hero-hybrid__subheading {
-    font-family: var(--ws-font-body);
-    font-size: clamp(1rem, 1.5vw, 1.25rem);
-    line-height: 1.6;
-    color: var(--ws-text-muted, #44546A);
-    margin: 0 0 48px;
-    max-width: 520px;
-    opacity: 0.85;
-}
-
-.woodenstreet-hero-hybrid__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 16px;
-}
-
-.woodenstreet-hero-hybrid__button {
-    padding: 20px 48px;
-    font-size: 0.8rem;
-    font-weight: 800;
-    text-transform: uppercase;
-    letter-spacing: 0.12em;
-    border-radius: 4px;
-    /* Premium Squared-off radius */
-    text-decoration: none;
-    transition: all 0.4s var(--ws-ease);
-    display: inline-block;
-}
-
-.woodenstreet-hero-hybrid__button:not(.button--secondary) {
-    background-color: var(--ws-orange, #C7431A);
-    color: #fff;
-    box-shadow: 0 10px 30px rgba(199, 67, 26, 0.2);
-}
-
-.woodenstreet-hero-hybrid__button:not(.button--secondary):hover {
-    background-color: var(--ws-black);
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
-}
-
-.woodenstreet-hero-hybrid__button.button--secondary {
-    background-color: transparent;
     color: var(--ws-black);
-    border: 1.5px solid rgba(0, 0, 0, 0.15);
-}
-
-.woodenstreet-hero-hybrid__button.button--secondary:hover {
-    border-color: var(--ws-black);
-    transform: translateY(-4px);
-}
-
-.woodenstreet-hero-hybrid__media {
-    position: relative;
-    display: flex;
-    justify-content: flex-end;
-}
-
-.woodenstreet-hero-hybrid__image-wrapper {
-    overflow: hidden;
-    position: relative;
+    margin: 0 0 24px;
+    line-height: 1.05;
 }
 
 .woodenstreet-hero-hybrid__image-wrapper--primary {
@@ -282,13 +303,7 @@ select:focus {
     border-radius: 2px;
     box-shadow: var(--ws-shadow-lg);
     clip-path: polygon(0 0, 100% 0, 100% 100%, 8% 100%);
-}
-
-.woodenstreet-hero-hybrid__image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform 1.2s var(--ws-ease);
+    overflow: hidden;
 }
 
 .woodenstreet-hero-hybrid__image-wrapper--secondary {
@@ -300,6 +315,14 @@ select:focus {
     border: 12px solid #fff;
     box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
     z-index: 2;
+    overflow: hidden;
+}
+
+.woodenstreet-hero-hybrid__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s var(--ws-ease);
 }
 
 .woodenstreet-hero-hybrid:hover .woodenstreet-hero-hybrid__image {
@@ -313,37 +336,8 @@ select:focus {
 
     .woodenstreet-hero-hybrid__inner {
         grid-template-columns: 1fr;
-        text-align: center;
         gap: 60px;
         padding: 0 24px;
-    }
-
-    .woodenstreet-hero-hybrid__content {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-    }
-
-    .woodenstreet-hero-hybrid__actions {
-        justify-content: center;
-        width: 100%;
-    }
-
-    .woodenstreet-hero-hybrid__button {
-        width: 100%;
-    }
-
-    .woodenstreet-hero-hybrid__heading {
-        font-size: clamp(2.5rem, 10vw, 3.5rem);
-    }
-
-    .woodenstreet-hero-hybrid__media {
-        min-height: auto;
-        margin-top: 20px;
-    }
-
-    .woodenstreet-hero-hybrid__image--primary {
-        width: 100%;
     }
 
     .woodenstreet-hero-hybrid__image--secondary {
@@ -353,164 +347,119 @@ select:focus {
     }
 }
 
-/* --------------------------------------------------------------------------
-   3. FOOTER STYLES
-   -------------------------------------------------------------------------- */
-/* WoodenStreet Footer Styles - H-06 */
-.site-footer-wrapper.footer-section {
-    background-color: #232323;
-    /* WoodenStreet Dark Footer */
-    color: #ffffff;
-    padding-top: 60px;
-    padding-bottom: 30px;
-}
-
-.site-footer-block-title {
-    color: #ffffff;
-    font-family: var(--font-heading-family, "Poppins", sans-serif);
-    font-weight: 600;
-    font-size: 1rem;
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-bottom: 20px;
-    position: relative;
-    padding-bottom: 10px;
-}
-
-/* Underline decoration for titles similar to WS */
-.site-footer-block-title::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 40px;
-    height: 2px;
-    background-color: #C7431A;
-    /* WoodenStreet Orange */
-}
-
-.site-footer-block-content a {
-    color: #cccccc;
-    text-decoration: none;
-    transition: color 0.3s, padding-left 0.3s;
-    font-size: 0.9rem;
-    display: inline-block;
-}
-
-.site-footer-block-content a:hover {
-    color: #C7431A;
-    padding-left: 5px;
-}
-
-/* Newsletter Styles */
-.newsletter-form-group {
-    display: flex;
-    gap: 0;
-}
-
-.newsletter-input {
-    border-radius: 4px 0 0 4px;
-    border: 1px solid #444;
-    background: #333;
-    color: #fff;
-    padding: 10px;
-}
-
-.newsletter-submit {
-    background: #C7431A;
-    border: none;
-    border-radius: 0 4px 4px 0;
-    color: #fff;
-    padding: 0 20px;
-    font-weight: 600;
-    transition: background 0.3s;
-}
-
-.newsletter-submit:hover {
-    background: #a63614;
-}
-
-.site-footer-credits {
-    color: #888;
-    font-size: 0.8rem;
-    text-align: center;
-    margin-top: 40px;
-    padding-top: 20px;
-    border-top: 1px solid #333;
-}
-
-/* Mobile Accordion Overrides */
-@media screen and (max-width: 767px) {
-    .site-footer-block-title {
-        border-bottom: 1px solid #333;
-        padding-bottom: 15px;
-        margin-bottom: 15px;
-    }
-
-    .site-footer-block-title::after {
-        display: none;
-    }
-}
-
-/* --------------------------------------------------------------------------
-   4. PREMIUM FORCE / OVERRIDES
-   -------------------------------------------------------------------------- */
-/* 
-  WOODENSTREET PREMIUM - FORCE VISIBILITY & HIGH PRIORITY OVERRIDES
-  This file ensures that the premium aesthetic is enforced over theme defaults.
-*/
-
-/* R-01: HEADER GAP FIX - Remove excessive spacing */
-.announcement-bar {
-    margin-bottom: 0 !important;
-    padding: 8px 0 !important;
-}
-
-.header-section,
-.whisper-header,
-header-component {
-    margin-top: 0 !important;
-    padding-top: 0 !important;
-}
-
-.site-header-main {
-    padding-top: 0 !important;
-}
-
-/* Fix any shopify-section spacing that creates gaps */
-.shopify-section.site-announcement,
-.shopify-section.header-section {
-    margin-bottom: 0 !important;
-    padding-bottom: 0 !important;
-}
-
-/* 1. Header Transparency for Glassmorphism */
-.header-wrapper--glass .header__row {
-    background: transparent !important;
-    border-bottom: none !important;
-}
-
-.header-wrapper--glass {
-    background: rgba(255, 255, 255, 0.7) !important;
-    backdrop-filter: blur(25px) !important;
-    -webkit-backdrop-filter: blur(25px) !important;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2) !important;
-}
-
-/* 2. Hero Section Refinement */
-.woodenstreet-hero-hybrid {
+/* =========================================================================
+   6. COMPONENT: PRODUCT CARD (Premium Polish)
+   ========================================================================= */
+.woodenstreet-card,
+.product-card {
+    border: 1px solid #F1F5F9 !important;
     background: #ffffff !important;
-    position: relative;
+    border-radius: 8px !important;
+    padding: 0 !important;
     overflow: hidden;
-    margin-top: 0 !important;
+    transition: all 0.5s var(--ws-ease) !important;
+    position: relative;
+    opacity: 1 !important;
+    visibility: visible !important;
 }
 
-.woodenstreet-hero-hybrid__content-box {
-    text-align: center;
+.woodenstreet-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08) !important;
+    border-color: var(--ws-orange) !important;
+}
+
+.woodenstreet-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s var(--ws-ease);
+}
+
+.woodenstreet-card:hover .woodenstreet-card__image {
+    transform: scale(1.1);
+}
+
+.woodenstreet-card__content {
+    padding: 16px;
+}
+
+/* Text Visibility Fix (R-02) */
+.product-card .productitem--title,
+.product-card .productitem--title a,
+.product-card .price--main,
+.woodenstreet-card__title,
+.woodenstreet-card__title a,
+.woodenstreet-card__price {
+    color: #1a1a1a !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 700 !important;
+    text-decoration: none !important;
+}
+
+.woodenstreet-card__price {
+    color: var(--ws-orange) !important;
+    font-size: 1rem;
+    font-weight: 800;
+}
+
+.woodenstreet-card__rating,
+.productitem--ratings {
+    color: #FBBF24 !important;
+    /* Gold */
+}
+
+/* =========================================================================
+   7. COMPONENT: TRUST STRIP 
+   ========================================================================= */
+.ws-trust-strip {
+    background-color: #ffffff;
+    padding: 32px 0;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+}
+
+.ws-trust-strip__grid {
+    display: flex;
+    justify-content: center;
+    gap: 64px;
+    flex-wrap: wrap;
+    max-width: 1400px;
     margin: 0 auto;
 }
 
-/* 3. Trust Strip Guarantee */
+.ws-trust-strip__item {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    transition: transform 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.ws-trust-strip__item:hover {
+    transform: translateY(-2px);
+}
+
+.ws-trust-strip__icon {
+    width: 56px;
+    height: 56px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #FDFBF7;
+    border: 1.5px solid rgba(199, 67, 26, 0.15);
+    border-radius: 50%;
+    color: #C7431A;
+    transition: all 0.4s var(--ws-ease);
+}
+
+.ws-trust-strip__item:hover .ws-trust-strip__icon {
+    background-color: #C7431A;
+    color: #fff;
+    box-shadow: 0 10px 20px rgba(199, 67, 26, 0.2);
+}
+
+/* Icon Visibility Fix (R-05) */
 .ws-trust-strip__icon svg {
     display: block !important;
     width: 28px !important;
@@ -520,7 +469,61 @@ header-component {
     stroke: currentColor !important;
 }
 
-/* 4. Lookbook (Shop by Room) Contrast */
+@media screen and (max-width: 989px) {
+    .ws-trust-strip__grid {
+        justify-content: flex-start;
+        gap: 20px;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        padding: 0 24px 12px 24px;
+    }
+}
+
+/* =========================================================================
+   8. COMPONENT: CATEGORY GRID
+   ========================================================================= */
+.woodenstreet-category-strip {
+    padding: 30px 0 !important;
+    background: #fff !important;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.woodenstreet-category-strip__list {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 10px 0;
+}
+
+.woodenstreet-category-item__image-wrapper {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #fdf5f0;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.woodenstreet-category-item:hover .woodenstreet-category-item__image-wrapper {
+    transform: scale(1.1);
+    border-color: var(--ws-orange);
+}
+
+.woodenstreet-category-item__title {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: var(--ws-black) !important;
+}
+
+/* =========================================================================
+   9. COMPONENT: LOOKBOOK & SHOWCASE (Restoration)
+   ========================================================================= */
+/* Lookbook Fix (R-03) */
 .whisper-lookbook {
     background: #0F172A !important;
     /* Dark Slate Blue */
@@ -529,51 +532,121 @@ header-component {
 
 .whisper-lookbook__card {
     background: #1e293b !important;
-    /* Slightly lighter for cards */
 }
 
 .whisper-lookbook__tag {
     color: var(--ws-orange) !important;
 }
 
-/* 5. Product Cards Visibility */
-.woodenstreet-card {
-    background: #ffffff !important;
-    border: 1px solid #e2e8f0 !important;
-    opacity: 1 !important;
-    visibility: visible !important;
-}
-
-.woodenstreet-card__price {
-    color: var(--ws-orange) !important;
-    opacity: 1 !important;
-}
-
-.woodenstreet-card__title a {
-    color: var(--ws-black) !important;
-}
-
-/* R-04: SHOWCASE BLOB CLEANUP - Remove black backgrounds */
+/* Showcase Blob Cleanup (R-04) */
 .whisper-showcase {
     background: #ffffff !important;
 }
 
-.whisper-showcase__panel {
-    background: transparent !important;
-}
-
+.whisper-showcase__panel,
 .whisper-showcase__split {
     background: transparent !important;
 }
 
-/* Ensure UGC gallery has proper background */
 .whisper-ugc-gallery {
     background: #F9FAFB !important;
 }
 
-/* Fix any dark overlays or blobs */
 .whisper-showcase__title,
-.whisper-showcase__eyebrow,
-.whisper-showcase__reviews-title {
+.whisper-showcase__eyebrow {
     color: var(--ws-black) !important;
+}
+
+/* =========================================================================
+   10. COMPONENT: HOMEPAGE VIDEO
+   ========================================================================= */
+.ws-video {
+    padding: 60px 0;
+    background: #fff;
+}
+
+.ws-video__container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 700px;
+    background: #000;
+    border-radius: 40px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+    border: 4px solid #fff;
+}
+
+.ws-video__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 60%);
+    z-index: 2;
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.ws-video__title {
+    font-family: var(--font-heading-family);
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 800;
+    font-style: italic;
+    color: #fff;
+    margin: 0 0 24px;
+}
+
+.ws-video__play-button {
+    width: 96px;
+    height: 96px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+}
+
+/* =========================================================================
+   11. COMPONENT: FOOTER
+   ========================================================================= */
+.site-footer-wrapper.footer-section {
+    background-color: #232323 !important;
+    color: #ffffff !important;
+    padding-top: 60px;
+    padding-bottom: 30px;
+}
+
+.site-footer-block-title {
+    color: #ffffff;
+    font-family: var(--font-heading-family);
+    font-weight: 600;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+    position: relative;
+    padding-bottom: 10px;
+}
+
+.site-footer-block-title::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    height: 2px;
+    background-color: #C7431A;
+}
+
+.site-footer-block-content a {
+    color: #cccccc !important;
+    text-decoration: none;
+    transition: color 0.3s, padding-left 0.3s;
+}
+
+.site-footer-block-content a:hover {
+    color: #C7431A !important;
+    padding-left: 5px;
 }
