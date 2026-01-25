@@ -1,0 +1,43 @@
+.ws-zoom-pan-gallery {
+  display: grid;
+  gap: 12px;
+}
+
+.ws-zoom-pan-gallery__main {
+  position: relative;
+  overflow: hidden;
+  border-radius: 12px;
+  background: #f7f7f7;
+}
+
+.ws-zoom-pan-gallery__image {
+  width: 100%;
+  height: auto;
+  display: block;
+  transition: transform 0.3s ease;
+}
+
+.ws-zoom-pan-gallery__main:hover .ws-zoom-pan-gallery__image {
+  transform: scale(1.08);
+}
+
+.ws-zoom-pan-gallery__thumbnails {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+}
+
+.ws-zoom-pan-gallery__thumb {
+  flex: 0 0 auto;
+  border-radius: 8px;
+  overflow: hidden;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  background: #fff;
+}
+
+.ws-zoom-pan-gallery__thumb img {
+  display: block;
+  width: 72px;
+  height: 72px;
+  object-fit: cover;
+}

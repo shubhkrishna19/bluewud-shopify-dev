@@ -1,0 +1,68 @@
+/* WoodenStreet Category Navigation Strip */
+.ws-category-strip {
+    padding: 24px 0;
+    background: #fff;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.ws-category-strip::-webkit-scrollbar {
+    display: none;
+}
+
+.ws-category-strip__wrapper {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 24px;
+}
+
+@media screen and (min-width: 990px) {
+    .ws-category-strip__wrapper {
+        justify-content: center;
+        gap: 40px;
+    }
+}
+
+.ws-category-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-decoration: none;
+    width: 80px;
+    flex-shrink: 0;
+    transition: transform 0.2s ease;
+}
+
+.ws-category-item:hover {
+    transform: translateY(-4px);
+}
+
+.ws-category-item__image-wrapper {
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    padding: 10px;
+    background: #F8F8F8;
+    border: 1px solid #EDEDED;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+}
+
+.ws-category-item__image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.ws-category-item__title {
+    font-size: 13px;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    line-height: 1.2;
+    font-family: 'Poppins', sans-serif;
+}

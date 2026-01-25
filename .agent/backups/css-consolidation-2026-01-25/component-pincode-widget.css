@@ -1,0 +1,84 @@
+/* WoodenStreet Pincode Widget */
+.ws-delivery-estimator {
+    margin: 16px 0;
+    padding: 16px;
+    background: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 4px;
+}
+
+.ws-delivery-estimator__title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #222;
+}
+
+.ws-delivery-estimator__title svg {
+    width: 18px;
+    height: 18px;
+    color: #C7431A;
+    /* WS Orange */
+}
+
+.ws-delivery-estimator__row {
+    display: flex;
+    gap: 0;
+    position: relative;
+}
+
+.ws-delivery-estimator__input {
+    flex: 1;
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-right: none;
+    border-radius: 4px 0 0 4px;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.ws-delivery-estimator__input:focus {
+    border-color: #aaa;
+    outline: none;
+}
+
+.ws-delivery-estimator__button {
+    background: #232323;
+    color: #fff;
+    border: none;
+    padding: 0 24px;
+    border-radius: 0 4px 4px 0;
+    font-size: 0.85rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.ws-delivery-estimator__button:hover {
+    background: #C7431A;
+}
+
+.ws-delivery-estimator__note {
+    margin-top: 8px;
+    font-size: 0.8rem;
+    color: #666;
+    font-style: italic;
+    display: none;
+    /* Hidden by default */
+}
+
+.ws-delivery-estimator__note.success {
+    display: block;
+    color: #2e7d32;
+    font-style: normal;
+    font-weight: 500;
+}
+
+.ws-delivery-estimator__note.error {
+    display: block;
+    color: #d32f2f;
+}

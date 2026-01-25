@@ -1,0 +1,70 @@
+/* WoodenStreet Footer Accordion (Mobile) */
+
+/* Desktop: Always open, hide icons */
+@media screen and (min-width: 768px) {
+    .site-footer-block-icon {
+        display: none !important;
+    }
+
+    .site-footer-block-content {
+        display: block !important;
+        height: auto !important;
+        opacity: 1 !important;
+    }
+}
+
+/* Mobile: Accordion Style */
+@media screen and (max-width: 767px) {
+    .site-footer-block-item {
+        border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        margin-bottom: 0;
+    }
+
+    .site-footer-block-title {
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 0;
+        margin: 0;
+        font-size: 0.95rem;
+        font-weight: 600;
+    }
+
+    .site-footer-block-icon {
+        width: 20px;
+        height: 20px;
+        transition: transform 0.3s ease;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .site-footer-block-title.is-active .site-footer-block-icon {
+        transform: rotate(180deg);
+    }
+
+    .site-footer-block-content {
+        display: none;
+        padding-bottom: 16px;
+        font-size: 0.9rem;
+        color: #555;
+    }
+
+    .site-footer-block-content.is-open {
+        display: block;
+        animation: fadeIn 0.3s ease;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

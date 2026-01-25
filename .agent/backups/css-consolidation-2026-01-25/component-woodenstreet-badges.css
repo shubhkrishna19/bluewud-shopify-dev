@@ -1,0 +1,66 @@
+/* WoodenStreet Product Badges */
+.ws-badge-container {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    z-index: 10;
+    pointer-events: none;
+}
+
+.ws-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 4px 8px;
+    font-family: var(--font-body-family, "Inter", sans-serif);
+    font-weight: 700;
+    font-size: 0.7rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    border-radius: 4px;
+    line-height: 1;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.ws-badge--sale {
+    background-color: #C7431A;
+    /* WS Orange */
+    color: #fff;
+}
+
+.ws-badge--soldout {
+    background-color: #333;
+    color: #fff;
+}
+
+.ws-badge--new {
+    background-color: #2196F3;
+    color: #fff;
+}
+
+.ws-badge--bestseller {
+    background-color: #FFC107;
+    color: #222;
+}
+
+.ws-badge--custom {
+    background-color: #4CAF50;
+    color: #fff;
+}
+
+/* Ribbon Style for "Recommended" */
+.ws-badge--ribbon {
+    position: absolute;
+    top: 10px;
+    right: -6px;
+    /* Hang off edge if container allows, else right align */
+    left: auto;
+    background: #C7431A;
+    color: #fff;
+    padding: 4px 12px;
+    clip-path: polygon(100% 0, 100% 100%, 0 100%, 10px 50%, 0 0);
+    font-size: 0.65rem;
+}

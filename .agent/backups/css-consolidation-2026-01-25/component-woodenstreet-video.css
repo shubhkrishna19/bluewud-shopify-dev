@@ -1,0 +1,126 @@
+/* WoodenStreet: Homepage Video Section CSS */
+.ws-video {
+    padding: 60px 0;
+    background: #fff;
+}
+
+.ws-video__container {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    max-height: 700px;
+    background: #000;
+    border-radius: 40px;
+    overflow: hidden;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.12);
+    border: 4px solid #fff;
+}
+
+.ws-video__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 60%);
+    z-index: 2;
+    padding: 48px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.ws-video__title {
+    font-family: var(--ws-font-heading, "Poppins", sans-serif);
+    font-size: clamp(2rem, 5vw, 4rem);
+    font-weight: 800;
+    font-style: italic;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 0.9;
+    color: #fff;
+    max-width: 800px;
+    margin: 0 0 24px;
+    text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.ws-video__subtitle {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: rgba(255, 255, 255, 0.9);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    font-size: 0.75rem;
+    margin: 0;
+}
+
+.ws-video__subtitle-line {
+    width: 48px;
+    height: 2px;
+    background: #C7431A;
+    /* WS Orange */
+}
+
+.ws-video__media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.ws-video__play-button-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+}
+
+.ws-video__play-button {
+    width: 96px;
+    height: 96px;
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    animation: pulse-custom 2s infinite ease-in-out;
+}
+
+.ws-video__play-button svg {
+    width: 32px;
+    height: 32px;
+    fill: currentColor;
+    margin-left: 4px;
+    /* Optical centering */
+}
+
+@keyframes pulse-custom {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4);
+    }
+
+    50% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 20px rgba(255, 255, 255, 0);
+    }
+
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    }
+}
+
+@media (max-width: 768px) {
+    .ws-video__container {
+        aspect-ratio: 4/5;
+        border-radius: 20px;
+    }
+
+    .ws-video__overlay {
+        padding: 24px;
+    }
+}

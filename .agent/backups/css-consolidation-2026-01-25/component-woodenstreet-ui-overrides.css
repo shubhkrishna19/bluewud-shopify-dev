@@ -1,0 +1,474 @@
+/* 
+  WOODENSTREET PREMIUM UI OVERHAUL 
+  Goal: Luxury, High-Trust, Modern Aesthetic
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:ital,wght@0,600;0,700;0,800;1,700&display=swap');
+
+:root {
+    --ws-orange: #C7431A;
+    --ws-orange-hover: #a63614;
+    --ws-black: #1A1A1A;
+    --ws-text-main: #333333;
+    --ws-text-muted: #666666;
+    --ws-bg-cream: #FDFBF7;
+    --ws-glass-bg: rgba(255, 255, 255, 0.85);
+    --ws-glass-border: rgba(255, 255, 255, 0.3);
+    --ws-glow: 0 0 20px rgba(199, 67, 26, 0.15);
+    --ws-shadow-sm: 0 2px 40px rgba(0, 0, 0, 0.04);
+    --ws-shadow-md: 0 10px 40px rgba(0, 0, 0, 0.08);
+    --ws-shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
+    --ws-radius-lg: 20px;
+    --ws-radius-md: 12px;
+    --ws-radius-sm: 8px;
+}
+
+/* Base Polish */
+body {
+    background-color: var(--ws-bg-cream) !important;
+    color: var(--ws-text-main) !important;
+    font-family: 'Inter', sans-serif !important;
+    -webkit-font-smoothing: antialiased;
+    letter-spacing: -0.01em;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4 {
+    font-family: 'Poppins', sans-serif !important;
+    font-weight: 700 !important;
+    color: var(--ws-black) !important;
+}
+
+/* Glassmorphism Header */
+.header-section {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.header__row--top {
+    background: #ffffff !important;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.05) !important;
+    padding: 16px 0 !important;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+}
+
+.header__columns {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+
+.header-logo {
+    display: flex;
+    justify-content: center;
+}
+
+.header-logo img {
+    max-height: 40px !important;
+    width: auto !important;
+}
+
+/* Animated Ultra-Search */
+.search-action {
+    max-width: 520px !important;
+    margin: 0 !important;
+    transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.search-action:focus-within {
+    transform: scale(1.02);
+}
+
+/* Trust Signals & Stock Indicator icon fixes */
+.whisper-trust-signals svg {
+    width: 28px !important;
+    height: 28px !important;
+}
+
+.whisper-stock-indicator svg {
+    width: 16px !important;
+    height: 16px !important;
+}
+
+.whisper-trust-signals .w-14 {
+    width: 56px !important;
+}
+
+.whisper-trust-signals .h-14 {
+    height: 56px !important;
+}
+
+.whisper-trust-signals .rounded-full {
+    border-radius: 50% !important;
+}
+
+.whisper-trust-signals .flex {
+    display: flex !important;
+}
+
+.whisper-trust-signals .items-center {
+    align-items: center !important;
+}
+
+.whisper-trust-signals .justify-center {
+    justify-content: center !important;
+}
+
+.whisper-stock-indicator .flex {
+    display: flex !important;
+}
+
+.whisper-stock-indicator .items-center {
+    align-items: center !important;
+}
+
+.whisper-stock-indicator .gap-1\.5 {
+    gap: 6px !important;
+}
+
+.whisper-stock-indicator .gap-2 {
+    gap: 8px !important;
+}
+
+/* Product Card Text Visibility Fix (Surgical) */
+.product-card .productitem--title,
+.product-card .productitem--title a,
+.product-card .productitem--price,
+.product-card .productitem--ratings,
+.product-card .price--main,
+.product-card .price--compare-at,
+.woodenstreet-card__title,
+.woodenstreet-card__title a,
+.woodenstreet-card__price,
+.woodenstreet-card__compare-price {
+    color: #1a1a1a !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.product-card .productitem--ratings,
+.woodenstreet-card__rating {
+    color: #FBBF24 !important;
+    /* Gold for stars */
+}
+
+.search-form {
+    border: none !important;
+    background: #fff !important;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06) !important;
+    border-radius: 100px !important;
+    padding: 4px !important;
+    display: flex !important;
+}
+
+.search-form__input {
+    border: none !important;
+    padding: 10px 24px !important;
+    font-weight: 500 !important;
+    color: var(--ws-black) !important;
+    background: transparent !important;
+}
+
+.search-form__submit {
+    background: var(--ws-orange) !important;
+    border-radius: 100px !important;
+    height: 40px !important;
+    width: 40px !important;
+    min-width: 40px !important;
+    padding: 0 !important;
+    margin-right: 4px !important;
+    border: none !important;
+    color: #fff !important;
+}
+
+/* Premium Navigation */
+.header__row--bottom {
+    background: #fff !important;
+    border-bottom: 1px solid #eee !important;
+    padding: 2px 0 !important;
+}
+
+.navmenu-link {
+    font-size: 11px !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.1em !important;
+    color: var(--ws-black) !important;
+    padding: 16px 20px !important;
+    position: relative;
+    text-decoration: none !important;
+}
+
+.navmenu-link::after {
+    content: '';
+    position: absolute;
+    bottom: 12px;
+    left: 20px;
+    right: 20px;
+    height: 2px;
+    background: var(--ws-orange);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.navmenu-link:hover::after {
+    transform: scaleX(1);
+}
+
+.navmenu-link:hover {
+    color: var(--ws-orange) !important;
+}
+
+/* Product Card - The "Gallery" Look */
+.woodenstreet-card {
+    border: 1px solid #F1F5F9 !important;
+    background: #ffffff !important;
+    border-radius: 8px !important;
+    padding: 0 !important;
+    overflow: hidden;
+    transition: all 0.5s var(--ws-ease) !important;
+    position: relative;
+}
+
+.woodenstreet-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08) !important;
+    border-color: var(--ws-orange) !important;
+}
+
+.woodenstreet-card__media-wrapper {
+    position: relative;
+    aspect-ratio: 1;
+    overflow: hidden;
+    background: #F8FAFC;
+}
+
+.woodenstreet-card__image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 1.2s var(--ws-ease);
+}
+
+.woodenstreet-card:hover .woodenstreet-card__image {
+    transform: scale(1.1);
+}
+
+.woodenstreet-card__badge--discount {
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    background: rgba(199, 67, 26, 0.9);
+    backdrop-filter: blur(8px);
+    color: #fff;
+    padding: 4px 10px;
+    border-radius: 4px;
+    font-size: 0.7rem;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    z-index: 2;
+}
+
+.woodenstreet-card__wishlist {
+    background: #ffffff !important;
+    border-radius: 50% !important;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #1A1A1A;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s var(--ws-ease);
+}
+
+.woodenstreet-card__wishlist:hover {
+    background: var(--ws-orange) !important;
+    color: #fff;
+    transform: scale(1.1);
+}
+
+.woodenstreet-card__content {
+    padding: 16px;
+}
+
+.woodenstreet-card__title {
+    font-family: 'Poppins', sans-serif !important;
+    font-size: 0.9rem !important;
+    font-weight: 700 !important;
+    margin-bottom: 8px !important;
+    color: #1A1A1A;
+}
+
+.woodenstreet-card__title a {
+    text-decoration: none;
+    color: inherit;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.woodenstreet-card__rating {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    color: #F59E0B;
+}
+
+.woodenstreet-card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+}
+
+.woodenstreet-card__price {
+    font-size: 1rem;
+    font-weight: 800;
+    color: var(--ws-orange);
+}
+
+.woodenstreet-card__compare-price {
+    font-size: 0.8rem;
+    text-decoration: line-through;
+    color: #94A3B8;
+    margin-left: 6px;
+}
+
+/* Trust Strip Icon Fix */
+.trust-item__icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    background: #FFF6EE;
+    border: 2px solid var(--ws-orange);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 16px;
+    color: var(--ws-orange);
+}
+
+/* Buttons - Custom Curve */
+.button--primary {
+    border-radius: 100px !important;
+    padding: 14px 32px !important;
+    font-weight: 800 !important;
+    text-transform: uppercase !important;
+    letter-spacing: 0.05em !important;
+    background: var(--ws-orange) !important;
+    box-shadow: 0 4px 15px rgba(199, 67, 26, 0.3) !important;
+    border: none !important;
+    color: #fff !important;
+    transition: all 0.3s ease !important;
+}
+
+.button--primary:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 25px rgba(199, 67, 26, 0.4) !important;
+}
+
+/* Category Strip Polish */
+.woodenstreet-category-strip {
+    padding: 30px 0 !important;
+    background: #fff !important;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.woodenstreet-category-strip__list {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    overflow-x: auto;
+    padding: 10px 0;
+}
+
+.woodenstreet-category-item {
+    flex: 0 0 auto;
+    text-align: center;
+    width: 100px;
+}
+
+.woodenstreet-category-item__image-wrapper {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: #fdf5f0;
+    margin: 0 auto 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
+    border: 1px solid transparent;
+}
+
+.woodenstreet-category-item:hover .woodenstreet-category-item__image-wrapper {
+    transform: scale(1.1);
+    border-color: var(--ws-orange);
+}
+
+.woodenstreet-category-item__title {
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: var(--ws-black) !important;
+}
+
+/* Global Section Buffer to prevent clumping */
+.shopify-section {
+    margin-bottom: 0px !important;
+    /* Managed by component padding */
+}
+
+.site-main>.shopify-section {
+    padding-top: 60px !important;
+    padding-bottom: 60px !important;
+}
+
+/* Exceptions for Flush Sections */
+#shopify-section-woodenstreet_hero,
+#shopify-section-urgency_strip,
+#shopify-section-trust_strip {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+/* Footer Polish */
+.ws-footer__main {
+    background: var(--ws-black) !important;
+}
+
+/* Mobile Optimizations */
+@media screen and (max-width: 768px) {
+    .site-main>.shopify-section {
+        padding-top: 40px !important;
+        padding-bottom: 40px !important;
+    }
+
+    #shopify-section-woodenstreet_hero,
+    #shopify-section-urgency_strip,
+    #shopify-section-trust_strip {
+        padding-top: 0 !important;
+        padding-bottom: 0 !important;
+    }
+}
