@@ -55,72 +55,7 @@
   </div>
 </div>
 
-<style>
-  .whisper-urgency-strip {
-    border-bottom: 1px solid rgba(0,0,0,0.05);
-    padding: 10px 0;
-    font-family: var(--font-body-family);
-  }
 
-  .urgency-content {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-  }
-
-  .urgency-badge {
-    background: #FF7043; /* Vibrant Orange */
-    color: white;
-    padding: 4px 8px;
-    border-radius: 4px;
-    font-weight: 700;
-    font-size: 0.8rem;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-    animation: pulse-orange 2s infinite;
-  }
-
-  .urgency-label {
-    color: #BF360C; /* Deep Red-Orange text */
-    font-weight: 600;
-    font-size: 0.95rem;
-  }
-
-  .urgency-timer {
-    display: flex;
-    align-items: center;
-    gap: 4px;
-    font-family: monospace;
-    color: #D84315;
-    font-weight: 700;
-    font-size: 1.1rem;
-  }
-
-  .timer-block {
-    background: white;
-    padding: 2px 6px;
-    border-radius: 4px;
-    border: 1px solid #FFAB91;
-    min-width: 28px;
-    text-align: center;
-  }
-
-  @keyframes pulse-orange {
-    0% { box-shadow: 0 0 0 0 rgba(255, 112, 67, 0.4); }
-    70% { box-shadow: 0 0 0 6px rgba(255, 112, 67, 0); }
-    100% { box-shadow: 0 0 0 0 rgba(255, 112, 67, 0); }
-  }
-
-  @media (max-width: 767px) {
-    .urgency-content {
-      gap: 10px;
-      flex-direction: column;
-      text-align: center;
-    }
-  }
-</style>
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
