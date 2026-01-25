@@ -53,3 +53,4 @@
 - **Issue**: The current "Whisper" sections are bleeding raw Tailwind classes that don't match the Empire Theme's compiled CSS.
 - **Solution**: Forcing standard Liquid/CSS overrides in `woodenstreet-ui-overrides.css`.
 
+- **2026-01-25 (Codex)**: **CSS consolidation executed.** Created `assets/woodenstreet-master.css`, updated layouts/sections/snippets to load only the master stylesheet, and backed up legacy CSS files.
