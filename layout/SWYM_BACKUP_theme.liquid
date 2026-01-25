@@ -66,7 +66,7 @@
     %}
 
     <link rel="preload" href="{{ settings.type_menu | font_url }}" as="font" crossorigin="anonymous">
-    <link rel="preload" as="style" href="{{ 'theme.css' | asset_url }}">
+    <link rel="preload" as="style" href="{{ 'woodenstreet-master.css' | asset_url }}">
 
     {% include 'buddha-megamenu' %}
   {{ content_for_header }}
@@ -75,7 +75,7 @@
 
 
 
-    {{ 'theme.css' | asset_url | stylesheet_tag }}
+    {{ 'woodenstreet-master.css' | asset_url | stylesheet_tag }}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {% comment %}Inject theme-object begin{% endcomment %}
     <script>
@@ -120,7 +120,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
   
-        {{ 'paymentfont.scss.css' | asset_url | stylesheet_tag }}
+        {{ 'woodenstreet-master.css' | asset_url | stylesheet_tag }}
    
 <!--     whatsapp -->
  
@@ -478,7 +478,6 @@ src="https://www.facebook.com/tr?id=1321706361586738&ev=PageView&noscript=1"
     </script>
 
     {% unless settings.reduce_animations %}
-      {{ 'ripple.css' | asset_url | stylesheet_tag }}
     {% endunless %}
 
     <script

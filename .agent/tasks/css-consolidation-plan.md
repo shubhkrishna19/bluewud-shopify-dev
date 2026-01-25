@@ -5,11 +5,11 @@
 
 ## 📊 CURRENT STATE
 
-### Existing CSS Files (8 files, 50KB+ total)
+### Legacy CSS Files (pre-consolidation)
 ```
 assets/
 ├── theme.css (4000+ lines) - Empire base theme
-├── theme-update.css (3800+ lines) - Whisper components  
+├── theme-update.css (3800+ lines) - Whisper components
 ├── component-woodenstreet-hero.css
 ├── component-woodenstreet-ui-overrides.css
 ├── component-trust-strip-v2.css

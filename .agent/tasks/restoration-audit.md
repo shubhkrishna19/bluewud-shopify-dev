@@ -59,13 +59,13 @@ Use these skills from `.agent/skills/`:
 
 ## 📝 NOTES
 
-**Current Hypothesis**: The issue is CSS specificity wars between:
+**Current Hypothesis**: The issue was CSS specificity wars between legacy files:
 - `theme.css` (base Empire theme)
 - `theme-update.css` (Whisper components)
 - `component-woodenstreet-ui-overrides.css` (our overrides)
 - `woodenstreet-premium-force.css` (force fixes)
 
-**Solution**: Need to consolidate into a single source of truth or establish clear cascade hierarchy.
+**Solution**: Consolidate into a single source of truth (`woodenstreet-master.css`) with clear cascade hierarchy.
 
 ---
 

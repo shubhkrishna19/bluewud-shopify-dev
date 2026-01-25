@@ -47,14 +47,9 @@
 
 ## 🔍 FILES TO AUDIT
 
-### CSS Files (Consolidation Needed)
-- `component-mega-menu.css` ✓ (Just refined)
-- `component-woodenstreet-mobile-menu.css` ✓ (Just created)
-- `component-woodenstreet-hero.css`
-- `component-woodenstreet-global.css`
-- `component-woodenstreet-ui-overrides.css`
-- `home-polish.css`
-- `theme-update.css`
+### CSS Files (Consolidated)
+- `woodenstreet-master.css` (single source of truth)
+- Legacy component/theme CSS archived in `.agent/backups/css-old-*`
 
 ### Section Files
 - All `sections/woodenstreet-*.liquid`

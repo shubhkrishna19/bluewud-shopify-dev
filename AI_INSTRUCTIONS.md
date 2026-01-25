@@ -9,7 +9,7 @@ This repository contains a **Shopify Theme** development project.
 
 ## 🛠️ Global Instructions
 1. **Never overwrite logic**: Ensure `data-` attributes and IDs for Zippy Pincode (`#zippy_widget_1511`) and Ajax Cart remain untouched.
-2. **CSS Standard**: Use `assets/theme-update.css` for all styles. Follow the **Premium Design Tokens** (Glassmorphism, gradients) defined in `:root`.
+2. **CSS Standard**: Use `assets/woodenstreet-master.css` for all styles. Follow the **Premium Design Tokens** (Glassmorphism, gradients) defined in `:root`.
 3. **Task Protocol**: Before coding, read `AGENTS.md`, claim your Task ID, and update the log.
 4. **Reference App**: The `ecommerce-app/` folder contains a high-polish React reference. Port logic/styles from there when tasked.
 
