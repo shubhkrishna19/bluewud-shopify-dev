@@ -73,10 +73,6 @@
     {% render 'social-meta-tags', twitter_handle: twitter_handle %}
 
     <link rel="preload" href="{{ settings.type_menu | font_url }}" as="font" crossorigin="anonymous">
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< HEAD
     {% render 'critical-css' %}
     {% render 'agent-css-loader' %}
     
@@ -87,18 +83,6 @@
     {{ 'woodenstreet-master.css' | asset_url | stylesheet_tag }}
     
     {%- comment -%} Essential Component CSS (Empire theme components - Keep these) {%- endcomment -%}
-
-=======
-    <link rel="preload" as="style" href="{{ 'woodenstreet-master.css' | asset_url }}">
-    <link rel="preload" as="style" href="{{ 'component-variant-swatches.css' | asset_url }}">
-    <link rel="preload" as="style" href="{{ 'component-sticky-footer.css' | asset_url }}">
-    <link rel="preload" as="style" href="{{ 'component-cart-drawer.css' | asset_url }}">
-    {% render 'critical-css' %}
-    {% render 'agent-css-loader' %}
-    {{ 'woodenstreet-master.css' | asset_url | stylesheet_tag }}
-    {{ 'component-shop-the-look.css' | asset_url | stylesheet_tag }}
-    {{ 'component-offers-box.css' | asset_url | stylesheet_tag }}
->>>>>>> pr/57
     {{ 'component-discount-badge.css' | asset_url | stylesheet_tag }}
     {{ 'component-product-card-badges.css' | asset_url | stylesheet_tag }}
     {{ 'component-discount-badges.css' | asset_url | stylesheet_tag }}
@@ -114,30 +98,12 @@
     {{ 'component-woodenstreet-hero.css' | asset_url | stylesheet_tag }}
     {{ 'component-woodenstreet-engagement.css' | asset_url | stylesheet_tag }}
     {{ 'component-mega-menu.css' | asset_url | stylesheet_tag }}
-<<<<<<< HEAD
     {{ 'component-woodenstreet-ui-overrides.css' | asset_url | stylesheet_tag }}
     {{ 'woodenstreet-premium-force.css' | asset_url | stylesheet_tag }}
     {{ 'component-trust-strip-v2.css' | asset_url | stylesheet_tag }}
     {{ 'component-woodenstreet-video.css' | asset_url | stylesheet_tag }}
     {%- endcomment -%}
-=======
-    <link rel="preload" as="style" href="{{ 'woodenstreet-master.css' | asset_url }}">
-    {% render 'critical-css' %}
-    {% render 'agent-css-loader' %}
-    {{ 'woodenstreet-master.css' | asset_url | stylesheet_tag }}
->>>>>>> pr/54
-=======
-    {% render 'critical-css' %}
-    {{ 'woodenstreet-master.css' | asset_url | stylesheet_tag }}
->>>>>>> pr/55
-=======
-    <link rel="preload" as="style" href="{{ 'woodenstreet-master.css' | asset_url }}">
-    {% render 'critical-css' %}
-    {% render 'agent-css-loader' %}
-    {{ 'woodenstreet-master.css' | asset_url | stylesheet_tag }}
->>>>>>> pr/56
-=======
->>>>>>> pr/57
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {% comment %} Inject theme-object begin{% endcomment %}
     <script>
@@ -182,12 +148,21 @@
         const savedTheme = localStorage.getItem('bluewud_theme');
         let mode = 'dark'; // Default to dark as per wireframe.onslate.com
         
+    {% comment %} Ecommerce-App Theme Initialization (Dark Mode Support) {% endcomment %}
+    <script>
+      (function() {
+        const savedTheme = localStorage.getItem('bluewud_theme');
+        let mode = 'dark'; // Default to dark as per wireframe.onslate.com
+        
         if (savedTheme) {
           try {
             const theme = JSON.parse(savedTheme);
             mode = theme.mode || 'dark';
           } catch (e) {}
         }
+
+        document.documentElement.setAttribute('data-theme', mode);
+        window.initialThemeMode = mode;
       })();
     </script>
     
@@ -205,21 +180,9 @@
         });
       });
     </script>
-        
-        document.documentElement.setAttribute('data-theme', mode);
-        window.initialThemeMode = mode;
-      })();
-    </script>
 
     {% comment %}Inject theme-object end{% endcomment %}
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-
-=======
->>>>>>> pr/55
-=======
->>>>>>> pr/56
     <!-- whatsapp -->
 
     <!--
