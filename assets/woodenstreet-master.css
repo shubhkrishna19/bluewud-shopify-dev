@@ -1,5 +1,4 @@
-<<<<<<< HEAD
-/*!
+﻿/*!
  * WoodenStreet Master Stylesheet
  * Version: 1.0.0
  * Last Updated: 2026-01-25
@@ -513,7 +512,7 @@ p:empty {
   );
 
   /* Offset for full-width sections to account for the page margin,
-  used for Marquee — note that --util-page-margin-offset doesn't work here */
+  used for Marquee â€” note that --util-page-margin-offset doesn't work here */
   --full-page-margin-inline-offset: calc(((100vw - var(--full-page-grid-central-column-width)) / 2) * -1);
 
   width: 100%;
@@ -2368,7 +2367,7 @@ product-price.text-block:is(.h1, .h2, .h3, .h4, .h5, .h6) > *:not(.tax-note) {
     --spacing-scale: var(--spacing-scale-default);
   }
 
-  /* Must disable this, when you use these with calc and another unit type, things break — see logo.liquid */
+  /* Must disable this, when you use these with calc and another unit type, things break â€” see logo.liquid */
   /* stylelint-disable length-zero-no-unit */
   --padding-block: 0px;
   --padding-block-start: var(--padding-block, 0px);
@@ -28345,7 +28344,7 @@ div.ba-trust-wrapper {
 }
 
 .stars-outer::before {
-  content: "★★★★★";
+  content: "â˜…â˜…â˜…â˜…â˜…";
   color: #ccc;
   font-size: 18px;
 }
@@ -28360,7 +28359,7 @@ div.ba-trust-wrapper {
 }
 
 .stars-inner::before {
-  content: "★★★★★";
+  content: "â˜…â˜…â˜…â˜…â˜…";
   color: #f8ce0b;
   font-size: 18px;
 }
@@ -34686,7 +34685,7 @@ header-component[data-sticky-state="active"] .header-wrapper--glass {
 }
 
 .woodenstreet-offers__item::before {
-  content: "•";
+  content: "â€¢";
   color: #C7431A;
   position: absolute;
   left: 0;
@@ -39249,7 +39248,7 @@ h6,
 }
 
 .woodenstreet-offers__item::before {
-  content: "•";
+  content: "â€¢";
   color: #C7431A;
   position: absolute;
   left: 0;
@@ -44143,7 +44142,7 @@ header-component {
  
  . w h i s p e r - l o o k b o o k _ _ l i n k : : a f t e r   { 
  
-         c o n t e n t :   ' �    ' ; 
+         c o n t e n t :   ' â    ' ; 
  
          t r a n s i t i o n :   t r a n s f o r m   0 . 3 s ; 
  
@@ -68400,7 +68399,7 @@ div.ba-trust-wrapper {
 }
 
 .stars-outer::before {
-  content: "★★★★★";
+  content: "â˜…â˜…â˜…â˜…â˜…";
   color: #ccc;
   font-size: 18px;
 }
@@ -68415,7 +68414,7 @@ div.ba-trust-wrapper {
 }
 
 .stars-inner::before {
-  content: "★★★★★";
+  content: "â˜…â˜…â˜…â˜…â˜…";
   color: #f8ce0b;
   font-size: 18px;
 }
@@ -76310,7 +76309,7 @@ body.overflow-hidden .header-wrapper--glass {
 }
 
 .woodenstreet-offers__item::before {
-  content: "•";
+  content: "â€¢";
   color: #C7431A;
   position: absolute;
   left: 0;
@@ -103865,7 +103864,7 @@ div.ba-trust-wrapper {
 }
 
 .stars-outer::before {
-  content: "★★★★★";
+  content: "â˜…â˜…â˜…â˜…â˜…";
   color: #ccc;
   font-size: 18px;
 }
@@ -103880,7 +103879,7 @@ div.ba-trust-wrapper {
 }
 
 .stars-inner::before {
-  content: "★★★★★";
+  content: "â˜…â˜…â˜…â˜…â˜…";
   color: #f8ce0b;
   font-size: 18px;
 }
@@ -110460,7 +110459,7 @@ h6,
 }
 
 .woodenstreet-offers__item::before {
-  content: "•";
+  content: "â€¢";
   color: #C7431A;
   position: absolute;
   left: 0;
@@ -114042,4 +114041,3 @@ rgb(255, 255, 255)
     display: none;
   }
 }
->>>>>>> pr/62

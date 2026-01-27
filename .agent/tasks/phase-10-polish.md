@@ -19,10 +19,10 @@ description: Phase 10 - Polish & Pre-Launch Polish Plan
   - ✅ Implement Glassmorphism (blur + transparency).
   - ✅ Fix Git conflicts in `woodenstreet-master.css`.
   - ✅ Verify Typography (Poppins/Inter).
-- [ ] **P10-01**: **Animation Audit**
-  - Verify AOS animations are not janky.
-  - Implement smooth reveal for Product Cards.
-  - Fix any flashing on load.
+- [x] **P10-01**: **Animation Audit**
+  - ✅ Verified AOS animations are not janky (Standardized on `fade-up`, 600ms).
+  - ✅ Implement smooth reveal for Product Cards (`product-grid-item` + `whisper-card`).
+  - ✅ Fix any flashing on load (AOS `once: true`).
 - [ ] **P10-02**: **Button Consistency**
   - Ensure all buttons have consistent hover states (slide-up or scale).
   - Verify primary vs secondary button hierarchy.

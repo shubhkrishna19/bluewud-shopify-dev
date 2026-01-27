@@ -3,7 +3,7 @@
   Incorporating Ecommerce-App aesthetics (Hover scale, gradients, slate borders)
 {% endcomment %}
 
-<div class="woodenstreet-card group">
+<div class="woodenstreet-card group" data-aos="fade-up" data-aos-duration="600" data-aos-once="true">
   {% assign product_tags = product.tags | join: ',' | downcase %}
   {% assign ribbon_label = '' %}
   {% if product_tags contains 'best seller' or product_tags contains 'best-seller' or product_tags contains 'bestseller' %}
