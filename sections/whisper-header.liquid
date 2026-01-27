@@ -23,11 +23,13 @@
 
   # Functional Captures
   capture logo
+    echo '<div class="header-logo">'
     if section.settings.logo != blank
       render 'rimg', img: section.settings.logo, class: 'site-logo-image', size: '200x'
     else
       echo '<a href="/" class="site-header__logo-link site-header__logo-text">' | append: shop.name | append: '</a>'
     endif
+    echo '</div>'
   endcapture
 
   capture menu
@@ -49,18 +51,17 @@
   endcapture
 %}
 
-<header
+<header-component
   id="header-component"
-  class="site-header site-header--glass color-{{ section.settings.color_scheme_top }} spacing-style"
+  class="header header-wrapper--glass color-{{ section.settings.color_scheme_top }} spacing-style"
   style="{% render 'whisper-spacing-style', settings: section.settings %}"
-  data-site-header
   {% if sticky %}
-    data-sticky-header
+    sticky="{{ sticky }}"
   {% endif %}
 >
   {% for row in rows %}
     {% liquid
-       assign row_class = 'site-header__row site-header__row--' | append: row
+       assign row_class = 'header__row header__row--' | append: row
        if row == 'bottom'
          assign row_class = row_class | append: ' mobile:hidden'
        endif
@@ -69,7 +70,7 @@
       class="{{ row_class }} color-{{ section.settings.row_color_scheme }}"
       {% if row == 'top' %}ref="headerRowTop"{% endif %}
     >
-       <div class="site-header__container container-style">
+       <div class="header__columns container-style">
           {% render 'whisper-header-row',
             row: row,
             order: order,
@@ -83,7 +84,7 @@
        </div>
     </div>
   {% endfor %}
-</header>
+</header-component>
 
 <script src="{{ 'whisper-header.js' | asset_url }}" type="module"></script>
 <script src="{{ 'whisper-header-menu.js' | asset_url }}" type="module"></script>

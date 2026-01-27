@@ -23,9 +23,10 @@ description: Phase 10 - Polish & Pre-Launch Polish Plan
   - ✅ Verified AOS animations are not janky (Standardized on `fade-up`, 600ms).
   - ✅ Implement smooth reveal for Product Cards (`product-grid-item` + `whisper-card`).
   - ✅ Fix any flashing on load (AOS `once: true`).
-- [ ] **P10-02**: **Button Consistency**
-  - Ensure all buttons have consistent hover states (slide-up or scale).
-  - Verify primary vs secondary button hierarchy.
+- [x] **P10-02**: **Button Consistency**
+  - ✅ Enforced global `translateY(-2px)` on hover.
+  - ✅ Standardized transitions (`cubic-bezier`).
+  - ✅ Added overrides for `.button`, `.btn`, and `.button-primary`.
 - [ ] **P10-03**: **Mobile Typography**
   - Verify font sizes are not too small on mobile (<14px).
   - Check line-heights for readability.
