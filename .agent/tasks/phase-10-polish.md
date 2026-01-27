@@ -15,6 +15,10 @@ description: Phase 10 - Polish & Pre-Launch Polish Plan
 ## 📋 Task Bucket (Pick from here)
 
 ### 🎨 Visual Polish (Priority: High)
+- [x] **P10-00**: **Header & Mega Menu Polish**
+  - ✅ Implement Glassmorphism (blur + transparency).
+  - ✅ Fix Git conflicts in `woodenstreet-master.css`.
+  - ✅ Verify Typography (Poppins/Inter).
 - [ ] **P10-01**: **Animation Audit**
   - Verify AOS animations are not janky.
   - Implement smooth reveal for Product Cards.
