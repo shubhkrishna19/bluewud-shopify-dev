@@ -83,7 +83,7 @@
     {% render 'agent-css-loader' %}
     
     {%- comment -%} Empire/Whisper Base Styles {%- endcomment -%}
-    {{ 'theme-update.css' | asset_url | stylesheet_tag }}
+    {% comment %}{{ 'theme-update.css' | asset_url | stylesheet_tag }}{% endcomment %}
     
     {%- comment -%} WoodenStreet Master CSS - Consolidated custom styles {%- endcomment -%}
     {{ 'woodenstreet-master.css' | asset_url | stylesheet_tag }}
