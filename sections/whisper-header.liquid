@@ -49,17 +49,18 @@
   endcapture
 %}
 
-<header-component
+<header
   id="header-component"
-  class="header header-wrapper--glass color-{{ section.settings.color_scheme_top }} spacing-style"
+  class="site-header site-header--glass color-{{ section.settings.color_scheme_top }} spacing-style"
   style="{% render 'whisper-spacing-style', settings: section.settings %}"
+  data-site-header
   {% if sticky %}
-    sticky="{{ sticky }}"
+    data-sticky-header
   {% endif %}
 >
   {% for row in rows %}
     {% liquid
-       assign row_class = 'header__row header__row--' | append: row
+       assign row_class = 'site-header__row site-header__row--' | append: row
        if row == 'bottom'
          assign row_class = row_class | append: ' mobile:hidden'
        endif
@@ -68,7 +69,7 @@
       class="{{ row_class }} color-{{ section.settings.row_color_scheme }}"
       {% if row == 'top' %}ref="headerRowTop"{% endif %}
     >
-       <div class="header__columns header__container container-style">
+       <div class="site-header__container container-style">
           {% render 'whisper-header-row',
             row: row,
             order: order,
@@ -82,18 +83,12 @@
        </div>
     </div>
   {% endfor %}
-</header-component>
+</header>
 
 <script src="{{ 'whisper-header.js' | asset_url }}" type="module"></script>
 <script src="{{ 'whisper-header-menu.js' | asset_url }}" type="module"></script>
 
-{% stylesheet %}
-  /* Embedding Whisper Header CSS directly for isolation */
-  .header { display: block; position: relative; z-index: 100; }
-  .header-wrapper--glass .header__row { background: transparent !important; border-bottom: none !important; }
-  .header__row { background: var(--color-background); border-bottom: 1px solid var(--color-border); }
-  .header__columns { display: grid; grid-template-areas: 'left center right'; grid-template-columns: 1fr auto 1fr; align-items: center; padding: 10px 20px; }
-{% endstylesheet %}
+
 
 {% schema %}
 {
