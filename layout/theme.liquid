@@ -75,8 +75,6 @@
     {% assign twitter_handle = settings.social_twitter | split: 'twitter.com/' | last %}
     {% render 'social-meta-tags', twitter_handle: twitter_handle %}
 
-    <link rel="preload" href="{{ settings.type_menu | font_url }}" as="font" crossorigin="anonymous">
-    <link rel="preload" href="{{ settings.type_menu | font_url }}" as="font" crossorigin="anonymous">
     
     {% render 'critical-css' %}
     {% render 'agent-css-loader' %}
