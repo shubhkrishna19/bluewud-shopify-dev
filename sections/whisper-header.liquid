@@ -23,11 +23,14 @@
 
   # Functional Captures
   capture logo
-    echo '<div class="header-logo">'
+    echo '<div class="header__column header__column--logo">'
     if section.settings.logo != blank
-      render 'rimg', img: section.settings.logo, class: 'site-logo-image', size: '200x'
+      assign logo_alt = section.settings.logo.alt | default: shop.name
+      assign logo_height = section.settings.logo_height | default: 40
+      assign logo_width = logo_height | times: section.settings.logo.aspect_ratio
+      echo section.settings.logo | image_url: width: 400 | image_tag: class: 'header__logo-image', width: logo_width, height: logo_height, alt: logo_alt, preload: true
     else
-      echo '<a href="/" class="site-header__logo-link site-header__logo-text">' | append: shop.name | append: '</a>'
+      echo '<a href="/" class="header__logo-text">' | append: shop.name | append: '</a>'
     endif
     echo '</div>'
   endcapture
@@ -55,6 +58,7 @@
   id="header-component"
   class="header header-wrapper--glass color-{{ section.settings.color_scheme_top }} spacing-style"
   style="{% render 'whisper-spacing-style', settings: section.settings %}"
+  data-site-header
   {% if sticky %}
     sticky="{{ sticky }}"
   {% endif %}
@@ -105,6 +109,21 @@
       "type": "image_picker",
       "id": "logo",
       "label": "Logo"
+    },
+    {
+      "type": "image_picker",
+      "id": "logo",
+      "label": "Logo image"
+    },
+    {
+      "type": "range",
+      "id": "logo_height",
+      "min": 20,
+      "max": 120,
+      "step": 5,
+      "unit": "px",
+      "label": "Logo height",
+      "default": 40
     },
     {
       "type": "link_list",

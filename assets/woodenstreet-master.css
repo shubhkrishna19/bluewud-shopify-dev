@@ -1,40 +1,27 @@
 ﻿/*!
  * WOODENSTREET MASTER STYLESHEET
  * Single Source of Truth for Premium Custom Styles
- * Version: 1.1.0 (Cleaned & RESTORED)
+ * Version: 1.5.0 (The Visual Absolute)
  */
 
 /* =========================================================================
    1. DESIGN SYSTEM & VARIABLES
    ========================================================================= */
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&family=Quattrocento:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Poppins:wght@400;500;600;700;800;900&display=swap');
 
 :root {
-  /* Brand Colors */
   --ws-orange: #C7431A;
   --ws-orange-hover: #a63614;
   --ws-black: #1A1A1A;
   --ws-text-main: #333333;
   --ws-text-muted: #666666;
   --ws-bg-cream: #FDFBF7;
-
-  /* State Colors */
   --ws-white: #ffffff;
-  --ws-success: #10B981;
-  --ws-gold: #FBBF24;
-
-  /* Design Tokens */
-  --ws-radius-lg: 20px;
-  --ws-radius-md: 12px;
-  --ws-radius-sm: 8px;
   --ws-shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.05);
   --ws-shadow-md: 0 10px 40px rgba(0, 0, 0, 0.08);
   --ws-shadow-premium: 0 15px 50px rgba(199, 67, 26, 0.12);
   --ws-ease: cubic-bezier(0.23, 1, 0.32, 1);
-
-  /* Layers */
-  --layer-header: 1000;
-  --layer-menu: 1100;
+  --layer-header: 10000;
 }
 
 /* =========================================================================
@@ -45,7 +32,6 @@ body {
   color: var(--ws-text-main) !important;
   font-family: 'Inter', sans-serif !important;
   -webkit-font-smoothing: antialiased;
-  letter-spacing: -0.01em;
   margin: 0;
 }
 
@@ -54,62 +40,30 @@ h2,
 h3,
 h4,
 h5,
-h6,
-.h1,
-.h2,
-.h3,
-.h4 {
+h6 {
   font-family: 'Poppins', sans-serif !important;
   font-weight: 700 !important;
   color: var(--ws-black) !important;
-  line-height: 1.2;
 }
 
-/* R-01: HEADER GAP FIX */
-.announcement-bar {
-  margin-bottom: 0 !important;
-  padding: 8px 0 !important;
-}
-
-.header-section,
-.whisper-header,
-header-component {
-  margin-top: 0 !important;
-  padding-top: 0 !important;
-  display: block;
-}
-
-.site-main>.shopify-section {
-  padding-top: 0 !important;
-  /* Managed by sections */
+.page-width {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 24px;
 }
 
 /* =========================================================================
-   3. PREMIUM GLASSMORTHISM HEADER
+   3. PREMIUM HEADER (GLASSMORHISM)
    ========================================================================= */
 .header-wrapper--glass {
-  background: rgba(255, 255, 255, 0.8) !important;
+  background: rgba(255, 255, 255, 0.82) !important;
   backdrop-filter: blur(25px) !important;
   -webkit-backdrop-filter: blur(25px) !important;
   border-bottom: 1px solid rgba(255, 255, 255, 0.3) !important;
-  transition: all 0.4s var(--ws-ease);
   position: sticky;
   top: 0;
   z-index: var(--layer-header);
   width: 100%;
-}
-
-.header-wrapper--glass.is-sticky {
-  background: rgba(255, 255, 255, 0.95) !important;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
-}
-
-.header__row--top {
-  min-height: 85px;
-  display: flex;
-  align-items: center;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.04) !important;
-  background: transparent !important;
 }
 
 .header__columns {
@@ -117,304 +71,442 @@ header-component {
   grid-template-areas: 'left center right';
   grid-template-columns: 1fr auto 1fr;
   align-items: center;
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 24px;
-  gap: 2rem;
+  padding: 12px 0;
 }
 
-.header-logo img {
-  max-height: 48px !important;
-  width: auto !important;
-  transition: transform 0.3s var(--ws-ease);
+.header__column--left {
+  grid-area: left;
 }
 
-.header-logo:hover img {
-  transform: scale(1.05);
+.header__column--center {
+  grid-area: center;
+}
+
+.header__column--right {
+  grid-area: right;
+  display: flex;
+  justify-content: flex-end;
+  gap: 24px;
 }
 
 /* =========================================================================
-   4. PREMIUM NAV & MEGA MENU
+   4. SECTIONS: URGENCY, TRUST, LOOKBOOK, CATEGORY
    ========================================================================= */
-.ws-mega-menu {
-  position: relative;
-  height: 100%;
-  margin: 0 2rem;
+
+/* URGENCY STRIP */
+.whisper-urgency-strip {
+  background: #FFF4E6;
+  padding: 12px 0;
+  border-bottom: 1px solid rgba(199, 67, 26, 0.1);
 }
 
-.ws-mega-menu__list {
+.urgency-content {
   display: flex;
-  gap: 2.5rem;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  align-items: center;
-  height: 100%;
-}
-
-.ws-mega-menu__link {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  color: var(--ws-black);
-  text-decoration: none;
-  padding: 2rem 0;
-  position: relative;
-  transition: color 0.3s ease;
-}
-
-.ws-mega-menu__link::after {
-  content: '';
-  position: absolute;
-  bottom: 1.5rem;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background: var(--ws-orange);
-  transition: width 0.3s var(--ws-ease);
-}
-
-.ws-mega-menu__item:hover .ws-mega-menu__link {
-  color: var(--ws-orange);
-}
-
-.ws-mega-menu__item:hover .ws-mega-menu__link::after {
-  width: 100%;
-}
-
-.ws-mega-menu__panel {
-  position: absolute;
-  left: 50%;
-  transform: translateX(-50%) translateY(15px);
-  width: 100vw;
-  max-width: 1400px;
-  background: #ffffff;
-  box-shadow: var(--ws-shadow-md);
-  padding: 3rem;
-  border-radius: 0 0 16px 16px;
-  visibility: hidden;
-  opacity: 0;
-  transition: all 0.4s var(--ws-ease);
-  z-index: var(--layer-menu);
-}
-
-.ws-mega-menu__item:hover .ws-mega-menu__panel {
-  visibility: visible;
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
-}
-
-.ws-mega-menu__columns {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 3rem;
-}
-
-.ws-mega-menu__column-title {
-  font-size: 0.85rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  border-bottom: 2px solid var(--ws-orange);
-  padding-bottom: 10px;
-  margin-bottom: 15px;
-}
-
-.ws-mega-menu__link-list {
-  list-style: none;
-  padding: 0;
-}
-
-.ws-mega-menu__link-sub {
-  font-size: 0.95rem;
-  color: var(--ws-text-muted);
-  text-decoration: none;
-  display: block;
-  padding: 6px 0;
-  transition: transform 0.2s ease, color 0.2s ease;
-}
-
-.ws-mega-menu__link-sub:hover {
-  color: var(--ws-orange);
-  transform: translateX(8px);
-}
-
-/* =========================================================================
-   5. ULTRA-SEARCH & ACTIONS
-   ========================================================================= */
-.search-action {
-  background: #fff !important;
-  border-radius: 100px !important;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-  padding: 6px;
-  display: flex;
-  align-items: center;
-  transition: transform 0.3s var(--ws-ease), box-shadow 0.3s ease;
-  border: 1px solid rgba(0, 0, 0, 0.05);
-}
-
-.search-action:focus-within {
-  transform: scale(1.02);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-}
-
-.search-action__input {
-  border: none !important;
-  padding: 10px 20px;
-  width: 250px;
-  font-family: inherit;
-  font-size: 0.9rem;
-  background: transparent;
-}
-
-.search-action__submit {
-  background: var(--ws-orange) !important;
-  color: #fff;
-  width: 40px;
-  height: 40px;
-  border-radius: 50% !important;
-  border: none;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
   justify-content: center;
+  align-items: center;
+  gap: 20px;
 }
 
-/* =========================================================================
-   6. PREMIUM HERO HYBRID
-   ======================================================================== */
-.woodenstreet-hero-hybrid {
-  background: #ffffff !important;
-  padding: 80px 0 !important;
-  position: relative;
-  overflow: hidden;
+.urgency-badge {
+  background: var(--ws-orange);
+  color: #fff;
+  padding: 5px 14px;
+  border-radius: 20px;
+  font-weight: 800;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
 }
 
-.woodenstreet-hero-hybrid__inner {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0 24px;
+.urgency-label {
+  font-weight: 600;
+  font-size: 0.95rem;
 }
 
-.woodenstreet-hero-hybrid__content-box {
-  max-width: 800px;
-  margin: 0 auto;
-  text-align: center;
+.timer-block {
+  background: #fff;
+  padding: 4px 10px;
+  border-radius: 6px;
+  font-weight: 900;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.06);
+  font-family: monospace;
+  font-size: 1.1rem;
 }
 
-.woodenstreet-hero-hybrid__heading {
-  font-size: clamp(2.5rem, 5vw, 4rem) !important;
-  margin-bottom: 1.5rem;
-  background: linear-gradient(135deg, var(--ws-black) 0%, #444 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-/* =========================================================================
-   7. PREMIUM PRODUCT CARDS
-   ========================================================================= */
-.woodenstreet-card {
-  background: #ffffff !important;
-  border-radius: var(--ws-radius-md) !important;
-  border: 1px solid rgba(0, 0, 0, 0.06) !important;
-  overflow: hidden;
-  transition: all 0.5s var(--ws-ease);
-  height: 100%;
-}
-
-.woodenstreet-card:hover {
-  transform: translateY(-10px);
-  box-shadow: var(--ws-shadow-premium);
-  border-color: var(--ws-orange) !important;
-}
-
-.woodenstreet-card__media-wrapper {
-  aspect-ratio: 1;
-  overflow: hidden;
-  position: relative;
-}
-
-.woodenstreet-card__image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 1.5s var(--ws-ease);
-}
-
-.woodenstreet-card:hover .woodenstreet-card__image {
-  transform: scale(1.1);
-}
-
-.woodenstreet-card__content {
-  padding: 20px;
-}
-
-.woodenstreet-card__title {
-  font-family: 'Poppins', sans-serif !important;
-  font-size: 1rem !important;
-  font-weight: 700 !important;
-  margin-bottom: 10px;
-  color: var(--ws-black);
-}
-
-.woodenstreet-card__price {
-  color: var(--ws-orange) !important;
-  font-size: 1.25rem !important;
-  font-weight: 800 !important;
-}
-
-/* =========================================================================
-   8. TRUST STRIP & FOOTER
-   ========================================================================= */
+/* TRUST STRIP */
 .ws-trust-strip {
-  background: #ffffff;
   padding: 60px 0;
-  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  background: #fff;
+  border-top: 1px solid #f0f0f0;
+}
+
+.ws-trust-strip__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px;
+}
+
+.ws-trust-strip__item {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
 .ws-trust-strip__icon svg {
-  display: block !important;
-  width: 32px !important;
-  height: 32px !important;
+  width: 44px;
+  height: 44px;
+  color: var(--ws-orange);
+}
+
+.ws-trust-strip__heading {
+  font-size: 1.1rem;
+  margin: 0;
+  font-weight: 700;
+}
+
+.ws-trust-strip__subheading {
+  color: var(--ws-text-muted);
+  font-size: 0.85rem;
+  margin: 4px 0 0;
+}
+
+/* LOOKBOOK (SHOP BY ROOM) */
+.whisper-lookbook {
+  padding: 100px 0;
+  background: #F8F9FA;
+}
+
+.whisper-lookbook__grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 50px;
+}
+
+.whisper-lookbook__card {
+  position: relative;
+  border-radius: 24px;
+  overflow: hidden;
+  aspect-ratio: 0.8;
+  box-shadow: var(--ws-shadow-md);
+  transition: transform 0.4s var(--ws-ease);
+  cursor: pointer;
+}
+
+.whisper-lookbook__card:hover {
+  transform: translateY(-12px);
+  box-shadow: var(--ws-shadow-lg);
+}
+
+.whisper-lookbook__image {
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  transition: 1.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.whisper-lookbook__card:hover .whisper-lookbook__image {
+  transform: scale(1.1);
+}
+
+.whisper-lookbook__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(0, 0, 0, 0.85) 100%);
+}
+
+.whisper-lookbook__content {
+  position: absolute;
+  bottom: 30px;
+  left: 30px;
+  right: 30px;
+  color: #fff;
+}
+
+.whisper-lookbook__tag {
+  color: var(--ws-orange);
+  font-weight: 900;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.whisper-lookbook__card-title {
+  color: #fff !important;
+  font-size: 1.5rem !important;
+  margin: 0 0 10px;
+}
+
+/* CATEGORY STRIP (ICONS) */
+.ws-category-strip {
+  padding: 40px 0;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.ws-category-strip__wrapper {
+  display: flex;
+  justify-content: space-around;
+  gap: 20px;
+  overflow-x: auto;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.ws-category-item {
+  text-decoration: none;
+  text-align: center;
+  min-width: 100px;
+}
+
+.ws-category-item__image-wrapper {
+  width: 85px;
+  height: 85px;
+  background: #FFF4E8;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 12px;
+  transition: 0.3s var(--ws-ease);
+  border: 2px solid transparent;
+}
+
+.ws-category-item:hover .ws-category-item__image-wrapper {
+  transform: scale(1.1);
+  border-color: var(--ws-orange);
+}
+
+.ws-category-item__title {
+  font-weight: 700;
+  color: var(--ws-black);
+  font-size: 0.85rem;
+}
+
+/* CATEGORY GRID (TILES) */
+.ws-category-grid {
+  padding: 80px 0;
+}
+
+.ws-category-grid__header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+
+.ws-category-grid__items {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.ws-category-card__image-wrapper {
+  border-radius: 20px;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 1;
+  box-shadow: var(--ws-shadow-sm);
+}
+
+.ws-category-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: 0.6s ease;
+}
+
+.ws-category-card:hover .ws-category-card__image {
+  transform: scale(1.05);
+}
+
+.ws-category-card__content {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  color: #fff;
+  z-index: 5;
+}
+
+.ws-category-card__title {
+  font-size: 1.3rem !important;
+  color: #fff !important;
+  margin: 0;
+  font-weight: 800;
+}
+
+/* EXPERIENCE STORE LOCATOR */
+.experience-store {
+  padding: 100px 0;
+  background: #fff;
+}
+
+.experience-store__inner {
+  display: flex;
+  gap: 60px;
+}
+
+.experience-store__intro {
+  flex: 1;
+}
+
+.experience-store__panel {
+  flex: 1.5;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+}
+
+.experience-store__card {
+  background: #f9f9f9;
+  padding: 24px;
+  border-radius: 16px;
+  border-left: 4px solid var(--ws-orange);
+}
+
+.experience-store__card-title {
+  font-size: 1.2rem;
+  margin-top: 0;
+}
+
+/* =========================================================================
+   5. PREMIUM FOOTER
+   ========================================================================= */
+.ws-footer {
+  background: var(--ws-black);
+  color: #fff;
+  padding: 100px 0 0;
+}
+
+.ws-footer .grid {
+  display: grid;
+  grid-template-columns: 1.5fr 1fr 1fr 1fr;
+  gap: 60px;
+  margin-bottom: 80px;
+}
+
+.ws-footer__trust-strip {
+  padding-bottom: 80px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  margin-bottom: 80px;
+}
+
+.ws-footer__trust-strip .grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+.ws-trust-item {
+  text-align: center;
+}
+
+.ws-trust-item__icon svg {
+  width: 44px;
+  height: 44px;
   color: var(--ws-orange);
   margin: 0 auto 15px;
 }
 
-.woodenstreet-footer {
-  background: var(--ws-black) !important;
+.ws-trust-item h4 {
   color: #fff !important;
-  padding: 80px 0 40px;
+  font-size: 1.1rem;
+  margin-bottom: 8px;
 }
 
-.woodenstreet-footer a {
-  color: rgba(255, 255, 255, 0.7);
-  transition: color 0.2s ease;
+.ws-trust-item p {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.85rem;
 }
 
-.woodenstreet-footer a:hover {
+.ws-footer-brand h3 {
+  color: #fff !important;
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+}
+
+.ws-footer-brand p {
+  color: rgba(255, 255, 255, 0.6);
+  line-height: 1.8;
+  font-size: 0.95rem;
+}
+
+.ws-footer-links h4 {
+  color: #fff !important;
+  margin-bottom: 25px;
+  text-transform: uppercase;
+  font-size: 0.85rem;
+  letter-spacing: 0.15em;
+  font-weight: 800;
+  border-bottom: 2px solid var(--ws-orange);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.ws-footer-links ul {
+  list-style: none;
+  padding: 0;
+}
+
+.ws-footer-links a {
+  color: rgba(255, 255, 255, 0.5);
+  text-decoration: none;
+  font-size: 0.95rem;
+  display: inline-block;
+  padding: 6px 0;
+  transition: color 0.3s ease;
+}
+
+.ws-footer-links a:hover {
   color: var(--ws-orange);
 }
 
-/* =========================================================================
-   9. MOBILE RESPONSIVENESS
-   ========================================================================= */
-@media screen and (max-width: 989px) {
-  .header__columns {
-    grid-template-areas: 'left right';
-    grid-template-columns: auto 1fr;
-  }
+.ws-footer-bottom {
+  padding: 40px 0;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  display: flex;
+  justify-content: space-between;
+  color: rgba(255, 255, 255, 0.4);
+  font-size: 0.85rem;
+}
 
-  .ws-mega-menu {
-    display: none !important;
+/* =========================================================================
+   6. MOBILE & COMPATIBILITY
+   ========================================================================= */
+@media (max-width: 1024px) {
+  .header__columns {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: 'left right';
   }
 
   .header__column--center {
     display: none;
   }
 
-  .header__row--top {
-    min-height: 70px;
+  .experience-store__inner {
+    flex-direction: column;
+  }
+
+  .ws-footer .grid,
+  .ws-footer__trust-strip .grid {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+
+  .ws-trust-strip__grid,
+  .whisper-lookbook__grid,
+  .ws-category-grid__items {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+
+  .ws-trust-strip__grid,
+  .whisper-lookbook__grid,
+  .ws-category-grid__items {
+    grid-template-columns: 1fr;
+  }
+
+  .experience-store__panel {
+    grid-template-columns: 1fr;
   }
 }
