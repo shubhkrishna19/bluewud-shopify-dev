@@ -17,7 +17,7 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | ID | Task | Status | Agent | Priority | Notes |
 | :--- | :--- | :--- | :--- | :--- | :--- |
 | **P8** | **Phase 8: Premium Restoration** | [x] Done | Anti | CRITICAL | **Fixing "AI Slop" State** - COMPLETE |
-| R-01 | - [Restoration] Header & Void Fix | [x] Done | Anti | CRITICAL | Consolidated styles in theme-update.css (Step 1694). |
+| R-01 | - [Restoration] Header & Void Fix | [x] Done | Anti | CRITICAL | Consolidated styles in woodenstreet-master.css (Step 1694). |
 | R-02 | - [Restoration] Contrast Fix | [x] Done | Anti | High | Forced dark text on cards (Step 1712). |
 | R-03 | - [Restoration] Lookbook Logic | [x] Done | Liquifier | Med | Fixed JSON links and removed slop orbs. |
 | R-04 | - [Restoration] Showcase Cleanup | [x] Done | Anti | High | UGC "blob" placeholders replaced with Unsplash and SVG icons fixed. |
@@ -40,7 +40,7 @@ To prevent duplication, every agent **MUST** follow this protocol:
 | Component | Target Files | Primary Agent |
 | :--- | :--- | :--- |
 | **Header** | `sections/whisper-header.liquid`, `snippets/whisper-header-*` | **Logic/Antigravity** |
-| **Styling** | `assets/component-woodenstreet-ui-overrides.css` | **Artist** |
+| **Styling** | `assets/woodenstreet-master.css` | **Artist** |
 | **Liquid/Schema** | `sections/*.liquid`, `snippets/*.liquid` | **Liquifier** |
 
 ### 2. Integration Philosophy: "Zero AI Slop"

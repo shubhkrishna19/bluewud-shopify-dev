@@ -66,9 +66,8 @@ cp templates/index-clean.json templates/index.json
 2. **Create single source of truth**:
    ```css
    /* woodenstreet-master.css */
-   /* Import order matters! */
-   @import 'theme.css';           /* Base Empire theme */
-   @import 'woodenstreet-core.css'; /* Only working custom styles */
+   /* Consolidated output (no @import in production) */
+   /* Base Empire + Whisper + custom overrides */
    ```
 
 3. **Remove unused CSS**:

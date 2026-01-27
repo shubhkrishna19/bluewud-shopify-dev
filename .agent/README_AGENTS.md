@@ -189,14 +189,14 @@ git push origin main
 ## 🎯 CURRENT FOCUS: CSS CONSOLIDATION
 
 ### The Problem
-We have **TOO MANY CSS files**:
+We had **TOO MANY CSS files** (now archived after consolidation):
 - `theme.css` (4000+ lines - Empire base)
 - `theme-update.css` (3800+ lines - Whisper components)
 - `component-woodenstreet-*.css` (multiple files)
 - `woodenstreet-premium-force.css` (overrides)
 
 ### The Solution
-**ONE master CSS file**: `assets/woodenstreet-master.css`
+**ONE master CSS file**: `assets/woodenstreet-master.css` (single source of truth)
 
 ### Your Task (If You're the Artist)
 1. Create `assets/woodenstreet-master.css`

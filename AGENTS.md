@@ -37,10 +37,14 @@
 | **I-02** | **Swarm Workflow Setup** | [x] Done | Med | Defined subagent roles: Liquifier, Artist, Logic. |
 | **I-03** | **Premium UI Audit** | [x] Done | High | Review entire site using `ui-ux-pro-max` guidelines. |
 <<<<<<< HEAD
+<<<<<<< HEAD
 | **I-04** | **Advanced Search Overlay** | [/] In Progress | High | Replace standard search with high-polish suggestions modal. |
 =======
 | **I-04** | **Advanced Search Overlay** | [x] Done | High | Replace standard search with high-polish suggestions modal. |
 >>>>>>> pr-59
+=======
+| **I-04** | **Advanced Search Overlay** | [/] In Progress | High | Replace standard search with high-polish suggestions modal. |
+>>>>>>> pr/62
 
 ---
 
@@ -59,6 +63,7 @@
 - **Solution**: Forcing standard Liquid/CSS overrides in `woodenstreet-ui-overrides.css`.
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
 
 <<<<<<< HEAD
 - **2026-01-25 (Codex)**: **CSS consolidation executed.** Created `assets/woodenstreet-master.css`.
@@ -71,3 +76,5 @@
 >>>>>>> pr-58
 =======
 >>>>>>> pr-59
+=======
+>>>>>>> pr/62

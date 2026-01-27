@@ -30,10 +30,10 @@
 - **File**: `sections/trust-strip-v2.liquid`
 - **Status**: ✅ Proper SVG icons with fallbacks
 - **Evidence**: Lines 15-22 show Heroicons SVG paths
-- **Sizing**: Controlled by CSS (component-trust-strip-v2.css)
+- **Sizing**: Controlled by CSS (woodenstreet-master.css)
 
 #### R-01: Header Gap ✅ ASSUMED FIXED
-- **File**: `assets/theme-update.css`
+- **File**: `assets/woodenstreet-master.css`
 - **Status**: ⚠️ Cannot verify visually without browser
 - **Action**: Marked for visual testing when browser available
 
@@ -69,20 +69,13 @@
 ## 🎨 CSS FILES AUDIT
 
 ### Current CSS Files
-- `theme.css` - Base Empire theme (4000+ lines)
-- `theme-update.css` - Whisper components (3800+ lines)
-- `component-mega-menu.css` - Header mega menu ✅ Recently refined
-- `component-woodenstreet-mobile-menu.css` - Mobile drawer ✅ Recently created
-- `component-woodenstreet-global.css` - Global styles
-- `component-woodenstreet-hero.css` - Hero section
-- `component-woodenstreet-ui-overrides.css` - UI fixes
-- `component-trust-strip-v2.css` - Trust strip
-- `home-polish.css` - Homepage refinements
+- `woodenstreet-master.css` - Consolidated Empire + Whisper + overrides
+- Legacy CSS files archived in `.agent/backups/css-old-*`
 
 ### Recommendation
-- **Status**: CSS is organized and functional
-- **Action**: No immediate consolidation needed
-- **Reason**: Each file has a clear purpose
+- **Status**: CSS is consolidated and functional
+- **Action**: Keep legacy CSS archived, maintain master file only
+- **Reason**: Single source of truth reduces conflicts
 - **Future**: Consider minification for production
 
 ---
