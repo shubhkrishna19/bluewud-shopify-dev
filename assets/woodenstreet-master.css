@@ -1,7 +1,7 @@
 ﻿/*!
  * WOODENSTREET MASTER STYLESHEET
  * Single Source of Truth for Premium Custom Styles
- * Version: 1.5.0 (The Visual Absolute)
+ * Version: 1.6.0 (Complete Component Coverage)
  */
 
 /* =========================================================================
@@ -17,9 +17,10 @@
   --ws-text-muted: #666666;
   --ws-bg-cream: #FDFBF7;
   --ws-white: #ffffff;
+  --ws-gold: #FBBF24;
   --ws-shadow-sm: 0 4px 15px rgba(0, 0, 0, 0.05);
   --ws-shadow-md: 0 10px 40px rgba(0, 0, 0, 0.08);
-  --ws-shadow-premium: 0 15px 50px rgba(199, 67, 26, 0.12);
+  --ws-shadow-lg: 0 20px 60px rgba(0, 0, 0, 0.12);
   --ws-ease: cubic-bezier(0.23, 1, 0.32, 1);
   --layer-header: 10000;
 }
@@ -33,6 +34,7 @@ body {
   font-family: 'Inter', sans-serif !important;
   -webkit-font-smoothing: antialiased;
   margin: 0;
+  padding-top: 50px;
 }
 
 h1,
@@ -90,7 +92,7 @@ h6 {
 }
 
 /* =========================================================================
-   4. SECTIONS: URGENCY, TRUST, LOOKBOOK, CATEGORY
+   4. HOMEPAGE SECTIONS
    ========================================================================= */
 
 /* URGENCY STRIP */
@@ -169,7 +171,7 @@ h6 {
   margin: 4px 0 0;
 }
 
-/* LOOKBOOK (SHOP BY ROOM) */
+/* LOOKBOOK */
 .whisper-lookbook {
   padding: 100px 0;
   background: #F8F9FA;
@@ -239,7 +241,7 @@ h6 {
   margin: 0 0 10px;
 }
 
-/* CATEGORY STRIP (ICONS) */
+/* CATEGORY STRIP */
 .ws-category-strip {
   padding: 40px 0;
   background: #fff;
@@ -251,8 +253,6 @@ h6 {
   justify-content: space-around;
   gap: 20px;
   overflow-x: auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
 }
 
 .ws-category-item {
@@ -285,7 +285,7 @@ h6 {
   font-size: 0.85rem;
 }
 
-/* CATEGORY GRID (TILES) */
+/* CATEGORY GRID */
 .ws-category-grid {
   padding: 80px 0;
 }
@@ -370,7 +370,207 @@ h6 {
 }
 
 /* =========================================================================
-   5. PREMIUM FOOTER
+   5. FEATURED COLLECTION & PRODUCT PRODUCTS
+   ========================================================================= */
+.whisper-featured-collection {
+  padding: 100px 0;
+  background: #fff;
+}
+
+.whisper-featured-collection__header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.whisper-featured-collection__title {
+  font-size: 2.5rem;
+  margin-bottom: 10px;
+}
+
+.whisper-featured-collection__subtitle {
+  color: var(--ws-text-muted);
+  font-size: 1.1rem;
+}
+
+.whisper-featured-collection__grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 30px;
+}
+
+.whisper-featured-collection__cta {
+  text-align: center;
+  margin-top: 60px;
+}
+
+.whisper-featured-collection__button {
+  display: inline-block;
+  padding: 16px 48px;
+  background: var(--ws-black);
+  color: #fff;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 100px;
+  transition: all 0.3s ease;
+}
+
+.whisper-featured-collection__button:hover {
+  background: var(--ws-orange);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 20px rgba(199, 67, 26, 0.3);
+}
+
+/* PRODUCT CARD PREMIUM */
+.woodenstreet-card {
+  background: #fff;
+  border-radius: 16px;
+  transition: all 0.4s var(--ws-ease);
+  border: 1px solid #f0f0f0;
+  overflow: hidden;
+  position: relative;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.woodenstreet-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--ws-shadow-md);
+  border-color: transparent;
+}
+
+.woodenstreet-card__media-wrapper {
+  position: relative;
+  aspect-ratio: 0.8;
+  overflow: hidden;
+  background: #f9f9f9;
+}
+
+.woodenstreet-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ws-ease);
+}
+
+.woodenstreet-card:hover .woodenstreet-card__image {
+  transform: scale(1.08);
+}
+
+.woodenstreet-card__badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  background: #fff;
+  color: var(--ws-black);
+  font-size: 0.75rem;
+  font-weight: 800;
+  padding: 4px 10px;
+  border-radius: 4px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.woodenstreet-card__actions {
+  position: absolute;
+  bottom: 15px;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+}
+
+.woodenstreet-card:hover .woodenstreet-card__actions {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.woodenstreet-card__quick-view {
+  background: #fff;
+  color: var(--ws-black);
+  border: none;
+  padding: 10px 20px;
+  border-radius: 30px;
+  font-weight: 600;
+  font-size: 0.85rem;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transition: 0.3s;
+}
+
+.woodenstreet-card__quick-view:hover {
+  background: var(--ws-black);
+  color: #fff;
+}
+
+.woodenstreet-card__content {
+  padding: 20px;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.woodenstreet-card__title {
+  font-size: 1rem;
+  margin: 0 0 10px;
+  line-height: 1.4;
+  font-weight: 600;
+}
+
+.woodenstreet-card__title a {
+  color: var(--ws-black);
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.woodenstreet-card__title a:hover {
+  color: var(--ws-orange);
+}
+
+.woodenstreet-card__meta {
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.woodenstreet-card__rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.woodenstreet-card__star {
+  color: var(--ws-gold);
+}
+
+.woodenstreet-card__footer {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 15px;
+  border-top: 1px solid #f5f5f5;
+}
+
+.woodenstreet-card__price {
+  font-weight: 800;
+  font-size: 1.1rem;
+  color: var(--ws-black);
+}
+
+.woodenstreet-card__compare-price {
+  text-decoration: line-through;
+  color: var(--ws-text-muted);
+  font-size: 0.9rem;
+  margin-left: 8px;
+}
+
+/* =========================================================================
+   6. PREMIUM FOOTER
    ========================================================================= */
 .ws-footer {
   background: var(--ws-black);
@@ -469,7 +669,7 @@ h6 {
 }
 
 /* =========================================================================
-   6. MOBILE & COMPATIBILITY
+   7. MOBILE & COMPATIBILITY
    ========================================================================= */
 @media (max-width: 1024px) {
   .header__columns {
@@ -493,7 +693,8 @@ h6 {
 
   .ws-trust-strip__grid,
   .whisper-lookbook__grid,
-  .ws-category-grid__items {
+  .ws-category-grid__items,
+  .whisper-featured-collection__grid {
     grid-template-columns: 1fr 1fr;
   }
 }
@@ -502,7 +703,8 @@ h6 {
 
   .ws-trust-strip__grid,
   .whisper-lookbook__grid,
-  .ws-category-grid__items {
+  .ws-category-grid__items,
+  .whisper-featured-collection__grid {
     grid-template-columns: 1fr;
   }
 
