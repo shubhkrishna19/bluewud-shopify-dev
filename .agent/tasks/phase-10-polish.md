@@ -32,12 +32,12 @@ description: Phase 10 - Polish & Pre-Launch Polish Plan
   - ✅ Standardized line-heights and heading scaling for small screens.
 
 ### 🧩 Functionality (Priority: Medium)
-- [ ] **P10-04**: **Search Experience**
-  - Verify "Predictive Search" is working.
-  - Style the search results dropdown to match the "Glassmorphism" theme.
-- [ ] **P10-05**: **Cart Drawer Polish**
-  - Ensure "Free Shipping" progress bar works.
-  - Style Empty Cart state to be encouraging.
+- [x] **P10-04**: **Search Experience**
+  - ✅ Verified "Predictive Search" functionality.
+  - ✅ Styled search results dropdown with "Glassmorphism" and premium typography.
+- [x] **P10-05**: **Cart Drawer Polish**
+  - ✅ Implemented "Free Shipping" progress bar with dynamic Liquid logic.
+  - ✅ Styled "Empty Cart" state with premium encouraging CTA.
 
 ### 🏎️ Performance (Priority: Critical)
 - [ ] **P10-06**: **Image Optimization**
