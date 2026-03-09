@@ -28,23 +28,33 @@
     <!-- Base CSS -->
     {{ 'base.css' | asset_url | stylesheet_tag }}
 
-    <!-- Theme JavaScript -->
-    <script src="{{ 'theme.js' | asset_url }}" defer></script>
-
     {{ content_for_header }}
   </head>
 
-  <body class="template-{{ template.name }}">
-    {% section 'bluewud-announcement' %}
-    {% section 'bluewud-header' %}
+  <body class="template-{{ template.name }} {{ template }}">
 
-    <main id="main-content">
+    {% section 'bluewud-announcement' %}
+
+    <header class="site-header">
+      {% section 'bluewud-header' %}
+    </header>
+
+    <main id="main-content" role="main">
       {{ content_for_layout }}
     </main>
 
     {% section 'bluewud-footer' %}
 
-    <!-- Quick Cart Drawer -->
     {% render 'cart-drawer' %}
+
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    
+    <!-- Theme JavaScript -->
+    <script src="{{ 'theme.js' | asset_url }}" defer></script>
+    
+    <!-- Shopify Cart JS -->
+    <script src="{{ 'cart.js' | asset_url }}" defer></script>
+
   </body>
 </html>
