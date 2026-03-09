@@ -1,11 +1,6 @@
 {
   "sections": {
-    "main": {
-      "type": "bluewud-cart-main",
-      "settings": {}
-    }
+    "main": { "type": "cart-main" }
   },
-  "order": [
-    "main"
-  ]
+  "order": ["main"]
 }

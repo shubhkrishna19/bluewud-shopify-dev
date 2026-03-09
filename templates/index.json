@@ -1,59 +1,12 @@
 {
   "sections": {
-    "announcement": {
-      "type": "bluewud-announcement",
-      "settings": {
-        "text": "🔥 Free Shipping on Orders Above ₹999 | Extra 10% Off on First Purchase | 🎉 Grand Republic Sale - Up to 55% Off!"
-      }
-    },
-    "header": {
-      "type": "bluewud-header",
-      "settings": {}
-    },
-    "hero": {
-      "type": "bluewud-hero",
-      "settings": {
-        "heading": "Furniture That Tells Your Story",
-        "subheading": "Discover handcrafted furniture that transforms your house into a home. Premium quality, timeless designs.",
-        "primary_cta": "Shop Now",
-        "primary_link": "/collections/all",
-        "secondary_cta": "Explore Collection",
-        "secondary_link": "/collections/living-room"
-      }
-    },
-    "trust_banners": {
-      "type": "bluewud-trust-banners",
-      "settings": {}
-    },
-    "categories": {
-      "type": "bluewud-categories",
-      "settings": {}
-    },
-    "featured_products": {
-      "type": "bluewud-featured-products",
-      "settings": {
-        "title": "Best Sellers",
-        "collection": "all",
-        "product_count": 8
-      }
-    },
-    "cta_banner": {
-      "type": "bluewud-cta-banner",
-      "settings": {
-        "heading": "Custom Furniture, Made Your Way",
-        "text": "Get personalized furniture tailored to your style and space. Free design consultation available.",
-        "cta": "Get Custom Quote",
-        "link": "/pages/contact"
-      }
-    },
-    "testimonials": {
-      "type": "bluewud-testimonials",
-      "settings": {}
-    },
-    "footer": {
-      "type": "bluewud-footer",
-      "settings": {}
-    }
+    "announcement": { "type": "announcement" },
+    "header": { "type": "header" },
+    "hero": { "type": "hero" },
+    "trust_banners": { "type": "trust-banners" },
+    "categories": { "type": "categories" },
+    "featured_products": { "type": "featured-products" },
+    "footer": { "type": "footer" }
   },
   "order": [
     "announcement",
@@ -62,8 +15,6 @@
     "trust_banners",
     "categories",
     "featured_products",
-    "cta_banner",
-    "testimonials",
     "footer"
   ]
 }
