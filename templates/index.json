@@ -1,10 +1,9 @@
 {
   "sections": {
     "announcement": {
-      "type": "announcement-bar",
+      "type": "bluewud-announcement",
       "settings": {
-        "text": "🔥 Free Shipping on Orders Above ₹999 | Extra 10% Off on First Purchase | 🎉 Grand Republic Sale - Up to 55% Off!",
-        "link": "shopify://collections/all"
+        "text": "🔥 Free Shipping on Orders Above ₹999 | Extra 10% Off on First Purchase | 🎉 Grand Republic Sale - Up to 55% Off!"
       }
     },
     "header": {
@@ -17,9 +16,9 @@
         "heading": "Furniture That Tells Your Story",
         "subheading": "Discover handcrafted furniture that transforms your house into a home. Premium quality, timeless designs.",
         "primary_cta": "Shop Now",
-        "primary_link": "shopify://collections/all",
+        "primary_link": "/collections/all",
         "secondary_cta": "Explore Collection",
-        "secondary_link": "shopify://collections/living-room"
+        "secondary_link": "/collections/living-room"
       }
     },
     "trust_banners": {
@@ -44,7 +43,7 @@
         "heading": "Custom Furniture, Made Your Way",
         "text": "Get personalized furniture tailored to your style and space. Free design consultation available.",
         "cta": "Get Custom Quote",
-        "link": "shopify://pages/contact"
+        "link": "/pages/contact"
       }
     },
     "testimonials": {
