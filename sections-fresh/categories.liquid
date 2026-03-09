@@ -1,0 +1,61 @@
+{% comment %} Fresh Categories {% endcomment %}
+<style>
+.categories { padding: 70px 30px; max-width: 1400px; margin: 0 auto; }
+.section-title { text-align: center; margin-bottom: 50px; }
+.section-title h2 { font-size: 36px; font-weight: 700; color: #1a1a1a; margin: 0 0 12px; font-family: 'Poppins', sans-serif; }
+.section-title p { font-size: 16px; color: #666; margin: 0; }
+.categories-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; }
+.category-item { text-align: center; text-decoration: none; transition: transform 0.3s; }
+.category-item:hover { transform: translateY(-5px); }
+.category-image { width: 100%; aspect-ratio: 1; background: #f5f5f5; border-radius: 12px; overflow: hidden; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; font-size: 40px; }
+.category-item h3 { font-size: 14px; font-weight: 600; color: #1a1a1a; margin: 0; }
+.category-item span { font-size: 12px; color: #888; }
+@media (max-width: 968px) { .categories-grid { grid-template-columns: repeat(3, 1fr); } }
+@media (max-width: 480px) { .categories-grid { grid-template-columns: repeat(2, 1fr); } }
+</style>
+
+<div class="categories">
+  <div class="section-title">
+    <h2>Shop by Category</h2>
+    <p>Find the perfect furniture for every room</p>
+  </div>
+  <div class="categories-grid">
+    <a href="/collections/sofas" class="category-item">
+      <div class="category-image">🛋️</div>
+      <h3>Sofa Sets</h3>
+      <span>200+ Designs</span>
+    </a>
+    <a href="/collections/beds" class="category-item">
+      <div class="category-image">🛏️</div>
+      <h3>Beds</h3>
+      <span>150+ Designs</span>
+    </a>
+    <a href="/collections/dining" class="category-item">
+      <div class="category-image">🍽️</div>
+      <h3>Dining Sets</h3>
+      <span>80+ Designs</span>
+    </a>
+    <a href="/collections/wardrobes" class="category-item">
+      <div class="category-image">🚪</div>
+      <h3>Wardrobes</h3>
+      <span>100+ Designs</span>
+    </a>
+    <a href="/collections/tv-units" class="category-item">
+      <div class="category-image">📺</div>
+      <h3>TV Units</h3>
+      <span>75+ Designs</span>
+    </a>
+    <a href="/collections/study-tables" class="category-item">
+      <div class="category-image">📚</div>
+      <h3>Study Tables</h3>
+      <span>60+ Designs</span>
+    </a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Categories",
+  "presets": [{ "name": "Categories" }]
+}
+{% endschema %}
