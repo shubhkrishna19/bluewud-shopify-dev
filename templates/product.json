@@ -3,14 +3,9 @@
     "main": {
       "type": "bluewud-product-main",
       "settings": {}
-    },
-    "related_products": {
-      "type": "bluewud-related-products",
-      "settings": {}
     }
   },
   "order": [
-    "main",
-    "related_products"
+    "main"
   ]
 }
