@@ -1,153 +1,181 @@
-<script
-  src="{{ 'cart-drawer.js' | asset_url }}"
-  type="module"
-  fetchpriority="low"
-></script>
+{% comment %} Cart Drawer Snippet {% endcomment %}
+<style>
+  .cart-drawer {
+    position: fixed;
+    top: 0;
+    right: -400px;
+    width: 400px;
+    max-width: 100%;
+    height: 100vh;
+    background: white;
+    box-shadow: -5px 0 30px rgba(0,0,0,0.2);
+    z-index: 9999;
+    transition: right 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+  .cart-drawer.open {
+    right: 0;
+  }
+  .cart-drawer-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0,0,0,0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition: all 0.3s ease;
+    z-index: 9998;
+  }
+  .cart-drawer-overlay.open {
+    opacity: 1;
+    visibility: visible;
+  }
+  .cart-drawer-header {
+    padding: 20px;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .cart-drawer-header h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 0;
+  }
+  .cart-close {
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    padding: 5px;
+    line-height: 1;
+  }
+  .cart-drawer-items {
+    flex: 1;
+    overflow-y: auto;
+    padding: 20px;
+  }
+  .cart-item {
+    display: flex;
+    gap: 15px;
+    padding: 15px 0;
+    border-bottom: 1px solid #eee;
+  }
+  .cart-item-image {
+    width: 80px;
+    height: 80px;
+    background: #f5f5f5;
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  .cart-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .cart-item-details {
+    flex: 1;
+  }
+  .cart-item-title {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px;
+  }
+  .cart-item-variant {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 5px;
+  }
+  .cart-item-price {
+    font-size: 14px;
+    font-weight: 600;
+    color: #c47d4e;
+  }
+  .cart-drawer-footer {
+    padding: 20px;
+    border-top: 1px solid #eee;
+  }
+  .cart-total {
+    display: flex;
+    justify-content: space-between;
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+  .cart-checkout-btn {
+    width: 100%;
+    padding: 15px;
+    background: #c47d4e;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+  }
+  .cart-checkout-btn:hover {
+    background: #a86840;
+  }
+  .cart-empty {
+    text-align: center;
+    padding: 40px 20px;
+  }
+  .cart-empty-icon {
+    font-size: 60px;
+    margin-bottom: 15px;
+  }
+</style>
 
-{% capture cart_icon %}
-  <cart-icon
-    class="
-      header-actions__cart-icon
-      {% unless cart == empty %} header-actions__cart-icon--has-cart{% endunless %}
-    "
-    data-testid="cart-icon"
-  >
-    <span
-      class="svg-wrapper"
-      aria-hidden="true"
-    >
-      {{ 'icon-cart.svg' | inline_asset_content }}
-    </span>
-
-    {% render 'whisper-cart-bubble', limit: 100, live_region: true, test_id: test_id %}
-  </cart-icon>
-{% endcapture %}
-
-{% if settings.cart_type == 'drawer' and template.name != 'cart' %}
-  <cart-drawer-component
-    class="cart-drawer"
-    {{ block.shopify_attributes }}
-    {% if settings.auto_open_cart_drawer %}
-      auto-open
-    {% endif %}
-  >
-    <button
-      class="button header-actions__action button-unstyled"
-      on:click="/open"
-      aria-haspopup="dialog"
-      aria-label="{{ 'accessibility.cart' | t }}"
-      aria-describedby="cart-bubble-text"
-      data-testid="cart-drawer-trigger"
-    >
-      {{ cart_icon }}
-    </button>
-
-    <dialog
-      ref="dialog"
-      class="cart-drawer__dialog dialog-modal dialog-drawer color-{{ settings.drawer_color_scheme }}{% if cart.empty? %} cart-drawer--empty{%endif%}"
-      aria-labelledby="{% if cart.empty? %}cart-drawer-heading-empty{% else %}cart-drawer-heading{% endif %}"
-      scroll-lock
-      cart-summary-sticky="true"
-    >
-      <div class="cart-drawer__inner">
-        <cart-items-component
-          class="cart-items-component"
-          data-section-id="{{ section.id }}"
-        >
-          {%- if cart.empty? -%}
-            <div class="cart-drawer__header">
-              <button
-                ref="closeButton"
-                on:click="cart-drawer-component/close"
-                class="button close-button cart-drawer__close-button button-unstyled"
-                aria-label="{{ 'actions.close_dialog' | t }}"
-              >
-                <span class="svg-wrapper">
-                  {{- 'icon-close.svg' | inline_asset_content -}}
-                </span>
-              </button>
-            </div>
-
-            <div
-              class="cart-drawer__content motion-reduce"
-              aria-label="{{ 'accessibility.cart' | t }}"
-            >
-              <h2
-                class="cart-drawer__heading h4 cart-drawer__heading--empty"
-                id="cart-drawer-heading-empty"
-              >
-                {{ 'content.your_cart_is_empty' | t }}
-              </h2>
-
-              <div class="cart-drawer__items">
-                {% render 'whisper-cart-products', drawer_context: 'drawer' %}
-              </div>
-
-              <div class="cart-drawer__footer cart-drawer__footer--empty">
-                <a
-                  class="cart-drawer__continue-shopping"
-                  href="{{ routes.all_products_collection_url }}"
-                  on:click="cart-drawer-component/close"
-                >
-                  {{ 'cart.general.continue_shopping' | t }}
-                </a>
-              </div>
-            </div>
-          {%- else -%}
-            <div
-              class="cart-drawer__header"
-              id="cart-drawer-header"
-            >
-              <h2
-                class="cart-drawer__heading h4"
-                id="cart-drawer-heading"
-              >
-                {{ 'content.cart_title' | t }}
-                {% render 'whisper-cart-bubble' %}
-              </h2>
-
-              <button
-                ref="closeButton"
-                on:click="cart-drawer-component/close"
-                class="button close-button cart-drawer__close-button button-unstyled"
-                aria-label="{{ 'actions.close_dialog' | t }}"
-              >
-                <span class="svg-wrapper">
-                  {{- 'icon-close.svg' | inline_asset_content -}}
-                </span>
-              </button>
-            </div>
-
-            <scroll-hint
-              class="cart-drawer__content motion-reduce"
-              aria-label="{{ 'accessibility.cart' | t }}"
-              style="--header-height: 60px;"
-            >
-              <scroll-hint
-                class="cart-drawer__items"
-              >
-                {% render 'whisper-cart-products', drawer_context: 'drawer' %}
-              </scroll-hint>
-
-              <div
-                class="cart-drawer__summary"
-              >
-                {% render 'cart-summary' %}
-
-                <div class="cart-drawer__footer">
-                  <a
-                    class="cart-drawer__continue-shopping"
-                    href="{{ routes.all_products_collection_url }}"
-                    on:click="cart-drawer-component/close"
-                  >
-                    {{ 'cart.general.continue_shopping' | t }}
-                  </a>
-                </div>
-              </div>
-            </scroll-hint>
-          {%- endif -%}
-        </cart-items-component>
+<div class="cart-drawer-overlay" onclick="toggleCart()"></div>
+<div class="cart-drawer">
+  <div class="cart-drawer-header">
+    <h2>Your Cart (<span id="cart-count">{{ cart.item_count }}</span>)</h2>
+    <button class="cart-close" onclick="toggleCart()">×</button>
+  </div>
+  <div class="cart-drawer-items">
+    {% if cart.items.size > 0 %}
+      {% for item in cart.items %}
+        <div class="cart-item">
+          <div class="cart-item-image">
+            {% if item.image != blank %}
+              {{ item.image | image_url: width: 160 | image_tag: loading: 'lazy' }}
+            {% else %}
+              🛋️
+            {% endif %}
+          </div>
+          <div class="cart-item-details">
+            <div class="cart-item-title">{{ item.product.title }}</div>
+            {% if item.variant.title != 'Default Title' %}
+              <div class="cart-item-variant">{{ item.variant.title }}</div>
+            {% endif %}
+            <div class="cart-item-price">{{ item.price | money }} × {{ item.quantity }}</div>
+          </div>
+        </div>
+      {% endfor %}
+    {% else %}
+      <div class="cart-empty">
+        <div class="cart-empty-icon">🛒</div>
+        <p>Your cart is empty</p>
       </div>
-    </dialog>
-  </cart-drawer-component>
-{% endif %}
+    {% endif %}
+  </div>
+  {% if cart.items.size > 0 %}
+    <div class="cart-drawer-footer">
+      <div class="cart-total">
+        <span>Total</span>
+        <span>{{ cart.total_price | money }}</span>
+      </div>
+      <button class="cart-checkout-btn" onclick="window.location.href='/checkout'">Checkout</button>
+    </div>
+  {% endif %}
+</div>
+
+<script>
+  function toggleCart() {
+    document.querySelector('.cart-drawer').classList.toggle('open');
+    document.querySelector('.cart-drawer-overlay').classList.toggle('open');
+  }
+</script>
