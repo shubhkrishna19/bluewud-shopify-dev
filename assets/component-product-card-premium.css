@@ -1,9 +1,9 @@
 /* ==========================================================================
-   WOODENSTREET PRODUCT CARD - PREMIUM STYLING
+   WOODEN PRODUCT CARD - PREMIUM STYLING
    Consolidated and enhanced for beautiful display
    ========================================================================== */
 
-.woodenstreet-card {
+.wooden-card {
     position: relative;
     background: #ffffff;
     border: 1px solid #E5E7EB;
@@ -15,39 +15,39 @@
     flex-direction: column;
 }
 
-.woodenstreet-card:hover {
+.wooden-card:hover {
     transform: translateY(-4px);
     box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
     border-color: #C7431A;
 }
 
 /* Media Wrapper */
-.woodenstreet-card__media-wrapper {
+.wooden-card__media-wrapper {
     position: relative;
     overflow: hidden;
     background: #F9FAFB;
     aspect-ratio: 1 / 1;
 }
 
-.woodenstreet-card__link {
+.wooden-card__link {
     display: block;
     width: 100%;
     height: 100%;
 }
 
-.woodenstreet-card__image {
+.wooden-card__image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.woodenstreet-card:hover .woodenstreet-card__image {
+.wooden-card:hover .wooden-card__image {
     transform: scale(1.05);
 }
 
 /* Badges */
-.woodenstreet-card__badge {
+.wooden-card__badge {
     position: absolute;
     top: 12px;
     right: 12px;
@@ -60,13 +60,13 @@
     letter-spacing: 0.05em;
 }
 
-.woodenstreet-card__badge--discount {
+.wooden-card__badge--discount {
     background: #DC2626;
     color: #ffffff;
     box-shadow: 0 4px 6px -1px rgba(220, 38, 38, 0.3);
 }
 
-.woodenstreet-card__ribbon {
+.wooden-card__ribbon {
     position: absolute;
     top: 12px;
     left: 12px;
@@ -83,7 +83,7 @@
 }
 
 /* Quick Actions */
-.woodenstreet-card__actions {
+.wooden-card__actions {
     position: absolute;
     bottom: 12px;
     left: 50%;
@@ -93,12 +93,12 @@
     z-index: 3;
 }
 
-.woodenstreet-card:hover .woodenstreet-card__actions {
+.wooden-card:hover .wooden-card__actions {
     transform: translateX(-50%) translateY(0);
     opacity: 1;
 }
 
-.woodenstreet-card__quick-view {
+.wooden-card__quick-view {
     padding: 10px 20px;
     background: rgba(255, 255, 255, 0.95);
     backdrop-filter: blur(8px);
@@ -112,7 +112,7 @@
     box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
 }
 
-.woodenstreet-card__quick-view:hover {
+.wooden-card__quick-view:hover {
     background: #C7431A;
     color: #ffffff;
     border-color: #C7431A;
@@ -121,7 +121,7 @@
 }
 
 /* Content Area */
-.woodenstreet-card__content {
+.wooden-card__content {
     padding: 16px;
     display: flex;
     flex-direction: column;
@@ -129,7 +129,7 @@
     flex: 1;
 }
 
-.woodenstreet-card__title {
+.wooden-card__title {
     margin: 0;
     font-size: 0.9rem;
     font-weight: 600;
@@ -137,7 +137,7 @@
     color: #1F2937;
 }
 
-.woodenstreet-card__title a {
+.wooden-card__title a {
     color: inherit;
     text-decoration: none;
     display: -webkit-box;
@@ -147,18 +147,18 @@
     transition: color 0.2s;
 }
 
-.woodenstreet-card__title a:hover {
+.wooden-card__title a:hover {
     color: #C7431A;
 }
 
 /* Rating */
-.woodenstreet-card__meta {
+.wooden-card__meta {
     display: flex;
     align-items: center;
     gap: 8px;
 }
 
-.woodenstreet-card__rating {
+.wooden-card__rating {
     display: flex;
     align-items: center;
     gap: 4px;
@@ -166,13 +166,13 @@
     color: #6B7280;
 }
 
-.woodenstreet-card__star {
+.wooden-card__star {
     color: #F59E0B;
     font-size: 1rem;
 }
 
 /* Footer with Price */
-.woodenstreet-card__footer {
+.wooden-card__footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -181,27 +181,27 @@
     border-top: 1px solid #F3F4F6;
 }
 
-.woodenstreet-card__price-wrapper {
+.wooden-card__price-wrapper {
     display: flex;
     align-items: baseline;
     gap: 8px;
     flex-wrap: wrap;
 }
 
-.woodenstreet-card__price {
+.wooden-card__price {
     font-size: 1rem;
     font-weight: 800;
     color: #C7431A;
 }
 
-.woodenstreet-card__compare-price {
+.wooden-card__compare-price {
     font-size: 0.875rem;
     color: #9CA3AF;
     text-decoration: line-through;
 }
 
 /* Wishlist Button */
-.woodenstreet-card__wishlist {
+.wooden-card__wishlist {
     padding: 8px;
     background: transparent;
     border: 1px solid #E5E7EB;
@@ -214,13 +214,13 @@
     justify-content: center;
 }
 
-.woodenstreet-card__wishlist:hover {
+.wooden-card__wishlist:hover {
     background: #FEF2F2;
     border-color: #C7431A;
     color: #C7431A;
 }
 
-.woodenstreet-card__wishlist svg {
+.wooden-card__wishlist svg {
     width: 20px;
     height: 20px;
 }
@@ -228,42 +228,42 @@
 /* Mobile Optimizations */
 @media (max-width: 768px) {
 
-    .woodenstreet-card__badge,
-    .woodenstreet-card__ribbon {
+    .wooden-card__badge,
+    .wooden-card__ribbon {
         top: 8px;
         padding: 4px 8px;
         font-size: 0.7rem;
     }
 
-    .woodenstreet-card__badge--discount {
+    .wooden-card__badge--discount {
         right: 8px;
     }
 
-    .woodenstreet-card__ribbon {
+    .wooden-card__ribbon {
         left: 8px;
     }
 
-    .woodenstreet-card__content {
+    .wooden-card__content {
         padding: 12px;
     }
 
-    .woodenstreet-card__title {
+    .wooden-card__title {
         font-size: 0.85rem;
     }
 
-    .woodenstreet-card__price {
+    .wooden-card__price {
         font-size: 0.9rem;
     }
 
     /* Show quick view button on mobile without hover */
-    .woodenstreet-card__actions {
+    .wooden-card__actions {
         position: static;
         transform: none;
         opacity: 1;
         margin-top: 12px;
     }
 
-    .woodenstreet-card__quick-view {
+    .wooden-card__quick-view {
         width: 100%;
         text-align: center;
     }

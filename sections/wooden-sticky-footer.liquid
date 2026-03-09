@@ -1,15 +1,15 @@
-<section class="woodenstreet-sticky-footer" data-section-id="{{ section.id }}">
-  <div class="woodenstreet-sticky-footer__inner">
-    <div class="woodenstreet-sticky-footer__info">
+<section class="wooden-sticky-footer" data-section-id="{{ section.id }}">
+  <div class="wooden-sticky-footer__inner">
+    <div class="wooden-sticky-footer__info">
       {% if section.settings.title != blank %}
-        <p class="woodenstreet-sticky-footer__title">{{ section.settings.title }}</p>
+        <p class="wooden-sticky-footer__title">{{ section.settings.title }}</p>
       {% endif %}
       {% if section.settings.price_text != blank %}
-        <span class="woodenstreet-sticky-footer__price">{{ section.settings.price_text }}</span>
+        <span class="wooden-sticky-footer__price">{{ section.settings.price_text }}</span>
       {% endif %}
     </div>
     {% if section.settings.cta_label != blank %}
-      <a class="woodenstreet-sticky-footer__cta" href="{{ section.settings.cta_link }}">
+      <a class="wooden-sticky-footer__cta" href="{{ section.settings.cta_link }}">
         {{ section.settings.cta_label }}
       </a>
     {% endif %}
@@ -18,7 +18,7 @@
 
 {% schema %}
 {
-  "name": "WoodenStreet Sticky Footer",
+  "name": "Wooden Sticky Footer",
   "tag": "section",
   "class": "section",
   "settings": [
@@ -48,7 +48,7 @@
   ],
   "presets": [
     {
-      "name": "WoodenStreet Sticky Footer",
+      "name": "Wooden Sticky Footer",
       "category": "Product"
     }
   ]

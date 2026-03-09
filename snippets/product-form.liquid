@@ -32,7 +32,7 @@
   {% endif %}
 {% endif %}
 
-{% form 'product', product, class: product_form_class, data-product-form: '' %}
+{% form 'product', product, class: product_form_class, data-product-form: '', id: 'product-form-' | append: product.id %}
   {% comment %}
     Display variant options for a product
 
@@ -143,8 +143,15 @@
     @param option_swatch_classes
     @param option_swatch_inner_classes
   {% endcomment %}
-  
-  {% if product.has_only_default_variant %}
+
+  {% comment %} Wooden: Check for variants explicitly - show selectors if product has options or multiple variants {% endcomment %}
+  {% assign has_variants = false %}
+  {% if product.variants.size > 1 or product.options_with_values.size > 0 %}
+    {% assign has_variants = true %}
+  {% endif %}
+
+  {% if product.has_only_default_variant and has_variants == false %}
+    {% comment %} Product has only default variant - show hidden input {% endcomment %}
     <input
       class="
         variants-ui
@@ -205,7 +212,7 @@
     <div
       class="
         variants-ui
-        {% if has_variant_images %}woodenstreet-variant-swatches{% endif %}
+        {% if has_variant_images %}wooden-variant-swatches{% endif %}
         {%
           if enable_swatches
           and swatches_shape == 'square'
@@ -616,7 +623,7 @@
                           >
                           </div>
                         </div>
-                        <span class="woodenstreet-variant-swatch-label">{{ value }}</span>
+                        <span class="wooden-variant-swatch-label">{{ value }}</span>
                       {% endunless %}
                     </span>
                   </label>
@@ -635,72 +642,228 @@
   {% comment %}Inject @pixelunion/shopify-variants-ui/variants-ui end{% endcomment %}
 
   {% render 'whisper-size-engine' %}
-  {% render 'woodenstreet-visual-swatches', product: product %}
-  {% render 'woodenstreet-delivery-estimator' %}
+  {% render 'wooden-visual-swatches', product: product %}
+  {% render 'wooden-delivery-estimator' %}
   {% render 'offers-box' %}
 
+{% comment %} COD and EMI Options Display {% endcomment %}
+<div class="cod-emi-options">
+  {% comment %} COD - Cash on Delivery {% endcomment %}
+  <div class="cod-option">
+    <div class="cod-emi-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+        <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+      </svg>
+    </div>
+    <div class="cod-emi-text">
+      <span class="cod-emi-label">COD</span>
+      <span class="cod-emi-desc">Cash on Delivery Available</span>
+    </div>
+    <div class="cod-emi-check">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+      </svg>
+    </div>
+  </div>
+
+  {% comment %} EMI - Easy Installments {% endcomment %}
+  {% assign emi_price = product.price | divided_by: 3 | floor %}
+  {% if emi_price > 0 %}
+  <div class="emi-option">
+    <div class="cod-emi-icon emi-icon">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="20" height="20">
+        <path d="M19 14V6c0-1.1-.9-2-2-3H3c-1.1 0-2 .9-2 2v8c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2zm-9-1c-1.66 0-3-1.34-3-3s1.34-3 3-3 3 1.34 3 3-1.34 3-3 3zm13-6v11c0 1.1-.9 2-2 2H4v-2h17V7h2z"/>
+      </svg>
+    </div>
+    <div class="cod-emi-text">
+      <span class="cod-emi-label">EMI</span>
+      <span class="cod-emi-desc">Easy Installments Starting at {{ emi_price | money }}</span>
+    </div>
+    <div class="cod-emi-check">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="16" height="16">
+        <path d="M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"/>
+      </svg>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+<style>
+.cod-emi-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 16px;
+  padding: 16px;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 12px;
+  border: 1px solid #e9ecef;
+}
+
+.cod-option,
+.emi-option {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.cod-option:hover,
+.emi-option:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.cod-emi-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+  border-radius: 10px;
+  flex-shrink: 0;
+}
+
+.cod-emi-icon svg {
+  color: white;
+}
+
+.emi-icon {
+  background: linear-gradient(135deg, #6c5ce7 0%, #a29bfe 100%);
+}
+
+.cod-emi-text {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.cod-emi-label {
+  font-weight: 700;
+  font-size: 14px;
+  color: #212529;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cod-emi-desc {
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.cod-emi-check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  background: #d4edda;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.cod-emi-check svg {
+  color: #28a745;
+}
+
+@media (max-width: 768px) {
+  .cod-emi-options {
+    padding: 12px;
+    gap: 8px;
+  }
+
+  .cod-option,
+  .emi-option {
+    padding: 10px;
+  }
+
+  .cod-emi-icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  .cod-emi-label {
+    font-size: 12px;
+  }
+
+  .cod-emi-desc {
+    font-size: 11px;
+  }
+}
+</style>
+
 <div class="qty-wish">
-<div class="product-form--atc-qty form-fields--qty" data-quantity-wrapper>
-      <div class="form-field form-field--qty-select">
-        <div class="form-field-select-wrapper">
-          <select
-            id="product-quantity-select"
-            class="form-field-input form-field-select"
-            aria-label="{{ 'general.general.quantity' | t }}"
-            data-quantity-select
-          >
-            {% for i in (1..9) %}
-              <option {% if i == 1 %}selected {% endif %}value="{{ i }}">
-                {{ i }}
-              </option>
-            {% endfor %}
-            <option value="10+">
-              10+
-            </option>
-          </select>
-          <label
-            for="product-quantity-select"
-            class="form-field-title"
-          >
-            {{ 'general.general.quantity' | t }}
-          </label>
-          {% render 'icon-chevron-down-small' %}
-        </div>
-      </div>
-      <div class="form-field form-field--qty-input hidden">
-        <input
-          id="product-quantity-input"
-          class="form-field-input form-field-number form-field-filled"
-          value="1"
-          name="quantity"
-          type="text"
-          pattern="\d*"
+  <div class="product-form--atc-qty form-fields--qty" data-quantity-wrapper>
+    <div class="form-field form-field--qty-select">
+      <div class="form-field-select-wrapper">
+        <select
+          id="product-quantity-select"
+          class="form-field-input form-field-select"
           aria-label="{{ 'general.general.quantity' | t }}"
-          data-quantity-input
+          data-quantity-select
+          data-product-quantity-select
         >
+          {% for i in (1..9) %}
+            <option {% if i == 1 %}selected {% endif %}value="{{ i }}">
+              {{ i }}
+            </option>
+          {% endfor %}
+          <option value="10+">
+            10+
+          </option>
+        </select>
         <label
-          for="product-quantity-input"
+          for="product-quantity-select"
           class="form-field-title"
         >
           {{ 'general.general.quantity' | t }}
         </label>
+        {% render 'icon-chevron-down-small' %}
       </div>
     </div>
-<div class="vipProduct__wishlist">
-      {% comment %}{% render 'iwish_v2' with 'iwishproduct' %} {% endcomment %}
+    <div class="form-field form-field--qty-input hidden" data-quantity-input-wrapper>
+      <input
+        id="product-quantity-input"
+        class="form-field-input form-field-number form-field-filled"
+        value="10"
+        name="quantity"
+        type="number"
+        min="10"
+        aria-label="{{ 'general.general.quantity' | t }}"
+        data-quantity-input
+        data-product-quantity-input
+      >
+      <label
+        for="product-quantity-input"
+        class="form-field-title"
+      >
+        {{ 'general.general.quantity' | t }}
+      </label>
     </div>
+  </div>
+  <div class="vipProduct__wishlist">
+    {% render 'iwish_v2' with 'iwishproduct' %}
+  </div>
 </div>
 
 {% render 'size-prediction-engine', product: product %}
 
   <div class="product-form--atc atcnew">
-    
 
     <button
+      id="product-add-to-cart-button"
       class="product-form--atc-button {% if selected_variant and selected_variant.available == false %}disabled{% endif %}"
       type="submit"
+      name="add"
       {% if selected_variant and selected_variant.available == false %}disabled{% endif %}
       data-product-atc
+      aria-label="{{ 'product.buttons.add_to_cart' | t }}"
     >
       <span class="atc-button--text">
         {% unless selected_variant and selected_variant.available == false %}
@@ -765,4 +928,33 @@
   </div>
 
   <div class="surface-pick-up" data-surface-pick-up></div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Handle quantity selector toggle between dropdown and input for 10+
+    var quantitySelect = document.querySelector('[data-product-quantity-select]');
+    var quantityInputWrapper = document.querySelector('[data-quantity-input-wrapper]');
+    var quantityInput = document.querySelector('[data-product-quantity-input]');
+
+    if (quantitySelect && quantityInputWrapper && quantityInput) {
+      quantitySelect.addEventListener('change', function() {
+        if (this.value === '10+') {
+          quantityInputWrapper.classList.remove('hidden');
+          quantitySelect.closest('.form-field--qty-select').classList.add('hidden');
+          quantityInput.focus();
+        }
+      });
+
+      // Reset to dropdown when quantity input is cleared or set to < 10
+      quantityInput.addEventListener('input', function() {
+        var qty = parseInt(this.value, 10);
+        if (qty && qty < 10 && qty > 0) {
+          quantityInputWrapper.classList.add('hidden');
+          quantitySelect.closest('.form-field--qty-select').classList.remove('hidden');
+          quantitySelect.value = qty;
+        }
+      });
+    }
+  });
+</script>
 {% endform %}

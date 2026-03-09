@@ -1,127 +1,188 @@
-<article class="site-page" data-template-page data-template-contact>
+{%- style -%}
+  .contact-form-section-{{ section.id }} {
+    padding-top: {{ section.settings.padding_top | times: 0.75 | round: 0 }}px;
+    padding-bottom: {{ section.settings.padding_bottom | times: 0.75 | round: 0 }}px;
+  }
 
-  <header class="page-masthead">
-    <h1 class="page-title">
-      {{ page.title }}
-    </h1>
-  </header>
-  {% form 'contact' %}
+  @media screen and (min-width: 750px) {
+    .contact-form-section-{{ section.id }} {
+      padding-top: {{ section.settings.padding_top }}px;
+      padding-bottom: {{ section.settings.padding_bottom }}px;
+    }
+  }
+{%- endstyle -%}
 
-    {% if page.content != blank %}
-      <div class="page-content rte">
-        {{ page.content }}
-      </div>
-    {% endif %}
+<div class="contact-form-section-{{ section.id }}">
+  <article class="site-page" data-template-page data-template-contact>
 
-    <div class="contact-page-content">
-      {% assign has_message = false %}
+    <header class="page-masthead">
+      <h1 class="page-title">
+        {{ page.title }}
+      </h1>
+    </header>
+    {% form 'contact', class: section.settings.form_class, name: 'contact_form' %}
 
-      {% if form.errors != blank %}
-        {% assign has_message = true %}
-        {% assign message_type = 'error' %}
-      {% endif %}
-
-      {% if form.posted_successfully? %}
-        {% assign has_message = true %}
-        {% assign message_type = 'success' %}
-      {% endif %}
-
-      {% if has_message %}
-        <div class="contact-message message--{{ message_type }}">
-          {% case message_type %}
-            {% when 'success' %}
-              <p>
-                {{ 'contact.form.post_success' | t }}
-              </p>
-            {% when 'error' %}
-              {{ form.errors | default_errors }}
-          {% endcase %}
+      {% if page.content != blank %}
+        <div class="page-content rte">
+          {{ page.content }}
         </div>
       {% endif %}
 
-      <div class="form-fields-columns">
-        <div class="form-field form-field--half">
+      <div class="contact-page-content">
+        {% assign has_message = false %}
+
+        {% if form.errors != blank %}
+          {% assign has_message = true %}
+          {% assign message_type = 'error' %}
+        {% endif %}
+
+        {% if form.posted_successfully? %}
+          {% assign has_message = true %}
+          {% assign message_type = 'success' %}
+        {% endif %}
+
+        {% if has_message %}
+          <div class="contact-message message--{{ message_type }}">
+            {% case message_type %}
+              {% when 'success' %}
+                <p>
+                  {{ 'contact.form.post_success' | t }}
+                </p>
+              {% when 'error' %}
+                {{ form.errors | default_errors }}
+            {% endcase %}
+          </div>
+        {% endif %}
+
+        <div class="form-fields-columns">
+          <div class="form-field form-field--half">
+            {% assign value = '' %}
+            {%- if form.name -%}
+              {% assign value = form.name %}
+            {%- elsif customer -%}
+              {% assign value = customer.name %}
+            {%- endif -%}
+
+            <input
+              class="form-field-input form-field-text {% if form.errors contains 'name' %}form-field-error{% endif %}"
+              id="contact_name"
+              name="contact[name]"
+              type="text"
+              value="{{ value }}">
+
+            <label class="form-field-title" for="contact_name">
+              {{ 'contact.form.name' | t }}
+            </label>
+          </div>
+
+          <div class="form-field form-field--half">
+            {% assign value = '' %}
+            {%- if form.email -%}
+              {% assign value = form.email %}
+            {%- elsif customer -%}
+              {% assign value = customer.email %}
+            {%- endif -%}
+            <input
+              class="form-field-input form-field-text {% if form.errors contains 'email' %}form-field-error{% endif %}"
+              id="contact_email"
+              name="contact[email]"
+              type="email"
+              value="{{ value }}"
+              autocorrect="off"
+              autocapitalize="off">
+
+            <label class="form-field-title" for="contact_email">
+              {{ 'contact.form.email' | t }}
+            </label>
+          </div>
+        </div>
+
+        <div class="form-field">
           {% assign value = '' %}
-          {%- if form.name -%}
-            {% assign value = form.name %}
+          {%- if form.phone -%}
+            {% assign value = form.phone %}
           {%- elsif customer -%}
-            {% assign value = customer.name %}
+            {% assign value = customer.phone %}
           {%- endif -%}
 
           <input
-            class="form-field-input form-field-text {% if form.errors contains 'name' %}form-field-error{% endif %}"
-            id="contact_name"
-            name="contact[name]"
-            type="text"
+            class="form-field-input form-field-text {% if form.errors contains 'phone' %}form-field-error{% endif %}"
+            id="contact_phone"
+            name="contact[phone]"
+            type="tel"
             value="{{ value }}">
 
-          <label class="form-field-title" for="contact_name">
-            {{ 'contact.form.name' | t }}
+          <label class="form-field-title" for="contact_phone">
+            {{ 'contact.form.phone' | t }}
           </label>
         </div>
 
-        <div class="form-field form-field--half">
+        <div class="form-field">
           {% assign value = '' %}
-          {%- if form.email -%}
-            {% assign value = form.email %}
-          {%- elsif customer -%}
-            {% assign value = customer.email %}
+          {%- if form.body -%}
+            {% assign value = form.body %}
           {%- endif -%}
-          <input
-            class="form-field-input form-field-text {% if form.errors contains 'email' %}form-field-error{% endif %}"
-            id="contact_email"
-            name="contact[email]"
-            type="text"
-            value="{{ value }}"
-            autocorrect="off"
-            autocapitalize="off">
+          <textarea
+            class="form-field-input form-field-textarea {% if form.errors contains 'body' %}form-field-error{% endif %}"
+            id="contact_message"
+            name="contact[message]">{{ value }}</textarea>
 
-          <label class="form-field-title" for="contact_email">
-            {{ 'contact.form.email' | t }}
+          <label class="form-field-title" for="contact_message">
+            {{ 'contact.form.message' | t }}
           </label>
         </div>
+
+        <div class="form-action-row">
+          <button class="button-primary contact-form-button" type="submit">
+            {{ 'contact.form.send' | t }}
+          </button>
+        </div>
       </div>
+    {% endform %}
+  </article>
+</div>
 
-      <div class="form-field">
-        {% assign value = '' %}
-        {%- if form.phone -%}
-          {% assign value = form.phone %}
-        {%- elsif customer -%}
-          {% assign value = customer.phone %}
-        {%- endif -%}
-
-        <input
-          class="form-field-input form-field-text {% if form.errors contains 'phone' %}form-field-error{% endif %}"
-          id="contact_phone"
-          name="contact[phone]"
-          type="tel"
-          value="{{ value }}">
-
-        <label class="form-field-title" for="contact_phone">
-          {{ 'contact.form.phone' | t }}
-        </label>
-      </div>
-
-      <div class="form-field">
-        {% assign value = '' %}
-        {%- if form.body -%}
-          {% assign value = form.body %}
-        {%- endif -%}
-        <textarea
-          class="form-field-input form-field-textarea {% if form.errors contains 'body' %}form-field-error{% endif %}"
-          id="contact_message"
-          name="contact[message]">{{ value }}</textarea>
-
-        <label class="form-field-title" for="contact_body">
-          {{ 'contact.form.message' | t }}
-        </label>
-      </div>
-
-      <div class="form-action-row">
-        <button class="button-primary contact-form-button" type="submit">
-          {{ 'contact.form.send' | t }}
-        </button>
-      </div>
-    </div>
-  {% endform %}
-</article>
+{% schema %}
+{
+  "name": "Contact form",
+  "tag": "section",
+  "class": "section",
+  "settings": [
+    {
+      "type": "text",
+      "id": "form_class",
+      "label": "Form class",
+      "default": "contact-form"
+    },
+    {
+      "type": "header",
+      "content": "t:sections.all.padding.section_padding_heading"
+    },
+    {
+      "type": "range",
+      "id": "padding_top",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_top",
+      "default": 36
+    },
+    {
+      "type": "range",
+      "id": "padding_bottom",
+      "min": 0,
+      "max": 100,
+      "step": 4,
+      "unit": "px",
+      "label": "t:sections.all.padding.padding_bottom",
+      "default": 36
+    }
+  ],
+  "presets": [
+    {
+      "name": "Contact form"
+    }
+  ]
+}
+{% endschema %}

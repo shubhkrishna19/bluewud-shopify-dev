@@ -1,7 +1,11 @@
 {
     "sections": {
+        "breadcrumb": {
+            "type": "breadcrumb-navigation",
+            "settings": {}
+        },
         "main": {
-            "type": "static-product",
+            "type": "main-product",
             "blocks": {
                 "title": {
                     "type": "title",
@@ -128,6 +132,7 @@
         }
     },
     "order": [
+        "breadcrumb",
         "main",
         "recommendations",
         "recently-viewed",

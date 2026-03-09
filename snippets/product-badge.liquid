@@ -103,6 +103,10 @@
   <span class="{{ class_root }}__badge {{ class_root }}__badge--soldout">
     {{ 'product_price.badge.sold_out' | t }}
   </span>
+{%- elsif product.metafields.my_fields.new_arrival == true or product.metafields.my_fields.new_arrival == 'true' -%}
+  <span class="{{ class_root }}__badge {{ class_root }}__badge--new">
+    {{ 'product_price.badge.new' | default: 'New' }}
+  </span>
 {%- elsif sales_badge -%}
   {% assign saved_price_single = savings_money_single | money %}
   {% assign saved_price_range = savings_money_range | money %}

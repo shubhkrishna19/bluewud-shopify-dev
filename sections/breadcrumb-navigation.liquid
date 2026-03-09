@@ -1,0 +1,86 @@
+{% comment %}
+  Breadcrumb Navigation Section
+  Renders the breadcrumb navigation for the store
+{% endcomment %}
+
+<style>
+  .breadcrumb-wrapper {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 12px 20px;
+    background-color: #f8f8f8;
+  }
+
+  .breadcrumb-wrapper .breadcrumbs-container {
+    margin: 0;
+    padding: 0;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .breadcrumb-wrapper .breadcrumbs-container a {
+    color: #666666;
+    text-decoration: none;
+    transition: color 0.2s ease;
+  }
+
+  .breadcrumb-wrapper .breadcrumbs-container a:hover {
+    color: #e46a6a;
+    text-decoration: underline;
+  }
+
+  .breadcrumb-wrapper .breadcrumbs-container span {
+    color: #333333;
+  }
+
+  .breadcrumb-wrapper .breadcrumbs-delimiter {
+    margin: 0 6px;
+    color: #999999;
+    font-size: 10px;
+  }
+
+  .breadcrumb-wrapper .breadcrumbs-delimiter svg {
+    width: 10px;
+    height: 10px;
+    fill: #999999;
+  }
+
+  .breadcrumb-wrapper .breadcrumbs-tag {
+    font-weight: 400;
+  }
+
+  @media (max-width: 768px) {
+    .breadcrumb-wrapper {
+      padding: 10px 15px;
+    }
+
+    .breadcrumb-wrapper .breadcrumbs-container {
+      font-size: 12px;
+    }
+  }
+</style>
+
+<div class="breadcrumb-wrapper">
+  {% render 'breadcrumbs' %}
+</div>
+
+{% schema %}
+{
+  "name": "Breadcrumb Navigation",
+  "tag": "div",
+  "class": "breadcrumb-section",
+  "settings": [
+    {
+      "type": "checkbox",
+      "id": "enable_breadcrumbs",
+      "default": true,
+      "label": "Enable Breadcrumbs"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Breadcrumb Navigation"
+    }
+  ]
+}
+{% endschema %}

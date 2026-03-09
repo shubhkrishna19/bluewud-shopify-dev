@@ -269,11 +269,11 @@
                 "settings": {
                     "show_announcement": true,
                     "homepage_announcement": false,
-                    "announcement_text": "Bluewud Winter Sale is Live. Avail Flat Discount of 10% . Use Coupon Code \"WINTER10\". Hurry. Offer valid for limited time!!",
-                    "announcement_text_mobile": "Bluewud Winter Sale is Live. Avail Flat Discount of 10% . Use Coupon Code \"WINTER10\". Hurry. Offer valid for limited time!!",
-                    "announcement_link": "shopify://pages/offers-discount",
+                    "announcement_text": "Furniture @upto 50% OFF | Online Furniture Store in India - Wooden Street",
+                    "announcement_text_mobile": "Furniture @upto 50% OFF",
+                    "announcement_link": "shopify://collections/all",
                     "announcement_color": "#ffffff",
-                    "announcement_background": "#1977d2"
+                    "announcement_background": "#C7431A"
                 }
             },
             "static-utility-bar": {
@@ -356,16 +356,16 @@
         },
         "content_for_index": [
             "category_strip",
-            "woodenstreet_hero",
-            "woodenstreet_category_grid",
-            "woodenstreet_press",
+            "wooden_hero",
+            "wooden_category_grid",
+            "wooden_press",
             "urgency_strip",
             "trust_strip",
             "whisper_lookbook",
             "shop_the_look",
             "whisper_trending",
             "hp_video",
-            "woodenstreet_testimonials",
+            "wooden_testimonials",
             "experience_store",
             "whisper_showcase"
         ],

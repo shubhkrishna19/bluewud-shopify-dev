@@ -1,5 +1,5 @@
 {%- comment -%}
-  WoodenStreet Component: Pincode Serviceability Check (E-02)
+  Wooden Component: Pincode Serviceability Check (E-02)
 {%- endcomment -%}
 
 <div class="ws-delivery-estimator" data-ws-delivery-estimator>
@@ -11,17 +11,234 @@
     Check Delivery Estimate
   </h3>
   <div class="ws-delivery-estimator__row">
-    <input 
-      class="ws-delivery-estimator__input" 
-      type="text" 
-      placeholder="Enter Pincode (e.g. 560001)" 
-      maxlength="6" 
+    <input
+      class="ws-delivery-estimator__input"
+      type="text"
+      placeholder="Enter Pincode (e.g. 560001)"
+      maxlength="6"
       pattern="\d*"
       aria-label="Enter Pincode">
     <button class="ws-delivery-estimator__button" type="button">Check</button>
   </div>
-  <p class="ws-delivery-estimator__note" role="status"></p>
+  <div class="ws-delivery-estimator__result" role="status">
+    <p class="ws-delivery-estimator__note"></p>
+    <div class="ws-delivery-estimator__options" style="display: none;">
+      <div class="delivery-option delivery-option--standard">
+        <div class="delivery-option__radio">
+          <input type="radio" id="delivery-standard" name="delivery-type" value="standard" checked>
+          <label for="delivery-standard"></label>
+        </div>
+        <div class="delivery-option__details">
+          <span class="delivery-option__name">Standard Delivery</span>
+          <span class="delivery-option__time">5-7 business days</span>
+          <span class="delivery-option__price">Free</span>
+        </div>
+      </div>
+      <div class="delivery-option delivery-option--express">
+        <div class="delivery-option__radio">
+          <input type="radio" id="delivery-express" name="delivery-type" value="express">
+          <label for="delivery-express"></label>
+        </div>
+        <div class="delivery-option__details">
+          <span class="delivery-option__name">Express Delivery</span>
+          <span class="delivery-option__time">2-3 business days</span>
+          <span class="delivery-option__price">Rs. 99</span>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
+
+<style>
+  .ws-delivery-estimator {
+    padding: 20px;
+    background: linear-gradient(135deg, #f8f9fa 0%, #ffffff 100%);
+    border-radius: 16px;
+    border: 1px solid #e9ecef;
+    margin-top: 16px;
+  }
+
+  .ws-delivery-estimator__title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin-bottom: 16px;
+  }
+
+  .ws-delivery-estimator__title svg {
+    color: #28a745;
+    width: 24px;
+    height: 24px;
+  }
+
+  .ws-delivery-estimator__row {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+
+  .ws-delivery-estimator__input {
+    flex: 1;
+    padding: 12px 16px;
+    border: 2px solid #e9ecef;
+    border-radius: 10px;
+    font-size: 14px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .ws-delivery-estimator__input:focus {
+    outline: none;
+    border-color: #28a745;
+    box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.1);
+  }
+
+  .ws-delivery-estimator__input::placeholder {
+    color: #adb5bd;
+  }
+
+  .ws-delivery-estimator__button {
+    padding: 12px 24px;
+    background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
+    color: white;
+    border: none;
+    border-radius: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .ws-delivery-estimator__button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+  }
+
+  .ws-delivery-estimator__button:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  .ws-delivery-estimator__note {
+    font-size: 13px;
+    font-weight: 500;
+    padding: 10px 14px;
+    border-radius: 8px;
+    margin: 0;
+  }
+
+  .ws-delivery-estimator__note.success {
+    background: #d4edda;
+    color: #155724;
+  }
+
+  .ws-delivery-estimator__note.error {
+    background: #f8d7da;
+    color: #721c24;
+  }
+
+  .ws-delivery-estimator__options {
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid #e9ecef;
+  }
+
+  .delivery-option {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 10px;
+    margin-bottom: 8px;
+    transition: background 0.2s ease;
+  }
+
+  .delivery-option:hover {
+    background: #f8f9fa;
+  }
+
+  .delivery-option__radio {
+    position: relative;
+  }
+
+  .delivery-option__radio input {
+    opacity: 0;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+  }
+
+  .delivery-option__radio label {
+    display: block;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #dee2e6;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+  }
+
+  .delivery-option__radio input:checked + label {
+    border-color: #28a745;
+  }
+
+  .delivery-option__radio input:checked + label::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 10px;
+    height: 10px;
+    background: #28a745;
+    border-radius: 50%;
+  }
+
+  .delivery-option__details {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .delivery-option__name {
+    font-size: 14px;
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+
+  .delivery-option__time {
+    font-size: 12px;
+    color: #6c757d;
+  }
+
+  .delivery-option__price {
+    font-size: 13px;
+    font-weight: 700;
+    color: #28a745;
+  }
+
+  .delivery-option--express .delivery-option__price {
+    color: #6c757d;
+  }
+
+  @media (max-width: 640px) {
+    .ws-delivery-estimator {
+      padding: 16px;
+    }
+
+    .ws-delivery-estimator__row {
+      flex-direction: column;
+    }
+
+    .ws-delivery-estimator__button {
+      width: 100%;
+    }
+  }
+</style>
 
 <script>
   (function() {
@@ -29,30 +246,54 @@
       const input = widget.querySelector('input');
       const btn = widget.querySelector('button');
       const note = widget.querySelector('.ws-delivery-estimator__note');
+      const optionsContainer = widget.querySelector('.ws-delivery-estimator__options');
+
+      function calculateDeliveryDate(days) {
+        const deliveryDate = new Date();
+        deliveryDate.setDate(deliveryDate.getDate() + days);
+        return deliveryDate.toLocaleDateString('en-IN', {
+          weekday: 'short',
+          day: 'numeric',
+          month: 'short'
+        });
+      }
 
       function checkPincode() {
         const val = input.value.trim();
         if (val.length !== 6 || isNaN(val)) {
           note.textContent = "Please enter a valid 6-digit pincode.";
           note.className = 'ws-delivery-estimator__note error';
+          optionsContainer.style.display = 'none';
           return;
         }
 
+        btn.disabled = true;
+        btn.textContent = '...';
+
         // Mock Logic: Even = Success, Odd = No Delivery
         // In real app, fetch /apps/check_pincode?code=val
-        btn.textContent = '...';
         setTimeout(() => {
+          btn.disabled = false;
           btn.textContent = 'Check';
+
           if (parseInt(val) % 2 === 0) {
-              const deliveryDate = new Date();
-              deliveryDate.setDate(deliveryDate.getDate() + 5);
-              const dateString = deliveryDate.toLocaleDateString('en-US', { day: 'numeric', month: 'short' });
-              
-              note.textContent = `Success! Delivery by ${dateString} is available.`;
-              note.className = 'ws-delivery-estimator__note success';
+            const standardDate = calculateDeliveryDate(6);
+            const expressDate = calculateDeliveryDate(2);
+
+            note.innerHTML = `<strong>Delivery available!</strong> Enter your pincode to see delivery options.`;
+            note.className = 'ws-delivery-estimator__note success';
+
+            // Update delivery options with calculated dates
+            const standardOption = widget.querySelector('.delivery-option--standard .delivery-option__time');
+            const expressOption = widget.querySelector('.delivery-option--express .delivery-option__time');
+            standardOption.textContent = `Est. delivery: ${standardDate}`;
+            expressOption.textContent = `Est. delivery: ${expressDate}`;
+
+            optionsContainer.style.display = 'block';
           } else {
-              note.textContent = `Sorry, delivery not available to ${val}.`;
-              note.className = 'ws-delivery-estimator__note error';
+            note.textContent = `Sorry, delivery not available to pincode ${val}.`;
+            note.className = 'ws-delivery-estimator__note error';
+            optionsContainer.style.display = 'none';
           }
         }, 800);
       }
@@ -60,6 +301,24 @@
       btn.addEventListener('click', checkPincode);
       input.addEventListener('keypress', (e) => {
         if (e.key === 'Enter') checkPincode();
+      });
+
+      // Save and restore pincode from localStorage
+      const savedPincode = localStorage.getItem('ws-pincode');
+      if (savedPincode && savedPincode.length === 6) {
+        input.value = savedPincode;
+        checkPincode();
+      }
+
+      // Save pincode on successful check
+      const radioButtons = widget.querySelectorAll('input[name="delivery-type"]');
+      radioButtons.forEach(radio => {
+        radio.addEventListener('change', () => {
+          if (note.classList.contains('success')) {
+            localStorage.setItem('ws-pincode', input.value);
+            localStorage.setItem('ws-delivery-type', radio.value);
+          }
+        });
       });
     });
   })();

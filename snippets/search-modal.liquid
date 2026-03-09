@@ -9,15 +9,14 @@
   fetchpriority="low"
 ></script>
 
-<dialog-component
+<div
   id="search-modal"
   class="search-modal"
+  data-dialog-component
   {{ block.shopify_attributes }}
 >
   <dialog
-    ref="dialog"
-    on:click="/closeDialogOnClickOutside"
-    on:keydown="/closeDialogOnEscapePress"
+    data-ref="dialog"
     class="search-modal__content dialog-modal"
     scroll-lock
     aria-labelledby="search-modal-heading"
@@ -28,8 +27,9 @@
     >
       {{ 'content.search' | t }}
     </h2>
-    <predictive-search-component
+    <div
       class="predictive-search color-{{ settings.popover_color_scheme }}{% if class != blank %} {{ class | strip }}{% endif %}"
+      data-predictive-search
       style="--product-corner-radius: {{ settings.product_corner_radius | default: 8 | append: 'px' }}; --card-corner-radius: {{ settings.card_corner_radius | default: 8 | append: 'px' }};{% if settings.card_title_case == 'uppercase' %} --title-case: uppercase;{% endif %}"
       data-section-id="predictive-search"
       data-testid="{{ 'search-component--modal' }}"
@@ -41,8 +41,7 @@
         method="get"
         role="search"
         class="predictive-search-form"
-        ref="form"
-        on:keydown="/onSearchKeyDown"
+        data-ref="form"
       >
         <div
           class="predictive-search-form__header"
@@ -67,34 +66,37 @@
               aria-autocomplete="list"
               autocomplete="off"
               placeholder="{{ 'content.search_input_placeholder' | t }}"
-              ref="searchInput"
-              on:input="/search"
-              on:keydown="/onSearchKeyDown"
+              data-ref="searchInput"
             >
             <input
               name="options[prefix]"
               type="hidden"
               value="last"
             >
+            <input type="hidden" name="type" value="product">
             <span class="svg-wrapper predictive-search__icon">
               {{ 'icon-search.svg' | inline_asset_content }}
             </span>
             <button
               type="button"
               class="button-unstyled predictive-search__reset-button"
-              ref="resetButton"
+              data-ref="resetButton"
               hidden
-              on:click="/resetSearch"
             >
-              {{ 'actions.clear' | t }}
+              <span class="svg-wrapper predictive-search__reset-button-icon">
+                {{ 'icon-reset.svg' | inline_asset_content }}
+              </span>
+              <span class="predictive-search__reset-button-text">
+                {{ 'actions.clear' | t }}
+              </span>
             </button>
           </div>
           <button
             type="button"
             class="button predictive-search__close-modal-button"
             aria-label="{{ 'accessibility.close_dialog' | t }}"
-            on:click="dialog-component/closeDialog"
-            ref="closeModalButton"
+            data-ref="closeModalButton"
+            data-action="close-dialog"
           >
             <span class="svg-wrapper">
               {{ 'icon-close.svg' | inline_asset_content }}
@@ -106,8 +108,7 @@
           <div
             class="predictive-search-form__content"
             tabindex="-1"
-            ref="predictiveSearchResults"
-            on:click="/handleModalClick"
+            data-ref="predictiveSearchResults"
           >
             {% render 'predictive-search-empty-state',
               load_empty_state: true,
@@ -119,16 +120,16 @@
           <div class="predictive-search-form__footer">
             <button
               class="button button-primary predictive-search__search-button"
-              ref="viewAllButton"
+              data-ref="viewAllButton"
             >
               {{ 'content.search_results_view_all' | t }}
             </button>
           </div>
         </div>
       </form>
-    </predictive-search-component>
+    </div>
   </dialog>
-</dialog-component>
+</div>
 
 {% stylesheet %}
   /* Search modal style */
@@ -218,7 +219,7 @@
     }
   }
 
-  predictive-search-component {
+  [data-predictive-search] {
     --resource-card-corner-radius: var(--product-corner-radius);
 
     display: flex;
@@ -251,7 +252,7 @@
     }
   }
 
-  predictive-search-component:has([data-search-results]):not(:has(.predictive-search-results__no-results))
+  [data-predictive-search]:has([data-search-results]):not(:has(.predictive-search-results__no-results))
     .predictive-search-form__footer {
     display: block;
   }

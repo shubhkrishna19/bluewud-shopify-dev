@@ -1,4 +1,4 @@
-/* WoodenStreet Global Design System (Typography & Spacing) */
+/* Wooden Global Design System (Typography & Spacing) */
 
 :root {
     /* Fonts */
@@ -19,10 +19,10 @@
     --space-20: 80px;
 
     /* Colors (Enforcement) */
-    --woodenstreet-orange: #C7431A;
-    --woodenstreet-orange-hover: #a63614;
-    --woodenstreet-black: #232323;
-    --woodenstreet-gray: #f4f4f4;
+    --wooden-orange: #C7431A;
+    --wooden-orange-hover: #a63614;
+    --wooden-black: #232323;
+    --wooden-gray: #f4f4f4;
 }
 
 /* Typography Enforcement */
@@ -47,7 +47,7 @@ h6,
 .h6 {
     font-family: var(--font-heading-family);
     font-weight: 700;
-    color: var(--woodenstreet-black);
+    color: var(--wooden-black);
     margin-bottom: var(--space-4);
     line-height: 1.2;
 }
@@ -71,11 +71,11 @@ h6,
 }
 
 .text-orange {
-    color: var(--woodenstreet-orange) !important;
+    color: var(--wooden-orange) !important;
 }
 
 .bg-orange {
-    background-color: var(--woodenstreet-orange) !important;
+    background-color: var(--wooden-orange) !important;
 }
 
 /* Buttons Standardization */
@@ -92,14 +92,14 @@ h6,
 }
 
 .button--primary {
-    background-color: var(--woodenstreet-orange);
+    background-color: var(--wooden-orange);
     color: #fff;
-    border: 1px solid var(--woodenstreet-orange);
+    border: 1px solid var(--wooden-orange);
 }
 
 .button--primary:hover {
-    background-color: var(--woodenstreet-orange-hover);
-    border-color: var(--woodenstreet-orange-hover);
+    background-color: var(--wooden-orange-hover);
+    border-color: var(--wooden-orange-hover);
 }
 
 /* Inputs */
@@ -118,6 +118,6 @@ select {
 input:focus,
 textarea:focus,
 select:focus {
-    border-color: var(--woodenstreet-black);
+    border-color: var(--wooden-black);
     outline: none;
 }

@@ -52,9 +52,9 @@
               {%- for resource in predictive_search.resources.queries -%}
                 <li
                   class="predictive-search-results__card--query"
-                  ref="resultsItems[]"
+                  data-ref="resultsItems[]"
                   data-search-result-index="search-results-{{ shared_results_index | plus: forloop.index }}"
-                  on:keydown="/onSearchKeyDown"
+                  onkeydown="this.closest('predictive-search-component, [data-predictive-search]') && this.closest('predictive-search-component, [data-predictive-search]').onSearchKeyDown && this.closest('predictive-search-component, [data-predictive-search]').onSearchKeyDown(event)"
                 >
                   <a
                     class="pills__pill predictive-search-results__pill"

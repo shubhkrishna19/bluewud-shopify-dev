@@ -5456,6 +5456,66 @@ body .mdc-ripple-surface:hover:before {
   }
 }
 
+/* Blog Newsletter Signup */
+.blog-newsletter-signup {
+  margin-top: {{ space_xx_large | divided_by: 16.0 | append: 'rem' }};
+  padding: {{ space_x_large | divided_by: 16.0 | append: 'rem' }};
+  background-color: {{ settings.color_background }};
+  border: 1px solid {{ color_border }};
+  border-radius: 8px;
+  text-align: center;
+}
+
+.blog-newsletter-signup-content {
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.blog-newsletter-signup-title {
+  font-size: var(--font-size-heading-3);
+  margin-top: 0;
+  margin-bottom: {{ space_small | divided_by: 16.0 | append: 'rem' }};
+  color: {{ settings.color_headings }};
+}
+
+.blog-newsletter-signup-text {
+  margin-bottom: {{ space_medium | divided_by: 16.0 | append: 'rem' }};
+  color: {{ settings.color_text }};
+}
+
+.blog-newsletter-form {
+  display: flex;
+  flex-direction: column;
+  gap: {{ space_small | divided_by: 16.0 | append: 'rem' }};
+}
+
+@media screen and (min-width: 680px) {
+  .blog-newsletter-form {
+    flex-direction: row;
+    align-items: flex-end;
+  }
+
+  .blog-newsletter-form .form-field {
+    flex: 1;
+  }
+}
+
+.blog-newsletter-submit {
+  width: 100%;
+}
+
+@media screen and (min-width: 680px) {
+  .blog-newsletter-submit {
+    width: auto;
+    min-width: 140px;
+  }
+}
+
+.newsletter-success-message {
+  margin-top: {{ space_small | divided_by: 16.0 | append: 'rem' }};
+  color: {{ settings.color_success }};
+}
+
 .search--section {
   margin-top: {{ space_medium | divided_by: 16.0 | append: 'rem' }};
 }
@@ -11927,6 +11987,22 @@ html body .home-section--content .promo-mosaic--inner.promo-mosaic--compressed .
 .article--excerpt-wrapper.article--excerpt-wrapper--centered {
   display: flex;
 }
+
+/* Base article list item styling */
+.article-list-item {
+  display: block;
+  width: 100%;
+  background-color: {{ settings.color_background }};
+  border: 1px solid {{ color_border }};
+  border-radius: 8px;
+  overflow: hidden;
+  transition: box-shadow 200ms ease, transform 200ms ease;
+}
+
+.article-list-item:hover {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
 .article--excerpt-wrapper.article--excerpt-wrapper--centered .article-list-item {
   display: flex;
 }

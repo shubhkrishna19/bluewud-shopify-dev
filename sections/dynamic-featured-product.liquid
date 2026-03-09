@@ -22,7 +22,7 @@
       "gallery_click_to_zoom": "disabled",
       "swatches_enable": {{ settings.swatches_enable | json }},
       "sold_out_options": {{ settings.sold_out_options | json }},
-      "select_first_available_variant": {{ settings.select_first_available_variant | json }}
+      "select_first_available_variant": {{ section.settings.select_first_available_variant | json }}
     },
     "context": {
       "select_variant": {{ 'product.general.select_variant' | t | json }},
@@ -53,7 +53,7 @@
       is_featured_product: true,
       onboarding: onboarding,
       show_dynamic_checkout_button: settings.show_dynamic_checkout_button,
-      select_first_available_variant: settings.select_first_available_variant,
+      select_first_available_variant: section.settings.select_first_available_variant,
       gallery_aspect_ratio: section.settings.gallery_aspect_ratio,
       gallery_thumbnail_position: section.settings.gallery_thumbnail_position,
       gallery_image_crop: section.settings.gallery_image_crop,

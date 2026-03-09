@@ -19,7 +19,8 @@
 
   {% assign page_title = 'general.accessibility.search' | t %}
   {% assign total_result_count = search.results.size %}
-  {% if total_result_count > 0 %}
+  {% assign has_search_query = search.terms | strip | size > 0 %}
+  {% if total_result_count > 0 and has_search_query %}
     {% capture sanitized_terms %}
       {%
         render 'search-sanitizer',
@@ -88,7 +89,7 @@
       </div>
 
 
-      {% if product_count > 0 %}
+      {% if search.performed and product_count > 0 and has_search_query %}
         <h2 class="visually-hidden">{{ 'general.accessibility.search_products' | t }}</h2>
         <ul class="productgrid--items products-per-row-{{- section.settings.products_per_row -}}">
             {% for item in search.results %}
@@ -99,7 +100,7 @@
               %}
             {% endfor %}
           </ul>
-        {% else %}
+        {% elsif search.performed and has_search_query %}
           <div class="productgrid--no-results">
             {% assign title = 'search.general.no_search_performed' | t %}
 
@@ -143,6 +144,15 @@
                 {{ 'search.general.view_all_products' | t }}
               </a>
             {% endif %}
+          </div>
+        {% else %}
+          <div class="productgrid--no-results">
+            <h2 class="productgrid--no-results-title">
+              {{ 'search.general.no_search_performed' | t }}
+            </h2>
+            <p class="productgrid--no-results-message">
+              {{ 'search.general.search_placeholder' | t }}
+            </p>
           </div>
         {% endif %}
       </div>
@@ -213,3 +223,11 @@
 }
 
 {% endschema %}
+
+{% style %}
+.productgrid--no-results-message {
+  color: var(--color-text-light);
+  font-size: 1.1rem;
+  margin-top: var(--spacing-sm);
+}
+{% endstyle %}

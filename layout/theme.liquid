@@ -18,9 +18,6 @@
     <link rel="preconnect" href="https://fonts.shopifycdn.com">
     <link rel="preconnect" href="https://v.shopify.com">
     <link rel="preconnect" href="https://cdn.shopifycloud.com">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:ital,wght@0,600;0,700;0,800;1,700&display=swap" rel="stylesheet">
 
     <title>
       {{- page_title -}}
@@ -86,9 +83,10 @@
     {{ 'component-cart-drawer.css' | asset_url | stylesheet_tag }}
     {{ 'component-compare-float.css' | asset_url | stylesheet_tag }}
     {{ 'component-zoom-pan.css' | asset_url | stylesheet_tag }}
+    {{ 'component-footer-premium.css' | asset_url | stylesheet_tag }}
 
-    {%- comment -%} WoodenStreet Master CSS - Consolidated custom styles {%- endcomment -%}
-    {{ 'woodenstreet-master.css' | asset_url | stylesheet_tag }}
+    {%- comment -%} Wooden Master CSS - Consolidated custom styles {%- endcomment -%}
+    {{ 'wooden-master.css' | asset_url | stylesheet_tag }}
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {% comment %} Inject theme-object begin{% endcomment %}
@@ -120,7 +118,8 @@
           "@theme/scrolling": "{{ 'whisper-scrolling.js' | asset_url }}",
           "@theme/events": "{{ 'whisper-events.js' | asset_url }}",
           "@theme/section-hydration": "{{ 'whisper-section-hydration.js' | asset_url }}",
-          "@theme/view-transitions": "{{ 'whisper-view-transitions.js' | asset_url }}"
+          "@theme/view-transitions": "{{ 'whisper-view-transitions.js' | asset_url }}",
+          "@theme/dialog": "{{ 'whisper-dialog.js' | asset_url }}"
         }
       }
     </script>
@@ -230,7 +229,7 @@
       {% endunless %}
     </main>
 
-    {% section 'woodenstreet-footer' %}
+    {% section 'wooden-footer' %}
 
     {% render 'whisper-bottom-sheet', id: 'whisper-quick-add-sheet', title: 'Quick Add', mobile_only: true, show_apply: true, apply_label: 'Add to Cart' %}
     {% render 'whisper-cart-recovery' %}
@@ -571,7 +570,7 @@
       <script type="text/javascript" id="zsiqchat">var $zoho=$zoho || {};$zoho.salesiq = $zoho.salesiq || {widgetcode: "93d849e752699dd0f21bd09e6fb440ea2fd78ce2328db9019b716f0a7ab18bb6db87e7f83964c342109be035207f263a", values:{},ready:function(){}};var d=document;s=d.createElement("script");s.type="text/javascript";s.id="zsiqscript";s.defer=true;s.src="https://salesiq.zoho.com/widget";t=d.getElementsByTagName("script")[0];t.parentNode.insertBefore(s,t);</script>
     -->
     {% render 'search-modal' %}
-    {% render 'woodenstreet-sticky-atc' %}
+    {% render 'wooden-sticky-atc' %}
     {% render 'mobile-bottom-nav' %}
   </body>
 </html>

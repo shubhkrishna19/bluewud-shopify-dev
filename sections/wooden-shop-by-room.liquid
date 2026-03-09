@@ -1,0 +1,113 @@
+{% comment %}
+  Wooden: Shop by Room Section (H-07)
+  Grid-based room navigation for browsing furniture by room type
+  Shows rooms: Living Room, Bedroom, Dining Room, Kids Room, Study, Outdoor
+{% endcomment %}
+
+<section class="ws-shop-by-room" aria-label="Shop by Room">
+  <div class="page-width">
+    {% if section.settings.title != blank %}
+      <h2 class="ws-shop-by-room__heading">{{ section.settings.title }}</h2>
+    {% else %}
+      <h2 class="ws-shop-by-room__heading">Shop by Room</h2>
+    {% endif %}
+    <div class="ws-shop-by-room__wrapper">
+      {% for block in section.blocks %}
+        <a href="{{ block.settings.link | default: '#' }}" class="ws-room-card" {{ block.shopify_attributes }}>
+          <div class="ws-room-card__image-wrapper">
+            {% if block.settings.image != blank %}
+              <img src="{{ block.settings.image | img_url: '400x500', crop: 'center' }}"
+                   alt="{{ block.settings.title | escape }}"
+                   class="ws-room-card__image"
+                   width="400"
+                   height="500"
+                   loading="lazy">
+            {% else %}
+              <div class="ws-room-card__placeholder">
+                {% case block.settings.title %}
+                  {% when 'Living Room' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 9V6a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v3"></path><path d="M2 11v5a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5a2 2 0 0 0-4 0v2H6v-2a2 2 0 0 0-4 0Z"></path><path d="M4 18v2"></path><path d="M20 18v2"></path></svg>
+                  {% when 'Bedroom' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 4v16"></path><path d="M2 8h18a2 2 0 0 1 2 2v10"></path><path d="M2 17h20"></path><path d="M6 8v9"></path></svg>
+                  {% when 'Dining Room' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v10"></path><path d="M18.5 8a2.5 2.5 0 0 1 0 5"></path><path d="M12 12v10"></path><line x1="12" y1="12" x2="18.5" y2="8"></line><circle cx="7" cy="17" r="3"></circle><circle cx="17" cy="17" r="3"></circle></svg>
+                  {% when 'Kids Room' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5"></circle><path d="M3 21v-2a7 7 0 0 1 7-7h4a7 7 0 0 1 7 7v2"></path><path d="M16 3l-2 3-2-3"></path><path d="M12 14v4"></path></svg>
+                  {% when 'Study Room' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect><line x1="8" y1="21" x2="16" y2="21"></line><line x1="12" y1="17" x2="12" y2="21"></line></svg>
+                  {% when 'Outdoor' %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22V8"></path><path d="M5 12H2a10 10 0 0 0 20 0h-3"></path><path d="M5 12a5 5 0 0 1 7-3 5 5 0 0 1 8 2 5 5 0 0 1 7-3"></path></svg>
+                  {% else %}
+                    <svg xmlns="http://www.w3.org/2000/svg" width="60" height="60" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path><polyline points="9 22 9 12 15 12 15 22"></polyline></svg>
+                {% endcase %}
+              </div>
+            {% endif %}
+            <div class="ws-room-card__overlay">
+              <span class="ws-room-card__title">{{ block.settings.title }}</span>
+              {% if block.settings.show_shop_now %}
+                <span class="ws-room-card__cta">Shop Now</span>
+              {% endif %}
+            </div>
+          </div>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "WS Shop by Room",
+  "settings": [
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Section Title",
+      "default": "Shop by Room"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "room",
+      "name": "Room",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Room Image"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Room Name",
+          "default": "Living Room"
+        },
+        {
+          "type": "url",
+          "id": "link",
+          "label": "Link to Collection"
+        },
+        {
+          "type": "checkbox",
+          "id": "show_shop_now",
+          "label": "Show 'Shop Now' text",
+          "default": true
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "WS Shop by Room",
+      "blocks": [
+        { "type": "room", "settings": { "title": "Living Room", "link": "/collections/living-room", "show_shop_now": true } },
+        { "type": "room", "settings": { "title": "Bedroom", "link": "/collections/bedroom", "show_shop_now": true } },
+        { "type": "room", "settings": { "title": "Dining Room", "link": "/collections/dining-room", "show_shop_now": true } },
+        { "type": "room", "settings": { "title": "Kids Room", "link": "/collections/kids-room", "show_shop_now": true } },
+        { "type": "room", "settings": { "title": "Study Room", "link": "/collections/study-room", "show_shop_now": true } },
+        { "type": "room", "settings": { "title": "Outdoor", "link": "/collections/outdoor-furniture", "show_shop_now": true } }
+      ]
+    }
+  ]
+}
+{% endschema %}

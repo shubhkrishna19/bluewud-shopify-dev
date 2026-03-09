@@ -1,5 +1,5 @@
 /* 
-  WOODENSTREET PREMIUM UI OVERHAUL 
+  WOODEN PREMIUM UI OVERHAUL 
   Goal: Luxury, High-Trust, Modern Aesthetic
 */
 
@@ -152,17 +152,17 @@ h6,
 .product-card .productitem--ratings,
 .product-card .price--main,
 .product-card .price--compare-at,
-.woodenstreet-card__title,
-.woodenstreet-card__title a,
-.woodenstreet-card__price,
-.woodenstreet-card__compare-price {
+.wooden-card__title,
+.wooden-card__title a,
+.wooden-card__price,
+.wooden-card__compare-price {
     color: #1a1a1a !important;
     opacity: 1 !important;
     visibility: visible !important;
 }
 
 .product-card .productitem--ratings,
-.woodenstreet-card__rating {
+.wooden-card__rating {
     color: #FBBF24 !important;
     /* Gold for stars */
 }
@@ -235,7 +235,7 @@ h6,
 }
 
 /* Product Card - The "Gallery" Look */
-.woodenstreet-card {
+.wooden-card {
     border: 1px solid #F1F5F9 !important;
     background: #ffffff !important;
     border-radius: 8px !important;
@@ -245,31 +245,31 @@ h6,
     position: relative;
 }
 
-.woodenstreet-card:hover {
+.wooden-card:hover {
     transform: translateY(-8px);
     box-shadow: 0 30px 60px rgba(0, 0, 0, 0.08) !important;
     border-color: var(--ws-orange) !important;
 }
 
-.woodenstreet-card__media-wrapper {
+.wooden-card__media-wrapper {
     position: relative;
     aspect-ratio: 1;
     overflow: hidden;
     background: #F8FAFC;
 }
 
-.woodenstreet-card__image {
+.wooden-card__image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 1.2s var(--ws-ease);
 }
 
-.woodenstreet-card:hover .woodenstreet-card__image {
+.wooden-card:hover .wooden-card__image {
     transform: scale(1.1);
 }
 
-.woodenstreet-card__badge--discount {
+.wooden-card__badge--discount {
     position: absolute;
     top: 12px;
     left: 12px;
@@ -284,7 +284,7 @@ h6,
     z-index: 2;
 }
 
-.woodenstreet-card__wishlist {
+.wooden-card__wishlist {
     background: #ffffff !important;
     border-radius: 50% !important;
     width: 36px;
@@ -299,17 +299,17 @@ h6,
     transition: all 0.3s var(--ws-ease);
 }
 
-.woodenstreet-card__wishlist:hover {
+.wooden-card__wishlist:hover {
     background: var(--ws-orange) !important;
     color: #fff;
     transform: scale(1.1);
 }
 
-.woodenstreet-card__content {
+.wooden-card__content {
     padding: 16px;
 }
 
-.woodenstreet-card__title {
+.wooden-card__title {
     font-family: 'Poppins', sans-serif !important;
     font-size: 0.9rem !important;
     font-weight: 700 !important;
@@ -317,7 +317,7 @@ h6,
     color: #1A1A1A;
 }
 
-.woodenstreet-card__title a {
+.wooden-card__title a {
     text-decoration: none;
     color: inherit;
     display: -webkit-box;
@@ -327,7 +327,7 @@ h6,
     overflow: hidden;
 }
 
-.woodenstreet-card__rating {
+.wooden-card__rating {
     display: flex;
     align-items: center;
     gap: 4px;
@@ -336,20 +336,20 @@ h6,
     color: #F59E0B;
 }
 
-.woodenstreet-card__footer {
+.wooden-card__footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
     margin-top: 12px;
 }
 
-.woodenstreet-card__price {
+.wooden-card__price {
     font-size: 1rem;
     font-weight: 800;
     color: var(--ws-orange);
 }
 
-.woodenstreet-card__compare-price {
+.wooden-card__compare-price {
     font-size: 0.8rem;
     text-decoration: line-through;
     color: #94A3B8;
@@ -390,13 +390,13 @@ h6,
 }
 
 /* Category Strip Polish */
-.woodenstreet-category-strip {
+.wooden-category-strip {
     padding: 30px 0 !important;
     background: #fff !important;
     border-bottom: 1px solid #f0f0f0;
 }
 
-.woodenstreet-category-strip__list {
+.wooden-category-strip__list {
     display: flex;
     justify-content: space-between;
     gap: 20px;
@@ -404,13 +404,13 @@ h6,
     padding: 10px 0;
 }
 
-.woodenstreet-category-item {
+.wooden-category-item {
     flex: 0 0 auto;
     text-align: center;
     width: 100px;
 }
 
-.woodenstreet-category-item__image-wrapper {
+.wooden-category-item__image-wrapper {
     width: 80px;
     height: 80px;
     border-radius: 50%;
@@ -423,12 +423,12 @@ h6,
     border: 1px solid transparent;
 }
 
-.woodenstreet-category-item:hover .woodenstreet-category-item__image-wrapper {
+.wooden-category-item:hover .wooden-category-item__image-wrapper {
     transform: scale(1.1);
     border-color: var(--ws-orange);
 }
 
-.woodenstreet-category-item__title {
+.wooden-category-item__title {
     font-size: 13px !important;
     font-weight: 600 !important;
     color: var(--ws-black) !important;
@@ -446,7 +446,7 @@ h6,
 }
 
 /* Exceptions for Flush Sections */
-#shopify-section-woodenstreet_hero,
+#shopify-section-wooden_hero,
 #shopify-section-urgency_strip,
 #shopify-section-trust_strip {
     padding-top: 0 !important;
@@ -465,7 +465,7 @@ h6,
         padding-bottom: 40px !important;
     }
 
-    #shopify-section-woodenstreet_hero,
+    #shopify-section-wooden_hero,
     #shopify-section-urgency_strip,
     #shopify-section-trust_strip {
         padding-top: 0 !important;

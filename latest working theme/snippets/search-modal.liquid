@@ -12,12 +12,12 @@
 <dialog-component
   id="search-modal"
   class="search-modal"
-  {{ block.shopify_attributes }}
+  {% if block %}{{ block.shopify_attributes }}{% endif %}
 >
   <dialog
     ref="dialog"
-    on:click="/closeDialogOnClickOutside"
-    on:keydown="/closeDialogOnEscapePress"
+    on:click="/closeDialog"
+    on:keydown="/closeDialog"
     class="search-modal__content dialog-modal"
     scroll-lock
     aria-labelledby="search-modal-heading"
@@ -141,10 +141,10 @@
   .search-modal__content {
     --modal-top-margin: calc(50dvh - var(--modal-max-height) / 2 - 2rem);
     --modal-width: 66dvw;
-    
+
     padding: 0;
     border: none !important;
-    background: rgba(255, 255, 255, 0.85) !important;
+    background: var(--color-background-rgb, rgba(255, 255, 255, 0.85)) !important;
     backdrop-filter: blur(25px) !important;
     -webkit-backdrop-filter: blur(25px) !important;
     border-radius: var(--ws-radius-lg, 20px) !important;
@@ -191,7 +191,7 @@
 
   .predictive-search-results__pill:hover {
     background: var(--ws-orange, #C7431A) !important;
-    color: #ffffff !important;
+    color: var(--color-background) !important;
     border-color: var(--ws-orange, #C7431A) !important;
     transform: translateY(-2px) !important;
   }
@@ -216,13 +216,13 @@
     text-transform: uppercase !important;
     letter-spacing: 0.1em !important;
     padding: 14px 40px !important;
-    color: white !important;
+    color: var(--color-background) !important;
     transition: all 0.3s ease !important;
   }
-  
+
   .predictive-search__search-button:hover {
       transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(199, 67, 26, 0.3);
+      box-shadow: 0 10px 20px var(--ws-orange-rgb, rgba(199, 67, 26, 0.3));
   }
 
   /* Hide default backdrops on mobile */
@@ -245,6 +245,6 @@
   }
   
   /* Necessary Utility Overrides */
-  .predictive-search__reset-button { color: var(--ws-black, #333) !important; }
-  .predictive-search__close-modal-button { color: var(--ws-black, #333) !important; }
+  .predictive-search__reset-button { color: var(--ws-black, var(--color-foreground, #333)) !important; }
+  .predictive-search__close-modal-button { color: var(--ws-black, var(--color-foreground, #333)) !important; }
 {% endstylesheet %}

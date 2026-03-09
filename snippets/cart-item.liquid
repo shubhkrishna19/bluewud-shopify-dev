@@ -125,6 +125,7 @@
             <select
               class="form-field-input form-field-select form-field-filled"
               id="quantity_{{ item.key | replace: ':', '_' }}"
+              name="updates[{{ item.key }}]"
               {% if item.quantity >= 10 %}tabindex="-1"{% endif %}
               aria-label="{{ 'general.general.quantity' | t }}"
               data-quantity-select
@@ -149,7 +150,7 @@
           <input
             class="form-field-input form-field-number form-field-filled"
             value="{{ item.quantity }}"
-            name="updates[]"
+            name="updates[{{ item.key }}]"
             id="updates_{{ item.key }}"
             type="text"
             pattern="\d*"
@@ -181,7 +182,7 @@
 
       <div class="cart-item--remove">
         <a
-          href="{{ routes.cart_change_url }}?line={{ item_index }}&amp;quantity=0"
+          href="#"
           class="cart-item--remove-link"
           data-cartitem-remove
           data-no-instant

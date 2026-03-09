@@ -1,6 +1,6 @@
 
 
-{% if section.blocks.size > 1 %}
+{% if section.blocks.size > 1 or section.settings.enable_close %}
   <script
     src="{{ 'announcement-bar.js' | asset_url }}"
     type="module"
@@ -8,10 +8,42 @@
   ></script>
 {% endif %}
 
+{% if section.settings.enable_close %}
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      // Check if announcement bar should be hidden
+      const announcementBar = document.getElementById('announcement-bar');
+      const closeButton = announcementBar?.querySelector('[data-close-button]');
+
+      if (announcementBar && closeButton) {
+        // Check localStorage for previous close state
+        const isClosed = localStorage.getItem('announcement-bar-closed');
+
+        if (isClosed === 'true') {
+          announcementBar.classList.add('announcement-bar--hidden');
+        }
+
+        // Add click handler for close button
+        closeButton.addEventListener('click', function() {
+          announcementBar.classList.add('announcement-bar--hidden');
+          localStorage.setItem('announcement-bar-closed', 'true');
+
+          // Optionally dispatch event for header adjustment
+          window.dispatchEvent(new CustomEvent('announcement-bar:closed'));
+        });
+      }
+    });
+  </script>
+{% endif %}
+
 <div class="section-background color-{{ section.settings.color_scheme }}"></div>
 <aside
   class="announcement-bar spacing-style section section--{{ section.settings.section_width }} color-{{ section.settings.color_scheme }}"
+  id="announcement-bar"
   style="{% render 'spacing-padding', settings: section.settings %}; --border-bottom-width: {{ section.settings.divider_width }}px;"
+  {% if section.settings.enable_close %}
+    data-announcement-close
+  {% endif %}
 >
   {% liquid
     assign autoplay = false
@@ -36,11 +68,68 @@
       {% content_for 'blocks' %}
     </div>
   </announcement-bar-component>
+
+  {% if section.settings.enable_close %}
+    <button
+      type="button"
+      class="announcement-bar__close"
+      aria-label="{{ 'general.close' | t }}"
+      data-close-button
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+  {% endif %}
 </aside>
 
 {% stylesheet %}
   .announcement-bar {
     border-block-end: var(--border-bottom-width) solid var(--color-border);
+  }
+
+  /* Premium Announcement Bar Styling */
+  .announcement-bar {
+    background: linear-gradient(90deg, var(--color-background) 0%, var(--color-background) 50%, var(--color-background) 100%) !important;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .announcement-bar::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.05) 50%, transparent 100%);
+    animation: shimmer 3s infinite;
+  }
+
+  @keyframes shimmer {
+    0% { transform: translateX(-100%); }
+    100% { transform: translateX(100%); }
+  }
+
+  .announcement-bar .announcement-bar__text {
+    font-family: 'Inter', 'Poppins', sans-serif !important;
+    font-weight: 600 !important;
+    letter-spacing: 0.08em !important;
+    text-transform: uppercase !important;
+    font-size: 0.7rem !important;
+    color: var(--color-foreground) !important;
+  }
+
+  .announcement-bar .announcement-bar__link {
+    color: var(--ws-orange, #ff9f43) !important;
+    font-weight: 700 !important;
+    text-decoration: underline !important;
+    text-underline-offset: 3px;
+  }
+
+  .announcement-bar .announcement-bar__link:hover {
+    color: var(--ws-orange-hover, #ffbe76) !important;
   }
 
   .announcement-bar__slider {
@@ -120,6 +209,52 @@
     position: absolute;
     inset: 0;
   }
+
+  /* Close Button */
+  .announcement-bar__close {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--color-foreground);
+    opacity: 0.7;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    z-index: 10;
+  }
+
+  .announcement-bar__close:hover {
+    opacity: 1;
+    transform: translateY(-50%) scale(1.1);
+  }
+
+  .announcement-bar__close svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Hide announcement bar when closed */
+  .announcement-bar.announcement-bar--hidden {
+    display: none;
+  }
+
+  @media screen and (max-width: 749px) {
+    .announcement-bar__close {
+      right: 10px;
+      padding: 6px;
+    }
+
+    .announcement-bar__close svg {
+      width: 14px;
+      height: 14px;
+    }
+  }
 {% endstylesheet %}
 
 {% schema %}
@@ -142,6 +277,13 @@
       "max": 10,
       "default": 5,
       "unit": "sec"
+    },
+    {
+      "type": "checkbox",
+      "id": "enable_close",
+      "label": "Enable close button",
+      "default": true,
+      "info": "Allow users to dismiss the announcement bar"
     },
     {
       "type": "header",

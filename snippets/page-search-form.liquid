@@ -43,6 +43,17 @@
         {% endif %}
         data-live-search-input>
 
+      {% assign has_search_query = search.terms | strip | size > 0 %}
+      {% if search.performed and has_search_query %}
+        <a
+          href="{{ routes.search_url }}?type={{ search_type | replace: '  ', '' | strip_newlines }}&q="
+          class="productgrid--search-clear"
+          aria-label="{{ 'accessibility.reset_search' | t }}"
+        >
+          {% render 'icon-close' %}
+        </a>
+      {% endif %}
+
       <button
         class="productgrid--search-button"
         type="submit"
@@ -59,3 +70,21 @@
     </div>
   </form>
 </div>
+
+{% style %}
+.productgrid--search-clear {
+  position: absolute;
+  right: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  color: var(--color-text-light);
+  text-decoration: none;
+}
+
+.productgrid--search-clear:hover {
+  color: var(--color-text);
+}
+{% endstyle %}

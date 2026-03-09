@@ -19,7 +19,7 @@
       {{ 'icon-cart.svg' | inline_asset_content }}
     </span>
 
-    {% render 'cart-bubble', limit: 100, live_region: true, test_id: test_id %}
+    {% render 'whisper-cart-bubble', limit: 100, live_region: true, test_id: test_id %}
   </cart-icon>
 {% endcapture %}
 
@@ -80,7 +80,7 @@
               </h2>
 
               <div class="cart-drawer__items">
-                {% render 'cart-products', drawer_context: 'drawer' %}
+                {% render 'whisper-cart-products', drawer_context: 'drawer' %}
               </div>
 
               <div class="cart-drawer__footer cart-drawer__footer--empty">
@@ -103,7 +103,7 @@
                 id="cart-drawer-heading"
               >
                 {{ 'content.cart_title' | t }}
-                {% render 'cart-bubble' %}
+                {% render 'whisper-cart-bubble' %}
               </h2>
 
               <button
@@ -126,7 +126,7 @@
               <scroll-hint
                 class="cart-drawer__items"
               >
-                {% render 'cart-products', drawer_context: 'drawer' %}
+                {% render 'whisper-cart-products', drawer_context: 'drawer' %}
               </scroll-hint>
 
               <div

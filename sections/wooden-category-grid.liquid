@@ -12,9 +12,10 @@
             {% if block.settings.image != blank %}
               <img src="{{ block.settings.image | image_url: width: 400 }}" alt="{{ block.settings.title }}" class="ws-category-card__image object-cover w-full h-full group-hover:scale-110 transition-transform duration-500" loading="lazy">
             {% else %}
-              <div class="w-full h-full bg-gray-100 flex items-center justify-center text-gray-400">
-                {{ 'image' | placeholder_svg_tag: 'w-20 h-20' }}
-              </div>
+              <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&q=80"
+                   alt="Category image"
+                   class="ws-category-card__image object-cover w-full h-full group-hover:scale-110 transition-transform duration-500"
+                   loading="lazy">
             {% endif %}
             <div class="ws-category-card__overlay absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
             <div class="ws-category-card__content absolute bottom-0 left-0 p-6">

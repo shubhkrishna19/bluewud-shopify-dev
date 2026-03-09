@@ -1,5 +1,5 @@
 /* 
-  WOODENSTREET PREMIUM - FORCE VISIBILITY & HIGH PRIORITY OVERRIDES
+  WOODEN PREMIUM - FORCE VISIBILITY & HIGH PRIORITY OVERRIDES
   This file ensures that the premium aesthetic is enforced over theme defaults.
 */
 
@@ -46,14 +46,14 @@ header-component {
 }
 
 /* 2. Hero Section Refinement */
-.woodenstreet-hero-hybrid {
+.wooden-hero-hybrid {
     background: #ffffff !important;
     position: relative;
     overflow: hidden;
     margin-top: 0 !important;
 }
 
-.woodenstreet-hero-hybrid__content-box {
+.wooden-hero-hybrid__content-box {
     text-align: center;
     margin: 0 auto;
 }
@@ -84,19 +84,19 @@ header-component {
 }
 
 /* 5. Product Cards Visibility */
-.woodenstreet-card {
+.wooden-card {
     background: #ffffff !important;
     border: 1px solid #e2e8f0 !important;
     opacity: 1 !important;
     visibility: visible !important;
 }
 
-.woodenstreet-card__price {
+.wooden-card__price {
     color: var(--ws-orange) !important;
     opacity: 1 !important;
 }
 
-.woodenstreet-card__title a {
+.wooden-card__title a {
     color: var(--ws-black) !important;
 }
 

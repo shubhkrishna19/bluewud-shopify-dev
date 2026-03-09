@@ -1,5 +1,5 @@
 {% comment %}
-  WoodenStreet: Testimonials Section (H-07)
+  Wooden: Testimonials Section (H-07)
 {% endcomment %}
 
 <section class="ws-testimonials" aria-label="Customer reviews">
@@ -31,7 +31,10 @@
                 {% if block.settings.photo != blank %}
                   {{ block.settings.photo | image_url: width: 120 | image_tag: loading: 'lazy', alt: block.settings.name }}
                 {% else %}
-                  {{ 'image' | placeholder_svg_tag: 'ws-testimonial-card__photo-placeholder' }}
+                  <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&q=80"
+                       alt="Customer photo"
+                       class="ws-testimonial-card__photo-placeholder"
+                       loading="lazy">
                 {% endif %}
               </div>
               <div class="ws-testimonial-card__identity">
@@ -72,7 +75,7 @@
       "type": "text",
       "id": "subheading",
       "label": "Subheading",
-      "default": "Real stories from families who furnished their dream homes with WoodenStreet."
+      "default": "Real stories from families who furnished their dream homes with Wooden."
     }
   ],
   "blocks": [

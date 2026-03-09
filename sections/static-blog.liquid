@@ -25,7 +25,7 @@
     {% if section.settings.show_rss_link %}
       <a href="{{ blog.url }}.atom">
         {% render 'icon-rss' %}
-        <span class="visually-hidden">{{ 'general.accessibility.rss' | t: platform: title | escape }}</span>
+        <span class="visually-hidden">{{ 'general.accessibility.rss' | t | escape }}</span>
       </a>
     {% endif %}
   </header>
@@ -33,17 +33,34 @@
   {% paginate blog.articles by paginate_by %}
 
     {% if show_featured %}
-      {%
-        render 'article-excerpt-featured',
-        article: articles[featured_post]
-      %}
+      {% comment %} Get the featured article from the current blog {% endcomment %}
+      {% assign featured_article = nil %}
+      {% for article in blog.articles %}
+        {% if article.handle == featured_post %}
+          {% assign featured_article = article %}
+          {% break %}
+        {% endif %}
+      {% endfor %}
+
+      {% if featured_article != nil %}
+        {%
+          render 'article-excerpt-featured',
+          article: featured_article,
+          section: section
+        %}
+      {% endif %}
     {% endif %}
 
     <ul class="blog--inner">
       {% for article in blog.articles %}
+        {% comment %} Skip the featured post if it's being displayed {% endcomment %}
+        {% if show_featured and article.handle == featured_post %}
+          {% continue %}
+        {% endif %}
         {%
           render 'article-excerpt',
-          article: article
+          article: article,
+          section: section
           %}
       {% else %}
         <article class="blog--no-results">
@@ -56,6 +73,41 @@
 
     {% render 'pagination', paginate: paginate %}
   {% endpaginate %}
+
+  {% if section.settings.show_newsletter_signup %}
+    <div class="blog-newsletter-signup">
+      <div class="blog-newsletter-signup-content">
+        <h3 class="blog-newsletter-signup-title">{{ 'blog.newsletter.title' | t }}</h3>
+        <p class="blog-newsletter-signup-text">{{ 'blog.newsletter.description' | t }}</p>
+
+        {% form 'customer' %}
+          <input type="hidden" name="contact[tags]" value="blog">
+          <div class="blog-newsletter-form">
+            <div class="form-field">
+              <input
+                type="email"
+                id="newsletter-email"
+                class="form-field-input form-field-text"
+                name="contact[email]"
+                placeholder="{{ 'blog.newsletter.email_placeholder' | t }}"
+                required
+              >
+              <label class="form-field-title" for="newsletter-email">
+                {{ 'blog.newsletter.email_label' | t }}
+              </label>
+            </div>
+            <button class="button-primary blog-newsletter-submit" type="submit">
+              {{ 'blog.newsletter.submit' | t }}
+            </button>
+          </div>
+
+          {% if form.posted_successfully? %}
+            <p class="newsletter-success-message">{{ 'blog.newsletter.success' | t }}</p>
+          {% endif %}
+        {% endform %}
+      </div>
+    </div>
+  {% endif %}
 </section>
 
 {% schema %}
@@ -100,6 +152,12 @@
       "max": 12,
       "step": 3,
       "default": 9
+    },
+    {
+      "type": "checkbox",
+      "id": "show_newsletter_signup",
+      "label": "Show email newsletter signup",
+      "default": true
     }
   ]
 }

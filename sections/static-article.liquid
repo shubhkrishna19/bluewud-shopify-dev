@@ -96,35 +96,21 @@
         </div>
       {% endif %}
 
-      {% if blog.next_article or blog.previous_article %}
+      {% assign previous_article = article.previous %}
+      {% assign next_article = article.next %}
+
+      {% if next_article or previous_article %}
         <div class="article--pagination">
-          {% assign current_found = false %}
-          {% assign done = false %}
-          {% for a in blog.articles %}
-            {% if current_found and done == false %}
-              {% assign next_article = a %}
-              {% assign done = true %}
-            {% endif %}
-
-            {% unless done %}
-              {% if a.id == article.id %}
-                {% assign current_found = true %}
-              {% else %}
-                {% assign prev_article = a %}
-              {% endif %}
-            {% endunless %}
-          {% endfor %}
-
-          {% if prev_article %}
+          {% if previous_article %}
             <div class="article--pagination-item-left">
-              <a href="{{ prev_article.url }}">
+              <a href="{{ previous_article.url }}">
                 <span class="article--pagination-chevron-left" aria-hidden="true">
                   {% render 'icon-chevron-down-small' %}
                 </span>
                 <span class="article--pagination-text">
                   {{ 'blog.article.previous_article' | t }}
                   <span class="article--pagination-title">
-                    {{ prev_article.title | escape }}
+                    {{ previous_article.title | escape }}
                   </span>
                 </span>
               </a>

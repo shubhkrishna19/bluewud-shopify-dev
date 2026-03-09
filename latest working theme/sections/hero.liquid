@@ -465,7 +465,7 @@
   {% if request.visual_preview_mode %}
     data-shopify-visual-preview
   {% endif %}
-  {% if section.settings.blurred_reflection and has_only_video == false or has_only_video_mobile == false %}
+  {% if section.settings.blurred_reflection and (has_only_video == false or has_only_video_mobile == false) %}
     data-blur-shadow="true"
   {% endif %}
 >
@@ -508,7 +508,7 @@
     {%- endif -%}
     <div
       class="hero__media-wrapper"
-      style="--hero-media-count: {{ media_count }};--hero-media-count-mobile: {{ media_count_mobile }};{%- if section.settings.image_1 != blank -%} --hero-media-aspect-ratio: {{ section.settings.image_1.aspect_ratio }};{% endif %}"
+      style="--hero-media-count: {{ media_count }};--hero-media-count-mobile: {{ media_count_mobile }};{%- if section.settings.image_1 != blank -%} --hero-media-aspect-ratio: {{ section.settings.image_1.aspect_ratio }};{% endif %};}"
       data-testid="hero-media-wrapper"
     >
       {% liquid
@@ -1223,7 +1223,47 @@
       "step": 1,
       "unit": "%",
       "default": 75,
-      "visible_if": "{{ section.settings.blurred_reflection and section.settings.media_type_1 != 'video' or section.settings.media_type_2 != 'video' }}"
+      "visible_if": "{{ section.settings.blurred_reflection and (section.settings.media_type_1 != 'video' or section.settings.media_type_2 != 'video') }}"
+    },
+    {
+      "type": "header",
+      "content": "t:content.border"
+    },
+    {
+      "type": "select",
+      "id": "border",
+      "label": "t:settings.border_style",
+      "options": [
+        {
+          "value": "none",
+          "label": "t:options.none"
+        },
+        {
+          "value": "solid",
+          "label": "t:options.solid"
+        }
+      ],
+      "default": "none"
+    },
+    {
+      "type": "range",
+      "id": "border_width",
+      "label": "t:settings.border_width",
+      "min": 0,
+      "max": 20,
+      "step": 1,
+      "unit": "px",
+      "default": 0
+    },
+    {
+      "type": "range",
+      "id": "border_opacity",
+      "label": "t:settings.border_opacity",
+      "min": 0,
+      "max": 100,
+      "step": 1,
+      "unit": "%",
+      "default": 100
     },
     {
       "type": "header",

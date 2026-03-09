@@ -210,8 +210,23 @@
             {% when 'description' %}
               {% if readmore_split[0] != blank %}
             <div class="product-mobile-view000">
-                <div class="product-description rte" data-product-description>
-                  {{ readmore_split[0] }}
+                <div class="product-description-tabs" id="product-description-tabs">
+                  <div class="product-description-tabs__nav">
+                    <button class="product-description-tabs__tab active" data-tab="description">Description</button>
+                    <button class="product-description-tabs__tab" data-tab="specifications">Specifications</button>
+                    <button class="product-description-tabs__tab" data-tab="reviews">Reviews</button>
+                  </div>
+                  <div class="product-description-tabs__content active" data-content="description">
+                    <div class="product-description rte" data-product-description>
+                      {{ readmore_split[0] }}
+                    </div>
+                  </div>
+                  <div class="product-description-tabs__content" data-content="specifications">
+                    {% render 'whisper-product-specs', product: product %}
+                  </div>
+                  <div class="product-description-tabs__content" data-content="reviews">
+                    {% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: true, product: product %}
+                  </div>
                 </div>
             </div>
               {% endif %}

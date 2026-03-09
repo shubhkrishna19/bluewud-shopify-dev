@@ -3,7 +3,7 @@
   Incorporating Ecommerce-App aesthetics (Hover scale, gradients, slate borders)
 {% endcomment %}
 
-<div class="woodenstreet-card group" data-aos="fade-up" data-aos-duration="600" data-aos-once="true">
+<div class="wooden-card group" data-aos="fade-up" data-aos-duration="600" data-aos-once="true">
   {% assign product_tags = product.tags | join: ',' | downcase %}
   {% assign ribbon_label = '' %}
   {% if product_tags contains 'best seller' or product_tags contains 'best-seller' or product_tags contains 'bestseller' %}
@@ -11,50 +11,50 @@
   {% elsif product_tags contains 'recommended' or product_tags contains 'recommend' %}
     {% assign ribbon_label = 'Recommended' %}
   {% endif %}
-  <div class="woodenstreet-card__media-wrapper">
-    <a href="{{ product.url }}" class="woodenstreet-card__link">
+  <div class="wooden-card__media-wrapper">
+    <a href="{{ product.url }}" class="wooden-card__link">
       <img 
         src="{{ product.featured_image | img_url: '600x' }}" 
         alt="{{ product.title }}"
-        class="woodenstreet-card__image"
+        class="wooden-card__image"
         loading="lazy"
       >
     </a>
     {% if product.compare_at_price > product.price %}
-      <div class="woodenstreet-card__badge woodenstreet-card__badge--discount">
+      <div class="wooden-card__badge wooden-card__badge--discount">
         {{ product.compare_at_price | minus: product.price | times: 100.0 | divided_by: product.compare_at_price | round }}% OFF
       </div>
     {% endif %}
     {% if ribbon_label != blank %}
-      <div class="woodenstreet-card__ribbon">{{ ribbon_label }}</div>
+      <div class="wooden-card__ribbon">{{ ribbon_label }}</div>
     {% endif %}
-    <div class="woodenstreet-card__actions">
-      <button class="woodenstreet-card__quick-view" data-product-handle="{{ product.handle }}">
+    <div class="wooden-card__actions">
+      <button class="wooden-card__quick-view" data-product-handle="{{ product.handle }}">
          Quick View
       </button>
     </div>
   </div>
 
-  <div class="woodenstreet-card__content">
-    <h3 class="woodenstreet-card__title">
+  <div class="wooden-card__content">
+    <h3 class="wooden-card__title">
       <a href="{{ product.url }}">{{ product.title }}</a>
     </h3>
     
-    <div class="woodenstreet-card__meta">
-      <div class="woodenstreet-card__rating">
-         <span class="woodenstreet-card__star">★</span>
+    <div class="wooden-card__meta">
+      <div class="wooden-card__rating">
+         <span class="wooden-card__star">★</span>
          <span>{{ product.metafields.reviews.rating.value | default: '4.8' }}</span>
       </div>
     </div>
 
-    <div class="woodenstreet-card__footer">
-      <div class="woodenstreet-card__price-wrapper">
-        <span class="woodenstreet-card__price">{{ product.price | money }}</span>
+    <div class="wooden-card__footer">
+      <div class="wooden-card__price-wrapper">
+        <span class="wooden-card__price">{{ product.price | money }}</span>
         {% if product.compare_at_price > product.price %}
-          <span class="woodenstreet-card__compare-price">{{ product.compare_at_price | money }}</span>
+          <span class="wooden-card__compare-price">{{ product.compare_at_price | money }}</span>
         {% endif %}
       </div>
-      <button class="woodenstreet-card__wishlist" aria-label="Add to Wishlist">
+      <button class="wooden-card__wishlist" aria-label="Add to Wishlist">
         <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/></svg>
       </button>
     </div>

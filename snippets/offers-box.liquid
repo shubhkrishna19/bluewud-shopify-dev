@@ -1,5 +1,5 @@
 {%- comment -%}
-  WoodenStreet PDP component: Detailed Offers Box
+  Wooden PDP component: Detailed Offers Box
 {%- endcomment -%}
 
 <aside class="offers-box" aria-label="Bank offers and EMI plans" data-offers-box>
@@ -36,3 +36,122 @@
     </div>
   </div>
 </aside>
+
+<style>
+.offers-box {
+  margin-top: 16px;
+  padding: 16px;
+  background: linear-gradient(135deg, #fff3e0 0%, #fff8e1 100%);
+  border-radius: 12px;
+  border: 1px solid #ffe0b2;
+}
+
+.offers-box__heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.offers-box__title {
+  font-weight: 700;
+  font-size: 14px;
+  color: #e65100;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.offers-box__badge {
+  font-size: 11px;
+  color: #f57c00;
+  background: rgba(255, 152, 0, 0.15);
+  padding: 4px 8px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+.offers-box__items {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.offers-box__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(230, 81, 0, 0.08);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.offers-box__item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(230, 81, 0, 0.15);
+}
+
+.offers-box__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  background: linear-gradient(135deg, #ff9800 0%, #ffc107 100%);
+  border-radius: 8px;
+  flex-shrink: 0;
+}
+
+.offers-box__icon svg {
+  width: 20px;
+  height: 20px;
+  color: white;
+}
+
+.offers-box__content {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  flex: 1;
+}
+
+.offers-box__label {
+  font-weight: 600;
+  font-size: 13px;
+  color: #e65100;
+}
+
+.offers-box__text {
+  font-size: 12px;
+  color: #757575;
+  line-height: 1.4;
+}
+
+@media (max-width: 768px) {
+  .offers-box {
+    padding: 12px;
+  }
+
+  .offers-box__title {
+    font-size: 13px;
+  }
+
+  .offers-box__item {
+    padding: 8px;
+  }
+
+  .offers-box__icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .offers-box__label {
+    font-size: 12px;
+  }
+
+  .offers-box__text {
+    font-size: 11px;
+  }
+}
+</style>
