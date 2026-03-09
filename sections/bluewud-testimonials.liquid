@@ -1,0 +1,143 @@
+{% comment %} Bluewud Testimonials {% endcomment %}
+{%- style -%}
+  .bluewud-testimonials {
+    padding: 80px 30px;
+    background: #fafafa;
+  }
+  .testimonials-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .section-title {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+  .section-title h2 {
+    font-size: 36px;
+    font-weight: 700;
+    color: #1a1a1a;
+    margin: 0 0 12px;
+    font-family: 'Poppins', sans-serif;
+  }
+  .section-title p {
+    font-size: 16px;
+    color: #666;
+    margin: 0;
+  }
+  .testimonials-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  .testimonial-card {
+    background: white;
+    padding: 35px;
+    border-radius: 12px;
+    box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+  }
+  .testimonial-stars {
+    color: #f39c12;
+    font-size: 18px;
+    margin-bottom: 20px;
+    letter-spacing: 3px;
+  }
+  .testimonial-text {
+    font-size: 15px;
+    color: #555;
+    line-height: 1.8;
+    margin: 0 0 25px;
+    font-style: italic;
+  }
+  .testimonial-author {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+  }
+  .author-avatar {
+    width: 50px;
+    height: 50px;
+    background: #c47d4e;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 18px;
+  }
+  .author-info h4 {
+    margin: 0;
+    font-size: 15px;
+    font-weight: 600;
+    color: #1a1a1a;
+  }
+  .author-info span {
+    font-size: 13px;
+    color: #888;
+  }
+  @media (max-width: 968px) {
+    .testimonials-grid { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 480px) {
+    .bluewud-testimonials { padding: 60px 20px; }
+    .section-title h2 { font-size: 28px; }
+  }
+{%- endstyle -%}
+
+<div class="bluewud-testimonials">
+  <div class="testimonials-inner">
+    <div class="section-title">
+      <h2>What Our Customers Say</h2>
+      <p>Real reviews from real customers</p>
+    </div>
+    
+    <div class="testimonials-grid">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Absolutely love the quality! The bed we ordered is solid wood and looks exactly like the pictures. Great delivery team too."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">R</div>
+          <div class="author-info">
+            <h4>Rajesh Kumar</h4>
+            <span>Mumbai</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Beautiful furniture at amazing prices. The custom TV unit was delivered perfectly. Highly recommend Bluewud!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">P</div>
+          <div class="author-info">
+            <h4>Priya Sharma</h4>
+            <span>Bangalore</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Third purchase from Bluewud. Consistently great quality and service. The dining set is the centerpiece of our home."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">A</div>
+          <div class="author-info">
+            <h4>Amit Patel</h4>
+            <span>Delhi</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "presets": [
+    {
+      "name": "Testimonials"
+    }
+  ]
+}
+{% endschema %}
