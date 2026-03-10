@@ -1,0 +1,95 @@
+{% if settings.enable_seo %}
+<div class="shopify-section html--section">
+  <section class="custom-html--container">   
+    {% if template == "index" %}
+    <h2 class="home-section--title">{{ settings.seo_title }}</h2>
+    <div class=" seo-text-wrap">
+      <div class="rte seo-text">
+        {{ settings.seo_text }}
+      </div>
+      <a class="button-primary readmore" class="" href="#">Read more</a>
+    </div>
+    {% else %}
+
+    {% if collection.metafields.note.title != blank or collection.metafields.note.content != blank  %}
+    <h2 class="home-section--title">{{ settings.seo_title }}</h2>
+    <div class=" seo-text-wrap">
+      <div class="rte seo-text">
+        {{collection.metafields.note.content}}
+      </div>
+      <a class="button-primary readmore" class="" href="#">Read more</a>
+    </div>
+
+    {% elsif article.metafields.note.title != blank or article.metafields.note.content != blank %}
+    <h2 class="home-section--title">{{ settings.seo_title }}</h2>
+    <div class=" seo-text-wrap">
+      <div class="rte seo-text">
+        {{article.metafields.note.content}}
+      </div>
+      <a class="button-primary readmore" class="" href="#">Read more</a>
+    </div>
+
+    {% elsif blog.metafields.note.title != blank or blog.metafields.note.content != blank %}
+    <h2 class="home-section--title">{{ settings.seo_title }}</h2>
+    <div class=" seo-text-wrap">
+      <div class="rte seo-text">
+        {{blog.metafields.note.content}}
+      </div>
+      <a class="button-primary readmore" class="" href="#">Read more</a>
+    </div>
+
+    {% elsif page.metafields.note.title != blank or page.metafields.note.content != blank  %}
+    <h2 class="home-section--title">{{ settings.seo_title }}</h2>
+    <div class=" seo-text-wrap">
+      <div class="rte seo-text">
+        {{page.metafields.note.content}}
+      </div>
+      <a class="button-primary readmore" class="" href="#">Read more</a>
+    </div>
+    {% endif %}
+
+    {% endif %}
+
+  </section>
+</div>
+
+<style>
+  .seo-text {
+    height: 50px;
+    overflow: hidden;
+    box-shadow: 0 6px 16px -12px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+  }
+  .seo-text-wrap {
+    position: relative;
+    padding-bottom: 50px;
+  }
+  .seo-text-wrap .readmore {
+    outline: none;
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+</style>
+<script type="text/javascript">
+  jQuery(document).ready(function($) {
+    //   $('.fulltext').hide();
+    $('.readmore').insertAfter( '.seo-text' );
+    $('.readmore').click(function (event) {
+      event.preventDefault();
+      var seo_text = document.querySelector('.seo-text');
+      console.log(seo_text.style.height)
+      if (seo_text.style.height === ''){
+        seo_text.style.height = 'auto';
+      } else if (seo_text.style.height === 'auto'){
+        seo_text.style.height = '';
+      }
+      else{
+        seo_text.style.height = '92px';
+      }
+
+      $(this).text($(this).text() == 'Read less' ? 'Read more' : 'Read less');
+    });
+  });
+</script>
+{% endif %}

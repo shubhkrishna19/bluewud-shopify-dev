@@ -1,0 +1,38 @@
+{% comment %} Fresh Trust Banners {% endcomment %}
+<style>
+.trust-banners { background: #fafafa; padding: 40px 30px; border-bottom: 1px solid #eee; }
+.trust-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
+.trust-item { display: flex; align-items: center; gap: 15px; }
+.trust-icon { width: 50px; height: 50px; background: #c47d4e; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; }
+.trust-text h4 { margin: 0; font-size: 15px; font-weight: 600; color: #1a1a1a; }
+.trust-text p { margin: 3px 0 0; font-size: 13px; color: #666; }
+@media (max-width: 768px) { .trust-inner { grid-template-columns: repeat(2, 1fr); } }
+</style>
+
+<div class="trust-banners">
+  <div class="trust-inner">
+    <div class="trust-item">
+      <div class="trust-icon">🚚</div>
+      <div class="trust-text"><h4>Free Shipping</h4><p>All Over India</p></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">↩️</div>
+      <div class="trust-text"><h4>Easy Returns</h4><p>30-Day Policy</p></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">🛡️</div>
+      <div class="trust-text"><h4>7 Years Warranty</h4><p>On All Products</p></div>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">👥</div>
+      <div class="trust-text"><h4>20 Lakh+</h4><p>Happy Customers</p></div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Trust Banners",
+  "presets": [{ "name": "Trust Banners" }]
+}
+{% endschema %}

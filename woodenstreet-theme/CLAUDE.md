@@ -1,0 +1,1 @@
+C:/Users/shubh/Downloads/LiveShopifyProject/woodenstreet-theme/AGENTS.md

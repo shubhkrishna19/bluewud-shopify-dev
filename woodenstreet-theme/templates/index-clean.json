@@ -1,0 +1,103 @@
+{
+    "sections": {
+        "hero_main": {
+            "type": "hero",
+            "blocks": {
+                "hero_content": {
+                    "type": "group",
+                    "settings": {
+                        "content_direction": "column",
+                        "horizontal_alignment": "center",
+                        "vertical_alignment": "center",
+                        "gap": 16
+                    },
+                    "blocks": {
+                        "heading": {
+                            "type": "text",
+                            "settings": {
+                                "text": "<h1>Elevate Your Space</h1>",
+                                "type_preset": "heading",
+                                "alignment": "center"
+                            }
+                        },
+                        "subheading": {
+                            "type": "text",
+                            "settings": {
+                                "text": "<p>Where modern aesthetics meet purposeful craftsmanship.</p>",
+                                "type_preset": "paragraph",
+                                "alignment": "center"
+                            }
+                        }
+                    },
+                    "block_order": [
+                        "heading",
+                        "subheading"
+                    ]
+                }
+            },
+            "block_order": [
+                "hero_content"
+            ],
+            "settings": {
+                "media_type_1": "image",
+                "image_1": "shopify://shop_images/hero_primary_2.jpg",
+                "section_height": "large",
+                "toggle_overlay": true,
+                "overlay_color": "#0303033b"
+            }
+        },
+        "woodenstreet_category_grid": {
+            "type": "woodenstreet-category-grid",
+            "blocks": {
+                "living": {
+                    "type": "category",
+                    "settings": {
+                        "title": "Living Room",
+                        "count_text": "300+ Designs"
+                    }
+                },
+                "bedroom": {
+                    "type": "category",
+                    "settings": {
+                        "title": "Bedroom",
+                        "count_text": "150+ Designs"
+                    }
+                },
+                "dining": {
+                    "type": "category",
+                    "settings": {
+                        "title": "Dining Room",
+                        "count_text": "80+ Designs"
+                    }
+                },
+                "storage": {
+                    "type": "category",
+                    "settings": {
+                        "title": "Storage",
+                        "count_text": "100+ Designs"
+                    }
+                }
+            },
+            "block_order": [
+                "living",
+                "bedroom",
+                "dining",
+                "storage"
+            ]
+        },
+        "featured_products": {
+            "type": "product-list",
+            "settings": {
+                "collection": "furniture-example-products",
+                "layout_type": "grid",
+                "max_products": 4,
+                "columns": 4
+            }
+        }
+    },
+    "order": [
+        "hero_main",
+        "woodenstreet_category_grid",
+        "featured_products"
+    ]
+}

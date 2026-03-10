@@ -1,0 +1,14 @@
+{
+  "sections": {
+    "hero": { "type": "hero" },
+    "trust_banners": { "type": "trust-banners" },
+    "categories": { "type": "categories" },
+    "featured_products": { "type": "featured-products" }
+  },
+  "order": [
+    "hero",
+    "trust_banners",
+    "categories",
+    "featured_products"
+  ]
+}

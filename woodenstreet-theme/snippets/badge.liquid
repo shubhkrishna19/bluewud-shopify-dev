@@ -1,0 +1,86 @@
+
+{%- liquid
+  assign badge_product = product
+  if badge_product == blank
+    assign badge_product = card_product
+  endif
+  if badge_product == blank
+    assign badge_product = closest.product
+  endif
+-%}
+
+{%- if badge_product != blank -%}
+  <div
+    class="product-badges product-badges--{{ settings.badge_position }}"
+    style="
+      --badge-border-radius: {{ settings.badge_corner_radius }}px;
+      --badge-font-family: var(--font-{{ settings.badge_font_family }}--family);
+      --badge-font-weight: var(--font-{{ settings.badge_font_family }}--weight);
+      --badge-text-transform: {{ settings.badge_text_transform }};
+    "
+  >
+    {%- if badge_product.available == false -%}
+      <div class="product-badges__badge product-badges__badge--rectangle color-{{ settings.badge_sold_out_color_scheme }}">
+        {{ 'product_price.badge.sold_out' | t }}
+      </div>
+    {%- elsif badge_product.compare_at_price > badge_product.price -%}
+      <div class="product-badges__badge product-badges__badge--rectangle color-{{ settings.badge_sale_color_scheme }}">
+        {% liquid
+          assign sales_badge_style = settings.product_sales_badge_style
+          assign savings_money = badge_product.compare_at_price_max | minus: badge_product.price_min
+          assign savings_percentage = savings_money | times: 1.0 | divided_by: badge_product.compare_at_price_max | times: 100.0 | round
+        %}
+        {% if sales_badge_style == 'percent' %}
+          {{ 'product_price.badge.sale_percentage_single_html' | t: savings: savings_percentage | strip_newlines }}
+        {% elsif sales_badge_style == 'money' %}
+          {{ 'product_price.badge.sale_money_single_html' | t: savings: (savings_money | money) | strip_newlines }}
+        {% else %}
+          {{ 'product_price.badge.sale' | t }}
+        {% endif %}
+      </div>
+    {%- endif -%}
+  </div>
+{%- endif -%}
+
+{% stylesheet %}
+  .product-badges {
+    --badge-inset: max(var(--padding-xs), calc((var(--border-radius) + var(--padding-xs)) * (1 - cos(45deg))));
+    position: absolute;
+    z-index: var(--layer-flat);
+  }
+
+  .product-badges--bottom-left {
+    bottom: calc(var(--badge-inset) + var(--padding-block-start));
+    left: calc(var(--badge-inset) + var(--padding-inline-start));
+  }
+
+  .product-badges--top-left {
+    top: calc(var(--badge-inset) + var(--padding-block-start));
+    left: calc(var(--badge-inset) + var(--padding-inline-start));
+  }
+
+  .product-badges--top-right {
+    top: calc(var(--badge-inset) + var(--padding-block-start));
+    right: calc(var(--badge-inset) + var(--padding-inline-start));
+  }
+
+  .product-badges__badge {
+    --badge-font-size: var(--font-size--xs);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: var(--color-foreground);
+    background: var(--color-background);
+    font-size: var(--badge-font-size);
+    font-family: var(--badge-font-family);
+    font-weight: var(--badge-font-weight);
+    text-transform: var(--badge-text-transform);
+    border-radius: var(--badge-border-radius);
+  }
+
+  .product-badges__badge--rectangle {
+    padding-block: var(--badge-rectangle-padding-block);
+    padding-inline: var(--badge-rectangle-padding-inline);
+  }
+{% endstylesheet %}

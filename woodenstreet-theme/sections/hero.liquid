@@ -1,0 +1,140 @@
+{% comment %} Fresh Hero Section - WoodenStreet Style {% endcomment %}
+<style>
+.hero {
+  background: linear-gradient(135deg, #fdfbf7 0%, #f5f0eb 100%);
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+.hero-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 0;
+  align-items: center;
+  min-height: 600px;
+}
+.hero-content {
+  padding: 60px 80px;
+  z-index: 2;
+}
+.hero-content h1 {
+  font-size: 56px;
+  font-weight: 800;
+  color: #1a1a1a;
+  margin: 0 0 20px;
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.1;
+  font-style: italic;
+}
+.hero-content p {
+  font-size: 18px;
+  color: #555;
+  margin: 0 0 35px;
+  line-height: 1.7;
+  font-family: 'Inter', sans-serif;
+}
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+.btn-primary {
+  display: inline-block;
+  padding: 18px 42px;
+  background: #c7431a;
+  color: white;
+  text-decoration: none;
+  font-weight: 600;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(199, 67, 26, 0.3);
+}
+.btn-primary:hover {
+  background: #a63614;
+  transform: translateY(-2px);
+}
+.btn-secondary {
+  display: inline-block;
+  padding: 18px 42px;
+  background: transparent;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-weight: 600;
+  border: 2px solid #1a1a1a;
+  border-radius: 8px;
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
+}
+.btn-secondary:hover {
+  background: #1a1a1a;
+  color: white;
+}
+.hero-image {
+  position: relative;
+  height: 100%;
+  min-height: 600px;
+}
+.hero-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.hero-badge {
+  position: absolute;
+  top: 30px;
+  right: 30px;
+  background: white;
+  padding: 15px 25px;
+  border-radius: 50px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  font-weight: 700;
+  color: #c7431a;
+  font-family: 'Poppins', sans-serif;
+}
+@media (max-width: 1024px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+  .hero-content {
+    padding: 60px 30px;
+    text-align: center;
+  }
+  .hero-buttons {
+    justify-content: center;
+  }
+  .hero-content h1 {
+    font-size: 40px;
+  }
+  .hero-image {
+    min-height: 400px;
+  }
+}
+</style>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <h1>Furniture That Tells Your Story</h1>
+      <p>Discover handcrafted furniture that transforms your house into a home. Premium quality, timeless designs at factory direct prices.</p>
+      <div class="hero-buttons">
+        <a href="/collections/all" class="btn-primary">Shop Now</a>
+        <a href="/collections/living-room" class="btn-secondary">Explore Collection</a>
+      </div>
+    </div>
+    <div class="hero-image">
+      <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=800&q=80" alt="Premium Furniture" loading="eager">
+      <div class="hero-badge">Flat 50% Off</div>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Hero",
+  "presets": [{ "name": "Hero" }]
+}
+{% endschema %}

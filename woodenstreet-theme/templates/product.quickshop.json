@@ -1,0 +1,12 @@
+{
+    "layout": "quickshop",
+    "sections": {
+        "main": {
+            "type": "product-main",
+            "settings": {}
+        }
+    },
+    "order": [
+        "main"
+    ]
+}
