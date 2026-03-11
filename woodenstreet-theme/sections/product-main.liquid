@@ -20,7 +20,7 @@
 .product-variants { margin-bottom: 25px; }
 .variant-label { font-size: 14px; font-weight: 600; color: #333; margin-bottom: 10px; display: block; }
 .variant-options { display: flex; flex-wrap: wrap; gap: 10px; }
-.variant-option { padding: 10px 20px; border: 2px solid #e0e0e0; border-radius: 8px; background: white; cursor: pointer; transition: all 0.2s; font-size: 14px; }
+.variant-option { padding: 10px 20px; border: 2px solid #e0e0e0; border-radius: 8px; background: white; cursor: pointer; transition: all 0.2s; font-size: 14px; display: inline-block; }
 .variant-option:hover { border-color: #c47d4e; }
 .variant-option.selected { border-color: #c47d4e; background: #c47d4e; color: white; }
 .variant-option.disabled { opacity: 0.5; cursor: not-allowed; }
@@ -86,7 +86,7 @@
         {% endif %}
       </div>
 
-      <form method="post" action="/cart/add" id="product-form-{{ product.id }}">
+      <form method="post" action="/cart/add" id="product-form-{{ product.id }}" enctype="multipart/form-data">
         <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}" id="variant-id">
 
         {% if product.options.size > 0 %}
@@ -95,7 +95,12 @@
             <label class="variant-label">{{ option.name }}</label>
             <div class="variant-options">
               {% for value in option.values %}
-                <button type="button" class="variant-option{% if option.selected_value == value %} selected{% endif %}" onclick="selectVariant('{{ option.name }}', '{{ value }}')">{{ value }}</button>
+                {% assign option_index = forloop.index0 %}
+                {% assign option_key = 'option' | append: option_index | plus: 1 %}
+                <label class="variant-option{% if option.selected_value == value %} selected{% endif %}">
+                  <input type="radio" name="{{ option.name }}" value="{{ value }}"{% if option.selected_value == value %} checked{% endif %} style="display:none;">
+                  {{ value }}
+                </label>
               {% endfor %}
             </div>
           {% endfor %}
@@ -166,16 +171,76 @@ function updateQuantity(delta) {
   input.value = value;
 }
 
-function selectVariant(optionName, value) {
+// Variant selection - update hidden input with selected variant ID
+document.addEventListener('DOMContentLoaded', function() {
   const form = document.getElementById('product-form-{{ product.id }}');
-  const variantOptions = form.querySelectorAll('.variant-option');
-  variantOptions.forEach(btn => {
-    if (btn.textContent.trim() === value) {
-      btn.classList.add('selected');
-    } else {
-      btn.classList.remove('selected');
-    }
+  const variantRadios = form.querySelectorAll('input[type="radio"][name]');
+
+  variantRadios.forEach(function(radio) {
+    radio.addEventListener('change', function() {
+      // Update visual selection
+      const optionName = this.name;
+      const selectedValue = this.value;
+      const options = form.querySelectorAll('.variant-option');
+
+      // Update the displayed selected state
+      let optionIndex = -1;
+      {% for option in product.options_with_values %}
+        if ('{{ option.name }}' === optionName) {
+          optionIndex = {{ forloop.index0 }};
+        }
+      {% endfor %}
+
+      // Find all variant options for this option name and update
+      let optionDiv = this.closest('.variant-options');
+      if (optionDiv) {
+        optionDiv.querySelectorAll('.variant-option').forEach(function(label) {
+          const input = label.querySelector('input[type="radio"]');
+          if (input && input.value === selectedValue) {
+            label.classList.add('selected');
+          } else {
+            label.classList.remove('selected');
+          }
+        });
+      }
+
+      // Find matching variant
+      updateVariantId();
+    });
   });
+
+  // Also run on page load in case there's a pre-selected variant
+  updateVariantId();
+});
+
+function updateVariantId() {
+  const form = document.getElementById('product-form-{{ product.id }}');
+  const variantIdInput = document.getElementById('variant-id');
+
+  // Get all selected options
+  var selectedOptions = [];
+  {% for option in product.options_with_values %}
+    var optionRadios = form.querySelectorAll('input[name="{{ option.name }}"]:checked');
+    if (optionRadios.length > 0) {
+      selectedOptions.push(optionRadios[0].value);
+    } else {
+      selectedOptions.push(null);
+    }
+  {% endfor %}
+
+  // Find matching variant
+  {% for variant in product.variants %}
+    var match = true;
+    {% for option in variant.options %}
+      if (selectedOptions[{{ forloop.index0 }}] !== '{{ option }}' && selectedOptions[{{ forloop.index0 }}] !== null) {
+        match = false;
+      }
+    {% endfor %}
+    if (match) {
+      variantIdInput.value = {{ variant.id }};
+      break;
+    }
+  {% endfor %}
 }
 
 function changeImage(src) {

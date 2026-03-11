@@ -1,0 +1,137 @@
+{% comment %} Testimonials Section {% endcomment %}
+<style>
+.testimonials-section {
+  padding: 80px 30px;
+  background: #f9f9f9;
+}
+.testimonials-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+}
+.section-header {
+  text-align: center;
+  margin-bottom: 50px;
+}
+.section-header h2 {
+  font-size: 40px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin: 0 0 15px;
+  font-family: 'Poppins', sans-serif;
+}
+.section-header p {
+  font-size: 16px;
+  color: #666;
+  margin: 0;
+}
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+}
+.testimonial-card {
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+.testimonial-stars {
+  color: #f5a623;
+  font-size: 18px;
+  margin-bottom: 15px;
+}
+.testimonial-text {
+  font-size: 15px;
+  color: #555;
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+.testimonial-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.author-avatar {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #f5f5f5;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 600;
+  color: #c47d4e;
+}
+.author-info h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+.author-info p {
+  font-size: 13px;
+  color: #888;
+  margin: 3px 0 0;
+}
+@media (max-width: 968px) {
+  .testimonials-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+  .testimonials-grid { grid-template-columns: 1fr; }
+}
+</style>
+
+<div class="testimonials-section">
+  <div class="testimonials-inner">
+    <div class="section-header">
+      <h2>What Our Customers Say</h2>
+      <p>Real reviews from real customers</p>
+    </div>
+    <div class="testimonials-grid">
+      <!-- Testimonial 1 -->
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Absolutely love my new sofa! The quality is amazing and delivery was on time. Highly recommend Bluewud to everyone looking for premium furniture."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">RK</div>
+          <div class="author-info">
+            <h4>Rajesh Kumar</h4>
+            <p>Mumbai</p>
+          </div>
+        </div>
+      </div>
+      <!-- Testimonial 2 -->
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Great shopping experience! The bed I ordered is beautiful and the assembly team was very professional. Worth every rupee spent."</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">SP</div>
+          <div class="author-info">
+            <h4>Priya Sharma</h4>
+            <p>Delhi</p>
+          </div>
+        </div>
+      </div>
+      <!-- Testimonial 3 -->
+      <div class="testimonial-card">
+        <div class="testimonial-stars">★★★★★</div>
+        <p class="testimonial-text">"Third purchase from Bluewud and they never disappoint. Excellent customer service and the furniture quality keeps getting better!"</p>
+        <div class="testimonial-author">
+          <div class="author-avatar">AM</div>
+          <div class="author-info">
+            <h4>Ahmed Malik</h4>
+            <p>Bangalore</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Testimonials",
+  "presets": [{ "name": "Testimonials" }]
+}
+{% endschema %}

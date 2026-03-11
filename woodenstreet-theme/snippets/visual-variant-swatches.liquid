@@ -9,6 +9,11 @@
 {%- endcomment -%}
 
 {%- if product == blank or option == blank -%}
+  {%- assign blank_check = true -%}
+{%- endif -%}
+
+{%- if blank_check -%}
+  <div class="ws-variant-swatches"></div>
   {%- return -%}
 {%- endif -%}
 

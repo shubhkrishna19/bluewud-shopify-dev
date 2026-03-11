@@ -1,19 +1,199 @@
-{% comment %} Fresh Header {% endcomment %}
+{% comment %} Fresh Header - Enhanced with SVG Icons and Mobile Menu {% endcomment %}
 <style>
-.header { background: #fff; box-shadow: 0 2px 10px rgba(0,0,0,0.08); position: sticky; top: 0; z-index: 1000; }
-.header-inner { max-width: 1400px; margin: 0 auto; padding: 15px 30px; display: flex; align-items: center; justify-content: space-between; }
-.header-logo a { font-size: 28px; font-weight: 700; color: #1a1a1a; text-decoration: none; font-family: 'Poppins', sans-serif; }
-.header-nav { display: flex; gap: 30px; list-style: none; margin: 0; padding: 0; }
-.header-nav a { color: #333; text-decoration: none; font-size: 15px; font-weight: 500; }
-.header-nav a:hover { color: #c47d4e; }
-.header-actions { display: flex; gap: 20px; align-items: center; }
-.header-actions a { color: #333; font-size: 18px; text-decoration: none; }
-@media (max-width: 768px) { .header-nav { display: none; } }
+.header {
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+.header-inner {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 15px 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.header-logo a {
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-decoration: none;
+  font-family: 'Poppins', sans-serif;
+}
+.header-nav {
+  display: flex;
+  gap: 30px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.header-nav li {
+  position: relative;
+}
+.header-nav a {
+  color: #333;
+  text-decoration: none;
+  font-size: 15px;
+  font-weight: 500;
+  padding: 10px 0;
+  display: block;
+  transition: color 0.3s;
+}
+.header-nav a:hover {
+  color: #c47d4e;
+}
+.header-actions {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+.header-actions a {
+  color: #333;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 0.3s;
+}
+.header-actions a:hover {
+  color: #c47d4e;
+}
+.header-actions svg {
+  width: 22px;
+  height: 22px;
+}
+.cart-link {
+  position: relative;
+}
+.cart-count {
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background: #c47d4e;
+  color: white;
+  font-size: 11px;
+  font-weight: 600;
+  min-width: 18px;
+  height: 18px;
+  border-radius: 9px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 5px;
+}
+
+/* Mobile Menu */
+.mobile-menu-btn {
+  display: none;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+.mobile-menu-btn svg {
+  width: 28px;
+  height: 28px;
+}
+
+.mobile-nav {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.5);
+  z-index: 1001;
+}
+.mobile-nav.active {
+  display: block;
+}
+.mobile-nav-content {
+  position: fixed;
+  top: 0;
+  left: -300px;
+  width: 300px;
+  height: 100%;
+  background: white;
+  overflow-y: auto;
+  transition: left 0.3s;
+}
+.mobile-nav.active .mobile-nav-content {
+  left: 0;
+}
+.mobile-nav-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+  border-bottom: 1px solid #eee;
+}
+.mobile-nav-close {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 5px;
+}
+.mobile-nav-close svg {
+  width: 24px;
+  height: 24px;
+}
+.mobile-nav-links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.mobile-nav-links li {
+  border-bottom: 1px solid #eee;
+}
+.mobile-nav-links a {
+  display: block;
+  padding: 15px 20px;
+  color: #333;
+  text-decoration: none;
+  font-size: 16px;
+  transition: background 0.3s, color 0.3s;
+}
+.mobile-nav-links a:hover {
+  background: #f9f9f9;
+  color: #c47d4e;
+}
+
+@media (max-width: 968px) {
+  .header-nav {
+    display: none;
+  }
+  .mobile-menu-btn {
+    display: block;
+  }
+  .header-inner {
+    padding: 12px 20px;
+  }
+  .header-logo a {
+    font-size: 24px;
+  }
+}
 </style>
 
 <header class="header">
   <div class="header-inner">
-    <div class="header-logo"><a href="/">{{ shop.name }}</a></div>
+    <!-- Mobile Menu Button -->
+    <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open menu">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <line x1="3" y1="6" x2="21" y2="6"></line>
+        <line x1="3" y1="12" x2="21" y2="12"></line>
+        <line x1="3" y1="18" x2="21" y2="18"></line>
+      </svg>
+    </button>
+
+    <!-- Logo -->
+    <div class="header-logo">
+      <a href="/">{{ shop.name }}</a>
+    </div>
+
+    <!-- Desktop Navigation -->
     <ul class="header-nav">
       <li><a href="/collections/sofas">Sofas</a></li>
       <li><a href="/collections/beds">Beds</a></li>
@@ -22,13 +202,85 @@
       <li><a href="/collections/wardrobes">Wardrobes</a></li>
       <li><a href="/pages/contact">Contact</a></li>
     </ul>
+
+    <!-- Actions -->
     <div class="header-actions">
-      <a href="/search">🔍</a>
-      <a href="/account">👤</a>
-      <a href="/cart">🛒 {% if cart.item_count > 0 %}({{ cart.item_count }}){% endif %}</a>
+      <!-- Search Icon -->
+      <a href="/search" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <circle cx="11" cy="11" r="8"></circle>
+          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+        </svg>
+      </a>
+
+      <!-- Account Icon -->
+      <a href="/account" aria-label="Account">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+          <circle cx="12" cy="7" r="4"></circle>
+        </svg>
+      </a>
+
+      <!-- Cart Icon -->
+      <a href="/cart" class="cart-link" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <path d="M16 10a4 4 0 0 1-8 0"></path>
+        </svg>
+        {% if cart.item_count > 0 %}
+          <span class="cart-count">{{ cart.item_count }}</span>
+        {% endif %}
+      </a>
     </div>
   </div>
 </header>
+
+<!-- Mobile Navigation -->
+<div class="mobile-nav" id="mobileNav">
+  <div class="mobile-nav-content">
+    <div class="mobile-nav-header">
+      <span style="font-size:20px;font-weight:700;font-family:'Poppins',sans-serif;">{{ shop.name }}</span>
+      <button class="mobile-nav-close" onclick="toggleMobileMenu()" aria-label="Close menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <ul class="mobile-nav-links">
+      <li><a href="/">Home</a></li>
+      <li><a href="/collections/sofas">Sofas</a></li>
+      <li><a href="/collections/beds">Beds</a></li>
+      <li><a href="/collections/dining">Dining</a></li>
+      <li><a href="/collections/storage">Storage</a></li>
+      <li><a href="/collections/wardrobes">Wardrobes</a></li>
+      <li><a href="/collections/all">All Products</a></li>
+      <li><a href="/pages/contact">Contact</a></li>
+      <li><a href="/search">Search</a></li>
+      <li><a href="/account">My Account</a></li>
+    </ul>
+  </div>
+</div>
+
+<script>
+function toggleMobileMenu() {
+  var nav = document.getElementById('mobileNav');
+  nav.classList.toggle('active');
+}
+
+// Close mobile menu when clicking outside
+document.addEventListener('click', function(e) {
+  var nav = document.getElementById('mobileNav');
+  var btn = document.querySelector('.mobile-menu-btn');
+  var content = document.querySelector('.mobile-nav-content');
+  if (nav.classList.contains('active')) {
+    if (!content.contains(e.target) && !btn.contains(e.target)) {
+      nav.classList.remove('active');
+    }
+  }
+});
+</script>
 
 {% schema %}
 {

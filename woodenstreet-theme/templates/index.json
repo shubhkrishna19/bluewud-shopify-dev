@@ -2,13 +2,19 @@
   "sections": {
     "hero": { "type": "hero" },
     "trust_banners": { "type": "trust-banners" },
+    "banner": { "type": "banner" },
     "categories": { "type": "categories" },
-    "featured_products": { "type": "featured-products" }
+    "featured_products": { "type": "featured-products" },
+    "testimonials": { "type": "testimonials" },
+    "newsletter": { "type": "newsletter" }
   },
   "order": [
     "hero",
     "trust_banners",
+    "banner",
     "categories",
-    "featured_products"
+    "featured_products",
+    "testimonials",
+    "newsletter"
   ]
 }
