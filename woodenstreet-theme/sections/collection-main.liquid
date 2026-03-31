@@ -250,8 +250,9 @@
   }
 
   .bw-collection__details {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     gap: 8px;
   }
 
@@ -259,20 +260,20 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    flex: 0 1 auto;
+    max-width: 100%;
     min-height: 28px;
-    min-width: 0;
-    padding: 0 8px;
+    min-width: fit-content;
+    padding: 0 12px;
     border-radius: 999px;
     background: rgba(32, 23, 19, 0.06);
     color: #5f4f46;
-    font-size: clamp(10px, 0.72vw, 11px);
+    font-size: 10px;
     font-weight: 700;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.04em;
     text-transform: uppercase;
     text-align: center;
     white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
   }
 
   .bw-collection__price {
@@ -427,11 +428,12 @@
     }
 
     .bw-collection__details {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 7px;
     }
 
-    .bw-collection__detail:last-child {
-      grid-column: 1 / -1;
+    .bw-collection__detail {
+      font-size: 9px;
+      padding: 0 10px;
     }
   }
 </style>
