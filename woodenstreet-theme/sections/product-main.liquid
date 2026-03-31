@@ -8,8 +8,16 @@
   assign free_delivery_note = product.metafields.my_fields.free_delivery
   assign emi_from_note = product.metafields.my_fields.emi_from
   assign estimate_shipping_time = product.metafields.my_fields.estimate_shipping_time
+  assign review_badge_markup = product.metafields.judgeme.badge | strip
+  assign brand_reviews_rating = shop.metafields.judgeme.all_reviews_rating | default: 4.8
+  assign brand_reviews_count = shop.metafields.judgeme.all_reviews_count | default: 650
+  assign show_rating_fallback = false
   assign related_product_limit = 4
   assign related_products_count = 0
+
+  if review_badge_markup == blank or review_badge_markup contains 'No reviews' or review_badge_markup contains 'jdgm-prev-badge__no-reviews'
+    assign show_rating_fallback = true
+  endif
 
   for related_collection in product.collections
     if related_collection.products_count > 1 and related_collection.handle != 'frontpage'
@@ -561,6 +569,30 @@
     font-weight: 700;
   }
 
+  .bw-product__rating-fallback {
+    display: inline-flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 10px;
+    min-height: 38px;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .bw-product__rating-stars {
+    color: var(--bw-brand-warm);
+    font-size: 14px;
+    letter-spacing: 0.08em;
+  }
+
+  .bw-product__rating-text {
+    color: #6b5b53;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+
   .bw-product__reviews {
     margin-top: 28px;
     padding: 28px;
@@ -600,7 +632,7 @@
     max-width: 66ch;
   }
 
-  .bw-product__reviews-widget {
+  .bw-product__reviews .jdgm-widget.jdgm-review-widget {
     padding: 20px;
     border-radius: 24px;
     background: rgba(255, 255, 255, 0.74);
@@ -855,7 +887,7 @@
       border-radius: 24px;
     }
 
-    .bw-product__reviews-widget {
+    .bw-product__reviews .jdgm-widget.jdgm-review-widget {
       padding: 16px;
       border-radius: 20px;
     }
@@ -954,7 +986,14 @@
           {% endif %}
         </p>
         <div class="bw-product__rating">
-          {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', concierge_install: true, product: product %}
+          {% if show_rating_fallback %}
+            <a class="bw-product__rating-fallback" href="/pages/reviews" aria-label="Bluewud rated {{ brand_reviews_rating }} out of 5 across {{ brand_reviews_count }} customer reviews">
+              <span class="bw-product__rating-stars" aria-hidden="true">★★★★★</span>
+              <span class="bw-product__rating-text">{{ brand_reviews_rating }}/5 across {{ brand_reviews_count }} Bluewud reviews</span>
+            </a>
+          {% else %}
+            {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', concierge_install: true, product: product %}
+          {% endif %}
         </div>
 
         <div class="bw-product__proofs">
@@ -1123,9 +1162,7 @@
         <h2 class="bw-product__reviews-title">What buyers are saying about this product.</h2>
         <p class="bw-product__reviews-copy">Live product reviews help shoppers understand finish, delivery experience, assembly confidence, and everyday usability before they place the order.</p>
       </div>
-      <div class="bw-product__reviews-widget">
-        {% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: true, product: product %}
-      </div>
+      {% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: true, product: product %}
     </div>
 
     {% if related_products_count > 0 and recommendation_collection %}
