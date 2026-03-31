@@ -1,137 +1,503 @@
-{% comment %} Fresh Categories - WoodenStreet Style {% endcomment %}
 <style>
-.categories {
-  padding: 80px 30px;
-  max-width: 1400px;
-  margin: 0 auto;
-  background: #fdfbf7;
-}
-.section-title {
-  text-align: center;
-  margin-bottom: 50px;
-}
-.section-title h2 {
-  font-size: 40px;
-  font-weight: 800;
-  color: #1a1a1a;
-  margin: 0 0 12px;
-  font-family: 'Poppins', sans-serif;
-  font-style: italic;
-  text-transform: uppercase;
-}
-.section-title p {
-  font-size: 16px;
-  color: #666;
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-.categories-grid {
-  display: grid;
-  grid-template-columns: repeat(6, 1fr);
-  gap: 25px;
-}
-.category-item {
-  text-align: center;
-  text-decoration: none;
-  transition: transform 0.3s ease;
-}
-.category-item:hover {
-  transform: translateY(-8px);
-}
-.category-image {
-  width: 100%;
-  aspect-ratio: 1;
-  background: #fff;
-  border-radius: 50%;
-  overflow: hidden;
-  margin-bottom: 15px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.08);
-  transition: box-shadow 0.3s ease;
-}
-.category-item:hover .category-image {
-  box-shadow: 0 15px 35px rgba(0,0,0,0.15);
-}
-.category-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.category-item h3 {
-  font-size: 15px;
-  font-weight: 700;
-  color: #1a1a1a;
-  margin: 0 0 5px;
-  font-family: 'Poppins', sans-serif;
-}
-.category-item span {
-  font-size: 12px;
-  color: #888;
-  font-family: 'Inter', sans-serif;
-}
-@media (max-width: 968px) {
-  .categories-grid { grid-template-columns: repeat(3, 1fr); }
-}
-@media (max-width: 480px) {
-  .categories-grid { grid-template-columns: repeat(2, 1fr); }
-}
+  .bw-categories {
+    padding: 70px 24px;
+    background: #faf6f1;
+  }
+
+  .bw-categories__inner {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .bw-categories__header {
+    max-width: 720px;
+    margin: 0 auto 34px;
+    text-align: center;
+  }
+
+  .bw-categories__eyebrow {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: #7f604d;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .bw-categories__title {
+    margin: 0 0 12px;
+    color: #201713;
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1.06;
+    letter-spacing: -0.04em;
+  }
+
+  .bw-categories__copy {
+    margin: 0;
+    color: #66554c;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .bw-categories__grid {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .bw-categories__card {
+    position: relative;
+    min-height: 300px;
+    border-radius: 28px;
+    overflow: hidden;
+    color: #fff;
+    text-decoration: none;
+    box-shadow: 0 22px 60px rgba(35, 24, 19, 0.12);
+  }
+
+  .bw-categories__card--large {
+    grid-column: span 6;
+  }
+
+  .bw-categories__card--small {
+    grid-column: span 3;
+  }
+
+  .bw-categories__media,
+  .bw-categories__media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .bw-categories__media img {
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+
+  .bw-categories__card:hover .bw-categories__media img {
+    transform: scale(1.05);
+  }
+
+  .bw-categories__media--placeholder {
+    display: flex;
+    align-items: flex-end;
+    padding: 22px;
+    box-sizing: border-box;
+  }
+
+  .bw-categories__media--living {
+    background:
+      radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.22), transparent 26%),
+      linear-gradient(145deg, #d0b9ab 0%, #9b745e 46%, #4a342b 100%);
+  }
+
+  .bw-categories__media--bedroom {
+    background:
+      radial-gradient(circle at 78% 20%, rgba(255, 255, 255, 0.18), transparent 24%),
+      linear-gradient(145deg, #d8c8bf 0%, #b39181 42%, #5c4038 100%);
+  }
+
+  .bw-categories__media--study {
+    background:
+      radial-gradient(circle at 22% 24%, rgba(255, 255, 255, 0.18), transparent 24%),
+      linear-gradient(145deg, #c5cdd0 0%, #7f8f95 46%, #38424a 100%);
+  }
+
+  .bw-categories__media--tv {
+    background:
+      radial-gradient(circle at 80% 18%, rgba(255, 255, 255, 0.18), transparent 22%),
+      linear-gradient(145deg, #d7c6bb 0%, #9a7865 42%, #43342b 100%);
+  }
+
+  .bw-categories__media--bookshelves {
+    background:
+      radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.18), transparent 22%),
+      linear-gradient(145deg, #d0c4b7 0%, #8a6f5e 44%, #45352d 100%);
+  }
+
+  .bw-categories__media--wardrobe {
+    background:
+      radial-gradient(circle at 82% 18%, rgba(255, 255, 255, 0.18), transparent 22%),
+      linear-gradient(145deg, #d7ccc4 0%, #aa8b7a 44%, #58433a 100%);
+  }
+
+  .bw-categories__placeholder {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 14px;
+    border-radius: 999px;
+    background: rgba(255, 250, 246, 0.86);
+    color: #201713;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .bw-categories__overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(11, 8, 6, 0.06) 10%, rgba(11, 8, 6, 0.72) 100%);
+  }
+
+  .bw-categories__content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    box-sizing: border-box;
+    padding: 24px 30px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 6px;
+  }
+
+  .bw-categories__kicker {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: rgba(255, 248, 242, 0.76);
+  }
+
+  .bw-categories__name {
+    margin: 0;
+    font-size: 28px;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  .bw-categories__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    color: rgba(255, 248, 242, 0.86);
+    font-size: 14px;
+  }
+
+  .bw-categories__arrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 1100px) {
+    .bw-categories__card--large,
+    .bw-categories__card--small {
+      grid-column: span 6;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .bw-categories {
+      padding: 54px 16px;
+    }
+
+    .bw-categories__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .bw-categories__card--large,
+    .bw-categories__card--small {
+      grid-column: auto;
+      min-height: 260px;
+    }
+
+    .bw-categories__content {
+      box-sizing: border-box;
+      padding: 18px 20px 28px;
+    }
+
+    .bw-categories__name {
+      font-size: 24px;
+    }
+  }
 </style>
 
-<div class="categories">
-  <div class="section-title">
-    <h2>Shop by Category</h2>
-    <p>Find the perfect furniture for every room</p>
+{% liquid
+  assign living_collection = collections['living-room']
+  assign bedroom_collection = collections['bed-room']
+  assign study_collection = collections['study-tables']
+  assign study_product = all_products['mallium-study-computer-table-office-desk']
+
+  if study_collection == blank
+    assign study_collection = collections['study-table']
+  endif
+
+  if study_collection == blank
+    assign study_collection = collections['smartly-designed-wfh-furniture']
+  endif
+  assign tv_collection = collections['tv-unit-furniture']
+  assign bookshelves_collection = collections['book-shelves']
+  assign wardrobe_collection = collections['wardrobe']
+
+  assign living_media = section.settings.living_room_image
+  if living_media == blank and living_collection != blank
+    assign living_media = living_collection.image
+    if living_media == blank and living_collection.products.size > 0
+      assign living_media = living_collection.products.first.featured_image
+    endif
+  endif
+
+  assign bedroom_media = section.settings.bedroom_image
+  if bedroom_media == blank and bedroom_collection != blank
+    assign bedroom_media = bedroom_collection.image
+    if bedroom_media == blank and bedroom_collection.products.size > 0
+      assign bedroom_media = bedroom_collection.products.first.featured_image
+    endif
+  endif
+
+  assign study_media = section.settings.study_tables_image
+  if study_media == blank and study_collection != blank
+    assign study_media = study_collection.image
+    if study_media == blank and study_collection.products.size > 0
+      assign study_media = study_collection.products.first.featured_image
+    endif
+  endif
+
+  if study_media == blank and study_product != blank and study_product.featured_image != blank
+    assign study_media = study_product.featured_image
+  endif
+
+  assign tv_media = section.settings.tv_units_image
+  if tv_media == blank and tv_collection != blank
+    assign tv_media = tv_collection.image
+    if tv_media == blank and tv_collection.products.size > 0
+      assign tv_media = tv_collection.products.first.featured_image
+    endif
+  endif
+
+  assign bookshelves_media = section.settings.bookshelves_image
+  if bookshelves_media == blank and bookshelves_collection != blank
+    assign bookshelves_media = bookshelves_collection.image
+    if bookshelves_media == blank and bookshelves_collection.products.size > 0
+      assign bookshelves_media = bookshelves_collection.products.first.featured_image
+    endif
+  endif
+
+  assign wardrobe_media = section.settings.wardrobe_image
+  if wardrobe_media == blank and wardrobe_collection != blank
+    assign wardrobe_media = wardrobe_collection.image
+    if wardrobe_media == blank and wardrobe_collection.products.size > 0
+      assign wardrobe_media = wardrobe_collection.products.first.featured_image
+    endif
+  endif
+%}
+
+<section class="bw-categories">
+  <div class="bw-categories__inner">
+    <div class="bw-categories__header">
+      <span class="bw-categories__eyebrow">Shop by category</span>
+      <h2 class="bw-categories__title">Explore furniture for every room.</h2>
+      <p class="bw-categories__copy">From statement pieces to everyday storage, discover collections designed to bring comfort, utility, and finish into your home.</p>
+    </div>
+
+    <div class="bw-categories__grid">
+      <a class="bw-categories__card bw-categories__card--large" href="/collections/living-room">
+        {% if living_media != blank %}
+          <div class="bw-categories__media">
+            {{ living_media | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480, 720, 960, 1200', sizes: '(max-width: 720px) 100vw, 50vw', alt: 'Living Room' }}
+          </div>
+        {% else %}
+          <div class="bw-categories__media bw-categories__media--placeholder bw-categories__media--living" role="img" aria-label="Living Room placeholder until a Bluewud image is added">
+            <span class="bw-categories__placeholder">Add Bluewud image</span>
+          </div>
+        {% endif %}
+        <div class="bw-categories__overlay"></div>
+        <div class="bw-categories__content">
+          <span class="bw-categories__kicker">Signature category</span>
+          <h3 class="bw-categories__name">{{ living_collection.title | default: 'Living Room' }}</h3>
+          <div class="bw-categories__meta">
+            <span>
+              {% if living_collection != blank and living_collection.all_products_count > 0 %}
+                {{ living_collection.all_products_count }} products
+              {% else %}
+                Sofas, coffee tables, TV units
+              {% endif %}
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a class="bw-categories__card bw-categories__card--large" href="/collections/bed-room">
+        {% if bedroom_media != blank %}
+          <div class="bw-categories__media">
+            {{ bedroom_media | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480, 720, 960, 1200', sizes: '(max-width: 720px) 100vw, 50vw', alt: 'Bedroom' }}
+          </div>
+        {% else %}
+          <div class="bw-categories__media bw-categories__media--placeholder bw-categories__media--bedroom" role="img" aria-label="Bedroom placeholder until a Bluewud image is added">
+            <span class="bw-categories__placeholder">Add Bluewud image</span>
+          </div>
+        {% endif %}
+        <div class="bw-categories__overlay"></div>
+        <div class="bw-categories__content">
+          <span class="bw-categories__kicker">High-consideration purchase</span>
+          <h3 class="bw-categories__name">{{ bedroom_collection.title | default: 'Bedroom' }}</h3>
+          <div class="bw-categories__meta">
+            <span>
+              {% if bedroom_collection != blank and bedroom_collection.all_products_count > 0 %}
+                {{ bedroom_collection.all_products_count }} products
+              {% else %}
+                Beds, side tables, wardrobes
+              {% endif %}
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a class="bw-categories__card bw-categories__card--small" href="{{ study_collection.url | default: '/collections/study-tables' }}">
+        {% if study_media != blank %}
+          <div class="bw-categories__media">
+            {{ study_media | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 480, 720, 900', sizes: '(max-width: 720px) 100vw, 25vw', alt: 'Study Tables' }}
+          </div>
+        {% else %}
+          <div class="bw-categories__media bw-categories__media--placeholder bw-categories__media--study" role="img" aria-label="Study Tables placeholder until a Bluewud image is added">
+            <span class="bw-categories__placeholder">Add Bluewud image</span>
+          </div>
+        {% endif %}
+        <div class="bw-categories__overlay"></div>
+        <div class="bw-categories__content">
+          <span class="bw-categories__kicker">Work-ready</span>
+          <h3 class="bw-categories__name">{{ study_collection.title | default: 'Study Tables' }}</h3>
+          <div class="bw-categories__meta">
+            <span>
+              {% if study_collection != blank and study_collection.all_products_count > 0 %}
+                {{ study_collection.all_products_count }} products
+              {% elsif study_product != blank %}
+                {{ study_product.title }}
+              {% else %}
+                WFH and compact setups
+              {% endif %}
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a class="bw-categories__card bw-categories__card--small" href="/collections/tv-unit-furniture">
+        {% if tv_media != blank %}
+          <div class="bw-categories__media">
+            {{ tv_media | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 480, 720, 900', sizes: '(max-width: 720px) 100vw, 25vw', alt: 'TV Units' }}
+          </div>
+        {% else %}
+          <div class="bw-categories__media bw-categories__media--placeholder bw-categories__media--tv" role="img" aria-label="TV Units placeholder until a Bluewud image is added">
+            <span class="bw-categories__placeholder">Add Bluewud image</span>
+          </div>
+        {% endif %}
+        <div class="bw-categories__overlay"></div>
+        <div class="bw-categories__content">
+          <span class="bw-categories__kicker">Bestsellers</span>
+          <h3 class="bw-categories__name">{{ tv_collection.title | default: 'TV Units' }}</h3>
+          <div class="bw-categories__meta">
+            <span>
+              {% if tv_collection != blank and tv_collection.all_products_count > 0 %}
+                {{ tv_collection.all_products_count }} products
+              {% else %}
+                Storage with presence
+              {% endif %}
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a class="bw-categories__card bw-categories__card--small" href="/collections/book-shelves">
+        {% if bookshelves_media != blank %}
+          <div class="bw-categories__media">
+            {{ bookshelves_media | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 480, 720, 900', sizes: '(max-width: 720px) 100vw, 25vw', alt: 'Bookshelves' }}
+          </div>
+        {% else %}
+          <div class="bw-categories__media bw-categories__media--placeholder bw-categories__media--bookshelves" role="img" aria-label="Bookshelves placeholder until a Bluewud image is added">
+            <span class="bw-categories__placeholder">Add Bluewud image</span>
+          </div>
+        {% endif %}
+        <div class="bw-categories__overlay"></div>
+        <div class="bw-categories__content">
+          <span class="bw-categories__kicker">Layer the room</span>
+          <h3 class="bw-categories__name">{{ bookshelves_collection.title | default: 'Bookshelves' }}</h3>
+          <div class="bw-categories__meta">
+            <span>
+              {% if bookshelves_collection != blank and bookshelves_collection.all_products_count > 0 %}
+                {{ bookshelves_collection.all_products_count }} products
+              {% else %}
+                Display and smart storage
+              {% endif %}
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a class="bw-categories__card bw-categories__card--small" href="/collections/wardrobe">
+        {% if wardrobe_media != blank %}
+          <div class="bw-categories__media">
+            {{ wardrobe_media | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 480, 720, 900', sizes: '(max-width: 720px) 100vw, 25vw', alt: 'Wardrobes' }}
+          </div>
+        {% else %}
+          <div class="bw-categories__media bw-categories__media--placeholder bw-categories__media--wardrobe" role="img" aria-label="Wardrobes placeholder until a Bluewud image is added">
+            <span class="bw-categories__placeholder">Add Bluewud image</span>
+          </div>
+        {% endif %}
+        <div class="bw-categories__overlay"></div>
+        <div class="bw-categories__content">
+          <span class="bw-categories__kicker">Storage upgrade</span>
+          <h3 class="bw-categories__name">{{ wardrobe_collection.title | default: 'Wardrobes' }}</h3>
+          <div class="bw-categories__meta">
+            <span>
+              {% if wardrobe_collection != blank and wardrobe_collection.all_products_count > 0 %}
+                {{ wardrobe_collection.all_products_count }} products
+              {% else %}
+                Order, elegance, everyday utility
+              {% endif %}
+            </span>
+          </div>
+        </div>
+      </a>
+    </div>
   </div>
-  <div class="categories-grid">
-    <a href="/collections/sofas" class="category-item">
-      <div class="category-image">
-        <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=300&q=80" alt="Sofas" loading="lazy">
-      </div>
-      <h3>Sofa Sets</h3>
-      <span>200+ Designs</span>
-    </a>
-    <a href="/collections/beds" class="category-item">
-      <div class="category-image">
-        <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?w=300&q=80" alt="Beds" loading="lazy">
-      </div>
-      <h3>Beds</h3>
-      <span>150+ Designs</span>
-    </a>
-    <a href="/collections/dining" class="category-item">
-      <div class="category-image">
-        <img src="https://images.unsplash.com/photo-1617806118233-18e1de247200?w=300&q=80" alt="Dining" loading="lazy">
-      </div>
-      <h3>Dining Sets</h3>
-      <span>80+ Designs</span>
-    </a>
-    <a href="/collections/wardrobes" class="category-item">
-      <div class="category-image">
-        <img src="https://images.unsplash.com/photo-1558997519-83ea9252edf8?w=300&q=80" alt="Wardrobes" loading="lazy">
-      </div>
-      <h3>Wardrobes</h3>
-      <span>100+ Designs</span>
-    </a>
-    <a href="/collections/tv-units" class="category-item">
-      <div class="category-image">
-        <img src="https://images.unsplash.com/photo-1615874959474-d609969a20ed?w=300&q=80" alt="TV Units" loading="lazy">
-      </div>
-      <h3>TV Units</h3>
-      <span>75+ Designs</span>
-    </a>
-    <a href="/collections/study-tables" class="category-item">
-      <div class="category-image">
-        <img src="https://images.unsplash.com/photo-1518455027359-f3f8164ba6bd?w=300&q=80" alt="Study Tables" loading="lazy">
-      </div>
-      <h3>Study Tables</h3>
-      <span>60+ Designs</span>
-    </a>
-  </div>
-</div>
+</section>
 
 {% schema %}
 {
   "name": "Categories",
-  "presets": [{ "name": "Categories" }]
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "living_room_image",
+      "label": "Living room image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bedroom_image",
+      "label": "Bedroom image"
+    },
+    {
+      "type": "image_picker",
+      "id": "study_tables_image",
+      "label": "Study tables image"
+    },
+    {
+      "type": "image_picker",
+      "id": "tv_units_image",
+      "label": "TV units image"
+    },
+    {
+      "type": "image_picker",
+      "id": "bookshelves_image",
+      "label": "Bookshelves image"
+    },
+    {
+      "type": "image_picker",
+      "id": "wardrobe_image",
+      "label": "Wardrobe image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Categories"
+    }
+  ]
 }
 {% endschema %}

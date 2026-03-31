@@ -1,309 +1,235 @@
-{% comment %} Fresh Footer - Enhanced with Newsletter, Social Icons, Payment Icons {% endcomment %}
+{% liquid
+  assign footer_brand = section.settings.footer_brand | default: 'Bluewud'
+  assign footer_copy = section.settings.footer_copy | default: 'Bluewud brings premium-value furniture, smarter storage, and room-defining pieces together in one clearer shopping journey.'
+%}
+
 <style>
-.footer {
-  background: #1a1a1a;
-  color: white;
-  padding: 70px 30px 30px;
-}
-.footer-inner {
-  max-width: 1400px;
-  margin: 0 auto;
-}
-.footer-main {
-  display: grid;
-  grid-template-columns: 1.5fr 1fr 1fr 1fr;
-  gap: 50px;
-  margin-bottom: 50px;
-}
-.footer-brand h3 {
-  font-size: 28px;
-  font-weight: 700;
-  margin: 0 0 15px;
-  font-family: 'Poppins', sans-serif;
-}
-.footer-brand p {
-  color: rgba(255,255,255,0.7);
-  font-size: 14px;
-  line-height: 1.7;
-  margin: 0 0 20px;
-}
-
-/* Newsletter Section */
-.footer-newsletter {
-  margin-bottom: 25px;
-}
-.footer-newsletter p {
-  color: rgba(255,255,255,0.7);
-  font-size: 14px;
-  margin: 0 0 15px;
-}
-.newsletter-form {
-  display: flex;
-  gap: 10px;
-}
-.newsletter-form input {
-  flex: 1;
-  padding: 12px 15px;
-  border: 1px solid rgba(255,255,255,0.2);
-  border-radius: 6px;
-  background: rgba(255,255,255,0.1);
-  color: white;
-  font-size: 14px;
-}
-.newsletter-form input::placeholder {
-  color: rgba(255,255,255,0.5);
-}
-.newsletter-form input:focus {
-  outline: none;
-  border-color: #c47d4e;
-}
-.newsletter-form button {
-  padding: 12px 20px;
-  background: #c47d4e;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  font-size: 14px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-.newsletter-form button:hover {
-  background: #a86840;
-}
-
-/* Social Icons */
-.social-icons {
-  display: flex;
-  gap: 12px;
-}
-.social-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: background 0.3s, transform 0.3s;
-}
-.social-icon:hover {
-  background: #c47d4e;
-  transform: translateY(-3px);
-}
-.social-icon svg {
-  width: 20px;
-  height: 20px;
-  fill: white;
-}
-
-/* Footer Columns */
-.footer-column h4 {
-  font-size: 16px;
-  font-weight: 600;
-  margin: 0 0 20px;
-  color: white;
-}
-.footer-column ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.footer-column li {
-  margin-bottom: 12px;
-}
-.footer-column a {
-  color: rgba(255,255,255,0.7);
-  text-decoration: none;
-  font-size: 14px;
-  transition: color 0.3s;
-}
-.footer-column a:hover {
-  color: #c47d4e;
-}
-
-/* Contact Info */
-.footer-contact li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  color: rgba(255,255,255,0.7);
-  font-size: 14px;
-}
-.footer-contact svg {
-  width: 18px;
-  height: 18px;
-  flex-shrink: 0;
-  margin-top: 2px;
-}
-
-/* Payment Icons */
-.footer-payment {
-  border-top: 1px solid rgba(255,255,255,0.1);
-  padding-top: 25px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  gap: 20px;
-}
-.payment-icons {
-  display: flex;
-  gap: 10px;
-  flex-wrap: wrap;
-}
-.payment-icon {
-  height: 30px;
-  width: 50px;
-  background: rgba(255,255,255,0.1);
-  border-radius: 4px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 12px;
-  color: rgba(255,255,255,0.7);
-}
-.footer-bottom-links {
-  display: flex;
-  gap: 20px;
-}
-.footer-bottom-links a {
-  color: rgba(255,255,255,0.5);
-  text-decoration: none;
-  font-size: 13px;
-  transition: color 0.3s;
-}
-.footer-bottom-links a:hover {
-  color: white;
-}
-.footer-copyright {
-  color: rgba(255,255,255,0.5);
-  font-size: 13px;
-}
-
-@media (max-width: 968px) {
-  .footer-main {
-    grid-template-columns: 1fr 1fr;
+  .bw-footer {
+    padding: 0 24px 26px;
+    background: #faf6f1;
   }
-  .footer-brand {
-    grid-column: 1 / -1;
+
+  .bw-footer__inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 40px;
+    border-radius: 32px;
+    background: #201713;
+    color: #f8f1eb;
   }
-}
-@media (max-width: 480px) {
-  .footer-main {
-    grid-template-columns: 1fr;
+
+  .bw-footer__top {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) repeat(3, minmax(0, 1fr));
+    gap: 28px;
+    padding-bottom: 28px;
+    border-bottom: 1px solid rgba(248, 241, 235, 0.12);
   }
-  .newsletter-form {
-    flex-direction: column;
+
+  .bw-footer__brand-name {
+    display: inline-block;
+    margin-bottom: 12px;
+    color: #f8f1eb;
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: -0.03em;
   }
-  .footer-payment {
-    flex-direction: column;
-    text-align: center;
+
+  .bw-footer__copy {
+    margin: 0 0 18px;
+    color: rgba(248, 241, 235, 0.72);
+    font-size: 15px;
+    line-height: 1.8;
+    max-width: 52ch;
   }
-  .footer-bottom-links {
+
+  .bw-footer__contact-list,
+  .bw-footer__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 10px;
+  }
+
+  .bw-footer__heading {
+    margin: 0 0 12px;
+    color: #f8f1eb;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .bw-footer__contact-list a,
+  .bw-footer__links a {
+    color: rgba(248, 241, 235, 0.74);
+    text-decoration: none;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .bw-footer__contact-list a:hover,
+  .bw-footer__links a:hover {
+    color: #ffffff;
+  }
+
+  .bw-footer__newsletter {
+    display: grid;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .bw-footer__newsletter-form {
+    display: flex;
+    gap: 10px;
     flex-wrap: wrap;
-    justify-content: center;
   }
-}
+
+  .bw-footer__newsletter-field {
+    flex: 1 1 220px;
+    min-height: 48px;
+    padding: 0 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(248, 241, 235, 0.14);
+    background: rgba(255, 255, 255, 0.06);
+    color: #f8f1eb;
+  }
+
+  .bw-footer__newsletter-submit {
+    min-height: 48px;
+    padding: 0 18px;
+    border: none;
+    border-radius: 999px;
+    background: #f8f1eb;
+    color: #201713;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .bw-footer__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+    padding-top: 18px;
+    color: rgba(248, 241, 235, 0.58);
+    font-size: 13px;
+  }
+
+  .bw-footer__bottom-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+  }
+
+  .bw-footer__bottom-links a {
+    color: rgba(248, 241, 235, 0.58);
+    text-decoration: none;
+  }
+
+  .bw-footer__bottom-links a:hover {
+    color: #ffffff;
+  }
+
+  @media (max-width: 1080px) {
+    .bw-footer__top {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .bw-footer {
+      padding: 0 16px 18px;
+    }
+
+    .bw-footer__inner {
+      padding: 28px 22px;
+      border-radius: 24px;
+    }
+
+    .bw-footer__top {
+      grid-template-columns: 1fr;
+    }
+
+    .bw-footer__bottom {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
 </style>
 
-<footer class="footer">
-  <div class="footer-inner">
-    <div class="footer-main">
-      <!-- Brand & Newsletter -->
-      <div class="footer-brand">
-        <h3>{{ shop.name }}</h3>
-        <p>Premium furniture for your dream home. Handcrafted with love, delivered with care.</p>
+<footer class="bw-footer">
+  <div class="bw-footer__inner">
+    <div class="bw-footer__top">
+      <div>
+        <span class="bw-footer__brand-name">{{ footer_brand }}</span>
+        <p class="bw-footer__copy">{{ footer_copy }}</p>
 
-        <!-- Newsletter -->
-        <div class="footer-newsletter">
-          <p>Subscribe for exclusive offers</p>
-          <form class="newsletter-form" action="/contact#newsletter" method="post">
-            <input type="email" name="email" placeholder="Enter your email" required>
-            <button type="submit">Subscribe</button>
-          </form>
-        </div>
+        <ul class="bw-footer__contact-list">
+          <li><a href="tel:+918800609609">+91-8800-609-609</a></li>
+          <li><a href="mailto:care@bluewud.com">care@bluewud.com</a></li>
+          <li><a href="/pages/contact-us">Contact Us</a></li>
+          <li><a href="/pages/visit-us">Visit Us</a></li>
+        </ul>
 
-        <!-- Social Icons -->
-        <div class="social-icons">
-          <a href="https://instagram.com" class="social-icon" target="_blank" rel="noopener" aria-label="Instagram">
-            <svg viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
-          </a>
-          <a href="https://facebook.com" class="social-icon" target="_blank" rel="noopener" aria-label="Facebook">
-            <svg viewBox="0 0 24 24"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
-          </a>
-          <a href="https://pinterest.com" class="social-icon" target="_blank" rel="noopener" aria-label="Pinterest">
-            <svg viewBox="0 0 24 24"><path d="M12 0C5.373 0 0 5.372 0 12c0 5.084 3.163 9.426 7.627 11.174-.105-.949-.2-2.405.042-3.441.218-.937 1.407-5.965 1.407-5.965s-.359-.719-.359-1.782c0-1.668.967-2.914 2.171-2.914 1.023 0 1.518.769 1.518 1.69 0 1.029-.655 2.568-.994 3.995-.283 1.194.599 2.169 1.777 2.169 2.133 0 3.772-2.249 3.772-5.495 0-2.873-2.064-4.882-5.012-4.882-3.414 0-5.418 2.561-5.418 5.207 0 1.031.397 2.138.893 2.738a.36.36 0 01.083.345l-.333 1.36c-.053.22-.174.267-.402.161-1.499-.698-2.436-2.889-2.436-4.649 0-3.785 2.75-7.262 7.929-7.262 4.163 0 7.398 2.967 7.398 6.931 0 4.136-2.607 7.464-6.227 7.464-1.216 0-2.359-.631-2.75-1.378l-.748 2.853c-.271 1.043-1.002 2.35-1.492 3.146C9.57 23.812 10.763 24 12 24c6.627 0 12-5.373 12-12 0-6.628-5.373-12-12-12z"/></svg>
-          </a>
-          <a href="https://youtube.com" class="social-icon" target="_blank" rel="noopener" aria-label="YouTube">
-            <svg viewBox="0 0 24 24"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-          </a>
+        <div class="bw-footer__newsletter">
+          <div class="bw-footer__heading">Stay connected</div>
+          {% form 'customer', class: 'bw-footer__newsletter-form' %}
+            <input type="hidden" name="contact[tags]" value="newsletter">
+            <input class="bw-footer__newsletter-field" type="email" name="contact[email]" placeholder="Email for updates" required>
+            <button class="bw-footer__newsletter-submit" type="submit">Subscribe</button>
+          {% endform %}
         </div>
       </div>
 
-      <!-- Shop Column -->
-      <div class="footer-column">
-        <h4>Shop</h4>
-        <ul>
-          <li><a href="/collections/sofas">Sofas</a></li>
-          <li><a href="/collections/beds">Beds</a></li>
-          <li><a href="/collections/dining">Dining</a></li>
-          <li><a href="/collections/storage">Storage</a></li>
-          <li><a href="/collections/wardrobes">Wardrobes</a></li>
-          <li><a href="/collections/all">View All Products</a></li>
+      <div>
+        <h2 class="bw-footer__heading">Shop</h2>
+        <ul class="bw-footer__links">
+          <li><a href="/collections/living-room">Living Room</a></li>
+          <li><a href="/collections/bed-room">Bedroom</a></li>
+          <li><a href="/collections/study-tables">Study Tables</a></li>
+          <li><a href="/collections/tv-unit-furniture">TV Units</a></li>
+          <li><a href="/collections/book-shelves">Bookshelves</a></li>
+          <li><a href="/collections/wardrobe">Wardrobes</a></li>
+          <li><a href="/collections/new_launches">New Launches</a></li>
         </ul>
       </div>
 
-      <!-- Company Column -->
-      <div class="footer-column">
-        <h4>Company</h4>
-        <ul>
+      <div>
+        <h2 class="bw-footer__heading">Company</h2>
+        <ul class="bw-footer__links">
           <li><a href="/pages/about-us">About Us</a></li>
-          <li><a href="/pages/contact">Contact</a></li>
-          <li><a href="/pages/faq">FAQ</a></li>
-          <li><a href="/pages/shipping">Shipping</a></li>
-          <li><a href="/pages/returns">Returns</a></li>
-          <li><a href="/pages/privacy">Privacy Policy</a></li>
-          <li><a href="/pages/terms">Terms & Conditions</a></li>
+          <li><a href="/pages/buy-in-bulk">Buy In Bulk</a></li>
+          <li><a href="/pages/visit-us">Visit Us</a></li>
+          <li><a href="/pages/award-achievment">Awards and Achievement</a></li>
+          <li><a href="/pages/offers-discount">Offers and Discount</a></li>
+          <li><a href="/pages/help-center">Help Center</a></li>
         </ul>
       </div>
 
-      <!-- Contact Column -->
-      <div class="footer-column footer-contact">
-        <h4>Contact Us</h4>
-        <ul>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-            <span>support@bluewud.com</span>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg>
-            <span>+91 8383013068</span>
-          </li>
-          <li>
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
-            <span>Mumbai, Maharashtra, India</span>
-          </li>
+      <div>
+        <h2 class="bw-footer__heading">Policies</h2>
+        <ul class="bw-footer__links">
+          <li><a href="/pages/policies">Policies</a></li>
+          <li><a href="/pages/returns-refunds">Returns and Refunds</a></li>
+          <li><a href="/pages/payment-security">Payment and Security</a></li>
+          <li><a href="/pages/terms-of-use">Terms of Use</a></li>
+          <li><a href="/pages/contact-us">Support</a></li>
         </ul>
       </div>
     </div>
 
-    <!-- Payment & Bottom -->
-    <div class="footer-payment">
-      <div class="payment-icons">
-        <div class="payment-icon">Visa</div>
-        <div class="payment-icon">MC</div>
-        <div class="payment-icon">UPI</div>
-        <div class="payment-icon">Paytm</div>
-        <div class="payment-icon">Google</div>
-        <div class="payment-icon">Apple</div>
+    <div class="bw-footer__bottom">
+      <span>&copy; {{ 'now' | date: '%Y' }} {{ footer_brand }}. All rights reserved.</span>
+      <div class="bw-footer__bottom-links">
+        <a href="/pages/payment-security">Payment and Security</a>
+        <a href="/pages/returns-refunds">Returns</a>
+        <a href="/pages/terms-of-use">Terms</a>
       </div>
-      <div class="footer-bottom-links">
-        <a href="/pages/privacy">Privacy</a>
-        <a href="/pages/terms">Terms</a>
-        <a href="/pages/shipping">Shipping Policy</a>
-      </div>
-      <p class="footer-copyright">&copy; {{ 'now' | date: '%Y' }} {{ shop.name }}. All rights reserved.</p>
     </div>
   </div>
 </footer>
@@ -311,6 +237,24 @@
 {% schema %}
 {
   "name": "Footer",
-  "presets": [{ "name": "Footer" }]
+  "settings": [
+    {
+      "type": "text",
+      "id": "footer_brand",
+      "label": "Brand name",
+      "default": "Bluewud"
+    },
+    {
+      "type": "textarea",
+      "id": "footer_copy",
+      "label": "Brand copy",
+      "default": "Bluewud brings premium-value furniture, smarter storage, and room-defining pieces together in one clearer shopping journey."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer"
+    }
+  ]
 }
 {% endschema %}

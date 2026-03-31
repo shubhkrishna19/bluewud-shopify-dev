@@ -66,7 +66,7 @@
     %}
 
     <link rel="preload" href="{{ settings.type_menu | font_url }}" as="font" crossorigin="anonymous">
-    <link rel="preload" as="style" href="{{ 'woodenstreet-master.css' | asset_url }}">
+    <link rel="preload" as="style" href="{{ 'wooden-master.css' | asset_url }}">
 
     {% include 'buddha-megamenu' %}
   {{ content_for_header }}
@@ -75,7 +75,7 @@
 
 
 
-    {{ 'woodenstreet-master.css' | asset_url | stylesheet_tag }}
+    {{ 'wooden-master.css' | asset_url | stylesheet_tag }}
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     {% comment %}Inject theme-object begin{% endcomment %}
     <script>
@@ -101,7 +101,30 @@
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Quattrocento:wght@400;700&display=swap" rel="stylesheet"> 
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Quattrocento:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+      :root {
+        --bw-font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+        --bw-font-serif: 'Quattrocento', Georgia, serif;
+        --bw-brand-ink: #211713;
+        --bw-brand-blue: #355a6d;
+        --bw-brand-warm: #a66a43;
+        --bw-brand-sand: #f8f3ed;
+      }
+
+      [data-modal-container],
+      [data-modal-container-1],
+      [data-photoswipe] {
+        display: none;
+      }
+
+      .modal-visible [data-modal-container],
+      .modal-1-visible [data-modal-container-1],
+      [data-photoswipe].pswp--open,
+      [data-photoswipe].pswp--visible {
+        display: block;
+      }
+    </style>
     
     {% comment %}Inject theme-object end{% endcomment %}
    
@@ -154,7 +177,6 @@ src="https://www.facebook.com/tr?id=1321706361586738&ev=PageView&noscript=1"
       if(window.Shopify&&window.Shopify.designMode)document.documentElement.className+=' in-theme-editor';
       if(('ontouchstart' in window)||window.DocumentTouch&&document instanceof DocumentTouch)document.documentElement.className=document.documentElement.className.replace(/\bno-touch\b/,'has-touch');
     </script>
-    <a class="skip-to-main" href="#site-main">{{ 'general.accessibility.skip_to_content' | t }}</a>
     {% section 'announcement' %}
     <header
       class="site-header site-header-nav--open"
@@ -170,13 +192,6 @@ src="https://www.facebook.com/tr?id=1321706361586738&ev=PageView&noscript=1"
       
       {% include 'seo-text' %}
       
-      {%- if template contains 'customer' -%}
-      {% section 'dynamic-highlights-banner-2' %}
-      {% endif %}
-      
-      {% unless template == "index" %}
-      {% section 'pxs-newsletter' %}
-      {% endunless %}
     </main>
 
     {% section 'footer' %}

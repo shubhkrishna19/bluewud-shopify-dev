@@ -17,17 +17,19 @@
         "ajax_cart": "Empire JS based",
         "quickshop": "Empire Logic"
     },
+    "theme_path": "woodenstreet-theme",
+    "app_path": "woodenbeast",
     "asset_mappings": {
-        "main_css": "assets/wooden-master.css",
-        "main_js_bridge": "assets/section-hydration.js"
+        "main_css": "woodenstreet-theme/assets/wooden-master.css",
+        "main_js_bridge": "woodenstreet-theme/assets/section-hydration.js"
     },
     "dependencies": {
         "fonts": "Google Fonts (Inter, Barlow, Poppins)",
-        "icons": "Whisper SVG Library (snippets/icon.liquid)",
+        "icons": "Whisper SVG Library (woodenstreet-theme/snippets/icon.liquid)",
         "utilities": [
-            "snippets/spacing-padding.liquid",
-            "snippets/badge.liquid",
-            "snippets/price.liquid"
+            "woodenstreet-theme/snippets/spacing-padding.liquid",
+            "woodenstreet-theme/snippets/badge.liquid",
+            "woodenstreet-theme/snippets/price.liquid"
         ]
     },
     "agent_roles": {

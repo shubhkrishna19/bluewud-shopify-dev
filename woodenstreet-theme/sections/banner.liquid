@@ -1,96 +1,361 @@
-{% comment %} Banner Section - Promotional CTA {% endcomment %}
+{% liquid
+  assign banner_eyebrow = section.settings.eyebrow | default: 'Bluewud for larger furnishing needs'
+  assign banner_title = section.settings.title | default: 'For homes, projects, and larger furnishing requirements.'
+  assign banner_copy = section.settings.copy | default: 'Whether you are setting up a new home, upgrading a workspace, or planning a larger order, Bluewud keeps the experience simple, dependable, and personal.'
+  assign primary_label = section.settings.primary_label | default: 'Buy In Bulk'
+  assign primary_url = section.settings.primary_url
+  assign secondary_label = section.settings.secondary_label | default: 'Visit Us'
+  assign secondary_url = section.settings.secondary_url
+  assign banner_image = section.settings.banner_image
+
+  if primary_url == blank
+    assign primary_url = '/pages/buy-in-bulk'
+  endif
+
+  if secondary_url == blank
+    assign secondary_url = '/pages/visit-us'
+  endif
+
+  assign banner_collection = collections['hp-bluewuds-bestseller']
+  assign banner_product = blank
+  assign banner_fallback_image = blank
+
+  if banner_collection == blank
+    assign banner_collection = collections['living-room']
+  endif
+
+  if banner_collection != blank and banner_collection.products.size > 0
+    assign banner_product = banner_collection.products.first
+  endif
+
+  if banner_collection != blank and banner_collection.image != blank
+    assign banner_fallback_image = banner_collection.image
+  elsif banner_product != blank and banner_product.featured_image != blank
+    assign banner_fallback_image = banner_product.featured_image
+  endif
+%}
+
 <style>
-.banner-section {
-  padding: 40px 30px;
-  background: linear-gradient(135deg, #fdfbf7 0%, #f5f0eb 100%);
-}
-.banner-inner {
-  max-width: 1400px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 0;
-  align-items: center;
-  border-radius: 16px;
-  overflow: hidden;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-}
-.banner-content {
-  padding: 60px;
-  background: white;
-}
-.banner-tag {
-  display: inline-block;
-  background: #c47d4e;
-  color: white;
-  padding: 6px 14px;
-  border-radius: 20px;
-  font-size: 12px;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  margin-bottom: 20px;
-}
-.banner-content h2 {
-  font-size: 36px;
-  font-weight: 800;
-  color: #1a1a1a;
-  margin: 0 0 15px;
-  font-family: 'Poppins', sans-serif;
-  line-height: 1.2;
-}
-.banner-content p {
-  font-size: 16px;
-  color: #666;
-  margin: 0 0 25px;
-  line-height: 1.7;
-}
-.banner-btn {
-  display: inline-block;
-  padding: 14px 32px;
-  background: #c47d4e;
-  color: white;
-  text-decoration: none;
-  border-radius: 8px;
-  font-weight: 600;
-  transition: all 0.3s;
-}
-.banner-btn:hover {
-  background: #a86840;
-  transform: translateY(-2px);
-}
-.banner-image {
-  height: 100%;
-  min-height: 350px;
-  background: url('https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=600&q=80') center/cover;
-}
-@media (max-width: 968px) {
-  .banner-inner { grid-template-columns: 1fr; }
-  .banner-image { min-height: 250px; }
-  .banner-content { padding: 40px; }
-  .banner-content h2 { font-size: 28px; }
-}
-@media (max-width: 480px) {
-  .banner-content { padding: 30px 20px; }
-  .banner-content h2 { font-size: 24px; }
-}
+  .bw-story {
+    padding: 12px 24px 70px;
+    background: #faf6f1;
+  }
+
+  .bw-story__inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+    gap: 18px;
+  }
+
+  .bw-story__panel,
+  .bw-story__media {
+    border-radius: 30px;
+    overflow: hidden;
+  }
+
+  .bw-story__panel {
+    background: #231813;
+    color: #f8f1eb;
+    padding: 46px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 22px;
+    box-shadow: 0 28px 80px rgba(35, 24, 19, 0.16);
+  }
+
+  .bw-story__eyebrow {
+    color: rgba(248, 241, 235, 0.7);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .bw-story__title {
+    margin: 0;
+    font-size: clamp(30px, 4vw, 46px);
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+  }
+
+  .bw-story__copy {
+    margin: 0;
+    color: rgba(248, 241, 235, 0.76);
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .bw-story__bullets {
+    display: grid;
+    gap: 12px;
+  }
+
+  .bw-story__bullet {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    color: rgba(248, 241, 235, 0.88);
+    font-size: 15px;
+    line-height: 1.6;
+  }
+
+  .bw-story__bullet-mark {
+    width: 24px;
+    height: 24px;
+    border-radius: 50%;
+    flex: 0 0 24px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.12);
+    color: #f8f1eb;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .bw-story__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+  }
+
+  .bw-story__primary,
+  .bw-story__secondary {
+    min-height: 50px;
+    padding: 0 22px;
+    border-radius: 999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .bw-story__primary {
+    background: #f8f1eb;
+    color: #231813;
+  }
+
+  .bw-story__secondary {
+    color: #f8f1eb;
+    border: 1px solid rgba(248, 241, 235, 0.22);
+  }
+
+  .bw-story__media {
+    position: relative;
+    min-height: 520px;
+    background: #ddd2ca;
+  }
+
+  .bw-story__media img,
+  .bw-story__fallback {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  .bw-story__media img {
+    object-fit: cover;
+  }
+
+  .bw-story__fallback {
+    background:
+      radial-gradient(circle at 20% 16%, rgba(255, 255, 255, 0.2), transparent 24%),
+      radial-gradient(circle at 78% 20%, rgba(166, 106, 67, 0.26), transparent 24%),
+      linear-gradient(145deg, #e2d3c8 0%, #ba967f 42%, #63473d 100%);
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-start;
+    padding: 24px;
+    box-sizing: border-box;
+  }
+
+  .bw-story__fallback-note {
+    display: inline-flex;
+    align-items: center;
+    padding: 12px 14px;
+    border-radius: 999px;
+    background: rgba(255, 250, 246, 0.9);
+    color: #231813;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .bw-story__badge {
+    position: absolute;
+    right: 22px;
+    bottom: 22px;
+    max-width: 280px;
+    padding: 20px;
+    border-radius: 24px;
+    background: rgba(255, 250, 246, 0.92);
+    color: #231813;
+    box-shadow: 0 20px 60px rgba(35, 24, 19, 0.16);
+  }
+
+  .bw-story__badge-title {
+    margin: 0 0 8px;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .bw-story__badge-copy {
+    margin: 0;
+    color: #625148;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 1050px) {
+    .bw-story__inner {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .bw-story {
+      padding: 12px 16px 54px;
+    }
+
+    .bw-story__panel {
+      padding: 28px 22px;
+      border-radius: 24px;
+    }
+
+    .bw-story__media {
+      min-height: 360px;
+      border-radius: 24px;
+    }
+
+    .bw-story__badge {
+      left: 16px;
+      right: 16px;
+      bottom: 16px;
+      max-width: none;
+    }
+  }
 </style>
 
-<div class="banner-section">
-  <div class="banner-inner">
-    <div class="banner-content">
-      <span class="banner-tag">Limited Time Offer</span>
-      <h2>Transform Your Home with Premium Furniture</h2>
-      <p>Get up to 50% off on our exclusive collection. Handcrafted with love, designed for your comfort.</p>
-      <a href="/collections/all" class="banner-btn">Shop Now</a>
+<section class="bw-story">
+  <div class="bw-story__inner">
+    <div class="bw-story__panel">
+      <span class="bw-story__eyebrow">{{ banner_eyebrow }}</span>
+      <h2 class="bw-story__title">{{ banner_title }}</h2>
+      <p class="bw-story__copy">{{ banner_copy }}</p>
+
+      <div class="bw-story__bullets">
+        <div class="bw-story__bullet">
+          <span class="bw-story__bullet-mark">1</span>
+          <span>Expert support for homes, offices, and hospitality spaces.</span>
+        </div>
+        <div class="bw-story__bullet">
+          <span class="bw-story__bullet-mark">2</span>
+          <span>Showroom visits, bulk enquiries, and direct assistance when you need it.</span>
+        </div>
+        <div class="bw-story__bullet">
+          <span class="bw-story__bullet-mark">3</span>
+          <span>Thoughtful furniture with dependable quality, finish, and service.</span>
+        </div>
+      </div>
+
+      <div class="bw-story__actions">
+        <a class="bw-story__primary" href="{{ primary_url }}">{{ primary_label }}</a>
+        <a class="bw-story__secondary" href="{{ secondary_url }}">{{ secondary_label }}</a>
+      </div>
     </div>
-    <div class="banner-image"></div>
+
+    <div class="bw-story__media">
+      {% if banner_image != blank %}
+        {{ banner_image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '600, 900, 1200, 1400', sizes: '(max-width: 1050px) 100vw, 54vw' }}
+      {% elsif banner_fallback_image != blank %}
+        {{ banner_fallback_image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '600, 900, 1200, 1400', sizes: '(max-width: 1050px) 100vw, 54vw', alt: banner_collection.title | default: banner_title }}
+      {% else %}
+        <div class="bw-story__fallback" role="img" aria-label="Bluewud supporting banner placeholder until a branded image is added">
+          <span class="bw-story__fallback-note">Add a Bluewud image here</span>
+        </div>
+      {% endif %}
+      <div class="bw-story__badge">
+        <h3 class="bw-story__badge-title">
+          {% if banner_product != blank %}
+            {{ banner_product.title }}
+          {% else %}
+            Plan a larger order with ease
+          {% endif %}
+        </h3>
+        <p class="bw-story__badge-copy">
+          {% if banner_product != blank %}
+            {{ banner_product.description | strip_html | truncatewords: 16 }}
+          {% else %}
+            Get dedicated help for project orders, showroom visits, and personalised assistance.
+          {% endif %}
+        </p>
+      </div>
+    </div>
   </div>
-</div>
+</section>
 
 {% schema %}
 {
   "name": "Banner",
-  "presets": [{ "name": "Banner" }]
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Bluewud for larger furnishing needs"
+    },
+    {
+      "type": "textarea",
+      "id": "title",
+      "label": "Title",
+      "default": "For homes, projects, and larger furnishing requirements."
+    },
+    {
+      "type": "textarea",
+      "id": "copy",
+      "label": "Copy",
+      "default": "Whether you are setting up a new home, upgrading a workspace, or planning a larger order, Bluewud keeps the experience simple, dependable, and personal."
+    },
+    {
+      "type": "text",
+      "id": "primary_label",
+      "label": "Primary CTA label",
+      "default": "Buy In Bulk"
+    },
+    {
+      "type": "url",
+      "id": "primary_url",
+      "label": "Primary CTA link"
+    },
+    {
+      "type": "text",
+      "id": "secondary_label",
+      "label": "Secondary CTA label",
+      "default": "Visit Us"
+    },
+    {
+      "type": "url",
+      "id": "secondary_url",
+      "label": "Secondary CTA link"
+    },
+    {
+      "type": "image_picker",
+      "id": "banner_image",
+      "label": "Banner image"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner"
+    }
+  ]
 }
 {% endschema %}

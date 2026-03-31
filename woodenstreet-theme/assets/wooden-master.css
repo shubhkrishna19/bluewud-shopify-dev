@@ -3289,3 +3289,32 @@
     font-size: 14px;
   }
 }
+
+/* =========================================================================
+   BLUEWUD TYPOGRAPHY OVERRIDES
+   ========================================================================= */
+
+html,
+body,
+button,
+input,
+select,
+textarea {
+  font-family: var(--bw-font-sans);
+}
+
+.bw-announce,
+.bw-header-shell,
+.bw-hero,
+.bw-trust,
+.bw-categories,
+.bw-banner,
+.bw-featured,
+.bw-testimonials,
+.bw-newsletter,
+.bw-collection,
+.bw-product,
+.bw-page,
+.bw-cart {
+  font-family: var(--bw-font-sans);
+}

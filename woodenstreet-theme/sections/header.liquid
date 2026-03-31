@@ -1,290 +1,754 @@
-{% comment %} Fresh Header - Enhanced with SVG Icons and Mobile Menu {% endcomment %}
+{% liquid
+  assign brand_name = section.settings.brand_name | default: 'Bluewud'
+  assign brand_wordmark = brand_name | downcase | capitalize
+  assign brand_tagline = section.settings.brand_tagline | default: 'Premium furniture for modern Indian homes'
+  assign brand_kicker = section.settings.brand_kicker | default: '15 years of crafted living'
+  assign phone_label = section.settings.phone_label | default: '+91-8800-609-609'
+  assign phone_url = section.settings.phone_url | default: 'tel:+918800609609'
+  assign email_label = section.settings.email_label | default: 'care@bluewud.com'
+  assign email_url = section.settings.email_url | default: 'mailto:care@bluewud.com'
+  assign cta_label = section.settings.cta_label | default: 'Buy In Bulk'
+  assign cta_url = section.settings.cta_url
+  assign brand_logo = section.settings.brand_logo
+  assign primary_menu_links = section.settings.primary_menu.links
+
+  if primary_menu_links == blank and linklists['main-menu'] != blank
+    assign primary_menu_links = linklists['main-menu'].links
+  endif
+
+  if brand_logo == blank and settings.favicon != blank
+    assign brand_logo = settings.favicon
+  endif
+
+  if cta_url == blank
+    assign cta_url = '/pages/buy-in-bulk'
+  endif
+%}
+
 <style>
-.header {
-  background: #fff;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.08);
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-}
-.header-inner {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 15px 30px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-.header-logo a {
-  font-size: 28px;
-  font-weight: 700;
-  color: #1a1a1a;
-  text-decoration: none;
-  font-family: 'Poppins', sans-serif;
-}
-.header-nav {
-  display: flex;
-  gap: 30px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.header-nav li {
-  position: relative;
-}
-.header-nav a {
-  color: #333;
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 500;
-  padding: 10px 0;
-  display: block;
-  transition: color 0.3s;
-}
-.header-nav a:hover {
-  color: #c47d4e;
-}
-.header-actions {
-  display: flex;
-  gap: 20px;
-  align-items: center;
-}
-.header-actions a {
-  color: #333;
-  text-decoration: none;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: color 0.3s;
-}
-.header-actions a:hover {
-  color: #c47d4e;
-}
-.header-actions svg {
-  width: 22px;
-  height: 22px;
-}
-.cart-link {
-  position: relative;
-}
-.cart-count {
-  position: absolute;
-  top: -8px;
-  right: -8px;
-  background: #c47d4e;
-  color: white;
-  font-size: 11px;
-  font-weight: 600;
-  min-width: 18px;
-  height: 18px;
-  border-radius: 9px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0 5px;
-}
+  .visually-hidden {
+    position: absolute !important;
+    width: 1px !important;
+    height: 1px !important;
+    padding: 0 !important;
+    margin: -1px !important;
+    overflow: hidden !important;
+    clip: rect(0, 0, 0, 0) !important;
+    white-space: nowrap !important;
+    border: 0 !important;
+  }
 
-/* Mobile Menu */
-.mobile-menu-btn {
-  display: none;
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
-}
-.mobile-menu-btn svg {
-  width: 28px;
-  height: 28px;
-}
+  body.bw-header-drawer-open {
+    overflow: hidden;
+  }
 
-.mobile-nav {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.5);
-  z-index: 1001;
-}
-.mobile-nav.active {
-  display: block;
-}
-.mobile-nav-content {
-  position: fixed;
-  top: 0;
-  left: -300px;
-  width: 300px;
-  height: 100%;
-  background: white;
-  overflow-y: auto;
-  transition: left 0.3s;
-}
-.mobile-nav.active .mobile-nav-content {
-  left: 0;
-}
-.mobile-nav-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  border-bottom: 1px solid #eee;
-}
-.mobile-nav-close {
-  background: none;
-  border: none;
-  cursor: pointer;
-  padding: 5px;
-}
-.mobile-nav-close svg {
-  width: 24px;
-  height: 24px;
-}
-.mobile-nav-links {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.mobile-nav-links li {
-  border-bottom: 1px solid #eee;
-}
-.mobile-nav-links a {
-  display: block;
-  padding: 15px 20px;
-  color: #333;
-  text-decoration: none;
-  font-size: 16px;
-  transition: background 0.3s, color 0.3s;
-}
-.mobile-nav-links a:hover {
-  background: #f9f9f9;
-  color: #c47d4e;
-}
+  .bw-header-shell {
+    background: rgba(248, 243, 237, 0.96);
+    backdrop-filter: blur(18px);
+    border-bottom: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 14px 28px rgba(32, 24, 19, 0.05);
+  }
 
-@media (max-width: 968px) {
-  .header-nav {
+  .bw-header-shell a {
+    text-decoration: none;
+  }
+
+  .bw-header__utility {
+    border-bottom: 1px solid rgba(45, 33, 27, 0.08);
+    background: rgba(255, 255, 255, 0.26);
+  }
+
+  .bw-header__utility-inner,
+  .bw-header__main-inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding-left: 28px;
+    padding-right: 28px;
+  }
+
+  .bw-header__utility-inner {
+    min-height: 42px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+  }
+
+  .bw-header__contact,
+  .bw-header__support-links,
+  .bw-header__nav,
+  .bw-header__actions {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .bw-header__contact {
+    flex-wrap: wrap;
+  }
+
+  .bw-header__support-links {
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    gap: 12px 16px;
+  }
+
+  .bw-header__utility-link,
+  .bw-header__support-link {
+    color: rgba(53, 43, 36, 0.78);
+    font-size: 11px;
+    font-weight: 650;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: color 0.2s ease;
+  }
+
+  .bw-header__utility-link:hover,
+  .bw-header__support-link:hover {
+    color: #355a6d;
+  }
+
+  .bw-header__contact-separator {
+    width: 4px;
+    height: 4px;
+    border-radius: 999px;
+    background: rgba(45, 33, 27, 0.22);
+  }
+
+  .bw-header__support-link {
+    color: #2b201a;
+  }
+
+  .bw-header__main-inner {
+    min-height: 96px;
+    display: grid;
+    grid-template-columns: minmax(260px, 330px) 1fr auto;
+    align-items: center;
+    gap: 28px;
+  }
+
+  .bw-header__brand {
+    display: block;
+    min-width: 0;
+    transition: transform 0.22s ease;
+  }
+
+  .bw-header__brand-visual {
+    width: 56px;
+    height: 56px;
+    flex: 0 0 56px;
+    border-radius: 18px;
+    border: 1px solid rgba(45, 33, 27, 0.09);
+    background: linear-gradient(135deg, #f7efe7 0%, #ecdfd3 54%, #dbe5ec 100%);
+    box-shadow: 0 12px 22px rgba(36, 26, 21, 0.08);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .bw-header__brand-logo {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 10px;
+  }
+
+  .bw-header__brand-seal {
+    font-family: var(--bw-font-serif);
+    font-size: 24px;
+    font-weight: 700;
+    color: #355a6d;
+  }
+
+  .bw-header__brand-copy {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+  }
+
+  .bw-header__brand-kicker {
+    color: #8a7465;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+
+  .bw-header__brand-wordmark {
+    display: inline-block;
+    font-family: var(--bw-font-sans);
+    font-size: 31px;
+    font-weight: 800;
+    line-height: 0.95;
+    letter-spacing: -0.065em;
+    color: #4f788f;
+    transition: color 0.22s ease, background 0.22s ease, -webkit-text-fill-color 0.22s ease;
+  }
+
+  .bw-header__brand:hover,
+  .bw-header__brand:focus-visible {
+    transform: translateY(-1px);
+  }
+
+  .bw-header__brand:hover .bw-header__brand-wordmark,
+  .bw-header__brand:focus-visible .bw-header__brand-wordmark {
+    background: linear-gradient(90deg, #4f788f 0 50%, #ffffff 50% 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 1px rgba(32, 23, 19, 0.16);
+  }
+
+  .bw-header__brand-tagline {
+    color: #6c5b51;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .bw-header__nav {
+    justify-content: center;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+
+  .bw-header__nav-link {
+    color: #241a15;
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    position: relative;
+    padding: 14px 0;
+    transition: color 0.2s ease;
+  }
+
+  .bw-header__nav-link::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 6px;
+    width: 20px;
+    height: 2px;
+    border-radius: 999px;
+    background: linear-gradient(90deg, #355a6d 0%, #a66a43 100%);
+    transform: translateX(-50%) scaleX(0);
+    transform-origin: center center;
+    transition: transform 0.22s ease;
+  }
+
+  .bw-header__nav-link:hover,
+  .bw-header__nav-link:focus-visible,
+  .bw-header__nav-link.is-active {
+    color: #355a6d;
+  }
+
+  .bw-header__nav-link:hover::after,
+  .bw-header__nav-link:focus-visible::after,
+  .bw-header__nav-link.is-active::after {
+    transform: translateX(-50%) scaleX(1);
+  }
+
+  .bw-header__actions {
+    justify-content: flex-end;
+    gap: 12px;
+  }
+
+  .bw-header__icon-link,
+  .bw-header__menu-button,
+  .bw-header__drawer-close {
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid rgba(45, 33, 27, 0.12);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #241a15;
+    background: rgba(255, 255, 255, 0.72);
+    cursor: pointer;
+    transition: border-color 0.22s ease, transform 0.22s ease, background 0.22s ease, color 0.22s ease;
+  }
+
+  .bw-header__icon-link:hover,
+  .bw-header__menu-button:hover,
+  .bw-header__drawer-close:hover {
+    border-color: rgba(53, 90, 109, 0.28);
+    background: #ffffff;
+    color: #355a6d;
+    transform: translateY(-1px);
+  }
+
+  .bw-header__icon-link svg,
+  .bw-header__menu-button svg,
+  .bw-header__drawer-close svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .bw-header__cta {
+    padding: 13px 22px;
+    border-radius: 999px;
+    background: linear-gradient(135deg, #231813 0%, #3c2a21 100%);
+    color: #f8f0e9;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.09em;
+    text-transform: uppercase;
+    white-space: nowrap;
+    box-shadow: 0 12px 22px rgba(35, 24, 19, 0.14);
+    transition: transform 0.22s ease, box-shadow 0.22s ease;
+  }
+
+  .bw-header__cta:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 26px rgba(35, 24, 19, 0.18);
+  }
+
+  .bw-header__cart {
+    position: relative;
+  }
+
+  .bw-header__cart-count {
+    position: absolute;
+    top: -5px;
+    right: -4px;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    padding: 0 5px;
+    background: #a66a43;
+    color: #fff;
+    font-size: 11px;
+    line-height: 18px;
+    text-align: center;
+    font-weight: 800;
+  }
+
+  .bw-header__menu-button {
     display: none;
   }
-  .mobile-menu-btn {
+
+  .bw-header__drawer {
+    position: fixed;
+    inset: 0;
+    display: none;
+    z-index: 1100;
+  }
+
+  .bw-header__drawer.is-open {
     display: block;
   }
-  .header-inner {
-    padding: 12px 20px;
+
+  .bw-header__drawer-backdrop {
+    position: absolute;
+    inset: 0;
+    background: rgba(20, 15, 12, 0.45);
   }
-  .header-logo a {
-    font-size: 24px;
+
+  .bw-header__drawer-panel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: min(88vw, 360px);
+    height: 100%;
+    background: #fbf6f1;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    box-shadow: 24px 0 48px rgba(0, 0, 0, 0.18);
   }
-}
+
+  .bw-header__drawer-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .bw-header__drawer-nav,
+  .bw-header__drawer-links {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .bw-header__drawer-heading {
+    color: #6d5b52;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  .bw-header__drawer-link {
+    color: #231813;
+    font-size: 16px;
+    font-weight: 700;
+    padding: 10px 0;
+    border-bottom: 1px solid rgba(45, 33, 27, 0.08);
+  }
+
+  .bw-header__drawer-contact {
+    display: grid;
+    gap: 10px;
+    padding: 16px;
+    border-radius: 18px;
+    background: rgba(35, 24, 19, 0.04);
+  }
+
+  .bw-header__drawer-contact a {
+    color: #231813;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  @media (max-width: 1240px) {
+    .bw-header__main-inner {
+      grid-template-columns: minmax(240px, 310px) 1fr auto;
+      gap: 22px;
+    }
+
+    .bw-header__nav {
+      gap: 18px;
+    }
+
+    .bw-header__nav-link {
+      font-size: 13px;
+    }
+  }
+
+  @media (max-width: 1024px) {
+    .bw-header__utility {
+      display: none;
+    }
+
+    .bw-header__main-inner {
+      min-height: 78px;
+      grid-template-columns: auto 1fr auto;
+      gap: 14px;
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .bw-header__nav,
+    .bw-header__cta,
+    .bw-header__icon-link--account {
+      display: none;
+    }
+
+    .bw-header__menu-button {
+      display: inline-flex;
+    }
+
+    .bw-header__actions {
+      gap: 10px;
+    }
+
+    .bw-header__brand-visual {
+      width: 48px;
+      height: 48px;
+      flex-basis: 48px;
+      border-radius: 16px;
+    }
+
+    .bw-header__brand-wordmark {
+      font-size: 30px;
+    }
+
+    .bw-header__brand-tagline {
+      font-size: 9px;
+      letter-spacing: 0.11em;
+    }
+
+    .bw-header__drawer-panel {
+      width: min(92vw, 340px);
+      padding: 18px 18px 28px;
+      gap: 20px;
+    }
+  }
+
+  @media (max-width: 640px) {
+    .bw-header__brand-kicker,
+    .bw-header__brand-tagline {
+      display: none;
+    }
+
+    .bw-header__brand-wordmark {
+      font-size: 26px;
+    }
+
+    .bw-header__icon-link,
+    .bw-header__menu-button,
+    .bw-header__drawer-close {
+      width: 42px;
+      height: 42px;
+    }
+
+    .bw-header__drawer-link {
+      font-size: 15px;
+      padding: 11px 0;
+    }
+  }
 </style>
 
-<header class="header">
-  <div class="header-inner">
-    <!-- Mobile Menu Button -->
-    <button class="mobile-menu-btn" onclick="toggleMobileMenu()" aria-label="Open menu">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-        <line x1="3" y1="6" x2="21" y2="6"></line>
-        <line x1="3" y1="12" x2="21" y2="12"></line>
-        <line x1="3" y1="18" x2="21" y2="18"></line>
+<div class="bw-header-shell">
+  <div class="bw-header__utility">
+    <div class="bw-header__utility-inner">
+      <div class="bw-header__contact">
+        <a class="bw-header__utility-link" href="{{ phone_url }}">{{ phone_label }}</a>
+        <span class="bw-header__contact-separator" aria-hidden="true"></span>
+        <a class="bw-header__utility-link" href="{{ email_url }}">{{ email_label }}</a>
+      </div>
+      <div class="bw-header__support-links">
+        <a class="bw-header__support-link" href="/pages/about-us">About Us</a>
+        <a class="bw-header__support-link" href="/pages/contact-us">Contact Us</a>
+        <a class="bw-header__support-link" href="/pages/visit-us">Visit Us</a>
+        <a class="bw-header__support-link" href="/pages/help-center">FAQs</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="bw-header__main-inner">
+    <button class="bw-header__menu-button" type="button" aria-expanded="false" aria-controls="bw-header-drawer-{{ section.id }}" data-bw-header-open>
+      <span class="visually-hidden">Open navigation</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+        <path d="M4 7h16"></path>
+        <path d="M4 12h16"></path>
+        <path d="M4 17h16"></path>
       </svg>
     </button>
 
-    <!-- Logo -->
-    <div class="header-logo">
-      <a href="/">{{ shop.name }}</a>
-    </div>
+    <a class="bw-header__brand" href="/">
+      <span class="bw-header__brand-copy">
+        <span class="bw-header__brand-kicker">{{ brand_kicker }}</span>
+        <span class="bw-header__brand-wordmark">{{ brand_wordmark }}</span>
+        <span class="bw-header__brand-tagline">{{ brand_tagline }}</span>
+      </span>
+    </a>
 
-    <!-- Desktop Navigation -->
-    <ul class="header-nav">
-      <li><a href="/collections/sofas">Sofas</a></li>
-      <li><a href="/collections/beds">Beds</a></li>
-      <li><a href="/collections/dining">Dining</a></li>
-      <li><a href="/collections/storage">Storage</a></li>
-      <li><a href="/collections/wardrobes">Wardrobes</a></li>
-      <li><a href="/pages/contact">Contact</a></li>
-    </ul>
+    <nav class="bw-header__nav" aria-label="Primary">
+      {% if primary_menu_links != blank %}
+        {% for link in primary_menu_links limit: 7 %}
+          <a class="bw-header__nav-link{% if link.active %} is-active{% endif %}" href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
+        {% endfor %}
+      {% else %}
+        <a class="bw-header__nav-link" href="/collections/living-room">Living Room</a>
+        <a class="bw-header__nav-link" href="/collections/bed-room">Bedroom</a>
+        <a class="bw-header__nav-link" href="/collections/study-tables">Study Tables</a>
+        <a class="bw-header__nav-link" href="/collections/tv-unit-furniture">TV Units</a>
+        <a class="bw-header__nav-link" href="/collections/book-shelves">Bookshelves</a>
+        <a class="bw-header__nav-link" href="/collections/wardrobe">Wardrobes</a>
+      {% endif %}
+    </nav>
 
-    <!-- Actions -->
-    <div class="header-actions">
-      <!-- Search Icon -->
-      <a href="/search" aria-label="Search">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <circle cx="11" cy="11" r="8"></circle>
-          <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+    <div class="bw-header__actions">
+      <a class="bw-header__icon-link" href="{{ routes.search_url }}" aria-label="Search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <circle cx="11" cy="11" r="7"></circle>
+          <path d="M20 20l-3.5-3.5"></path>
         </svg>
       </a>
-
-      <!-- Account Icon -->
-      <a href="/account" aria-label="Account">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-          <circle cx="12" cy="7" r="4"></circle>
+      <a class="bw-header__icon-link bw-header__icon-link--account" href="{{ routes.account_url }}" aria-label="Account">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M20 21a8 8 0 0 0-16 0"></path>
+          <circle cx="12" cy="8" r="4"></circle>
         </svg>
       </a>
-
-      <!-- Cart Icon -->
-      <a href="/cart" class="cart-link" aria-label="Cart">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
-          <line x1="3" y1="6" x2="21" y2="6"></line>
-          <path d="M16 10a4 4 0 0 1-8 0"></path>
+      <a class="bw-header__icon-link bw-header__cart" href="{{ routes.cart_url }}" aria-label="Cart">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M6 7h15l-1.4 7.1a2 2 0 0 1-2 1.6H9.1a2 2 0 0 1-2-1.6L5.1 3.8H2.5"></path>
+          <circle cx="10" cy="19" r="1.5"></circle>
+          <circle cx="18" cy="19" r="1.5"></circle>
         </svg>
         {% if cart.item_count > 0 %}
-          <span class="cart-count">{{ cart.item_count }}</span>
+          <span class="bw-header__cart-count">{{ cart.item_count }}</span>
         {% endif %}
       </a>
+      <a class="bw-header__cta" href="{{ cta_url }}">{{ cta_label }}</a>
     </div>
   </div>
-</header>
+</div>
 
-<!-- Mobile Navigation -->
-<div class="mobile-nav" id="mobileNav">
-  <div class="mobile-nav-content">
-    <div class="mobile-nav-header">
-      <span style="font-size:20px;font-weight:700;font-family:'Poppins',sans-serif;">{{ shop.name }}</span>
-      <button class="mobile-nav-close" onclick="toggleMobileMenu()" aria-label="Close menu">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-          <line x1="18" y1="6" x2="6" y2="18"></line>
-          <line x1="6" y1="6" x2="18" y2="18"></line>
+<div class="bw-header__drawer" id="bw-header-drawer-{{ section.id }}" data-bw-header-drawer>
+  <div class="bw-header__drawer-backdrop" data-bw-header-close></div>
+  <div class="bw-header__drawer-panel">
+    <div class="bw-header__drawer-top">
+      <div class="bw-header__brand">
+        <span class="bw-header__brand-copy">
+          <span class="bw-header__brand-kicker">{{ brand_kicker }}</span>
+          <span class="bw-header__brand-wordmark">{{ brand_wordmark }}</span>
+        </span>
+      </div>
+      <button class="bw-header__drawer-close" type="button" aria-label="Close navigation" data-bw-header-close>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M6 6l12 12"></path>
+          <path d="M18 6l-12 12"></path>
         </svg>
       </button>
     </div>
-    <ul class="mobile-nav-links">
-      <li><a href="/">Home</a></li>
-      <li><a href="/collections/sofas">Sofas</a></li>
-      <li><a href="/collections/beds">Beds</a></li>
-      <li><a href="/collections/dining">Dining</a></li>
-      <li><a href="/collections/storage">Storage</a></li>
-      <li><a href="/collections/wardrobes">Wardrobes</a></li>
-      <li><a href="/collections/all">All Products</a></li>
-      <li><a href="/pages/contact">Contact</a></li>
-      <li><a href="/search">Search</a></li>
-      <li><a href="/account">My Account</a></li>
-    </ul>
+
+    <div class="bw-header__drawer-nav">
+      <div class="bw-header__drawer-heading">Shop by category</div>
+      {% if primary_menu_links != blank %}
+        {% for link in primary_menu_links %}
+          <a class="bw-header__drawer-link" href="{{ link.url }}">{{ link.title }}</a>
+        {% endfor %}
+      {% else %}
+        <a class="bw-header__drawer-link" href="/collections/living-room">Living Room</a>
+        <a class="bw-header__drawer-link" href="/collections/bed-room">Bedroom</a>
+        <a class="bw-header__drawer-link" href="/collections/study-tables">Study Tables</a>
+        <a class="bw-header__drawer-link" href="/collections/tv-unit-furniture">TV Units</a>
+        <a class="bw-header__drawer-link" href="/collections/book-shelves">Bookshelves</a>
+        <a class="bw-header__drawer-link" href="/collections/wardrobe">Wardrobes</a>
+      {% endif %}
+    </div>
+
+    <div class="bw-header__drawer-links">
+      <div class="bw-header__drawer-heading">Support</div>
+      <a class="bw-header__drawer-link" href="/pages/about-us">About Us</a>
+      <a class="bw-header__drawer-link" href="/pages/contact-us">Contact Us</a>
+      <a class="bw-header__drawer-link" href="/pages/buy-in-bulk">Buy In Bulk</a>
+      <a class="bw-header__drawer-link" href="/pages/visit-us">Visit Us</a>
+      <a class="bw-header__drawer-link" href="/pages/help-center">FAQs</a>
+      <a class="bw-header__drawer-link" href="/pages/offers-discount">Offers & Discounts</a>
+      <a class="bw-header__drawer-link" href="/pages/award-achievment">Award & Achievement</a>
+      <a class="bw-header__drawer-link" href="/pages/returns-refunds">Returns & Refunds</a>
+    </div>
+
+    <div class="bw-header__drawer-links">
+      <div class="bw-header__drawer-heading">Policies</div>
+      <a class="bw-header__drawer-link" href="/policies/terms-of-service">Terms of Service</a>
+      <a class="bw-header__drawer-link" href="/pages/terms-of-use">Terms Of Use</a>
+      <a class="bw-header__drawer-link" href="/pages/policies">Privacy Statement</a>
+      <a class="bw-header__drawer-link" href="/pages/payment-security">Payment & Security</a>
+      <a class="bw-header__drawer-link" href="/pages/help-center">Installation & Cancellation</a>
+      <a class="bw-header__drawer-link" href="{{ routes.search_url }}">Search</a>
+    </div>
+
+    <div class="bw-header__drawer-contact">
+      <a href="{{ phone_url }}">{{ phone_label }}</a>
+      <a href="{{ email_url }}">{{ email_label }}</a>
+      <a href="{{ cta_url }}">{{ cta_label }}</a>
+    </div>
   </div>
 </div>
 
 <script>
-function toggleMobileMenu() {
-  var nav = document.getElementById('mobileNav');
-  nav.classList.toggle('active');
-}
+  (function () {
+    var drawer = document.getElementById('bw-header-drawer-{{ section.id }}');
+    if (!drawer) return;
 
-// Close mobile menu when clicking outside
-document.addEventListener('click', function(e) {
-  var nav = document.getElementById('mobileNav');
-  var btn = document.querySelector('.mobile-menu-btn');
-  var content = document.querySelector('.mobile-nav-content');
-  if (nav.classList.contains('active')) {
-    if (!content.contains(e.target) && !btn.contains(e.target)) {
-      nav.classList.remove('active');
+    var openButton = document.querySelector('[data-bw-header-open][aria-controls="bw-header-drawer-{{ section.id }}"]');
+    var closeButtons = drawer.querySelectorAll('[data-bw-header-close]');
+
+    function setDrawerState(isOpen) {
+      drawer.classList.toggle('is-open', isOpen);
+      if (openButton) {
+        openButton.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+      }
+      document.body.classList.toggle('bw-header-drawer-open', isOpen);
     }
-  }
-});
+
+    if (openButton) {
+      openButton.addEventListener('click', function () {
+        setDrawerState(true);
+      });
+    }
+
+    closeButtons.forEach(function (button) {
+      button.addEventListener('click', function () {
+        setDrawerState(false);
+      });
+    });
+
+    document.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        setDrawerState(false);
+      }
+    });
+  })();
 </script>
 
 {% schema %}
 {
   "name": "Header",
-  "presets": [{ "name": "Header" }]
+  "settings": [
+    {
+      "type": "image_picker",
+      "id": "brand_logo",
+      "label": "Brand logo"
+    },
+    {
+      "type": "link_list",
+      "id": "primary_menu",
+      "label": "Primary menu"
+    },
+    {
+      "type": "text",
+      "id": "brand_name",
+      "label": "Brand name",
+      "default": "Bluewud"
+    },
+    {
+      "type": "text",
+      "id": "brand_kicker",
+      "label": "Brand kicker",
+      "default": "15 years of crafted living"
+    },
+    {
+      "type": "text",
+      "id": "brand_tagline",
+      "label": "Brand tagline",
+      "default": "Premium furniture for modern Indian homes"
+    },
+    {
+      "type": "text",
+      "id": "phone_label",
+      "label": "Phone text",
+      "default": "+91-8800-609-609"
+    },
+    {
+      "type": "text",
+      "id": "phone_url",
+      "label": "Phone link",
+      "default": "tel:+918800609609"
+    },
+    {
+      "type": "text",
+      "id": "email_label",
+      "label": "Email text",
+      "default": "care@bluewud.com"
+    },
+    {
+      "type": "text",
+      "id": "email_url",
+      "label": "Email link",
+      "default": "mailto:care@bluewud.com"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "Primary CTA label",
+      "default": "Buy In Bulk"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "Primary CTA link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Header"
+    }
+  ]
 }
 {% endschema %}

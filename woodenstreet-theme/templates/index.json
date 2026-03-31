@@ -1,18 +1,32 @@
 {
   "sections": {
-    "hero": { "type": "hero" },
-    "trust_banners": { "type": "trust-banners" },
-    "banner": { "type": "banner" },
-    "categories": { "type": "categories" },
-    "featured_products": { "type": "featured-products" },
-    "testimonials": { "type": "testimonials" },
-    "newsletter": { "type": "newsletter" }
+    "hero": {
+      "type": "hero"
+    },
+    "trust_banners": {
+      "type": "trust-banners"
+    },
+    "categories": {
+      "type": "categories"
+    },
+    "banner": {
+      "type": "banner"
+    },
+    "featured_products": {
+      "type": "featured-products"
+    },
+    "testimonials": {
+      "type": "testimonials"
+    },
+    "newsletter": {
+      "type": "newsletter"
+    }
   },
   "order": [
     "hero",
     "trust_banners",
-    "banner",
     "categories",
+    "banner",
     "featured_products",
     "testimonials",
     "newsletter"

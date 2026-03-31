@@ -1,13 +1,262 @@
-{% comment %}
-  This section is used in the page template to render store pages like About us
-  or Contact us.
+{% liquid
+  assign page_intro = page.content | strip_html | truncatewords: 40
 
-  https://shopify.dev/docs/storefronts/themes/architecture/templates/page
-{% endcomment %}
+  if page_intro == blank
+    assign page_intro = 'Discover everything you need to know about Bluewud, from support and policies to business and contact information.'
+  endif
 
-<h1>{{ page.title }}</h1>
+  assign is_help_center = false
 
-{{ page.content }}
+  if page.handle == 'help-center'
+    assign is_help_center = true
+    assign page_intro = 'Browse Bluewud support questions by topic with quick answers for orders, shipping, cancellations, and installation.'
+  endif
+
+  assign page_content_class = 'bw-page__content'
+
+  if is_help_center
+    assign page_content_class = page_content_class | append: ' bw-page__content--help-center'
+  endif
+%}
+
+<style>
+  .bw-page {
+    background:
+      radial-gradient(circle at top left, rgba(166, 106, 67, 0.1), transparent 30%),
+      linear-gradient(180deg, #f8f2ec 0%, #faf6f1 100%);
+    padding: 24px 24px 72px;
+  }
+
+  .bw-page__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    gap: 24px;
+  }
+
+  .bw-page__hero,
+  .bw-page__content,
+  .bw-page__support {
+    border-radius: 32px;
+    background: rgba(255, 251, 247, 0.94);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 24px 70px rgba(35, 24, 19, 0.08);
+  }
+
+  .bw-page__hero {
+    padding: 28px 32px;
+    display: grid;
+    gap: 14px;
+  }
+
+  .bw-page__breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    color: #7b6659;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .bw-page__breadcrumbs a {
+    color: #7b6659;
+    text-decoration: none;
+  }
+
+  .bw-page__eyebrow {
+    display: inline-block;
+    color: #8a684f;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .bw-page__title {
+    margin: 0;
+    color: #201713;
+    font-size: clamp(34px, 5vw, 56px);
+    line-height: 1.03;
+    letter-spacing: -0.04em;
+  }
+
+  .bw-page__intro {
+    margin: 0;
+    color: #64544a;
+    font-size: 16px;
+    line-height: 1.8;
+    max-width: 64ch;
+  }
+
+  .bw-page__content {
+    padding: 28px 32px;
+  }
+
+  .bw-page__content--help-center {
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .bw-page__rte {
+    color: #4d4038;
+    font-size: 16px;
+    line-height: 1.9;
+  }
+
+  .bw-page__rte h1,
+  .bw-page__rte h2,
+  .bw-page__rte h3,
+  .bw-page__rte h4 {
+    color: #201713;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    margin: 1.6em 0 0.7em;
+  }
+
+  .bw-page__rte h1:first-child,
+  .bw-page__rte h2:first-child,
+  .bw-page__rte h3:first-child,
+  .bw-page__rte h4:first-child {
+    margin-top: 0;
+  }
+
+  .bw-page__rte p,
+  .bw-page__rte ul,
+  .bw-page__rte ol,
+  .bw-page__rte blockquote {
+    margin: 0 0 1.1em;
+  }
+
+  .bw-page__rte ul,
+  .bw-page__rte ol {
+    padding-left: 1.3em;
+  }
+
+  .bw-page__rte a {
+    color: #8a684f;
+    text-decoration: none;
+  }
+
+  .bw-page__rte table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.4em 0;
+    background: #fffdfa;
+    border-radius: 18px;
+    overflow: hidden;
+  }
+
+  .bw-page__rte th,
+  .bw-page__rte td {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(45, 33, 27, 0.08);
+    text-align: left;
+  }
+
+  .bw-page__support {
+    padding: 24px 28px;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .bw-page__support-card {
+    padding: 22px;
+    border-radius: 22px;
+    background: rgba(32, 23, 19, 0.04);
+    display: grid;
+    gap: 10px;
+  }
+
+  .bw-page__support-card h2 {
+    margin: 0;
+    color: #201713;
+    font-size: 18px;
+  }
+
+  .bw-page__support-card p {
+    margin: 0;
+    color: #66554c;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .bw-page__support-card a {
+    color: #8a684f;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 760px) {
+    .bw-page {
+      padding: 18px 16px 54px;
+    }
+
+    .bw-page__hero,
+    .bw-page__content,
+    .bw-page__support {
+      padding: 20px;
+      border-radius: 24px;
+    }
+
+    .bw-page__support {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="bw-page">
+  <div class="bw-page__inner">
+    <div class="bw-page__hero">
+      <div class="bw-page__breadcrumbs">
+        <a href="{{ routes.root_url }}">Home</a>
+        <span>/</span>
+        <span>{{ page.title }}</span>
+      </div>
+      <span class="bw-page__eyebrow">Bluewud information</span>
+      <h1 class="bw-page__title">{{ page.title }}</h1>
+      <p class="bw-page__intro">{{ page_intro }}</p>
+    </div>
+
+    <div class="{{ page_content_class }}">
+      {% if is_help_center %}
+        {% render 'help-center-content' %}
+      {% else %}
+        <div class="bw-page__rte">
+          {{ page.content }}
+        </div>
+      {% endif %}
+    </div>
+
+    {% unless is_help_center %}
+      <div class="bw-page__support">
+        <div class="bw-page__support-card">
+          <h2>Need direct help?</h2>
+          <p>Speak with the Bluewud team for quick assistance with orders, support, or product questions.</p>
+          <a href="tel:+918800609609">Call +91-8800-609-609</a>
+        </div>
+
+        <div class="bw-page__support-card">
+          <h2>Visit the help center</h2>
+          <p>Find answers to delivery, returns, payments, and other common questions.</p>
+          <a href="/pages/help-center">Open help center</a>
+        </div>
+
+        <div class="bw-page__support-card">
+          <h2>Business requirement?</h2>
+          <p>For office, hospitality, or GST-led purchases, our bulk team is ready to help.</p>
+          <a href="/pages/buy-in-bulk">Open Buy In Bulk</a>
+        </div>
+      </div>
+    {% endunless %}
+  </div>
+</section>
 
 {% schema %}
 {

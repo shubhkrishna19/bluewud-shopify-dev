@@ -1,38 +1,141 @@
-{% comment %} Fresh Trust Banners {% endcomment %}
 <style>
-.trust-banners { background: #fafafa; padding: 40px 30px; border-bottom: 1px solid #eee; }
-.trust-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4, 1fr); gap: 30px; }
-.trust-item { display: flex; align-items: center; gap: 15px; }
-.trust-icon { width: 50px; height: 50px; background: #c47d4e; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 24px; }
-.trust-text h4 { margin: 0; font-size: 15px; font-weight: 600; color: #1a1a1a; }
-.trust-text p { margin: 3px 0 0; font-size: 13px; color: #666; }
-@media (max-width: 768px) { .trust-inner { grid-template-columns: repeat(2, 1fr); } }
+  .bw-trust {
+    padding: 18px 24px 0;
+    background: linear-gradient(180deg, #f3ece4 0%, #faf6f1 100%);
+  }
+
+  .bw-trust__grid {
+    max-width: 1440px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .bw-trust__card {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    gap: 14px;
+    align-items: start;
+    padding: 20px;
+    border-radius: 24px;
+    background: rgba(255, 252, 248, 0.88);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 16px 40px rgba(35, 24, 19, 0.06);
+  }
+
+  .bw-trust__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 18px;
+    background: linear-gradient(180deg, #2a1d16 0%, #4b3528 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #f8f1eb;
+  }
+
+  .bw-trust__icon svg {
+    width: 22px;
+    height: 22px;
+  }
+
+  .bw-trust__title {
+    margin: 0 0 6px;
+    color: #211711;
+    font-size: 16px;
+    font-weight: 700;
+  }
+
+  .bw-trust__copy {
+    margin: 0;
+    color: #66554c;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 1100px) {
+    .bw-trust__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 700px) {
+    .bw-trust {
+      padding: 14px 16px 0;
+    }
+
+    .bw-trust__grid {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
 
-<div class="trust-banners">
-  <div class="trust-inner">
-    <div class="trust-item">
-      <div class="trust-icon">🚚</div>
-      <div class="trust-text"><h4>Free Shipping</h4><p>All Over India</p></div>
-    </div>
-    <div class="trust-item">
-      <div class="trust-icon">↩️</div>
-      <div class="trust-text"><h4>Easy Returns</h4><p>30-Day Policy</p></div>
-    </div>
-    <div class="trust-item">
-      <div class="trust-icon">🛡️</div>
-      <div class="trust-text"><h4>7 Years Warranty</h4><p>On All Products</p></div>
-    </div>
-    <div class="trust-item">
-      <div class="trust-icon">👥</div>
-      <div class="trust-text"><h4>20 Lakh+</h4><p>Happy Customers</p></div>
-    </div>
+<section class="bw-trust">
+  <div class="bw-trust__grid">
+    <article class="bw-trust__card">
+      <div class="bw-trust__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M3 7h13l4 4v6a2 2 0 0 1-2 2h-1"></path>
+          <path d="M8 19H6a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2"></path>
+          <circle cx="17" cy="19" r="2"></circle>
+          <circle cx="9" cy="19" r="2"></circle>
+        </svg>
+      </div>
+      <div>
+        <h2 class="bw-trust__title">Pan-India delivery</h2>
+        <p class="bw-trust__copy">Reliable delivery support to help your order reach home smoothly.</p>
+      </div>
+    </article>
+
+    <article class="bw-trust__card">
+      <div class="bw-trust__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M9 14l-4-4 4-4"></path>
+          <path d="M5 10h8a6 6 0 1 1 0 12h-1"></path>
+        </svg>
+      </div>
+      <div>
+        <h2 class="bw-trust__title">Warranty and support</h2>
+        <p class="bw-trust__copy">Helpful policies, responsive service, and post-purchase peace of mind.</p>
+      </div>
+    </article>
+
+    <article class="bw-trust__card">
+      <div class="bw-trust__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M12 3l7 4v5c0 5-3.5 8.5-7 10-3.5-1.5-7-5-7-10V7l7-4z"></path>
+          <path d="M9.5 12.5l1.8 1.8 3.7-3.8"></path>
+        </svg>
+      </div>
+      <div>
+        <h2 class="bw-trust__title">Trusted quality</h2>
+        <p class="bw-trust__copy">Thoughtful finishes and dependable craftsmanship for everyday living.</p>
+      </div>
+    </article>
+
+    <article class="bw-trust__card">
+      <div class="bw-trust__icon" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+          <path d="M4 18h16"></path>
+          <path d="M7 14l3-3 2 2 5-5"></path>
+        </svg>
+      </div>
+      <div>
+        <h2 class="bw-trust__title">Easy to explore</h2>
+        <p class="bw-trust__copy">Clear categories, transparent pricing, and a simpler way to shop furniture.</p>
+      </div>
+    </article>
   </div>
-</div>
+</section>
 
 {% schema %}
 {
   "name": "Trust Banners",
-  "presets": [{ "name": "Trust Banners" }]
+  "presets": [
+    {
+      "name": "Trust Banners"
+    }
+  ]
 }
 {% endschema %}

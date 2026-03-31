@@ -1,194 +1,303 @@
-{% comment %} Fresh Featured Products - WoodenStreet Style {% endcomment %}
+{% liquid
+  assign featured_collection = section.settings.collection
+
+  if featured_collection == blank
+    assign featured_collection = collections['hp-bluewuds-bestseller']
+  endif
+
+  if featured_collection == blank
+    assign featured_collection = collections['all']
+  endif
+%}
+
 <style>
-.featured {
-  padding: 80px 30px;
-  background: #fdfbf7;
-}
-.featured-inner {
-  max-width: 1400px;
-  margin: 0 auto;
-}
-.section-title {
-  text-align: center;
-  margin-bottom: 50px;
-}
-.section-title h2 {
-  font-size: 40px;
-  font-weight: 800;
-  color: #1a1a1a;
-  margin: 0 0 12px;
-  font-family: 'Poppins', sans-serif;
-  font-style: italic;
-  text-transform: uppercase;
-}
-.section-title p {
-  font-size: 16px;
-  color: #666;
-  margin: 0;
-  font-family: 'Inter', sans-serif;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-}
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 25px;
-}
-.product-card {
-  background: white;
-  border-radius: 16px;
-  overflow: hidden;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-}
-.product-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 50px rgba(0,0,0,0.12);
-}
-.product-image {
-  aspect-ratio: 1;
-  background: #f5f5f5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-.product-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s ease;
-}
-.product-card:hover .product-image img {
-  transform: scale(1.05);
-}
-.product-badge {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background: #c7431a;
-  color: white;
-  font-size: 11px;
-  font-weight: 700;
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-family: 'Poppins', sans-serif;
-  text-transform: uppercase;
-}
-.product-wishlist {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 36px;
-  height: 36px;
-  background: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-  opacity: 0;
-  transition: opacity 0.3s ease;
-}
-.product-card:hover .product-wishlist {
-  opacity: 1;
-}
-.product-info {
-  padding: 20px;
-}
-.product-title {
-  font-size: 15px;
-  font-weight: 600;
-  color: #1a1a1a;
-  margin: 0 0 8px;
-  font-family: 'Poppins', sans-serif;
-  line-height: 1.4;
-}
-.product-price {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.price-current {
-  font-size: 18px;
-  font-weight: 700;
-  color: #c7431a;
-  font-family: 'Poppins', sans-serif;
-}
-.price-original {
-  font-size: 14px;
-  color: #999;
-  text-decoration: line-through;
-  font-family: 'Inter', sans-serif;
-}
-@media (max-width: 968px) {
-  .products-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 480px) {
-  .products-grid { grid-template-columns: 1fr; }
-}
+  .bw-featured {
+    padding: 8px 24px 70px;
+    background: #faf6f1;
+  }
+
+  .bw-featured__inner {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .bw-featured__header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 18px;
+    align-items: end;
+    margin-bottom: 28px;
+  }
+
+  .bw-featured__eyebrow {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #7f604d;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .bw-featured__title {
+    margin: 0 0 10px;
+    color: #201713;
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1.06;
+    letter-spacing: -0.04em;
+  }
+
+  .bw-featured__copy {
+    margin: 0;
+    color: #66554c;
+    font-size: 16px;
+    line-height: 1.8;
+    max-width: 62ch;
+  }
+
+  .bw-featured__view-all {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 50px;
+    padding: 0 20px;
+    border-radius: 999px;
+    background: transparent;
+    border: 1px solid rgba(32, 23, 19, 0.14);
+    color: #201713;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .bw-featured__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  .bw-featured__card {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    border-radius: 28px;
+    overflow: hidden;
+    background: rgba(255, 252, 248, 0.92);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 20px 50px rgba(35, 24, 19, 0.08);
+    text-decoration: none;
+    color: inherit;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  .bw-featured__card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 30px 70px rgba(35, 24, 19, 0.12);
+  }
+
+  .bw-featured__media {
+    position: relative;
+    aspect-ratio: 0.98;
+    overflow: hidden;
+    background: #eee2d8;
+  }
+
+  .bw-featured__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  .bw-featured__card:hover .bw-featured__media img {
+    transform: scale(1.04);
+  }
+
+  .bw-featured__badge,
+  .bw-featured__chip {
+    position: absolute;
+    z-index: 1;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .bw-featured__badge {
+    top: 14px;
+    left: 14px;
+    padding: 8px 11px;
+    background: #201713;
+    color: #f8f1eb;
+  }
+
+  .bw-featured__chip {
+    right: 14px;
+    bottom: 14px;
+    padding: 8px 12px;
+    background: rgba(255, 250, 246, 0.92);
+    color: #201713;
+  }
+
+  .bw-featured__body {
+    display: grid;
+    gap: 12px;
+    padding: 20px;
+  }
+
+  .bw-featured__type {
+    color: #8b6a57;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .bw-featured__name {
+    margin: 0;
+    color: #201713;
+    font-size: 18px;
+    line-height: 1.4;
+  }
+
+  .bw-featured__price-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 10px;
+  }
+
+  .bw-featured__price {
+    color: #201713;
+    font-size: 20px;
+    font-weight: 800;
+  }
+
+  .bw-featured__compare {
+    color: #8c7b70;
+    font-size: 14px;
+    text-decoration: line-through;
+  }
+
+  .bw-featured__savings {
+    color: #8b4c27;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .bw-featured__cta {
+    color: #6f5b4f;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .bw-featured__empty {
+    padding: 32px;
+    border-radius: 24px;
+    background: rgba(255, 252, 248, 0.92);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    color: #66554c;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 1100px) {
+    .bw-featured__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 760px) {
+    .bw-featured {
+      padding: 8px 16px 54px;
+    }
+
+    .bw-featured__header {
+      grid-template-columns: 1fr;
+    }
+
+    .bw-featured__grid {
+      grid-template-columns: 1fr;
+    }
+  }
 </style>
 
-<div class="featured">
-  <div class="featured-inner">
-    <div class="section-title">
-      <h2>Best Sellers</h2>
-      <p>Our most loved furniture pieces</p>
+<section class="bw-featured">
+  <div class="bw-featured__inner">
+    <div class="bw-featured__header">
+      <div>
+        <span class="bw-featured__eyebrow">Most-loved Bluewud picks</span>
+        <h2 class="bw-featured__title">Bestsellers for modern homes.</h2>
+        <p class="bw-featured__copy">Discover customer favourites across living, bedroom, and storage categories, selected for strong design, everyday utility, and great value.</p>
+      </div>
+      <a class="bw-featured__view-all" href="{{ featured_collection.url | default: routes.all_products_collection_url }}">View all furniture</a>
     </div>
-    <div class="products-grid">
-      {% for product in collections.all.products limit: 8 %}
-        <a href="{{ product.url }}" class="product-card">
-          <div class="product-image">
-            {% if product.featured_image != blank %}
-              {{ product.featured_image | image_url: width: 400 | image_tag: loading: 'lazy' }}
-            {% else %}
-              <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&q=80" alt="Product">
-            {% endif %}
-            {% if product.compare_at_price > product.price %}<span class="product-badge">Sale</span>{% endif %}
-            <div class="product-wishlist">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-              </svg>
-            </div>
-          </div>
-          <div class="product-info">
-            <h3 class="product-title">{{ product.title }}</h3>
-            <div class="product-price">
-              <span class="price-current">{{ product.price | money }}</span>
-              {% if product.compare_at_price > product.price %}
-                <span class="price-original">{{ product.compare_at_price | money }}</span>
+
+    {% if featured_collection != blank and featured_collection.products.size > 0 %}
+      <div class="bw-featured__grid">
+        {% for product in featured_collection.products limit: 8 %}
+          {% liquid
+            assign savings_percentage = 0
+            if product.compare_at_price > product.price
+              assign savings_percentage = product.compare_at_price | minus: product.price | times: 100 | divided_by: product.compare_at_price
+            endif
+          %}
+          <a class="bw-featured__card" href="{{ product.url }}">
+            <div class="bw-featured__media">
+              {% if product.featured_image != blank %}
+                {{ product.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '450, 650, 900', sizes: '(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 25vw' }}
               {% endif %}
+              {% if savings_percentage > 0 %}
+                <span class="bw-featured__badge">Save {{ savings_percentage }}%</span>
+              {% else %}
+                <span class="bw-featured__badge">Premium pick</span>
+              {% endif %}
+              <span class="bw-featured__chip">View details</span>
             </div>
-          </div>
-        </a>
-      {% else %}
-        {% for i in (1..4) %}
-          <div class="product-card">
-            <div class="product-image">
-              <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?w=400&q=80" alt="Product {{ i }}">
-            </div>
-            <div class="product-info">
-              <h3 class="product-title">Premium Sofa Set {{ i }}</h3>
-              <div class="product-price">
-                <span class="price-current">₹{{ 25000 | times: i }}</span>
+            <div class="bw-featured__body">
+              <span class="bw-featured__type">{{ product.type | default: 'Furniture' }}</span>
+              <h3 class="bw-featured__name">{{ product.title }}</h3>
+              <div class="bw-featured__price-row">
+                <span class="bw-featured__price">{{ product.price | money }}</span>
+                {% if product.compare_at_price > product.price %}
+                  <span class="bw-featured__compare">{{ product.compare_at_price | money }}</span>
+                  <span class="bw-featured__savings">Better value</span>
+                {% endif %}
               </div>
+              <span class="bw-featured__cta">See finishes and dimensions</span>
             </div>
-          </div>
+          </a>
         {% endfor %}
-      {% endfor %}
-    </div>
+      </div>
+    {% else %}
+      <div class="bw-featured__empty">
+        Connect a collection in the theme editor to populate this grid with Bluewud products.
+      </div>
+    {% endif %}
   </div>
-</div>
+</section>
 
 {% schema %}
 {
   "name": "Featured Products",
   "settings": [
-    { "type": "text", "id": "title", "label": "Title", "default": "Best Sellers" }
+    {
+      "type": "collection",
+      "id": "collection",
+      "label": "Collection"
+    }
   ],
-  "presets": [{ "name": "Featured Products" }]
+  "presets": [
+    {
+      "name": "Featured Products"
+    }
+  ]
 }
 {% endschema %}

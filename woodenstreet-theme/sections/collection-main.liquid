@@ -1,331 +1,604 @@
-{% comment %} Fresh Collection Page - Enhanced with Sorting & Pagination {% endcomment %}
+{% liquid
+  assign current_sort = collection.sort_by | default: collection.default_sort_by
+  assign hero_media = collection.image
+
+  if hero_media == blank and collection.products.size > 0
+    assign hero_media = collection.products.first.featured_image
+  endif
+%}
+
 <style>
-.collection-page {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 40px 30px;
-}
-.collection-header {
-  text-align: center;
-  margin-bottom: 40px;
-}
-.collection-header h1 {
-  font-size: 40px;
-  font-weight: 700;
-  color: #1a1a1a;
-  margin: 0 0 15px;
-  font-family: 'Poppins', sans-serif;
-}
-.collection-header p {
-  font-size: 16px;
-  color: #666;
-}
+  .bw-collection {
+    padding: 28px 24px 72px;
+    background: linear-gradient(180deg, #faf6f1 0%, #fffdfb 100%);
+  }
 
-/* Collection Toolbar */
-.collection-toolbar {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 30px;
-  padding: 15px 20px;
-  background: #f9f9f9;
-  border-radius: 8px;
-}
-.product-count {
-  font-size: 14px;
-  color: #666;
-}
-.collection-sort {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.collection-sort label {
-  font-size: 14px;
-  color: #666;
-}
-.collection-sort select {
-  padding: 10px 35px 10px 15px;
-  font-size: 14px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  background: white;
-  cursor: pointer;
-  appearance: none;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23333' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 12px center;
-}
-.collection-sort select:focus {
-  outline: none;
-  border-color: #c47d4e;
-}
+  .bw-collection__shell {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
 
-/* Products Grid */
-.products-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 25px;
-}
-.product-card {
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  text-decoration: none;
-  transition: all 0.3s;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-  display: block;
-}
-.product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-}
-.product-image {
-  aspect-ratio: 1;
-  background: #f5f5f5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-  overflow: hidden;
-}
-.product-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.5s;
-}
-.product-card:hover .product-image img {
-  transform: scale(1.05);
-}
-.product-badge {
-  position: absolute;
-  top: 12px;
-  left: 12px;
-  background: #e74c3c;
-  color: white;
-  font-size: 11px;
-  font-weight: 600;
-  padding: 5px 10px;
-  border-radius: 4px;
-  text-transform: uppercase;
-}
-.product-wishlist {
-  position: absolute;
-  top: 12px;
-  right: 12px;
-  width: 36px;
-  height: 36px;
-  background: white;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  opacity: 0;
-  transition: opacity 0.3s;
-  cursor: pointer;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-}
-.product-card:hover .product-wishlist {
-  opacity: 1;
-}
-.product-info {
-  padding: 20px;
-  position: relative;
-}
-.product-title {
-  font-size: 15px;
-  font-weight: 600;
-  color: #1a1a1a;
-  margin: 0 0 8px;
-  line-height: 1.4;
-}
-.product-price {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.price-current {
-  font-size: 18px;
-  font-weight: 700;
-  color: #c47d4e;
-}
-.price-original {
-  font-size: 14px;
-  color: #999;
-  text-decoration: line-through;
-}
+  .bw-collection__hero {
+    position: relative;
+    overflow: hidden;
+    border-radius: 34px;
+    min-height: 360px;
+    margin-bottom: 26px;
+    background:
+      radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.2), transparent 24%),
+      linear-gradient(145deg, #dccbbf 0%, #bf9b86 40%, #6d4d40 100%);
+    box-shadow: 0 24px 70px rgba(35, 24, 19, 0.1);
+  }
 
-/* Pagination */
-.collection-pagination {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  margin-top: 50px;
-}
-.pagination-btn {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 40px;
-  height: 40px;
-  border: 1px solid #ddd;
-  border-radius: 6px;
-  background: white;
-  color: #333;
-  text-decoration: none;
-  font-size: 14px;
-  transition: all 0.3s;
-}
-.pagination-btn:hover {
-  border-color: #c47d4e;
-  color: #c47d4e;
-}
-.pagination-btn.active {
-  background: #c47d4e;
-  border-color: #c47d4e;
-  color: white;
-}
-.pagination-btn.next {
-  width: auto;
-  padding: 0 15px;
-}
+  .bw-collection__hero img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 
-/* Empty State */
-.collection-empty {
-  text-align: center;
-  padding: 80px 20px;
-}
-.collection-empty h2 {
-  font-size: 24px;
-  color: #333;
-  margin: 0 0 15px;
-}
-.collection-empty p {
-  color: #666;
-  margin: 0 0 20px;
-}
-.collection-empty a {
-  display: inline-block;
-  padding: 15px 30px;
-  background: #c47d4e;
-  color: white;
-  text-decoration: none;
-  border-radius: 6px;
-  font-weight: 600;
-  transition: background 0.3s;
-}
-.collection-empty a:hover {
-  background: #a86840;
-}
+  .bw-collection__hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(14, 10, 8, 0.08) 0%, rgba(14, 10, 8, 0.74) 100%);
+  }
 
-@media (max-width: 968px) {
-  .products-grid { grid-template-columns: repeat(3, 1fr); }
-  .collection-toolbar { flex-direction: column; gap: 15px; }
-}
-@media (max-width: 768px) {
-  .products-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 480px) {
-  .products-grid { grid-template-columns: 1fr; }
-}
+  .bw-collection__hero-content {
+    position: relative;
+    z-index: 1;
+    height: 100%;
+    padding: 34px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    gap: 14px;
+    color: #fff7f1;
+  }
+
+  .bw-collection__breadcrumb {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    color: rgba(255, 247, 241, 0.78);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .bw-collection__breadcrumb a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .bw-collection__title {
+    margin: 0;
+    font-size: clamp(34px, 5vw, 56px);
+    line-height: 1.02;
+    letter-spacing: -0.04em;
+  }
+
+  .bw-collection__copy {
+    max-width: 56ch;
+    margin: 0;
+    color: rgba(255, 247, 241, 0.88);
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  .bw-collection__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 24px;
+  }
+
+  .bw-collection__chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    padding: 0 16px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.86);
+    color: #201713;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .bw-collection__toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 24px;
+    padding: 20px 22px;
+    border-radius: 26px;
+    background: rgba(255, 251, 247, 0.94);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 18px 40px rgba(35, 24, 19, 0.06);
+  }
+
+  .bw-collection__toolbar-main {
+    display: grid;
+    gap: 6px;
+  }
+
+  .bw-collection__eyebrow {
+    color: #7a5e4d;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .bw-collection__count {
+    color: #201713;
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .bw-collection__sort {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .bw-collection__sort label {
+    color: #5d4c43;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .bw-collection__sort select {
+    min-height: 46px;
+    padding: 0 42px 0 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(45, 33, 27, 0.14);
+    background: #fff;
+    color: #201713;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .bw-collection__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 22px;
+  }
+
+  .bw-collection__card {
+    display: grid;
+    gap: 14px;
+    padding: 16px;
+    border-radius: 28px;
+    background: rgba(255, 251, 247, 0.94);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 18px 50px rgba(35, 24, 19, 0.06);
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .bw-collection__card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 24px 60px rgba(35, 24, 19, 0.1);
+  }
+
+  .bw-collection__image-wrap {
+    position: relative;
+    overflow: hidden;
+    border-radius: 22px;
+    min-height: 280px;
+    background:
+      radial-gradient(circle at 20% 16%, rgba(255, 255, 255, 0.2), transparent 24%),
+      linear-gradient(145deg, #dfd0c4 0%, #bb9b86 42%, #6e5043 100%);
+  }
+
+  .bw-collection__image-wrap img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .bw-collection__pill {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    z-index: 1;
+    padding: 9px 12px;
+    border-radius: 999px;
+    background: rgba(32, 23, 19, 0.84);
+    color: #fff7f1;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .bw-collection__card-body {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 100%;
+  }
+
+  .bw-collection__card-title {
+    margin: 0;
+    color: #201713;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  .bw-collection__card-meta {
+    color: #6b5b53;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .bw-collection__price-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .bw-collection__details {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 8px;
+  }
+
+  .bw-collection__detail {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 28px;
+    min-width: 0;
+    padding: 0 8px;
+    border-radius: 999px;
+    background: rgba(32, 23, 19, 0.06);
+    color: #5f4f46;
+    font-size: clamp(10px, 0.72vw, 11px);
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    text-align: center;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .bw-collection__price {
+    color: #201713;
+    font-size: 20px;
+    font-weight: 800;
+  }
+
+  .bw-collection__compare {
+    color: #8b7a71;
+    font-size: 14px;
+    text-decoration: line-through;
+  }
+
+  .bw-collection__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0 18px;
+    border-radius: 999px;
+    background: #201713;
+    color: #fff7f1;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-top: auto;
+  }
+
+  .bw-collection__empty {
+    padding: 56px 28px;
+    border-radius: 28px;
+    text-align: center;
+    background: rgba(255, 251, 247, 0.94);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+  }
+
+  .bw-collection__empty h2 {
+    margin: 0 0 10px;
+    color: #201713;
+    font-size: 28px;
+  }
+
+  .bw-collection__empty p {
+    margin: 0;
+    color: #6a5850;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .bw-collection__pagination {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 30px;
+  }
+
+  .bw-collection__pagination a,
+  .bw-collection__pagination span {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 44px;
+    height: 44px;
+    padding: 0 16px;
+    border-radius: 999px;
+    background: rgba(255, 251, 247, 0.94);
+    border: 1px solid rgba(45, 33, 27, 0.1);
+    color: #201713;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+  }
+
+  .bw-collection__pagination .is-current {
+    background: #201713;
+    color: #fff7f1;
+    border-color: #201713;
+  }
+
+  @media (max-width: 1180px) {
+    .bw-collection__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 860px) {
+    .bw-collection__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 720px) {
+    .bw-collection {
+      padding: 20px 16px 56px;
+    }
+
+    .bw-collection__hero {
+      min-height: 320px;
+    }
+
+    .bw-collection__hero-content,
+    .bw-collection__toolbar {
+      padding: 22px 20px;
+    }
+
+    .bw-collection__chips {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      margin-bottom: 18px;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+    }
+
+    .bw-collection__chips::-webkit-scrollbar {
+      display: none;
+    }
+
+    .bw-collection__chip {
+      flex: 0 0 auto;
+      white-space: nowrap;
+    }
+
+    .bw-collection__toolbar {
+      gap: 12px;
+      border-radius: 20px;
+    }
+
+    .bw-collection__sort {
+      width: 100%;
+      flex-wrap: wrap;
+    }
+
+    .bw-collection__sort select {
+      width: 100%;
+    }
+
+    .bw-collection__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .bw-collection__card {
+      padding: 14px;
+      border-radius: 22px;
+    }
+
+    .bw-collection__image-wrap {
+      min-height: 240px;
+      border-radius: 18px;
+    }
+
+    .bw-collection__details {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .bw-collection__detail:last-child {
+      grid-column: 1 / -1;
+    }
+  }
 </style>
 
-<div class="collection-page">
-  <!-- Header -->
-  <div class="collection-header">
-    <h1>{{ collection.title }}</h1>
-    {% if collection.description != blank %}
-      <p>{{ collection.description }}</p>
-    {% endif %}
-  </div>
-
-  {% if collection.products.size > 0 %}
-    <!-- Toolbar with Sort & Count -->
-    <div class="collection-toolbar">
-      <div class="product-count">
-        {{ collection.products.size }} product{{ collection.products.size | pluralize }}
-      </div>
-      <div class="collection-sort">
-        <label for="sort-by">Sort by:</label>
-        <select name="sort_by" id="sort-by" onchange="window.location.href = this.value">
-          <option value="" {% if sort_by == '' %}selected{% endif %} disabled>Select</option>
-          <option value="{{ collection.url }}?sort_by=manual" {% if sort_by == 'manual' %}selected{% endif %}>Featured</option>
-          <option value="{{ collection.url }}?sort_by=price-ascending" {% if sort_by == 'price-ascending' %}selected{% endif %}>Price: Low to High</option>
-          <option value="{{ collection.url }}?sort_by=price-descending" {% if sort_by == 'price-descending' %}selected{% endif %}>Price: High to Low</option>
-          <option value="{{ collection.url }}?sort_by=title-ascending" {% if sort_by == 'title-ascending' %}selected{% endif %}>Name: A-Z</option>
-          <option value="{{ collection.url }}?sort_by=title-descending" {% if sort_by == 'title-descending' %}selected{% endif %}>Name: Z-A</option>
-          <option value="{{ collection.url }}?sort_by=created-ascending" {% if sort_by == 'created-ascending' %}selected{% endif %}>Oldest First</option>
-          <option value="{{ collection.url }}?sort_by=created-descending" {% if sort_by == 'created-descending' %}selected{% endif %}>Newest First</option>
-        </select>
-      </div>
-    </div>
-
-    <!-- Products Grid -->
-    <div class="products-grid">
-      {% for product in collection.products %}
-        <a href="{{ product.url }}" class="product-card">
-          <div class="product-image">
-            {% if product.featured_image != blank %}
-              {{ product.featured_image | image_url: width: 400 | image_tag: loading: 'lazy' }}
-            {% else %}
-              <span style="font-size: 40px;">🛋️</span>
-            {% endif %}
-            {% if product.compare_at_price > product.price %}
-              <span class="product-badge">Sale</span>
-            {% endif %}
-            <div class="product-wishlist" onclick="event.preventDefault(); alert('Added to wishlist!')">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-              </svg>
-            </div>
-          </div>
-          <div class="product-info">
-            <h3 class="product-title">{{ product.title }}</h3>
-            <div class="product-price">
-              <span class="price-current">{{ product.price | money }}</span>
-              {% if product.compare_at_price > product.price %}
-                <span class="price-original">{{ product.compare_at_price | money }}</span>
-              {% endif %}
-            </div>
-          </div>
-        </a>
-      {% endfor %}
-    </div>
-
-    <!-- Pagination -->
-    {% if paginate.pages > 1 %}
-      <div class="collection-pagination">
-        {% if paginate.previous %}
-          <a href="{{ paginate.previous.url }}" class="pagination-btn">←</a>
-        {% endif %}
-        {% for part in paginate.parts %}
-          {% if part.is_link %}
-            <a href="{{ part.url }}" class="pagination-btn">{{ part.title }}</a>
+<section class="bw-collection">
+  <div class="bw-collection__shell">
+    <div class="bw-collection__hero">
+      {% if hero_media %}
+        {{ hero_media | image_url: width: 1800 | image_tag: loading: 'eager', widths: '720, 1080, 1440, 1800', sizes: '100vw', alt: collection.title }}
+      {% endif %}
+      <div class="bw-collection__hero-overlay"></div>
+      <div class="bw-collection__hero-content">
+        <div class="bw-collection__breadcrumb">
+          <a href="{{ routes.root_url }}">Home</a>
+          <span>/</span>
+          <a href="{{ routes.all_products_collection_url }}">Collections</a>
+          <span>/</span>
+          <span>{{ collection.title }}</span>
+        </div>
+        <h1 class="bw-collection__title">{{ collection.title }}</h1>
+        <p class="bw-collection__copy">
+          {% if collection.description != blank %}
+            {{ collection.description | strip_html }}
           {% else %}
-            <span class="pagination-btn active">{{ part.title }}</span>
+            Explore thoughtfully designed furniture made to bring comfort, function, and finish to every room.
           {% endif %}
-        {% endfor %}
-        {% if paginate.next %}
-          <a href="{{ paginate.next.url }}" class="pagination-btn next">Next →</a>
-        {% endif %}
+        </p>
       </div>
-    {% endif %}
-
-  {% else %}
-    <!-- Empty State -->
-    <div class="collection-empty">
-      <h2>No products found</h2>
-      <p>Sorry, there are no products in this collection yet.</p>
-      <a href="/collections/all">View All Products</a>
     </div>
-  {% endif %}
-</div>
+
+    <div class="bw-collection__chips">
+      <a class="bw-collection__chip" href="/collections/living-room">Living Room</a>
+      <a class="bw-collection__chip" href="/collections/bed-room">Bedroom</a>
+      <a class="bw-collection__chip" href="/collections/study-tables">Study Tables</a>
+      <a class="bw-collection__chip" href="/collections/tv-unit-furniture">TV Units</a>
+      <a class="bw-collection__chip" href="/collections/book-shelves">Bookshelves</a>
+      <a class="bw-collection__chip" href="/collections/wardrobe">Wardrobes</a>
+      <a class="bw-collection__chip" href="/collections/new_launches">New Launches</a>
+      <a class="bw-collection__chip" href="/collections/hp-bluewuds-bestseller">Bestsellers</a>
+    </div>
+
+    {% paginate collection.products by section.settings.products_per_page %}
+      <div class="bw-collection__toolbar">
+        <div class="bw-collection__toolbar-main">
+          <div class="bw-collection__eyebrow">Explore the collection</div>
+          <div class="bw-collection__count">{{ paginate.items }} item{% if paginate.items != 1 %}s{% endif %} in this collection</div>
+        </div>
+
+        <form class="bw-collection__sort" method="get">
+          <label for="bw-sort-{{ section.id }}">Sort by</label>
+          <select id="bw-sort-{{ section.id }}" name="sort_by" onchange="this.form.submit()">
+            {% for option in collection.sort_options %}
+              <option value="{{ option.value }}" {% if option.value == current_sort %}selected{% endif %}>{{ option.name }}</option>
+            {% endfor %}
+          </select>
+        </form>
+      </div>
+
+      {% if paginate.items > 0 %}
+        <div class="bw-collection__grid">
+          {% for product in collection.products %}
+            {% liquid
+              assign product_subtitle = product.metafields.my_fields.product_subtitle
+              assign free_delivery_note = product.metafields.my_fields.free_delivery
+              assign emi_from_note = product.metafields.my_fields.emi_from
+            %}
+            <a class="bw-collection__card" href="{{ product.url | within: collection }}">
+              <div class="bw-collection__image-wrap">
+                {% if product.featured_image %}
+                  {% if product.compare_at_price > product.price %}
+                    <span class="bw-collection__pill">On Sale</span>
+                  {% elsif product.available == false %}
+                    <span class="bw-collection__pill">Sold Out</span>
+                  {% else %}
+                    <span class="bw-collection__pill">Premium Pick</span>
+                  {% endif %}
+                  {{ product.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '360, 540, 720, 900', sizes: '(max-width: 720px) 100vw, 25vw', alt: product.title }}
+                {% else %}
+                  <span class="bw-collection__pill">Bluewud image</span>
+                {% endif %}
+              </div>
+
+              <div class="bw-collection__card-body">
+                <h2 class="bw-collection__card-title">{{ product.title }}</h2>
+                <div class="bw-collection__card-meta">
+                  {% if product_subtitle != blank %}
+                    {{ product_subtitle }}
+                  {% elsif product.product_type != blank %}
+                    {{ product.product_type }}
+                  {% elsif product.vendor != blank %}
+                    {{ product.vendor }}
+                  {% else %}
+                    Designed for everyday comfort and refined living.
+                  {% endif %}
+                </div>
+                <div class="bw-collection__price-row">
+                  <span class="bw-collection__price">{{ product.price | money }}</span>
+                  {% if product.compare_at_price > product.price %}
+                    <span class="bw-collection__compare">{{ product.compare_at_price | money }}</span>
+                  {% endif %}
+                </div>
+                <div class="bw-collection__details">
+                  <span class="bw-collection__detail">{% if product.available %}Ready to order{% else %}Sold out{% endif %}</span>
+                  {% if emi_from_note != blank %}
+                    <span class="bw-collection__detail">{{ emi_from_note }}</span>
+                  {% else %}
+                    <span class="bw-collection__detail">Easy EMI</span>
+                  {% endif %}
+                  {% if free_delivery_note != blank %}
+                    <span class="bw-collection__detail">{{ free_delivery_note }}</span>
+                  {% else %}
+                    <span class="bw-collection__detail">Secure checkout</span>
+                  {% endif %}
+                </div>
+                <span class="bw-collection__cta">View details</span>
+              </div>
+            </a>
+          {% endfor %}
+        </div>
+
+        {% if paginate.pages > 1 %}
+          <div class="bw-collection__pagination">
+            {% if paginate.previous %}
+              <a href="{{ paginate.previous.url }}">Previous</a>
+            {% endif %}
+
+            {% for part in paginate.parts %}
+              {% if part.is_link %}
+                <a href="{{ part.url }}">{{ part.title }}</a>
+              {% else %}
+                <span class="{% if part.title == paginate.current_page %}is-current{% endif %}">{{ part.title }}</span>
+              {% endif %}
+            {% endfor %}
+
+            {% if paginate.next %}
+              <a href="{{ paginate.next.url }}">Next</a>
+            {% endif %}
+          </div>
+        {% endif %}
+      {% else %}
+        <div class="bw-collection__empty">
+          <h2>No products are live here yet</h2>
+          <p>Products for this collection will appear here soon.</p>
+        </div>
+      {% endif %}
+    {% endpaginate %}
+  </div>
+</section>
 
 {% schema %}
 {
   "name": "Collection Page",
-  "presets": [{ "name": "Collection Page" }]
+  "settings": [
+    {
+      "type": "range",
+      "id": "products_per_page",
+      "label": "Products per page",
+      "min": 8,
+      "max": 24,
+      "step": 4,
+      "default": 12
+    }
+  ],
+  "presets": [
+    {
+      "name": "Collection Page"
+    }
+  ]
 }
 {% endschema %}

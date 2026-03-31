@@ -1,83 +1,167 @@
-{% comment %} Newsletter Section {% endcomment %}
 <style>
-.newsletter-section {
-  padding: 80px 30px;
-  background: #1a1a1a;
-  color: white;
-}
-.newsletter-inner {
-  max-width: 700px;
-  margin: 0 auto;
-  text-align: center;
-}
-.newsletter-section h2 {
-  font-size: 36px;
-  font-weight: 700;
-  margin: 0 0 15px;
-  font-family: 'Poppins', sans-serif;
-}
-.newsletter-section p {
-  font-size: 16px;
-  color: rgba(255,255,255,0.7);
-  margin: 0 0 30px;
-}
-.newsletter-form {
-  display: flex;
-  gap: 15px;
-  max-width: 500px;
-  margin: 0 auto;
-}
-.newsletter-form input {
-  flex: 1;
-  padding: 16px 20px;
-  border: none;
-  border-radius: 8px;
-  font-size: 15px;
-}
-.newsletter-form input:focus {
-  outline: none;
-}
-.newsletter-form button {
-  padding: 16px 30px;
-  background: #c47d4e;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 15px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s;
-  white-space: nowrap;
-}
-.newsletter-form button:hover {
-  background: #a86840;
-}
-.newsletter-note {
-  font-size: 13px;
-  color: rgba(255,255,255,0.5);
-  margin-top: 15px;
-}
-@media (max-width: 600px) {
-  .newsletter-form { flex-direction: column; }
-  .newsletter-section h2 { font-size: 28px; }
-}
+  .bw-newsletter {
+    padding: 0 24px 78px;
+    background: #faf6f1;
+  }
+
+  .bw-newsletter__inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 44px;
+    border-radius: 32px;
+    background: linear-gradient(135deg, #241913 0%, #3d2a21 100%);
+    color: #f8f1eb;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(280px, 420px);
+    gap: 22px;
+    align-items: center;
+    box-shadow: 0 28px 80px rgba(35, 24, 19, 0.18);
+  }
+
+  .bw-newsletter__eyebrow {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: rgba(248, 241, 235, 0.68);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .bw-newsletter__title {
+    margin: 0 0 12px;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.08;
+    letter-spacing: -0.04em;
+    max-width: 24ch;
+  }
+
+  .bw-newsletter__title-line {
+    display: block;
+  }
+
+  .bw-newsletter__title-line:first-child {
+    white-space: nowrap;
+  }
+
+  .bw-newsletter__title-line--accent {
+    color: #e7c4ad;
+  }
+
+  .bw-newsletter__copy {
+    margin: 0;
+    color: rgba(248, 241, 235, 0.74);
+    font-size: 16px;
+    line-height: 1.8;
+    max-width: 58ch;
+  }
+
+  .bw-newsletter__form {
+    display: grid;
+    gap: 12px;
+    align-content: start;
+  }
+
+  .bw-newsletter__field {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 54px;
+    padding: 0 18px;
+    border-radius: 999px;
+    border: 1px solid rgba(248, 241, 235, 0.16);
+    background: rgba(255, 255, 255, 0.08);
+    color: #f8f1eb;
+    font-size: 15px;
+  }
+
+  .bw-newsletter__field::placeholder {
+    color: rgba(248, 241, 235, 0.5);
+  }
+
+  .bw-newsletter__submit {
+    display: block;
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 54px;
+    border: none;
+    border-radius: 999px;
+    background: #f8f1eb;
+    color: #241913;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+
+  .bw-newsletter__note,
+  .bw-newsletter__message {
+    margin: 0;
+    color: rgba(248, 241, 235, 0.66);
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 920px) {
+    .bw-newsletter__inner {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .bw-newsletter {
+      padding: 0 16px 56px;
+    }
+
+    .bw-newsletter__inner {
+      padding: 28px 22px;
+      border-radius: 24px;
+    }
+
+    .bw-newsletter__title {
+      max-width: none;
+    }
+
+    .bw-newsletter__title-line:first-child {
+      white-space: normal;
+    }
+  }
 </style>
 
-<div class="newsletter-section">
-  <div class="newsletter-inner">
-    <h2>Subscribe to Our Newsletter</h2>
-    <p>Get exclusive offers and updates straight to your inbox</p>
-    <form class="newsletter-form" action="/contact#newsletter" method="post">
-      <input type="email" name="email" placeholder="Enter your email address" required>
-      <button type="submit">Subscribe</button>
-    </form>
-    <p class="newsletter-note">By subscribing, you agree to receive promotional emails. Unsubscribe anytime.</p>
+<section class="bw-newsletter">
+  <div class="bw-newsletter__inner">
+    <div>
+      <span class="bw-newsletter__eyebrow">Retention and repeat intent</span>
+      <h2 class="bw-newsletter__title">
+        <span class="bw-newsletter__title-line">Keep the premium relationship going</span>
+        <span class="bw-newsletter__title-line bw-newsletter__title-line--accent">after the first visit.</span>
+      </h2>
+      <p class="bw-newsletter__copy">Stay present between discovery and purchase with thoughtful offers, room ideas, and launch updates that make Bluewud feel like the premium choice when they return.</p>
+    </div>
+
+    {% form 'customer', class: 'bw-newsletter__form' %}
+      <input type="hidden" name="contact[tags]" value="newsletter">
+      <input class="bw-newsletter__field" type="email" name="contact[email]" placeholder="Enter your email address" required>
+      <button class="bw-newsletter__submit" type="submit">Join the private list</button>
+      {% if form.posted_successfully? %}
+        <p class="bw-newsletter__message">Thanks. You are now subscribed for Bluewud updates.</p>
+      {% endif %}
+      {% if form.errors %}
+        <div class="bw-newsletter__message">{{ form.errors | default_errors }}</div>
+      {% endif %}
+      <p class="bw-newsletter__note">No spam. Just launches, offers, and furnishing ideas worth opening.</p>
+    {% endform %}
   </div>
-</div>
+</section>
 
 {% schema %}
 {
   "name": "Newsletter",
-  "presets": [{ "name": "Newsletter" }]
+  "presets": [
+    {
+      "name": "Newsletter"
+    }
+  ]
 }
 {% endschema %}

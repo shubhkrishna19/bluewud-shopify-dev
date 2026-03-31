@@ -1,11 +1,148 @@
-{% comment %} Fresh Announcement Bar {% endcomment %}
-<div class="announcement-bar" style="background: #1a1a1a; color: #fff; padding: 10px 20px; text-align: center; font-size: 14px;">
-  <p style="margin: 0;">🎉 Free Shipping on Orders Above ₹999 | Extra 10% Off on First Purchase | Grand Republic Sale - Up to 55% Off!</p>
-</div>
+{% liquid
+  assign primary_text = section.settings.primary_text | default: '15 years of crafted living'
+  assign secondary_text = section.settings.secondary_text | default: 'Free delivery and easy EMI on selected orders'
+  assign tertiary_text = section.settings.tertiary_text | default: 'Explore premium furniture for modern Indian homes'
+  assign cta_label = section.settings.cta_label | default: 'View Offers'
+  assign cta_url = section.settings.cta_url
+
+  if cta_url == blank
+    assign cta_url = '/pages/offers-discount'
+  endif
+%}
+
+<style>
+  .bw-announce {
+    background: linear-gradient(90deg, #171311 0%, #2b201a 50%, #171311 100%);
+    color: #f6ede6;
+    border-bottom: 1px solid rgba(246, 237, 230, 0.08);
+  }
+
+  .bw-announce__inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 10px 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 18px;
+  }
+
+  .bw-announce__items {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    min-width: 0;
+  }
+
+  .bw-announce__item {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: rgba(246, 237, 230, 0.84);
+    white-space: nowrap;
+  }
+
+  .bw-announce__divider {
+    width: 1px;
+    height: 14px;
+    background: rgba(246, 237, 230, 0.16);
+  }
+
+  .bw-announce__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #f6ede6;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .bw-announce__link::after {
+    content: '\2192';
+    font-size: 14px;
+  }
+
+  @media (max-width: 900px) {
+    .bw-announce__inner {
+      padding: 10px 16px;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .bw-announce__items {
+      gap: 10px;
+      overflow-x: auto;
+      flex-wrap: nowrap;
+      width: 100%;
+      padding-bottom: 2px;
+    }
+
+    .bw-announce__items::-webkit-scrollbar {
+      display: none;
+    }
+
+    .bw-announce__divider {
+      display: none;
+    }
+  }
+</style>
+
+<section class="bw-announce">
+  <div class="bw-announce__inner">
+    <div class="bw-announce__items">
+      <span class="bw-announce__item">{{ primary_text }}</span>
+      <span class="bw-announce__divider" aria-hidden="true"></span>
+      <span class="bw-announce__item">{{ secondary_text }}</span>
+      <span class="bw-announce__divider" aria-hidden="true"></span>
+      <span class="bw-announce__item">{{ tertiary_text }}</span>
+    </div>
+    <a class="bw-announce__link" href="{{ cta_url }}">{{ cta_label }}</a>
+  </div>
+</section>
 
 {% schema %}
 {
   "name": "Announcement Bar",
-  "presets": [{ "name": "Announcement Bar" }]
+  "settings": [
+    {
+      "type": "text",
+      "id": "primary_text",
+      "label": "Primary message",
+      "default": "15 years of crafted living"
+    },
+    {
+      "type": "text",
+      "id": "secondary_text",
+      "label": "Secondary message",
+      "default": "Free delivery and easy EMI on selected orders"
+    },
+    {
+      "type": "text",
+      "id": "tertiary_text",
+      "label": "Third message",
+      "default": "Explore premium furniture for modern Indian homes"
+    },
+    {
+      "type": "text",
+      "id": "cta_label",
+      "label": "CTA label",
+      "default": "View Offers"
+    },
+    {
+      "type": "url",
+      "id": "cta_url",
+      "label": "CTA link"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Announcement Bar"
+    }
+  ]
 }
 {% endschema %}
