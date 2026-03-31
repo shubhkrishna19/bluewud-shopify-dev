@@ -321,6 +321,11 @@
     color: #201713;
   }
 
+  .bw-product__form {
+    display: grid;
+    gap: 20px;
+  }
+
   .bw-product__option {
     display: grid;
     grid-template-columns: auto minmax(0, 1fr);
@@ -835,6 +840,10 @@
       font-size: 12px;
     }
 
+    .bw-product__form {
+      gap: 18px;
+    }
+
     .bw-product__purchase {
       padding: 18px;
       border-radius: 20px;
@@ -986,14 +995,11 @@
           </div>
         </div>
 
-        <div class="bw-product__meta">
-          {% if first_collection %}
-            <span><strong>Collection:</strong> {{ first_collection.title }}</span>
-          {% endif %}
-          {% if free_delivery_note != blank %}
+        {% if free_delivery_note != blank %}
+          <div class="bw-product__meta">
             <span><strong>Delivery:</strong> {{ free_delivery_note }}</span>
-          {% endif %}
-        </div>
+          </div>
+        {% endif %}
 
         {% form 'product', product, id: product_form_id, class: 'bw-product__form', data-product-form: '' %}
           <input type="hidden" name="id" value="{{ current_variant.id }}" data-product-variant-id>
