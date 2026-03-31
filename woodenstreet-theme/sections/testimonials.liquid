@@ -1,6 +1,27 @@
+{% liquid
+  assign testimonials_eyebrow = section.settings.eyebrow | default: 'Loved by Bluewud homes'
+  assign testimonials_title = section.settings.title | default: 'Stories from homes that chose Bluewud.'
+  assign testimonials_copy = section.settings.copy | default: 'From first apartment setups to full-room upgrades, customers return to Bluewud for furniture that looks good, lasts well, and fits into everyday life.'
+  assign stat_one = section.settings.stat_one | default: '20 Lakh+ Customers'
+  assign stat_two = section.settings.stat_two | default: '15+ Years'
+  assign stat_three = section.settings.stat_three | default: 'Pan-India Reach'
+  assign reviews_page_url = '/pages/reviews'
+  assign live_reviews_count = shop.metafields.judgeme.all_reviews_count
+  assign has_live_reviews = false
+  assign has_blocks = false
+
+  if section.blocks.size > 0
+    assign has_blocks = true
+  endif
+
+  if shop.metafields.judgeme.featured_carousel != blank or live_reviews_count != blank
+    assign has_live_reviews = true
+  endif
+%}
+
 <style>
   .bw-testimonials {
-    padding: 10px 24px 70px;
+    padding: 10px 24px 66px;
     background: #faf6f1;
   }
 
@@ -14,7 +35,7 @@
     grid-template-columns: minmax(0, 1fr) auto;
     gap: 18px;
     align-items: end;
-    margin-bottom: 28px;
+    margin-bottom: 22px;
   }
 
   .bw-testimonials__eyebrow {
@@ -46,7 +67,7 @@
   .bw-testimonials__stats {
     display: flex;
     flex-wrap: wrap;
-    gap: 12px;
+    gap: 10px;
     justify-content: flex-end;
   }
 
@@ -62,21 +83,213 @@
     text-transform: uppercase;
   }
 
-  .bw-testimonials__grid {
+  .bw-testimonials__shell {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+    padding: 18px;
+    border-radius: 30px;
+    background: rgba(255, 252, 248, 0.76);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 20px 56px rgba(35, 24, 19, 0.08);
+  }
+
+  .bw-testimonials__toolbar {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .bw-testimonials__nav {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .bw-testimonials__actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .bw-testimonials__nav-button {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid rgba(45, 33, 27, 0.12);
+    background: #fff;
+    color: #201713;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .bw-testimonials__nav-button:hover {
+    transform: translateY(-1px);
+    border-color: rgba(53, 90, 109, 0.22);
+    color: #355a6d;
+  }
+
+  .bw-testimonials__nav-button svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .bw-testimonials__dots {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .bw-testimonials__reviews-summary {
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+    min-height: 42px;
+    padding: 0 16px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    color: #5f4f46;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  .bw-testimonials__all-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 16px;
+    border-radius: 999px;
+    background: #201713;
+    color: #f8f1eb;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .bw-testimonials__dot {
+    width: 10px;
+    height: 10px;
+    padding: 0;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(45, 33, 27, 0.16);
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease, width 0.2s ease;
+  }
+
+  .bw-testimonials__dot.is-active {
+    width: 28px;
+    background: #355a6d;
+  }
+
+  .bw-testimonials__layout {
+    display: grid;
+    grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+    gap: 14px;
+    align-items: start;
+  }
+
+  .bw-testimonials__tabs {
+    display: grid;
+    gap: 10px;
+  }
+
+  .bw-testimonials__tab {
+    width: 100%;
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 12px;
+    align-items: center;
+    padding: 16px;
+    border-radius: 22px;
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    background: rgba(255, 255, 255, 0.94);
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .bw-testimonials__tab:hover,
+  .bw-testimonials__tab.is-active {
+    transform: translateY(-1px);
+    border-color: rgba(53, 90, 109, 0.24);
+    box-shadow: 0 18px 42px rgba(35, 24, 19, 0.08);
+  }
+
+  .bw-testimonials__tab-avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(180deg, #2a1d16 0%, #4b3528 100%);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    color: #f8f1eb;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+
+  .bw-testimonials__tab-copy {
+    min-width: 0;
+    display: grid;
+    gap: 4px;
+  }
+
+  .bw-testimonials__tab-name {
+    margin: 0;
+    color: #201713;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .bw-testimonials__tab-meta {
+    color: #7a675b;
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .bw-testimonials__stage {
+    position: relative;
+    min-height: 100%;
+  }
+
+  .bw-testimonials__panel {
+    display: none;
+    height: 100%;
+    padding: 28px;
+    border-radius: 28px;
+    background:
+      radial-gradient(circle at top right, rgba(53, 90, 109, 0.08), transparent 28%),
+      linear-gradient(180deg, #fffdfa 0%, #fff8f2 100%);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+  }
+
+  .bw-testimonials__panel.is-active {
+    display: grid;
     gap: 18px;
   }
 
-  .bw-testimonials__card {
-    height: 100%;
-    display: grid;
-    gap: 16px;
-    padding: 26px;
-    border-radius: 28px;
-    background: rgba(255, 252, 248, 0.92);
-    border: 1px solid rgba(45, 33, 27, 0.08);
-    box-shadow: 0 18px 50px rgba(35, 24, 19, 0.07);
+  .bw-testimonials__panel-top {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
   }
 
   .bw-testimonials__stars {
@@ -85,11 +298,32 @@
     letter-spacing: 0.18em;
   }
 
+  .bw-testimonials__tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 0 10px;
+    border-radius: 999px;
+    background: rgba(32, 23, 19, 0.06);
+    color: #201713;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
   .bw-testimonials__quote {
     margin: 0;
-    color: #41332c;
-    font-size: 16px;
-    line-height: 1.9;
+    color: #302721;
+    font-size: clamp(18px, 2vw, 22px);
+    line-height: 1.85;
+  }
+
+  .bw-testimonials__footer {
+    display: grid;
+    gap: 14px;
+    padding-top: 6px;
+    border-top: 1px solid rgba(45, 33, 27, 0.08);
   }
 
   .bw-testimonials__author {
@@ -125,13 +359,97 @@
     line-height: 1.6;
   }
 
+  .bw-testimonials__mini-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .bw-testimonials__mini-tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 0 10px;
+    border-radius: 999px;
+    background: rgba(166, 106, 67, 0.1);
+    color: #7f604d;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .bw-testimonials__live {
+    display: grid;
+    gap: 18px;
+    padding: 24px 28px 6px;
+    border-radius: 28px;
+    background:
+      radial-gradient(circle at top right, rgba(53, 90, 109, 0.06), transparent 28%),
+      linear-gradient(180deg, rgba(255, 252, 248, 0.94) 0%, rgba(251, 246, 240, 0.94) 100%);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+  }
+
+  .bw-testimonials__live-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    justify-content: space-between;
+    gap: 14px;
+  }
+
+  .bw-testimonials__live-copy {
+    display: grid;
+    gap: 6px;
+    max-width: 58ch;
+  }
+
+  .bw-testimonials__live-kicker {
+    color: #8a684f;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .bw-testimonials__live-title {
+    margin: 0;
+    color: #201713;
+    font-size: clamp(22px, 3vw, 30px);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+
+  .bw-testimonials__live-text {
+    margin: 0;
+    color: #66554c;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .bw-testimonials__live-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+  }
+
+  .bw-testimonials__live-widget {
+    overflow: hidden;
+    border-radius: 22px;
+  }
+
   @media (max-width: 1100px) {
-    .bw-testimonials__grid {
+    .bw-testimonials__header {
       grid-template-columns: 1fr;
     }
 
-    .bw-testimonials__header {
+    .bw-testimonials__layout {
       grid-template-columns: 1fr;
+    }
+
+    .bw-testimonials__tabs {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
     }
   }
 
@@ -139,70 +457,469 @@
     .bw-testimonials {
       padding: 10px 16px 54px;
     }
+
+    .bw-testimonials__shell {
+      padding: 14px;
+      border-radius: 24px;
+    }
+
+    .bw-testimonials__tabs {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+      scroll-snap-type: x proximity;
+      scrollbar-width: none;
+    }
+
+    .bw-testimonials__tabs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .bw-testimonials__tab {
+      flex: 0 0 82%;
+      scroll-snap-align: start;
+    }
+
+    .bw-testimonials__panel {
+      padding: 20px;
+      border-radius: 22px;
+    }
+
+    .bw-testimonials__toolbar {
+      justify-content: space-between;
+    }
+
+    .bw-testimonials__actions,
+    .bw-testimonials__live-actions {
+      width: 100%;
+      justify-content: space-between;
+    }
+
+    .bw-testimonials__nav-button {
+      width: 44px;
+      height: 44px;
+    }
+
+    .bw-testimonials__quote {
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    .bw-testimonials__live {
+      padding: 20px 20px 2px;
+      border-radius: 22px;
+    }
   }
 </style>
 
-<section class="bw-testimonials">
+<section class="bw-testimonials" data-testimonials-section>
   <div class="bw-testimonials__inner">
     <div class="bw-testimonials__header">
       <div>
-        <span class="bw-testimonials__eyebrow">Loved by Bluewud homes</span>
-        <h2 class="bw-testimonials__title">Stories from homes that chose Bluewud.</h2>
-        <p class="bw-testimonials__copy">From first apartment setups to full-room upgrades, customers return to Bluewud for furniture that looks good, lasts well, and fits into everyday life.</p>
+        <span class="bw-testimonials__eyebrow">{{ testimonials_eyebrow }}</span>
+        <h2 class="bw-testimonials__title">{{ testimonials_title }}</h2>
+        <p class="bw-testimonials__copy">{{ testimonials_copy }}</p>
       </div>
-      <div class="bw-testimonials__stats">
-        <span class="bw-testimonials__stat">20 Lakh+ Customers</span>
-        <span class="bw-testimonials__stat">15+ Years</span>
-        <span class="bw-testimonials__stat">Pan-India Reach</span>
+      <div class="bw-testimonials__stats" aria-label="Bluewud trust highlights">
+        <span class="bw-testimonials__stat">{{ stat_one }}</span>
+        <span class="bw-testimonials__stat">{{ stat_two }}</span>
+        <span class="bw-testimonials__stat">{{ stat_three }}</span>
       </div>
     </div>
 
-    <div class="bw-testimonials__grid">
-      <article class="bw-testimonials__card">
-        <div class="bw-testimonials__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="bw-testimonials__quote">"The finish looked even better in person. Delivery updates were clear, and the unit brought the whole room together beautifully."</p>
-        <div class="bw-testimonials__author">
-          <span class="bw-testimonials__avatar">RK</span>
-          <div>
-            <h3 class="bw-testimonials__name">Ritika Kapoor</h3>
-            <div class="bw-testimonials__meta">Mumbai - Living room upgrade</div>
-          </div>
+    <div class="bw-testimonials__shell" data-testimonials>
+      <div class="bw-testimonials__toolbar">
+        <div class="bw-testimonials__nav">
+          <button class="bw-testimonials__nav-button" type="button" aria-label="Previous review" data-testimonial-prev>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M15 18l-6-6 6-6"></path>
+            </svg>
+          </button>
+          <button class="bw-testimonials__nav-button" type="button" aria-label="Next review" data-testimonial-next>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+              <path d="M9 6l6 6-6 6"></path>
+            </svg>
+          </button>
         </div>
-      </article>
+        <div class="bw-testimonials__actions">
+          {% if live_reviews_count != blank %}
+            <a class="bw-testimonials__reviews-summary" href="{{ reviews_page_url }}">{{ live_reviews_count }}+ customer reviews</a>
+          {% endif %}
+          <a class="bw-testimonials__all-link" href="{{ reviews_page_url }}">Browse all reviews</a>
+          <div class="bw-testimonials__dots" role="tablist" aria-label="Review pagination" data-testimonial-dots></div>
+        </div>
+      </div>
 
-      <article class="bw-testimonials__card">
-        <div class="bw-testimonials__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="bw-testimonials__quote">"We were buying online for the first time, but the product details and support made it easy to decide. The bed looks beautiful."</p>
-        <div class="bw-testimonials__author">
-          <span class="bw-testimonials__avatar">AS</span>
-          <div>
-            <h3 class="bw-testimonials__name">Aman Sethi</h3>
-            <div class="bw-testimonials__meta">Delhi NCR - Bedroom purchase</div>
-          </div>
+      <div class="bw-testimonials__layout">
+        <div class="bw-testimonials__tabs" role="tablist" aria-label="Customer reviews">
+          {% if has_blocks %}
+            {% for block in section.blocks %}
+              <button
+                class="bw-testimonials__tab{% if forloop.first %} is-active{% endif %}"
+                type="button"
+                role="tab"
+                aria-selected="{% if forloop.first %}true{% else %}false{% endif %}"
+                aria-controls="testimonial-panel-{{ block.id }}"
+                data-testimonial-tab="{{ forloop.index0 }}"
+                {{ block.shopify_attributes }}
+              >
+                <span class="bw-testimonials__tab-avatar">{{ block.settings.initials | default: 'BW' }}</span>
+                <span class="bw-testimonials__tab-copy">
+                  <span class="bw-testimonials__tab-name">{{ block.settings.name | default: 'Bluewud customer' }}</span>
+                  <span class="bw-testimonials__tab-meta">{{ block.settings.meta | default: 'Verified review' }}</span>
+                </span>
+              </button>
+            {% endfor %}
+          {% else %}
+            <button class="bw-testimonials__tab is-active" type="button" role="tab" aria-selected="true" aria-controls="testimonial-panel-0" data-testimonial-tab="0">
+              <span class="bw-testimonials__tab-avatar">RK</span>
+              <span class="bw-testimonials__tab-copy">
+                <span class="bw-testimonials__tab-name">Ritika Kapoor</span>
+                <span class="bw-testimonials__tab-meta">Mumbai - Living room upgrade</span>
+              </span>
+            </button>
+            <button class="bw-testimonials__tab" type="button" role="tab" aria-selected="false" aria-controls="testimonial-panel-1" data-testimonial-tab="1">
+              <span class="bw-testimonials__tab-avatar">AS</span>
+              <span class="bw-testimonials__tab-copy">
+                <span class="bw-testimonials__tab-name">Aman Sethi</span>
+                <span class="bw-testimonials__tab-meta">Delhi NCR - Bedroom purchase</span>
+              </span>
+            </button>
+            <button class="bw-testimonials__tab" type="button" role="tab" aria-selected="false" aria-controls="testimonial-panel-2" data-testimonial-tab="2">
+              <span class="bw-testimonials__tab-avatar">NM</span>
+              <span class="bw-testimonials__tab-copy">
+                <span class="bw-testimonials__tab-name">Neha Malhotra</span>
+                <span class="bw-testimonials__tab-meta">Bengaluru - Repeat customer</span>
+              </span>
+            </button>
+          {% endif %}
         </div>
-      </article>
 
-      <article class="bw-testimonials__card">
-        <div class="bw-testimonials__stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-        <p class="bw-testimonials__quote">"This was our second Bluewud order and the quality stayed consistent. Practical, well-finished, and absolutely worth it."</p>
-        <div class="bw-testimonials__author">
-          <span class="bw-testimonials__avatar">NM</span>
-          <div>
-            <h3 class="bw-testimonials__name">Neha Malhotra</h3>
-            <div class="bw-testimonials__meta">Bengaluru - Repeat customer</div>
-          </div>
+        <div class="bw-testimonials__stage">
+          {% if has_blocks %}
+            {% for block in section.blocks %}
+              <article
+                class="bw-testimonials__panel{% if forloop.first %} is-active{% endif %}"
+                id="testimonial-panel-{{ block.id }}"
+                role="tabpanel"
+                data-testimonial-panel="{{ forloop.index0 }}"
+              >
+                <div class="bw-testimonials__panel-top">
+                  <span class="bw-testimonials__stars">★★★★★</span>
+                  <span class="bw-testimonials__tag">{{ block.settings.badge | default: 'Verified customer' }}</span>
+                </div>
+                <p class="bw-testimonials__quote">"{{ block.settings.quote | default: 'Bluewud made the whole room feel complete, and the delivery and support were both easy to follow.' }}"</p>
+                <div class="bw-testimonials__footer">
+                  <div class="bw-testimonials__author">
+                    <span class="bw-testimonials__avatar">{{ block.settings.initials | default: 'BW' }}</span>
+                    <div>
+                      <h3 class="bw-testimonials__name">{{ block.settings.name | default: 'Bluewud customer' }}</h3>
+                      <div class="bw-testimonials__meta">{{ block.settings.meta | default: 'Verified review' }}</div>
+                    </div>
+                  </div>
+                  <div class="bw-testimonials__mini-tags">
+                    {% if block.settings.tag_1 != blank %}
+                      <span class="bw-testimonials__mini-tag">{{ block.settings.tag_1 }}</span>
+                    {% endif %}
+                    {% if block.settings.tag_2 != blank %}
+                      <span class="bw-testimonials__mini-tag">{{ block.settings.tag_2 }}</span>
+                    {% endif %}
+                    {% if block.settings.tag_3 != blank %}
+                      <span class="bw-testimonials__mini-tag">{{ block.settings.tag_3 }}</span>
+                    {% endif %}
+                  </div>
+                </div>
+              </article>
+            {% endfor %}
+          {% else %}
+            <article class="bw-testimonials__panel is-active" id="testimonial-panel-0" role="tabpanel" data-testimonial-panel="0">
+              <div class="bw-testimonials__panel-top">
+                <span class="bw-testimonials__stars">★★★★★</span>
+                <span class="bw-testimonials__tag">Verified customer</span>
+              </div>
+              <p class="bw-testimonials__quote">"The finish looked even better in person. Delivery updates were clear, and the unit brought the whole room together beautifully."</p>
+              <div class="bw-testimonials__footer">
+                <div class="bw-testimonials__author">
+                  <span class="bw-testimonials__avatar">RK</span>
+                  <div>
+                    <h3 class="bw-testimonials__name">Ritika Kapoor</h3>
+                    <div class="bw-testimonials__meta">Mumbai - Living room upgrade</div>
+                  </div>
+                </div>
+                <div class="bw-testimonials__mini-tags">
+                  <span class="bw-testimonials__mini-tag">Premium finish</span>
+                  <span class="bw-testimonials__mini-tag">Easy delivery</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="bw-testimonials__panel" id="testimonial-panel-1" role="tabpanel" data-testimonial-panel="1">
+              <div class="bw-testimonials__panel-top">
+                <span class="bw-testimonials__stars">★★★★★</span>
+                <span class="bw-testimonials__tag">Verified customer</span>
+              </div>
+              <p class="bw-testimonials__quote">"We were buying online for the first time, but the product details and support made it easy to decide. The bed looks beautiful."</p>
+              <div class="bw-testimonials__footer">
+                <div class="bw-testimonials__author">
+                  <span class="bw-testimonials__avatar">AS</span>
+                  <div>
+                    <h3 class="bw-testimonials__name">Aman Sethi</h3>
+                    <div class="bw-testimonials__meta">Delhi NCR - Bedroom purchase</div>
+                  </div>
+                </div>
+                <div class="bw-testimonials__mini-tags">
+                  <span class="bw-testimonials__mini-tag">First online order</span>
+                  <span class="bw-testimonials__mini-tag">Helpful support</span>
+                </div>
+              </div>
+            </article>
+
+            <article class="bw-testimonials__panel" id="testimonial-panel-2" role="tabpanel" data-testimonial-panel="2">
+              <div class="bw-testimonials__panel-top">
+                <span class="bw-testimonials__stars">★★★★★</span>
+                <span class="bw-testimonials__tag">Verified customer</span>
+              </div>
+              <p class="bw-testimonials__quote">"This was our second Bluewud order and the quality stayed consistent. Practical, well-finished, and absolutely worth it."</p>
+              <div class="bw-testimonials__footer">
+                <div class="bw-testimonials__author">
+                  <span class="bw-testimonials__avatar">NM</span>
+                  <div>
+                    <h3 class="bw-testimonials__name">Neha Malhotra</h3>
+                    <div class="bw-testimonials__meta">Bengaluru - Repeat customer</div>
+                  </div>
+                </div>
+                <div class="bw-testimonials__mini-tags">
+                  <span class="bw-testimonials__mini-tag">Repeat order</span>
+                  <span class="bw-testimonials__mini-tag">Consistent quality</span>
+                </div>
+              </div>
+            </article>
+          {% endif %}
         </div>
-      </article>
+      </div>
     </div>
+
+    {% if has_live_reviews %}
+      <div class="bw-testimonials__live">
+        <div class="bw-testimonials__live-header">
+          <div class="bw-testimonials__live-copy">
+            <span class="bw-testimonials__live-kicker">More customer voices</span>
+            <h3 class="bw-testimonials__live-title">Browse a wider stream of real Bluewud reviews.</h3>
+            <p class="bw-testimonials__live-text">The curated stories above create fast confidence. This section opens the deeper review base already collected on the store for customers who want more validation before purchase.</p>
+          </div>
+          <div class="bw-testimonials__live-actions">
+            {% render 'judgeme_widgets', widget_type: 'judgeme_all_reviews_text', concierge_install: true %}
+            <a class="bw-testimonials__all-link" href="{{ reviews_page_url }}">See every review</a>
+          </div>
+        </div>
+        <div class="bw-testimonials__live-widget">
+          {% render 'judgeme_widgets', widget_type: 'judgeme_featured_carousel', concierge_install: true %}
+        </div>
+      </div>
+    {% endif %}
   </div>
 </section>
+
+<script>
+  (function () {
+    var section = document.querySelector('[data-testimonials-section]');
+    if (!section) return;
+
+    var tabs = Array.prototype.slice.call(section.querySelectorAll('[data-testimonial-tab]'));
+    var panels = Array.prototype.slice.call(section.querySelectorAll('[data-testimonial-panel]'));
+    var dotsWrap = section.querySelector('[data-testimonial-dots]');
+    var prevButton = section.querySelector('[data-testimonial-prev]');
+    var nextButton = section.querySelector('[data-testimonial-next]');
+    var currentIndex = 0;
+
+    function activate(index) {
+      if (!panels.length) return;
+
+      currentIndex = (index + panels.length) % panels.length;
+
+      tabs.forEach(function (tab) {
+        var active = Number(tab.getAttribute('data-testimonial-tab')) === currentIndex;
+        tab.classList.toggle('is-active', active);
+        tab.setAttribute('aria-selected', active ? 'true' : 'false');
+      });
+
+      panels.forEach(function (panel) {
+        panel.classList.toggle('is-active', Number(panel.getAttribute('data-testimonial-panel')) === currentIndex);
+      });
+
+      if (dotsWrap) {
+        dotsWrap.querySelectorAll('[data-testimonial-dot]').forEach(function (dot) {
+          var active = Number(dot.getAttribute('data-testimonial-dot')) === currentIndex;
+          dot.classList.toggle('is-active', active);
+          dot.setAttribute('aria-pressed', active ? 'true' : 'false');
+        });
+      }
+    }
+
+    if (dotsWrap && !dotsWrap.children.length) {
+      panels.forEach(function (_, index) {
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'bw-testimonials__dot' + (index === 0 ? ' is-active' : '');
+        dot.setAttribute('aria-label', 'Go to review ' + (index + 1));
+        dot.setAttribute('aria-pressed', index === 0 ? 'true' : 'false');
+        dot.setAttribute('data-testimonial-dot', index);
+        dot.addEventListener('click', function () {
+          activate(index);
+        });
+        dotsWrap.appendChild(dot);
+      });
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        activate(Number(tab.getAttribute('data-testimonial-tab')));
+      });
+    });
+
+    if (prevButton) {
+      prevButton.addEventListener('click', function () {
+        activate(currentIndex - 1);
+      });
+    }
+
+    if (nextButton) {
+      nextButton.addEventListener('click', function () {
+        activate(currentIndex + 1);
+      });
+    }
+
+    activate(0);
+  })();
+</script>
 
 {% schema %}
 {
   "name": "Testimonials",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Loved by Bluewud homes"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Stories from homes that chose Bluewud."
+    },
+    {
+      "type": "textarea",
+      "id": "copy",
+      "label": "Description",
+      "default": "From first apartment setups to full-room upgrades, customers return to Bluewud for furniture that looks good, lasts well, and fits into everyday life."
+    },
+    {
+      "type": "text",
+      "id": "stat_one",
+      "label": "Stat 1",
+      "default": "20 Lakh+ Customers"
+    },
+    {
+      "type": "text",
+      "id": "stat_two",
+      "label": "Stat 2",
+      "default": "15+ Years"
+    },
+    {
+      "type": "text",
+      "id": "stat_three",
+      "label": "Stat 3",
+      "default": "Pan-India Reach"
+    }
+  ],
+  "blocks": [
+    {
+      "type": "testimonial",
+      "name": "Testimonial",
+      "settings": [
+        {
+          "type": "text",
+          "id": "initials",
+          "label": "Initials",
+          "default": "RK"
+        },
+        {
+          "type": "text",
+          "id": "name",
+          "label": "Name",
+          "default": "Ritika Kapoor"
+        },
+        {
+          "type": "text",
+          "id": "meta",
+          "label": "Meta",
+          "default": "Mumbai - Living room upgrade"
+        },
+        {
+          "type": "text",
+          "id": "badge",
+          "label": "Badge",
+          "default": "Verified customer"
+        },
+        {
+          "type": "textarea",
+          "id": "quote",
+          "label": "Quote",
+          "default": "The finish looked even better in person. Delivery updates were clear, and the unit brought the whole room together beautifully."
+        },
+        {
+          "type": "text",
+          "id": "tag_1",
+          "label": "Tag 1",
+          "default": "Premium finish"
+        },
+        {
+          "type": "text",
+          "id": "tag_2",
+          "label": "Tag 2",
+          "default": "Easy delivery"
+        },
+        {
+          "type": "text",
+          "id": "tag_3",
+          "label": "Tag 3"
+        }
+      ]
+    }
+  ],
   "presets": [
     {
-      "name": "Testimonials"
+      "name": "Testimonials",
+      "blocks": [
+        {
+          "type": "testimonial"
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "initials": "AS",
+            "name": "Aman Sethi",
+            "meta": "Delhi NCR - Bedroom purchase",
+            "quote": "We were buying online for the first time, but the product details and support made it easy to decide. The bed looks beautiful.",
+            "tag_1": "First online order",
+            "tag_2": "Helpful support"
+          }
+        },
+        {
+          "type": "testimonial",
+          "settings": {
+            "initials": "NM",
+            "name": "Neha Malhotra",
+            "meta": "Bengaluru - Repeat customer",
+            "quote": "This was our second Bluewud order and the quality stayed consistent. Practical, well-finished, and absolutely worth it.",
+            "tag_1": "Repeat order",
+            "tag_2": "Consistent quality"
+          }
+        }
+      ]
     }
   ]
 }

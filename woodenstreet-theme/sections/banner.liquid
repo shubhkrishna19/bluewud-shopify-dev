@@ -19,6 +19,8 @@
   assign banner_collection = collections['hp-bluewuds-bestseller']
   assign banner_product = blank
   assign banner_fallback_image = blank
+  assign banner_badge_title = 'Plan a larger order with ease'
+  assign banner_badge_copy = 'Get dedicated help for project orders, GST-led purchases, showroom visits, and personalised assistance before you place the order.'
 
   if banner_collection == blank
     assign banner_collection = collections['living-room']
@@ -153,6 +155,18 @@
     background: #ddd2ca;
   }
 
+  .bw-story__media-link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: block;
+  }
+
+  .bw-story__media-link:focus-visible {
+    outline: 2px solid rgba(53, 90, 109, 0.72);
+    outline-offset: -6px;
+  }
+
   .bw-story__media img,
   .bw-story__fallback {
     width: 100%;
@@ -193,6 +207,7 @@
     position: absolute;
     right: 22px;
     bottom: 22px;
+    z-index: 2;
     max-width: 280px;
     padding: 20px;
     border-radius: 24px;
@@ -273,6 +288,9 @@
     </div>
 
     <div class="bw-story__media">
+      {% if primary_url != blank %}
+        <a class="bw-story__media-link" href="{{ primary_url }}" aria-label="{{ primary_label }}"></a>
+      {% endif %}
       {% if banner_image != blank %}
         {{ banner_image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '600, 900, 1200, 1400', sizes: '(max-width: 1050px) 100vw, 54vw' }}
       {% elsif banner_fallback_image != blank %}
@@ -283,20 +301,8 @@
         </div>
       {% endif %}
       <div class="bw-story__badge">
-        <h3 class="bw-story__badge-title">
-          {% if banner_product != blank %}
-            {{ banner_product.title }}
-          {% else %}
-            Plan a larger order with ease
-          {% endif %}
-        </h3>
-        <p class="bw-story__badge-copy">
-          {% if banner_product != blank %}
-            {{ banner_product.description | strip_html | truncatewords: 16 }}
-          {% else %}
-            Get dedicated help for project orders, showroom visits, and personalised assistance.
-          {% endif %}
-        </p>
+        <h3 class="bw-story__badge-title">{{ banner_badge_title }}</h3>
+        <p class="bw-story__badge-copy">{{ banner_badge_copy }}</p>
       </div>
     </div>
   </div>

@@ -1,0 +1,464 @@
+<style>
+  .bw-offers {
+    display: grid;
+    gap: 22px;
+  }
+
+  .bw-offers__hero,
+  .bw-offers__body {
+    display: grid;
+    gap: 16px;
+  }
+
+  .bw-offers__hero {
+    grid-template-columns: minmax(0, 1.02fr) minmax(280px, 0.98fr);
+  }
+
+  .bw-offers__body {
+    grid-template-columns: minmax(0, 1.06fr) minmax(280px, 0.64fr);
+  }
+
+  .bw-offers__spotlight,
+  .bw-offers__steps,
+  .bw-offers__details,
+  .bw-offers__sidebar-card {
+    border-radius: 30px;
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 24px 70px rgba(35, 24, 19, 0.08);
+  }
+
+  .bw-offers__spotlight {
+    padding: 30px;
+    background:
+      radial-gradient(circle at top right, rgba(255, 255, 255, 0.2), transparent 26%),
+      linear-gradient(135deg, #241913 0%, #3d2a21 100%);
+    color: #f8f1eb;
+    display: grid;
+    gap: 16px;
+  }
+
+  .bw-offers__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    min-height: 32px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(248, 241, 235, 0.82);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .bw-offers__title {
+    margin: 0;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.06;
+    letter-spacing: -0.04em;
+    max-width: 12ch;
+  }
+
+  .bw-offers__copy {
+    margin: 0;
+    color: rgba(248, 241, 235, 0.76);
+    font-size: 16px;
+    line-height: 1.8;
+    max-width: 58ch;
+  }
+
+  .bw-offers__tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .bw-offers__tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.14);
+    color: #f8f1eb;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .bw-offers__steps {
+    padding: 26px;
+    background: rgba(255, 251, 247, 0.94);
+    display: grid;
+    gap: 16px;
+  }
+
+  .bw-offers__steps-title {
+    margin: 0;
+    color: #201713;
+    font-size: 22px;
+    line-height: 1.15;
+  }
+
+  .bw-offers__step-list {
+    display: grid;
+    gap: 12px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: offer-steps;
+  }
+
+  .bw-offers__step-list li {
+    display: grid;
+    grid-template-columns: 34px minmax(0, 1fr);
+    gap: 12px;
+    align-items: start;
+    color: #5f4f46;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .bw-offers__step-list li::before {
+    counter-increment: offer-steps;
+    content: counter(offer-steps);
+    width: 34px;
+    height: 34px;
+    border-radius: 50%;
+    background: rgba(32, 23, 19, 0.08);
+    color: #201713;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 700;
+  }
+
+  .bw-offers__step-list strong {
+    color: #201713;
+  }
+
+  .bw-offers__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 18px;
+    border-radius: 999px;
+    background: #201713;
+    color: #f8f1eb;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    width: fit-content;
+  }
+
+  .bw-offers__cards {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .bw-offers__card {
+    position: relative;
+    overflow: hidden;
+    display: grid;
+    gap: 12px;
+    padding: 22px;
+    border-radius: 24px;
+    background: rgba(255, 251, 247, 0.95);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 16px 40px rgba(35, 24, 19, 0.06);
+  }
+
+  .bw-offers__card::after {
+    content: "";
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 2px;
+    background: linear-gradient(90deg, #355a6d 0%, #a66a43 100%);
+    opacity: 0.42;
+  }
+
+  .bw-offers__card-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+
+  .bw-offers__card-badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 0 10px;
+    border-radius: 999px;
+    background: rgba(32, 23, 19, 0.06);
+    color: #7d614f;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .bw-offers__card-title {
+    margin: 0;
+    color: #201713;
+    font-size: 18px;
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+  }
+
+  .bw-offers__card-copy {
+    margin: 0;
+    color: #66554c;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .bw-offers__card-link {
+    color: #8a684f;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    width: fit-content;
+  }
+
+  .bw-offers__details {
+    padding: 30px;
+    background: rgba(255, 251, 247, 0.94);
+    display: grid;
+    gap: 16px;
+  }
+
+  .bw-offers__details-heading {
+    display: grid;
+    gap: 8px;
+  }
+
+  .bw-offers__details-kicker {
+    color: #8a684f;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .bw-offers__details-title {
+    margin: 0;
+    color: #201713;
+    font-size: 26px;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+  }
+
+  .bw-offers__details-copy {
+    margin: 0;
+    color: #67564c;
+    font-size: 15px;
+    line-height: 1.8;
+    max-width: 62ch;
+  }
+
+  .bw-offers__rte {
+    color: #4d4038;
+    font-size: 15px;
+    line-height: 1.85;
+  }
+
+  .bw-offers__rte h1,
+  .bw-offers__rte h2,
+  .bw-offers__rte h3,
+  .bw-offers__rte h4 {
+    margin: 1.5em 0 0.65em;
+    color: #201713;
+    line-height: 1.18;
+    letter-spacing: -0.03em;
+  }
+
+  .bw-offers__rte h1:first-child,
+  .bw-offers__rte h2:first-child,
+  .bw-offers__rte h3:first-child,
+  .bw-offers__rte h4:first-child {
+    margin-top: 0;
+  }
+
+  .bw-offers__rte p,
+  .bw-offers__rte ul,
+  .bw-offers__rte ol {
+    margin: 0 0 1.05em;
+  }
+
+  .bw-offers__rte ul,
+  .bw-offers__rte ol {
+    padding-left: 1.25em;
+  }
+
+  .bw-offers__rte strong {
+    color: #201713;
+  }
+
+  .bw-offers__rte a {
+    color: #8a684f;
+    text-decoration: none;
+    font-weight: 700;
+  }
+
+  .bw-offers__sidebar {
+    display: grid;
+    gap: 16px;
+  }
+
+  .bw-offers__sidebar-card {
+    padding: 24px;
+    background: rgba(255, 251, 247, 0.94);
+    display: grid;
+    gap: 10px;
+  }
+
+  .bw-offers__sidebar-card h3 {
+    margin: 0;
+    color: #201713;
+    font-size: 20px;
+    line-height: 1.2;
+  }
+
+  .bw-offers__sidebar-card p {
+    margin: 0;
+    color: #66554c;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .bw-offers__sidebar-card a {
+    color: #8a684f;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    width: fit-content;
+  }
+
+  @media (max-width: 980px) {
+    .bw-offers__hero,
+    .bw-offers__body {
+      grid-template-columns: 1fr;
+    }
+
+    .bw-offers__cards {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .bw-offers__spotlight,
+    .bw-offers__steps,
+    .bw-offers__details,
+    .bw-offers__sidebar-card {
+      padding: 22px 20px;
+      border-radius: 24px;
+    }
+
+    .bw-offers__title {
+      max-width: none;
+      font-size: clamp(28px, 10vw, 38px);
+    }
+  }
+</style>
+
+<div class="bw-offers">
+  <div class="bw-offers__hero">
+    <article class="bw-offers__spotlight">
+      <span class="bw-offers__eyebrow">Current savings</span>
+      <h2 class="bw-offers__title">Bluewud offers, organized for quick decisions.</h2>
+      <p class="bw-offers__copy">Review coupon savings, payment-led benefits, and the main conditions that matter before checkout. The goal is clarity, not clutter.</p>
+      <div class="bw-offers__tags">
+        <span class="bw-offers__tag">Coupon offers</span>
+        <span class="bw-offers__tag">Payment rewards</span>
+        <span class="bw-offers__tag">Limited-time savings</span>
+      </div>
+    </article>
+
+    <article class="bw-offers__steps">
+      <h2 class="bw-offers__steps-title">How to use an offer without missing the terms</h2>
+      <ol class="bw-offers__step-list">
+        <li><span><strong>Check the listed conditions.</strong> Review minimum order value, eligible payment method, and whether a coupon code is required.</span></li>
+        <li><span><strong>Apply the offer correctly at checkout.</strong> If a code is needed, enter it during checkout. If it is a payment offer, complete payment using the eligible provider.</span></li>
+        <li><span><strong>Use support if anything looks unclear.</strong> Reach out before placing the order if the discount logic or cashback rules are not obvious.</span></li>
+      </ol>
+      <a class="bw-offers__cta" href="{{ routes.all_products_collection_url }}">Shop eligible products</a>
+    </article>
+  </div>
+
+  <div class="bw-offers__cards">
+    <article class="bw-offers__card">
+      <div class="bw-offers__card-top">
+        <span class="bw-offers__card-badge">Bank offer</span>
+        <span class="bw-offers__card-badge">Cards</span>
+      </div>
+      <h3 class="bw-offers__card-title">Payment-led savings made easy.</h3>
+      <p class="bw-offers__card-copy">See the cards and payment methods that currently qualify for instant discounts or rewards before you head to checkout.</p>
+      <a class="bw-offers__card-link" href="/pages/contact-us">Ask before you pay</a>
+    </article>
+
+    <article class="bw-offers__card">
+      <div class="bw-offers__card-top">
+        <span class="bw-offers__card-badge">Coupon code</span>
+        <span class="bw-offers__card-badge">Online</span>
+      </div>
+      <h3 class="bw-offers__card-title">Use the right code at the right moment.</h3>
+      <p class="bw-offers__card-copy">Some savings need a code, some apply automatically, and some are linked to the payment method. We keep that distinction visible here.</p>
+      <a class="bw-offers__card-link" href="{{ routes.all_products_collection_url }}">Browse products</a>
+    </article>
+
+    <article class="bw-offers__card">
+      <div class="bw-offers__card-top">
+        <span class="bw-offers__card-badge">Bulk order</span>
+        <span class="bw-offers__card-badge">Team help</span>
+      </div>
+      <h3 class="bw-offers__card-title">For larger furnishing requirements.</h3>
+      <p class="bw-offers__card-copy">Office, hospitality, GST-led, and multi-piece orders can follow a different buying path. Keep the conversation open before checkout.</p>
+      <a class="bw-offers__card-link" href="/pages/buy-in-bulk">Open bulk page</a>
+    </article>
+  </div>
+
+  <div class="bw-offers__body">
+    <article class="bw-offers__details">
+      <div class="bw-offers__details-heading">
+        <span class="bw-offers__details-kicker">Live terms</span>
+        <h2 class="bw-offers__details-title">Offer details you can scan quickly</h2>
+        <p class="bw-offers__details-copy">The page content below remains editable in Shopify, but the surrounding structure now gives it a clearer premium frame.</p>
+      </div>
+      <div class="bw-offers__rte">
+        {{ page.content }}
+      </div>
+    </article>
+
+    <aside class="bw-offers__sidebar">
+      <article class="bw-offers__sidebar-card">
+        <h3>Need help applying a coupon?</h3>
+        <p>If a code does not apply as expected or a payment offer is unclear, speak with the Bluewud team before you place the order.</p>
+        <a href="/pages/contact-us">Contact support</a>
+      </article>
+
+      <article class="bw-offers__sidebar-card">
+        <h3>Planning a larger order?</h3>
+        <p>For office, hospitality, GST-led, or multi-piece furnishing requirements, Bluewud can support you beyond standard shopper offers.</p>
+        <a href="/pages/buy-in-bulk">Open Buy In Bulk</a>
+      </article>
+
+      <article class="bw-offers__sidebar-card">
+        <h3>Want upcoming offer alerts?</h3>
+        <p>Stay close to launches, campaigns, and seasonal savings through the Bluewud newsletter and help pages.</p>
+        <a href="/pages/help-center">Visit help center</a>
+      </article>
+    </aside>
+  </div>
+</div>

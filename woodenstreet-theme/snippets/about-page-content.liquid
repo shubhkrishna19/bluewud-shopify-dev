@@ -1,0 +1,462 @@
+<style>
+  .bw-about {
+    display: grid;
+    gap: 22px;
+  }
+
+  .bw-about__hero,
+  .bw-about__panel,
+  .bw-about__tile {
+    border-radius: 30px;
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 24px 70px rgba(35, 24, 19, 0.08);
+  }
+
+  .bw-about__hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(300px, 0.9fr);
+    gap: 18px;
+  }
+
+  .bw-about__story,
+  .bw-about__snapshot,
+  .bw-about__panel {
+    background: rgba(255, 251, 247, 0.94);
+  }
+
+  .bw-about__story {
+    padding: 30px;
+    display: grid;
+    gap: 18px;
+  }
+
+  .bw-about__eyebrow {
+    color: #8a684f;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .bw-about__title {
+    margin: 0;
+    color: #201713;
+    font-size: clamp(32px, 4.5vw, 54px);
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+    max-width: 12ch;
+  }
+
+  .bw-about__copy {
+    margin: 0;
+    color: #64544a;
+    font-size: 16px;
+    line-height: 1.85;
+    max-width: 66ch;
+  }
+
+  .bw-about__highlights {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .bw-about__highlight {
+    padding: 16px;
+    border-radius: 22px;
+    background: rgba(32, 23, 19, 0.04);
+    display: grid;
+    gap: 8px;
+  }
+
+  .bw-about__highlight-label {
+    color: #8a684f;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .bw-about__highlight-title {
+    margin: 0;
+    color: #201713;
+    font-size: 18px;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+  }
+
+  .bw-about__highlight-copy {
+    margin: 0;
+    color: #64544a;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .bw-about__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .bw-about__chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(32, 23, 19, 0.06);
+    color: #201713;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .bw-about__snapshot {
+    padding: 28px;
+    display: grid;
+    gap: 14px;
+  }
+
+  .bw-about__snapshot-title {
+    margin: 0;
+    color: #201713;
+    font-size: 22px;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+  }
+
+  .bw-about__snapshot-copy {
+    margin: 0;
+    color: #64544a;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .bw-about__stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .bw-about__stat {
+    padding: 18px;
+    border-radius: 22px;
+    background:
+      linear-gradient(180deg, rgba(53, 90, 109, 0.08) 0%, rgba(166, 106, 67, 0.08) 100%);
+    display: grid;
+    gap: 6px;
+  }
+
+  .bw-about__stat-value {
+    color: #201713;
+    font-size: 28px;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.03em;
+  }
+
+  .bw-about__stat-label {
+    margin: 0;
+    color: #66554c;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+
+  .bw-about__grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .bw-about__tile {
+    padding: 20px;
+    background: rgba(255, 251, 247, 0.94);
+    display: grid;
+    gap: 10px;
+  }
+
+  .bw-about__tile-label {
+    color: #8a684f;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .bw-about__tile-title {
+    margin: 0;
+    color: #201713;
+    font-size: 18px;
+    line-height: 1.18;
+    letter-spacing: -0.02em;
+  }
+
+  .bw-about__tile-copy {
+    margin: 0;
+    color: #64544a;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .bw-about__panel {
+    padding: 26px 28px;
+    display: grid;
+    gap: 14px;
+  }
+
+  .bw-about__panel-header {
+    display: grid;
+    gap: 8px;
+  }
+
+  .bw-about__panel-kicker {
+    color: #8a684f;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .bw-about__panel-title {
+    margin: 0;
+    color: #201713;
+    font-size: 26px;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+  }
+
+  .bw-about__panel-copy {
+    margin: 0;
+    color: #64544a;
+    font-size: 15px;
+    line-height: 1.8;
+    max-width: 66ch;
+  }
+
+  .bw-about__timeline {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .bw-about__step {
+    padding: 18px;
+    border-radius: 22px;
+    background: rgba(32, 23, 19, 0.04);
+    display: grid;
+    gap: 8px;
+  }
+
+  .bw-about__step-index {
+    color: #8a684f;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .bw-about__step-title {
+    margin: 0;
+    color: #201713;
+    font-size: 17px;
+    line-height: 1.18;
+  }
+
+  .bw-about__step-copy {
+    margin: 0;
+    color: #64544a;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .bw-about__cta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  .bw-about__button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0 18px;
+    border-radius: 999px;
+    background: #201713;
+    color: #fff7f1;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .bw-about__button--ghost {
+    background: transparent;
+    color: #201713;
+    border: 1px solid rgba(32, 23, 19, 0.12);
+  }
+
+  .bw-about__note {
+    padding: 16px 18px;
+    border-radius: 20px;
+    background: rgba(53, 90, 109, 0.08);
+    color: #365464;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 1100px) {
+    .bw-about__hero,
+    .bw-about__grid,
+    .bw-about__timeline {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 760px) {
+    .bw-about__hero,
+    .bw-about__grid,
+    .bw-about__timeline,
+    .bw-about__stats,
+    .bw-about__highlights {
+      grid-template-columns: 1fr;
+    }
+
+    .bw-about__story,
+    .bw-about__snapshot,
+    .bw-about__panel {
+      padding: 20px;
+      border-radius: 24px;
+    }
+  }
+</style>
+
+<div class="bw-about">
+  <section class="bw-about__hero">
+    <div class="bw-about__story">
+      <span class="bw-about__eyebrow">Designs for everyone</span>
+      <h2 class="bw-about__title">Bluewud - Designs For Everyone!</h2>
+      <p class="bw-about__copy">Bluewud designs, manufactures and markets range of innovative and contemporary furniture and decor products. Our designs complement and connect with our customer's lifestyle, imagination and aspirations.</p>
+      <p class="bw-about__copy">With a humble beginning in September 2015, we started with laptop tables that became instant bestsellers. That momentum led us into a wider product family that now spans living, study, storage, and display categories.</p>
+
+      <div class="bw-about__highlights">
+        <div class="bw-about__highlight">
+          <span class="bw-about__highlight-label">Origin</span>
+          <h3 class="bw-about__highlight-title">September 2015</h3>
+          <p class="bw-about__highlight-copy">Started with a humble range of laptop tables that quickly became instant bestsellers.</p>
+        </div>
+
+        <div class="bw-about__highlight">
+          <span class="bw-about__highlight-label">Design</span>
+          <h3 class="bw-about__highlight-title">In-house team</h3>
+          <p class="bw-about__highlight-copy">Product designers, 3D artists, engineers, and craftsmen iterate before launch.</p>
+        </div>
+
+        <div class="bw-about__highlight">
+          <span class="bw-about__highlight-label">Facility</span>
+          <h3 class="bw-about__highlight-title">30,000 sqft in Noida</h3>
+          <p class="bw-about__highlight-copy">A working manufacturing unit with specialized machinery and custom-built tools.</p>
+        </div>
+      </div>
+
+      <div class="bw-about__chips" aria-label="Bluewud product range">
+        <a class="bw-about__chip" href="/collections/living-room">TV units</a>
+        <a class="bw-about__chip" href="/collections/study-tables">Study tables</a>
+        <a class="bw-about__chip" href="/collections/shoe-racks">Shoe racks</a>
+        <a class="bw-about__chip" href="/collections/wall-shelves">Wall shelves</a>
+        <a class="bw-about__chip" href="/collections/book-shelves">Book shelves</a>
+        <a class="bw-about__chip" href="/collections/newest-products-1">New arrivals</a>
+      </div>
+
+      <div class="bw-about__cta">
+        <a class="bw-about__button" href="/collections/newest-products-1">Explore products</a>
+        <a class="bw-about__button bw-about__button--ghost" href="/pages/contact-us">Talk to Bluewud</a>
+      </div>
+    </div>
+
+    <aside class="bw-about__snapshot">
+      <p class="bw-about__snapshot-title">At a glance</p>
+      <p class="bw-about__snapshot-copy">A focused team with an in-house design center, a working manufacturing base in Noida, and a product philosophy that keeps improving with each category we add.</p>
+
+      <div class="bw-about__stats">
+        <div class="bw-about__stat">
+          <div class="bw-about__stat-value">2015</div>
+          <p class="bw-about__stat-label">Started with laptop tables that quickly became bestsellers.</p>
+        </div>
+        <div class="bw-about__stat">
+          <div class="bw-about__stat-value">50</div>
+          <p class="bw-about__stat-label">People across design, engineering, craft, and operations.</p>
+        </div>
+        <div class="bw-about__stat">
+          <div class="bw-about__stat-value">30k</div>
+          <p class="bw-about__stat-label">Sqft Noida manufacturing unit with specialized machinery.</p>
+        </div>
+        <div class="bw-about__stat">
+          <div class="bw-about__stat-value">1+</div>
+          <p class="bw-about__stat-label">Patent held, with more design registrations in progress.</p>
+        </div>
+      </div>
+    </aside>
+  </section>
+
+  <section class="bw-about__grid">
+    <article class="bw-about__tile">
+      <span class="bw-about__tile-label">Leadership</span>
+      <h3 class="bw-about__tile-title">Abhinav Singh leads the brand.</h3>
+      <p class="bw-about__tile-copy">Bluewud is led by Abhinav Singh, Founder and CEO, a B.Tech graduate from IIT Bombay, batch of 2005, with experience across design, manufacturing, and marketing-led businesses.</p>
+    </article>
+
+    <article class="bw-about__tile">
+      <span class="bw-about__tile-label">Design centre</span>
+      <h3 class="bw-about__tile-title">Ideas are refined in-house.</h3>
+      <p class="bw-about__tile-copy">Our designers, 3D artists, engineers, and hands-on craftsmen iterate carefully before products are released to customers.</p>
+    </article>
+
+    <article class="bw-about__tile">
+      <span class="bw-about__tile-label">Manufacturing</span>
+      <h3 class="bw-about__tile-title">Noida production with serious tooling.</h3>
+      <p class="bw-about__tile-copy">The facility is equipped with computer-controlled cutters, edge banders, polishers, laser cutters, sanders, and other specialized machinery.</p>
+    </article>
+
+    <article class="bw-about__tile">
+      <span class="bw-about__tile-label">Future range</span>
+      <h3 class="bw-about__tile-title">The catalogue is still expanding.</h3>
+      <p class="bw-about__tile-copy">Sofas, beds, and dining tables are under design phase while the current range continues to grow across home and decor categories.</p>
+    </article>
+  </section>
+
+  <section class="bw-about__panel">
+    <div class="bw-about__panel-header">
+      <span class="bw-about__panel-kicker">What Bluewud makes</span>
+      <h3 class="bw-about__panel-title">A practical range with enough breadth to furnish real homes.</h3>
+      <p class="bw-about__panel-copy">The current assortment includes TV units, coffee tables, laptop tables, study tables, shoe racks, wall clocks, wall shelves, book shelves, key holders, remote holders, dressing table mirrors, and more.</p>
+    </div>
+
+    <div class="bw-about__timeline">
+      <article class="bw-about__step">
+        <span class="bw-about__step-index">01 / Origin</span>
+        <h4 class="bw-about__step-title">Start from one bestseller, then expand.</h4>
+        <p class="bw-about__step-copy">The brand grew from laptop tables into a broader furniture system around what customers kept choosing again.</p>
+      </article>
+
+      <article class="bw-about__step">
+        <span class="bw-about__step-index">02 / Build</span>
+        <h4 class="bw-about__step-title">Prototype, review, refine, then launch.</h4>
+        <p class="bw-about__step-copy">Products move through design and production carefully so the final offer feels more dependable and less generic.</p>
+      </article>
+
+      <article class="bw-about__step">
+        <span class="bw-about__step-index">03 / Support</span>
+        <h4 class="bw-about__step-title">A customer-facing team stays reachable.</h4>
+        <p class="bw-about__step-copy">Call, WhatsApp, or email the Bluewud team if you need product guidance, order support, or installation help.</p>
+      </article>
+    </div>
+
+    <div class="bw-about__note">
+      Bluewud keeps the visual language calm and premium, but the content remains practical: clear categories, in-house design, a working factory, and direct support when customers need it.
+    </div>
+  </section>
+</div>

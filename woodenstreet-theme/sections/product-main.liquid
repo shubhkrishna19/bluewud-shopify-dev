@@ -2,11 +2,37 @@
   assign current_variant = product.selected_or_first_available_variant
   assign featured_image = product.featured_image
   assign first_collection = product.collections.first
+  assign recommendation_collection = blank
   assign product_form_id = 'bw-product-form-' | append: section.id
   assign product_subtitle = product.metafields.my_fields.product_subtitle | default: product.description | strip_html | strip_newlines | truncatewords: 28
   assign free_delivery_note = product.metafields.my_fields.free_delivery
   assign emi_from_note = product.metafields.my_fields.emi_from
   assign estimate_shipping_time = product.metafields.my_fields.estimate_shipping_time
+  assign related_product_limit = 4
+  assign related_products_count = 0
+
+  for related_collection in product.collections
+    if related_collection.products_count > 1 and related_collection.handle != 'frontpage'
+      assign recommendation_collection = related_collection
+      break
+    endif
+  endfor
+
+  if recommendation_collection == blank
+    assign recommendation_collection = first_collection
+  endif
+
+  if recommendation_collection
+    for related_product in recommendation_collection.products
+      if related_product.id != product.id
+        assign related_products_count = related_products_count | plus: 1
+
+        if related_products_count >= related_product_limit
+          break
+        endif
+      endif
+    endfor
+  endif
 %}
 
 <style>
@@ -179,6 +205,17 @@
     margin: 0;
   }
 
+  .bw-product__rating {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    min-height: 38px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.86);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+  }
+
   .bw-product__proofs {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -286,29 +323,27 @@
 
   .bw-product__option {
     display: grid;
-    gap: 12px;
+    grid-template-columns: auto minmax(0, 1fr);
+    align-items: start;
+    gap: 14px 18px;
   }
 
   .bw-product__option-label {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    gap: 12px;
+    min-height: 46px;
+    white-space: nowrap;
     color: #201713;
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 700;
-  }
-
-  .bw-product__option-value {
-    color: #7a5e4d;
-    font-size: 13px;
-    font-weight: 600;
+    line-height: 1.35;
   }
 
   .bw-product__option-values {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
+    align-items: center;
+    gap: 12px;
   }
 
   .bw-product__option-input {
@@ -446,6 +481,7 @@
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 12px;
+    margin-top: -6px;
   }
 
   .bw-product__support-card {
@@ -520,6 +556,216 @@
     font-weight: 700;
   }
 
+  .bw-product__reviews {
+    margin-top: 28px;
+    padding: 28px;
+    border-radius: 32px;
+    background: rgba(255, 251, 247, 0.94);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 24px 70px rgba(35, 24, 19, 0.06);
+  }
+
+  .bw-product__reviews-header {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+
+  .bw-product__reviews-eyebrow {
+    color: #7a5e4d;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .bw-product__reviews-title {
+    margin: 0;
+    color: #1f1611;
+    font-size: clamp(26px, 3vw, 34px);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+  }
+
+  .bw-product__reviews-copy {
+    margin: 0;
+    color: #5e4d44;
+    font-size: 15px;
+    line-height: 1.8;
+    max-width: 66ch;
+  }
+
+  .bw-product__reviews-widget {
+    padding: 20px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.74);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+  }
+
+  .bw-product__related {
+    margin-top: 28px;
+    display: grid;
+    gap: 18px;
+    padding: 28px;
+    border-radius: 32px;
+    background: rgba(255, 251, 247, 0.94);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 24px 70px rgba(35, 24, 19, 0.05);
+  }
+
+  .bw-product__related-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: end;
+    justify-content: space-between;
+    gap: 14px;
+  }
+
+  .bw-product__related-copy {
+    display: grid;
+    gap: 8px;
+    max-width: 64ch;
+  }
+
+  .bw-product__related-eyebrow {
+    color: #7a5e4d;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .bw-product__related-title {
+    margin: 0;
+    color: #1f1611;
+    font-size: clamp(24px, 3vw, 32px);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+  }
+
+  .bw-product__related-text {
+    margin: 0;
+    color: #5e4d44;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .bw-product__related-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 18px;
+    border-radius: 999px;
+    background: rgba(32, 23, 19, 0.06);
+    color: #201713;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+  }
+
+  .bw-product__related-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .bw-product__related-card {
+    display: grid;
+    gap: 12px;
+    padding: 14px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    text-decoration: none;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .bw-product__related-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 18px 42px rgba(35, 24, 19, 0.08);
+  }
+
+  .bw-product__related-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 18px;
+    min-height: 220px;
+    background:
+      radial-gradient(circle at 20% 16%, rgba(255, 255, 255, 0.22), transparent 24%),
+      linear-gradient(145deg, #dfd0c4 0%, #bb9b86 42%, #6e5043 100%);
+  }
+
+  .bw-product__related-image img {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+  }
+
+  .bw-product__related-meta {
+    display: grid;
+    gap: 8px;
+  }
+
+  .bw-product__related-kicker {
+    color: #7a5e4d;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .bw-product__related-name {
+    margin: 0;
+    color: #201713;
+    font-size: 18px;
+    line-height: 1.25;
+  }
+
+  .bw-product__related-subtitle {
+    color: #66554c;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+
+  .bw-product__related-price-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .bw-product__related-price {
+    color: #201713;
+    font-size: 18px;
+    font-weight: 800;
+  }
+
+  .bw-product__related-compare {
+    color: #8b7a71;
+    font-size: 13px;
+    text-decoration: line-through;
+  }
+
+  .bw-product__related-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: #201713;
+    color: #fff7f1;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    width: fit-content;
+  }
+
   @media (max-width: 1080px) {
     .bw-product__grid {
       grid-template-columns: 1fr;
@@ -574,9 +820,13 @@
       gap: 8px;
     }
 
+    .bw-product__option {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
     .bw-product__option-label {
-      align-items: flex-start;
-      flex-direction: column;
+      min-height: auto;
     }
 
     .bw-product__option-chip {
@@ -588,6 +838,31 @@
     .bw-product__purchase {
       padding: 18px;
       border-radius: 20px;
+    }
+
+    .bw-product__reviews {
+      margin-top: 22px;
+      padding: 22px 20px;
+      border-radius: 24px;
+    }
+
+    .bw-product__reviews-widget {
+      padding: 16px;
+      border-radius: 20px;
+    }
+
+    .bw-product__related {
+      margin-top: 22px;
+      padding: 22px 20px;
+      border-radius: 24px;
+    }
+
+    .bw-product__related-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .bw-product__related-image {
+      min-height: 240px;
     }
 
     .bw-product__quantity {
@@ -669,6 +944,9 @@
             Thoughtfully designed furniture for modern Indian homes, with clear details, dependable support, and finishes you will love living with.
           {% endif %}
         </p>
+        <div class="bw-product__rating">
+          {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', concierge_install: true, product: product %}
+        </div>
 
         <div class="bw-product__proofs">
           <div class="bw-product__proof">
@@ -709,21 +987,11 @@
         </div>
 
         <div class="bw-product__meta">
-          {% if product.vendor != blank %}
-            <span><strong>Brand:</strong> {{ product.vendor }}</span>
-          {% endif %}
-          {% if product.product_type != blank %}
-            <span><strong>Category:</strong> {{ product.product_type }}</span>
-          {% endif %}
-          <span><strong>Status:</strong> <span data-product-meta-status>{% if current_variant.available %}Ready to order{% else %}Sold out{% endif %}</span></span>
           {% if first_collection %}
             <span><strong>Collection:</strong> {{ first_collection.title }}</span>
           {% endif %}
           {% if free_delivery_note != blank %}
             <span><strong>Delivery:</strong> {{ free_delivery_note }}</span>
-          {% endif %}
-          {% if estimate_shipping_time != blank %}
-            <span><strong>Dispatch:</strong> {{ estimate_shipping_time }} day{% unless estimate_shipping_time == '1' %}s{% endunless %}</span>
           {% endif %}
         </div>
 
@@ -731,28 +999,34 @@
           <input type="hidden" name="id" value="{{ current_variant.id }}" data-product-variant-id>
 
           {% for option in product.options_with_values %}
-            <div class="bw-product__option" data-option-index="{{ forloop.index0 }}">
-              <div class="bw-product__option-label">
-                <span>{{ option.name }}</span>
-                <span class="bw-product__option-value" data-option-current>{{ option.selected_value }}</span>
+            {% liquid
+              assign is_default_title_option = false
+
+              if option.values.size == 1 and option.values.first == 'Default Title'
+                assign is_default_title_option = true
+              endif
+            %}
+            {% unless is_default_title_option %}
+              <div class="bw-product__option" data-option-index="{{ forloop.index0 }}">
+                <div class="bw-product__option-label">{{ option.name }}</div>
+                <div class="bw-product__option-values">
+                  {% for value in option.values %}
+                    {% capture option_input_id %}bw-product-{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}{% endcapture %}
+                    <label for="{{ option_input_id }}">
+                      <input
+                        class="bw-product__option-input"
+                        id="{{ option_input_id }}"
+                        type="radio"
+                        name="option-{{ option.position }}"
+                        value="{{ value | escape }}"
+                        {% if option.selected_value == value %}checked{% endif %}
+                      >
+                      <span class="bw-product__option-chip">{{ value }}</span>
+                    </label>
+                  {% endfor %}
+                </div>
               </div>
-              <div class="bw-product__option-values">
-                {% for value in option.values %}
-                  {% capture option_input_id %}bw-product-{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}{% endcapture %}
-                  <label for="{{ option_input_id }}">
-                    <input
-                      class="bw-product__option-input"
-                      id="{{ option_input_id }}"
-                      type="radio"
-                      name="option-{{ option.position }}"
-                      value="{{ value | escape }}"
-                      {% if option.selected_value == value %}checked{% endif %}
-                    >
-                    <span class="bw-product__option-chip">{{ value }}</span>
-                  </label>
-                {% endfor %}
-              </div>
-            </div>
+            {% endunless %}
           {% endfor %}
 
           <div class="bw-product__purchase">
@@ -836,6 +1110,72 @@
         </div>
       </div>
     </div>
+
+    <div class="bw-product__reviews">
+      <div class="bw-product__reviews-header">
+        <span class="bw-product__reviews-eyebrow">Customer reviews</span>
+        <h2 class="bw-product__reviews-title">What buyers are saying about this product.</h2>
+        <p class="bw-product__reviews-copy">Live product reviews help shoppers understand finish, delivery experience, assembly confidence, and everyday usability before they place the order.</p>
+      </div>
+      <div class="bw-product__reviews-widget">
+        {% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: true, product: product %}
+      </div>
+    </div>
+
+    {% if related_products_count > 0 and recommendation_collection %}
+      <div class="bw-product__related">
+        <div class="bw-product__related-header">
+          <div class="bw-product__related-copy">
+            <span class="bw-product__related-eyebrow">You may also like</span>
+            <h2 class="bw-product__related-title">More pieces that fit this room story.</h2>
+            <p class="bw-product__related-text">A few relevant picks from {{ recommendation_collection.title }} to help buyers continue with matching, complementary, or adjacent choices without making the page feel crowded.</p>
+          </div>
+          <a class="bw-product__related-link" href="{{ recommendation_collection.url }}">Explore {{ recommendation_collection.title }}</a>
+        </div>
+
+        <div class="bw-product__related-grid">
+          {% for related_product in recommendation_collection.products %}
+            {% if related_product.id != product.id %}
+              {% liquid
+                assign related_subtitle = related_product.metafields.my_fields.product_subtitle
+              %}
+              <a class="bw-product__related-card" href="{{ related_product.url | within: recommendation_collection }}">
+                <div class="bw-product__related-image">
+                  {% if related_product.featured_image %}
+                    {{ related_product.featured_image | image_url: width: 700 | image_tag: loading: 'lazy', widths: '240, 360, 540, 700', sizes: '(max-width: 720px) 100vw, 25vw', alt: related_product.title }}
+                  {% endif %}
+                </div>
+                <div class="bw-product__related-meta">
+                  <span class="bw-product__related-kicker">{{ recommendation_collection.title }}</span>
+                  <h3 class="bw-product__related-name">{{ related_product.title }}</h3>
+                  <div class="bw-product__related-subtitle">
+                    {% if related_subtitle != blank %}
+                      {{ related_subtitle | strip_html | truncatewords: 12 }}
+                    {% elsif related_product.product_type != blank %}
+                      {{ related_product.product_type }}
+                    {% else %}
+                      Thoughtfully selected to pair well with your browsing journey.
+                    {% endif %}
+                  </div>
+                  <div class="bw-product__related-price-row">
+                    <span class="bw-product__related-price">{{ related_product.price | money }}</span>
+                    {% if related_product.compare_at_price > related_product.price %}
+                      <span class="bw-product__related-compare">{{ related_product.compare_at_price | money }}</span>
+                    {% endif %}
+                  </div>
+                  <span class="bw-product__related-cta">View product</span>
+                </div>
+              </a>
+
+              {% assign related_products_count = related_products_count | minus: 1 %}
+              {% if related_products_count == 0 %}
+                {% break %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        </div>
+      </div>
+    {% endif %}
   </div>
 
   <script type="application/json" data-product-variants>

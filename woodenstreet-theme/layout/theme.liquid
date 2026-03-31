@@ -110,6 +110,15 @@
         --bw-brand-blue: #355a6d;
         --bw-brand-warm: #a66a43;
         --bw-brand-sand: #f8f3ed;
+        --bw-motion-ease: cubic-bezier(0.22, 1, 0.36, 1);
+        --bw-motion-ease-soft: cubic-bezier(0.16, 1, 0.3, 1);
+        --bw-motion-fast: 180ms;
+        --bw-motion-base: 320ms;
+        --bw-motion-slow: 620ms;
+      }
+
+      html {
+        scroll-behavior: smooth;
       }
 
       [data-modal-container],
@@ -123,6 +132,367 @@
       [data-photoswipe].pswp--open,
       [data-photoswipe].pswp--visible {
         display: block;
+      }
+
+      body.bw-motion-preload [data-site-header],
+      body.bw-motion-preload .site-main {
+        opacity: 0;
+        transform: translateY(18px);
+      }
+
+      body.bw-page-ready [data-site-header],
+      body.bw-page-ready .site-main,
+      body.bw-page-leaving [data-site-header],
+      body.bw-page-leaving .site-main {
+        transition:
+          opacity var(--bw-motion-slow) var(--bw-motion-ease-soft),
+          transform var(--bw-motion-slow) var(--bw-motion-ease-soft);
+      }
+
+      body.bw-page-ready [data-site-header],
+      body.bw-page-ready .site-main {
+        opacity: 1;
+        transform: none;
+      }
+
+      body.bw-page-leaving [data-site-header],
+      body.bw-page-leaving .site-main {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+
+      .bw-reveal {
+        opacity: 0;
+        transform: translateY(28px);
+        transition:
+          opacity var(--bw-motion-slow) var(--bw-motion-ease-soft),
+          transform var(--bw-motion-slow) var(--bw-motion-ease-soft);
+        will-change: opacity, transform;
+      }
+
+      .bw-reveal.is-visible {
+        opacity: 1;
+        transform: none;
+      }
+
+      :where(
+        .bw-header__cta,
+        .bw-header__icon-link,
+        .bw-header__menu-button,
+        .bw-header__drawer-close,
+        .bw-header__nav-link,
+        .bw-header__support-link,
+        .bw-header__utility-link,
+        .bw-trust__card,
+        .bw-trust__link,
+        .bw-categories__card,
+        .bw-featured__card,
+        .bw-featured__cta,
+        .bw-collection__card,
+        .bw-collection__chip,
+        .bw-collection__cta,
+        .bw-product__thumb,
+        .bw-product__option-chip,
+        .bw-product__atc,
+        .bw-product__buy-now,
+        .bw-product__related-card,
+        .bw-product__related-link,
+        .bw-contact__card,
+        .bw-contact__card-link,
+        .bw-contact__submit,
+        .bw-page__support-card,
+        .bw-page__support-card a
+      ) {
+        transition:
+          transform var(--bw-motion-base) var(--bw-motion-ease),
+          box-shadow var(--bw-motion-base) var(--bw-motion-ease),
+          border-color var(--bw-motion-base) var(--bw-motion-ease),
+          background-color var(--bw-motion-base) var(--bw-motion-ease),
+          color var(--bw-motion-fast) ease;
+      }
+
+      :where(
+        .bw-trust__card,
+        .bw-categories__card,
+        .bw-featured__card,
+        .bw-collection__card,
+        .bw-product__related-card,
+        .bw-contact__card,
+        .bw-page__support-card
+      ):hover {
+        transform: translateY(-3px);
+      }
+
+      :where(
+        .bw-header__cta,
+        .bw-featured__cta,
+        .bw-collection__cta,
+        .bw-product__atc,
+        .bw-product__buy-now,
+        .bw-product__related-link,
+        .bw-contact__card-link,
+        .bw-contact__submit
+      ):active {
+        transform: translateY(0) scale(0.985);
+      }
+
+      .jdgm-widget,
+      .jdgm-all-reviews-page,
+      .jdgm-all-reviews-widget {
+        font-family: var(--bw-font-sans) !important;
+        color: #201713;
+      }
+
+      .jdgm-star,
+      .jdgm-prev-badge__stars,
+      .jdgm-carousel-item__rating {
+        color: var(--bw-brand-warm) !important;
+      }
+
+      .bw-product__rating .jdgm-widget.jdgm-preview-badge {
+        display: inline-flex;
+        align-items: center;
+        min-height: 38px;
+      }
+
+      .bw-product__rating .jdgm-prev-badge {
+        display: inline-flex;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 8px;
+        color: #5e4d44;
+        font-size: 13px;
+        font-weight: 600;
+      }
+
+      .bw-product__rating .jdgm-star {
+        font-size: 14px !important;
+        margin-right: 1px !important;
+      }
+
+      .bw-product__rating .jdgm-prev-badge__text {
+        color: #6b5b53 !important;
+        font-size: 12px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.04em;
+        text-transform: uppercase;
+      }
+
+      .bw-product__reviews-widget .jdgm-widget.jdgm-review-widget,
+      #judgeme_all_reviews_page .jdgm-all-reviews-widget {
+        background: transparent !important;
+        color: #201713 !important;
+      }
+
+      .bw-product__reviews-widget .jdgm-rev,
+      #judgeme_all_reviews_page .jdgm-rev {
+        padding: 20px 22px !important;
+        border-radius: 24px !important;
+        border: 1px solid rgba(45, 33, 27, 0.08) !important;
+        background: rgba(255, 255, 255, 0.86) !important;
+        box-shadow: 0 18px 42px rgba(35, 24, 19, 0.06) !important;
+        margin-bottom: 14px !important;
+      }
+
+      .bw-product__reviews-widget .jdgm-rev__header,
+      #judgeme_all_reviews_page .jdgm-rev__header {
+        margin-bottom: 10px !important;
+      }
+
+      .bw-product__reviews-widget .jdgm-rev__title,
+      #judgeme_all_reviews_page .jdgm-rev__title {
+        color: #201713 !important;
+        font-size: 18px !important;
+        font-weight: 700 !important;
+        letter-spacing: -0.02em;
+      }
+
+      .bw-product__reviews-widget .jdgm-rev__body,
+      #judgeme_all_reviews_page .jdgm-rev__body {
+        color: #5e4d44 !important;
+        font-size: 14px !important;
+        line-height: 1.8 !important;
+      }
+
+      .bw-product__reviews-widget .jdgm-rev__author,
+      .bw-product__reviews-widget .jdgm-rev__timestamp,
+      #judgeme_all_reviews_page .jdgm-rev__author,
+      #judgeme_all_reviews_page .jdgm-rev__timestamp {
+        color: #7a675b !important;
+        font-size: 12px !important;
+        font-weight: 600 !important;
+      }
+
+      .bw-product__reviews-widget .jdgm-star,
+      #judgeme_all_reviews_page .jdgm-star,
+      .bw-testimonials__live .jdgm-star {
+        font-size: 14px !important;
+      }
+
+      .bw-product__reviews-widget .jdgm-sort-dropdown,
+      .bw-product__reviews-widget .jdgm-write-rev-link,
+      #judgeme_all_reviews_page .jdgm-sort-dropdown,
+      #judgeme_all_reviews_page .jdgm-write-rev-link {
+        min-height: 42px !important;
+        border-radius: 999px !important;
+        border: 1px solid rgba(45, 33, 27, 0.12) !important;
+        background: rgba(255, 255, 255, 0.92) !important;
+        color: #201713 !important;
+        font-family: var(--bw-font-sans) !important;
+        font-size: 12px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.06em;
+        text-transform: uppercase;
+        box-shadow: none !important;
+      }
+
+      .bw-product__reviews-widget .jdgm-write-rev-link,
+      #judgeme_all_reviews_page .jdgm-write-rev-link {
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        padding: 0 16px !important;
+        background: #201713 !important;
+        color: #f8f1eb !important;
+        text-decoration: none !important;
+      }
+
+      .bw-product__reviews-widget .jdgm-paginate__page,
+      #judgeme_all_reviews_page .jdgm-paginate__page {
+        min-width: 38px !important;
+        min-height: 38px !important;
+        border-radius: 999px !important;
+        border: 1px solid rgba(45, 33, 27, 0.1) !important;
+        background: rgba(255, 255, 255, 0.9) !important;
+        color: #201713 !important;
+        font-weight: 700 !important;
+      }
+
+      .bw-product__reviews-widget .jdgm-paginate__page.jdgm-curt,
+      #judgeme_all_reviews_page .jdgm-paginate__page.jdgm-curt {
+        background: #201713 !important;
+        color: #f8f1eb !important;
+        border-color: #201713 !important;
+      }
+
+      .bw-testimonials__live .jdgm-all-reviews-text a {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        min-height: 42px;
+        padding: 0 16px;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid rgba(45, 33, 27, 0.08);
+        color: #201713;
+        text-decoration: none;
+      }
+
+      .bw-testimonials__live .jdgm-all-reviews-text__text,
+      .bw-testimonials__live .jdgm-carousel-number-of-reviews {
+        color: #6b5b53 !important;
+        font-size: 12px !important;
+        font-weight: 700 !important;
+        letter-spacing: 0.05em;
+        text-transform: uppercase;
+      }
+
+      .bw-testimonials__live .jdgm-carousel-title,
+      #judgeme_all_reviews_page .jdgm-all-reviews-page__title {
+        color: #201713 !important;
+        font-family: var(--bw-font-sans) !important;
+        font-size: clamp(24px, 3vw, 32px) !important;
+        font-weight: 800 !important;
+        line-height: 1.08 !important;
+        letter-spacing: -0.03em;
+      }
+
+      .bw-testimonials__live .jdgm-carousel-title-and-link,
+      #judgeme_all_reviews_page .jdgm-all-reviews-page__description {
+        margin-bottom: 16px !important;
+      }
+
+      .bw-testimonials__live .jdgm-carousel-item {
+        padding: 20px !important;
+        border-radius: 24px !important;
+        border: 1px solid rgba(45, 33, 27, 0.08) !important;
+        background: rgba(255, 255, 255, 0.88) !important;
+        box-shadow: 0 18px 42px rgba(35, 24, 19, 0.06) !important;
+      }
+
+      .bw-testimonials__live .jdgm-carousel-item__review {
+        color: #5e4d44 !important;
+        font-size: 14px !important;
+        line-height: 1.8 !important;
+      }
+
+      .bw-testimonials__live .jdgm-carousel-item__reviewer-name,
+      .bw-testimonials__live .jdgm-carousel-item__product {
+        color: #201713 !important;
+        font-size: 13px !important;
+        font-weight: 700 !important;
+      }
+
+      #judgeme_all_reviews_page {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 32px 24px 72px;
+      }
+
+      #judgeme_all_reviews_page .jdgm-all-reviews-page__wrapper {
+        display: grid;
+        gap: 20px;
+      }
+
+      #judgeme_all_reviews_page .jdgm-all-reviews-page__description {
+        color: #64544a;
+        font-size: 15px;
+        line-height: 1.8;
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        html {
+          scroll-behavior: auto;
+        }
+
+        body.bw-motion-preload [data-site-header],
+        body.bw-motion-preload .site-main,
+        .bw-reveal {
+          opacity: 1;
+          transform: none;
+          transition: none !important;
+        }
+
+        :where(
+          .bw-header__cta,
+          .bw-header__icon-link,
+          .bw-header__menu-button,
+          .bw-header__drawer-close,
+          .bw-header__nav-link,
+          .bw-header__support-link,
+          .bw-header__utility-link,
+          .bw-trust__card,
+          .bw-trust__link,
+          .bw-categories__card,
+          .bw-featured__card,
+          .bw-featured__cta,
+          .bw-collection__card,
+          .bw-collection__chip,
+          .bw-collection__cta,
+          .bw-product__thumb,
+          .bw-product__option-chip,
+          .bw-product__atc,
+          .bw-product__buy-now,
+          .bw-product__related-card,
+          .bw-product__related-link,
+          .bw-contact__card,
+          .bw-contact__card-link,
+          .bw-contact__submit,
+          .bw-page__support-card,
+          .bw-page__support-card a
+        ) {
+          transition: none !important;
+        }
       }
     </style>
     
@@ -176,6 +546,7 @@ src="https://www.facebook.com/tr?id=1321706361586738&ev=PageView&noscript=1"
       document.documentElement.className=document.documentElement.className.replace(/\bno-js\b/,'js');
       if(window.Shopify&&window.Shopify.designMode)document.documentElement.className+=' in-theme-editor';
       if(('ontouchstart' in window)||window.DocumentTouch&&document instanceof DocumentTouch)document.documentElement.className=document.documentElement.className.replace(/\bno-touch\b/,'has-touch');
+      if(!document.body.hasAttribute('data-reduce-animations')&&!(window.matchMedia&&window.matchMedia('(prefers-reduced-motion: reduce)').matches)){document.body.classList.add('bw-motion-preload');}
     </script>
     {% section 'announcement' %}
     <header
@@ -491,6 +862,119 @@ src="https://www.facebook.com/tr?id=1321706361586738&ev=PageView&noscript=1"
     </script>
 
     {% unless settings.reduce_animations %}
+      <script>
+        (function () {
+          var preloadTimeout = window.setTimeout(function () {
+            document.body.classList.add('bw-page-ready');
+            document.body.classList.remove('bw-motion-preload');
+          }, 1200);
+
+          if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            document.body.classList.add('bw-page-ready');
+            document.body.classList.remove('bw-motion-preload');
+            window.clearTimeout(preloadTimeout);
+            return;
+          }
+
+          requestAnimationFrame(function () {
+            requestAnimationFrame(function () {
+              document.body.classList.add('bw-page-ready');
+              document.body.classList.remove('bw-motion-preload');
+              window.clearTimeout(preloadTimeout);
+            });
+          });
+
+          window.addEventListener('pageshow', function () {
+            document.body.classList.add('bw-page-ready');
+            document.body.classList.remove('bw-motion-preload');
+            document.body.classList.remove('bw-page-leaving');
+            window.clearTimeout(preloadTimeout);
+          });
+
+          var revealTargets = document.querySelectorAll([
+            '.bw-hero',
+            '.bw-trust__intro',
+            '.bw-trust__card',
+            '.bw-categories__card',
+            '.bw-banner',
+            '.bw-featured__header',
+            '.bw-featured__card',
+            '.bw-testimonials__header',
+            '.bw-testimonials__shell',
+            '.bw-newsletter',
+            '.bw-page__hero',
+            '.bw-page__content',
+            '.bw-page__support',
+            '.bw-contact__card',
+            '.bw-contact__panel',
+            '.bw-collection__hero',
+            '.bw-collection__toolbar',
+            '.bw-product__panel',
+            '.bw-product__reviews',
+            '.bw-product__related'
+          ].join(','));
+
+          if (revealTargets.length) {
+            revealTargets.forEach(function (node, index) {
+              node.classList.add('bw-reveal');
+              node.style.transitionDelay = Math.min((index % 6) * 60, 260) + 'ms';
+            });
+
+            if ('IntersectionObserver' in window) {
+              var observer = new IntersectionObserver(function (entries) {
+                entries.forEach(function (entry) {
+                  if (!entry.isIntersecting) return;
+                  entry.target.classList.add('is-visible');
+                  observer.unobserve(entry.target);
+                });
+              }, {
+                threshold: 0.16,
+                rootMargin: '0px 0px -8% 0px'
+              });
+
+              revealTargets.forEach(function (node) {
+                observer.observe(node);
+              });
+            } else {
+              revealTargets.forEach(function (node) {
+                node.classList.add('is-visible');
+              });
+            }
+          }
+
+          document.addEventListener('click', function (event) {
+            if (event.defaultPrevented || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
+
+            var link = event.target.closest('a[href]');
+            if (!link) return;
+            if (link.target && link.target !== '_self') return;
+            if (link.hasAttribute('download') || link.dataset.noMotion !== undefined) return;
+            if (link.getAttribute('role') === 'button' || link.hasAttribute('aria-controls') || link.hasAttribute('data-fancybox') || link.hasAttribute('data-modal-open')) return;
+            if (link.closest('.search-modal, [data-modal-container], [data-modal-container-1], [data-photoswipe], [data-atc-banner], .swym-button, .iWishAdd')) return;
+
+            var href = link.getAttribute('href');
+            if (!href || href.charAt(0) === '#' || href.indexOf('mailto:') === 0 || href.indexOf('tel:') === 0 || href.indexOf('javascript:') === 0) return;
+
+            var url;
+            try {
+              url = new URL(link.href, window.location.href);
+            } catch (error) {
+              return;
+            }
+
+            if (url.origin !== window.location.origin) return;
+            if (url.pathname === window.location.pathname && url.search === window.location.search && url.hash) return;
+            if (url.pathname.indexOf('/apps/') === 0 || url.pathname.indexOf('/cart') === 0 || url.pathname.indexOf('/checkout') === 0) return;
+
+            document.body.classList.add('bw-page-leaving');
+
+            event.preventDefault();
+            window.setTimeout(function () {
+              window.location.assign(url.href);
+            }, 180);
+          });
+        })();
+      </script>
     {% endunless %}
 
     <script

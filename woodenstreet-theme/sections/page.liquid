@@ -1,21 +1,67 @@
 {% liquid
   assign page_intro = page.content | strip_html | truncatewords: 40
+  assign page_eyebrow = 'Bluewud information'
 
   if page_intro == blank
     assign page_intro = 'Discover everything you need to know about Bluewud, from support and policies to business and contact information.'
   endif
 
   assign is_help_center = false
+  assign is_about_page = false
+  assign is_returns_refunds = false
+  assign is_offers_page = false
+  assign is_contact_page = false
+
+  if page.handle == 'about-us'
+    assign is_about_page = true
+    assign page_eyebrow = 'Bluewud story'
+    assign page_intro = 'Bluewud designs, manufactures, and markets innovative furniture and decor for modern Indian homes, with in-house design, a Noida manufacturing base, and a product story that began with bestseller laptop tables in 2015.'
+  endif
 
   if page.handle == 'help-center'
     assign is_help_center = true
+    assign page_eyebrow = 'Bluewud support'
     assign page_intro = 'Browse Bluewud support questions by topic with quick answers for orders, shipping, cancellations, and installation.'
+  endif
+
+  if page.handle == 'returns-refunds'
+    assign is_returns_refunds = true
+    assign page_eyebrow = 'Returns, refunds and replacements'
+    assign page_intro = 'A clear view of Bluewud return eligibility, cancellation timing, exchange support, and the product categories that are handled through replacement instead of full return.'
+  endif
+
+  if page.handle == 'offers-discount'
+    assign is_offers_page = true
+    assign page_eyebrow = 'Bluewud offers'
+    assign page_intro = 'See current coupon savings, payment offers, and key terms in one place before checkout.'
+  endif
+
+  if page.handle == 'contact-us'
+    assign is_contact_page = true
+    assign page_eyebrow = 'Bluewud contact'
+    assign page_intro = 'Reach Bluewud for order assistance, installation support, product questions, or purchase guidance through phone, WhatsApp, email, or the contact form below.'
   endif
 
   assign page_content_class = 'bw-page__content'
 
   if is_help_center
     assign page_content_class = page_content_class | append: ' bw-page__content--help-center'
+  endif
+
+  if is_about_page
+    assign page_content_class = page_content_class | append: ' bw-page__content--about'
+  endif
+
+  if is_offers_page
+    assign page_content_class = page_content_class | append: ' bw-page__content--offers'
+  endif
+
+  if is_returns_refunds
+    assign page_content_class = page_content_class | append: ' bw-page__content--returns'
+  endif
+
+  if is_contact_page
+    assign page_content_class = page_content_class | append: ' bw-page__content--contact'
   endif
 %}
 
@@ -94,6 +140,34 @@
   }
 
   .bw-page__content--help-center {
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .bw-page__content--about {
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .bw-page__content--offers {
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .bw-page__content--returns {
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .bw-page__content--contact {
     padding: 0;
     background: transparent;
     border: 0;
@@ -219,7 +293,7 @@
         <span>/</span>
         <span>{{ page.title }}</span>
       </div>
-      <span class="bw-page__eyebrow">Bluewud information</span>
+      <span class="bw-page__eyebrow">{{ page_eyebrow }}</span>
       <h1 class="bw-page__title">{{ page.title }}</h1>
       <p class="bw-page__intro">{{ page_intro }}</p>
     </div>
@@ -227,6 +301,14 @@
     <div class="{{ page_content_class }}">
       {% if is_help_center %}
         {% render 'help-center-content' %}
+      {% elsif is_about_page %}
+        {% render 'about-page-content' %}
+      {% elsif is_returns_refunds %}
+        {% render 'returns-refunds-content' %}
+      {% elsif is_offers_page %}
+        {% render 'offers-page-content' %}
+      {% elsif is_contact_page %}
+        {% render 'contact-page-content' %}
       {% else %}
         <div class="bw-page__rte">
           {{ page.content }}
@@ -234,7 +316,7 @@
       {% endif %}
     </div>
 
-    {% unless is_help_center %}
+    {% unless is_help_center or is_about_page or is_returns_refunds or is_offers_page or is_contact_page %}
       <div class="bw-page__support">
         <div class="bw-page__support-card">
           <h2>Need direct help?</h2>

@@ -21,6 +21,10 @@
   assign hero_featured_collection = collections['hp-bluewuds-bestseller']
   assign hero_featured_product = blank
   assign hero_fallback_image = blank
+  assign hero_featured_copy = 'Bring together warmth, utility, and timeless silhouettes for spaces that feel complete.'
+  assign hero_featured_subtitle = blank
+  assign hero_featured_type = blank
+  assign hero_collection_name = blank
 
   if hero_collection == blank
     assign hero_collection = hero_featured_collection
@@ -36,6 +40,22 @@
     assign hero_fallback_image = hero_collection.image
   elsif hero_featured_product != blank and hero_featured_product.featured_image != blank
     assign hero_fallback_image = hero_featured_product.featured_image
+  endif
+
+  if hero_featured_product != blank
+    assign hero_featured_subtitle = hero_featured_product.metafields.my_fields.product_subtitle | strip_html | strip_newlines
+    assign hero_featured_type = hero_featured_product.type | downcase
+
+    if hero_featured_subtitle != blank
+      assign hero_featured_copy = hero_featured_subtitle
+    elsif hero_featured_product.type != blank and hero_collection != blank
+      assign hero_collection_name = hero_collection.title | downcase
+      assign hero_featured_copy = 'A refined ' | append: hero_featured_type | append: ' chosen to bring warmth, function, and a more finished feel to your ' | append: hero_collection_name | append: '.'
+    elsif hero_featured_product.type != blank
+      assign hero_featured_copy = 'A considered ' | append: hero_featured_type | append: ' designed to make the room feel complete, useful, and easy to live with.'
+    else
+      assign hero_featured_copy = 'A best-selling Bluewud pick chosen for cleaner lines, dependable comfort, and a home that feels thoughtfully put together.'
+    endif
   endif
 %}
 
@@ -193,6 +213,18 @@
     box-shadow: 0 26px 80px rgba(55, 39, 29, 0.14);
   }
 
+  .bw-hero__visual-link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    display: block;
+  }
+
+  .bw-hero__visual-link:focus-visible {
+    outline: 2px solid rgba(53, 90, 109, 0.7);
+    outline-offset: -6px;
+  }
+
   .bw-hero__visual img,
   .bw-hero__fallback {
     width: 100%;
@@ -259,12 +291,40 @@
     padding: 20px;
     display: grid;
     gap: 10px;
+    overflow: hidden;
+    transition: transform 0.24s ease, box-shadow 0.24s ease;
+  }
+
+  .bw-hero__floating-card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 24px 68px rgba(35, 24, 19, 0.18);
+  }
+
+  .bw-hero__floating-card-link {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border-radius: inherit;
+  }
+
+  .bw-hero__floating-card-link:focus-visible {
+    outline: 2px solid rgba(53, 90, 109, 0.7);
+    outline-offset: -4px;
+  }
+
+  .bw-hero__floating-card-body {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    gap: 10px;
+    pointer-events: none;
   }
 
   .bw-hero__floating-card-title {
     color: #201713;
     font-size: 16px;
     font-weight: 700;
+    line-height: 1.3;
     margin: 0;
   }
 
@@ -279,9 +339,13 @@
     display: flex;
     flex-wrap: wrap;
     gap: 8px;
+    position: relative;
+    z-index: 2;
   }
 
   .bw-hero__tag {
+    display: inline-flex;
+    align-items: center;
     padding: 8px 12px;
     border-radius: 999px;
     background: rgba(32, 23, 19, 0.06);
@@ -290,6 +354,15 @@
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease;
+  }
+
+  .bw-hero__tag:hover,
+  .bw-hero__tag:focus-visible {
+    background: rgba(53, 90, 109, 0.12);
+    color: #355a6d;
+    transform: translateY(-1px);
   }
 
   @media (max-width: 1100px) {
@@ -398,6 +471,9 @@
     </div>
 
     <div class="bw-hero__visual">
+      {% if hero_featured_product != blank %}
+        <a class="bw-hero__visual-link" href="{{ hero_featured_product.url }}" aria-label="View {{ hero_featured_product.title }}">
+      {% endif %}
       {% if hero_image != blank %}
         {{ hero_image | image_url: width: 1400 | image_tag: loading: 'eager', widths: '600, 900, 1200, 1400', sizes: '(max-width: 1100px) 100vw, 48vw' }}
       {% elsif hero_fallback_image != blank %}
@@ -407,33 +483,43 @@
           <span class="bw-hero__fallback-note">Add a Bluewud lifestyle image here</span>
         </div>
       {% endif %}
+      {% if hero_featured_product != blank %}
+        </a>
+      {% endif %}
 
       <div class="bw-hero__badge">{{ badge_text }}</div>
 
       <div class="bw-hero__floating-card">
-        <h2 class="bw-hero__floating-card-title">
-          {% if hero_featured_product != blank %}
-            {{ hero_featured_product.title }}
-          {% else %}
-            Made for contemporary homes
-          {% endif %}
-        </h2>
-        <p class="bw-hero__floating-card-copy">
-          {% if hero_featured_product != blank %}
-            {{ hero_featured_product.description | strip_html | truncatewords: 18 }}
-          {% else %}
-            Bring together warmth, utility, and timeless silhouettes for spaces that feel complete.
-          {% endif %}
-        </p>
+        {% if hero_featured_product != blank %}
+          <a
+            class="bw-hero__floating-card-link"
+            href="{{ hero_featured_product.url }}"
+            aria-label="View {{ hero_featured_product.title }}"
+          ></a>
+        {% endif %}
+
+        <div class="bw-hero__floating-card-body">
+          <h2 class="bw-hero__floating-card-title">
+            {% if hero_featured_product != blank %}
+              {{ hero_featured_product.title }}
+            {% else %}
+              Made for contemporary homes
+            {% endif %}
+          </h2>
+          <p class="bw-hero__floating-card-copy">{{ hero_featured_copy }}</p>
+        </div>
+
         <div class="bw-hero__floating-tags">
+          {% if hero_featured_product != blank %}
+            <a class="bw-hero__tag" href="{{ hero_featured_product.url }}">View Product</a>
+          {% endif %}
           {% if hero_collection != blank %}
-            <span class="bw-hero__tag">{{ hero_collection.title }}</span>
+            <a class="bw-hero__tag" href="{{ hero_collection.url }}">{{ hero_collection.title }}</a>
           {% endif %}
-          {% if hero_featured_collection != blank %}
-            <span class="bw-hero__tag">{{ hero_featured_collection.title }}</span>
-          {% endif %}
-          {% if hero_featured_product != blank and hero_featured_product.type != blank %}
-            <span class="bw-hero__tag">{{ hero_featured_product.type }}</span>
+          {% if hero_featured_collection != blank and hero_featured_collection != hero_collection %}
+            <a class="bw-hero__tag" href="{{ hero_featured_collection.url }}">{{ hero_featured_collection.title }}</a>
+          {% elsif hero_featured_product != blank and hero_featured_product.type != blank %}
+            <a class="bw-hero__tag" href="{{ hero_featured_product.url }}">{{ hero_featured_product.type }}</a>
           {% endif %}
         </div>
       </div>

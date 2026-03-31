@@ -1,0 +1,376 @@
+<style>
+  .bw-returns {
+    display: grid;
+    gap: 22px;
+  }
+
+  .bw-returns__hero,
+  .bw-returns__section,
+  .bw-returns__aside {
+    border-radius: 30px;
+    background: rgba(255, 251, 247, 0.94);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 24px 70px rgba(35, 24, 19, 0.08);
+  }
+
+  .bw-returns__hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+    gap: 18px;
+    overflow: hidden;
+  }
+
+  .bw-returns__hero-copy {
+    padding: 32px;
+    display: grid;
+    gap: 18px;
+    background:
+      radial-gradient(circle at top right, rgba(166, 106, 67, 0.12), transparent 28%),
+      linear-gradient(135deg, #241913 0%, #3c2a20 100%);
+    color: #f8f1eb;
+  }
+
+  .bw-returns__eyebrow {
+    display: inline-flex;
+    width: fit-content;
+    min-height: 32px;
+    align-items: center;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.08);
+    color: rgba(248, 241, 235, 0.84);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .bw-returns__title {
+    margin: 0;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+    max-width: 12ch;
+  }
+
+  .bw-returns__copy {
+    margin: 0;
+    color: rgba(248, 241, 235, 0.78);
+    font-size: 16px;
+    line-height: 1.8;
+    max-width: 60ch;
+  }
+
+  .bw-returns__chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .bw-returns__chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    color: #f8f1eb;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .bw-returns__hero-side {
+    padding: 28px;
+    display: grid;
+    gap: 14px;
+  }
+
+  .bw-returns__quick {
+    display: grid;
+    gap: 12px;
+  }
+
+  .bw-returns__quick-item {
+    padding: 16px 18px;
+    border-radius: 22px;
+    background: rgba(32, 23, 19, 0.04);
+    display: grid;
+    gap: 4px;
+  }
+
+  .bw-returns__quick-label {
+    color: #8a684f;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .bw-returns__quick-value {
+    color: #201713;
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 1.2;
+  }
+
+  .bw-returns__quick-copy {
+    color: #66554c;
+    font-size: 13px;
+    line-height: 1.65;
+  }
+
+  .bw-returns__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.04fr) minmax(280px, 0.96fr);
+    gap: 18px;
+  }
+
+  .bw-returns__section {
+    padding: 28px;
+    display: grid;
+    gap: 16px;
+  }
+
+  .bw-returns__section-head {
+    display: grid;
+    gap: 8px;
+  }
+
+  .bw-returns__kicker {
+    color: #8a684f;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .bw-returns__section-title {
+    margin: 0;
+    color: #201713;
+    font-size: 26px;
+    line-height: 1.12;
+    letter-spacing: -0.03em;
+  }
+
+  .bw-returns__section-copy {
+    margin: 0;
+    color: #66554c;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .bw-returns__accordions {
+    display: grid;
+    gap: 12px;
+  }
+
+  .bw-returns__accordion {
+    border-radius: 22px;
+    background: rgba(32, 23, 19, 0.04);
+    border: 1px solid rgba(45, 33, 27, 0.06);
+    overflow: hidden;
+  }
+
+  .bw-returns__accordion summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 18px 18px 16px;
+    color: #201713;
+    font-size: 16px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+  }
+
+  .bw-returns__accordion summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .bw-returns__accordion-body {
+    padding: 0 18px 18px;
+    color: #5f4f46;
+    font-size: 14px;
+    line-height: 1.85;
+  }
+
+  .bw-returns__accordion-body ul {
+    margin: 0;
+    padding-left: 1.2em;
+  }
+
+  .bw-returns__aside {
+    padding: 28px;
+    display: grid;
+    gap: 16px;
+    align-content: start;
+  }
+
+  .bw-returns__aside-title {
+    margin: 0;
+    color: #201713;
+    font-size: 20px;
+    line-height: 1.18;
+    letter-spacing: -0.03em;
+  }
+
+  .bw-returns__aside-copy {
+    margin: 0;
+    color: #66554c;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  .bw-returns__aside-list {
+    margin: 0;
+    padding-left: 1.2em;
+    color: #5f4f46;
+    font-size: 14px;
+    line-height: 1.9;
+  }
+
+  .bw-returns__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0 18px;
+    width: fit-content;
+    border-radius: 999px;
+    background: #201713;
+    color: #f8f1eb;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .bw-returns__note {
+    padding: 20px 22px;
+    background: rgba(53, 90, 109, 0.06);
+    border: 1px solid rgba(53, 90, 109, 0.12);
+    color: #395261;
+    font-size: 14px;
+    line-height: 1.8;
+  }
+
+  @media (max-width: 980px) {
+    .bw-returns__hero,
+    .bw-returns__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  @media (max-width: 760px) {
+    .bw-returns__hero-copy,
+    .bw-returns__hero-side,
+    .bw-returns__section,
+    .bw-returns__aside {
+      padding: 20px;
+      border-radius: 24px;
+    }
+
+    .bw-returns__title {
+      max-width: none;
+      font-size: clamp(28px, 10vw, 38px);
+    }
+  }
+</style>
+
+<div class="bw-returns">
+  <section class="bw-returns__hero">
+    <div class="bw-returns__hero-copy">
+      <span class="bw-returns__eyebrow">Policy clarity</span>
+      <h2 class="bw-returns__title">Returns and refunds, explained with less friction.</h2>
+      <p class="bw-returns__copy">This page keeps the important parts easy to read: what qualifies for a return, when to raise a request, how cancellations work, and which larger items are supported through replacement instead of a full return.</p>
+      <div class="bw-returns__chips">
+        <span class="bw-returns__chip">Return window</span>
+        <span class="bw-returns__chip">Cancellation rules</span>
+        <span class="bw-returns__chip">Replacement support</span>
+      </div>
+    </div>
+
+    <div class="bw-returns__hero-side">
+      <div class="bw-returns__quick">
+        <div class="bw-returns__quick-item">
+          <span class="bw-returns__quick-label">Raise a request</span>
+          <span class="bw-returns__quick-value">Within 10 days</span>
+          <span class="bw-returns__quick-copy">Share the issue quickly so the team can review it against the delivery and inspection timeline.</span>
+        </div>
+
+        <div class="bw-returns__quick-item">
+          <span class="bw-returns__quick-label">Refund timing</span>
+          <span class="bw-returns__quick-value">After inspection</span>
+          <span class="bw-returns__quick-copy">Approved refunds are processed once the return or replacement condition is verified.</span>
+        </div>
+
+        <div class="bw-returns__quick-item">
+          <span class="bw-returns__quick-label">Large-item support</span>
+          <span class="bw-returns__quick-value">Replacement-first handling</span>
+          <span class="bw-returns__quick-copy">Volumetric products such as beds, wardrobes, and larger TV units are handled through replacement support where applicable.</span>
+        </div>
+      </div>
+
+      <div class="bw-returns__note">
+        If an item is not eligible for pickup, support will guide the next step and any applicable shipping credit or replacement path.
+      </div>
+    </div>
+  </section>
+
+  <div class="bw-returns__grid">
+    <section class="bw-returns__section">
+      <div class="bw-returns__section-head">
+        <span class="bw-returns__kicker">What matters most</span>
+        <h3 class="bw-returns__section-title">The policy, broken into the parts customers actually look for.</h3>
+        <p class="bw-returns__section-copy">Each block below is sized for scanning, so the page feels calm and readable instead of overloaded with policy text.</p>
+      </div>
+
+      <div class="bw-returns__accordions">
+        <details class="bw-returns__accordion" open>
+          <summary>Cancellation before dispatch</summary>
+          <div class="bw-returns__accordion-body">
+            <p>Orders can be cancelled before they leave the warehouse. Once a shipment has moved into transit, cancellation may not be possible and shipping charges may still apply where the order has already been processed.</p>
+          </div>
+        </details>
+
+        <details class="bw-returns__accordion">
+          <summary>Return eligibility and timelines</summary>
+          <div class="bw-returns__accordion-body">
+            <p>Return or replacement requests should be raised as soon as the issue is discovered, ideally within 10 days of delivery. Damaged, defective, or incomplete shipments are reviewed first, along with cases where the item does not match what was expected.</p>
+          </div>
+        </details>
+
+        <details class="bw-returns__accordion">
+          <summary>How replacements are handled</summary>
+          <div class="bw-returns__accordion-body">
+            <p>Where a product qualifies for support, the team may arrange pickup, replacement, or another resolution based on inspection. Products must be in the condition required for pickup, with original packaging or the closest available packing retained.</p>
+          </div>
+        </details>
+
+        <details class="bw-returns__accordion">
+          <summary>Products that follow a different path</summary>
+          <div class="bw-returns__accordion-body">
+            <p>Larger volumetric furniture items are generally supported through replacement rather than a standard return flow. If pickup is not available for a location, the support team will guide the next step and explain any applicable shipping credit limits.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <aside class="bw-returns__aside">
+      <span class="bw-returns__kicker">Need help faster?</span>
+      <h3 class="bw-returns__aside-title">Keep the support path simple.</h3>
+      <p class="bw-returns__aside-copy">Bluewud support can help with order follow-up, pickup questions, or clarifying whether a case fits a return or replacement path.</p>
+      <ul class="bw-returns__aside-list">
+        <li>Call or WhatsApp: <a href="tel:+918800609609">+91-8800-609-609</a></li>
+        <li>Email: <a href="mailto:care@bluewud.com">care@bluewud.com</a></li>
+        <li>Open the help center for related shipping and installation questions</li>
+      </ul>
+      <a class="bw-returns__cta" href="/pages/contact-us">Contact support</a>
+    </aside>
+  </div>
+</div>
