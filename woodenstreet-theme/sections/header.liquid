@@ -10,14 +10,21 @@
   assign cta_label = section.settings.cta_label | default: 'Buy In Bulk'
   assign cta_url = section.settings.cta_url
   assign brand_logo = section.settings.brand_logo
+  assign brand_logo_treatment = 'tinted'
   assign primary_menu_links = section.settings.primary_menu.links
 
   if primary_menu_links == blank and linklists['main-menu'] != blank
     assign primary_menu_links = linklists['main-menu'].links
   endif
 
+  if brand_logo == blank and settings.checkout_logo_image != blank
+    assign brand_logo = settings.checkout_logo_image
+    assign brand_logo_treatment = 'native'
+  endif
+
   if brand_logo == blank and settings.favicon != blank
     assign brand_logo = settings.favicon
+    assign brand_logo_treatment = 'native'
   endif
 
   if cta_url == blank
@@ -168,6 +175,10 @@
     min-width: 0;
   }
 
+  .bw-header__brand-copy--with-logo {
+    gap: 5px;
+  }
+
   .bw-header__brand-kicker {
     color: #8a7465;
     font-size: 10px;
@@ -199,6 +210,32 @@
     background-clip: text;
     -webkit-text-fill-color: transparent;
     text-shadow: 0 0 1px rgba(32, 23, 19, 0.16);
+  }
+
+  .bw-header__brand-logo-frame {
+    display: inline-flex;
+    align-items: center;
+    max-width: min(100%, 240px);
+    line-height: 0;
+  }
+
+  .bw-header__brand-logo-image {
+    display: block;
+    width: auto;
+    max-width: 100%;
+    height: 34px;
+    object-fit: contain;
+    object-position: left center;
+    transition: filter 0.22s ease, opacity 0.22s ease;
+  }
+
+  .bw-header__brand-logo-image--tinted {
+    filter: brightness(0) saturate(100%) invert(34%) sepia(17%) saturate(734%) hue-rotate(157deg) brightness(93%) contrast(88%);
+  }
+
+  .bw-header__brand:hover .bw-header__brand-logo-image--tinted,
+  .bw-header__brand:focus-visible .bw-header__brand-logo-image--tinted {
+    filter: brightness(0) saturate(100%) invert(23%) sepia(16%) saturate(927%) hue-rotate(159deg) brightness(94%) contrast(91%);
   }
 
   .bw-header__brand-tagline {
@@ -513,6 +550,10 @@
       font-size: 30px;
     }
 
+    .bw-header__brand-logo-image {
+      height: 30px;
+    }
+
     .bw-header__brand-tagline {
       font-size: 9px;
       letter-spacing: 0.11em;
@@ -533,6 +574,10 @@
 
     .bw-header__brand-wordmark {
       font-size: 26px;
+    }
+
+    .bw-header__brand-logo-image {
+      height: 26px;
     }
 
     .bw-header__icon-link,
@@ -597,9 +642,20 @@
     </button>
 
     <a class="bw-header__brand" href="/">
-      <span class="bw-header__brand-copy">
+      <span class="bw-header__brand-copy{% if brand_logo != blank %} bw-header__brand-copy--with-logo{% endif %}">
         <span class="bw-header__brand-kicker">{{ brand_kicker }}</span>
-        <span class="bw-header__brand-wordmark">{{ brand_wordmark }}</span>
+        {% if brand_logo != blank %}
+          <span class="bw-header__brand-logo-frame">
+            <img
+              class="bw-header__brand-logo-image{% if brand_logo_treatment == 'tinted' %} bw-header__brand-logo-image--tinted{% endif %}"
+              src="{{ brand_logo | image_url: width: 480 }}"
+              alt="{{ brand_name | escape }}"
+              loading="eager"
+            >
+          </span>
+        {% else %}
+          <span class="bw-header__brand-wordmark">{{ brand_wordmark }}</span>
+        {% endif %}
         <span class="bw-header__brand-tagline">{{ brand_tagline }}</span>
       </span>
     </a>
@@ -652,9 +708,20 @@
   <div class="bw-header__drawer-panel">
     <div class="bw-header__drawer-top">
       <div class="bw-header__brand">
-        <span class="bw-header__brand-copy">
+        <span class="bw-header__brand-copy{% if brand_logo != blank %} bw-header__brand-copy--with-logo{% endif %}">
           <span class="bw-header__brand-kicker">{{ brand_kicker }}</span>
-          <span class="bw-header__brand-wordmark">{{ brand_wordmark }}</span>
+          {% if brand_logo != blank %}
+            <span class="bw-header__brand-logo-frame">
+              <img
+                class="bw-header__brand-logo-image{% if brand_logo_treatment == 'tinted' %} bw-header__brand-logo-image--tinted{% endif %}"
+                src="{{ brand_logo | image_url: width: 360 }}"
+                alt="{{ brand_name | escape }}"
+                loading="lazy"
+              >
+            </span>
+          {% else %}
+            <span class="bw-header__brand-wordmark">{{ brand_wordmark }}</span>
+          {% endif %}
         </span>
       </div>
       <button class="bw-header__drawer-close" type="button" aria-label="Close navigation" data-bw-header-close>
