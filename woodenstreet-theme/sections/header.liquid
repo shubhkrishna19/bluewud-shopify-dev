@@ -11,11 +11,11 @@
   assign cta_url = section.settings.cta_url
   assign brand_logo = section.settings.brand_logo
   assign brand_logo_treatment = 'tinted'
-  assign primary_menu_links = section.settings.primary_menu.links
-
-  if primary_menu_links == blank and linklists['main-menu'] != blank
-    assign primary_menu_links = linklists['main-menu'].links
-  endif
+  assign current_path = request.path
+  assign curated_nav_labels = 'Living Room|Bedroom|Study Tables|TV Units|Bookshelves|Modular Kitchen|Wardrobes|New Launches' | split: '|'
+  assign curated_nav_urls = '/collections/living-room|/collections/bed-room|/collections/study-tables|/collections/tv-unit-furniture|/collections/book-shelves|/collections/kitchen-racks|/collections/wardrobe|/collections/new_launches' | split: '|'
+  assign drawer_nav_labels = 'Living Room|Bedroom|Study Tables|TV Units|Bookshelves|Modular Kitchen|Wardrobes|New Launches|Chest of Drawer' | split: '|'
+  assign drawer_nav_urls = '/collections/living-room|/collections/bed-room|/collections/study-tables|/collections/tv-unit-furniture|/collections/book-shelves|/collections/kitchen-racks|/collections/wardrobe|/collections/new_launches|/collections/chest-of-drawer' | split: '|'
 
   if brand_logo == blank and settings.checkout_logo_image != blank
     assign brand_logo = settings.checkout_logo_image
@@ -251,19 +251,28 @@
 
   .bw-header__nav {
     justify-content: center;
-    gap: 24px;
-    flex-wrap: wrap;
+    gap: 18px;
+    flex-wrap: nowrap;
+    min-width: 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  .bw-header__nav::-webkit-scrollbar {
+    display: none;
   }
 
   .bw-header__nav-link {
     display: inline-flex;
     align-items: center;
     color: #241a15;
-    font-size: 14px;
+    font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.01em;
     position: relative;
     padding: 14px 0;
+    white-space: nowrap;
     transition: color 0.2s ease, transform 0.2s ease;
   }
 
@@ -504,11 +513,11 @@
     }
 
     .bw-header__nav {
-      gap: 18px;
+      gap: 14px;
     }
 
     .bw-header__nav-link {
-      font-size: 13px;
+      font-size: 12px;
     }
   }
 
@@ -661,18 +670,10 @@
     </a>
 
     <nav class="bw-header__nav" aria-label="Primary">
-      {% if primary_menu_links != blank %}
-        {% for link in primary_menu_links limit: 7 %}
-          <a class="bw-header__nav-link{% if link.active %} is-active{% endif %}" href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
-        {% endfor %}
-      {% else %}
-        <a class="bw-header__nav-link" href="/collections/living-room">Living Room</a>
-        <a class="bw-header__nav-link" href="/collections/bed-room">Bedroom</a>
-        <a class="bw-header__nav-link" href="/collections/study-tables">Study Tables</a>
-        <a class="bw-header__nav-link" href="/collections/tv-unit-furniture">TV Units</a>
-        <a class="bw-header__nav-link" href="/collections/book-shelves">Bookshelves</a>
-        <a class="bw-header__nav-link" href="/collections/wardrobe">Wardrobes</a>
-      {% endif %}
+      {% for nav_label in curated_nav_labels %}
+        {% assign nav_url = curated_nav_urls[forloop.index0] %}
+        <a class="bw-header__nav-link{% if current_path == nav_url %} is-active{% endif %}" href="{{ nav_url }}"{% if current_path == nav_url %} aria-current="page"{% endif %}>{{ nav_label }}</a>
+      {% endfor %}
     </nav>
 
     <div class="bw-header__actions">
@@ -734,18 +735,10 @@
 
     <div class="bw-header__drawer-nav">
       <div class="bw-header__drawer-heading">Shop by category</div>
-      {% if primary_menu_links != blank %}
-        {% for link in primary_menu_links %}
-          <a class="bw-header__drawer-link" href="{{ link.url }}">{{ link.title }}</a>
-        {% endfor %}
-      {% else %}
-        <a class="bw-header__drawer-link" href="/collections/living-room">Living Room</a>
-        <a class="bw-header__drawer-link" href="/collections/bed-room">Bedroom</a>
-        <a class="bw-header__drawer-link" href="/collections/study-tables">Study Tables</a>
-        <a class="bw-header__drawer-link" href="/collections/tv-unit-furniture">TV Units</a>
-        <a class="bw-header__drawer-link" href="/collections/book-shelves">Bookshelves</a>
-        <a class="bw-header__drawer-link" href="/collections/wardrobe">Wardrobes</a>
-      {% endif %}
+      {% for nav_label in drawer_nav_labels %}
+        {% assign nav_url = drawer_nav_urls[forloop.index0] %}
+        <a class="bw-header__drawer-link" href="{{ nav_url }}">{{ nav_label }}</a>
+      {% endfor %}
     </div>
 
     <div class="bw-header__drawer-links">
