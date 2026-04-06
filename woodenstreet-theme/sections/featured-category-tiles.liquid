@@ -1,0 +1,401 @@
+{% liquid
+  assign section_title = section.settings.title | default: 'Featured categories'
+  assign section_copy = section.settings.copy | default: 'Browse a tight, premium edit of Bluewud furniture categories designed for the rooms that matter most.'
+%}
+
+<style>
+  #featured-category-tiles-{{ section.id }} {
+    padding: 72px 24px;
+    background:
+      radial-gradient(circle at top left, rgba(207, 181, 162, 0.14), transparent 28%),
+      linear-gradient(180deg, #fbf7f2 0%, #f6f0ea 100%);
+  }
+
+  #featured-category-tiles-{{ section.id }} .bw-featured-categories__inner {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  #featured-category-tiles-{{ section.id }} .bw-featured-categories__header {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 18px;
+    align-items: end;
+    margin-bottom: 28px;
+  }
+
+  #featured-category-tiles-{{ section.id }} .bw-featured-categories__eyebrow {
+    display: inline-block;
+    margin-bottom: 10px;
+    color: #8a684f;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  #featured-category-tiles-{{ section.id }} .bw-featured-categories__title {
+    margin: 0 0 10px;
+    color: #221915;
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+  }
+
+  #featured-category-tiles-{{ section.id }} .bw-featured-categories__copy {
+    margin: 0;
+    max-width: 62ch;
+    color: #6e5b50;
+    font-size: 16px;
+    line-height: 1.8;
+  }
+
+  #featured-category-tiles-{{ section.id }} .bw-featured-categories__grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+  }
+
+  #featured-category-tiles-{{ section.id }} .bw-featured-categories__card {
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    overflow: hidden;
+    border-radius: 28px;
+    border: 1px solid rgba(46, 33, 25, 0.08);
+    background: rgba(255, 252, 248, 0.92);
+    box-shadow: 0 18px 50px rgba(34, 25, 21, 0.08);
+    color: inherit;
+    text-decoration: none;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  }
+
+  #featured-category-tiles-{{ section.id }} .bw-featured-categories__card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 28px 65px rgba(34, 25, 21, 0.12);
+  }
+
+  #featured-category-tiles-{{ section.id }} .bw-featured-categories__media {
+    position: relative;
+    aspect-ratio: 1 / 0.88;
+    overflow: hidden;
+    background:
+      radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.16), transparent 24%),
+      linear-gradient(145deg, #dbc9bb 0%, #b48c74 44%, #4d382f 100%);
+  }
+
+  #featured-category-tiles-{{ section.id }} .bw-featured-categories__media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
+
+  #featured-category-tiles-{{ section.id }} .bw-featured-categories__card:hover .bw-featured-categories__media img {
+    transform: scale(1.04);
+  }
+
+  #featured-category-tiles-{{ section.id }} .bw-featured-categories__media--dressing {
+    background:
+      radial-gradient(circle at 80% 16%, rgba(255, 255, 255, 0.2), transparent 24%),
+      linear-gradient(145deg, #d7c1b4 0%, #a67d68 42%, #44322a 100%);
+  }
+
+  #featured-category-tiles-{{ section.id }} .bw-featured-categories__media--centre {
+    background:
+      radial-gradient(circle at 18% 16%, rgba(255, 255, 255, 0.18), transparent 24%),
+      linear-gradient(145deg, #d8cbc2 0%, #ad8d7d 44%, #4e3b33 100%);
+  }
+
+  #featured-category-tiles-{{ section.id }} .bw-featured-categories__media--wfh {
+    background:
+      radial-gradient(circle at 78% 18%, rgba(255, 255, 255, 0.18), transparent 22%),
+      linear-gradient(145deg, #d2d8da 0%, #8c9aa0 44%, #394249 100%);
+  }
+
+  #featured-category-tiles-{{ section.id }} .bw-featured-categories__media-placeholder {
+    display: flex;
+    align-items: flex-end;
+    padding: 20px;
+    box-sizing: border-box;
+  }
+
+  #featured-category-tiles-{{ section.id }} .bw-featured-categories__placeholder-pill {
+    display: inline-flex;
+    align-items: center;
+    padding: 9px 13px;
+    border-radius: 999px;
+    background: rgba(255, 249, 244, 0.9);
+    color: #221915;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  #featured-category-tiles-{{ section.id }} .bw-featured-categories__body {
+    display: grid;
+    gap: 10px;
+    padding: 20px 20px 22px;
+  }
+
+  #featured-category-tiles-{{ section.id }} .bw-featured-categories__label {
+    color: #8a684f;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  #featured-category-tiles-{{ section.id }} .bw-featured-categories__name {
+    margin: 0;
+    color: #221915;
+    font-size: 22px;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+  }
+
+  #featured-category-tiles-{{ section.id }} .bw-featured-categories__meta {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    color: #6e5b50;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  #featured-category-tiles-{{ section.id }} .bw-featured-categories__arrow {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #8a684f;
+    white-space: nowrap;
+  }
+
+  #featured-category-tiles-{{ section.id }} .bw-featured-categories__empty {
+    padding: 28px;
+    border-radius: 24px;
+    border: 1px solid rgba(46, 33, 25, 0.08);
+    background: rgba(255, 252, 248, 0.92);
+    color: #6e5b50;
+    font-size: 15px;
+    line-height: 1.7;
+  }
+
+  @media (max-width: 1100px) {
+    #featured-category-tiles-{{ section.id }} .bw-featured-categories__grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 760px) {
+    #featured-category-tiles-{{ section.id }} {
+      padding: 56px 16px;
+    }
+
+    #featured-category-tiles-{{ section.id }} .bw-featured-categories__header {
+      grid-template-columns: 1fr;
+    }
+
+    #featured-category-tiles-{{ section.id }} .bw-featured-categories__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section id="featured-category-tiles-{{ section.id }}" class="bw-featured-categories">
+  <div class="bw-featured-categories__inner">
+    <div class="bw-featured-categories__header">
+      <div>
+        <span class="bw-featured-categories__eyebrow">{{ section.settings.eyebrow | default: 'Shop the edit' }}</span>
+        <h2 class="bw-featured-categories__title">{{ section_title }}</h2>
+        <p class="bw-featured-categories__copy">{{ section_copy }}</p>
+      </div>
+    </div>
+
+    {% if section.blocks.size > 0 %}
+      <div class="bw-featured-categories__grid">
+        {% for block in section.blocks %}
+          {% liquid
+            assign collection = block.settings.collection
+            assign card_title = block.settings.title | default: collection.title | default: 'Category'
+            assign card_url = routes.all_products_collection_url
+
+            if forloop.index == 1
+              assign card_url = '/collections/dressing-tables'
+            elsif forloop.index == 2
+              assign card_url = '/collections/centre-tables'
+            elsif forloop.index == 3
+              assign card_url = '/collections/wfh-furniture'
+            endif
+
+            if block.settings.fallback_url != blank
+              assign card_url = block.settings.fallback_url
+            endif
+
+            if collection != blank and collection.url != blank
+              assign card_url = collection.url
+            endif
+
+            assign card_image = block.settings.image
+            if card_image == blank and collection != blank
+              assign card_image = collection.image
+            endif
+
+            if card_image == blank and collection != blank and collection.products.size > 0
+              assign card_image = collection.products.first.featured_image
+            endif
+
+            assign card_label = block.settings.label | default: 'Featured category'
+            assign card_detail = block.settings.detail
+            assign product_count = blank
+            if collection != blank and collection.all_products_count > 0
+              assign product_count = collection.all_products_count
+            endif
+
+            assign card_media_class = 'bw-featured-categories__media--dressing'
+            if forloop.index == 2
+              assign card_media_class = 'bw-featured-categories__media--centre'
+            elsif forloop.index == 3
+              assign card_media_class = 'bw-featured-categories__media--wfh'
+            endif
+          %}
+
+          <a class="bw-featured-categories__card" href="{{ card_url }}" {{ block.shopify_attributes }}>
+            {% if card_image != blank %}
+              <div class="bw-featured-categories__media">
+                {{ card_image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '480, 720, 960, 1200, 1400', sizes: '(max-width: 760px) 100vw, (max-width: 1100px) 50vw, 33vw', alt: card_title }}
+              </div>
+            {% else %}
+              <div class="bw-featured-categories__media {{ card_media_class }} bw-featured-categories__media-placeholder" role="img" aria-label="{{ card_title | escape }} placeholder until a Bluewud image is added">
+                <span class="bw-featured-categories__placeholder-pill">Add image later</span>
+              </div>
+            {% endif %}
+
+            <div class="bw-featured-categories__body">
+              <span class="bw-featured-categories__label">{{ card_label }}</span>
+              <h3 class="bw-featured-categories__name">{{ card_title }}</h3>
+              <div class="bw-featured-categories__meta">
+                <span>
+                  {% if card_detail != blank %}
+                    {{ card_detail }}
+                  {% elsif product_count != blank %}
+                    {{ product_count }} products in range
+                  {% else %}
+                    Curated for live-store browsing
+                  {% endif %}
+                </span>
+                <span class="bw-featured-categories__arrow">Shop now</span>
+              </div>
+            </div>
+          </a>
+        {% endfor %}
+      </div>
+    {% else %}
+      <div class="bw-featured-categories__empty">
+        Add three category blocks to show Dressing Tables, Centre Tables, and WFH Furniture.
+      </div>
+    {% endif %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Featured category tiles",
+  "settings": [
+    {
+      "type": "text",
+      "id": "eyebrow",
+      "label": "Eyebrow",
+      "default": "Shop the edit"
+    },
+    {
+      "type": "text",
+      "id": "title",
+      "label": "Heading",
+      "default": "Featured categories"
+    },
+    {
+      "type": "textarea",
+      "id": "copy",
+      "label": "Supporting copy",
+      "default": "Browse a tight, premium edit of Bluewud furniture categories designed for the rooms that matter most."
+    }
+  ],
+  "blocks": [
+    {
+      "type": "category",
+      "name": "Category tile",
+      "settings": [
+        {
+          "type": "text",
+          "id": "label",
+          "label": "Label",
+          "default": "Featured category"
+        },
+        {
+          "type": "text",
+          "id": "title",
+          "label": "Title",
+          "default": "Dressing Tables"
+        },
+        {
+          "type": "textarea",
+          "id": "detail",
+          "label": "Detail",
+          "default": "Mirror-led vanity pieces with everyday storage."
+        },
+        {
+          "type": "collection",
+          "id": "collection",
+          "label": "Collection"
+        },
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        },
+        {
+          "type": "url",
+          "id": "fallback_url",
+          "label": "Fallback URL"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Featured category tiles",
+      "blocks": [
+        {
+          "type": "category",
+          "settings": {
+            "title": "Dressing Tables",
+            "detail": "Mirror-led vanity pieces with everyday storage.",
+            "fallback_url": "/collections/dressing-tables"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "Centre Tables",
+            "detail": "Low-profile coffee and centre tables that ground the room.",
+            "fallback_url": "/collections/centre-tables"
+          }
+        },
+        {
+          "type": "category",
+          "settings": {
+            "title": "WFH Furniture",
+            "detail": "Desks and compact work setups built for daily focus.",
+            "fallback_url": "/collections/wfh-furniture"
+          }
+        }
+      ]
+    }
+  ],
+  "max_blocks": 3
+}
+{% endschema %}

@@ -1,9 +1,18 @@
 {% liquid
-  assign primary_text = section.settings.primary_text | default: '15 years of crafted living'
-  assign secondary_text = section.settings.secondary_text | default: 'Free delivery and easy EMI on selected orders'
-  assign tertiary_text = section.settings.tertiary_text | default: 'Explore premium furniture for modern Indian homes'
+  assign primary_text = section.settings.primary_text | default: 'Avail flat discount of 10%.'
+  assign secondary_text = section.settings.secondary_text | default: 'Use coupon code "BWUD10".'
+  assign tertiary_text = section.settings.tertiary_text | default: 'Hurry. Offer valid for limited time!'
   assign cta_label = section.settings.cta_label | default: 'View Offers'
   assign cta_url = section.settings.cta_url
+  assign promo_signature = primary_text | downcase
+  assign full_signature = primary_text | append: ' ' | append: secondary_text | append: ' ' | append: tertiary_text | downcase
+
+  if full_signature contains '15 years of crafted living' or full_signature contains 'free delivery and easy emi' or full_signature contains 'explore premium furniture for modern indian homes'
+    assign primary_text = 'Avail flat discount of 10%.'
+    assign secondary_text = 'Use coupon code "BWUD10".'
+    assign tertiary_text = 'Hurry. Offer valid for limited time!'
+    assign cta_label = 'View Offers'
+  endif
 
   if cta_url == blank
     assign cta_url = '/pages/offers-discount'
@@ -113,19 +122,19 @@
       "type": "text",
       "id": "primary_text",
       "label": "Primary message",
-      "default": "15 years of crafted living"
+      "default": "Avail flat discount of 10%."
     },
     {
       "type": "text",
       "id": "secondary_text",
       "label": "Secondary message",
-      "default": "Free delivery and easy EMI on selected orders"
+      "default": "Use coupon code \"BWUD10\"."
     },
     {
       "type": "text",
       "id": "tertiary_text",
       "label": "Third message",
-      "default": "Explore premium furniture for modern Indian homes"
+      "default": "Hurry. Offer valid for limited time!"
     },
     {
       "type": "text",

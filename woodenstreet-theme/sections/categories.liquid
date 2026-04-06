@@ -1,3 +1,10 @@
+{% liquid
+  assign modular_wardrobe_url = '/collections/wardrobe'
+  if pages['modular-wardrobe-designs'] != blank
+    assign modular_wardrobe_url = pages['modular-wardrobe-designs'].url
+  endif
+%}
+
 <style>
   .bw-categories {
     padding: 70px 24px;
@@ -430,7 +437,7 @@
         </div>
       </a>
 
-      <a class="bw-categories__card bw-categories__card--small" href="/collections/wardrobe">
+    <a class="bw-categories__card bw-categories__card--small" href="{{ modular_wardrobe_url }}">
         {% if wardrobe_media != blank %}
           <div class="bw-categories__media">
             {{ wardrobe_media | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 480, 720, 900', sizes: '(max-width: 720px) 100vw, 25vw', alt: 'Wardrobes' }}

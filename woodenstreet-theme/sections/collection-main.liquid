@@ -1,10 +1,46 @@
 {% liquid
   assign current_sort = collection.sort_by | default: collection.default_sort_by
+  assign current_path = request.path
+  assign modular_kitchen_url = '/collections/kitchen-racks'
+  assign modular_wardrobe_url = '/collections/wardrobe'
   assign hero_media = collection.image
+  assign collection_handle = collection.handle
+  assign hero_title = collection.title
+  assign hero_copy = collection.description | strip_html
+  assign collection_eyebrow = 'Explore the collection'
+  assign insight_titles = 'Pan-India delivery|Easy EMI|Refined utility' | split: '|'
+  assign insight_copies = 'Reliable support for furniture that needs smoother doorstep coordination.|Comfortable payment flexibility for larger purchases and room-by-room upgrades.|Thoughtfully designed pieces built for modern Indian homes.' | split: '|'
 
   if hero_media == blank and collection.products.size > 0
     assign hero_media = collection.products.first.featured_image
   endif
+
+  if pages['modular-kitchen-designs'] != blank
+    assign modular_kitchen_url = pages['modular-kitchen-designs'].url
+  endif
+
+  if pages['modular-wardrobe-designs'] != blank
+    assign modular_wardrobe_url = pages['modular-wardrobe-designs'].url
+  endif
+
+  if hero_copy == blank
+    assign hero_copy = 'Explore thoughtfully designed furniture made to bring comfort, function, and finish to every room.'
+  endif
+
+  case collection_handle
+    when 'kitchen-racks'
+      assign hero_title = 'Modular Kitchen'
+      assign collection_eyebrow = 'Kitchen storage, simplified'
+      assign hero_copy = 'Organise spices, jars, microwave units, and everyday cookware with modular kitchen storage that looks cleaner and works harder in compact Indian homes.'
+      assign insight_titles = 'Wall and floor formats|Utility-first storage|Designed for compact kitchens' | split: '|'
+      assign insight_copies = 'Browse wall-mounted cabinets, spice racks, display shelves, and floor-supported utility units in one place.|A practical mix of microwave stands, bottle racks, and modular organisers built for daily use.|Thoughtful proportions and engineered wood finishes that help busy kitchens feel calmer and more intentional.' | split: '|'
+    when 'wardrobe'
+      assign hero_title = 'Wardrobes'
+      assign collection_eyebrow = 'Bedroom storage with structure'
+      assign hero_copy = 'Discover 2 door, 3 door, and 4 door wardrobes designed to bring cleaner storage, stronger organisation, and a more premium bedroom feel without wasting floor space.'
+      assign insight_titles = '2, 3 and 4 door options|Storage-first bedroom planning|Made for everyday use' | split: '|'
+      assign insight_copies = 'Choose from compact to full-format wardrobes based on room size, clothing volume, and access needs.|Balanced internal layouts for folded essentials, hanging storage, and a tidier visual presence in the room.|Engineered wood finishes, dependable utility, and delivery support suited to larger furniture purchases.' | split: '|'
+  endcase
 %}
 
 <style>
@@ -107,6 +143,40 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     text-decoration: none;
+  }
+
+  .bw-collection__chip.is-current {
+    background: #201713;
+    color: #fff7f1;
+  }
+
+  .bw-collection__insights {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+    margin: 0 0 24px;
+  }
+
+  .bw-collection__insight {
+    padding: 22px 22px 20px;
+    border-radius: 24px;
+    background: rgba(255, 251, 247, 0.94);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 18px 40px rgba(35, 24, 19, 0.05);
+  }
+
+  .bw-collection__insight-title {
+    margin: 0 0 8px;
+    color: #201713;
+    font-size: 18px;
+    line-height: 1.2;
+  }
+
+  .bw-collection__insight-copy {
+    margin: 0;
+    color: #6b5b53;
+    font-size: 14px;
+    line-height: 1.7;
   }
 
   .bw-collection__toolbar {
@@ -357,6 +427,10 @@
   }
 
   @media (max-width: 1180px) {
+    .bw-collection__insights {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
     .bw-collection__grid {
       grid-template-columns: repeat(3, minmax(0, 1fr));
     }
@@ -404,6 +478,16 @@
       border-radius: 20px;
     }
 
+    .bw-collection__insights {
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .bw-collection__insight {
+      padding: 18px 18px 16px;
+      border-radius: 20px;
+    }
+
     .bw-collection__sort {
       width: 100%;
       flex-wrap: wrap;
@@ -438,9 +522,22 @@
   }
 </style>
 
-<section class="bw-collection">
-  <div class="bw-collection__shell">
-    <div class="bw-collection__hero">
+{% if collection_handle == 'kitchen-racks' %}
+  <section class="bw-collection">
+    <div class="bw-collection__shell">
+      {% render 'modular-kitchen-page-content' %}
+    </div>
+  </section>
+{% elsif collection_handle == 'wardrobe' %}
+  <section class="bw-collection">
+    <div class="bw-collection__shell">
+      {% render 'wardrobe-page-content' %}
+    </div>
+  </section>
+{% else %}
+  <section class="bw-collection">
+    <div class="bw-collection__shell">
+      <div class="bw-collection__hero">
       {% if hero_media %}
         {{ hero_media | image_url: width: 1800 | image_tag: loading: 'eager', widths: '720, 1080, 1440, 1800', sizes: '100vw', alt: collection.title }}
       {% endif %}
@@ -453,32 +550,36 @@
           <span>/</span>
           <span>{{ collection.title }}</span>
         </div>
-        <h1 class="bw-collection__title">{{ collection.title }}</h1>
-        <p class="bw-collection__copy">
-          {% if collection.description != blank %}
-            {{ collection.description | strip_html }}
-          {% else %}
-            Explore thoughtfully designed furniture made to bring comfort, function, and finish to every room.
-          {% endif %}
-        </p>
+        <h1 class="bw-collection__title">{{ hero_title }}</h1>
+        <p class="bw-collection__copy">{{ hero_copy }}</p>
       </div>
     </div>
 
     <div class="bw-collection__chips">
-      <a class="bw-collection__chip" href="/collections/living-room">Living Room</a>
-      <a class="bw-collection__chip" href="/collections/bed-room">Bedroom</a>
-      <a class="bw-collection__chip" href="/collections/study-tables">Study Tables</a>
-      <a class="bw-collection__chip" href="/collections/tv-unit-furniture">TV Units</a>
-      <a class="bw-collection__chip" href="/collections/book-shelves">Bookshelves</a>
-      <a class="bw-collection__chip" href="/collections/wardrobe">Wardrobes</a>
-      <a class="bw-collection__chip" href="/collections/new_launches">New Launches</a>
+      <a class="bw-collection__chip{% if collection_handle == 'living-room' %} is-current{% endif %}" href="/collections/living-room">Living Room</a>
+      <a class="bw-collection__chip{% if collection_handle == 'bed-room' %} is-current{% endif %}" href="/collections/bed-room">Bedroom</a>
+      <a class="bw-collection__chip{% if collection_handle == 'study-tables' %} is-current{% endif %}" href="/collections/study-tables">Study Tables</a>
+      <a class="bw-collection__chip{% if collection_handle == 'tv-unit-furniture' %} is-current{% endif %}" href="/collections/tv-unit-furniture">TV Units</a>
+      <a class="bw-collection__chip{% if collection_handle == 'book-shelves' %} is-current{% endif %}" href="/collections/book-shelves">Bookshelves</a>
+      <a class="bw-collection__chip{% if current_path == modular_kitchen_url %} is-current{% endif %}" href="{{ modular_kitchen_url }}">Modular Kitchen</a>
+      <a class="bw-collection__chip{% if current_path == modular_wardrobe_url %} is-current{% endif %}" href="{{ modular_wardrobe_url }}">Wardrobes</a>
+      <a class="bw-collection__chip{% if collection_handle == 'new_launches' %} is-current{% endif %}" href="/collections/new_launches">New Launches</a>
       <a class="bw-collection__chip" href="/collections/hp-bluewuds-bestseller">Bestsellers</a>
+    </div>
+
+    <div class="bw-collection__insights">
+      {% for insight_title in insight_titles %}
+        <article class="bw-collection__insight">
+          <h2 class="bw-collection__insight-title">{{ insight_title }}</h2>
+          <p class="bw-collection__insight-copy">{{ insight_copies[forloop.index0] }}</p>
+        </article>
+      {% endfor %}
     </div>
 
     {% paginate collection.products by section.settings.products_per_page %}
       <div class="bw-collection__toolbar">
         <div class="bw-collection__toolbar-main">
-          <div class="bw-collection__eyebrow">Explore the collection</div>
+          <div class="bw-collection__eyebrow">{{ collection_eyebrow }}</div>
           <div class="bw-collection__count">{{ paginate.items }} item{% if paginate.items != 1 %}s{% endif %} in this collection</div>
         </div>
 
@@ -580,8 +681,9 @@
         </div>
       {% endif %}
     {% endpaginate %}
-  </div>
-</section>
+    </div>
+  </section>
+{% endif %}
 
 {% schema %}
 {

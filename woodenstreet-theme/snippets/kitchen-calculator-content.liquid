@@ -1,0 +1,587 @@
+{% liquid
+  assign contact_url = '/pages/contact-us'
+%}
+
+<style>
+  .bw-flow { display: grid; gap: 22px; }
+  .bw-flow__shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+    gap: 20px;
+  }
+  .bw-flow__panel,
+  .bw-flow__summary {
+    padding: 26px 28px;
+    border-radius: 30px;
+    background: rgba(255, 251, 247, 0.94);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 24px 70px rgba(35, 24, 19, 0.08);
+  }
+  .bw-flow__summary {
+    position: sticky;
+    top: 110px;
+    background: linear-gradient(135deg, #231813 0%, #3b2921 56%, #5c463c 100%);
+    color: #fff7f1;
+    height: fit-content;
+  }
+  .bw-flow__head { display: grid; gap: 10px; margin-bottom: 18px; }
+  .bw-flow__eyebrow {
+    color: #8a684f;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .bw-flow__summary .bw-flow__eyebrow,
+  .bw-flow__summary .bw-flow__title,
+  .bw-flow__summary .bw-flow__copy { color: inherit; }
+  .bw-flow__title {
+    margin: 0;
+    color: #201713;
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+  }
+  .bw-flow__copy {
+    margin: 0;
+    max-width: 62ch;
+    color: #66554c;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .bw-flow__progress {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .bw-flow__step {
+    display: grid;
+    gap: 6px;
+    padding: 14px;
+    border-radius: 20px;
+    background: rgba(32, 23, 19, 0.04);
+    border: 1px solid transparent;
+  }
+  .bw-flow__step.is-active {
+    background: rgba(79, 120, 143, 0.12);
+    border-color: rgba(79, 120, 143, 0.22);
+  }
+  .bw-flow__step.is-complete { background: rgba(32, 23, 19, 0.08); }
+  .bw-flow__step-index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    background: #201713;
+    color: #fff7f1;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+  .bw-flow__step-label {
+    color: #201713;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .bw-flow__stage { display: none; gap: 16px; }
+  .bw-flow__stage.is-active { display: grid; }
+  .bw-flow__stage-head { display: grid; gap: 8px; }
+  .bw-flow__stage-title {
+    margin: 0;
+    color: #201713;
+    font-size: 24px;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+  }
+  .bw-flow__stage-copy {
+    margin: 0;
+    color: #66554c;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .bw-flow__section { display: grid; gap: 12px; }
+  .bw-flow__label {
+    color: #201713;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .bw-flow__choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .bw-flow__choice {
+    display: inline-flex;
+    align-items: center;
+    min-height: 42px;
+    padding: 0 16px;
+    border-radius: 999px;
+    background: rgba(32, 23, 19, 0.06);
+    border: 1px solid transparent;
+    color: #201713;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .bw-flow__choice input { display: none; }
+  .bw-flow__choice.is-selected {
+    background: #201713;
+    color: #fff7f1;
+    border-color: #201713;
+  }
+  .bw-flow__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .bw-flow__field {
+    display: grid;
+    gap: 8px;
+  }
+  .bw-flow__field label {
+    color: #201713;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .bw-flow__field input,
+  .bw-flow__field select {
+    width: 100%;
+    min-height: 48px;
+    padding: 0 16px;
+    border-radius: 18px;
+    border: 1px solid rgba(45, 33, 27, 0.12);
+    background: #fffdfb;
+    color: #201713;
+    font-size: 14px;
+  }
+  .bw-flow__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 6px;
+  }
+  .bw-flow__button,
+  .bw-flow__button--secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 18px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .bw-flow__button {
+    border: 0;
+    background: #201713;
+    color: #fff7f1;
+  }
+  .bw-flow__button--secondary {
+    border: 1px solid rgba(32, 23, 19, 0.14);
+    background: rgba(32, 23, 19, 0.04);
+    color: #201713;
+  }
+  .bw-flow__summary-list {
+    display: grid;
+    gap: 12px;
+    margin-top: 18px;
+  }
+  .bw-flow__summary-line {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 247, 241, 0.12);
+    color: rgba(255, 247, 241, 0.88);
+    font-size: 14px;
+  }
+  .bw-flow__summary-line strong { color: #fff7f1; text-align: right; }
+  .bw-flow__badge {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    min-height: 34px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(255, 247, 241, 0.08);
+    color: #fff7f1;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .bw-flow__assist {
+    margin-top: 16px;
+    color: rgba(255, 247, 241, 0.76);
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  @media (max-width: 980px) {
+    .bw-flow__shell { grid-template-columns: 1fr; }
+    .bw-flow__summary { position: static; }
+    .bw-flow__progress { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 720px) {
+    .bw-flow__panel,
+    .bw-flow__summary { padding: 22px 20px; border-radius: 24px; }
+    .bw-flow__progress,
+    .bw-flow__grid { grid-template-columns: 1fr; }
+    .bw-flow__actions { flex-direction: column-reverse; align-items: stretch; }
+  }
+</style>
+
+<div class="bw-flow" data-bw-kitchen-flow>
+  <div class="bw-flow__shell">
+    <section class="bw-flow__panel">
+      <div class="bw-flow__head">
+        <span class="bw-flow__eyebrow">Kitchen planning workflow</span>
+        <h2 class="bw-flow__title">Modular Kitchen Cost Calculator</h2>
+        <p class="bw-flow__copy">This is a consultation-first workflow, not a fake instant quote. Complete the brief properly and Bluewud gets the exact layout, measurements, materials, and add-ons you want to discuss.</p>
+      </div>
+
+      <div class="bw-flow__progress">
+        <div class="bw-flow__step is-active" data-step-indicator="1"><span class="bw-flow__step-index">01</span><span class="bw-flow__step-label">Layout</span></div>
+        <div class="bw-flow__step" data-step-indicator="2"><span class="bw-flow__step-index">02</span><span class="bw-flow__step-label">Measurements</span></div>
+        <div class="bw-flow__step" data-step-indicator="3"><span class="bw-flow__step-index">03</span><span class="bw-flow__step-label">Build</span></div>
+        <div class="bw-flow__step" data-step-indicator="4"><span class="bw-flow__step-index">04</span><span class="bw-flow__step-label">Add-ons</span></div>
+        <div class="bw-flow__step" data-step-indicator="5"><span class="bw-flow__step-index">05</span><span class="bw-flow__step-label">Review</span></div>
+      </div>
+
+      <div class="bw-flow__stage is-active" data-step-panel="1">
+        <div class="bw-flow__stage-head">
+          <h3 class="bw-flow__stage-title">Start with the kitchen type and how the home works</h3>
+          <p class="bw-flow__stage-copy">This step narrows the project into a realistic layout direction before material and finish are discussed.</p>
+        </div>
+        <div class="bw-flow__section">
+          <div class="bw-flow__label">Kitchen layout</div>
+          <div class="bw-flow__choices" data-flow-group="layout">
+            <label class="bw-flow__choice is-selected"><input type="radio" name="kitchen_layout" value="L-shape" checked>L-shape</label>
+            <label class="bw-flow__choice"><input type="radio" name="kitchen_layout" value="U-shape">U-shape</label>
+            <label class="bw-flow__choice"><input type="radio" name="kitchen_layout" value="Parallel">Parallel</label>
+            <label class="bw-flow__choice"><input type="radio" name="kitchen_layout" value="Straight">Straight</label>
+            <label class="bw-flow__choice"><input type="radio" name="kitchen_layout" value="Island">Island</label>
+          </div>
+        </div>
+        <div class="bw-flow__section">
+          <div class="bw-flow__label">Property type</div>
+          <div class="bw-flow__choices" data-flow-group="property">
+            <label class="bw-flow__choice is-selected"><input type="radio" name="property_type" value="Apartment" checked>Apartment</label>
+            <label class="bw-flow__choice"><input type="radio" name="property_type" value="Villa">Villa</label>
+            <label class="bw-flow__choice"><input type="radio" name="property_type" value="Independent Floor">Independent Floor</label>
+            <label class="bw-flow__choice"><input type="radio" name="property_type" value="Rental Upgrade">Rental Upgrade</label>
+          </div>
+        </div>
+        <div class="bw-flow__section">
+          <div class="bw-flow__label">How intense is daily kitchen use?</div>
+          <div class="bw-flow__choices" data-flow-group="usage">
+            <label class="bw-flow__choice"><input type="radio" name="usage_level" value="Light use">Light Use</label>
+            <label class="bw-flow__choice is-selected"><input type="radio" name="usage_level" value="Daily family use" checked>Daily Family Use</label>
+            <label class="bw-flow__choice"><input type="radio" name="usage_level" value="Heavy cooking">Heavy Cooking</label>
+          </div>
+        </div>
+        <div class="bw-flow__actions">
+          <span></span>
+          <button class="bw-flow__button" type="button" data-flow-next>Continue</button>
+        </div>
+      </div>
+
+      <div class="bw-flow__stage" data-step-panel="2">
+        <div class="bw-flow__stage-head">
+          <h3 class="bw-flow__stage-title">Capture the wall lengths and room profile</h3>
+          <p class="bw-flow__stage-copy">These measurements do not replace site validation, but they make the enquiry much more usable from the start.</p>
+        </div>
+        <div class="bw-flow__grid">
+          <div class="bw-flow__field"><label for="bw-kitchen-wall-a">Wall A length (ft)</label><input id="bw-kitchen-wall-a" type="number" min="4" max="40" step="0.5" value="10" data-flow-input="wall_a"></div>
+          <div class="bw-flow__field"><label for="bw-kitchen-wall-b">Wall B length (ft)</label><input id="bw-kitchen-wall-b" type="number" min="0" max="40" step="0.5" value="8" data-flow-input="wall_b"></div>
+          <div class="bw-flow__field"><label for="bw-kitchen-wall-c">Wall C length (ft)</label><input id="bw-kitchen-wall-c" type="number" min="0" max="40" step="0.5" value="0" data-flow-input="wall_c"></div>
+          <div class="bw-flow__field"><label for="bw-kitchen-ceiling">Ceiling height (ft)</label><input id="bw-kitchen-ceiling" type="number" min="7" max="14" step="0.5" value="9" data-flow-input="ceiling"></div>
+        </div>
+        <div class="bw-flow__section">
+          <div class="bw-flow__label">Need upper cabinets?</div>
+          <div class="bw-flow__choices" data-flow-group="uppers">
+            <label class="bw-flow__choice is-selected"><input type="radio" name="upper_cabinets" value="Yes" checked>Yes</label>
+            <label class="bw-flow__choice"><input type="radio" name="upper_cabinets" value="Only on selected walls">Selected Walls</label>
+            <label class="bw-flow__choice"><input type="radio" name="upper_cabinets" value="No">No</label>
+          </div>
+        </div>
+        <div class="bw-flow__actions">
+          <button class="bw-flow__button--secondary" type="button" data-flow-back>Back</button>
+          <button class="bw-flow__button" type="button" data-flow-next>Continue</button>
+        </div>
+      </div>
+
+      <div class="bw-flow__stage" data-step-panel="3">
+        <div class="bw-flow__stage-head">
+          <h3 class="bw-flow__stage-title">Choose the build direction</h3>
+          <p class="bw-flow__stage-copy">This layer shapes durability, visual tone, and the budget conversation.</p>
+        </div>
+        <div class="bw-flow__section">
+          <div class="bw-flow__label">Carcass material</div>
+          <div class="bw-flow__choices" data-flow-group="carcass">
+            <label class="bw-flow__choice is-selected"><input type="radio" name="carcass_material" value="Engineered wood" checked>Engineered Wood</label>
+            <label class="bw-flow__choice"><input type="radio" name="carcass_material" value="Plywood">Plywood</label>
+            <label class="bw-flow__choice"><input type="radio" name="carcass_material" value="Need guidance">Need Guidance</label>
+          </div>
+        </div>
+        <div class="bw-flow__section">
+          <div class="bw-flow__label">Shutter material</div>
+          <div class="bw-flow__choices" data-flow-group="shutter_material">
+            <label class="bw-flow__choice is-selected"><input type="radio" name="shutter_material" value="Laminate front" checked>Laminate Front</label>
+            <label class="bw-flow__choice"><input type="radio" name="shutter_material" value="Acrylic front">Acrylic Front</label>
+            <label class="bw-flow__choice"><input type="radio" name="shutter_material" value="Membrane / profile">Membrane / Profile</label>
+            <label class="bw-flow__choice"><input type="radio" name="shutter_material" value="Glass / premium">Glass / Premium</label>
+          </div>
+        </div>
+        <div class="bw-flow__section">
+          <div class="bw-flow__label">Countertop</div>
+          <div class="bw-flow__choices" data-flow-group="countertop">
+            <label class="bw-flow__choice is-selected"><input type="radio" name="countertop" value="Granite" checked>Granite</label>
+            <label class="bw-flow__choice"><input type="radio" name="countertop" value="Quartz">Quartz</label>
+            <label class="bw-flow__choice"><input type="radio" name="countertop" value="Premium stone">Premium Stone</label>
+          </div>
+        </div>
+        <div class="bw-flow__actions">
+          <button class="bw-flow__button--secondary" type="button" data-flow-back>Back</button>
+          <button class="bw-flow__button" type="button" data-flow-next>Continue</button>
+        </div>
+      </div>
+
+      <div class="bw-flow__stage" data-step-panel="4">
+        <div class="bw-flow__stage-head">
+          <h3 class="bw-flow__stage-title">Add the utility details that change the brief</h3>
+          <p class="bw-flow__stage-copy">This is where the enquiry starts feeling like a real kitchen project instead of only a style reference.</p>
+        </div>
+        <div class="bw-flow__section">
+          <div class="bw-flow__label">Storage and hardware</div>
+          <div class="bw-flow__choices" data-flow-group="addons">
+            <label class="bw-flow__choice"><input type="checkbox" value="Tall unit">Tall Unit</label>
+            <label class="bw-flow__choice"><input type="checkbox" value="Pantry pull-out">Pantry Pull-out</label>
+            <label class="bw-flow__choice"><input type="checkbox" value="Corner accessory">Corner Accessory</label>
+            <label class="bw-flow__choice"><input type="checkbox" value="Tandem drawers">Tandem Drawers</label>
+            <label class="bw-flow__choice"><input type="checkbox" value="Premium hardware">Premium Hardware</label>
+            <label class="bw-flow__choice"><input type="checkbox" value="Appliance tower">Appliance Tower</label>
+          </div>
+        </div>
+        <div class="bw-flow__section">
+          <div class="bw-flow__label">Appliance integration</div>
+          <div class="bw-flow__choices" data-flow-group="appliances">
+            <label class="bw-flow__choice is-selected"><input type="radio" name="appliance_plan" value="Basic hob + chimney" checked>Basic Hob + Chimney</label>
+            <label class="bw-flow__choice"><input type="radio" name="appliance_plan" value="Microwave + chimney">Microwave + Chimney</label>
+            <label class="bw-flow__choice"><input type="radio" name="appliance_plan" value="Oven / dishwasher integration">Oven / Dishwasher</label>
+            <label class="bw-flow__choice"><input type="radio" name="appliance_plan" value="Need guidance">Need Guidance</label>
+          </div>
+        </div>
+        <div class="bw-flow__actions">
+          <button class="bw-flow__button--secondary" type="button" data-flow-back>Back</button>
+          <button class="bw-flow__button" type="button" data-flow-next>Continue</button>
+        </div>
+      </div>
+
+      <div class="bw-flow__stage" data-step-panel="5">
+        <div class="bw-flow__stage-head">
+          <h3 class="bw-flow__stage-title">Review the kitchen brief and send it to Bluewud</h3>
+          <p class="bw-flow__stage-copy">Instead of a misleading auto-price, this step packages the requirement set into a cleaner consultation brief.</p>
+        </div>
+        <div class="bw-flow__grid">
+          <div class="bw-flow__field"><label for="bw-kitchen-city">Preferred city</label><input id="bw-kitchen-city" type="text" placeholder="Noida, Delhi, Bengaluru..." data-flow-input="city"></div>
+          <div class="bw-flow__field"><label for="bw-kitchen-timeline">Project stage</label><select id="bw-kitchen-timeline" data-flow-input="timeline"><option value="Immediate">Immediate</option><option value="Within 1 month">Within 1 month</option><option value="1 to 3 months">1 to 3 months</option><option value="Just exploring">Just exploring</option></select></div>
+        </div>
+        <div class="bw-flow__actions">
+          <button class="bw-flow__button--secondary" type="button" data-flow-back>Back</button>
+          <button class="bw-flow__button" type="button" data-bw-kitchen-popup-open>Share This Brief</button>
+        </div>
+      </div>
+    </section>
+
+    <aside class="bw-flow__summary">
+      <div class="bw-flow__head">
+        <span class="bw-flow__eyebrow">Project summary</span>
+        <h2 class="bw-flow__title">Your kitchen brief</h2>
+        <p class="bw-flow__copy">This should read like a project direction, not a fake final quote.</p>
+      </div>
+      <div class="bw-flow__badge" data-kitchen-band>Balanced premium direction</div>
+      <div class="bw-flow__summary-list">
+        <div class="bw-flow__summary-line"><span>Layout</span><strong data-summary-layout>L-shape</strong></div>
+        <div class="bw-flow__summary-line"><span>Property</span><strong data-summary-property>Apartment</strong></div>
+        <div class="bw-flow__summary-line"><span>Usage</span><strong data-summary-usage>Daily family use</strong></div>
+        <div class="bw-flow__summary-line"><span>Measurements</span><strong data-summary-measurements>10 ft / 8 ft / 0 ft</strong></div>
+        <div class="bw-flow__summary-line"><span>Carcass</span><strong data-summary-carcass>Engineered wood</strong></div>
+        <div class="bw-flow__summary-line"><span>Shutter</span><strong data-summary-shutter>Laminate front</strong></div>
+        <div class="bw-flow__summary-line"><span>Countertop</span><strong data-summary-countertop>Granite</strong></div>
+        <div class="bw-flow__summary-line"><span>Add-ons</span><strong data-summary-addons>None selected</strong></div>
+        <div class="bw-flow__summary-line"><span>Appliances</span><strong data-summary-appliances>Basic hob + chimney</strong></div>
+      </div>
+      <p class="bw-flow__assist">Once you submit this, the estimate popup will carry the selected layout, measurements, material path, and add-ons so the Bluewud team receives a far more usable enquiry.</p>
+      <div class="bw-flow__actions">
+        <button class="bw-flow__button" type="button" data-bw-kitchen-popup-open>Get Free Estimate</button>
+        <a class="bw-flow__button--secondary" href="{{ contact_url }}">Talk To Bluewud</a>
+      </div>
+    </aside>
+  </div>
+</div>
+
+{% render 'modular-estimate-popup', modal_id: 'bw-kitchen-calc-popup', modal_title: 'Get a kitchen estimate', context_label: 'Bluewud modular kitchen' %}
+
+<script>
+  (function () {
+    var root = document.querySelector('[data-bw-kitchen-flow]');
+    if (!root) return;
+    var step = 1;
+    var maxStep = 5;
+    var stageNodes = Array.prototype.slice.call(root.querySelectorAll('[data-step-panel]'));
+    var indicatorNodes = Array.prototype.slice.call(root.querySelectorAll('[data-step-indicator]'));
+    var modal = document.getElementById('bw-kitchen-calc-popup');
+    var summaryText = modal ? modal.querySelector('[data-bw-estimate-summary-text]') : null;
+    var summaryInput = modal ? modal.querySelector('[data-bw-estimate-summary-input]') : null;
+    var contextInput = modal ? modal.querySelector('[data-bw-estimate-context-input]') : null;
+    var bandNode = root.querySelector('[data-kitchen-band]');
+
+    function selectedRadio(name) {
+      var node = root.querySelector('input[name="' + name + '"]:checked');
+      return node ? node.value : '';
+    }
+    function selectedChecks(group) {
+      return Array.prototype.slice.call(root.querySelectorAll('[data-flow-group="' + group + '"] input[type="checkbox"]:checked')).map(function (input) {
+        return input.value;
+      });
+    }
+    function inputValue(key) {
+      var node = root.querySelector('[data-flow-input="' + key + '"]');
+      return node ? node.value : '';
+    }
+    function toggleChoiceStates() {
+      root.querySelectorAll('.bw-flow__choice').forEach(function (choice) {
+        var input = choice.querySelector('input');
+        if (!input) return;
+        choice.classList.toggle('is-selected', !!input.checked);
+      });
+    }
+    function projectBand() {
+      var premiumSignals = 0;
+      if (selectedRadio('kitchen_layout') === 'Island') premiumSignals += 2;
+      if (selectedRadio('carcass_material') === 'Plywood') premiumSignals += 1;
+      if (selectedRadio('shutter_material') === 'Glass / premium') premiumSignals += 2;
+      if (selectedRadio('countertop') === 'Premium stone') premiumSignals += 2;
+      premiumSignals += selectedChecks('addons').length;
+      if (premiumSignals >= 5) return 'Statement premium direction';
+      if (premiumSignals >= 3) return 'Balanced premium direction';
+      return 'Value-led practical direction';
+    }
+    function updateSummary() {
+      toggleChoiceStates();
+      var measurements = [inputValue('wall_a') + ' ft', inputValue('wall_b') + ' ft', inputValue('wall_c') + ' ft'].join(' / ');
+      var addons = selectedChecks('addons');
+      var summaryMap = {
+        layout: selectedRadio('kitchen_layout'),
+        property: selectedRadio('property_type'),
+        usage: selectedRadio('usage_level'),
+        measurements: measurements,
+        carcass: selectedRadio('carcass_material'),
+        shutter: selectedRadio('shutter_material'),
+        countertop: selectedRadio('countertop'),
+        addons: addons.length ? addons.join(', ') : 'None selected',
+        appliances: selectedRadio('appliance_plan')
+      };
+      Object.keys(summaryMap).forEach(function (key) {
+        var node = root.querySelector('[data-summary-' + key + ']');
+        if (node) node.textContent = summaryMap[key];
+      });
+      if (bandNode) bandNode.textContent = projectBand();
+    }
+    function briefSummary() {
+      return [
+        'Project: Modular Kitchen',
+        'Layout: ' + selectedRadio('kitchen_layout'),
+        'Property: ' + selectedRadio('property_type'),
+        'Usage: ' + selectedRadio('usage_level'),
+        'Wall lengths: ' + inputValue('wall_a') + 'ft / ' + inputValue('wall_b') + 'ft / ' + inputValue('wall_c') + 'ft',
+        'Ceiling: ' + inputValue('ceiling') + 'ft',
+        'Upper cabinets: ' + selectedRadio('upper_cabinets'),
+        'Carcass: ' + selectedRadio('carcass_material'),
+        'Shutter: ' + selectedRadio('shutter_material'),
+        'Countertop: ' + selectedRadio('countertop'),
+        'Add-ons: ' + (selectedChecks('addons').length ? selectedChecks('addons').join(', ') : 'None'),
+        'Appliances: ' + selectedRadio('appliance_plan'),
+        'City: ' + (inputValue('city') || 'Not shared yet'),
+        'Timeline: ' + (inputValue('timeline') || 'Immediate'),
+        'Direction: ' + projectBand()
+      ].join(' | ');
+    }
+    function paintSteps() {
+      stageNodes.forEach(function (panel) {
+        panel.classList.toggle('is-active', Number(panel.getAttribute('data-step-panel')) === step);
+      });
+      indicatorNodes.forEach(function (indicator) {
+        var indicatorStep = Number(indicator.getAttribute('data-step-indicator'));
+        indicator.classList.toggle('is-active', indicatorStep === step);
+        indicator.classList.toggle('is-complete', indicatorStep < step);
+      });
+    }
+    function openPopup() {
+      if (!modal) return;
+      var summary = briefSummary();
+      if (summaryText) summaryText.textContent = summary;
+      if (summaryInput) summaryInput.value = summary;
+      if (contextInput) contextInput.value = 'Bluewud modular kitchen';
+      modal.classList.add('is-open');
+      document.body.classList.add('bw-header-drawer-open');
+    }
+    function closePopup() {
+      if (!modal) return;
+      modal.classList.remove('is-open');
+      document.body.classList.remove('bw-header-drawer-open');
+    }
+
+    root.addEventListener('click', function (event) {
+      var choice = event.target.closest('.bw-flow__choice');
+      if (choice) {
+        var input = choice.querySelector('input');
+        if (input) {
+          if (input.type === 'checkbox') input.checked = !input.checked;
+          else input.checked = true;
+          updateSummary();
+        }
+        return;
+      }
+      if (event.target.closest('[data-flow-next]')) {
+        if (step < maxStep) step += 1;
+        paintSteps();
+        return;
+      }
+      if (event.target.closest('[data-flow-back]')) {
+        if (step > 1) step -= 1;
+        paintSteps();
+        return;
+      }
+      if (event.target.closest('[data-bw-kitchen-popup-open]')) {
+        openPopup();
+      }
+    });
+
+    root.addEventListener('change', updateSummary);
+
+    if (modal) {
+      modal.querySelectorAll('[data-bw-estimate-close]').forEach(function (control) {
+        control.addEventListener('click', closePopup);
+      });
+      modal.addEventListener('click', function (event) {
+        if (event.target === modal) closePopup();
+      });
+    }
+
+    updateSummary();
+    paintSteps();
+  })();
+</script>

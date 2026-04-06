@@ -1,13 +1,142 @@
 {
   "sections": {
     "hero": {
-      "type": "hero"
+      "type": "hero",
+      "blocks": {
+        "living_room_sale": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "",
+            "heading": "",
+            "accent": "",
+            "tail": "",
+            "copy": "",
+            "collection_handle": "",
+            "button_url": "shopify://collections/bluewud-sparkle-sale",
+            "button_label": "",
+            "slide_image": "shopify://shop_images/Banner_1_50909667-ef75-4a71-81d5-2b42250a0b57.jpg",
+            "content_position": "right"
+          }
+        },
+        "bedroom_banner": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "",
+            "heading": "",
+            "accent": "",
+            "tail": "",
+            "copy": "",
+            "collection_handle": "",
+            "button_url": "shopify://collections/bed",
+            "button_label": "",
+            "slide_image": "shopify://shop_images/25.jpg",
+            "content_position": "left"
+          }
+        },
+        "tv_unit_banner": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "",
+            "heading": "",
+            "accent": "",
+            "tail": "",
+            "copy": "",
+            "collection_handle": "",
+            "button_url": "shopify://collections/furniture-new",
+            "button_label": "",
+            "slide_image": "shopify://shop_images/Main_Banner_Tv_Unit_32648697-077e-4ac4-a320-73282911afee.jpg",
+            "content_position": "right"
+          }
+        },
+        "wfh_banner": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "",
+            "heading": "",
+            "accent": "",
+            "tail": "",
+            "copy": "",
+            "collection_handle": "",
+            "button_url": "shopify://collections/smartly-designed-wfh-furniture",
+            "button_label": "",
+            "slide_image": "shopify://shop_images/Main_Banner_WFH.jpg",
+            "content_position": "right"
+          }
+        },
+        "offers_banner": {
+          "type": "slide",
+          "settings": {
+            "eyebrow": "",
+            "heading": "",
+            "accent": "",
+            "tail": "",
+            "copy": "",
+            "collection_handle": "",
+            "button_url": "shopify://pages/offers-discount",
+            "button_label": "",
+            "slide_image": "shopify://shop_images/Banner_11.png",
+            "content_position": "center"
+          }
+        }
+      },
+      "block_order": [
+        "living_room_sale",
+        "bedroom_banner",
+        "tv_unit_banner",
+        "wfh_banner",
+        "offers_banner"
+      ]
     },
     "trust_banners": {
       "type": "trust-banners"
     },
     "categories": {
       "type": "categories"
+    },
+    "featured_category_tiles": {
+      "type": "featured-category-tiles",
+      "settings": {
+        "eyebrow": "More to explore",
+        "title": "Dressing tables, centre tables, and WFH furniture",
+        "copy": "Bring in the categories customers usually hunt for next: vanity-led storage, living room anchors, and work-from-home setups that still feel premium."
+      },
+      "blocks": {
+        "dressing_tables": {
+          "type": "category",
+          "settings": {
+            "label": "Bedroom finishing layer",
+            "title": "Dressing Tables",
+            "detail": "Mirror-led vanity pieces with everyday storage and a cleaner bedroom rhythm.",
+            "image": "shopify://shop_images/FC_Dressing_Table.jpg",
+            "fallback_url": "/collections/dressing-tables"
+          }
+        },
+        "centre_tables": {
+          "type": "category",
+          "settings": {
+            "label": "Living room anchor",
+            "title": "Centre Tables",
+            "detail": "Coffee and centre tables that ground the seating zone without crowding the room.",
+            "image": "shopify://shop_images/FC_Centre_table_e300fc08-d154-4855-ae51-63e1bfe8a08a.jpg",
+            "fallback_url": "/collections/coffee-table"
+          }
+        },
+        "wfh_furniture": {
+          "type": "category",
+          "settings": {
+            "label": "Focus-friendly setups",
+            "title": "WFH Furniture",
+            "detail": "Practical desks, storage, and study-led essentials for compact, everyday work corners.",
+            "image": "shopify://shop_images/FC_WFH_2e8b639b-a05a-41cc-a084-3c704fd2d06c.jpg",
+            "fallback_url": "/collections/smartly-designed-wfh-furniture"
+          }
+        }
+      },
+      "block_order": [
+        "dressing_tables",
+        "centre_tables",
+        "wfh_furniture"
+      ]
     },
     "banner": {
       "type": "banner"
@@ -26,6 +155,7 @@
     "hero",
     "trust_banners",
     "categories",
+    "featured_category_tiles",
     "banner",
     "featured_products",
     "testimonials",

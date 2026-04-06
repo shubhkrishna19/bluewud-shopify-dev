@@ -1,0 +1,259 @@
+{% liquid
+  assign wardrobe_calculator_url = '/collections/wardrobe'
+  assign kitchen_calculator_url = '/collections/kitchen-racks'
+  if pages['modular-wardrobe-cost-calculator'] != blank
+    assign wardrobe_calculator_url = pages['modular-wardrobe-cost-calculator'].url
+  endif
+  if pages['modular-kitchen-cost-calculator'] != blank
+    assign kitchen_calculator_url = pages['modular-kitchen-cost-calculator'].url
+  endif
+%}
+
+<style>
+  .bw-estimate {
+    display: grid;
+    grid-template-columns: minmax(0, 0.92fr) minmax(320px, 0.72fr);
+    gap: 22px;
+  }
+  .bw-estimate__form,
+  .bw-estimate__info {
+    padding: 26px 28px;
+    border-radius: 30px;
+    background: rgba(255, 251, 247, 0.94);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 24px 70px rgba(35, 24, 19, 0.08);
+  }
+  .bw-estimate__head {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .bw-estimate__eyebrow {
+    color: #8a684f;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .bw-estimate__title {
+    margin: 0;
+    color: #201713;
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+  }
+  .bw-estimate__copy {
+    margin: 0;
+    max-width: 62ch;
+    color: #66554c;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .bw-estimate__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .bw-estimate__field {
+    display: grid;
+    gap: 8px;
+  }
+  .bw-estimate__field--full {
+    grid-column: 1 / -1;
+  }
+  .bw-estimate__field label {
+    color: #201713;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+  }
+  .bw-estimate__field input,
+  .bw-estimate__field select,
+  .bw-estimate__field textarea {
+    width: 100%;
+    min-height: 50px;
+    padding: 0 16px;
+    border-radius: 18px;
+    border: 1px solid rgba(45, 33, 27, 0.12);
+    background: #fffdfb;
+    color: #201713;
+    font-size: 14px;
+  }
+  .bw-estimate__field textarea {
+    min-height: 130px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    resize: vertical;
+  }
+  .bw-estimate__submit {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 0 18px;
+    border: 0;
+    border-radius: 999px;
+    background: #201713;
+    color: #fff7f1;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .bw-estimate__helper {
+    margin-top: 12px;
+    color: #6a5850;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .bw-estimate__list {
+    display: grid;
+    gap: 14px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .bw-estimate__list li {
+    padding: 16px 18px;
+    border-radius: 20px;
+    background: rgba(32, 23, 19, 0.04);
+    color: #66554c;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .bw-estimate__list strong {
+    display: block;
+    margin-bottom: 6px;
+    color: #201713;
+    font-size: 16px;
+  }
+  .bw-estimate__contact {
+    margin-top: 18px;
+    display: grid;
+    gap: 10px;
+  }
+  .bw-estimate__contact a {
+    color: #8a684f;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+  @media (max-width: 900px) {
+    .bw-estimate {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 720px) {
+    .bw-estimate__form,
+    .bw-estimate__info {
+      padding: 22px 20px;
+      border-radius: 24px;
+    }
+    .bw-estimate__grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<div class="bw-estimate">
+  <section class="bw-estimate__form">
+    <div class="bw-estimate__head">
+      <span class="bw-estimate__eyebrow">Project brief</span>
+      <h2 class="bw-estimate__title">Get Free Estimate</h2>
+      <p class="bw-estimate__copy">Share the basics first. We will use these details to understand whether you need a modular kitchen, wardrobe plan, or a broader interior discussion.</p>
+    </div>
+
+    {% form 'contact' %}
+      {% if form.posted_successfully? %}
+        <p class="bw-estimate__helper">Your request has been sent. The Bluewud team will review it and get back to you.</p>
+      {% endif %}
+
+      {{ form.errors | default_errors }}
+
+      <input type="hidden" name="contact[estimate_type]" value="Bluewud Estimate Request">
+
+      <div class="bw-estimate__grid">
+        <div class="bw-estimate__field">
+          <label for="EstimateName">Full name</label>
+          <input id="EstimateName" type="text" name="contact[name]" value="{{ form.name }}" required>
+        </div>
+        <div class="bw-estimate__field">
+          <label for="EstimatePhone">Phone</label>
+          <input id="EstimatePhone" type="tel" name="contact[phone]" value="{{ form.phone }}" required>
+        </div>
+        <div class="bw-estimate__field">
+          <label for="EstimateEmail">Email</label>
+          <input id="EstimateEmail" type="email" name="contact[email]" value="{{ form.email }}">
+        </div>
+        <div class="bw-estimate__field">
+          <label for="EstimateCity">City</label>
+          <input id="EstimateCity" type="text" name="contact[city]" required>
+        </div>
+        <div class="bw-estimate__field">
+          <label for="EstimateProject">Project type</label>
+          <select id="EstimateProject" name="contact[project_type]">
+            <option>Modular Wardrobe</option>
+            <option>Modular Kitchen</option>
+            <option>Home Interiors</option>
+            <option>Furniture + Interiors</option>
+          </select>
+        </div>
+        <div class="bw-estimate__field">
+          <label for="EstimateBudget">Budget range</label>
+          <select id="EstimateBudget" name="contact[budget_range]">
+            <option>Under Rs. 1 lakh</option>
+            <option>Rs. 1 lakh to Rs. 2 lakh</option>
+            <option>Rs. 2 lakh to Rs. 4 lakh</option>
+            <option>Rs. 4 lakh and above</option>
+          </select>
+        </div>
+        <div class="bw-estimate__field">
+          <label for="EstimateTimeline">Timeline</label>
+          <select id="EstimateTimeline" name="contact[timeline]">
+            <option>Just exploring</option>
+            <option>Within 1 month</option>
+            <option>Within 3 months</option>
+            <option>Flexible / still planning</option>
+          </select>
+        </div>
+        <div class="bw-estimate__field">
+          <label for="EstimatePincode">Pincode</label>
+          <input id="EstimatePincode" type="text" name="contact[pincode]">
+        </div>
+        <div class="bw-estimate__field bw-estimate__field--full">
+          <label for="EstimateMessage">Room size, preferred format, and notes</label>
+          <textarea id="EstimateMessage" name="contact[body]" placeholder="Share wardrobe type, kitchen shape, approximate room size, finish direction, storage needs, or any reference links.">{{ form.body }}</textarea>
+        </div>
+      </div>
+
+      <div style="margin-top:18px;">
+        <button class="bw-estimate__submit" type="submit">Request Estimate</button>
+      </div>
+      <p class="bw-estimate__helper">For faster routing, mention whether this is for a wardrobe, modular kitchen, or a larger interiors requirement.</p>
+    {% endform %}
+  </section>
+
+  <aside class="bw-estimate__info">
+    <div class="bw-estimate__head">
+      <span class="bw-estimate__eyebrow">What happens next</span>
+      <h2 class="bw-estimate__title">We use this page to shorten the planning cycle</h2>
+      <p class="bw-estimate__copy">The faster we understand format, room size, city, and budget direction, the faster we can give you useful guidance instead of generic replies.</p>
+    </div>
+
+    <ul class="bw-estimate__list">
+      <li><strong>1. Project triage</strong>We identify whether your requirement is wardrobe-led, kitchen-led, or a broader interiors conversation.</li>
+      <li><strong>2. Estimate direction</strong>We use your budget, city, and scope details to frame the most relevant next step and price direction.</li>
+      <li><strong>3. Deeper consultation</strong>If the project is viable, the next layer is material, finish, storage, and execution refinement with the Bluewud team.</li>
+    </ul>
+
+    <div class="bw-estimate__contact">
+      <a href="{{ wardrobe_calculator_url }}">Wardrobe Price Calculator</a>
+      <a href="{{ kitchen_calculator_url }}">Kitchen Price Calculator</a>
+      <a href="/pages/contact-us">Contact Bluewud</a>
+      <a href="tel:+918800609609">Call +91-8800-609-609</a>
+    </div>
+  </aside>
+</div>

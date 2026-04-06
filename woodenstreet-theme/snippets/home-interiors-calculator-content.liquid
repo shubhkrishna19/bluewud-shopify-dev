@@ -1,0 +1,390 @@
+{% liquid
+  assign contact_url = '/pages/contact-us'
+%}
+
+<style>
+  .bw-hi { display: grid; gap: 22px; }
+  .bw-hi__panel,
+  .bw-hi__summary {
+    padding: 26px 28px;
+    border-radius: 30px;
+    background: rgba(255, 251, 247, 0.94);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 24px 70px rgba(35, 24, 19, 0.08);
+  }
+  .bw-hi__shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+    gap: 20px;
+  }
+  .bw-hi__summary {
+    position: sticky;
+    top: 110px;
+    height: fit-content;
+    background: linear-gradient(135deg, #231813 0%, #3b2921 56%, #5c463c 100%);
+    color: #fff7f1;
+  }
+  .bw-hi__head { display: grid; gap: 10px; margin-bottom: 18px; }
+  .bw-hi__eyebrow {
+    color: #8a684f;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .bw-hi__summary .bw-hi__eyebrow,
+  .bw-hi__summary .bw-hi__title,
+  .bw-hi__summary .bw-hi__copy { color: inherit; }
+  .bw-hi__title {
+    margin: 0;
+    color: #201713;
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+  }
+  .bw-hi__copy {
+    margin: 0;
+    color: #66554c;
+    font-size: 15px;
+    line-height: 1.8;
+    max-width: 62ch;
+  }
+  .bw-hi__section { display: grid; gap: 12px; }
+  .bw-hi__label {
+    color: #201713;
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .bw-hi__choices {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .bw-hi__choice {
+    display: inline-flex;
+    align-items: center;
+    min-height: 42px;
+    padding: 0 16px;
+    border-radius: 999px;
+    background: rgba(32, 23, 19, 0.06);
+    border: 1px solid transparent;
+    color: #201713;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .bw-hi__choice input { display: none; }
+  .bw-hi__choice.is-selected {
+    background: #201713;
+    color: #fff7f1;
+    border-color: #201713;
+  }
+  .bw-hi__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .bw-hi__field {
+    display: grid;
+    gap: 8px;
+  }
+  .bw-hi__field label {
+    color: #201713;
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .bw-hi__field input,
+  .bw-hi__field select {
+    width: 100%;
+    min-height: 48px;
+    padding: 0 16px;
+    border-radius: 18px;
+    border: 1px solid rgba(45, 33, 27, 0.12);
+    background: #fffdfb;
+    color: #201713;
+    font-size: 14px;
+  }
+  .bw-hi__summary-list {
+    display: grid;
+    gap: 12px;
+    margin-top: 18px;
+  }
+  .bw-hi__summary-line {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 247, 241, 0.12);
+    color: rgba(255, 247, 241, 0.88);
+    font-size: 14px;
+  }
+  .bw-hi__summary-line strong { color: #fff7f1; text-align: right; }
+  .bw-hi__badge {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    min-height: 34px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(255, 247, 241, 0.08);
+    color: #fff7f1;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .bw-hi__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+  }
+  .bw-hi__button,
+  .bw-hi__button--secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 18px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .bw-hi__button {
+    border: 0;
+    background: #fff7f1;
+    color: #201713;
+  }
+  .bw-hi__button--secondary {
+    border: 1px solid rgba(255, 247, 241, 0.22);
+    background: rgba(255, 247, 241, 0.08);
+    color: #fff7f1;
+  }
+  @media (max-width: 980px) {
+    .bw-hi__shell { grid-template-columns: 1fr; }
+    .bw-hi__summary { position: static; }
+  }
+  @media (max-width: 720px) {
+    .bw-hi__panel,
+    .bw-hi__summary { padding: 22px 20px; border-radius: 24px; }
+    .bw-hi__grid { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="bw-hi" data-bw-home-interiors-flow>
+  <div class="bw-hi__shell">
+    <section class="bw-hi__panel">
+      <div class="bw-hi__head">
+        <span class="bw-hi__eyebrow">Interiors planning workflow</span>
+        <h2 class="bw-hi__title">Home Interiors Cost Calculator</h2>
+        <p class="bw-hi__copy">This page should collect the room scope and project intent before Bluewud reaches out. It is a planning brief for interiors, not a fake instant price tool.</p>
+      </div>
+
+      <div class="bw-hi__section">
+        <div class="bw-hi__label">Which spaces are in scope?</div>
+        <div class="bw-hi__choices" data-hi-group="rooms">
+          <label class="bw-hi__choice"><input type="checkbox" value="Living Room">Living Room</label>
+          <label class="bw-hi__choice"><input type="checkbox" value="Bedroom">Bedroom</label>
+          <label class="bw-hi__choice"><input type="checkbox" value="Wardrobe">Wardrobe</label>
+          <label class="bw-hi__choice"><input type="checkbox" value="Modular Kitchen">Modular Kitchen</label>
+          <label class="bw-hi__choice"><input type="checkbox" value="Study / WFH">Study / WFH</label>
+          <label class="bw-hi__choice"><input type="checkbox" value="Dining">Dining</label>
+        </div>
+      </div>
+
+      <div class="bw-hi__section">
+        <div class="bw-hi__label">Property type</div>
+        <div class="bw-hi__choices" data-hi-group="property">
+          <label class="bw-hi__choice is-selected"><input type="radio" name="hi_property" value="Apartment" checked>Apartment</label>
+          <label class="bw-hi__choice"><input type="radio" name="hi_property" value="Villa">Villa</label>
+          <label class="bw-hi__choice"><input type="radio" name="hi_property" value="Independent Floor">Independent Floor</label>
+          <label class="bw-hi__choice"><input type="radio" name="hi_property" value="Office / Studio">Office / Studio</label>
+        </div>
+      </div>
+
+      <div class="bw-hi__section">
+        <div class="bw-hi__label">Project posture</div>
+        <div class="bw-hi__choices" data-hi-group="intent">
+          <label class="bw-hi__choice is-selected"><input type="radio" name="hi_intent" value="Fresh setup" checked>Fresh Setup</label>
+          <label class="bw-hi__choice"><input type="radio" name="hi_intent" value="Upgrade / renovation">Upgrade / Renovation</label>
+          <label class="bw-hi__choice"><input type="radio" name="hi_intent" value="Room-by-room furnishing">Room-by-room</label>
+        </div>
+      </div>
+
+      <div class="bw-hi__grid">
+        <div class="bw-hi__field">
+          <label for="bw-hi-city">City</label>
+          <input id="bw-hi-city" type="text" placeholder="Noida, Delhi, Bengaluru..." data-hi-input="city">
+        </div>
+        <div class="bw-hi__field">
+          <label for="bw-hi-timeline">Timeline</label>
+          <select id="bw-hi-timeline" data-hi-input="timeline">
+            <option value="Immediate">Immediate</option>
+            <option value="Within 1 month">Within 1 month</option>
+            <option value="1 to 3 months">1 to 3 months</option>
+            <option value="Just exploring">Just exploring</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="bw-hi__section">
+        <div class="bw-hi__label">Budget posture</div>
+        <div class="bw-hi__choices" data-hi-group="budget">
+          <label class="bw-hi__choice"><input type="radio" name="hi_budget" value="Value led">Value Led</label>
+          <label class="bw-hi__choice is-selected"><input type="radio" name="hi_budget" value="Balanced premium" checked>Balanced Premium</label>
+          <label class="bw-hi__choice"><input type="radio" name="hi_budget" value="Statement premium">Statement Premium</label>
+          <label class="bw-hi__choice"><input type="radio" name="hi_budget" value="Need guidance">Need Guidance</label>
+        </div>
+      </div>
+    </section>
+
+    <aside class="bw-hi__summary">
+      <div class="bw-hi__head">
+        <span class="bw-hi__eyebrow">Interiors brief</span>
+        <h2 class="bw-hi__title">Your project direction</h2>
+        <p class="bw-hi__copy">This should help Bluewud understand the broad interiors scope before the first real conversation.</p>
+      </div>
+
+      <div class="bw-hi__badge" data-hi-badge>Balanced premium direction</div>
+
+      <div class="bw-hi__summary-list">
+        <div class="bw-hi__summary-line"><span>Rooms</span><strong data-hi-summary-rooms>Not selected yet</strong></div>
+        <div class="bw-hi__summary-line"><span>Property</span><strong data-hi-summary-property>Apartment</strong></div>
+        <div class="bw-hi__summary-line"><span>Intent</span><strong data-hi-summary-intent>Fresh setup</strong></div>
+        <div class="bw-hi__summary-line"><span>Budget</span><strong data-hi-summary-budget>Balanced premium</strong></div>
+        <div class="bw-hi__summary-line"><span>City</span><strong data-hi-summary-city>Not shared yet</strong></div>
+        <div class="bw-hi__summary-line"><span>Timeline</span><strong data-hi-summary-timeline>Immediate</strong></div>
+      </div>
+
+      <div class="bw-hi__actions">
+        <button class="bw-hi__button" type="button" data-hi-popup-open>Get Free Estimate</button>
+        <a class="bw-hi__button--secondary" href="{{ contact_url }}">Talk To Bluewud</a>
+      </div>
+    </aside>
+  </div>
+</div>
+
+{% render 'modular-estimate-popup', modal_id: 'bw-home-interiors-popup', modal_title: 'Get a home interiors estimate', context_label: 'Bluewud home interiors' %}
+
+<script>
+  (function () {
+    var root = document.querySelector('[data-bw-home-interiors-flow]');
+    if (!root) return;
+    var modal = document.getElementById('bw-home-interiors-popup');
+    var summaryText = modal ? modal.querySelector('[data-bw-estimate-summary-text]') : null;
+    var summaryInput = modal ? modal.querySelector('[data-bw-estimate-summary-input]') : null;
+    var contextInput = modal ? modal.querySelector('[data-bw-estimate-context-input]') : null;
+
+    function selectedRadio(name) {
+      var node = root.querySelector('input[name="' + name + '"]:checked');
+      return node ? node.value : '';
+    }
+
+    function selectedChecks(group) {
+      return Array.prototype.slice.call(root.querySelectorAll('[data-hi-group="' + group + '"] input[type="checkbox"]:checked')).map(function (input) {
+        return input.value;
+      });
+    }
+
+    function inputValue(key) {
+      var node = root.querySelector('[data-hi-input="' + key + '"]');
+      return node ? node.value : '';
+    }
+
+    function updateStates() {
+      root.querySelectorAll('.bw-hi__choice').forEach(function (choice) {
+        var input = choice.querySelector('input');
+        if (!input) return;
+        choice.classList.toggle('is-selected', !!input.checked);
+      });
+
+      var rooms = selectedChecks('rooms');
+      var roomText = rooms.length ? rooms.join(', ') : 'Not selected yet';
+      var city = inputValue('city') || 'Not shared yet';
+      var timeline = inputValue('timeline') || 'Immediate';
+      var property = selectedRadio('hi_property');
+      var intent = selectedRadio('hi_intent');
+      var budget = selectedRadio('hi_budget');
+
+      var map = {
+        rooms: roomText,
+        property: property,
+        intent: intent,
+        budget: budget,
+        city: city,
+        timeline: timeline
+      };
+
+      Object.keys(map).forEach(function (key) {
+        var node = root.querySelector('[data-hi-summary-' + key + ']');
+        if (node) node.textContent = map[key];
+      });
+
+      var badge = root.querySelector('[data-hi-badge]');
+      if (badge) badge.textContent = budget || 'Need guidance';
+    }
+
+    function briefSummary() {
+      return [
+        'Project: Home Interiors',
+        'Rooms: ' + (selectedChecks('rooms').length ? selectedChecks('rooms').join(', ') : 'Not selected'),
+        'Property: ' + selectedRadio('hi_property'),
+        'Intent: ' + selectedRadio('hi_intent'),
+        'Budget posture: ' + selectedRadio('hi_budget'),
+        'City: ' + (inputValue('city') || 'Not shared yet'),
+        'Timeline: ' + (inputValue('timeline') || 'Immediate')
+      ].join(' | ');
+    }
+
+    function openPopup() {
+      if (!modal) return;
+      var summary = briefSummary();
+      if (summaryText) summaryText.textContent = summary;
+      if (summaryInput) summaryInput.value = summary;
+      if (contextInput) contextInput.value = 'Bluewud home interiors';
+      modal.classList.add('is-open');
+      document.body.classList.add('bw-header-drawer-open');
+    }
+
+    function closePopup() {
+      if (!modal) return;
+      modal.classList.remove('is-open');
+      document.body.classList.remove('bw-header-drawer-open');
+    }
+
+    root.addEventListener('click', function (event) {
+      var choice = event.target.closest('.bw-hi__choice');
+      if (choice) {
+        var input = choice.querySelector('input');
+        if (input) {
+          if (input.type === 'checkbox') input.checked = !input.checked;
+          else input.checked = true;
+          updateStates();
+        }
+        return;
+      }
+      if (event.target.closest('[data-hi-popup-open]')) {
+        openPopup();
+      }
+    });
+
+    root.addEventListener('change', updateStates);
+
+    if (modal) {
+      modal.querySelectorAll('[data-bw-estimate-close]').forEach(function (control) {
+        control.addEventListener('click', closePopup);
+      });
+      modal.addEventListener('click', function (event) {
+        if (event.target === modal) closePopup();
+      });
+    }
+
+    updateStates();
+  })();
+</script>

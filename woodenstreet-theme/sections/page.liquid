@@ -11,6 +11,12 @@
   assign is_returns_refunds = false
   assign is_offers_page = false
   assign is_contact_page = false
+  assign is_kitchen_page = false
+  assign is_kitchen_calculator = false
+  assign is_home_interiors_calculator = false
+  assign is_wardrobe_page = false
+  assign is_wardrobe_calculator = false
+  assign is_estimate_page = false
 
   if page.handle == 'about-us'
     assign is_about_page = true
@@ -42,6 +48,90 @@
     assign page_intro = 'Reach Bluewud for order assistance, installation support, product questions, or purchase guidance through phone, WhatsApp, email, or the contact form below.'
   endif
 
+  if page.handle == 'modular-kitchen-designs'
+    assign is_kitchen_page = true
+    assign page_eyebrow = 'Bluewud kitchen studio'
+    assign page_intro = 'Explore Bluewud modular kitchen planning through layout-led guidance, finish direction, workflow decisions, and estimate-ready paths for modern Indian homes.'
+  endif
+
+  if page.handle == 'l-shape-modular-kitchen-design'
+    assign is_kitchen_page = true
+    assign page_eyebrow = 'L-shape kitchen planning'
+    assign page_intro = 'One of the most versatile kitchen formats for homes that need efficient movement, cleaner zoning, and practical countertop continuity.'
+  endif
+
+  if page.handle == 'u-shape-modular-kitchen-design'
+    assign is_kitchen_page = true
+    assign page_eyebrow = 'U-shape kitchen planning'
+    assign page_intro = 'A stronger option when you want more storage, deeper work triangles, and a kitchen that feels serious about utility.'
+  endif
+
+  if page.handle == 'parallel-modular-kitchen-design'
+    assign is_kitchen_page = true
+    assign page_eyebrow = 'Parallel kitchen planning'
+    assign page_intro = 'A practical format for tighter layouts where opposite counters help separate prep, cooking, and utility with better efficiency.'
+  endif
+
+  if page.handle == 'straight-modular-kitchen'
+    assign is_kitchen_page = true
+    assign page_eyebrow = 'Straight kitchen planning'
+    assign page_intro = 'A compact linear kitchen format that works best when space is restricted but daily function still needs to feel composed and premium.'
+  endif
+
+  if page.handle == 'kitchen-island-design'
+    assign is_kitchen_page = true
+    assign page_eyebrow = 'Kitchen island planning'
+    assign page_intro = 'An island kitchen is about presence, prep space, and circulation, and works best when room dimensions support generous movement around the core.'
+  endif
+
+  if page.handle == 'modular-kitchen-cost-calculator'
+    assign is_kitchen_calculator = true
+    assign page_eyebrow = 'Kitchen price planning'
+    assign page_intro = 'Use this directional modular kitchen calculator to shortlist layout, finish, and hardware choices before getting a refined Bluewud estimate.'
+  endif
+
+  if page.handle == 'home-interiors-cost-calculator'
+    assign is_home_interiors_calculator = true
+    assign page_eyebrow = 'Home interiors planning'
+    assign page_intro = 'Build a first interiors brief by selecting the rooms, scope, and furnishing priorities you want Bluewud to help plan.'
+  endif
+
+  if page.handle == 'modular-wardrobe-designs'
+    assign is_wardrobe_page = true
+    assign page_eyebrow = 'Bluewud wardrobe studio'
+    assign page_intro = 'Explore Bluewud wardrobe planning through format-led guidance, material decisions, storage ideas, and estimate-ready pathways for modern Indian bedrooms.'
+  endif
+
+  if page.handle == 'sliding-wardrobe-designs'
+    assign is_wardrobe_page = true
+    assign page_eyebrow = 'Sliding wardrobe planning'
+    assign page_intro = 'A sharper direction for compact bedrooms and contemporary master suites where door swing space is limited but storage still needs to feel premium.'
+  endif
+
+  if page.handle == 'hinged-wardrobes'
+    assign is_wardrobe_page = true
+    assign page_eyebrow = 'Hinged wardrobe planning'
+    assign page_intro = 'Classic full-access shutters, strong internal visibility, and practical daily storage for bedrooms that have enough front clearance.'
+  endif
+
+  if page.handle == 'walk-in-wardrobes'
+    assign is_wardrobe_page = true
+    assign page_eyebrow = 'Walk-in wardrobe planning'
+    assign page_intro = 'A more luxurious storage format for larger bedrooms where organization, dressing, and interior presence need to work together.'
+  endif
+
+  if page.handle == 'modular-wardrobe-cost-calculator'
+    assign is_wardrobe_calculator = true
+    assign page_eyebrow = 'Wardrobe price planning'
+    assign page_intro = 'Use this directional wardrobe calculator to shortlist format, size, and finish choices before speaking with the Bluewud team for a more accurate estimate.'
+  endif
+
+  if page.handle == 'get-free-estimate' or page.handle == 'free-estimate'
+    assign is_estimate_page = true
+    assign page_eyebrow = 'Bluewud estimate desk'
+    assign page_intro = 'Share your project details with the Bluewud team so we can help scope budget, format, finishes, and the best next planning step for your home.'
+  endif
+
   assign page_content_class = 'bw-page__content'
 
   if is_help_center
@@ -61,6 +151,30 @@
   endif
 
   if is_contact_page
+    assign page_content_class = page_content_class | append: ' bw-page__content--contact'
+  endif
+
+  if is_kitchen_page
+    assign page_content_class = page_content_class | append: ' bw-page__content--wardrobe'
+  endif
+
+  if is_kitchen_calculator
+    assign page_content_class = page_content_class | append: ' bw-page__content--wardrobe'
+  endif
+
+  if is_home_interiors_calculator
+    assign page_content_class = page_content_class | append: ' bw-page__content--wardrobe'
+  endif
+
+  if is_wardrobe_page
+    assign page_content_class = page_content_class | append: ' bw-page__content--wardrobe'
+  endif
+
+  if is_wardrobe_calculator
+    assign page_content_class = page_content_class | append: ' bw-page__content--wardrobe'
+  endif
+
+  if is_estimate_page
     assign page_content_class = page_content_class | append: ' bw-page__content--contact'
   endif
 %}
@@ -168,6 +282,13 @@
   }
 
   .bw-page__content--contact {
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .bw-page__content--wardrobe {
     padding: 0;
     background: transparent;
     border: 0;
@@ -309,6 +430,18 @@
         {% render 'offers-page-content' %}
       {% elsif is_contact_page %}
         {% render 'contact-page-content' %}
+      {% elsif is_kitchen_page %}
+        {% render 'modular-kitchen-page-content' %}
+      {% elsif is_kitchen_calculator %}
+        {% render 'kitchen-calculator-content' %}
+      {% elsif is_home_interiors_calculator %}
+        {% render 'home-interiors-calculator-content' %}
+      {% elsif is_wardrobe_page %}
+        {% render 'wardrobe-page-content' %}
+      {% elsif is_wardrobe_calculator %}
+        {% render 'wardrobe-calculator-content' %}
+      {% elsif is_estimate_page %}
+        {% render 'estimate-page-content' %}
       {% else %}
         <div class="bw-page__rte">
           {{ page.content }}
@@ -316,7 +449,7 @@
       {% endif %}
     </div>
 
-    {% unless is_help_center or is_about_page or is_returns_refunds or is_offers_page or is_contact_page %}
+    {% unless is_help_center or is_about_page or is_returns_refunds or is_offers_page or is_contact_page or is_kitchen_page or is_kitchen_calculator or is_home_interiors_calculator or is_wardrobe_page or is_wardrobe_calculator or is_estimate_page %}
       <div class="bw-page__support">
         <div class="bw-page__support-card">
           <h2>Need direct help?</h2>

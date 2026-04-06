@@ -1,0 +1,774 @@
+{% liquid
+  assign kitchen_collection = collections['kitchen-racks']
+  assign calculator_url = '/pages/contact-us'
+  assign estimate_url = '/pages/contact-us'
+  assign contact_url = '/pages/contact-us'
+  assign default_variant = 'all'
+  assign page_handle = blank
+
+  if page != blank
+    assign page_handle = page.handle
+  endif
+
+  if page_handle == 'l-shape-modular-kitchen-design'
+    assign default_variant = 'l-shape'
+  elsif page_handle == 'u-shape-modular-kitchen-design'
+    assign default_variant = 'u-shape'
+  elsif page_handle == 'parallel-modular-kitchen-design'
+    assign default_variant = 'parallel'
+  elsif page_handle == 'straight-modular-kitchen'
+    assign default_variant = 'straight'
+  elsif page_handle == 'kitchen-island-design'
+    assign default_variant = 'island'
+  endif
+
+  if pages['modular-kitchen-cost-calculator'] != blank
+    assign calculator_url = pages['modular-kitchen-cost-calculator'].url
+  endif
+  if pages['get-free-estimate'] != blank
+    assign estimate_url = pages['get-free-estimate'].url
+  endif
+
+  assign hero_all = blank
+  assign hero_l = blank
+  assign hero_u = blank
+  assign hero_parallel = blank
+  assign hero_straight = blank
+  assign hero_island = blank
+
+  if kitchen_collection != blank
+    assign hero_all = kitchen_collection.products.first
+    for product in kitchen_collection.products
+      assign title_downcase = product.title | downcase
+      if hero_l == blank and title_downcase contains 'l shape'
+        assign hero_l = product
+      endif
+      if hero_u == blank and title_downcase contains 'u shape'
+        assign hero_u = product
+      endif
+      if hero_parallel == blank and title_downcase contains 'parallel'
+        assign hero_parallel = product
+      endif
+      if hero_straight == blank and title_downcase contains 'straight'
+        assign hero_straight = product
+      endif
+      if hero_island == blank and title_downcase contains 'island'
+        assign hero_island = product
+      endif
+    endfor
+  endif
+
+  if hero_l == blank
+    assign hero_l = hero_all
+  endif
+  if hero_u == blank
+    assign hero_u = hero_all
+  endif
+  if hero_parallel == blank
+    assign hero_parallel = hero_all
+  endif
+  if hero_straight == blank
+    assign hero_straight = hero_all
+  endif
+  if hero_island == blank
+    assign hero_island = hero_all
+  endif
+%}
+
+<style>
+  .bw-modular { display: grid; gap: 24px; }
+  .bw-modular__block,
+  .bw-modular__band {
+    padding: 26px 28px;
+    border-radius: 30px;
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 24px 70px rgba(35, 24, 19, 0.08);
+  }
+  .bw-modular__block { background: rgba(255, 251, 247, 0.94); }
+  .bw-modular__band {
+    background: radial-gradient(circle at top right, rgba(79, 120, 143, 0.16), transparent 24%), linear-gradient(135deg, #231813 0%, #3b2921 56%, #5c463c 100%);
+    color: #fff7f1;
+  }
+  .bw-modular__tabs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .bw-modular__tab {
+    min-height: 42px;
+    padding: 0 16px;
+    border: 1px solid rgba(32, 23, 19, 0.1);
+    border-radius: 999px;
+    background: rgba(32, 23, 19, 0.04);
+    color: #201713;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .bw-modular__tab.is-active {
+    background: #201713;
+    border-color: #201713;
+    color: #fff7f1;
+  }
+  .bw-modular__panel {
+    display: none;
+    gap: 18px;
+  }
+  .bw-modular__panel.is-active {
+    display: grid;
+  }
+  .bw-modular__hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.06fr) minmax(320px, 0.94fr);
+    gap: 18px;
+  }
+  .bw-modular__copy-shell {
+    padding: 26px 28px;
+    border-radius: 28px;
+    background: radial-gradient(circle at top left, rgba(79, 120, 143, 0.14), transparent 28%), linear-gradient(180deg, #fffaf6 0%, #f5ede6 100%);
+  }
+  .bw-modular__section-head {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .bw-modular__eyebrow {
+    color: #8a684f;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .bw-modular__pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(32, 23, 19, 0.08);
+    color: #6f584c;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .bw-modular__title {
+    margin: 12px 0 0;
+    color: #201713;
+    font-size: clamp(28px, 4vw, 44px);
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+  }
+  .bw-modular__copy {
+    margin: 12px 0 0;
+    color: #66554c;
+    font-size: 15px;
+    line-height: 1.82;
+    max-width: 66ch;
+  }
+  .bw-modular__bullets {
+    display: grid;
+    gap: 8px;
+    margin: 18px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+  .bw-modular__bullets li {
+    position: relative;
+    padding-left: 18px;
+    color: #66554c;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .bw-modular__bullets li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 10px;
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: #4f788f;
+  }
+  .bw-modular__visual {
+    min-height: 100%;
+    border-radius: 28px;
+    overflow: hidden;
+    background: radial-gradient(circle at 24% 20%, rgba(255,255,255,.22), transparent 24%), linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
+  }
+  .bw-modular__visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bw-modular__cards,
+  .bw-modular__products {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .bw-modular__card,
+  .bw-modular__product {
+    padding: 22px;
+    border-radius: 24px;
+    background: rgba(32, 23, 19, 0.04);
+  }
+  .bw-modular__product {
+    display: grid;
+    gap: 12px;
+    padding: 14px;
+    background: rgba(255,255,255,.72);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    text-decoration: none;
+    color: inherit;
+  }
+  .bw-modular__card h3,
+  .bw-modular__product h3 {
+    margin: 0 0 8px;
+    color: #201713;
+    font-size: 18px;
+    line-height: 1.2;
+  }
+  .bw-modular__card p,
+  .bw-modular__product p {
+    margin: 0;
+    color: #66554c;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .bw-modular__product-media {
+    min-height: 220px;
+    border-radius: 18px;
+    overflow: hidden;
+    background: radial-gradient(circle at 24% 20%, rgba(255,255,255,.22), transparent 24%), linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
+  }
+  .bw-modular__product-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bw-modular__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+  }
+  .bw-modular__button,
+  .bw-modular__button--secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 16px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .bw-modular__button { background: #201713; color: #fff7f1; border: 0; }
+  .bw-modular__button--secondary { background: rgba(32, 23, 19, 0.05); color: #201713; border: 1px solid rgba(32, 23, 19, 0.1); }
+  .bw-modular__band .bw-modular__title,
+  .bw-modular__band .bw-modular__copy,
+  .bw-modular__band .bw-modular__eyebrow { color: inherit; }
+  .bw-modular__band .bw-modular__button { background: #fff7f1; color: #201713; }
+  .bw-modular__band .bw-modular__button--secondary { background: rgba(255,247,241,.08); color: #fff7f1; border-color: rgba(255,247,241,.28); }
+  @media (max-width: 1024px) {
+    .bw-modular__hero,
+    .bw-modular__cards,
+    .bw-modular__products { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .bw-modular__hero { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 720px) {
+    .bw-modular__block,
+    .bw-modular__band { padding: 22px 20px; border-radius: 24px; }
+    .bw-modular__tabs { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+    .bw-modular__tabs::-webkit-scrollbar { display: none; }
+    .bw-modular__tab { flex: 0 0 auto; white-space: nowrap; }
+    .bw-modular__cards,
+    .bw-modular__products { grid-template-columns: 1fr; }
+  }
+</style>
+
+<div class="bw-modular" data-bw-modular-page data-default-variant="{{ default_variant }}">
+  <section class="bw-modular__block">
+    <div class="bw-modular__tabs" aria-label="Kitchen layouts">
+      <button class="bw-modular__tab" type="button" data-variant-toggle="all">All layouts</button>
+      <button class="bw-modular__tab" type="button" data-variant-toggle="l-shape">L-shape</button>
+      <button class="bw-modular__tab" type="button" data-variant-toggle="u-shape">U-shape</button>
+      <button class="bw-modular__tab" type="button" data-variant-toggle="parallel">Parallel</button>
+      <button class="bw-modular__tab" type="button" data-variant-toggle="straight">Straight</button>
+      <button class="bw-modular__tab" type="button" data-variant-toggle="island">Island</button>
+      <a class="bw-modular__button--secondary" href="{{ calculator_url }}">Kitchen Calculator</a>
+    </div>
+  </section>
+
+  {% capture product_grid %}
+    <section class="bw-modular__block">
+      <div class="bw-modular__section-head">
+        <div class="bw-modular__eyebrow">Live kitchen directions</div>
+        <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">Browse actual kitchen-led products from the store</h2>
+        <p class="bw-modular__copy">Explore live Bluewud products connected to the kitchen category while you refine the broader layout, finish, and estimate brief.</p>
+      </div>
+      <div class="bw-modular__products">
+        {% assign shown = 0 %}
+        {% if kitchen_collection != blank %}
+          {% for product in kitchen_collection.products %}
+            <a class="bw-modular__product" href="{{ product.url }}">
+              <div class="bw-modular__product-media">
+                {% if product.featured_image %}
+                  {{ product.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 480, 640, 900', sizes: '(max-width: 720px) 100vw, 33vw', alt: product.title }}
+                {% endif %}
+              </div>
+              <h3>{{ product.title }}</h3>
+              <p>{{ product.description | strip_html | truncatewords: 20 }}</p>
+            </a>
+            {% assign shown = shown | plus: 1 %}
+            {% if shown >= 3 %}
+              {% break %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      </div>
+    </section>
+  {% endcapture %}
+
+  <section class="bw-modular__panel" data-variant-panel="all">
+    <section class="bw-modular__block">
+      <div class="bw-modular__hero">
+        <div class="bw-modular__copy-shell">
+          <span class="bw-modular__pill">All modular kitchens</span>
+          <h2 class="bw-modular__title">Modular kitchens shaped around how your home actually cooks, stores, and moves</h2>
+          <p class="bw-modular__copy">Bluewud modular kitchens begin with the plan, not only the finish. Start with room proportions, family cooking habits, appliance needs, service points, and the visual language of the rest of your home. Once the broad layout is clear, material and budget decisions become far more confident.</p>
+          <ul class="bw-modular__bullets">
+            <li>Compare layout suitability before finalizing shutters, handles, and countertop finish.</li>
+            <li>Plan workflow, storage intensity, and appliance placement together.</li>
+            <li>Use the calculator or estimate form once the project brief is specific enough to price properly.</li>
+          </ul>
+          <div class="bw-modular__actions">
+            <a class="bw-modular__button" href="{{ calculator_url }}">Start Kitchen Calculator</a>
+            <button class="bw-modular__button--secondary" type="button" data-bw-estimate-open data-estimate-context="Modular Kitchen" data-estimate-trigger="landing">Get Free Estimate</button>
+          </div>
+        </div>
+        <div class="bw-modular__visual">
+          {% if hero_all and hero_all.featured_image %}
+            {{ hero_all.featured_image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '540,720,960,1200,1400', sizes: '(max-width: 1024px) 100vw, 38vw', alt: hero_all.title }}
+          {% endif %}
+        </div>
+      </div>
+    </section>
+
+    <section class="bw-modular__block">
+      <div class="bw-modular__section-head">
+        <div class="bw-modular__eyebrow">Why Bluewud modular kitchens</div>
+        <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">Premium kitchens work best when the planning is as strong as the visual finish</h2>
+        <p class="bw-modular__copy">A good modular kitchen should feel refined on day one and still work smoothly years later. That means the design conversation has to cover layout, work zones, storage habits, material durability, and how the kitchen connects to the rest of the home.</p>
+      </div>
+      <div class="bw-modular__cards">
+        <article class="bw-modular__card"><h3>Planned around Indian homes</h3><p>Daily cooking, appliance density, utility requirements, and storage pressure vary widely. The strongest modular kitchen starts by acknowledging how the home will actually use the space.</p></article>
+        <article class="bw-modular__card"><h3>Layout first, styling second</h3><p>L-shape, U-shape, parallel, straight, and island kitchens solve different problems. Once the right geometry is chosen, finish and detailing become much easier to refine.</p></article>
+        <article class="bw-modular__card"><h3>Material clarity from the start</h3><p>Carcass systems, shutter surfaces, countertop choices, and hardware expectations should be discussed early so the kitchen feels premium without becoming vague or over-specified.</p></article>
+        <article class="bw-modular__card"><h3>Storage that earns its footprint</h3><p>Corner solutions, pantry planning, utility cabinets, cutlery zones, appliance pockets, and tall units should support daily use, not just make the elevation look complete.</p></article>
+        <article class="bw-modular__card"><h3>Better alignment with the rest of the home</h3><p>A kitchen sits inside a larger interiors story. Finish direction, openness, and visual weight should feel intentional when seen from dining, utility, or living spaces.</p></article>
+        <article class="bw-modular__card"><h3>Estimate-ready decision making</h3><p>The more clearly the customer defines layout, material direction, and storage intensity, the more useful the consultation and estimate become.</p></article>
+      </div>
+    </section>
+
+    <section class="bw-modular__block">
+      <div class="bw-modular__section-head">
+        <div class="bw-modular__eyebrow">Planning and process</div>
+        <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">The strongest modular-kitchen projects follow a clear sequence</h2>
+        <p class="bw-modular__copy">A kitchen becomes easier to design and easier to estimate when the brief develops in the right order. Layout leads, materials follow, and storage plus appliance planning complete the picture.</p>
+      </div>
+      <div class="bw-modular__cards">
+        <article class="bw-modular__card"><h3>01. Read the room correctly</h3><p>Begin with wall lengths, service points, doors, windows, movement paths, and how many people typically use the kitchen at the same time.</p></article>
+        <article class="bw-modular__card"><h3>02. Choose the right layout family</h3><p>The correct layout should create the right mix of circulation, counter continuity, and storage volume before any styling discussion begins.</p></article>
+        <article class="bw-modular__card"><h3>03. Finalize carcass, shutters, and countertop</h3><p>Once the layout is fixed, the project can move into material choices that shape durability, maintenance, and budget direction.</p></article>
+        <article class="bw-modular__card"><h3>04. Detail storage and appliances</h3><p>Tall units, pantry needs, corner accessories, built-in appliances, utility zones, and drawer types all change how complete the kitchen feels in daily use.</p></article>
+        <article class="bw-modular__card"><h3>05. Submit a sharper brief</h3><p>The final estimate becomes far more reliable when the project already has a clear layout, material direction, and functional priorities attached to it.</p></article>
+        <article class="bw-modular__card"><h3>06. Move into consultation with context</h3><p>Instead of a generic quote request, the next conversation starts with real decisions already in place, which leads to faster and better recommendations.</p></article>
+      </div>
+    </section>
+
+    <section class="bw-modular__block">
+      <div class="bw-modular__section-head">
+        <div class="bw-modular__eyebrow">Materials and finishes</div>
+        <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">Layout sets the foundation. Materials and detailing decide how the kitchen performs every day.</h2>
+        <p class="bw-modular__copy">Two kitchens can share the same floor plan and still feel very different in durability, maintenance, and finish quality. The choices below are where much of that difference is built.</p>
+      </div>
+      <div class="bw-modular__cards">
+        <article class="bw-modular__card"><h3>Carcass and core build</h3><p>The internal build has to suit moisture exposure, budget, and long-term wear. It is one of the least visible decisions and one of the most important.</p></article>
+        <article class="bw-modular__card"><h3>Shutter finish families</h3><p>Laminate-led, matte, glossy, acrylic-style, and wood-tone directions each change the maintenance profile and the visual character of the kitchen.</p></article>
+        <article class="bw-modular__card"><h3>Countertop and backsplash pairing</h3><p>Cooking intensity, stain tolerance, and visual contrast matter here. A premium finish looks best when it is chosen with real use patterns in mind.</p></article>
+        <article class="bw-modular__card"><h3>Hardware and movement quality</h3><p>Drawer action, hinges, tall pull-outs, corner accessories, and under-sink fittings shape the everyday experience far more than the front view alone.</p></article>
+        <article class="bw-modular__card"><h3>Appliance integration</h3><p>Microwave niches, ovens, chimneys, dishwashers, and water units need proper allowances early so the finished kitchen looks calm and intentional.</p></article>
+        <article class="bw-modular__card"><h3>Lighting and utility support</h3><p>Task lighting, electrical planning, and service access should be aligned with the layout so the kitchen feels considered after installation, not adjusted around it.</p></article>
+      </div>
+    </section>
+
+    <section class="bw-modular__block">
+      <div class="bw-modular__section-head">
+        <div class="bw-modular__eyebrow">Layout decision guidance</div>
+        <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">Choose the kitchen format that matches the room, not only the inspiration image</h2>
+        <p class="bw-modular__copy">Every kitchen layout has a different relationship with circulation, storage intensity, and visual openness. Shortlist the one that best matches the way the home functions.</p>
+      </div>
+      <div class="bw-modular__cards">
+        <article class="bw-modular__card"><h3>L-shape</h3><p>Ideal when the kitchen needs to feel open, balanced, and efficient without becoming visually dense. A strong fit for many apartments and family homes.</p></article>
+        <article class="bw-modular__card"><h3>U-shape</h3><p>Best when storage demand is high, countertop continuity matters, and the room is wide enough to support a comfortable central aisle.</p></article>
+        <article class="bw-modular__card"><h3>Parallel</h3><p>Excellent for tighter footprints where two facing runs can split washing, prep, cooking, and pantry functions more efficiently than a single-wall solution.</p></article>
+        <article class="bw-modular__card"><h3>Straight</h3><p>Strong for compact homes that need one disciplined linear run with careful vertical planning and a cleaner visual profile.</p></article>
+        <article class="bw-modular__card"><h3>Island</h3><p>Works best in larger open homes where the kitchen is also a hosting and gathering zone, not only a service area.</p></article>
+        <article class="bw-modular__card"><h3>Still choosing?</h3><p>Start with the room dimensions, your cooking pattern, appliance list, and how open or enclosed you want the kitchen to feel. The right layout usually reveals itself from there.</p></article>
+      </div>
+    </section>
+
+    <section class="bw-modular__block">
+      <div class="bw-modular__section-head">
+        <div class="bw-modular__eyebrow">Estimate readiness</div>
+        <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">What shapes the final brief and estimate</h2>
+        <p class="bw-modular__copy">A modular kitchen estimate becomes more meaningful when the customer already understands the big drivers behind cost and scope.</p>
+      </div>
+      <div class="bw-modular__cards">
+        <article class="bw-modular__card"><h3>Kitchen size and counter run</h3><p>Wall lengths, island dimensions, and the number of active work surfaces all directly change material quantities and planning complexity.</p></article>
+        <article class="bw-modular__card"><h3>Storage volume and tall units</h3><p>Pantries, lofts, utility cabinets, and larger drawer programs can make a major difference to the final scope.</p></article>
+        <article class="bw-modular__card"><h3>Finish tier and hardware level</h3><p>Shutter surfaces, handle strategy, and drawer or hinge quality affect both the look and the investment level.</p></article>
+        <article class="bw-modular__card"><h3>Appliance and service integration</h3><p>Built-ins, chimneys, microwaves, dishwashers, and water systems need allowances that influence both design and estimate.</p></article>
+        <article class="bw-modular__card"><h3>Site readiness and timeline</h3><p>Civil work status, plumbing or electrical shifts, and delivery readiness all matter when moving from planning into execution.</p></article>
+        <article class="bw-modular__card"><h3>Clarity of the brief</h3><p>A customer who already knows the preferred layout, finish direction, and utility priorities receives a better consultation and a sharper estimate.</p></article>
+      </div>
+    </section>
+
+    <section class="bw-modular__band">
+      <div class="bw-modular__eyebrow">All kitchens, one clearer next step</div>
+      <h2 class="bw-modular__title">Shortlist the right layout first, then let Bluewud shape the finish and estimate around it</h2>
+      <p class="bw-modular__copy">If you already know the room size and the broad kitchen format you prefer, you are ready to move from inspiration into a serious project brief.</p>
+      <div class="bw-modular__actions">
+        <a class="bw-modular__button" href="{{ calculator_url }}">Build My Kitchen Brief</a>
+        <button class="bw-modular__button--secondary" type="button" data-bw-estimate-open data-estimate-context="Modular Kitchen" data-estimate-trigger="all-band">Get Free Estimate</button>
+      </div>
+    </section>
+
+    {{ product_grid }}
+  </section>
+
+  <section class="bw-modular__panel" data-variant-panel="l-shape">
+    <section class="bw-modular__block">
+      <div class="bw-modular__hero">
+        <div class="bw-modular__copy-shell">
+          <span class="bw-modular__pill">L-shape kitchens</span>
+          <h2 class="bw-modular__title">L-shape kitchens that balance openness, workflow, and everyday practicality</h2>
+          <p class="bw-modular__copy">An L-shape modular kitchen is often the easiest premium layout to live with. It uses the corner well, keeps movement comfortable, and leaves enough openness for the kitchen to feel connected to dining or living areas when the home needs a lighter visual footprint.</p>
+          <ul class="bw-modular__bullets">
+            <li>Best for corners, medium layouts, and open-plan homes.</li>
+            <li>Supports an efficient work triangle without making the room feel boxed in.</li>
+            <li>Works especially well when the family wants utility and visual calm together.</li>
+          </ul>
+          <div class="bw-modular__actions">
+            <a class="bw-modular__button" href="{{ calculator_url }}">Plan This Layout</a>
+            <button class="bw-modular__button--secondary" type="button" data-bw-estimate-open data-estimate-context="Modular Kitchen" data-estimate-trigger="layout">Get Free Estimate</button>
+          </div>
+        </div>
+        <div class="bw-modular__visual">
+          {% if hero_l and hero_l.featured_image %}
+            {{ hero_l.featured_image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '540,720,960,1200,1400', sizes: '(max-width: 1024px) 100vw, 38vw', alt: hero_l.title }}
+          {% endif %}
+        </div>
+      </div>
+    </section>
+    <section class="bw-modular__block">
+      <div class="bw-modular__section-head">
+        <div class="bw-modular__eyebrow">Why choose L-shape</div>
+        <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">A versatile layout that feels efficient without looking heavy</h2>
+      </div>
+      <div class="bw-modular__cards">
+        <article class="bw-modular__card"><h3>Best suited for</h3><p>Apartment kitchens, medium-sized rooms, and homes where the kitchen must stay efficient while still feeling visually open to adjacent spaces.</p></article>
+        <article class="bw-modular__card"><h3>Core strengths</h3><p>It creates a natural corner-based workflow, offers balanced counter runs, and usually leaves enough room for comfortable day-to-day movement.</p></article>
+        <article class="bw-modular__card"><h3>What to watch</h3><p>The corner should be used intelligently and one leg should not become overloaded with appliances, otherwise the layout can lose its simplicity very quickly.</p></article>
+      </div>
+    </section>
+    <section class="bw-modular__block">
+      <div class="bw-modular__section-head">
+        <div class="bw-modular__eyebrow">Bluewud planning guidance</div>
+        <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">The success of an L-shape kitchen depends on a few key decisions</h2>
+      </div>
+      <div class="bw-modular__cards">
+        <article class="bw-modular__card"><h3>Corner strategy</h3><p>Plan whether the corner should hold storage accessories, uninterrupted countertop, or a transition into a utility-led zone. That single decision affects the rest of the kitchen.</p></article>
+        <article class="bw-modular__card"><h3>Work triangle balance</h3><p>The sink, hob, and refrigerator should stay comfortably connected without crowding one leg of the layout or breaking the main prep sequence.</p></article>
+        <article class="bw-modular__card"><h3>Finish direction</h3><p>L-shape kitchens suit wood-led warmth, matte premium surfaces, and lighter upper compositions very well because the layout already supports a more open feel.</p></article>
+      </div>
+    </section>
+    <section class="bw-modular__block">
+      <div class="bw-modular__section-head">
+        <div class="bw-modular__eyebrow">Before you request an estimate</div>
+        <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">A clearer brief makes an L-shape consultation much more useful</h2>
+      </div>
+      <div class="bw-modular__cards">
+        <article class="bw-modular__card"><h3>Measure these first</h3><p>Confirm both wall lengths, window and door positions, service points, and whether a refrigerator or tall unit needs to anchor one of the two arms.</p></article>
+        <article class="bw-modular__card"><h3>Define the storage wish list</h3><p>List pantry need, corner-accessory expectations, microwave or appliance niches, and how much closed storage you want before discussing only the look.</p></article>
+        <article class="bw-modular__card"><h3>Good fit if</h3><p>You want a kitchen that feels comfortable, premium, and easy to move through, without stepping into the density of a deeper three-sided plan.</p></article>
+      </div>
+    </section>
+    {{ product_grid }}
+  </section>
+
+  <section class="bw-modular__panel" data-variant-panel="u-shape">
+    <section class="bw-modular__block">
+      <div class="bw-modular__hero">
+        <div class="bw-modular__copy-shell">
+          <span class="bw-modular__pill">U-shape kitchens</span>
+          <h2 class="bw-modular__title">U-shape kitchens for deeper storage and serious daily use</h2>
+          <p class="bw-modular__copy">U-shape layouts are excellent when you want more working surface, better storage depth, and a kitchen that feels built for heavier daily use.</p>
+          <ul class="bw-modular__bullets">
+            <li>Best for enclosed or larger kitchens.</li>
+            <li>Creates more countertop and base storage.</li>
+            <li>Needs enough width for comfortable movement.</li>
+          </ul>
+          <div class="bw-modular__actions">
+            <a class="bw-modular__button" href="{{ calculator_url }}">Plan This Layout</a>
+            <button class="bw-modular__button--secondary" type="button" data-bw-estimate-open data-estimate-context="Modular Kitchen" data-estimate-trigger="layout">Get Free Estimate</button>
+          </div>
+        </div>
+        <div class="bw-modular__visual">
+          {% if hero_u and hero_u.featured_image %}
+            {{ hero_u.featured_image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '540,720,960,1200,1400', sizes: '(max-width: 1024px) 100vw, 38vw', alt: hero_u.title }}
+          {% endif %}
+        </div>
+      </div>
+    </section>
+    <section class="bw-modular__block">
+      <div class="bw-modular__cards">
+        <article class="bw-modular__card"><h3>Where it fits best</h3><p>Homes that want more storage and stronger daily cooking support than lighter kitchen formats usually offer.</p></article>
+        <article class="bw-modular__card"><h3>Planning focus</h3><p>Aisle width, appliance zoning, and avoiding a cramped center are more important here than the elevation style.</p></article>
+        <article class="bw-modular__card"><h3>Buyer mindset</h3><p>Usually chosen by families who see the kitchen as a serious working zone rather than only a visual part of the home.</p></article>
+      </div>
+    </section>
+    <section class="bw-modular__block">
+      <div class="bw-modular__cards">
+        <article class="bw-modular__card"><h3>What makes it compelling</h3><p>Three-sided planning creates a kitchen that can handle heavier cooking, more storage, and more surface area without feeling improvised.</p></article>
+        <article class="bw-modular__card"><h3>Where people go wrong</h3><p>If the center aisle is too narrow, even a premium finish will not rescue the experience. Movement comfort has to lead the design.</p></article>
+        <article class="bw-modular__card"><h3>When to enquire</h3><p>Once the customer knows room width, desired storage intensity, and whether tall units are needed, the estimate conversation becomes far more useful.</p></article>
+      </div>
+    </section>
+    {{ product_grid }}
+  </section>
+
+  <section class="bw-modular__panel" data-variant-panel="parallel">
+    <section class="bw-modular__block">
+      <div class="bw-modular__hero">
+        <div class="bw-modular__copy-shell">
+          <span class="bw-modular__pill">Parallel kitchens</span>
+          <h2 class="bw-modular__title">Parallel kitchens for tighter homes that still need efficient planning</h2>
+          <p class="bw-modular__copy">Two opposing runs help separate cleaning, prep, and cooking, making this a strong direction for apartments and space-conscious homes.</p>
+          <ul class="bw-modular__bullets">
+            <li>Best for compact and medium homes.</li>
+            <li>Fast movement between the main work zones.</li>
+            <li>Works best when aisle width is planned carefully.</li>
+          </ul>
+          <div class="bw-modular__actions">
+            <a class="bw-modular__button" href="{{ calculator_url }}">Plan This Layout</a>
+            <button class="bw-modular__button--secondary" type="button" data-bw-estimate-open data-estimate-context="Modular Kitchen" data-estimate-trigger="layout">Get Free Estimate</button>
+          </div>
+        </div>
+        <div class="bw-modular__visual">
+          {% if hero_parallel and hero_parallel.featured_image %}
+            {{ hero_parallel.featured_image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '540,720,960,1200,1400', sizes: '(max-width: 1024px) 100vw, 38vw', alt: hero_parallel.title }}
+          {% endif %}
+        </div>
+      </div>
+    </section>
+    <section class="bw-modular__block">
+      <div class="bw-modular__cards">
+        <article class="bw-modular__card"><h3>Where it fits best</h3><p>Apartment kitchens and utility-conscious homes that need more function without asking for large floor area.</p></article>
+        <article class="bw-modular__card"><h3>Planning focus</h3><p>Storage split, sink-hob balance, and making sure both runs do not feel visually heavy together.</p></article>
+        <article class="bw-modular__card"><h3>Buyer mindset</h3><p>Usually chosen by practical buyers who value movement efficiency and cleaner day-to-day use over showpiece form.</p></article>
+      </div>
+    </section>
+    <section class="bw-modular__block">
+      <div class="bw-modular__cards">
+        <article class="bw-modular__card"><h3>What to protect</h3><p>The magic of a parallel kitchen is efficiency. If the aisle gets crowded or the two sides are planned without role separation, that advantage disappears.</p></article>
+        <article class="bw-modular__card"><h3>Best planning split</h3><p>One side usually works better for washing and prep while the other handles cooking, pantry, or appliance concentration.</p></article>
+        <article class="bw-modular__card"><h3>Why it converts well</h3><p>Buyers with realistic apartment constraints often see this layout as the smartest balance of performance, neatness, and achievable budget.</p></article>
+      </div>
+    </section>
+    {{ product_grid }}
+  </section>
+
+  <section class="bw-modular__panel" data-variant-panel="straight">
+    <section class="bw-modular__block">
+      <div class="bw-modular__hero">
+        <div class="bw-modular__copy-shell">
+          <span class="bw-modular__pill">Straight kitchens</span>
+          <h2 class="bw-modular__title">Straight kitchens for clean linear planning in compact spaces</h2>
+          <p class="bw-modular__copy">A straight modular kitchen keeps everything on one wall, which can feel elegant and highly efficient when the room is compact and the planning is disciplined.</p>
+          <ul class="bw-modular__bullets">
+            <li>Best for studios and compact apartments.</li>
+            <li>Cleaner visual profile in tighter homes.</li>
+            <li>Needs strong storage optimization to stay clutter-free.</li>
+          </ul>
+          <div class="bw-modular__actions">
+            <a class="bw-modular__button" href="{{ calculator_url }}">Plan This Layout</a>
+            <button class="bw-modular__button--secondary" type="button" data-bw-estimate-open data-estimate-context="Modular Kitchen" data-estimate-trigger="layout">Get Free Estimate</button>
+          </div>
+        </div>
+        <div class="bw-modular__visual">
+          {% if hero_straight and hero_straight.featured_image %}
+            {{ hero_straight.featured_image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '540,720,960,1200,1400', sizes: '(max-width: 1024px) 100vw, 38vw', alt: hero_straight.title }}
+          {% endif %}
+        </div>
+      </div>
+    </section>
+    <section class="bw-modular__block">
+      <div class="bw-modular__cards">
+        <article class="bw-modular__card"><h3>Where it fits best</h3><p>Compact residences where the kitchen is part of a smaller footprint and visual neatness matters as much as utility.</p></article>
+        <article class="bw-modular__card"><h3>Planning focus</h3><p>Vertical storage, appliance integration, and reducing visual noise across a single long run.</p></article>
+        <article class="bw-modular__card"><h3>Buyer mindset</h3><p>Usually chosen by buyers who want the kitchen to feel minimal, controlled, and easy to maintain.</p></article>
+      </div>
+    </section>
+    <section class="bw-modular__block">
+      <div class="bw-modular__cards">
+        <article class="bw-modular__card"><h3>How to make it feel premium</h3><p>In a straight kitchen, proportion, handle strategy, finish consistency, and disciplined appliance planning matter even more because there is nowhere to hide visual clutter.</p></article>
+        <article class="bw-modular__card"><h3>What to confirm first</h3><p>The customer should think about pantry need, microwave placement, and how much closed storage is required before prioritizing the front look alone.</p></article>
+        <article class="bw-modular__card"><h3>Who this helps most</h3><p>Studios, compact apartments, and smaller homes where a neat linear kitchen can still feel elevated if every unit is planned intelligently.</p></article>
+      </div>
+    </section>
+    {{ product_grid }}
+  </section>
+
+  <section class="bw-modular__panel" data-variant-panel="island">
+    <section class="bw-modular__block">
+      <div class="bw-modular__hero">
+        <div class="bw-modular__copy-shell">
+          <span class="bw-modular__pill">Island kitchens</span>
+          <h2 class="bw-modular__title">Kitchen islands for presence, prep space, and premium home interiors</h2>
+          <p class="bw-modular__copy">An island changes how the kitchen feels, how people gather, and how open-plan homes flow around food and hosting.</p>
+          <ul class="bw-modular__bullets">
+            <li>Best for larger open kitchens.</li>
+            <li>Adds prep, serving, and social value.</li>
+            <li>Needs enough movement clearance on all sides.</li>
+          </ul>
+          <div class="bw-modular__actions">
+            <a class="bw-modular__button" href="{{ calculator_url }}">Plan This Layout</a>
+            <button class="bw-modular__button--secondary" type="button" data-bw-estimate-open data-estimate-context="Modular Kitchen" data-estimate-trigger="layout">Get Free Estimate</button>
+          </div>
+        </div>
+        <div class="bw-modular__visual">
+          {% if hero_island and hero_island.featured_image %}
+            {{ hero_island.featured_image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '540,720,960,1200,1400', sizes: '(max-width: 1024px) 100vw, 38vw', alt: hero_island.title }}
+          {% endif %}
+        </div>
+      </div>
+    </section>
+    <section class="bw-modular__block">
+      <div class="bw-modular__cards">
+        <article class="bw-modular__card"><h3>Where it fits best</h3><p>Homes where the kitchen is part of entertaining, hosting, and a more open premium interiors language.</p></article>
+        <article class="bw-modular__card"><h3>Planning focus</h3><p>Circulation clearance, appliance placement, and whether the island is prep-led, seating-led, or both.</p></article>
+        <article class="bw-modular__card"><h3>Buyer mindset</h3><p>Usually chosen by customers who want the kitchen to become a visual and social anchor of the home.</p></article>
+      </div>
+    </section>
+    <section class="bw-modular__block">
+      <div class="bw-modular__cards">
+        <article class="bw-modular__card"><h3>What changes with an island</h3><p>An island kitchen stops being only about cabinet runs. It becomes a circulation and hosting decision, which is why room dimensions matter far more here.</p></article>
+        <article class="bw-modular__card"><h3>When it is worth doing</h3><p>If the home is open-plan, the kitchen is visible from living or dining, and the family wants a stronger social-use surface, the island earns its place.</p></article>
+        <article class="bw-modular__card"><h3>What the estimate should capture</h3><p>The team needs to know whether the island is for prep, seating, serving, or storage because each intent changes the planning direction and price path.</p></article>
+      </div>
+    </section>
+    {{ product_grid }}
+  </section>
+
+  <section class="bw-modular__band">
+    <div class="bw-modular__eyebrow">Move from inspiration to planning</div>
+    <h2 class="bw-modular__title">Shortlist the layout, then build the brief in the calculator</h2>
+    <p class="bw-modular__copy">The strongest next step is not endless browsing. It is selecting the right layout and submitting a clearer requirements brief to the Bluewud team.</p>
+    <div class="bw-modular__actions">
+      <a class="bw-modular__button" href="{{ calculator_url }}">Open Kitchen Calculator</a>
+      <button class="bw-modular__button--secondary" type="button" data-bw-estimate-open data-estimate-context="Modular Kitchen" data-estimate-trigger="band">Get Free Estimate</button>
+      <a class="bw-modular__button--secondary" href="{{ contact_url }}">Talk To Bluewud</a>
+    </div>
+  </section>
+</div>
+
+{% render 'modular-estimate-popup', modal_id: 'bw-kitchen-estimate-popup', modal_title: 'Get a modular kitchen estimate', context_label: 'Bluewud modular kitchen' %}
+
+<script>
+  (function () {
+    var root = document.querySelector('[data-bw-modular-page]');
+    if (!root) return;
+    var defaultVariant = root.getAttribute('data-default-variant') || 'all';
+    var toggles = Array.prototype.slice.call(root.querySelectorAll('[data-variant-toggle]'));
+    var panels = Array.prototype.slice.call(root.querySelectorAll('[data-variant-panel]'));
+
+    var modal = document.getElementById('bw-kitchen-estimate-popup');
+    var closeControls = modal ? modal.querySelectorAll('[data-bw-estimate-close]') : [];
+    var summaryText = modal ? modal.querySelector('[data-bw-estimate-summary-text]') : null;
+    var summaryInput = modal ? modal.querySelector('[data-bw-estimate-summary-input]') : null;
+    var contextInput = modal ? modal.querySelector('[data-bw-estimate-context-input]') : null;
+
+    function activate(variant) {
+      toggles.forEach(function (toggle) {
+        toggle.classList.toggle('is-active', toggle.getAttribute('data-variant-toggle') === variant);
+      });
+      panels.forEach(function (panel) {
+        var isActive = panel.getAttribute('data-variant-panel') === variant;
+        panel.classList.toggle('is-active', isActive);
+      });
+    }
+
+    function activeVariantLabel() {
+      var active = root.querySelector('[data-variant-toggle].is-active');
+      return active ? active.textContent.trim() : 'Modular Kitchen';
+    }
+
+    function activeSummary(trigger) {
+      var label = activeVariantLabel();
+      var parts = ['Project: Modular Kitchen', 'Selected layout: ' + label];
+      if (trigger) parts.push('Source: ' + trigger);
+      return parts.join(' | ');
+    }
+
+    function openModal(trigger) {
+      if (!modal) return;
+      var summary = activeSummary(trigger);
+      if (summaryText) summaryText.textContent = summary;
+      if (summaryInput) summaryInput.value = summary;
+      if (contextInput) contextInput.value = 'Bluewud modular kitchen';
+      modal.classList.add('is-open');
+      document.body.classList.add('bw-header-drawer-open');
+    }
+
+    function closeModal() {
+      if (!modal) return;
+      modal.classList.remove('is-open');
+      document.body.classList.remove('bw-header-drawer-open');
+    }
+
+    toggles.forEach(function (toggle) {
+      toggle.addEventListener('click', function () {
+        activate(toggle.getAttribute('data-variant-toggle'));
+      });
+    });
+
+    root.querySelectorAll('[data-bw-estimate-open]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        openModal(button.getAttribute('data-estimate-trigger'));
+      });
+    });
+
+    Array.prototype.forEach.call(closeControls, function (control) {
+      control.addEventListener('click', closeModal);
+    });
+
+    if (modal) {
+      modal.addEventListener('click', function (event) {
+        if (event.target === modal) closeModal();
+      });
+    }
+
+    activate(defaultVariant);
+  })();
+</script>

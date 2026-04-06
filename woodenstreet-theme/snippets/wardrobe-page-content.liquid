@@ -1,0 +1,639 @@
+{% liquid
+  assign wardrobe_collection = collections['wardrobe']
+  assign wardrobe_variant = 'all'
+  assign main_url = '/collections/wardrobe'
+  assign sliding_url = '/collections/wardrobe'
+  assign hinged_url = '/collections/wardrobe'
+  assign walk_in_url = '/collections/wardrobe'
+  assign calculator_url = '/pages/contact-us'
+  assign estimate_url = '/pages/contact-us'
+  assign contact_url = '/pages/contact-us'
+  assign phone_url = 'tel:+918800609609'
+
+  assign spotlight_title = 'Modular wardrobes planned around format, storage, and finish clarity'
+  assign spotlight_copy = "A premium wardrobe project should begin with room-fit, opening style, internals, and budget direction, not just a shutter moodboard."
+  assign spotlight_points = 'Compare sliding, hinged, and walk-in before choosing the elevation|Plan hanging, drawers, lofts, mirrors, and accessories before final approval|Use the calculator and estimate flow once the scope feels grounded' | split: '|'
+  assign spotlight_tag = 'All wardrobe planning'
+  assign keyword = blank
+
+  case page.handle
+    when 'sliding-wardrobe-designs'
+      assign wardrobe_variant = 'sliding'
+      assign spotlight_title = 'Sliding wardrobes for compact rooms, cleaner movement, and sharper elevations'
+      assign spotlight_copy = 'Sliding shutters save front clearance and look refined, but they reward disciplined planning around tracks, mirror use, and partial internal access.'
+      assign spotlight_points = 'Best where the bed sits close to the wardrobe line|Ideal for contemporary mirror-led or glass-led elevations|Plan internal zoning carefully because all sections do not open together' | split: '|'
+      assign spotlight_tag = 'Sliding wardrobes'
+      assign keyword = 'sliding'
+    when 'hinged-wardrobes'
+      assign wardrobe_variant = 'hinged'
+      assign spotlight_title = 'Hinged wardrobes for full access, easy daily use, and classic bedroom planning'
+      assign spotlight_copy = 'Hinged shutters remain the most intuitive wardrobe format when the room can spare door clearance and the buyer wants complete internal visibility.'
+      assign spotlight_points = 'Best for full-width daily access and familiar use|Makes drawers, shelves, and hanging zones easier to reach|Needs enough swing clearance in front of the wardrobe line' | split: '|'
+      assign spotlight_tag = 'Hinged wardrobes'
+      assign keyword = 'hinged'
+    when 'walk-in-wardrobes'
+      assign wardrobe_variant = 'walk-in'
+      assign spotlight_title = 'Walk-in wardrobes for larger suites and premium dressing-room planning'
+      assign spotlight_copy = 'A walk-in wardrobe is less about one cabinet and more about zoning a room for dressing, storage, mirrors, lighting, and calmer everyday routines.'
+      assign spotlight_points = 'Best for larger master suites and premium homes|Needs early planning around movement, lighting, drawers, and open versus closed storage|Usually benefits from consultation sooner than standard wardrobes' | split: '|'
+      assign spotlight_tag = 'Walk-in wardrobes'
+      assign keyword = 'walk in'
+  endcase
+
+  if pages['modular-wardrobe-designs'] != blank
+    assign main_url = pages['modular-wardrobe-designs'].url
+  endif
+  if pages['sliding-wardrobe-designs'] != blank
+    assign sliding_url = pages['sliding-wardrobe-designs'].url
+  else
+    assign sliding_url = main_url
+  endif
+  if pages['hinged-wardrobes'] != blank
+    assign hinged_url = pages['hinged-wardrobes'].url
+  else
+    assign hinged_url = main_url
+  endif
+  if pages['walk-in-wardrobes'] != blank
+    assign walk_in_url = pages['walk-in-wardrobes'].url
+  else
+    assign walk_in_url = main_url
+  endif
+  if pages['modular-wardrobe-cost-calculator'] != blank
+    assign calculator_url = pages['modular-wardrobe-cost-calculator'].url
+  endif
+  if pages['get-free-estimate'] != blank
+    assign estimate_url = pages['get-free-estimate'].url
+  endif
+%}
+
+<style>
+  .bw-wardrobe-page { display: grid; gap: 22px; }
+  .bw-wardrobe-block {
+    padding: 26px 28px;
+    border-radius: 30px;
+    background: rgba(255, 251, 247, 0.94);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 24px 70px rgba(35, 24, 19, 0.08);
+  }
+  .bw-wardrobe-head { display: grid; gap: 10px; margin-bottom: 18px; }
+  .bw-wardrobe-eyebrow {
+    color: #8a684f; font-size: 12px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase;
+  }
+  .bw-wardrobe-title {
+    margin: 0; color: #201713; font-size: clamp(28px, 4vw, 44px); line-height: 1.04; letter-spacing: -0.04em;
+  }
+  .bw-wardrobe-copy {
+    margin: 0; color: #66554c; font-size: 15px; line-height: 1.82; max-width: 66ch;
+  }
+  .bw-wardrobe-subnav, .bw-wardrobe-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+  .bw-wardrobe-chip, .bw-wardrobe-button, .bw-wardrobe-button--secondary {
+    display: inline-flex; align-items: center; justify-content: center; min-height: 42px; padding: 0 16px;
+    border-radius: 999px; text-decoration: none; font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+    cursor: pointer;
+  }
+  .bw-wardrobe-chip { background: rgba(32, 23, 19, 0.06); color: #201713; }
+  .bw-wardrobe-chip.is-current, .bw-wardrobe-button { background: #201713; color: #fff7f1; border: 0; }
+  .bw-wardrobe-button--secondary { background: rgba(32, 23, 19, 0.05); color: #201713; border: 1px solid rgba(32, 23, 19, 0.1); }
+  .bw-wardrobe-spotlight {
+    display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr); gap: 18px;
+  }
+  .bw-wardrobe-spotlight-copy {
+    padding: 26px 28px;
+    border-radius: 28px;
+    background: radial-gradient(circle at top left, rgba(166,106,67,0.12), transparent 28%), linear-gradient(180deg, #fffaf6 0%, #f8f0e8 100%);
+  }
+  .bw-wardrobe-pill {
+    display: inline-flex; align-items: center; min-height: 34px; padding: 0 14px; border-radius: 999px;
+    background: rgba(32, 23, 19, 0.08); color: #6f584c; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase;
+  }
+  .bw-wardrobe-list { display: grid; gap: 8px; margin: 18px 0 0; padding: 0; list-style: none; }
+  .bw-wardrobe-list li { position: relative; padding-left: 18px; color: #66554c; font-size: 14px; line-height: 1.75; }
+  .bw-wardrobe-list li::before {
+    content: ''; position: absolute; left: 0; top: 10px; width: 7px; height: 7px; border-radius: 999px; background: #a66a43;
+  }
+  .bw-wardrobe-visual {
+    min-height: 100%; border-radius: 28px; overflow: hidden;
+    background: radial-gradient(circle at 20% 18%, rgba(255,255,255,0.2), transparent 24%), linear-gradient(145deg, #ddcfc2 0%, #b49682 42%, #6e5043 100%);
+  }
+  .bw-wardrobe-visual img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .bw-wardrobe-grid-4, .bw-wardrobe-grid-3, .bw-wardrobe-grid-2, .bw-wardrobe-compare-grid { display: grid; gap: 16px; }
+  .bw-wardrobe-grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .bw-wardrobe-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .bw-wardrobe-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bw-wardrobe-card, .bw-wardrobe-process, .bw-wardrobe-faq {
+    padding: 22px; border-radius: 24px; background: rgba(32, 23, 19, 0.04);
+  }
+  .bw-wardrobe-card-label {
+    display: inline-flex; align-items: center; width: fit-content; min-height: 30px; padding: 0 12px;
+    border-radius: 999px; background: rgba(32, 23, 19, 0.08); color: #6f584c; font-size: 10px; font-weight: 800; letter-spacing: 0.1em; text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .bw-wardrobe-card h3, .bw-wardrobe-process h3, .bw-wardrobe-faq h3 {
+    margin: 0 0 8px; color: #201713; font-size: 18px; line-height: 1.2;
+  }
+  .bw-wardrobe-card p, .bw-wardrobe-process p, .bw-wardrobe-faq p {
+    margin: 0; color: #66554c; font-size: 14px; line-height: 1.75;
+  }
+  .bw-wardrobe-card p + p, .bw-wardrobe-faq p + p {
+    margin-top: 8px;
+  }
+  .bw-wardrobe-compare-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .bw-wardrobe-compare-card {
+    display: grid; gap: 14px; padding: 24px; border-radius: 26px;
+    background: radial-gradient(circle at top left, rgba(79,120,143,0.12), transparent 26%), linear-gradient(180deg, #fffaf6 0%, #f5ede6 100%);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 18px 48px rgba(35, 24, 19, 0.06);
+  }
+  .bw-wardrobe-compare-card h3 {
+    margin: 0; color: #201713; font-size: 24px; line-height: 1.08; letter-spacing: -0.03em;
+  }
+  .bw-wardrobe-compare-card p {
+    margin: 0; color: #66554c; font-size: 14px; line-height: 1.75;
+  }
+  .bw-wardrobe-compare-meta {
+    display: grid; gap: 8px;
+  }
+  .bw-wardrobe-compare-link {
+    display: inline-flex; align-items: center; justify-content: center; width: fit-content; min-height: 42px; padding: 0 18px;
+    border-radius: 999px; background: #201713; color: #fff7f1; font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; text-decoration: none;
+  }
+  .bw-wardrobe-step {
+    display: inline-flex; align-items: center; justify-content: center; width: 40px; height: 40px; margin-bottom: 14px;
+    border-radius: 999px; background: #201713; color: #fff7f1; font-size: 12px; font-weight: 800; letter-spacing: 0.08em;
+  }
+  .bw-wardrobe-band {
+    padding: 28px;
+    border-radius: 30px;
+    background: radial-gradient(circle at top right, rgba(79,120,143,0.16), transparent 24%), linear-gradient(135deg, #231813 0%, #3b2921 56%, #5c463c 100%);
+    color: #fff7f1;
+  }
+  .bw-wardrobe-band .bw-wardrobe-eyebrow, .bw-wardrobe-band .bw-wardrobe-title, .bw-wardrobe-band .bw-wardrobe-copy { color: inherit; }
+  .bw-wardrobe-band .bw-wardrobe-button { background: #fff7f1; color: #201713; }
+  .bw-wardrobe-band .bw-wardrobe-button--secondary { border-color: rgba(255,247,241,0.28); background: rgba(255,247,241,0.08); color: #fff7f1; }
+  .bw-wardrobe-products { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; }
+  .bw-wardrobe-product {
+    display: grid; gap: 12px; padding: 14px; border-radius: 24px; text-decoration: none; color: inherit;
+    background: rgba(255,255,255,0.72); border: 1px solid rgba(45, 33, 27, 0.08);
+  }
+  .bw-wardrobe-product-media {
+    min-height: 240px; border-radius: 18px; overflow: hidden;
+    background: radial-gradient(circle at 20% 18%, rgba(255,255,255,0.2), transparent 24%), linear-gradient(145deg, #ddcfc2 0%, #b49682 42%, #6e5043 100%);
+  }
+  .bw-wardrobe-product-media img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .bw-wardrobe-product h3 { margin: 0; color: #201713; font-size: 18px; line-height: 1.28; }
+  .bw-wardrobe-product p { margin: 0; color: #66554c; font-size: 14px; line-height: 1.7; }
+  .bw-wardrobe-product span {
+    display: inline-flex; align-items: center; justify-content: center; width: fit-content; min-height: 40px; padding: 0 14px;
+    border-radius: 999px; background: rgba(32,23,19,0.06); color: #201713; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
+  }
+  @media (max-width: 1024px) {
+    .bw-wardrobe-spotlight, .bw-wardrobe-grid-4, .bw-wardrobe-grid-3, .bw-wardrobe-products, .bw-wardrobe-grid-2, .bw-wardrobe-compare-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .bw-wardrobe-spotlight { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 720px) {
+    .bw-wardrobe-block, .bw-wardrobe-band { padding: 22px 20px; border-radius: 24px; }
+    .bw-wardrobe-subnav { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
+    .bw-wardrobe-subnav::-webkit-scrollbar { display: none; }
+    .bw-wardrobe-chip { flex: 0 0 auto; white-space: nowrap; }
+    .bw-wardrobe-grid-4, .bw-wardrobe-grid-3, .bw-wardrobe-grid-2, .bw-wardrobe-products, .bw-wardrobe-compare-grid { grid-template-columns: 1fr; }
+    .bw-wardrobe-product-media { min-height: 220px; }
+  }
+</style>
+
+<div class="bw-wardrobe-page" data-bw-wardrobe-page data-default-variant="{{ wardrobe_variant }}">
+  <section class="bw-wardrobe-block">
+    <div class="bw-wardrobe-subnav" aria-label="Wardrobe types">
+      <a class="bw-wardrobe-chip{% if wardrobe_variant == 'all' %} is-current{% endif %}" href="{{ main_url }}">All Wardrobes</a>
+      <a class="bw-wardrobe-chip{% if wardrobe_variant == 'sliding' %} is-current{% endif %}" href="{{ sliding_url }}">Sliding</a>
+      <a class="bw-wardrobe-chip{% if wardrobe_variant == 'hinged' %} is-current{% endif %}" href="{{ hinged_url }}">Hinged</a>
+      <a class="bw-wardrobe-chip{% if wardrobe_variant == 'walk-in' %} is-current{% endif %}" href="{{ walk_in_url }}">Walk-in</a>
+      <a class="bw-wardrobe-chip" href="{{ calculator_url }}">Wardrobe Calculator</a>
+    </div>
+  </section>
+
+  <section class="bw-wardrobe-block">
+    <div class="bw-wardrobe-spotlight">
+      <div class="bw-wardrobe-spotlight-copy">
+        <span class="bw-wardrobe-pill">{{ spotlight_tag }}</span>
+        <h2 class="bw-wardrobe-title" style="margin-top:14px;">{{ spotlight_title }}</h2>
+        <p class="bw-wardrobe-copy" style="margin-top:12px;">{{ spotlight_copy }}</p>
+        <div class="bw-wardrobe-actions" style="margin-top:18px;">
+          <button class="bw-wardrobe-button" type="button" data-bw-wardrobe-estimate-open data-estimate-trigger="hero">Get Free Estimate</button>
+          <a class="bw-wardrobe-button--secondary" href="{{ calculator_url }}">Price Calculator</a>
+        </div>
+        <ul class="bw-wardrobe-list">
+          {% for point in spotlight_points %}
+            <li>{{ point }}</li>
+          {% endfor %}
+        </ul>
+      </div>
+      <div class="bw-wardrobe-visual">
+        {% assign hero_product = blank %}
+        {% if wardrobe_collection != blank %}
+          {% if wardrobe_variant == 'all' %}
+            {% assign hero_product = wardrobe_collection.products.first %}
+          {% else %}
+            {% for product in wardrobe_collection.products %}
+              {% assign title_downcase = product.title | downcase %}
+              {% if wardrobe_variant == 'walk-in' %}
+                {% if title_downcase contains 'walk in' or title_downcase contains 'walk-in' %}
+                  {% assign hero_product = product %}
+                  {% break %}
+                {% endif %}
+              {% elsif keyword != blank and title_downcase contains keyword %}
+                {% assign hero_product = product %}
+                {% break %}
+              {% endif %}
+            {% endfor %}
+            {% if hero_product == blank %}
+              {% assign hero_product = wardrobe_collection.products.first %}
+            {% endif %}
+          {% endif %}
+        {% endif %}
+        {% if hero_product and hero_product.featured_image %}
+          {{ hero_product.featured_image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '540, 720, 960, 1200, 1400', sizes: '(max-width: 1024px) 100vw, 38vw', alt: hero_product.title }}
+        {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <section class="bw-wardrobe-block">
+    <div class="bw-wardrobe-head">
+      <span class="bw-wardrobe-eyebrow">Planning guidance</span>
+      {% if wardrobe_variant == 'sliding' %}
+        <h2 class="bw-wardrobe-title">Sliding wardrobes feel premium only when clearance, tracks, and internals are planned together</h2>
+        <p class="bw-wardrobe-copy">The format solves a real bedroom problem, but it also introduces track, mirror, and access decisions that should be settled before the front elevation is approved.</p>
+      {% elsif wardrobe_variant == 'hinged' %}
+        <h2 class="bw-wardrobe-title">Hinged wardrobes work best when access, panel widths, and room clearance are resolved early</h2>
+        <p class="bw-wardrobe-copy">They are intuitive and highly practical, but the best hinged wardrobes still depend on better panel planning, better internals, and enough room in front.</p>
+      {% elsif wardrobe_variant == 'walk-in' %}
+        <h2 class="bw-wardrobe-title">Walk-in wardrobes need zoning, not just cabinetry</h2>
+        <p class="bw-wardrobe-copy">This format becomes premium when storage, dressing, mirrors, lighting, and movement are treated like one integrated room plan rather than a row of cabinets.</p>
+      {% else %}
+        <h2 class="bw-wardrobe-title">The right wardrobe starts with room-fit, not just the shutter style</h2>
+        <p class="bw-wardrobe-copy">A more substantial landing page should help buyers settle format, room clearance, storage mix, and finish direction before they are asked for a final estimate.</p>
+      {% endif %}
+    </div>
+    <div class="bw-wardrobe-grid-4">
+      {% if wardrobe_variant == 'sliding' %}
+        <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">01</span><h3>Check the bed line first</h3><p>Sliding works well when the wardrobe sits close to the bed and there is not enough room for swinging shutters.</p></article>
+        <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">02</span><h3>Plan the track and panel width</h3><p>A refined sliding wardrobe depends on smoother tracks, sensible panel proportions, and controlled shutter weight.</p></article>
+        <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">03</span><h3>Design around partial access</h3><p>Because all compartments do not open together, drawers and daily-use shelves should be grouped carefully.</p></article>
+        <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">04</span><h3>Use mirrors with restraint</h3><p>Mirror-led sliding shutters can enlarge compact bedrooms, but they should support the room composition rather than dominate it.</p></article>
+      {% elsif wardrobe_variant == 'hinged' %}
+        <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">01</span><h3>Protect the front clearance</h3><p>Hinged wardrobes feel effortless only when there is enough door swing space between the bed and the wardrobe line.</p></article>
+        <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">02</span><h3>Get the panel widths right</h3><p>Well-balanced shutters, cleaner handle placement, and a disciplined door count make the wardrobe feel more premium.</p></article>
+        <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">03</span><h3>Use full access properly</h3><p>The advantage is complete visibility, so drawers, shelves, lockable units, and hanging lengths should all be scoped upfront.</p></article>
+        <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">04</span><h3>Let hardware carry the experience</h3><p>Soft-close hinges, good handles, and tighter alignment matter as much as the carcass when the shutters are opened every day.</p></article>
+      {% elsif wardrobe_variant == 'walk-in' %}
+        <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">01</span><h3>Zone the room deliberately</h3><p>Walk-ins should separate hanging, folded storage, drawers, mirrors, and dressing rather than repeating one storage type everywhere.</p></article>
+        <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">02</span><h3>Balance open and closed storage</h3><p>Too much open shelving can feel messy, while too much closed storage makes the room feel heavy. The mix should be purposeful.</p></article>
+        <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">03</span><h3>Plan lighting and mirrors early</h3><p>Premium walk-ins feel calmer when task lighting, full-length mirrors, and dressing visibility are decided before joinery details.</p></article>
+        <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">04</span><h3>Think like a room planner</h3><p>This is closer to designing a suite environment than buying one wardrobe, so early estimate and consultation matter more.</p></article>
+      {% else %}
+        <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">01</span><h3>Start with room-fit and movement</h3><p>Bedroom width, bed placement, window lines, and circulation decide whether sliding, hinged, or walk-in is the right first direction.</p></article>
+        <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">02</span><h3>Choose the opening style first</h3><p>Customers make better decisions when the access format is locked before mirror panels, textures, or colour schemes are discussed.</p></article>
+        <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">03</span><h3>Write the storage brief early</h3><p>Long hanging, folded stacks, drawers, valuables, accessories, and loft storage should all be scoped before elevation styling begins.</p></article>
+        <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">04</span><h3>Price with intent, not guesswork</h3><p>Dimensions, material tier, shutter style, mirror use, and accessories move the estimate much more meaningfully than mood alone.</p></article>
+      {% endif %}
+    </div>
+  </section>
+
+  {% if wardrobe_variant == 'all' %}
+    <section class="bw-wardrobe-block">
+      <div class="bw-wardrobe-head">
+        <span class="bw-wardrobe-eyebrow">Wardrobe type comparison</span>
+        <h2 class="bw-wardrobe-title">Choose the wardrobe format before you obsess over finishes</h2>
+        <p class="bw-wardrobe-copy">Sliding, hinged, and walk-in each solve a different room problem. The landing page should make that difference obvious for premium Indian-home buyers.</p>
+      </div>
+      <div class="bw-wardrobe-compare-grid">
+        <article class="bw-wardrobe-compare-card">
+          <span class="bw-wardrobe-card-label">Compact + contemporary</span>
+          <h3>Sliding wardrobes</h3>
+          <p>Best when the room needs front clearance savings, a cleaner visual line, and a more contemporary bedroom language.</p>
+          <div class="bw-wardrobe-compare-meta">
+            <p><strong>Best for:</strong> tighter master bedrooms, mirror-led elevations, cleaner movement.</p>
+            <p><strong>Watch for:</strong> track quality, panel proportions, and the fact that both sides do not open together.</p>
+          </div>
+          <a class="bw-wardrobe-compare-link" href="{{ sliding_url }}">Explore Sliding</a>
+        </article>
+        <article class="bw-wardrobe-compare-card">
+          <span class="bw-wardrobe-card-label">Full access + everyday ease</span>
+          <h3>Hinged wardrobes</h3>
+          <p>The most intuitive option when the room can spare door swing space and the buyer wants complete internal visibility.</p>
+          <div class="bw-wardrobe-compare-meta">
+            <p><strong>Best for:</strong> family bedrooms, classic layouts, easy retrieval, segmented internals.</p>
+            <p><strong>Watch for:</strong> shutter swing clearance, handle projection, and balanced panel sizing.</p>
+          </div>
+          <a class="bw-wardrobe-compare-link" href="{{ hinged_url }}">Explore Hinged</a>
+        </article>
+        <article class="bw-wardrobe-compare-card">
+          <span class="bw-wardrobe-card-label">Suite-scale + premium zoning</span>
+          <h3>Walk-in wardrobes</h3>
+          <p>Less about a cabinet line and more about creating a dressing and storage environment with better zoning and presence.</p>
+          <div class="bw-wardrobe-compare-meta">
+            <p><strong>Best for:</strong> larger master suites, dressing-led routines, higher-end storage planning.</p>
+            <p><strong>Watch for:</strong> space discipline, open versus closed storage balance, mirrors, and lighting.</p>
+          </div>
+          <a class="bw-wardrobe-compare-link" href="{{ walk_in_url }}">Explore Walk-in</a>
+        </article>
+      </div>
+    </section>
+  {% endif %}
+
+  <section class="bw-wardrobe-block">
+    <div class="bw-wardrobe-head">
+      <span class="bw-wardrobe-eyebrow">How it works</span>
+      {% if wardrobe_variant == 'sliding' %}
+        <h2 class="bw-wardrobe-title">From room-clearance check to a sliding-wardrobe estimate</h2>
+        <p class="bw-wardrobe-copy">The right flow is room planning first, then panel and track decisions, then estimate direction, and finally a more detailed discussion with the team.</p>
+      {% elsif wardrobe_variant == 'hinged' %}
+        <h2 class="bw-wardrobe-title">From access planning to a hinged-wardrobe estimate</h2>
+        <p class="bw-wardrobe-copy">A stronger hinged-wardrobe journey resolves door swing, panel count, internals, and hardware quality before the estimate is treated seriously.</p>
+      {% elsif wardrobe_variant == 'walk-in' %}
+        <h2 class="bw-wardrobe-title">From suite zoning to a walk-in wardrobe brief</h2>
+        <p class="bw-wardrobe-copy">Walk-ins benefit from a more consultative sequence because they involve room planning, storage zoning, mirrors, lighting, and not just carcass size.</p>
+      {% else %}
+        <h2 class="bw-wardrobe-title">How the Bluewud wardrobe journey should flow</h2>
+        <p class="bw-wardrobe-copy">A more informative wardrobe landing page should compare formats, define internals, explain build decisions, and only then invite the estimate conversation.</p>
+      {% endif %}
+    </div>
+    <div class="bw-wardrobe-grid-4">
+      {% if wardrobe_variant == 'sliding' %}
+        <article class="bw-wardrobe-process"><span class="bw-wardrobe-step">01</span><h3>Check room clearance</h3><p>Confirm that sliding is solving a real swing-space problem rather than simply feeling trendy.</p></article>
+        <article class="bw-wardrobe-process"><span class="bw-wardrobe-step">02</span><h3>Plan panels and mirrors</h3><p>Set shutter proportions, mirror use, and finish direction before the wardrobe starts to look overworked.</p></article>
+        <article class="bw-wardrobe-process"><span class="bw-wardrobe-step">03</span><h3>Map the internal zones</h3><p>Place daily-use shelves, drawers, and hanging lengths where partial door access still feels convenient.</p></article>
+        <article class="bw-wardrobe-process"><span class="bw-wardrobe-step">04</span><h3>Use the estimate flow</h3><p>Once the size, material tier, and shutter intent feel real, the calculator and consultation become more useful.</p></article>
+      {% elsif wardrobe_variant == 'hinged' %}
+        <article class="bw-wardrobe-process"><span class="bw-wardrobe-step">01</span><h3>Check swing space</h3><p>Confirm the room can support open shutters comfortably around the bed and circulation zone.</p></article>
+        <article class="bw-wardrobe-process"><span class="bw-wardrobe-step">02</span><h3>Set the door count</h3><p>Panel widths, handle placement, and the rhythm of the elevation should all be decided before detailing begins.</p></article>
+        <article class="bw-wardrobe-process"><span class="bw-wardrobe-step">03</span><h3>Scope the internals properly</h3><p>Use the full-access advantage to plan better hanging, folded storage, drawers, and lockable units.</p></article>
+        <article class="bw-wardrobe-process"><span class="bw-wardrobe-step">04</span><h3>Estimate with the right hardware level</h3><p>Hinges, handles, and shutter finish can shift both feel and budget more than buyers expect.</p></article>
+      {% elsif wardrobe_variant == 'walk-in' %}
+        <article class="bw-wardrobe-process"><span class="bw-wardrobe-step">01</span><h3>Define the room zones</h3><p>Separate dressing, open display, folded storage, and heavier hanging before discussing finishes.</p></article>
+        <article class="bw-wardrobe-process"><span class="bw-wardrobe-step">02</span><h3>Balance open and closed storage</h3><p>Decide what should stay visible, what should stay concealed, and how the room should feel every morning.</p></article>
+        <article class="bw-wardrobe-process"><span class="bw-wardrobe-step">03</span><h3>Plan mirrors and lighting</h3><p>Good visibility and calmer luxury come from lighting and reflective surfaces being integrated early.</p></article>
+        <article class="bw-wardrobe-process"><span class="bw-wardrobe-step">04</span><h3>Refine through consultation</h3><p>Walk-ins need a more design-led conversation before the estimate can become specific.</p></article>
+      {% else %}
+        <article class="bw-wardrobe-process"><span class="bw-wardrobe-step">01</span><h3>Compare the formats first</h3><p>Start by understanding where sliding, hinged, and walk-in actually make sense for the bedroom.</p></article>
+        <article class="bw-wardrobe-process"><span class="bw-wardrobe-step">02</span><h3>Write the internal brief</h3><p>Hanging lengths, drawers, shelves, trays, valuables, and lofts should be mapped before styling decisions begin.</p></article>
+        <article class="bw-wardrobe-process"><span class="bw-wardrobe-step">03</span><h3>Align materials and finishes</h3><p>Carcass material, shutter finish, mirror use, and hardware level shape both budget and the final premium feel.</p></article>
+        <article class="bw-wardrobe-process"><span class="bw-wardrobe-step">04</span><h3>Move into estimate and contact</h3><p>Once the direction feels real, the calculator and Bluewud consultation become much more productive.</p></article>
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="bw-wardrobe-block">
+    <div class="bw-wardrobe-head">
+      <span class="bw-wardrobe-eyebrow">Materials and detailing</span>
+      {% if wardrobe_variant == 'walk-in' %}
+        <h2 class="bw-wardrobe-title">Materials, lighting, and detailing should make the walk-in feel calm, not crowded</h2>
+        <p class="bw-wardrobe-copy">Premium walk-ins land better when the carcass, visible finishes, open shelves, lighting, and mirrors are all treated like part of one room palette.</p>
+      {% else %}
+        <h2 class="bw-wardrobe-title">Materials, shutters, and detailing that shape the final wardrobe</h2>
+        <p class="bw-wardrobe-copy">The premium feel comes from the carcass, the shutter system, the hardware quality, and the restraint of the finish palette working together.</p>
+      {% endif %}
+    </div>
+    <div class="bw-wardrobe-grid-3">
+      <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">Build</span><h3>{% if wardrobe_variant == 'sliding' %}Track-ready carcass planning{% elsif wardrobe_variant == 'hinged' %}Door-ready carcass planning{% elsif wardrobe_variant == 'walk-in' %}Room-scale carcass planning{% else %}Carcass and shutter systems{% endif %}</h3><p>{% if wardrobe_variant == 'walk-in' %}Walk-ins need the structure to feel architectural, not pieced together, so module spacing and visible alignment matter more.{% else %}The base structure needs to support cleaner alignment, better longevity, and the chosen shutter system without feeling overbuilt or flimsy.{% endif %}</p></article>
+      <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">Material</span><h3>Plywood versus engineered wood</h3><p>Engineered wood keeps the budget disciplined, while plywood-led upgrades usually suit buyers expecting a more premium long-term build.</p></article>
+      <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">Hardware</span><h3>{% if wardrobe_variant == 'sliding' %}Tracks, rollers, and channel feel{% elsif wardrobe_variant == 'hinged' %}Hinges, soft close, and handle feel{% elsif wardrobe_variant == 'walk-in' %}Open shelving rhythm and hardware restraint{% else %}Opening hardware and daily feel{% endif %}</h3><p>{% if wardrobe_variant == 'sliding' %}Sliding wardrobes reveal poor hardware quickly, so track smoothness and shutter movement should never feel secondary.{% elsif wardrobe_variant == 'hinged' %}Hinged wardrobes are touched constantly, so hinge quality and handle ergonomics become part of the premium experience.{% elsif wardrobe_variant == 'walk-in' %}Walk-ins benefit from quieter detailing so shelves, drawers, and visible edges feel deliberate instead of visually noisy.{% else %}The opening system is what the user feels every day, so hardware quality should be scoped as carefully as the finish.{% endif %}</p></article>
+      <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">Shutters</span><h3>Mirror, glass, and feature panels</h3><p>Used well, reflective and glass-led shutters enlarge the room and sharpen the look. Used badly, they quickly make the elevation feel busy.</p></article>
+      <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">Finish</span><h3>Laminate, acrylic, matte, and wood tones</h3><p>Choose the finish for maintenance, light reflection, and bedroom mood, not just for the showroom effect of one sample board.</p></article>
+      <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">Details</span><h3>Profiles, handles, lighting, and edge discipline</h3><p>The difference between ordinary and premium often sits in profile thickness, handle restraint, internal lighting, and sharper alignment.</p></article>
+    </div>
+  </section>
+
+  <section class="bw-wardrobe-block">
+    <div class="bw-wardrobe-head">
+      <span class="bw-wardrobe-eyebrow">Internals and utility</span>
+      <h2 class="bw-wardrobe-title">What should be planned inside the wardrobe before the outside is approved</h2>
+      <p class="bw-wardrobe-copy">A wardrobe is won internally before it becomes visually impressive. The better the inside is planned, the less quickly the bedroom falls back into clutter.</p>
+    </div>
+    <div class="bw-wardrobe-grid-3">
+      <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">Hanging</span><h3>Long hanging and short hanging</h3><p>Use separate hanging lengths for sarees, dresses, shirts, jackets, and daily office wear so valuable height is not wasted.</p></article>
+      <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">Shelves</span><h3>Folded stacks that stay usable</h3><p>Shelf widths and spacing should support real folded habits rather than turning every shelf into one deep, unreachable pile.</p></article>
+      <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">Drawers</span><h3>Drawer banks and trays for small essentials</h3><p>Jewellery, watches, accessories, undergarments, grooming items, and smaller valuables usually need better drawer planning than buyers expect.</p></article>
+      <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">Seasonal</span><h3>Lofts and upper storage for low-frequency items</h3><p>Suitcases, winter layers, extra bedding, and festive pieces belong higher up so the daily-use sections stay calmer.</p></article>
+      <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">Security</span><h3>Safe zones and private compartments</h3><p>Lockboxes, hidden drawers, and restricted compartments should be scoped early rather than awkwardly inserted at the end.</p></article>
+      <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">Accessories</span><h3>Trouser racks, pull-outs, mirrors, and convenience add-ons</h3><p>Accessories can meaningfully improve daily use, but they should support the lifestyle rather than inflate the project without purpose.</p></article>
+    </div>
+  </section>
+
+  <section class="bw-wardrobe-block">
+    <div class="bw-wardrobe-head">
+      <span class="bw-wardrobe-eyebrow">Estimate guidance</span>
+      <h2 class="bw-wardrobe-title">What changes the wardrobe estimate the most</h2>
+      <p class="bw-wardrobe-copy">A stronger landing page should explain what moves the number before the buyer reaches out, so the estimate feels informed instead of random.</p>
+    </div>
+    <div class="bw-wardrobe-grid-4">
+      <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">Size</span><h3>Width, height, and loft scope</h3><p>The footprint of the wardrobe, the ceiling intent, and the loft strategy shape both material volume and installation complexity.</p></article>
+      <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">Tier</span><h3>Carcass material and build level</h3><p>Material direction is one of the clearest budget shifts, especially when buyers move from base engineered systems toward premium builds.</p></article>
+      <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">Front</span><h3>Shutter style, mirrors, and finish mix</h3><p>Mirror use, glass, matte shutters, acrylic faces, and feature panels all affect the number and the perceived luxury of the wardrobe.</p></article>
+      <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">Add-ons</span><h3>Accessories, lighting, and site conditions</h3><p>Drawer systems, trays, speciality hardware, lighting, and trickier site constraints often explain why two similar wardrobes price differently.</p></article>
+    </div>
+  </section>
+
+  <section class="bw-wardrobe-band">
+    <div class="bw-wardrobe-head">
+      <span class="bw-wardrobe-eyebrow">Move from inspiration to planning</span>
+      {% if wardrobe_variant == 'all' %}
+        <h2 class="bw-wardrobe-title">Narrow the format, then ask for the estimate</h2>
+        <p class="bw-wardrobe-copy">The strongest next step is a directional price path once the wardrobe type, internal brief, and finish direction feel clear enough to discuss seriously.</p>
+      {% else %}
+        <h2 class="bw-wardrobe-title">Turn this wardrobe direction into a real estimate</h2>
+        <p class="bw-wardrobe-copy">Once the room fit, internal intent, and finish direction feel right, the calculator and estimate flow can move the project forward with much less confusion.</p>
+      {% endif %}
+    </div>
+    <div class="bw-wardrobe-actions">
+      <a class="bw-wardrobe-button" href="{{ calculator_url }}">Open Wardrobe Calculator</a>
+      <button class="bw-wardrobe-button--secondary" type="button" data-bw-wardrobe-estimate-open data-estimate-trigger="band">Get Free Estimate</button>
+      <a class="bw-wardrobe-button--secondary" href="{{ contact_url }}">Talk To Bluewud</a>
+    </div>
+  </section>
+
+  <section class="bw-wardrobe-block">
+    <div class="bw-wardrobe-head">
+      <span class="bw-wardrobe-eyebrow">Live wardrobe directions</span>
+      {% if wardrobe_variant == 'all' %}
+        <h2 class="bw-wardrobe-title">Browse live wardrobe directions after the planning brief is clear</h2>
+        <p class="bw-wardrobe-copy">This section keeps the landing page tied to the real Bluewud catalog, so the guidance above flows into actual wardrobe designs that can be shortlisted and discussed.</p>
+      {% elsif wardrobe_variant == 'sliding' %}
+        <h2 class="bw-wardrobe-title">Browse live sliding wardrobe directions from the catalog</h2>
+        <p class="bw-wardrobe-copy">Use the store range to compare front treatments, mirror use, tone palettes, and practical sliding layouts before asking for an estimate.</p>
+      {% elsif wardrobe_variant == 'hinged' %}
+        <h2 class="bw-wardrobe-title">Browse live hinged wardrobe directions from the catalog</h2>
+        <p class="bw-wardrobe-copy">These product references help narrow shutter style, loft treatment, and internal rhythm so the estimate conversation starts with a stronger brief.</p>
+      {% else %}
+        <h2 class="bw-wardrobe-title">Browse live walk-in wardrobe directions from the catalog</h2>
+        <p class="bw-wardrobe-copy">Review wardrobe rooms, open sections, and premium detailing cues here before locking in the exact walk-in scope with Bluewud.</p>
+      {% endif %}
+    </div>
+    <div class="bw-wardrobe-products">
+      {% assign shown = 0 %}
+      {% if wardrobe_collection != blank %}
+        {% for product in wardrobe_collection.products %}
+          {% assign include_product = false %}
+          {% assign product_title_downcase = product.title | downcase %}
+          {% if wardrobe_variant == 'all' %}
+            {% assign include_product = true %}
+          {% elsif wardrobe_variant == 'walk-in' %}
+            {% if product_title_downcase contains 'walk in' or product_title_downcase contains 'walk-in' %}
+              {% assign include_product = true %}
+            {% endif %}
+          {% elsif keyword != blank and product_title_downcase contains keyword %}
+            {% assign include_product = true %}
+          {% endif %}
+          {% if include_product %}
+            <a class="bw-wardrobe-product" href="{{ product.url }}">
+              <div class="bw-wardrobe-product-media">
+                {% if product.featured_image %}
+                  {{ product.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '360, 540, 720, 900', sizes: '(max-width: 720px) 100vw, 33vw', alt: product.title }}
+                {% endif %}
+              </div>
+              <div>
+                <h3>{{ product.title }}</h3>
+                <p>
+                  {% if product.metafields.my_fields.product_subtitle != blank %}
+                    {{ product.metafields.my_fields.product_subtitle }}
+                  {% else %}
+                    Premium wardrobe storage with cleaner organization and better bedroom rhythm.
+                  {% endif %}
+                </p>
+              </div>
+              <span>View Design</span>
+            </a>
+            {% assign shown = shown | plus: 1 %}
+          {% endif %}
+          {% if shown == 6 %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+      {% if shown == 0 %}
+        <article class="bw-wardrobe-card"><h3>Sliding Wardrobes</h3><p>For compact bedrooms and cleaner front clearance.</p></article>
+        <article class="bw-wardrobe-card"><h3>Hinged Wardrobes</h3><p>For complete access and more classic everyday usability.</p></article>
+        <article class="bw-wardrobe-card"><h3>Walk-in Wardrobes</h3><p>For larger premium bedrooms and suite-style organization.</p></article>
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="bw-wardrobe-block">
+    <div class="bw-wardrobe-head">
+      <span class="bw-wardrobe-eyebrow">Questions to settle early</span>
+      {% if wardrobe_variant == 'all' %}
+        <h2 class="bw-wardrobe-title">The wardrobe questions worth answering before you ask for pricing</h2>
+        <p class="bw-wardrobe-copy">A stronger brief almost always produces a better design conversation. These are the practical questions premium buyers usually need to settle early.</p>
+      {% elsif wardrobe_variant == 'sliding' %}
+        <h2 class="bw-wardrobe-title">Sliding wardrobe questions that matter before design freeze</h2>
+        <p class="bw-wardrobe-copy">Sliding wardrobes look minimal when the details are planned properly. These questions help avoid the common layout and usability misses.</p>
+      {% elsif wardrobe_variant == 'hinged' %}
+        <h2 class="bw-wardrobe-title">Hinged wardrobe questions that shape the final outcome</h2>
+        <p class="bw-wardrobe-copy">Hinged wardrobes feel effortless when the door swing, internal access, and finish detailing are decided early rather than corrected later.</p>
+      {% else %}
+        <h2 class="bw-wardrobe-title">Walk-in wardrobe questions to settle before moving into execution</h2>
+        <p class="bw-wardrobe-copy">Walk-in spaces need stronger scope control than standard wardrobes. These answers help turn aspiration into a workable premium brief.</p>
+      {% endif %}
+    </div>
+    <div class="bw-wardrobe-grid-2">
+      {% if wardrobe_variant == 'all' %}
+        <article class="bw-wardrobe-faq"><h3>How do I decide between sliding, hinged, and walk-in?</h3><p>Start with the room footprint and how you move through the bedroom daily. Sliding is efficient in tighter rooms, hinged gives full visual access, and walk-in only makes sense when the bedroom can support a dedicated dressing zone.</p></article>
+        <article class="bw-wardrobe-faq"><h3>What usually changes wardrobe pricing the most?</h3><p>Overall dimensions, carcass and shutter material, finish category, mirror area, internal accessories, drawer count, and installation complexity move the estimate most sharply.</p></article>
+        <article class="bw-wardrobe-faq"><h3>Should internals be planned before the look is approved?</h3><p>Yes. Hanging lengths, folded zones, valuables, bags, seasonal storage, laundry, and mirror placement should be discussed before the elevation is finalized, or the wardrobe risks looking premium without working properly.</p></article>
+        <article class="bw-wardrobe-faq"><h3>What details should be ready before I speak to Bluewud?</h3><p>Bring rough room width and height, a sense of wardrobe type, preferred finish direction, and a realistic list of what needs to be stored. That shortens the path to a useful estimate.</p></article>
+        <article class="bw-wardrobe-faq"><h3>Can one wardrobe include lofts, dressers, or open display zones?</h3><p>Yes. Most premium wardrobes need a mix of closed storage, drawers, accessories, mirrors, and sometimes a small open feature zone. The key is balancing utility with a cleaner front composition.</p></article>
+        <article class="bw-wardrobe-faq"><h3>What is the cleanest next step from this page?</h3><p>Use the wardrobe calculator for directional pricing, shortlist the nearest layout direction, and then open the estimate form with your room brief while the requirements are still clear.</p></article>
+      {% elsif wardrobe_variant == 'sliding' %}
+        <article class="bw-wardrobe-faq"><h3>When is a sliding wardrobe the better choice?</h3><p>Sliding works best when bedroom clearance is tight, the front elevation needs to stay visually calm, or a broader uninterrupted wardrobe face suits the room better than opening shutters.</p></article>
+        <article class="bw-wardrobe-faq"><h3>Do sliding wardrobes reduce usable storage?</h3><p>Not necessarily, but they need smarter internal zoning because one bay is always partially covered. The internal plan matters more than the elevation.</p></article>
+        <article class="bw-wardrobe-faq"><h3>What finish decisions matter most on sliding shutters?</h3><p>Mirror ratio, panel segmentation, track quality, handle profile, and whether the shutter language feels warm, minimal, or more decorative will define the final look.</p></article>
+        <article class="bw-wardrobe-faq"><h3>Can a sliding wardrobe still feel premium in smaller bedrooms?</h3><p>Yes. Clean paneling, well-balanced mirrors, refined laminate or glass choices, and disciplined internal planning often make sliding wardrobes feel more premium in compact rooms than bulkier hinged options.</p></article>
+        <article class="bw-wardrobe-faq"><h3>What should I prepare before asking for a sliding estimate?</h3><p>Keep the wall width, floor-to-ceiling height, preferred shutter look, and internal storage priorities ready so the quote direction matches the room from the start.</p></article>
+        <article class="bw-wardrobe-faq"><h3>What is the fastest next step from here?</h3><p>Review the calculator for directional pricing, shortlist the closest sliding design cue from the product grid, and then open the estimate form with that reference in mind.</p></article>
+      {% elsif wardrobe_variant == 'hinged' %}
+        <article class="bw-wardrobe-faq"><h3>Why do many buyers still prefer hinged wardrobes?</h3><p>Hinged wardrobes offer full-bay visibility, easy internal access, and more flexibility for drawers, mirrors, and loft treatment. They remain the most familiar and forgiving wardrobe format.</p></article>
+        <article class="bw-wardrobe-faq"><h3>What needs extra care in hinged wardrobe planning?</h3><p>Door swing clearance, handle choice, shutter weight, loft alignment, and how the wardrobe opens near beds or side tables should be settled before design approval.</p></article>
+        <article class="bw-wardrobe-faq"><h3>How do I make a hinged wardrobe look more premium?</h3><p>Cleaner proportions, better shutter detailing, premium laminates or acrylics, integrated mirrors, sharper hardware, and a composed internal layout usually matter more than adding visual noise.</p></article>
+        <article class="bw-wardrobe-faq"><h3>Are hinged wardrobes better for internal organization?</h3><p>Often yes, because every bay becomes fully visible at once. That makes it easier to mix hanging, drawers, shelves, accessories, and loft storage without compromise.</p></article>
+        <article class="bw-wardrobe-faq"><h3>What should be ready before asking for a hinged estimate?</h3><p>Keep the rough wall dimensions, desired door look, loft requirement, internal storage list, and any mirror or dresser add-ons ready before opening the estimate flow.</p></article>
+        <article class="bw-wardrobe-faq"><h3>What is the next best step from this page?</h3><p>Use the calculator to anchor the budget, review live hinged references below, and then raise an estimate request once the storage brief feels complete enough.</p></article>
+      {% else %}
+        <article class="bw-wardrobe-faq"><h3>When does a walk-in wardrobe make practical sense?</h3><p>A walk-in is justified when the bedroom can support a dedicated dressing zone with comfortable circulation, layered storage, and enough usable depth to avoid becoming just an expensive passage.</p></article>
+        <article class="bw-wardrobe-faq"><h3>What usually gets missed in early walk-in planning?</h3><p>Lighting, mirror placement, open versus closed storage balance, island or dresser feasibility, and how daily categories are zoned across the room are often underplanned at the start.</p></article>
+        <article class="bw-wardrobe-faq"><h3>Should a walk-in be fully open or partially shuttered?</h3><p>Most premium walk-ins benefit from a controlled mix. Open sections keep the room lighter, while shuttered storage protects folded clothes, luggage, valuables, and less display-worthy items.</p></article>
+        <article class="bw-wardrobe-faq"><h3>What drives the budget on a walk-in wardrobe most?</h3><p>Total room coverage, material quality, glass or mirror usage, drawers and accessories, lighting integration, and whether the space includes vanity or dresser elements all affect pricing.</p></article>
+        <article class="bw-wardrobe-faq"><h3>What should I gather before asking for a walk-in estimate?</h3><p>Share the room dimensions, any rough zoning idea, the balance of open and closed storage you prefer, and whether the space must include mirrors, seating, or dresser functionality.</p></article>
+        <article class="bw-wardrobe-faq"><h3>How should I move forward from here?</h3><p>Use the pricing path for directional clarity, review live walk-in references below, and then open the estimate flow with a room brief rather than only a style reference.</p></article>
+      {% endif %}
+    </div>
+  </section>
+
+  <section class="bw-wardrobe-band">
+    <div class="bw-wardrobe-head">
+      <span class="bw-wardrobe-eyebrow">Need a real conversation?</span>
+      {% if wardrobe_variant == 'all' %}
+        <h2 class="bw-wardrobe-title">Start the Bluewud estimate once the wardrobe direction feels clear enough</h2>
+        <p class="bw-wardrobe-copy">You do not need a finished design before starting the conversation. A rough room brief, a likely wardrobe format, and the storage priorities above are enough to move into the estimate flow properly.</p>
+      {% elsif wardrobe_variant == 'sliding' %}
+        <h2 class="bw-wardrobe-title">Move the sliding wardrobe brief into a real Bluewud estimate</h2>
+        <p class="bw-wardrobe-copy">Once the room dimensions, shutter look, and internal intent feel mostly locked, the estimate flow becomes the fastest way to turn the direction into a live project conversation.</p>
+      {% elsif wardrobe_variant == 'hinged' %}
+        <h2 class="bw-wardrobe-title">Move the hinged wardrobe brief into a real Bluewud estimate</h2>
+        <p class="bw-wardrobe-copy">If the door style, loft need, and storage mix are broadly clear, the estimate flow is the right next step instead of continuing to browse without a room-led brief.</p>
+      {% else %}
+        <h2 class="bw-wardrobe-title">Move the walk-in wardrobe brief into a real Bluewud estimate</h2>
+        <p class="bw-wardrobe-copy">Walk-in projects benefit from an earlier design conversation. Once the room scope and zoning idea are in place, start the estimate so the concept can be grounded in execution.</p>
+      {% endif %}
+    </div>
+    <div class="bw-wardrobe-actions">
+      <button class="bw-wardrobe-button" type="button" data-bw-wardrobe-estimate-open data-estimate-trigger="cta">Get Free Estimate</button>
+      <a class="bw-wardrobe-button--secondary" href="{{ phone_url }}">Call Bluewud</a>
+      <a class="bw-wardrobe-button--secondary" href="{{ calculator_url }}">Price It First</a>
+    </div>
+  </section>
+</div>
+
+{% render 'modular-estimate-popup', modal_id: 'bw-wardrobe-estimate-popup', modal_title: 'Get a wardrobe estimate', context_label: 'Bluewud modular wardrobe' %}
+
+<script>
+  (function () {
+    var root = document.querySelector('[data-bw-wardrobe-page]');
+    var modal = document.getElementById('bw-wardrobe-estimate-popup');
+    if (!root || !modal) return;
+
+    var summaryText = modal.querySelector('[data-bw-estimate-summary-text]');
+    var summaryInput = modal.querySelector('[data-bw-estimate-summary-input]');
+    var contextInput = modal.querySelector('[data-bw-estimate-context-input]');
+
+    function closeModal() {
+      modal.classList.remove('is-open');
+      document.body.classList.remove('bw-header-drawer-open');
+    }
+
+    function activeVariant() {
+      var currentChip = root.querySelector('.bw-wardrobe-chip.is-current');
+      return currentChip ? currentChip.textContent.trim() : 'All Wardrobes';
+    }
+
+    function openModal(trigger) {
+      var summary = ['Project: Modular Wardrobe', 'Selected type: ' + activeVariant()];
+      if (trigger) summary.push('Source: ' + trigger);
+      summary = summary.join(' | ');
+      summaryText.textContent = summary;
+      summaryInput.value = summary;
+      contextInput.value = 'Bluewud modular wardrobe';
+      modal.classList.add('is-open');
+      document.body.classList.add('bw-header-drawer-open');
+    }
+
+    root.querySelectorAll('[data-bw-wardrobe-estimate-open]').forEach(function (button) {
+      button.addEventListener('click', function () {
+        openModal(button.getAttribute('data-estimate-trigger'));
+      });
+    });
+
+    modal.querySelectorAll('[data-bw-estimate-close]').forEach(function (control) {
+      control.addEventListener('click', closeModal);
+    });
+  })();
+</script>

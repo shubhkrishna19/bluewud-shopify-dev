@@ -1,591 +1,773 @@
 {% liquid
-  assign hero_eyebrow = section.settings.eyebrow | default: 'Premium furniture for considered homes'
-  assign hero_title = section.settings.title | default: 'Furniture that makes a room feel chosen.'
-  assign hero_description = section.settings.description | default: 'Discover thoughtfully designed furniture for modern Indian homes, crafted to bring warmth, function, and a refined finish to every room.'
-  assign primary_label = section.settings.primary_label | default: 'Shop Bestsellers'
-  assign primary_url = section.settings.primary_url
-  assign secondary_label = section.settings.secondary_label | default: 'Explore Living Room'
-  assign secondary_url = section.settings.secondary_url
-  assign badge_text = section.settings.badge_text | default: 'Most loved by modern Indian homes'
-  assign hero_image = section.settings.hero_image
+  assign default_eyebrows = 'Living Room|Bedroom|Entertainment|Study & Office|Offers' | split: '|'
+  assign default_headings = 'Furniture that lets your|Give your|Uplift your binge|Smartly designed|Make your first order' | split: '|'
+  assign default_accents = 'space breathe|bedroom|watching experience|WFH furniture|feel more rewarding' | split: '|'
+  assign default_tails = '|a new look|||'
+  assign default_copies = 'Explore room-defining TV units, shelves, and furniture designed to make the whole space feel lighter and more intentional.|Bedroom storage and bed solutions curated to make everyday living look calmer, cleaner, and more put together.|Discover TV units and entertainment furniture that tidy the setup while keeping the room warm and elevated.|Shop practical study tables, bookshelves, and WFH-ready furniture for focused corners that still feel premium.|Browse the latest Bluewud offers, easy EMI options, and high-value picks across living, bedroom, and work-from-home categories.' | split: '|'
+  assign default_handles = 'living-room|bed-room|tv-unit-furniture|study-tables|new_launches' | split: '|'
+  assign default_urls = '/collections/living-room|/collections/bed-room|/collections/tv-unit-furniture|/collections/study-tables|/collections/new_launches' | split: '|'
+  assign default_button_labels = 'Explore living room|Shop bedroom|Shop TV units|Shop WFH furniture|Explore offers' | split: '|'
+  assign default_positions = 'right|left|right|right|center' | split: '|'
+  assign has_configured_slides = false
 
-  if primary_url == blank
-    assign primary_url = '/collections/hp-bluewuds-bestseller'
-  endif
-
-  if secondary_url == blank
-    assign secondary_url = '/collections/living-room'
-  endif
-
-  assign hero_collection = collections['living-room']
-  assign hero_featured_collection = collections['hp-bluewuds-bestseller']
-  assign hero_featured_product = blank
-  assign hero_fallback_image = blank
-  assign hero_featured_copy = 'Bring together warmth, utility, and timeless silhouettes for spaces that feel complete.'
-  assign hero_featured_subtitle = blank
-  assign hero_featured_type = blank
-  assign hero_collection_name = blank
-
-  if hero_collection == blank
-    assign hero_collection = hero_featured_collection
-  endif
-
-  if hero_featured_collection != blank and hero_featured_collection.products.size > 0
-    assign hero_featured_product = hero_featured_collection.products.first
-  elsif hero_collection != blank and hero_collection.products.size > 0
-    assign hero_featured_product = hero_collection.products.first
-  endif
-
-  if hero_collection != blank and hero_collection.image != blank
-    assign hero_fallback_image = hero_collection.image
-  elsif hero_featured_product != blank and hero_featured_product.featured_image != blank
-    assign hero_fallback_image = hero_featured_product.featured_image
-  endif
-
-  if hero_featured_product != blank
-    assign hero_featured_subtitle = hero_featured_product.metafields.my_fields.product_subtitle | strip_html | strip_newlines
-    assign hero_featured_type = hero_featured_product.type | downcase
-
-    if hero_featured_subtitle != blank
-      assign hero_featured_copy = hero_featured_subtitle
-    elsif hero_featured_product.type != blank and hero_collection != blank
-      assign hero_collection_name = hero_collection.title | downcase
-      assign hero_featured_copy = 'A refined ' | append: hero_featured_type | append: ' chosen to bring warmth, function, and a more finished feel to your ' | append: hero_collection_name | append: '.'
-    elsif hero_featured_product.type != blank
-      assign hero_featured_copy = 'A considered ' | append: hero_featured_type | append: ' designed to make the room feel complete, useful, and easy to live with.'
-    else
-      assign hero_featured_copy = 'A best-selling Bluewud pick chosen for cleaner lines, dependable comfort, and a home that feels thoughtfully put together.'
-    endif
+  if section.blocks.size > 0
+    for block in section.blocks
+      if block.settings.heading != blank or block.settings.slide_image != blank or block.settings.collection_handle != blank
+        assign has_configured_slides = true
+        break
+      endif
+    endfor
   endif
 %}
 
 <style>
   .bw-hero {
-    background:
-      radial-gradient(circle at top left, rgba(166, 106, 67, 0.18), transparent 36%),
-      linear-gradient(180deg, #f7f1eb 0%, #f3ece4 100%);
-    padding: 28px 24px 56px;
+    padding: 22px 24px 42px;
+    background: linear-gradient(180deg, #f7f1eb 0%, #faf6f1 100%);
   }
 
-  .bw-hero__frame {
+  .bw-hero__shell {
     max-width: 1440px;
     margin: 0 auto;
-    display: grid;
-    grid-template-columns: minmax(0, 1.02fr) minmax(0, 1fr);
-    gap: 28px;
-    align-items: stretch;
   }
 
-  .bw-hero__content,
-  .bw-hero__visual {
-    border-radius: 32px;
-    overflow: hidden;
-  }
-
-  .bw-hero__content {
-    background: rgba(255, 251, 247, 0.9);
-    border: 1px solid rgba(45, 33, 27, 0.08);
-    padding: 54px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 28px;
-    box-shadow: 0 26px 80px rgba(55, 39, 29, 0.08);
-  }
-
-  .bw-hero__eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    color: #7d5e4b;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  .bw-hero__eyebrow::before {
-    content: '';
-    width: 34px;
-    height: 1px;
-    background: rgba(125, 94, 75, 0.45);
-  }
-
-  .bw-hero__title {
-    color: #1f1611;
-    font-size: clamp(38px, 6vw, 68px);
-    line-height: 1.02;
-    letter-spacing: -0.04em;
-    margin: 0;
-    max-width: 10ch;
-  }
-
-  .bw-hero__description {
-    color: #5a4a41;
-    font-size: 17px;
-    line-height: 1.8;
-    margin: 0;
-    max-width: 60ch;
-  }
-
-  .bw-hero__actions {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-  }
-
-  .bw-hero__primary,
-  .bw-hero__secondary {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 52px;
-    padding: 0 24px;
-    border-radius: 999px;
-    font-size: 13px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .bw-hero__primary {
-    background: #201713;
-    color: #f8f1eb;
-    box-shadow: 0 18px 36px rgba(32, 23, 19, 0.18);
-  }
-
-  .bw-hero__secondary {
-    background: transparent;
-    color: #201713;
-    border: 1px solid rgba(32, 23, 19, 0.18);
-  }
-
-  .bw-hero__proofs,
-  .bw-hero__stats {
-    display: grid;
-    gap: 14px;
-  }
-
-  .bw-hero__proofs {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .bw-hero__proof {
-    padding: 14px 16px;
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.72);
-    border: 1px solid rgba(45, 33, 27, 0.08);
-    color: #392a22;
-    font-size: 13px;
-    font-weight: 600;
-    line-height: 1.5;
-  }
-
-  .bw-hero__stats {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .bw-hero__stat {
-    display: grid;
-    gap: 6px;
-    padding-top: 18px;
-    border-top: 1px solid rgba(45, 33, 27, 0.08);
-  }
-
-  .bw-hero__stat-value {
-    color: #201713;
-    font-size: 28px;
-    font-weight: 800;
-    letter-spacing: -0.03em;
-  }
-
-  .bw-hero__stat-label {
-    color: #6f5b4f;
-    font-size: 12px;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .bw-hero__visual {
+  .bw-hero__slider {
     position: relative;
-    min-height: 620px;
-    background: #d8cec6;
-    box-shadow: 0 26px 80px rgba(55, 39, 29, 0.14);
+    border-radius: 34px;
+    overflow: hidden;
+    background: #ece4dd;
+    box-shadow: 0 28px 80px rgba(55, 39, 29, 0.1);
+    cursor: grab;
+    touch-action: pan-y;
   }
 
-  .bw-hero__visual-link {
+  .bw-hero__slider.is-dragging {
+    cursor: grabbing;
+  }
+
+  .bw-hero__viewport {
+    position: relative;
+    min-height: 580px;
+  }
+
+  .bw-hero__slide {
     position: absolute;
     inset: 0;
-    z-index: 1;
-    display: block;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.45s ease, visibility 0.45s ease, transform 0.45s ease;
+    transform: scale(1.02);
   }
 
-  .bw-hero__visual-link:focus-visible {
-    outline: 2px solid rgba(53, 90, 109, 0.7);
-    outline-offset: -6px;
+  .bw-hero__slide.is-active {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: scale(1);
   }
 
-  .bw-hero__visual img,
+  .bw-hero__slide:focus-visible {
+    outline: 2px solid rgba(53, 90, 109, 0.75);
+    outline-offset: -8px;
+  }
+
+  .bw-hero__media,
   .bw-hero__fallback {
+    position: absolute;
+    inset: 0;
     width: 100%;
     height: 100%;
     display: block;
   }
 
-  .bw-hero__visual img {
+  .bw-hero__media {
     object-fit: cover;
   }
 
   .bw-hero__fallback {
     background:
-      radial-gradient(circle at 18% 20%, rgba(255, 255, 255, 0.18), transparent 26%),
-      radial-gradient(circle at 82% 18%, rgba(166, 106, 67, 0.3), transparent 22%),
-      linear-gradient(160deg, #d9c4b4 0%, #b98d71 44%, #6a4637 100%);
-    display: flex;
-    align-items: flex-end;
-    justify-content: flex-start;
-    padding: 28px;
-    box-sizing: border-box;
+      radial-gradient(circle at 22% 18%, rgba(255, 255, 255, 0.26), transparent 24%),
+      radial-gradient(circle at 78% 18%, rgba(166, 106, 67, 0.2), transparent 24%),
+      linear-gradient(135deg, #e6dad0 0%, #d7c2b2 38%, #9b7a68 100%);
   }
 
-  .bw-hero__fallback-note {
-    max-width: 240px;
-    padding: 14px 16px;
-    border-radius: 18px;
-    background: rgba(255, 250, 246, 0.9);
-    color: #201713;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    line-height: 1.5;
-    text-transform: uppercase;
-  }
-
-  .bw-hero__badge,
-  .bw-hero__floating-card {
-    position: absolute;
-    z-index: 2;
-    background: rgba(255, 250, 246, 0.94);
-    border: 1px solid rgba(45, 33, 27, 0.08);
-    box-shadow: 0 20px 60px rgba(35, 24, 19, 0.14);
-    backdrop-filter: blur(14px);
-  }
-
-  .bw-hero__badge {
-    top: 24px;
-    right: 24px;
-    border-radius: 999px;
-    padding: 12px 18px;
-    color: #201713;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-  }
-
-  .bw-hero__floating-card {
-    left: 24px;
-    bottom: 24px;
-    max-width: 280px;
-    border-radius: 22px;
-    padding: 20px;
-    display: grid;
-    gap: 10px;
-    overflow: hidden;
-    transition: transform 0.24s ease, box-shadow 0.24s ease;
-  }
-
-  .bw-hero__floating-card:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 24px 68px rgba(35, 24, 19, 0.18);
-  }
-
-  .bw-hero__floating-card-link {
+  .bw-hero__overlay {
     position: absolute;
     inset: 0;
-    z-index: 1;
-    border-radius: inherit;
+    background: linear-gradient(90deg, rgba(24, 18, 14, 0.24) 0%, rgba(24, 18, 14, 0.12) 34%, rgba(24, 18, 14, 0.05) 100%);
   }
 
-  .bw-hero__floating-card-link:focus-visible {
-    outline: 2px solid rgba(53, 90, 109, 0.7);
-    outline-offset: -4px;
+  .bw-hero__overlay--light {
+    background: linear-gradient(90deg, rgba(24, 18, 14, 0.08) 0%, rgba(24, 18, 14, 0.04) 34%, rgba(24, 18, 14, 0.02) 100%);
   }
 
-  .bw-hero__floating-card-body {
-    position: relative;
+  .bw-hero__content {
+    position: absolute;
+    inset: 0;
     z-index: 2;
-    display: grid;
-    gap: 10px;
-    pointer-events: none;
+    display: flex;
+    align-items: center;
+    padding: 42px 54px;
   }
 
-  .bw-hero__floating-card-title {
-    color: #201713;
-    font-size: 16px;
+  .bw-hero__content--left {
+    justify-content: flex-start;
+    text-align: left;
+  }
+
+  .bw-hero__content--right {
+    justify-content: flex-end;
+    text-align: right;
+  }
+
+  .bw-hero__content--center {
+    justify-content: center;
+    text-align: center;
+  }
+
+  .bw-hero__card {
+    position: relative;
+    max-width: 520px;
+    padding: 24px 30px 26px;
+    border-radius: 28px;
+    background: rgba(255, 250, 246, 0.8);
+    backdrop-filter: blur(8px);
+    box-shadow: 0 22px 60px rgba(35, 24, 19, 0.14);
+  }
+
+  .bw-hero__content--center .bw-hero__card {
+    max-width: 760px;
+    background: rgba(255, 250, 246, 0.72);
+  }
+
+  .bw-hero__eyebrow {
+    margin: 0 0 10px;
+    color: #775d50;
+    font-size: 12px;
     font-weight: 700;
-    line-height: 1.3;
-    margin: 0;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
   }
 
-  .bw-hero__floating-card-copy {
-    color: #5f4d44;
-    font-size: 14px;
-    line-height: 1.6;
+  .bw-hero__heading {
     margin: 0;
+    color: #241912;
+    font-size: clamp(34px, 5vw, 72px);
+    line-height: 0.98;
+    letter-spacing: -0.045em;
   }
 
-  .bw-hero__floating-tags {
+  .bw-hero__heading-line {
+    display: block;
+  }
+
+  .bw-hero__accent {
+    display: inline-block;
+    color: #2a1e17;
+    font-family: var(--bw-font-serif);
+    font-style: italic;
+    letter-spacing: -0.03em;
+  }
+
+  .bw-hero__tail {
+    display: block;
+    margin-top: 8px;
+    font-size: clamp(24px, 3vw, 48px);
+    letter-spacing: -0.03em;
+  }
+
+  .bw-hero__copy {
+    margin: 16px 0 0;
+    color: #5f4d42;
+    font-size: 16px;
+    line-height: 1.75;
+  }
+
+  .bw-hero__actions {
+    position: relative;
+    z-index: 3;
     display: flex;
     flex-wrap: wrap;
-    gap: 8px;
-    position: relative;
-    z-index: 2;
+    gap: 12px;
+    margin-top: 22px;
   }
 
-  .bw-hero__tag {
+  .bw-hero__content--right .bw-hero__actions {
+    justify-content: flex-end;
+  }
+
+  .bw-hero__content--center .bw-hero__actions {
+    justify-content: center;
+  }
+
+  .bw-hero__button,
+  .bw-hero__secondary {
+    min-height: 48px;
+    padding: 0 22px;
+    border-radius: 999px;
     display: inline-flex;
     align-items: center;
-    padding: 8px 12px;
-    border-radius: 999px;
-    background: rgba(32, 23, 19, 0.06);
-    color: #201713;
-    font-size: 11px;
-    font-weight: 700;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     text-decoration: none;
-    transition: background 0.22s ease, color 0.22s ease, transform 0.22s ease;
   }
 
-  .bw-hero__tag:hover,
-  .bw-hero__tag:focus-visible {
-    background: rgba(53, 90, 109, 0.12);
-    color: #355a6d;
+  .bw-hero__button {
+    background: #c96c62;
+    color: #fffaf6;
+    box-shadow: 0 14px 30px rgba(201, 108, 98, 0.28);
+  }
+
+  .bw-hero__secondary {
+    background: rgba(36, 25, 18, 0.08);
+    color: #241912;
+    border: 1px solid rgba(36, 25, 18, 0.12);
+  }
+
+  .bw-hero__nav-button {
+    position: absolute;
+    top: 50%;
+    z-index: 4;
+    width: 54px;
+    height: 54px;
+    margin-top: -27px;
+    border: 0;
+    border-radius: 999px;
+    background: rgba(255, 250, 246, 0.18);
+    color: #ffffff;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    backdrop-filter: blur(6px);
+    transition: background 0.22s ease, transform 0.22s ease;
+  }
+
+  .bw-hero__nav-button:hover {
+    background: rgba(255, 250, 246, 0.28);
     transform: translateY(-1px);
   }
 
-  @media (max-width: 1100px) {
-    .bw-hero__frame {
-      grid-template-columns: 1fr;
+  .bw-hero__nav-button--prev {
+    left: 18px;
+  }
+
+  .bw-hero__nav-button--next {
+    right: 18px;
+  }
+
+  .bw-hero__nav-button svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .bw-hero__dots {
+    position: absolute;
+    left: 50%;
+    bottom: 18px;
+    z-index: 4;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transform: translateX(-50%);
+  }
+
+  .bw-hero__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 999px;
+    border: 0;
+    padding: 0;
+    background: rgba(255, 250, 246, 0.42);
+    cursor: pointer;
+    transition: transform 0.2s ease, background 0.2s ease;
+  }
+
+  .bw-hero__dot.is-active {
+    background: #fffaf6;
+    transform: scale(1.15);
+  }
+
+  @media (max-width: 980px) {
+    .bw-hero__viewport {
+      min-height: 500px;
     }
 
-    .bw-hero__visual {
-      min-height: 520px;
-      order: -1;
+    .bw-hero__content {
+      padding: 28px 28px 54px;
+      align-items: flex-end;
+    }
+
+    .bw-hero__card,
+    .bw-hero__content--center .bw-hero__card {
+      max-width: 100%;
+    }
+
+    .bw-hero__heading {
+      font-size: clamp(30px, 8vw, 52px);
+    }
+
+    .bw-hero__tail {
+      font-size: clamp(22px, 6vw, 34px);
     }
   }
 
   @media (max-width: 720px) {
     .bw-hero {
-      padding: 20px 16px 42px;
+      padding: 18px 16px 32px;
+    }
+
+    .bw-hero__slider {
+      border-radius: 24px;
+    }
+
+    .bw-hero__viewport {
+      min-height: 430px;
     }
 
     .bw-hero__content {
-      padding: 30px 22px;
-      border-radius: 24px;
-      gap: 22px;
+      padding: 18px 18px 56px;
     }
 
-    .bw-hero__title {
-      max-width: none;
-      font-size: clamp(32px, 10vw, 46px);
+    .bw-hero__card {
+      padding: 20px 18px 20px;
+      border-radius: 22px;
+      background: rgba(255, 250, 246, 0.86);
     }
 
-    .bw-hero__description {
-      font-size: 15px;
-      line-height: 1.7;
+    .bw-hero__copy {
+      font-size: 14px;
+      line-height: 1.65;
     }
 
-    .bw-hero__actions {
-      display: grid;
-      grid-template-columns: 1fr;
+    .bw-hero__nav-button {
+      width: 42px;
+      height: 42px;
+      margin-top: -21px;
     }
 
-    .bw-hero__primary,
+    .bw-hero__nav-button--prev {
+      left: 12px;
+    }
+
+    .bw-hero__nav-button--next {
+      right: 12px;
+    }
+
+    .bw-hero__button,
     .bw-hero__secondary {
-      width: 100%;
-    }
-
-    .bw-hero__proofs,
-    .bw-hero__stats {
-      grid-template-columns: 1fr;
-    }
-
-    .bw-hero__visual {
-      min-height: 420px;
-      border-radius: 24px;
-    }
-
-    .bw-hero__badge {
-      left: 16px;
-      right: auto;
-      top: 16px;
-    }
-
-    .bw-hero__floating-card {
-      left: 16px;
-      right: 16px;
-      max-width: none;
-      bottom: 16px;
-    }
-
-    .bw-hero__fallback {
-      padding: 20px;
+      min-height: 44px;
+      padding: 0 16px;
+      font-size: 11px;
     }
   }
 </style>
 
-<section class="bw-hero">
-  <div class="bw-hero__frame">
-    <div class="bw-hero__content">
-      <div class="bw-hero__eyebrow">{{ hero_eyebrow }}</div>
-      <h1 class="bw-hero__title">{{ hero_title }}</h1>
-      <p class="bw-hero__description">{{ hero_description }}</p>
+<section id="bw-hero-{{ section.id }}" class="bw-hero" data-bw-hero-section>
+  <div class="bw-hero__shell">
+    <div class="bw-hero__slider" data-bw-hero-slider>
+      <div class="bw-hero__viewport">
+        {% if has_configured_slides %}
+          {% for block in section.blocks %}
+            {% liquid
+              assign slide_collection = collections[block.settings.collection_handle]
+              assign slide_url = block.settings.button_url
+              assign slide_image = block.settings.slide_image
+              assign slide_has_copy = false
 
-      <div class="bw-hero__actions">
-        <a class="bw-hero__primary" href="{{ primary_url }}">{{ primary_label }}</a>
-        <a class="bw-hero__secondary" href="{{ secondary_url }}">{{ secondary_label }}</a>
-      </div>
+              if slide_url == blank and slide_collection != blank
+                assign slide_url = slide_collection.url
+              endif
 
-      <div class="bw-hero__proofs">
-        <div class="bw-hero__proof">Thoughtful designs made for everyday living.</div>
-        <div class="bw-hero__proof">Curated collections for living, bedroom, study, and storage.</div>
-        <div class="bw-hero__proof">Reliable delivery, warranty support, and easy assistance.</div>
-      </div>
+              if slide_url == blank
+                assign slide_url = routes.root_url
+              endif
 
-      <div class="bw-hero__stats">
-        <div class="bw-hero__stat">
-          <span class="bw-hero__stat-value">15+</span>
-          <span class="bw-hero__stat-label">Years of trust</span>
-        </div>
-        <div class="bw-hero__stat">
-          <span class="bw-hero__stat-value">20L+</span>
-          <span class="bw-hero__stat-label">Happy customers</span>
-        </div>
-        <div class="bw-hero__stat">
-          <span class="bw-hero__stat-value">7 Year</span>
-          <span class="bw-hero__stat-label">Warranty support</span>
-        </div>
-      </div>
-    </div>
+              if slide_image == blank and slide_collection != blank and slide_collection.image != blank
+                assign slide_image = slide_collection.image
+              elsif slide_image == blank and slide_collection != blank and slide_collection.products.size > 0
+                assign slide_image = slide_collection.products.first.featured_image
+              endif
 
-    <div class="bw-hero__visual">
-      {% if hero_featured_product != blank %}
-        <a class="bw-hero__visual-link" href="{{ hero_featured_product.url }}" aria-label="View {{ hero_featured_product.title }}">
-      {% endif %}
-      {% if hero_image != blank %}
-        {{ hero_image | image_url: width: 1400 | image_tag: loading: 'eager', widths: '600, 900, 1200, 1400', sizes: '(max-width: 1100px) 100vw, 48vw' }}
-      {% elsif hero_fallback_image != blank %}
-        {{ hero_fallback_image | image_url: width: 1400 | image_tag: loading: 'eager', widths: '600, 900, 1200, 1400', sizes: '(max-width: 1100px) 100vw, 48vw', alt: hero_collection.title | default: hero_title }}
-      {% else %}
-        <div class="bw-hero__fallback" role="img" aria-label="Bluewud hero placeholder until a branded lifestyle image is added">
-          <span class="bw-hero__fallback-note">Add a Bluewud lifestyle image here</span>
-        </div>
-      {% endif %}
-      {% if hero_featured_product != blank %}
-        </a>
-      {% endif %}
+              if block.settings.eyebrow != blank or block.settings.heading != blank or block.settings.accent != blank or block.settings.tail != blank or block.settings.copy != blank or block.settings.button_label != blank
+                assign slide_has_copy = true
+              endif
+            %}
 
-      <div class="bw-hero__badge">{{ badge_text }}</div>
+            <article class="bw-hero__slide{% if forloop.first %} is-active{% endif %}" data-bw-hero-slide data-bw-slide-url="{{ slide_url }}" tabindex="0" role="link" aria-label="{{ block.settings.heading | default: block.settings.accent | default: 'Explore collection' }}" {{ block.shopify_attributes }}>
+              {% if slide_image != blank %}
+                {{ slide_image | image_url: width: 1800 | image_tag: class: 'bw-hero__media', loading: 'eager', widths: '720, 1080, 1440, 1800', sizes: '100vw', alt: block.settings.heading | default: block.settings.accent | default: shop.name }}
+              {% else %}
+                <div class="bw-hero__fallback" aria-hidden="true"></div>
+              {% endif %}
+              <div class="bw-hero__overlay{% unless slide_has_copy %} bw-hero__overlay--light{% endunless %}"></div>
+              {% if slide_has_copy %}
+                <div class="bw-hero__content bw-hero__content--{{ block.settings.content_position | default: 'right' }}">
+                  <div class="bw-hero__card">
+                    {% if block.settings.eyebrow != blank %}
+                      <p class="bw-hero__eyebrow">{{ block.settings.eyebrow }}</p>
+                    {% endif %}
+                    <h2 class="bw-hero__heading">
+                      {% if block.settings.heading != blank %}
+                        <span class="bw-hero__heading-line">{{ block.settings.heading }}</span>
+                      {% endif %}
+                      {% if block.settings.accent != blank %}
+                        <span class="bw-hero__accent">{{ block.settings.accent }}</span>
+                      {% endif %}
+                      {% if block.settings.tail != blank %}
+                        <span class="bw-hero__tail">{{ block.settings.tail }}</span>
+                      {% endif %}
+                    </h2>
+                    {% if block.settings.copy != blank %}
+                      <p class="bw-hero__copy">{{ block.settings.copy }}</p>
+                    {% endif %}
+                    <div class="bw-hero__actions">
+                      {% if block.settings.button_label != blank %}
+                        <a class="bw-hero__button" href="{{ slide_url }}">{{ block.settings.button_label }}</a>
+                      {% endif %}
+                      {% if slide_collection != blank %}
+                        <a class="bw-hero__secondary" href="{{ slide_collection.url }}">View collection</a>
+                      {% endif %}
+                    </div>
+                  </div>
+                </div>
+              {% endif %}
+            </article>
+          {% endfor %}
+        {% else %}
+          {% for default_heading in default_headings %}
+            {% liquid
+              assign slide_handle = default_handles[forloop.index0]
+              assign slide_collection = collections[slide_handle]
+              assign slide_url = default_urls[forloop.index0]
+              assign slide_image = blank
 
-      <div class="bw-hero__floating-card">
-        {% if hero_featured_product != blank %}
-          <a
-            class="bw-hero__floating-card-link"
-            href="{{ hero_featured_product.url }}"
-            aria-label="View {{ hero_featured_product.title }}"
-          ></a>
+              if slide_collection != blank
+                assign slide_url = slide_collection.url
+
+                if slide_collection.image != blank
+                  assign slide_image = slide_collection.image
+                elsif slide_collection.products.size > 0
+                  assign slide_image = slide_collection.products.first.featured_image
+                endif
+              endif
+            %}
+
+            <article class="bw-hero__slide{% if forloop.first %} is-active{% endif %}" data-bw-hero-slide data-bw-slide-url="{{ slide_url }}" tabindex="0" role="link" aria-label="{{ default_heading }}">
+              {% if slide_image != blank %}
+                {{ slide_image | image_url: width: 1800 | image_tag: class: 'bw-hero__media', loading: 'eager', widths: '720, 1080, 1440, 1800', sizes: '100vw', alt: default_heading }}
+              {% else %}
+                <div class="bw-hero__fallback" aria-hidden="true"></div>
+              {% endif %}
+              <div class="bw-hero__overlay"></div>
+              <div class="bw-hero__content bw-hero__content--{{ default_positions[forloop.index0] }}">
+                <div class="bw-hero__card">
+                  <p class="bw-hero__eyebrow">{{ default_eyebrows[forloop.index0] }}</p>
+                  <h1 class="bw-hero__heading">
+                    <span class="bw-hero__heading-line">{{ default_heading }}</span>
+                    <span class="bw-hero__accent">{{ default_accents[forloop.index0] }}</span>
+                    {% if default_tails[forloop.index0] != blank %}
+                      <span class="bw-hero__tail">{{ default_tails[forloop.index0] }}</span>
+                    {% endif %}
+                  </h1>
+                  <p class="bw-hero__copy">{{ default_copies[forloop.index0] }}</p>
+                  <div class="bw-hero__actions">
+                    <a class="bw-hero__button" href="{{ slide_url }}">{{ default_button_labels[forloop.index0] }}</a>
+                    {% if slide_collection != blank %}
+                      <a class="bw-hero__secondary" href="{{ slide_collection.url }}">View collection</a>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+            </article>
+          {% endfor %}
         {% endif %}
-
-        <div class="bw-hero__floating-card-body">
-          <h2 class="bw-hero__floating-card-title">
-            {% if hero_featured_product != blank %}
-              {{ hero_featured_product.title }}
-            {% else %}
-              Made for contemporary homes
-            {% endif %}
-          </h2>
-          <p class="bw-hero__floating-card-copy">{{ hero_featured_copy }}</p>
-        </div>
-
-        <div class="bw-hero__floating-tags">
-          {% if hero_featured_product != blank %}
-            <a class="bw-hero__tag" href="{{ hero_featured_product.url }}">View Product</a>
-          {% endif %}
-          {% if hero_collection != blank %}
-            <a class="bw-hero__tag" href="{{ hero_collection.url }}">{{ hero_collection.title }}</a>
-          {% endif %}
-          {% if hero_featured_collection != blank and hero_featured_collection != hero_collection %}
-            <a class="bw-hero__tag" href="{{ hero_featured_collection.url }}">{{ hero_featured_collection.title }}</a>
-          {% elsif hero_featured_product != blank and hero_featured_product.type != blank %}
-            <a class="bw-hero__tag" href="{{ hero_featured_product.url }}">{{ hero_featured_product.type }}</a>
-          {% endif %}
-        </div>
       </div>
+
+      <button class="bw-hero__nav-button bw-hero__nav-button--prev" type="button" aria-label="Previous slide" data-bw-hero-prev>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M15 5l-7 7 7 7"></path>
+        </svg>
+      </button>
+      <button class="bw-hero__nav-button bw-hero__nav-button--next" type="button" aria-label="Next slide" data-bw-hero-next>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
+          <path d="M9 5l7 7-7 7"></path>
+        </svg>
+      </button>
+
+      <div class="bw-hero__dots" data-bw-hero-dots></div>
     </div>
   </div>
 </section>
 
+<script>
+  (function () {
+    var sectionRoot = document.getElementById('bw-hero-{{ section.id }}');
+    if (!sectionRoot) return;
+
+    var slider = sectionRoot.querySelector('[data-bw-hero-slider]');
+    var slides = slider ? Array.prototype.slice.call(slider.querySelectorAll('[data-bw-hero-slide]')) : [];
+    var dotsRoot = slider ? slider.querySelector('[data-bw-hero-dots]') : null;
+    var prevButton = slider ? slider.querySelector('[data-bw-hero-prev]') : null;
+    var nextButton = slider ? slider.querySelector('[data-bw-hero-next]') : null;
+    var activeIndex = 0;
+    var autoTimer = null;
+    var autoDelay = 5200;
+    var wheelLocked = false;
+    var dragStartX = null;
+    var dragDeltaX = 0;
+    var pointerActive = false;
+    var pointerMoved = false;
+    var dragThreshold = 58;
+
+    if (!slider || slides.length <= 1 || !dotsRoot) return;
+
+    function renderDots() {
+      dotsRoot.innerHTML = '';
+
+      slides.forEach(function (_, index) {
+        var dot = document.createElement('button');
+        dot.type = 'button';
+        dot.className = 'bw-hero__dot' + (index === activeIndex ? ' is-active' : '');
+        dot.setAttribute('aria-label', 'Go to slide ' + (index + 1));
+        dot.addEventListener('click', function () {
+          goTo(index, true);
+        });
+        dotsRoot.appendChild(dot);
+      });
+    }
+
+    function goTo(index, userTriggered) {
+      activeIndex = (index + slides.length) % slides.length;
+
+      slides.forEach(function (slide, slideIndex) {
+        slide.classList.toggle('is-active', slideIndex === activeIndex);
+      });
+
+      renderDots();
+
+      if (userTriggered) {
+        restartAuto();
+      }
+    }
+
+    function restartAuto() {
+      if (autoTimer) {
+        window.clearInterval(autoTimer);
+      }
+
+      autoTimer = window.setInterval(function () {
+        goTo(activeIndex + 1, false);
+      }, autoDelay);
+    }
+
+    function isInteractiveTarget(target) {
+      return !!(target && target.closest('a, button, input, select, textarea, summary'));
+    }
+
+    slides.forEach(function (slide) {
+      slide.addEventListener('click', function (event) {
+        var slideUrl = slide.getAttribute('data-bw-slide-url');
+
+        if (!slideUrl || pointerMoved || isInteractiveTarget(event.target)) return;
+
+        window.location.assign(slideUrl);
+      });
+
+      slide.addEventListener('keydown', function (event) {
+        var slideUrl = slide.getAttribute('data-bw-slide-url');
+
+        if (!slideUrl || isInteractiveTarget(event.target)) return;
+
+        if (event.key === 'Enter' || event.key === ' ') {
+          event.preventDefault();
+          window.location.assign(slideUrl);
+        }
+      });
+    });
+
+    prevButton.addEventListener('click', function () {
+      goTo(activeIndex - 1, true);
+    });
+
+    nextButton.addEventListener('click', function () {
+      goTo(activeIndex + 1, true);
+    });
+
+    slider.addEventListener('mouseenter', function () {
+      if (autoTimer) {
+        window.clearInterval(autoTimer);
+      }
+    });
+
+    slider.addEventListener('mouseleave', function () {
+      restartAuto();
+    });
+
+    slider.addEventListener('wheel', function (event) {
+      var delta = Math.abs(event.deltaY) > Math.abs(event.deltaX) ? event.deltaY : event.deltaX;
+
+      if (Math.abs(delta) < 18 || wheelLocked) return;
+
+      event.preventDefault();
+      wheelLocked = true;
+
+      if (delta > 0) {
+        goTo(activeIndex + 1, true);
+      } else {
+        goTo(activeIndex - 1, true);
+      }
+
+      window.setTimeout(function () {
+        wheelLocked = false;
+      }, 460);
+    }, { passive: false });
+
+    slider.addEventListener('pointerdown', function (event) {
+      if (event.pointerType === 'mouse' && event.button !== 0) return;
+      if (isInteractiveTarget(event.target)) return;
+
+      pointerActive = true;
+      pointerMoved = false;
+      dragStartX = event.clientX;
+      dragDeltaX = 0;
+      slider.classList.add('is-dragging');
+
+      if (slider.setPointerCapture) {
+        slider.setPointerCapture(event.pointerId);
+      }
+    });
+
+    slider.addEventListener('pointermove', function (event) {
+      if (!pointerActive || dragStartX === null) return;
+      dragDeltaX = event.clientX - dragStartX;
+
+      if (Math.abs(dragDeltaX) > 8) {
+        pointerMoved = true;
+      }
+    });
+
+    function endDrag(event) {
+      if (!pointerActive) return;
+
+      pointerActive = false;
+      slider.classList.remove('is-dragging');
+
+      if (slider.releasePointerCapture) {
+        try {
+          slider.releasePointerCapture(event.pointerId);
+        } catch (error) {
+        }
+      }
+
+      if (Math.abs(dragDeltaX) >= dragThreshold) {
+        if (dragDeltaX < 0) {
+          goTo(activeIndex + 1, true);
+        } else {
+          goTo(activeIndex - 1, true);
+        }
+      }
+
+      dragStartX = null;
+      dragDeltaX = 0;
+      window.setTimeout(function () {
+        pointerMoved = false;
+      }, 0);
+    }
+
+    slider.addEventListener('pointerup', endDrag);
+    slider.addEventListener('pointercancel', endDrag);
+
+    renderDots();
+    restartAuto();
+  })();
+</script>
+
 {% schema %}
 {
-  "name": "Hero",
-  "settings": [
+  "name": "Hero Slider",
+  "max_blocks": 6,
+  "blocks": [
     {
-      "type": "text",
-      "id": "eyebrow",
-      "label": "Eyebrow",
-      "default": "Premium furniture for considered homes"
-    },
-    {
-      "type": "textarea",
-      "id": "title",
-      "label": "Title",
-      "default": "Furniture that makes a room feel chosen."
-    },
-    {
-      "type": "textarea",
-      "id": "description",
-      "label": "Description",
-      "default": "Discover thoughtfully designed furniture for modern Indian homes, crafted to bring warmth, function, and a refined finish to every room."
-    },
-    {
-      "type": "text",
-      "id": "primary_label",
-      "label": "Primary button label",
-      "default": "Shop Bestsellers"
-    },
-    {
-      "type": "url",
-      "id": "primary_url",
-      "label": "Primary button link"
-    },
-    {
-      "type": "text",
-      "id": "secondary_label",
-      "label": "Secondary button label",
-      "default": "Explore Living Room"
-    },
-    {
-      "type": "url",
-      "id": "secondary_url",
-      "label": "Secondary button link"
-    },
-    {
-      "type": "text",
-      "id": "badge_text",
-      "label": "Visual badge text",
-      "default": "Most loved by modern Indian homes"
-    },
-    {
-      "type": "image_picker",
-      "id": "hero_image",
-      "label": "Hero image"
+      "type": "slide",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "text",
+          "id": "eyebrow",
+          "label": "Eyebrow"
+        },
+        {
+          "type": "text",
+          "id": "heading",
+          "label": "Heading"
+        },
+        {
+          "type": "text",
+          "id": "accent",
+          "label": "Accent text"
+        },
+        {
+          "type": "text",
+          "id": "tail",
+          "label": "Tail text"
+        },
+        {
+          "type": "textarea",
+          "id": "copy",
+          "label": "Copy"
+        },
+        {
+          "type": "text",
+          "id": "collection_handle",
+          "label": "Collection handle"
+        },
+        {
+          "type": "url",
+          "id": "button_url",
+          "label": "Primary URL"
+        },
+        {
+          "type": "text",
+          "id": "button_label",
+          "label": "Primary button label",
+          "default": "Shop now"
+        },
+        {
+          "type": "image_picker",
+          "id": "slide_image",
+          "label": "Slide image"
+        },
+        {
+          "type": "select",
+          "id": "content_position",
+          "label": "Content position",
+          "default": "right",
+          "options": [
+            {
+              "value": "left",
+              "label": "Left"
+            },
+            {
+              "value": "center",
+              "label": "Center"
+            },
+            {
+              "value": "right",
+              "label": "Right"
+            }
+          ]
+        }
+      ]
     }
   ],
   "presets": [
     {
-      "name": "Hero"
+      "name": "Hero Slider"
     }
   ]
 }

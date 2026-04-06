@@ -12,19 +12,29 @@
   assign brand_logo = section.settings.brand_logo
   assign brand_logo_treatment = 'tinted'
   assign current_path = request.path
-  assign curated_nav_labels = 'Living Room|Bedroom|Study Tables|TV Units|Bookshelves|Modular Kitchen|Wardrobes|New Launches' | split: '|'
-  assign curated_nav_urls = '/collections/living-room|/collections/bed-room|/collections/study-tables|/collections/tv-unit-furniture|/collections/book-shelves|/collections/kitchen-racks|/collections/wardrobe|/collections/new_launches' | split: '|'
+  assign modular_kitchen_url = '/collections/kitchen-racks'
+  assign modular_wardrobe_url = '/collections/wardrobe'
+  assign curated_nav_labels = 'Living Room|Bedroom|Study Tables|TV Units|Bookshelves|Modular Kitchen|Wardrobes' | split: '|'
+  assign curated_nav_urls = '/collections/living-room|/collections/bed-room|/collections/study-tables|/collections/tv-unit-furniture|/collections/book-shelves|/collections/kitchen-racks|/collections/wardrobe' | split: '|'
   assign drawer_nav_labels = 'Living Room|Bedroom|Study Tables|TV Units|Bookshelves|Modular Kitchen|Wardrobes|New Launches|Chest of Drawer' | split: '|'
   assign drawer_nav_urls = '/collections/living-room|/collections/bed-room|/collections/study-tables|/collections/tv-unit-furniture|/collections/book-shelves|/collections/kitchen-racks|/collections/wardrobe|/collections/new_launches|/collections/chest-of-drawer' | split: '|'
+  assign support_nav_labels = 'About Us|Contact Us|Visit Us|FAQs' | split: '|'
+  assign support_nav_urls = '/pages/about-us|/pages/contact-us|/pages/visit-us|/pages/help-center' | split: '|'
 
   if brand_logo == blank and settings.checkout_logo_image != blank
     assign brand_logo = settings.checkout_logo_image
-    assign brand_logo_treatment = 'native'
   endif
 
   if brand_logo == blank and settings.favicon != blank
     assign brand_logo = settings.favicon
-    assign brand_logo_treatment = 'native'
+  endif
+
+  if pages['modular-kitchen-designs'] != blank
+    assign modular_kitchen_url = pages['modular-kitchen-designs'].url
+  endif
+
+  if pages['modular-wardrobe-designs'] != blank
+    assign modular_wardrobe_url = pages['modular-wardrobe-designs'].url
   endif
 
   if cta_url == blank
@@ -129,7 +139,7 @@
   .bw-header__main-inner {
     min-height: 96px;
     display: grid;
-    grid-template-columns: minmax(260px, 330px) 1fr auto;
+    grid-template-columns: minmax(250px, 320px) minmax(0, 1fr) auto;
     align-items: center;
     gap: 28px;
   }
@@ -230,12 +240,12 @@
   }
 
   .bw-header__brand-logo-image--tinted {
-    filter: brightness(0) saturate(100%) invert(34%) sepia(17%) saturate(734%) hue-rotate(157deg) brightness(93%) contrast(88%);
+    filter: brightness(0) saturate(100%) invert(31%) sepia(20%) saturate(815%) hue-rotate(159deg) brightness(90%) contrast(89%);
   }
 
   .bw-header__brand:hover .bw-header__brand-logo-image--tinted,
   .bw-header__brand:focus-visible .bw-header__brand-logo-image--tinted {
-    filter: brightness(0) saturate(100%) invert(23%) sepia(16%) saturate(927%) hue-rotate(159deg) brightness(94%) contrast(91%);
+    filter: brightness(0) saturate(100%) invert(21%) sepia(20%) saturate(894%) hue-rotate(161deg) brightness(88%) contrast(90%);
   }
 
   .bw-header__brand-tagline {
@@ -250,10 +260,14 @@
   }
 
   .bw-header__nav {
+    justify-self: center;
     justify-content: center;
     gap: 18px;
     flex-wrap: nowrap;
     min-width: 0;
+    width: max-content;
+    max-width: 100%;
+    padding-inline: 14px;
     overflow-x: auto;
     scrollbar-width: none;
     -ms-overflow-style: none;
@@ -274,6 +288,14 @@
     padding: 14px 0;
     white-space: nowrap;
     transition: color 0.2s ease, transform 0.2s ease;
+  }
+
+  .bw-header__nav-link:first-child {
+    margin-left: 6px;
+  }
+
+  .bw-header__nav-link:last-child {
+    margin-right: 6px;
   }
 
   .bw-header__nav-link::after {
@@ -508,12 +530,13 @@
 
   @media (max-width: 1240px) {
     .bw-header__main-inner {
-      grid-template-columns: minmax(240px, 310px) 1fr auto;
+      grid-template-columns: minmax(230px, 300px) minmax(0, 1fr) auto;
       gap: 22px;
     }
 
     .bw-header__nav {
       gap: 14px;
+      padding-inline: 12px;
     }
 
     .bw-header__nav-link {
@@ -624,22 +647,6 @@
 </style>
 
 <div class="bw-header-shell">
-  <div class="bw-header__utility">
-    <div class="bw-header__utility-inner">
-      <div class="bw-header__contact">
-        <a class="bw-header__utility-link" href="{{ phone_url }}">{{ phone_label }}</a>
-        <span class="bw-header__contact-separator" aria-hidden="true"></span>
-        <a class="bw-header__utility-link" href="{{ email_url }}">{{ email_label }}</a>
-      </div>
-      <div class="bw-header__support-links">
-        <a class="bw-header__support-link" href="/pages/about-us">About Us</a>
-        <a class="bw-header__support-link" href="/pages/contact-us">Contact Us</a>
-        <a class="bw-header__support-link" href="/pages/visit-us">Visit Us</a>
-        <a class="bw-header__support-link" href="/pages/help-center">FAQs</a>
-      </div>
-    </div>
-  </div>
-
   <div class="bw-header__main-inner">
     <button class="bw-header__menu-button" type="button" aria-expanded="false" aria-controls="bw-header-drawer-{{ section.id }}" data-bw-header-open>
       <span class="visually-hidden">Open navigation</span>
@@ -670,10 +677,28 @@
     </a>
 
     <nav class="bw-header__nav" aria-label="Primary">
-      {% for nav_label in curated_nav_labels %}
-        {% assign nav_url = curated_nav_urls[forloop.index0] %}
-        <a class="bw-header__nav-link{% if current_path == nav_url %} is-active{% endif %}" href="{{ nav_url }}"{% if current_path == nav_url %} aria-current="page"{% endif %}>{{ nav_label }}</a>
-      {% endfor %}
+      {% if section.settings.primary_menu != blank and section.settings.primary_menu.links.size > 0 %}
+        {% for link in section.settings.primary_menu.links %}
+          {% assign rendered_url = link.url %}
+          {% assign rendered_handle = link.title | handleize %}
+          {% if rendered_handle contains 'modular-kitchen' or rendered_handle == 'kitchen' %}
+            {% assign rendered_url = modular_kitchen_url %}
+          {% elsif rendered_handle contains 'wardrobe' %}
+            {% assign rendered_url = modular_wardrobe_url %}
+          {% endif %}
+          <a class="bw-header__nav-link{% if link.current or current_path == rendered_url %} is-active{% endif %}" href="{{ rendered_url }}"{% if link.current or current_path == rendered_url %} aria-current="page"{% endif %}>{{ link.title }}</a>
+        {% endfor %}
+      {% else %}
+        {% for nav_label in curated_nav_labels %}
+          {% assign nav_url = curated_nav_urls[forloop.index0] %}
+          {% if nav_label == 'Modular Kitchen' %}
+            {% assign nav_url = modular_kitchen_url %}
+          {% elsif nav_label == 'Wardrobes' %}
+            {% assign nav_url = modular_wardrobe_url %}
+          {% endif %}
+          <a class="bw-header__nav-link{% if current_path == nav_url %} is-active{% endif %}" href="{{ nav_url }}"{% if current_path == nav_url %} aria-current="page"{% endif %}>{{ nav_label }}</a>
+        {% endfor %}
+      {% endif %}
     </nav>
 
     <div class="bw-header__actions">
@@ -735,32 +760,73 @@
 
     <div class="bw-header__drawer-nav">
       <div class="bw-header__drawer-heading">Shop by category</div>
-      {% for nav_label in drawer_nav_labels %}
-        {% assign nav_url = drawer_nav_urls[forloop.index0] %}
-        <a class="bw-header__drawer-link" href="{{ nav_url }}">{{ nav_label }}</a>
-      {% endfor %}
+      {% if section.settings.drawer_menu != blank and section.settings.drawer_menu.links.size > 0 %}
+        {% for link in section.settings.drawer_menu.links %}
+          {% assign rendered_url = link.url %}
+          {% assign rendered_handle = link.title | handleize %}
+          {% if rendered_handle contains 'modular-kitchen' or rendered_handle == 'kitchen' %}
+            {% assign rendered_url = modular_kitchen_url %}
+          {% elsif rendered_handle contains 'wardrobe' %}
+            {% assign rendered_url = modular_wardrobe_url %}
+          {% endif %}
+          <a class="bw-header__drawer-link" href="{{ rendered_url }}"{% if link.current or current_path == rendered_url %} aria-current="page"{% endif %}>{{ link.title }}</a>
+        {% endfor %}
+      {% elsif section.settings.primary_menu != blank and section.settings.primary_menu.links.size > 0 %}
+        {% for link in section.settings.primary_menu.links %}
+          {% assign rendered_url = link.url %}
+          {% assign rendered_handle = link.title | handleize %}
+          {% if rendered_handle contains 'modular-kitchen' or rendered_handle == 'kitchen' %}
+            {% assign rendered_url = modular_kitchen_url %}
+          {% elsif rendered_handle contains 'wardrobe' %}
+            {% assign rendered_url = modular_wardrobe_url %}
+          {% endif %}
+          <a class="bw-header__drawer-link" href="{{ rendered_url }}"{% if link.current or current_path == rendered_url %} aria-current="page"{% endif %}>{{ link.title }}</a>
+        {% endfor %}
+      {% else %}
+        {% for nav_label in drawer_nav_labels %}
+          {% assign nav_url = drawer_nav_urls[forloop.index0] %}
+          {% if nav_label == 'Modular Kitchen' %}
+            {% assign nav_url = modular_kitchen_url %}
+          {% elsif nav_label == 'Wardrobes' %}
+            {% assign nav_url = modular_wardrobe_url %}
+          {% endif %}
+          <a class="bw-header__drawer-link" href="{{ nav_url }}"{% if current_path == nav_url %} aria-current="page"{% endif %}>{{ nav_label }}</a>
+        {% endfor %}
+      {% endif %}
     </div>
 
     <div class="bw-header__drawer-links">
       <div class="bw-header__drawer-heading">Support</div>
-      <a class="bw-header__drawer-link" href="/pages/about-us">About Us</a>
-      <a class="bw-header__drawer-link" href="/pages/contact-us">Contact Us</a>
-      <a class="bw-header__drawer-link" href="/pages/buy-in-bulk">Buy In Bulk</a>
-      <a class="bw-header__drawer-link" href="/pages/visit-us">Visit Us</a>
-      <a class="bw-header__drawer-link" href="/pages/help-center">FAQs</a>
-      <a class="bw-header__drawer-link" href="/pages/offers-discount">Offers & Discounts</a>
-      <a class="bw-header__drawer-link" href="/pages/award-achievment">Award & Achievement</a>
-      <a class="bw-header__drawer-link" href="/pages/returns-refunds">Returns & Refunds</a>
+      {% if section.settings.support_menu != blank and section.settings.support_menu.links.size > 0 %}
+        {% for link in section.settings.support_menu.links %}
+          <a class="bw-header__drawer-link" href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
+        {% endfor %}
+      {% else %}
+        <a class="bw-header__drawer-link" href="/pages/about-us">About Us</a>
+        <a class="bw-header__drawer-link" href="/pages/contact-us">Contact Us</a>
+        <a class="bw-header__drawer-link" href="/pages/buy-in-bulk">Buy In Bulk</a>
+        <a class="bw-header__drawer-link" href="/pages/visit-us">Visit Us</a>
+        <a class="bw-header__drawer-link" href="/pages/help-center">FAQs</a>
+        <a class="bw-header__drawer-link" href="/pages/offers-discount">Offers & Discounts</a>
+        <a class="bw-header__drawer-link" href="/pages/award-achievment">Award & Achievement</a>
+        <a class="bw-header__drawer-link" href="/pages/returns-refunds">Returns & Refunds</a>
+      {% endif %}
     </div>
 
     <div class="bw-header__drawer-links">
       <div class="bw-header__drawer-heading">Policies</div>
-      <a class="bw-header__drawer-link" href="/policies/terms-of-service">Terms of Service</a>
-      <a class="bw-header__drawer-link" href="/pages/terms-of-use">Terms Of Use</a>
-      <a class="bw-header__drawer-link" href="/pages/policies">Privacy Statement</a>
-      <a class="bw-header__drawer-link" href="/pages/payment-security">Payment & Security</a>
-      <a class="bw-header__drawer-link" href="/pages/help-center">Installation & Cancellation</a>
-      <a class="bw-header__drawer-link" href="{{ routes.search_url }}">Search</a>
+      {% if section.settings.policy_menu != blank and section.settings.policy_menu.links.size > 0 %}
+        {% for link in section.settings.policy_menu.links %}
+          <a class="bw-header__drawer-link" href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
+        {% endfor %}
+      {% else %}
+        <a class="bw-header__drawer-link" href="/policies/terms-of-service">Terms of Service</a>
+        <a class="bw-header__drawer-link" href="/pages/terms-of-use">Terms Of Use</a>
+        <a class="bw-header__drawer-link" href="/pages/policies">Privacy Statement</a>
+        <a class="bw-header__drawer-link" href="/pages/payment-security">Payment & Security</a>
+        <a class="bw-header__drawer-link" href="/pages/help-center">Installation & Cancellation</a>
+        <a class="bw-header__drawer-link" href="{{ routes.search_url }}">Search</a>
+      {% endif %}
     </div>
 
     <div class="bw-header__drawer-contact">
@@ -822,6 +888,21 @@
       "type": "link_list",
       "id": "primary_menu",
       "label": "Primary menu"
+    },
+    {
+      "type": "link_list",
+      "id": "drawer_menu",
+      "label": "Drawer menu"
+    },
+    {
+      "type": "link_list",
+      "id": "support_menu",
+      "label": "Support menu"
+    },
+    {
+      "type": "link_list",
+      "id": "policy_menu",
+      "label": "Policy menu"
     },
     {
       "type": "text",
