@@ -6,7 +6,7 @@
   assign modular_kitchen_calculator_url = '/collections/kitchen-racks#kitchen-calculator'
   assign modular_wardrobe_calculator_url = '/collections/wardrobe#wardrobe-calculator'
   assign home_interiors_calculator_url = '/collections/kitchen-racks#broader-planning'
-  assign estimate_url = '/pages/contact-us'
+  assign estimate_url = '/pages/get-free-estimate'
 
   if pages['modular-kitchen-designs'] != blank
     assign modular_kitchen_url = pages['modular-kitchen-designs'].url
@@ -25,6 +25,8 @@
   endif
   if pages['get-free-estimate'] != blank
     assign estimate_url = pages['get-free-estimate'].url
+  elsif pages['contact-us'] != blank
+    assign estimate_url = pages['contact-us'].url
   endif
 %}
 

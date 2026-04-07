@@ -10,6 +10,7 @@
   assign collection_eyebrow = 'Explore the collection'
   assign insight_titles = 'Pan-India delivery|Easy EMI|Refined utility' | split: '|'
   assign insight_copies = 'Reliable support for furniture that needs smoother doorstep coordination.|Comfortable payment flexibility for larger purchases and room-by-room upgrades.|Thoughtfully designed pieces built for modern Indian homes.' | split: '|'
+  assign estimate_url = '/pages/get-free-estimate'
 
   if hero_media == blank and collection.products.size > 0
     assign hero_media = collection.products.first.featured_image
@@ -21,6 +22,12 @@
 
   if pages['modular-wardrobe-designs'] != blank
     assign modular_wardrobe_url = pages['modular-wardrobe-designs'].url
+  endif
+
+  if pages['get-free-estimate'] != blank
+    assign estimate_url = pages['get-free-estimate'].url
+  elsif pages['contact-us'] != blank
+    assign estimate_url = pages['contact-us'].url
   endif
 
   if hero_copy == blank
@@ -609,7 +616,7 @@
         <p class="bw-collection__copy">{{ hero_copy }}</p>
         <div class="bw-collection__hero-actions">
           <a class="bw-collection__hero-button" href="/collections/hp-bluewuds-bestseller">Shop bestsellers</a>
-          <a class="bw-collection__hero-button is-secondary" href="/pages/contact-us">Talk to Bluewud</a>
+          <a class="bw-collection__hero-button is-secondary" href="{{ estimate_url }}">Talk to Bluewud</a>
         </div>
         <div class="bw-collection__hero-trust" aria-label="Collection trust cues">
           <span class="bw-collection__hero-badge">Easy EMI</span>

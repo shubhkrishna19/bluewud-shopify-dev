@@ -141,6 +141,11 @@
     border-radius: 24px;
     background: rgba(32, 23, 19, 0.05);
   }
+  .bw-estimate__brief--summary {
+    background:
+      radial-gradient(circle at top right, rgba(79, 120, 143, 0.12), transparent 28%),
+      linear-gradient(180deg, #fffaf6 0%, #f5ede6 100%);
+  }
   .bw-estimate__brief-title {
     margin: 0;
     color: #201713;
@@ -176,6 +181,27 @@
     height: 6px;
     border-radius: 999px;
     background: #a66a43;
+  }
+  .bw-estimate__brief-summary {
+    display: grid;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .bw-estimate__brief-summary li {
+    display: flex;
+    justify-content: space-between;
+    gap: 14px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(45, 33, 27, 0.08);
+    color: #66554c;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .bw-estimate__brief-summary strong {
+    color: #201713;
+    text-align: right;
   }
   .bw-estimate__pills {
     display: flex;
@@ -275,6 +301,9 @@
   .bw-estimate__field--full {
     grid-column: 1 / -1;
   }
+  .bw-estimate__field--wide {
+    grid-column: span 2;
+  }
   .bw-estimate__field label {
     color: #201713;
     font-size: 13px;
@@ -309,6 +338,12 @@
     font-size: 18px;
     line-height: 1.2;
     letter-spacing: -0.02em;
+  }
+  .bw-estimate__section-subtitle {
+    margin: 0;
+    color: #66554c;
+    font-size: 13px;
+    line-height: 1.7;
   }
   .bw-estimate__choices {
     display: flex;
@@ -359,6 +394,12 @@
     color: #6a5850;
     font-size: 13px;
     line-height: 1.7;
+  }
+  .bw-estimate__helper--strong {
+    color: #201713;
+    background: rgba(32, 23, 19, 0.04);
+    padding: 14px 16px;
+    border-radius: 18px;
   }
   .bw-estimate__list {
     display: grid;
@@ -444,6 +485,9 @@
     .bw-estimate__field--full {
       grid-column: auto;
     }
+    .bw-estimate__field--wide {
+      grid-column: auto;
+    }
   }
 </style>
 
@@ -467,6 +511,18 @@
           <a class="bw-estimate__pill" href="{{ wardrobe_design_url }}">Modular Wardrobe</a>
           <a class="bw-estimate__pill" href="{{ interiors_calculator_url }}">Home Interiors</a>
         </div>
+      </div>
+
+      <div class="bw-estimate__brief bw-estimate__brief--summary" aria-live="polite">
+        <p class="bw-estimate__brief-title">Your project snapshot</p>
+        <ul class="bw-estimate__brief-summary" data-bw-estimate-summary>
+          <li><span>Project type</span><strong data-bw-summary-project>Modular Kitchen</strong></li>
+          <li><span>Property type</span><strong data-bw-summary-property>Apartment</strong></li>
+          <li><span>Room size</span><strong data-bw-summary-space>Not sure yet</strong></li>
+          <li><span>Planning stage</span><strong data-bw-summary-stage>Just exploring</strong></li>
+          <li><span>Budget posture</span><strong data-bw-summary-budget>Under Rs. 1 lakh</strong></li>
+          <li><span>Reference source</span><strong data-bw-summary-reference>Website planning page</strong></li>
+        </ul>
       </div>
 
       <div class="bw-estimate__context">
@@ -503,7 +559,7 @@
       <div class="bw-estimate__head">
         <span class="bw-estimate__eyebrow">Project brief</span>
         <h3 class="bw-estimate__section-title">Tell us what you are planning</h3>
-        <p class="bw-estimate__copy">The more directly you map your requirements here, the faster the team can respond with a useful estimate direction instead of a generic callback.</p>
+        <p class="bw-estimate__section-subtitle">The more directly you map your requirements here, the faster the team can respond with a useful estimate direction instead of a generic callback.</p>
       </div>
 
       {% form 'contact' %}
@@ -545,6 +601,25 @@
             <input id="EstimateCity" type="text" name="contact[city]" required>
           </div>
           <div class="bw-estimate__field">
+            <label for="EstimatePropertyType">Property type</label>
+            <select id="EstimatePropertyType" name="contact[property_type]">
+              <option>Apartment</option>
+              <option>Independent house / villa</option>
+              <option>Builder floor</option>
+              <option>Commercial / office</option>
+              <option>Still deciding</option>
+            </select>
+          </div>
+          <div class="bw-estimate__field">
+            <label for="EstimateSpaceSize">Approx. room size</label>
+            <select id="EstimateSpaceSize" name="contact[space_size]">
+              <option>Not sure yet</option>
+              <option>Compact / under 100 sq ft</option>
+              <option>Medium / 100 to 200 sq ft</option>
+              <option>Large / above 200 sq ft</option>
+            </select>
+          </div>
+          <div class="bw-estimate__field">
             <label for="EstimateBudget">Budget range</label>
             <select id="EstimateBudget" name="contact[budget_range]">
               <option>Under Rs. 1 lakh</option>
@@ -567,6 +642,15 @@
             <input id="EstimatePincode" type="text" name="contact[pincode]">
           </div>
           <div class="bw-estimate__field">
+            <label for="EstimateContactPreference">Preferred contact</label>
+            <select id="EstimateContactPreference" name="contact[contact_preference]">
+              <option>Phone call</option>
+              <option>WhatsApp</option>
+              <option>Email</option>
+              <option>Any convenient way</option>
+            </select>
+          </div>
+          <div class="bw-estimate__field">
             <label for="EstimateReference">Reference source</label>
             <select id="EstimateReference" name="contact[reference_source]">
               <option>Website planning page</option>
@@ -586,7 +670,7 @@
           <a class="bw-estimate__cta" href="{{ kitchen_calculator_url }}">Kitchen calculator</a>
           <a class="bw-estimate__cta" href="{{ wardrobe_calculator_url }}">Wardrobe calculator</a>
         </div>
-        <p class="bw-estimate__helper">For faster routing, mention whether this is for a wardrobe, modular kitchen, or a larger interiors requirement.</p>
+        <p class="bw-estimate__helper bw-estimate__helper--strong">For faster routing, mention whether this is for a wardrobe, modular kitchen, or a larger interiors requirement. The brief summary above updates as you fill the form.</p>
       {% endform %}
     </section>
 
@@ -635,6 +719,15 @@
     var hiddenBrief = root.querySelector('[data-bw-estimate-brief]');
     var timelineField = root.querySelector('#EstimateTimeline');
     var budgetField = root.querySelector('#EstimateBudget');
+    var propertyField = root.querySelector('#EstimatePropertyType');
+    var spaceField = root.querySelector('#EstimateSpaceSize');
+    var contactPreferenceField = root.querySelector('#EstimateContactPreference');
+    var projectSummary = root.querySelector('[data-bw-summary-project]');
+    var propertySummary = root.querySelector('[data-bw-summary-property]');
+    var spaceSummary = root.querySelector('[data-bw-summary-space]');
+    var stageSummary = root.querySelector('[data-bw-summary-stage]');
+    var budgetSummary = root.querySelector('[data-bw-summary-budget]');
+    var referenceSummary = root.querySelector('[data-bw-summary-reference]');
 
     function syncProjectType(targetChoice) {
       typeChoices.forEach(function (item) {
@@ -656,6 +749,45 @@
       syncProjectType(match);
     }
 
+    function updateSummary() {
+      var selectedProject = root.querySelector('[data-bw-estimate-type] input[name="contact[project_type]"]:checked');
+
+      if (projectSummary && selectedProject) {
+        projectSummary.textContent = selectedProject.value;
+      }
+      if (stageSummary && timelineField) {
+        stageSummary.textContent = timelineField.value;
+      }
+      if (propertySummary && propertyField) {
+        propertySummary.textContent = propertyField.value;
+      }
+      if (spaceSummary && spaceField) {
+        spaceSummary.textContent = spaceField.value;
+      }
+      if (budgetSummary && budgetField) {
+        budgetSummary.textContent = budgetField.value;
+      }
+      if (referenceSummary && referenceField) {
+        referenceSummary.textContent = referenceField.value;
+      }
+
+      if (hiddenBrief) {
+        var briefParts = [];
+
+        if (selectedProject) briefParts.push('Project type: ' + selectedProject.value);
+        if (cityField && cityField.value) briefParts.push('City: ' + cityField.value);
+        if (propertyField && propertyField.value) briefParts.push('Property: ' + propertyField.value);
+        if (spaceField && spaceField.value) briefParts.push('Room size: ' + spaceField.value);
+        if (timelineField && timelineField.value) briefParts.push('Timeline: ' + timelineField.value);
+        if (budgetField && budgetField.value) briefParts.push('Budget: ' + budgetField.value);
+        if (contactPreferenceField && contactPreferenceField.value) briefParts.push('Contact: ' + contactPreferenceField.value);
+        if (referenceField && referenceField.value) briefParts.push('Reference: ' + referenceField.value);
+        if (messageField && messageField.value) briefParts.push('Notes: ' + messageField.value);
+
+        hiddenBrief.value = briefParts.join(' | ');
+      }
+    }
+
     typeChoices.forEach(function (choice) {
       var input = choice.querySelector('input');
       if (!input) return;
@@ -668,6 +800,7 @@
       choice.addEventListener('click', function () {
         input.checked = true;
         sync();
+        updateSummary();
       });
     });
 
@@ -691,5 +824,13 @@
     if (hiddenBrief && params.get('summary')) {
       hiddenBrief.value = params.get('summary');
     }
+
+    [referenceField, cityField, propertyField, spaceField, contactPreferenceField, timelineField, budgetField, messageField].forEach(function (field) {
+      if (!field) return;
+      field.addEventListener('input', updateSummary);
+      field.addEventListener('change', updateSummary);
+    });
+
+    updateSummary();
   })();
 </script>

@@ -392,6 +392,112 @@
     object-fit: cover;
     display: block;
   }
+  .bw-modular__gallery {
+    display: grid;
+    gap: 16px;
+  }
+  .bw-modular__gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .bw-modular__gallery-card {
+    display: grid;
+    gap: 12px;
+    padding: 14px;
+    border-radius: 24px;
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    text-decoration: none;
+    color: inherit;
+    box-shadow: 0 18px 40px rgba(35, 24, 19, 0.05);
+  }
+  .bw-modular__gallery-card h3 {
+    margin: 0;
+    color: #201713;
+    font-size: 18px;
+    line-height: 1.18;
+  }
+  .bw-modular__gallery-card p {
+    margin: 0;
+    color: #66554c;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .bw-modular__gallery-media {
+    min-height: 200px;
+    border-radius: 18px;
+    overflow: hidden;
+    background: radial-gradient(circle at 24% 20%, rgba(255,255,255,.22), transparent 24%), linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
+  }
+  .bw-modular__gallery-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bw-modular__process {
+    display: grid;
+    gap: 16px;
+  }
+  .bw-modular__process-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .bw-modular__process-card {
+    display: grid;
+    gap: 10px;
+    padding: 22px;
+    border-radius: 24px;
+    background: rgba(32, 23, 19, 0.04);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+  }
+  .bw-modular__process-index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 30px;
+    height: 30px;
+    border-radius: 999px;
+    background: rgba(79, 120, 143, 0.12);
+    color: #4f788f;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .bw-modular__process-card h3 {
+    margin: 0;
+    color: #201713;
+    font-size: 18px;
+    line-height: 1.18;
+  }
+  .bw-modular__process-card p {
+    margin: 0;
+    color: #66554c;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .bw-modular__proof-strip {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .bw-modular__proof-pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(79, 120, 143, 0.12);
+    color: #355a6d;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
   .bw-modular__actions {
     display: flex;
     flex-wrap: wrap;
@@ -458,6 +564,8 @@
     .bw-modular__cards,
     .bw-modular__blueprint,
     .bw-modular__products,
+    .bw-modular__gallery-grid,
+    .bw-modular__process-grid,
     .bw-modular__launchpad { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bw-modular__hero { grid-template-columns: 1fr; }
   }
@@ -469,6 +577,8 @@
     .bw-modular__tab { flex: 0 0 auto; white-space: nowrap; }
     .bw-modular__cards,
     .bw-modular__blueprint,
+    .bw-modular__gallery-grid,
+    .bw-modular__process-grid,
     .bw-modular__products,
     .bw-modular__launchpad { grid-template-columns: 1fr; }
   }
@@ -528,6 +638,88 @@
           <button class="bw-modular__button--secondary" type="button" data-bw-estimate-open data-estimate-context="Modular Kitchen" data-estimate-trigger="blueprint">Get Free Estimate</button>
         </div>
       </article>
+    </div>
+  </section>
+
+  <section class="bw-modular__block">
+    <div class="bw-modular__section-head">
+      <div class="bw-modular__eyebrow">Inspiration gallery</div>
+      <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">See the layout language before refining the brief</h2>
+      <p class="bw-modular__copy">This visual layer keeps the page grounded in real kitchen imagery. Each card connects a room mood to a layout choice so the next step feels more concrete.</p>
+    </div>
+    <div class="bw-modular__gallery-grid">
+      <a class="bw-modular__gallery-card" href="{{ main_url }}" data-variant-toggle="all">
+        <div class="bw-modular__gallery-media">
+          {% if hero_all and hero_all.featured_image %}
+            {{ hero_all.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '360,540,720,900', sizes: '(max-width: 720px) 100vw, 25vw', alt: hero_all.title }}
+          {% endif %}
+        </div>
+        <h3>All layouts</h3>
+        <p>Start from the main planning hub, then move into the layout that best matches the room and cooking pattern.</p>
+      </a>
+      <a class="bw-modular__gallery-card" href="{{ l_url }}" data-variant-toggle="l-shape">
+        <div class="bw-modular__gallery-media">
+          {% if hero_l and hero_l.featured_image %}
+            {{ hero_l.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '360,540,720,900', sizes: '(max-width: 720px) 100vw, 25vw', alt: hero_l.title }}
+          {% endif %}
+        </div>
+        <h3>L-shape</h3>
+        <p>Open, balanced, and easy to live with when the kitchen needs an efficient corner-led rhythm.</p>
+      </a>
+      <a class="bw-modular__gallery-card" href="{{ u_url }}" data-variant-toggle="u-shape">
+        <div class="bw-modular__gallery-media">
+          {% if hero_u and hero_u.featured_image %}
+            {{ hero_u.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '360,540,720,900', sizes: '(max-width: 720px) 100vw, 25vw', alt: hero_u.title }}
+          {% endif %}
+        </div>
+        <h3>U-shape</h3>
+        <p>More storage and counter depth for homes that want the kitchen to feel fully equipped and serious.</p>
+      </a>
+      <a class="bw-modular__gallery-card" href="{{ island_url }}" data-variant-toggle="island">
+        <div class="bw-modular__gallery-media">
+          {% if hero_island and hero_island.featured_image %}
+            {{ hero_island.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '360,540,720,900', sizes: '(max-width: 720px) 100vw, 25vw', alt: hero_island.title }}
+          {% endif %}
+        </div>
+        <h3>Island</h3>
+        <p>Premium planning for larger homes where prep, serving, and social use all need to coexist gracefully.</p>
+      </a>
+    </div>
+  </section>
+
+  <section class="bw-modular__block">
+    <div class="bw-modular__section-head">
+      <div class="bw-modular__eyebrow">Consultation path</div>
+      <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">A clearer brief makes the consultation and estimate more useful</h2>
+      <p class="bw-modular__copy">The kitchen becomes easier to design and easier to estimate when the brief develops in the right order. This flow keeps the customer moving without losing context.</p>
+    </div>
+    <div class="bw-modular__process-grid">
+      <article class="bw-modular__process-card">
+        <span class="bw-modular__process-index">01</span>
+        <h3>Measure the room</h3>
+        <p>Confirm walls, openings, service points, and movement paths before the layout discussion gets too abstract.</p>
+      </article>
+      <article class="bw-modular__process-card">
+        <span class="bw-modular__process-index">02</span>
+        <h3>Shortlist the geometry</h3>
+        <p>Choose the layout family first so the kitchen’s circulation and storage balance are already clear.</p>
+      </article>
+      <article class="bw-modular__process-card">
+        <span class="bw-modular__process-index">03</span>
+        <h3>Choose finish direction</h3>
+        <p>Once the shape is fixed, material and hardware decisions become sharper, calmer, and easier to compare.</p>
+      </article>
+      <article class="bw-modular__process-card">
+        <span class="bw-modular__process-index">04</span>
+        <h3>Move into estimate</h3>
+        <p>At that point the brief is specific enough to send into a real Bluewud consultation rather than a loose style request.</p>
+      </article>
+    </div>
+    <div class="bw-modular__proof-strip" aria-label="Kitchen reassurance">
+      <span class="bw-modular__proof-pill">Estimate-backed brief</span>
+      <span class="bw-modular__proof-pill">Layout-first planning</span>
+      <span class="bw-modular__proof-pill">Design support included</span>
+      <span class="bw-modular__proof-pill">Clearer consultation path</span>
     </div>
   </section>
 
@@ -659,6 +851,11 @@
           <div class="bw-modular__actions">
             <a class="bw-modular__button" href="{{ calculator_entry_url }}">Start Kitchen Calculator</a>
             <button class="bw-modular__button--secondary" type="button" data-bw-estimate-open data-estimate-context="Modular Kitchen" data-estimate-trigger="landing">Get Free Estimate</button>
+          </div>
+          <div class="bw-modular__proof-strip" aria-label="Kitchen reassurance">
+            <span class="bw-modular__proof-pill">Design support included</span>
+            <span class="bw-modular__proof-pill">Estimate-ready brief</span>
+            <span class="bw-modular__proof-pill">Layout-led consultation</span>
           </div>
         </div>
         <div class="bw-modular__visual">

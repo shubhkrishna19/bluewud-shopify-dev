@@ -268,6 +268,196 @@
     text-transform: uppercase;
     cursor: pointer;
   }
+  .bw-wardrobe-gallery {
+    display: grid;
+    gap: 18px;
+  }
+  .bw-wardrobe-gallery-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.3fr) minmax(0, 0.7fr);
+    gap: 16px;
+  }
+  .bw-wardrobe-gallery-main,
+  .bw-wardrobe-gallery-stack {
+    display: grid;
+    gap: 16px;
+  }
+  .bw-wardrobe-gallery-main-card,
+  .bw-wardrobe-gallery-card {
+    overflow: hidden;
+    border-radius: 28px;
+    background: rgba(32, 23, 19, 0.04);
+    border: 1px solid rgba(32, 23, 19, 0.08);
+    box-shadow: 0 18px 48px rgba(35, 24, 19, 0.06);
+  }
+  .bw-wardrobe-gallery-main-card {
+    display: grid;
+    grid-template-columns: minmax(0, 0.95fr) minmax(240px, 1.05fr);
+    min-height: 320px;
+  }
+  .bw-wardrobe-gallery-main-copy {
+    display: grid;
+    align-content: start;
+    gap: 12px;
+    padding: 24px;
+    background: linear-gradient(180deg, #fffaf6 0%, #f6eee7 100%);
+  }
+  .bw-wardrobe-gallery-main-copy h3,
+  .bw-wardrobe-gallery-card h3 {
+    margin: 0;
+    color: #201713;
+    font-size: 19px;
+    line-height: 1.18;
+    letter-spacing: -0.03em;
+  }
+  .bw-wardrobe-gallery-main-copy p,
+  .bw-wardrobe-gallery-card p {
+    margin: 0;
+    color: #66554c;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .bw-wardrobe-gallery-badge {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    min-height: 30px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: rgba(32, 23, 19, 0.08);
+    color: #6f584c;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .bw-wardrobe-gallery-main-media,
+  .bw-wardrobe-gallery-media {
+    min-height: 100%;
+    background: radial-gradient(circle at 20% 18%, rgba(255, 255, 255, 0.2), transparent 24%), linear-gradient(145deg, #ddcfc2 0%, #b49682 42%, #6e5043 100%);
+  }
+  .bw-wardrobe-gallery-main-media img,
+  .bw-wardrobe-gallery-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bw-wardrobe-gallery-stack {
+    grid-template-columns: 1fr;
+  }
+  .bw-wardrobe-gallery-card {
+    display: grid;
+    grid-template-columns: 110px minmax(0, 1fr);
+  }
+  .bw-wardrobe-gallery-card .bw-wardrobe-gallery-media {
+    min-height: 160px;
+  }
+  .bw-wardrobe-gallery-card-body {
+    display: grid;
+    gap: 10px;
+    padding: 18px;
+    align-content: start;
+  }
+  .bw-wardrobe-gallery-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .bw-wardrobe-gallery-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    min-height: 38px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: #201713;
+    color: #fff7f1;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .bw-wardrobe-consult {
+    display: grid;
+    gap: 18px;
+  }
+  .bw-wardrobe-consult-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .bw-wardrobe-consult-card {
+    display: grid;
+    gap: 12px;
+    align-content: start;
+    padding: 22px;
+    border-radius: 26px;
+    background: rgba(32, 23, 19, 0.04);
+    border: 1px solid rgba(32, 23, 19, 0.08);
+  }
+  .bw-wardrobe-consult-card--accent {
+    background: radial-gradient(circle at top left, rgba(79, 120, 143, 0.12), transparent 28%), linear-gradient(180deg, #fffaf6 0%, #f5eee7 100%);
+  }
+  .bw-wardrobe-consult-step {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    min-height: 30px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: rgba(32, 23, 19, 0.08);
+    color: #6f584c;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .bw-wardrobe-consult-card h3 {
+    margin: 0;
+    color: #201713;
+    font-size: 18px;
+    line-height: 1.18;
+    letter-spacing: -0.03em;
+  }
+  .bw-wardrobe-consult-card p {
+    margin: 0;
+    color: #66554c;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .bw-wardrobe-proof {
+    display: grid;
+    gap: 18px;
+  }
+  .bw-wardrobe-proof-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .bw-wardrobe-proof-card {
+    display: grid;
+    gap: 10px;
+    padding: 20px 22px;
+    border-radius: 24px;
+    background: linear-gradient(180deg, #fffaf6 0%, #f5eee7 100%);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+  }
+  .bw-wardrobe-proof-card strong {
+    color: #201713;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .bw-wardrobe-proof-card p {
+    margin: 0;
+    color: #66554c;
+    font-size: 14px;
+    line-height: 1.72;
+  }
   .bw-wardrobe-lens {
     display: grid;
     gap: 18px;
@@ -545,7 +735,8 @@
     .bw-wardrobe-subnav { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
     .bw-wardrobe-subnav::-webkit-scrollbar { display: none; }
     .bw-wardrobe-chip { flex: 0 0 auto; white-space: nowrap; }
-    .bw-wardrobe-grid-4, .bw-wardrobe-grid-3, .bw-wardrobe-grid-2, .bw-wardrobe-products, .bw-wardrobe-compare-grid, .bw-wardrobe-journey-grid, .bw-wardrobe-measure-grid, .bw-wardrobe-route-grid { grid-template-columns: 1fr; }
+    .bw-wardrobe-grid-4, .bw-wardrobe-grid-3, .bw-wardrobe-grid-2, .bw-wardrobe-products, .bw-wardrobe-compare-grid, .bw-wardrobe-journey-grid, .bw-wardrobe-measure-grid, .bw-wardrobe-route-grid, .bw-wardrobe-gallery-grid, .bw-wardrobe-consult-grid, .bw-wardrobe-proof-grid { grid-template-columns: 1fr; }
+    .bw-wardrobe-gallery-main-card, .bw-wardrobe-gallery-card { grid-template-columns: 1fr; }
     .bw-wardrobe-lens-grid { grid-template-columns: 1fr; }
     .bw-wardrobe-embedded-calculator { padding: 20px; border-radius: 24px; }
     .bw-wardrobe-product-media { min-height: 220px; }
@@ -654,6 +845,126 @@
     </div>
   </section>
 
+  <section class="bw-wardrobe-block bw-wardrobe-gallery">
+    <div class="bw-wardrobe-head">
+      <span class="bw-wardrobe-eyebrow">Wardrobe inspiration</span>
+      {% if wardrobe_variant == 'sliding' %}
+        <h2 class="bw-wardrobe-title">See how sliding wardrobes can look in a calmer, room-led composition</h2>
+        <p class="bw-wardrobe-copy">The inspiration here should help the customer understand panel rhythm, mirror use, and the kind of room language sliding wardrobes create before they ask for pricing.</p>
+      {% elsif wardrobe_variant == 'hinged' %}
+        <h2 class="bw-wardrobe-title">See how hinged wardrobes can feel more premium with cleaner proportions</h2>
+        <p class="bw-wardrobe-copy">The gallery should make it easier to compare shutter depth, handle restraint, and the way a hinged elevation can sit in the bedroom without feeling heavy.</p>
+      {% elsif wardrobe_variant == 'walk-in' %}
+        <h2 class="bw-wardrobe-title">See how walk-in wardrobes become room-scale dressing environments</h2>
+        <p class="bw-wardrobe-copy">The gallery should help buyers imagine zoning, open display, mirrors, and storage balance instead of thinking only in cabinet terms.</p>
+      {% else %}
+        <h2 class="bw-wardrobe-title">Use this gallery to narrow the wardrobe direction before the calculator</h2>
+        <p class="bw-wardrobe-copy">Images and product cues make the planning page easier to trust, especially when the buyer is still deciding whether sliding, hinged, or walk-in is the right fit.</p>
+      {% endif %}
+    </div>
+
+    <div class="bw-wardrobe-gallery-grid">
+      <div class="bw-wardrobe-gallery-main">
+        {% assign gallery_count = 0 %}
+        {% if wardrobe_collection != blank %}
+          {% for product in wardrobe_collection.products %}
+            {% assign include_product = false %}
+            {% assign product_title_downcase = product.title | downcase %}
+            {% if wardrobe_variant == 'all' %}
+              {% assign include_product = true %}
+            {% elsif wardrobe_variant == 'sliding' %}
+              {% if product_title_downcase contains 'sliding' %}
+                {% assign include_product = true %}
+              {% endif %}
+            {% elsif wardrobe_variant == 'hinged' %}
+              {% if product_title_downcase contains 'hinged' %}
+                {% assign include_product = true %}
+              {% endif %}
+            {% elsif wardrobe_variant == 'walk-in' %}
+              {% if product_title_downcase contains 'walk in' or product_title_downcase contains 'walk-in' %}
+                {% assign include_product = true %}
+              {% endif %}
+            {% endif %}
+
+            {% if include_product %}
+              {% if gallery_count == 0 %}
+                <article class="bw-wardrobe-gallery-main-card">
+                  <div class="bw-wardrobe-gallery-main-copy">
+                    <span class="bw-wardrobe-gallery-badge">Featured direction</span>
+                    <h3>{{ product.title }}</h3>
+                    <p>{{ product.description | strip_html | truncatewords: 28 }}</p>
+                    <div class="bw-wardrobe-gallery-actions">
+                      <a class="bw-wardrobe-gallery-link" href="{{ product.url }}">View Product</a>
+                      <a class="bw-wardrobe-button--secondary" href="{{ calculator_url }}">Open Wardrobe Calculator</a>
+                    </div>
+                  </div>
+                  <div class="bw-wardrobe-gallery-main-media">
+                    {% if product.featured_image %}
+                      {{ product.featured_image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '540, 720, 960, 1200, 1400', sizes: '(max-width: 1024px) 100vw, 44vw', alt: product.title }}
+                    {% endif %}
+                  </div>
+                </article>
+              {% elsif gallery_count < 4 %}
+                <article class="bw-wardrobe-gallery-card">
+                  <div class="bw-wardrobe-gallery-media">
+                    {% if product.featured_image %}
+                      {{ product.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 460, 640, 900', sizes: '(max-width: 1024px) 100vw, 18vw', alt: product.title }}
+                    {% endif %}
+                  </div>
+                  <div class="bw-wardrobe-gallery-card-body">
+                    <span class="bw-wardrobe-gallery-badge">{{ product.type | default: 'Wardrobe direction' }}</span>
+                    <h3>{{ product.title }}</h3>
+                    <p>{{ product.description | strip_html | truncatewords: 18 }}</p>
+                    <div class="bw-wardrobe-gallery-actions">
+                      <a class="bw-wardrobe-gallery-link" href="{{ product.url }}">Shortlist</a>
+                    </div>
+                  </div>
+                </article>
+              {% endif %}
+              {% assign gallery_count = gallery_count | plus: 1 %}
+              {% if gallery_count >= 4 %}
+                {% break %}
+              {% endif %}
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+      </div>
+
+      <div class="bw-wardrobe-gallery-stack">
+        <article class="bw-wardrobe-gallery-card">
+          <div class="bw-wardrobe-gallery-media">
+            {% if wardrobe_collection != blank and wardrobe_collection.products.first and wardrobe_collection.products.first.featured_image %}
+              {{ wardrobe_collection.products.first.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 460, 640, 900', sizes: '(max-width: 1024px) 100vw, 18vw', alt: wardrobe_collection.products.first.title }}
+            {% endif %}
+          </div>
+          <div class="bw-wardrobe-gallery-card-body">
+            <span class="bw-wardrobe-gallery-badge">Planning cue</span>
+            <h3>Keep the wardrobe picture room-led, not catalog-led</h3>
+            <p>The strongest decisions start with clearance, access, and internal storage, then move to finish and detailing once the room feels grounded.</p>
+            <div class="bw-wardrobe-gallery-actions">
+              <a class="bw-wardrobe-gallery-link" href="{{ calculator_url }}">Use Calculator</a>
+            </div>
+          </div>
+        </article>
+        <article class="bw-wardrobe-gallery-card">
+          <div class="bw-wardrobe-gallery-media">
+            {% if wardrobe_collection != blank and wardrobe_collection.products.size > 1 and wardrobe_collection.products[1].featured_image %}
+              {{ wardrobe_collection.products[1].featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 460, 640, 900', sizes: '(max-width: 1024px) 100vw, 18vw', alt: wardrobe_collection.products[1].title }}
+            {% endif %}
+          </div>
+          <div class="bw-wardrobe-gallery-card-body">
+            <span class="bw-wardrobe-gallery-badge">Detail cue</span>
+            <h3>Let the finish support the room mood</h3>
+            <p>Mirror use, wood tone, matte surfaces, and hardware restraint should all support the bedroom instead of dominating the wall.</p>
+            <div class="bw-wardrobe-gallery-actions">
+              <button class="bw-wardrobe-button--secondary" type="button" data-bw-wardrobe-estimate-open data-estimate-trigger="gallery">Get Free Estimate</button>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
   <section class="bw-wardrobe-block bw-wardrobe-journey">
     <div class="bw-wardrobe-head">
       <span class="bw-wardrobe-eyebrow">Planning path</span>
@@ -701,6 +1012,36 @@
         </div>
         <p class="bw-wardrobe-journey-meta">Best when: the project brief is ready for lead capture and callback.</p>
         <button class="bw-wardrobe-journey-link" type="button" data-bw-wardrobe-estimate-open data-estimate-trigger="journey">Get Free Estimate</button>
+      </article>
+    </div>
+  </section>
+
+  <section class="bw-wardrobe-block bw-wardrobe-consult">
+    <div class="bw-wardrobe-head">
+      <span class="bw-wardrobe-eyebrow">Consultation path</span>
+      <h2 class="bw-wardrobe-title">How the wardrobe conversation should move once the customer is serious</h2>
+      <p class="bw-wardrobe-copy">This is the part that turns browsing into a project brief: room context, shortlist, measurements, consultation, and then the estimate discussion.</p>
+    </div>
+    <div class="bw-wardrobe-consult-grid">
+      <article class="bw-wardrobe-consult-card">
+        <span class="bw-wardrobe-consult-step">01</span>
+        <h3>Room snapshot</h3>
+        <p>Capture the bedroom size, bed position, and front clearance so the format decision starts with reality.</p>
+      </article>
+      <article class="bw-wardrobe-consult-card">
+        <span class="bw-wardrobe-consult-step">02</span>
+        <h3>Shortlist and mood</h3>
+        <p>Pick the likely wardrobe type, then decide whether the room needs a lighter, darker, or more feature-led composition.</p>
+      </article>
+      <article class="bw-wardrobe-consult-card">
+        <span class="bw-wardrobe-consult-step">03</span>
+        <h3>Measurement and internals</h3>
+        <p>Map hanging, drawers, lofts, mirrors, and accessories before anyone asks for a final number.</p>
+      </article>
+      <article class="bw-wardrobe-consult-card bw-wardrobe-consult-card--accent">
+        <span class="bw-wardrobe-consult-step">04</span>
+        <h3>Estimate and callback</h3>
+        <p>Once the brief is grounded, the estimate form has enough context to become a useful next step instead of a blind lead form.</p>
       </article>
     </div>
   </section>
@@ -921,6 +1262,28 @@
         <article class="bw-wardrobe-process"><span class="bw-wardrobe-step">03</span><h3>Align materials and finishes</h3><p>Carcass material, shutter finish, mirror use, and hardware level shape both budget and the final premium feel.</p></article>
         <article class="bw-wardrobe-process"><span class="bw-wardrobe-step">04</span><h3>Move into estimate and contact</h3><p>Once the direction feels real, the calculator and Bluewud consultation become much more productive.</p></article>
       {% endif %}
+    </div>
+  </section>
+
+  <section class="bw-wardrobe-block bw-wardrobe-proof">
+    <div class="bw-wardrobe-head">
+      <span class="bw-wardrobe-eyebrow">Why this path feels safer</span>
+      <h2 class="bw-wardrobe-title">The wardrobe flow should reassure the buyer before the final CTA</h2>
+      <p class="bw-wardrobe-copy">A premium planning page should reduce hesitation by showing how the team thinks, how the project is scoped, and what happens after the customer reaches out.</p>
+    </div>
+    <div class="bw-wardrobe-proof-grid">
+      <article class="bw-wardrobe-proof-card">
+        <strong>Designer-guided</strong>
+        <p>The estimate path is there to support real wardrobe planning, not to force a fast checkout decision.</p>
+      </article>
+      <article class="bw-wardrobe-proof-card">
+        <strong>Room-fit first</strong>
+        <p>The page keeps clearance, format, and storage intent in the foreground so the conversation starts with the right context.</p>
+      </article>
+      <article class="bw-wardrobe-proof-card">
+        <strong>Responsive follow-up</strong>
+        <p>The callback and estimate route stays visible throughout the page, so the buyer always has a clear next step.</p>
+      </article>
     </div>
   </section>
 
