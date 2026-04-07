@@ -1,5 +1,47 @@
 {% liquid
   assign contact_url = '/pages/contact-us'
+  assign main_url = '/collections/kitchen-racks'
+  assign l_url = '/collections/kitchen-racks#l-shape'
+  assign u_url = '/collections/kitchen-racks#u-shape'
+  assign parallel_url = '/collections/kitchen-racks#parallel'
+  assign straight_url = '/collections/kitchen-racks#straight'
+  assign island_url = '/collections/kitchen-racks#island'
+  assign wardrobe_calculator_url = '/collections/wardrobe#wardrobe-calculator'
+  assign interiors_calculator_url = '/pages/contact-us'
+  assign estimate_url = '/pages/contact-us'
+
+  if pages['modular-kitchen-designs'] != blank
+    assign main_url = pages['modular-kitchen-designs'].url
+    assign l_url = main_url | append: '#l-shape'
+    assign u_url = main_url | append: '#u-shape'
+    assign parallel_url = main_url | append: '#parallel'
+    assign straight_url = main_url | append: '#straight'
+    assign island_url = main_url | append: '#island'
+  endif
+  if pages['l-shape-modular-kitchen-design'] != blank
+    assign l_url = pages['l-shape-modular-kitchen-design'].url
+  endif
+  if pages['u-shape-modular-kitchen-design'] != blank
+    assign u_url = pages['u-shape-modular-kitchen-design'].url
+  endif
+  if pages['parallel-modular-kitchen-design'] != blank
+    assign parallel_url = pages['parallel-modular-kitchen-design'].url
+  endif
+  if pages['straight-modular-kitchen'] != blank
+    assign straight_url = pages['straight-modular-kitchen'].url
+  endif
+  if pages['kitchen-island-design'] != blank
+    assign island_url = pages['kitchen-island-design'].url
+  endif
+  if pages['modular-wardrobe-cost-calculator'] != blank
+    assign wardrobe_calculator_url = pages['modular-wardrobe-cost-calculator'].url
+  endif
+  if pages['home-interiors-cost-calculator'] != blank
+    assign interiors_calculator_url = pages['home-interiors-cost-calculator'].url
+  endif
+  if pages['get-free-estimate'] != blank
+    assign estimate_url = pages['get-free-estimate'].url
+  endif
 %}
 
 <style>
@@ -48,6 +90,20 @@
     color: #66554c;
     font-size: 15px;
     line-height: 1.8;
+  }
+  .bw-flow__journey {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 22px;
+    padding: 18px;
+    border-radius: 24px;
+    background: linear-gradient(180deg, #fffaf6 0%, #f7efe7 100%);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+  }
+  .bw-flow__journey-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
   }
   .bw-flow__progress {
     display: grid;
@@ -193,6 +249,16 @@
     background: rgba(32, 23, 19, 0.04);
     color: #201713;
   }
+  .bw-flow__summary .bw-flow__button--secondary {
+    border-color: rgba(255, 247, 241, 0.26);
+    background: rgba(255, 247, 241, 0.14);
+    color: #fff7f1;
+  }
+  .bw-flow__summary .bw-flow__button--secondary:hover,
+  .bw-flow__summary .bw-flow__button--secondary:focus-visible {
+    background: rgba(255, 247, 241, 0.22);
+    border-color: rgba(255, 247, 241, 0.38);
+  }
   .bw-flow__summary-list {
     display: grid;
     gap: 12px;
@@ -228,6 +294,38 @@
     font-size: 13px;
     line-height: 1.7;
   }
+  .bw-flow__network {
+    display: grid;
+    gap: 14px;
+    padding: 22px 24px;
+    border-radius: 28px;
+    background: rgba(255, 251, 247, 0.94);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 24px 70px rgba(35, 24, 19, 0.08);
+  }
+  .bw-flow__network-head {
+    display: grid;
+    gap: 8px;
+  }
+  .bw-flow__network-title {
+    margin: 0;
+    color: #201713;
+    font-size: 22px;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+  }
+  .bw-flow__network-copy {
+    margin: 0;
+    color: #66554c;
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 68ch;
+  }
+  .bw-flow__network-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
   @media (max-width: 980px) {
     .bw-flow__shell { grid-template-columns: 1fr; }
     .bw-flow__summary { position: static; }
@@ -250,6 +348,25 @@
         <h2 class="bw-flow__title">Modular Kitchen Cost Calculator</h2>
         <p class="bw-flow__copy">This is a consultation-first workflow, not a fake instant quote. Complete the brief properly and Bluewud gets the exact layout, measurements, materials, and add-ons you want to discuss.</p>
       </div>
+
+      <section class="bw-flow__journey">
+        <div class="bw-flow__stage-head">
+          <h3 class="bw-flow__stage-title">Jump between kitchen guides and planning tools</h3>
+          <p class="bw-flow__stage-copy">This calculator should sit inside the larger modular journey. Compare layouts first if needed, then come back here to submit a tighter brief.</p>
+        </div>
+        <div class="bw-flow__journey-links" aria-label="Kitchen layout guides">
+          <a class="bw-flow__button--secondary" href="{{ main_url }}">All Kitchen Guides</a>
+          <a class="bw-flow__button--secondary" href="{{ l_url }}">L-shape</a>
+          <a class="bw-flow__button--secondary" href="{{ u_url }}">U-shape</a>
+          <a class="bw-flow__button--secondary" href="{{ parallel_url }}">Parallel</a>
+          <a class="bw-flow__button--secondary" href="{{ straight_url }}">Straight</a>
+          <a class="bw-flow__button--secondary" href="{{ island_url }}">Island</a>
+        </div>
+        <div class="bw-flow__journey-links" aria-label="Connected planning tools">
+          <a class="bw-flow__button" href="{{ main_url }}">Back To Kitchen Studio</a>
+          <a class="bw-flow__button--secondary" href="{{ estimate_url }}">Get Free Estimate</a>
+        </div>
+      </section>
 
       <div class="bw-flow__progress">
         <div class="bw-flow__step is-active" data-step-indicator="1"><span class="bw-flow__step-index">01</span><span class="bw-flow__step-label">Layout</span></div>
@@ -430,6 +547,19 @@
       </div>
     </aside>
   </div>
+
+  <section class="bw-flow__network">
+    <div class="bw-flow__network-head">
+      <span class="bw-flow__eyebrow">Need a broader planning route?</span>
+      <h3 class="bw-flow__network-title">The other planners are still close by, just not crowding the calculator itself</h3>
+      <p class="bw-flow__network-copy">Use these only when the project moves beyond the kitchen brief. This keeps the main calculator focused while still making the larger modular journey easy to reach.</p>
+    </div>
+    <div class="bw-flow__network-links">
+      <a class="bw-flow__button--secondary" href="{{ wardrobe_calculator_url }}">Wardrobe Calculator</a>
+      <a class="bw-flow__button--secondary" href="{{ interiors_calculator_url }}">Home Interiors</a>
+      <a class="bw-flow__button--secondary" href="{{ estimate_url }}">Get Free Estimate</a>
+    </div>
+  </section>
 </div>
 
 {% render 'modular-estimate-popup', modal_id: 'bw-kitchen-calc-popup', modal_title: 'Get a kitchen estimate', context_label: 'Bluewud modular kitchen' %}
@@ -451,6 +581,21 @@
     function selectedRadio(name) {
       var node = root.querySelector('input[name="' + name + '"]:checked');
       return node ? node.value : '';
+    }
+    function setRadioValue(name, value) {
+      var node = root.querySelector('input[name="' + name + '"][value="' + value + '"]');
+      if (node) node.checked = true;
+    }
+    function normalizeLayout(layout) {
+      if (!layout) return '';
+      var key = String(layout).toLowerCase();
+      if (key === 'all') return 'L-shape';
+      if (key === 'l-shape' || key === 'l shape') return 'L-shape';
+      if (key === 'u-shape' || key === 'u shape') return 'U-shape';
+      if (key === 'parallel') return 'Parallel';
+      if (key === 'straight') return 'Straight';
+      if (key === 'island') return 'Island';
+      return '';
     }
     function selectedChecks(group) {
       return Array.prototype.slice.call(root.querySelectorAll('[data-flow-group="' + group + '"] input[type="checkbox"]:checked')).map(function (input) {
@@ -519,6 +664,14 @@
         'Direction: ' + projectBand()
       ].join(' | ');
     }
+    function applyLayoutPreset(layout) {
+      var normalized = normalizeLayout(layout);
+      if (!normalized) return;
+      setRadioValue('kitchen_layout', normalized);
+      step = 1;
+      updateSummary();
+      paintSteps();
+    }
     function paintSteps() {
       stageNodes.forEach(function (panel) {
         panel.classList.toggle('is-active', Number(panel.getAttribute('data-step-panel')) === step);
@@ -571,6 +724,11 @@
     });
 
     root.addEventListener('change', updateSummary);
+    root.addEventListener('bw:kitchen-layout-select', function (event) {
+      if (event.detail && event.detail.layout) {
+        applyLayoutPreset(event.detail.layout);
+      }
+    });
 
     if (modal) {
       modal.querySelectorAll('[data-bw-estimate-close]').forEach(function (control) {
@@ -582,6 +740,8 @@
     }
 
     updateSummary();
+    var params = new URLSearchParams(window.location.search);
+    applyLayoutPreset(params.get('layout'));
     paintSteps();
   })();
 </script>

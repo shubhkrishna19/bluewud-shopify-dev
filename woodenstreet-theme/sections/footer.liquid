@@ -3,8 +3,8 @@
   assign footer_copy = section.settings.footer_copy | default: 'Bluewud brings premium-value furniture, smarter storage, and room-defining pieces together in one clearer shopping journey.'
   assign modular_kitchen_url = '/collections/kitchen-racks'
   assign modular_wardrobe_url = '/collections/wardrobe'
-  assign modular_kitchen_calculator_url = '/pages/contact-us'
-  assign modular_wardrobe_calculator_url = '/pages/contact-us'
+  assign modular_kitchen_calculator_url = '/collections/kitchen-racks#kitchen-calculator'
+  assign modular_wardrobe_calculator_url = '/collections/wardrobe#wardrobe-calculator'
   assign home_interiors_calculator_url = '/pages/contact-us'
   assign estimate_url = '/pages/contact-us'
 
@@ -96,6 +96,45 @@
 
   .bw-footer__contact-list a:hover,
   .bw-footer__links a:hover {
+    color: #ffffff;
+  }
+
+  .bw-footer__planning {
+    display: grid;
+    gap: 10px;
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid rgba(248, 241, 235, 0.12);
+  }
+
+  .bw-footer__planning-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .bw-footer__planning-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 32px;
+    padding: 0 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(248, 241, 235, 0.14);
+    background: rgba(255, 255, 255, 0.04);
+    color: rgba(248, 241, 235, 0.84);
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+
+  .bw-footer__planning-links a:hover {
+    background: rgba(255, 255, 255, 0.12);
     color: #ffffff;
   }
 
@@ -200,6 +239,16 @@
           <li><a href="/pages/contact-us">Contact Us</a></li>
           <li><a href="/pages/visit-us">Visit Us</a></li>
         </ul>
+
+        <div class="bw-footer__planning">
+          <div class="bw-footer__heading">Plan Your Space</div>
+          <ul class="bw-footer__planning-links" aria-label="Planning links">
+            <li><a href="{{ modular_kitchen_url }}">Modular Kitchen</a></li>
+            <li><a href="{{ modular_wardrobe_url }}">Wardrobes</a></li>
+            <li><a href="{{ home_interiors_calculator_url }}">Home Interiors</a></li>
+            <li><a href="{{ estimate_url }}">Get Free Estimate</a></li>
+          </ul>
+        </div>
 
         <div class="bw-footer__newsletter">
           <div class="bw-footer__heading">Stay connected</div>

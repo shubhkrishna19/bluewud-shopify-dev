@@ -11,6 +11,7 @@
   assign is_returns_refunds = false
   assign is_offers_page = false
   assign is_contact_page = false
+  assign is_business_support_page = false
   assign is_kitchen_page = false
   assign is_kitchen_calculator = false
   assign is_home_interiors_calculator = false
@@ -46,6 +47,42 @@
     assign is_contact_page = true
     assign page_eyebrow = 'Bluewud contact'
     assign page_intro = 'Reach Bluewud for order assistance, installation support, product questions, or purchase guidance through phone, WhatsApp, email, or the contact form below.'
+  endif
+
+  if page.handle == 'buy-in-bulk'
+    assign is_business_support_page = true
+    assign page_eyebrow = 'Bluewud business desk'
+    assign page_intro = 'Use this page for bulk, GST-led, project, hospitality, or office furniture requirements that need a more direct commercial conversation than a normal storefront order.'
+  endif
+
+  if page.handle == 'visit-us'
+    assign is_business_support_page = true
+    assign page_eyebrow = 'Bluewud studio visit'
+    assign page_intro = 'Plan a more useful Bluewud visit by bringing the right shortlist, room context, and project questions before you arrive.'
+  endif
+
+  if page.handle == 'award-achievment'
+    assign is_business_support_page = true
+    assign page_eyebrow = 'Bluewud credibility'
+    assign page_intro = 'Recognition, milestones, and achievements should strengthen customer trust and connect naturally back into the buying journey.'
+  endif
+
+  if page.handle == 'policies'
+    assign is_business_support_page = true
+    assign page_eyebrow = 'Bluewud policy desk'
+    assign page_intro = 'This page should make ordering expectations, support boundaries, and customer confidence easier to understand before purchase.'
+  endif
+
+  if page.handle == 'payment-security'
+    assign is_business_support_page = true
+    assign page_eyebrow = 'Bluewud payment confidence'
+    assign page_intro = 'This page should reduce payment hesitation and help larger furniture buyers feel more secure before they complete checkout.'
+  endif
+
+  if page.handle == 'terms-of-use'
+    assign is_business_support_page = true
+    assign page_eyebrow = 'Bluewud terms'
+    assign page_intro = 'A cleaner terms page should stay readable, structured, and connected to real help paths when customers need practical clarification.'
   endif
 
   if page.handle == 'modular-kitchen-designs'
@@ -151,6 +188,10 @@
   endif
 
   if is_contact_page
+    assign page_content_class = page_content_class | append: ' bw-page__content--contact'
+  endif
+
+  if is_business_support_page
     assign page_content_class = page_content_class | append: ' bw-page__content--contact'
   endif
 
@@ -430,6 +471,8 @@
         {% render 'offers-page-content' %}
       {% elsif is_contact_page %}
         {% render 'contact-page-content' %}
+      {% elsif is_business_support_page %}
+        {% render 'business-support-page-content' %}
       {% elsif is_kitchen_page %}
         {% render 'modular-kitchen-page-content' %}
       {% elsif is_kitchen_calculator %}
@@ -449,7 +492,7 @@
       {% endif %}
     </div>
 
-    {% unless is_help_center or is_about_page or is_returns_refunds or is_offers_page or is_contact_page or is_kitchen_page or is_kitchen_calculator or is_home_interiors_calculator or is_wardrobe_page or is_wardrobe_calculator or is_estimate_page %}
+    {% unless is_help_center or is_about_page or is_returns_refunds or is_offers_page or is_contact_page or is_business_support_page or is_kitchen_page or is_kitchen_calculator or is_home_interiors_calculator or is_wardrobe_page or is_wardrobe_calculator or is_estimate_page %}
       <div class="bw-page__support">
         <div class="bw-page__support-card">
           <h2>Need direct help?</h2>

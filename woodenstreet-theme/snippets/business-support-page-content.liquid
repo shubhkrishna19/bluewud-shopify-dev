@@ -1,0 +1,329 @@
+{% liquid
+  assign page_handle = page.handle | default: ''
+  assign intro_eyebrow = 'Bluewud support'
+  assign section_title = 'Built for clearer conversations and cleaner next steps'
+  assign section_copy = 'This page keeps the important information readable, while still giving the customer a clear action path back into the Bluewud team.'
+  assign stat_labels = 'Trusted support|Fast routing|Human follow-up' | split: '|'
+  assign stat_values = '15+ years|Direct team access|Clear next step' | split: '|'
+  assign card_titles = 'Need help now?|Prefer direct contact?|What to keep ready' | split: '|'
+  assign card_copies = 'Call, WhatsApp, or submit the right brief so the Bluewud team can help faster.|Use the contact page or estimate path when your requirement goes beyond a simple page answer.|Room dimensions, product references, city, and budget direction always make the next conversation better.' | split: '|'
+  assign card_urls = '/pages/contact-us|/pages/contact-us|/pages/get-free-estimate' | split: '|'
+  assign card_labels = 'Contact Bluewud|Open Contact Page|Get Free Estimate' | split: '|'
+
+  case page_handle
+    when 'buy-in-bulk'
+      assign intro_eyebrow = 'Bluewud business desk'
+      assign section_title = 'Bulk orders need a cleaner business path than a normal storefront checkout'
+      assign section_copy = 'Use this page for hospitality, office, reseller, institutional, or GST-led furniture requirements. The goal is to move quickly from browsing into a usable procurement brief.'
+      assign stat_labels = 'Use cases|Commercial support|Quoting posture' | split: '|'
+      assign stat_values = 'Office, hospitality, reseller|GST-ready discussion|Project-led pricing' | split: '|'
+      assign card_titles = 'What to share first|Who this is for|Best next step' | split: '|'
+      assign card_copies = 'Quantity, city, timeline, GST requirement, and the product shortlist will help the team route the enquiry correctly from the first reply.|This path is best for office furnishing, hospitality, B2B sourcing, interior projects, and recurring procurement needs.|Use the estimate or contact path once the scope is clear enough to discuss quantity and delivery feasibility.' | split: '|'
+      assign card_urls = '/pages/get-free-estimate|/pages/contact-us|/pages/get-free-estimate' | split: '|'
+      assign card_labels = 'Open Estimate Desk|Talk To Bluewud|Start Bulk Brief' | split: '|'
+    when 'visit-us'
+      assign intro_eyebrow = 'Bluewud studio visit'
+      assign section_title = 'The visit page should help customers move from online browsing into a real in-person touchpoint'
+      assign section_copy = 'Keep this page focused on studio confidence, location clarity, and the exact next action if the buyer wants to see products or talk through a requirement in person.'
+      assign stat_labels = 'Visit intent|Best for|Before you come' | split: '|'
+      assign stat_values = 'See, compare, discuss|Furniture and modular planning|Bring shortlist and room brief' | split: '|'
+      assign card_titles = 'Plan the visit|Need pre-visit help?|Best next step' | split: '|'
+      assign card_copies = 'Use this page to confirm location, hours, and what kind of requirements are worth discussing in person.|If the requirement is modular, a quick estimate brief first usually makes the studio conversation more productive.|The strongest path is to bring product references, room photos, or dimensions so the visit starts with context.' | split: '|'
+      assign card_urls = '/pages/contact-us|/pages/get-free-estimate|/pages/contact-us' | split: '|'
+      assign card_labels = 'Contact Before Visit|Share Project Brief|Talk To Bluewud' | split: '|'
+    when 'award-achievment'
+      assign intro_eyebrow = 'Bluewud credibility'
+      assign section_title = 'This page should reinforce trust, not just list achievements'
+      assign section_copy = 'Awards, recognition, and milestones work best when they support the customer’s confidence in the brand and lead naturally back into shopping or project consultation.'
+      assign stat_labels = 'Brand trust|Design maturity|Customer confidence' | split: '|'
+      assign stat_values = 'Recognition-led|Built over years|Stronger buying confidence' | split: '|'
+      assign card_titles = 'Why this matters|What it signals|Best next step' | split: '|'
+      assign card_copies = 'Recognition gives buyers reassurance that they are considering a brand with seriousness and consistency behind it.|Awards and achievements should strengthen the perception of craftsmanship, reliability, and design maturity.|Once trust is built, the natural next step is to continue browsing or begin a project conversation.' | split: '|'
+      assign card_urls = '/collections/living-room|/collections/kitchen-racks|/pages/get-free-estimate' | split: '|'
+      assign card_labels = 'Continue Browsing|Explore Modular Planning|Start Project Brief' | split: '|'
+    when 'policies'
+      assign intro_eyebrow = 'Bluewud policy desk'
+      assign section_title = 'Policies should feel readable and confidence-building, not intimidating'
+      assign section_copy = 'This page should help customers quickly understand what matters for ordering, delivery, support, and account-level decisions without feeling buried in legal text.'
+      assign stat_labels = 'What this page does|Best for|If still unsure' | split: '|'
+      assign stat_values = 'Clarifies expectations|Pre-order checks|Ask support directly' | split: '|'
+      assign card_titles = 'Read this before ordering|Need a simpler answer?|Best next step' | split: '|'
+      assign card_copies = 'Use this page to reduce doubt before buying, especially when the product is large, custom-feeling, or part of a bigger furnishing decision.|If a customer is unsure how policies apply to a real order, the support path matters more than reading the page twice.|Move to contact or estimate once the order or project details become specific enough to discuss.' | split: '|'
+      assign card_urls = '/pages/contact-us|/pages/help-center|/pages/get-free-estimate' | split: '|'
+      assign card_labels = 'Contact Bluewud|Open Help Center|Get Free Estimate' | split: '|'
+    when 'payment-security'
+      assign intro_eyebrow = 'Bluewud payment confidence'
+      assign section_title = 'Payment and security pages should reassure buyers at the moment doubt appears'
+      assign section_copy = 'This page should support payment confidence, checkout comfort, and clearer answers around transaction safety, especially for larger furniture purchases.'
+      assign stat_labels = 'Customer concern|What this answers|Confidence outcome' | split: '|'
+      assign stat_values = 'Payment safety|Security and checkout clarity|Less checkout hesitation' | split: '|'
+      assign card_titles = 'Buying a high-value product?|Need checkout help?|Best next step' | split: '|'
+      assign card_copies = 'Furniture buyers often hesitate when ticket size rises. This page should lower that hesitation before the customer abandons checkout.|If the issue is not policy but confidence, a quick human answer often closes the gap faster than more reading.|Move to contact support or continue browsing once the payment concern feels settled.' | split: '|'
+      assign card_urls = '/pages/contact-us|/cart|/collections/hp-bluewuds-bestseller' | split: '|'
+      assign card_labels = 'Talk To Bluewud|Return To Cart|Browse Bestsellers' | split: '|'
+    when 'terms-of-use'
+      assign intro_eyebrow = 'Bluewud terms'
+      assign section_title = 'Terms pages should stay clean, readable, and secondary to the real support path'
+      assign section_copy = 'The customer rarely lands here to be inspired, but the page still needs to feel organized, legible, and connected to a real help path if they need clarification.'
+      assign stat_labels = 'Primary role|Reading style|If questions remain' | split: '|'
+      assign stat_values = 'Legal clarity|Readable structure|Ask support' | split: '|'
+      assign card_titles = 'What this page is for|Need practical guidance?|Best next step' | split: '|'
+      assign card_copies = 'This page exists to define terms clearly, not overwhelm the customer. Clean structure makes a legal page feel more trustworthy.|If the user has a real order or project question, help center and contact pathways are more useful than dense reading alone.|Use support or estimate once the legal question becomes tied to a real order, delivery, or project requirement.' | split: '|'
+      assign card_urls = '/pages/help-center|/pages/contact-us|/pages/get-free-estimate' | split: '|'
+      assign card_labels = 'Open Help Center|Contact Bluewud|Open Estimate Desk' | split: '|'
+  endcase
+%}
+
+<style>
+  .bw-business-page {
+    display: grid;
+    gap: 24px;
+  }
+  .bw-business-page__stats {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .bw-business-page__stat,
+  .bw-business-page__card,
+  .bw-business-page__content,
+  .bw-business-page__side {
+    padding: 24px;
+    border-radius: 28px;
+    background: rgba(255, 251, 247, 0.94);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 20px 54px rgba(35, 24, 19, 0.06);
+  }
+  .bw-business-page__stat {
+    display: grid;
+    gap: 8px;
+  }
+  .bw-business-page__stat-label {
+    color: #8a684f;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .bw-business-page__stat-value {
+    color: #201713;
+    font-size: 24px;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    font-weight: 800;
+  }
+  .bw-business-page__layout {
+    display: grid;
+    grid-template-columns: minmax(0, 1.15fr) minmax(280px, 0.85fr);
+    gap: 20px;
+  }
+  .bw-business-page__content {
+    display: grid;
+    gap: 18px;
+  }
+  .bw-business-page__eyebrow {
+    color: #8a684f;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .bw-business-page__title {
+    margin: 0;
+    color: #201713;
+    font-size: clamp(28px, 4vw, 40px);
+    line-height: 1.06;
+    letter-spacing: -0.04em;
+  }
+  .bw-business-page__copy {
+    margin: 0;
+    color: #66554c;
+    font-size: 15px;
+    line-height: 1.8;
+    max-width: 64ch;
+  }
+  .bw-business-page__rte {
+    color: #4d4038;
+    font-size: 15px;
+    line-height: 1.9;
+  }
+  .bw-business-page__rte h1,
+  .bw-business-page__rte h2,
+  .bw-business-page__rte h3,
+  .bw-business-page__rte h4 {
+    color: #201713;
+    line-height: 1.2;
+    letter-spacing: -0.03em;
+    margin: 1.5em 0 0.7em;
+  }
+  .bw-business-page__rte h1:first-child,
+  .bw-business-page__rte h2:first-child,
+  .bw-business-page__rte h3:first-child,
+  .bw-business-page__rte h4:first-child {
+    margin-top: 0;
+  }
+  .bw-business-page__rte p,
+  .bw-business-page__rte ul,
+  .bw-business-page__rte ol,
+  .bw-business-page__rte blockquote {
+    margin: 0 0 1.1em;
+  }
+  .bw-business-page__rte ul,
+  .bw-business-page__rte ol {
+    padding-left: 1.3em;
+  }
+  .bw-business-page__rte table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1.4em 0;
+    background: #fffdfa;
+    border-radius: 18px;
+    overflow: hidden;
+  }
+  .bw-business-page__rte th,
+  .bw-business-page__rte td {
+    padding: 14px 16px;
+    border-bottom: 1px solid rgba(45, 33, 27, 0.08);
+    text-align: left;
+  }
+  .bw-business-page__side {
+    display: grid;
+    gap: 16px;
+    align-content: start;
+  }
+  .bw-business-page__card {
+    padding: 0;
+    overflow: hidden;
+    display: grid;
+  }
+  .bw-business-page__card-inner {
+    display: grid;
+    gap: 10px;
+    padding: 22px;
+  }
+  .bw-business-page__card h3 {
+    margin: 0;
+    color: #201713;
+    font-size: 20px;
+    line-height: 1.14;
+    letter-spacing: -0.02em;
+  }
+  .bw-business-page__card p {
+    margin: 0;
+    color: #66554c;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .bw-business-page__card-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    min-height: 42px;
+    padding: 0 18px;
+    border-radius: 999px;
+    background: #201713;
+    color: #fff7f1;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .bw-business-page__note {
+    padding: 22px;
+    border-radius: 26px;
+    background: linear-gradient(135deg, #231813 0%, #3b2921 56%, #5c463c 100%);
+    color: #fff7f1;
+    display: grid;
+    gap: 10px;
+  }
+  .bw-business-page__note .bw-business-page__eyebrow,
+  .bw-business-page__note .bw-business-page__copy,
+  .bw-business-page__note .bw-business-page__title {
+    color: inherit;
+  }
+  .bw-business-page__note .bw-business-page__title {
+    font-size: clamp(22px, 3vw, 30px);
+  }
+  .bw-business-page__note-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .bw-business-page__note-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 40px;
+    padding: 0 16px;
+    border-radius: 999px;
+    background: rgba(255, 247, 241, 0.12);
+    border: 1px solid rgba(255, 247, 241, 0.22);
+    color: #fff7f1;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  @media (max-width: 980px) {
+    .bw-business-page__stats,
+    .bw-business-page__layout {
+      grid-template-columns: 1fr;
+    }
+  }
+  @media (max-width: 720px) {
+    .bw-business-page__stat,
+    .bw-business-page__content,
+    .bw-business-page__side {
+      padding: 20px;
+      border-radius: 22px;
+    }
+  }
+</style>
+
+<div class="bw-business-page">
+  <section class="bw-business-page__stats" aria-label="Page highlights">
+    {% for stat_label in stat_labels %}
+      <article class="bw-business-page__stat">
+        <span class="bw-business-page__stat-label">{{ stat_label }}</span>
+        <strong class="bw-business-page__stat-value">{{ stat_values[forloop.index0] }}</strong>
+      </article>
+    {% endfor %}
+  </section>
+
+  <section class="bw-business-page__layout">
+    <div class="bw-business-page__content">
+      <span class="bw-business-page__eyebrow">{{ intro_eyebrow }}</span>
+      <h2 class="bw-business-page__title">{{ section_title }}</h2>
+      <p class="bw-business-page__copy">{{ section_copy }}</p>
+      <div class="bw-business-page__rte">
+        {{ page.content }}
+      </div>
+    </div>
+
+    <aside class="bw-business-page__side">
+      {% for card_title in card_titles %}
+        <article class="bw-business-page__card">
+          <div class="bw-business-page__card-inner">
+            <h3>{{ card_title }}</h3>
+            <p>{{ card_copies[forloop.index0] }}</p>
+            <a class="bw-business-page__card-link" href="{{ card_urls[forloop.index0] }}">{{ card_labels[forloop.index0] }}</a>
+          </div>
+        </article>
+      {% endfor %}
+
+      <section class="bw-business-page__note">
+        <span class="bw-business-page__eyebrow">Keep the journey moving</span>
+        <h3 class="bw-business-page__title">If this page answers the doubt, the next click should be obvious</h3>
+        <p class="bw-business-page__copy">The strongest support pages reduce friction, then send the customer back into the right Bluewud path instead of leaving them stranded in static content.</p>
+        <div class="bw-business-page__note-links">
+          <a href="/pages/contact-us">Contact Us</a>
+          <a href="/pages/help-center">Help Center</a>
+          <a href="/pages/get-free-estimate">Estimate Desk</a>
+        </div>
+      </section>
+    </aside>
+  </section>
+</div>

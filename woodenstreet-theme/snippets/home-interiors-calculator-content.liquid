@@ -1,9 +1,199 @@
 {% liquid
   assign contact_url = '/pages/contact-us'
+  assign modular_kitchen_url = '/collections/kitchen-racks'
+  assign modular_wardrobe_url = '/collections/wardrobe'
+  assign kitchen_calculator_url = '/collections/kitchen-racks#kitchen-calculator'
+  assign wardrobe_calculator_url = '/collections/wardrobe#wardrobe-calculator'
+  assign estimate_url = '/pages/contact-us'
+
+  if pages['modular-kitchen-designs'] != blank
+    assign modular_kitchen_url = pages['modular-kitchen-designs'].url
+  endif
+  if pages['modular-wardrobe-designs'] != blank
+    assign modular_wardrobe_url = pages['modular-wardrobe-designs'].url
+  endif
+  if pages['modular-kitchen-cost-calculator'] != blank
+    assign kitchen_calculator_url = pages['modular-kitchen-cost-calculator'].url
+  endif
+  if pages['modular-wardrobe-cost-calculator'] != blank
+    assign wardrobe_calculator_url = pages['modular-wardrobe-cost-calculator'].url
+  endif
+  if pages['get-free-estimate'] != blank
+    assign estimate_url = pages['get-free-estimate'].url
+  endif
 %}
 
 <style>
   .bw-hi { display: grid; gap: 22px; }
+  .bw-hi__hero {
+    padding: 28px 30px;
+    border-radius: 32px;
+    background:
+      radial-gradient(circle at top left, rgba(166, 106, 67, 0.16), transparent 28%),
+      linear-gradient(135deg, #231813 0%, #3b2921 56%, #5c463c 100%);
+    color: #fff7f1;
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 24px 70px rgba(35, 24, 19, 0.08);
+    display: grid;
+    gap: 18px;
+  }
+  .bw-hi__hero-head {
+    display: grid;
+    gap: 10px;
+    max-width: 80ch;
+  }
+  .bw-hi__hero-eyebrow {
+    color: rgba(255, 247, 241, 0.78);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .bw-hi__hero-title {
+    margin: 0;
+    color: #fff7f1;
+    font-size: clamp(28px, 4vw, 46px);
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+  }
+  .bw-hi__hero-copy {
+    margin: 0;
+    color: rgba(255, 247, 241, 0.84);
+    font-size: 15px;
+    line-height: 1.8;
+    max-width: 70ch;
+  }
+  .bw-hi__hero-surface {
+    display: grid;
+    grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+    gap: 16px;
+  }
+  .bw-hi__hero-panel {
+    padding: 22px;
+    border-radius: 24px;
+    background: rgba(255, 247, 241, 0.08);
+    border: 1px solid rgba(255, 247, 241, 0.12);
+  }
+  .bw-hi__hero-panel-title {
+    margin: 0 0 8px;
+    color: #fff7f1;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .bw-hi__hero-panel-copy {
+    margin: 0;
+    color: rgba(255, 247, 241, 0.82);
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .bw-hi__roadmap {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .bw-hi__roadmap-card {
+    display: grid;
+    gap: 10px;
+    padding: 20px 22px;
+    border-radius: 24px;
+    background: rgba(255, 251, 247, 0.94);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 18px 42px rgba(35, 24, 19, 0.05);
+  }
+  .bw-hi__roadmap-step {
+    display: inline-flex;
+    width: fit-content;
+    min-height: 30px;
+    align-items: center;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: rgba(32, 23, 19, 0.08);
+    color: #6f584c;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .bw-hi__roadmap-card h3 {
+    margin: 0;
+    color: #201713;
+    font-size: 18px;
+    line-height: 1.18;
+  }
+  .bw-hi__roadmap-card p {
+    margin: 0;
+    color: #66554c;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .bw-hi__journey {
+    padding: 22px 24px;
+    border-radius: 28px;
+    background: linear-gradient(135deg, #231813 0%, #3b2921 56%, #5c463c 100%);
+    color: #fff7f1;
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 24px 70px rgba(35, 24, 19, 0.08);
+    display: grid;
+    gap: 16px;
+  }
+  .bw-hi__journey-head {
+    display: grid;
+    gap: 8px;
+    max-width: 78ch;
+  }
+  .bw-hi__journey-eyebrow {
+    color: rgba(255, 247, 241, 0.78);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .bw-hi__journey-title {
+    margin: 0;
+    color: #fff7f1;
+    font-size: clamp(22px, 3vw, 32px);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+  }
+  .bw-hi__journey-copy {
+    margin: 0;
+    color: rgba(255, 247, 241, 0.82);
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .bw-hi__journey-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .bw-hi__journey-link,
+  .bw-hi__journey-link--active {
+    display: inline-flex;
+    align-items: center;
+    min-height: 42px;
+    padding: 0 16px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .bw-hi__journey-link {
+    border: 1px solid rgba(255, 247, 241, 0.18);
+    background: rgba(255, 247, 241, 0.08);
+    color: #fff7f1;
+  }
+  .bw-hi__journey-link:hover {
+    transform: translateY(-1px);
+    background: rgba(255, 247, 241, 0.14);
+  }
+  .bw-hi__journey-link--active {
+    border: 1px solid #fff7f1;
+    background: #fff7f1;
+    color: #201713;
+  }
   .bw-hi__panel,
   .bw-hi__summary {
     padding: 26px 28px;
@@ -111,6 +301,22 @@
     gap: 12px;
     margin-top: 18px;
   }
+  .bw-hi__recommendation {
+    margin-top: 16px;
+    padding: 18px;
+    border-radius: 22px;
+    background: rgba(255, 247, 241, 0.08);
+    border: 1px solid rgba(255, 247, 241, 0.12);
+    color: rgba(255, 247, 241, 0.86);
+    font-size: 13px;
+    line-height: 1.75;
+  }
+  .bw-hi__recommendation strong {
+    display: block;
+    margin-bottom: 6px;
+    color: #fff7f1;
+    font-size: 14px;
+  }
   .bw-hi__summary-line {
     display: flex;
     justify-content: space-between;
@@ -166,11 +372,28 @@
     background: rgba(255, 247, 241, 0.08);
     color: #fff7f1;
   }
+  .bw-hi__summary .bw-hi__button--secondary {
+    border-color: rgba(255, 247, 241, 0.28);
+    background: rgba(255, 247, 241, 0.14);
+    color: #fff7f1;
+  }
+  .bw-hi__summary .bw-hi__button--secondary:hover,
+  .bw-hi__summary .bw-hi__button--secondary:focus-visible {
+    background: rgba(255, 247, 241, 0.22);
+    border-color: rgba(255, 247, 241, 0.38);
+  }
   @media (max-width: 980px) {
-    .bw-hi__shell { grid-template-columns: 1fr; }
+    .bw-hi__hero-surface,
+    .bw-hi__shell,
+    .bw-hi__roadmap { grid-template-columns: 1fr; }
     .bw-hi__summary { position: static; }
   }
   @media (max-width: 720px) {
+    .bw-hi__hero,
+    .bw-hi__journey { padding: 20px 18px; border-radius: 22px; }
+    .bw-hi__hero-title { font-size: clamp(24px, 7vw, 34px); }
+    .bw-hi__hero-surface { gap: 12px; }
+    .bw-hi__journey-links { gap: 8px; }
     .bw-hi__panel,
     .bw-hi__summary { padding: 22px 20px; border-radius: 24px; }
     .bw-hi__grid { grid-template-columns: 1fr; }
@@ -178,6 +401,58 @@
 </style>
 
 <div class="bw-hi" data-bw-home-interiors-flow>
+  <section class="bw-hi__hero">
+    <div class="bw-hi__hero-head">
+      <span class="bw-hi__hero-eyebrow">Bluewud home interiors planning</span>
+      <h2 class="bw-hi__hero-title">Build a room-by-room interior brief before you ask for pricing.</h2>
+      <p class="bw-hi__hero-copy">This calculator is not meant to guess a final price. It is built to help the customer organize scope, room mix, property type, timing, and budget posture so the estimate call starts with something real.</p>
+    </div>
+    <div class="bw-hi__hero-surface">
+      <div class="bw-hi__hero-panel">
+        <p class="bw-hi__hero-panel-title">What this page does well</p>
+        <p class="bw-hi__hero-panel-copy">It helps Bluewud understand whether the request is a single-room upgrade, a modular package, or a broader home interiors project before the team reaches out.</p>
+      </div>
+      <div class="bw-hi__hero-panel">
+        <p class="bw-hi__hero-panel-title">Best use case</p>
+        <p class="bw-hi__hero-panel-copy">Use this when the customer wants guidance across living, bedroom, wardrobe, kitchen, or WFH scope and needs a cleaner way to organize the brief before contacting the team.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="bw-hi__roadmap" aria-label="Planning roadmap">
+    <article class="bw-hi__roadmap-card">
+      <span class="bw-hi__roadmap-step">Step 1</span>
+      <h3>Pick the rooms first</h3>
+      <p>Start with the spaces that need work. The planner becomes much more useful once the room mix is clear.</p>
+    </article>
+    <article class="bw-hi__roadmap-card">
+      <span class="bw-hi__roadmap-step">Step 2</span>
+      <h3>Set the project posture</h3>
+      <p>Choose whether this is a fresh setup, an upgrade, or a room-by-room furnishing pass so the brief stays grounded.</p>
+    </article>
+    <article class="bw-hi__roadmap-card">
+      <span class="bw-hi__roadmap-step">Step 3</span>
+      <h3>Open the estimate with context</h3>
+      <p>Once the scope is set, the estimate popup and contact path can carry a clearer brief to the Bluewud team.</p>
+    </article>
+  </section>
+
+  <section class="bw-hi__journey" aria-label="Planning journey">
+    <div class="bw-hi__journey-head">
+      <span class="bw-hi__journey-eyebrow">Planning journey</span>
+      <h2 class="bw-hi__journey-title">Move between modular kitchen, wardrobe, calculators, and estimate flow without losing context.</h2>
+      <p class="bw-hi__journey-copy">This home interiors brief is part of the same planning system. Use the guide pages to compare layouts, open a dedicated calculator when needed, or jump straight to the estimate desk when the scope is ready.</p>
+    </div>
+    <div class="bw-hi__journey-links">
+      <a class="bw-hi__journey-link" href="{{ modular_kitchen_url }}">Modular Kitchen</a>
+      <a class="bw-hi__journey-link" href="{{ modular_wardrobe_url }}">Wardrobes</a>
+      <a class="bw-hi__journey-link" href="{{ kitchen_calculator_url }}">Kitchen Calculator</a>
+      <a class="bw-hi__journey-link" href="{{ wardrobe_calculator_url }}">Wardrobe Calculator</a>
+      <a class="bw-hi__journey-link bw-hi__journey-link--active" href="{{ request.path | default: '/pages/home-interiors-cost-calculator' }}">Home Interiors</a>
+      <a class="bw-hi__journey-link" href="{{ estimate_url }}">Get Free Estimate</a>
+    </div>
+  </section>
+
   <div class="bw-hi__shell">
     <section class="bw-hi__panel">
       <div class="bw-hi__head">
@@ -252,6 +527,10 @@
       </div>
 
       <div class="bw-hi__badge" data-hi-badge>Balanced premium direction</div>
+      <div class="bw-hi__recommendation" data-hi-recommendation>
+        <strong>Recommended next move</strong>
+        Select a room mix to see which planning path makes the most sense.
+      </div>
 
       <div class="bw-hi__summary-list">
         <div class="bw-hi__summary-line"><span>Rooms</span><strong data-hi-summary-rooms>Not selected yet</strong></div>
@@ -328,6 +607,23 @@
 
       var badge = root.querySelector('[data-hi-badge]');
       if (badge) badge.textContent = budget || 'Need guidance';
+
+      var recommendation = root.querySelector('[data-hi-recommendation]');
+      if (recommendation) {
+        var recommendationText = 'Select a room mix to see which planning path makes the most sense.';
+        if (rooms.indexOf('Modular Kitchen') !== -1 && rooms.length > 1) {
+          recommendationText = 'This is starting to look like a wider modular project. Keep the kitchen in scope and let the estimate capture the room combination.';
+        } else if (rooms.indexOf('Wardrobe') !== -1 && rooms.length === 1) {
+          recommendationText = 'Wardrobe-led projects are best scoped through the wardrobe flow first, then refined into a Bluewud estimate once the room fit is clear.';
+        } else if (rooms.length > 2) {
+          recommendationText = 'This reads like a full home interiors brief. The estimate page is the right next step so the Bluewud team can map the project in phases.';
+        } else if (rooms.indexOf('Study / WFH') !== -1) {
+          recommendationText = 'Study and WFH briefs tend to benefit from layout clarity first, then materials and storage, before the estimate is requested.';
+        } else if (rooms.indexOf('Living Room') !== -1 || rooms.indexOf('Bedroom') !== -1) {
+          recommendationText = 'This is a room-led planning brief. Keep the room list compact and use the estimate to carry the context forward.';
+        }
+        recommendation.innerHTML = '<strong>Recommended next move</strong>' + recommendationText;
+      }
     }
 
     function briefSummary() {
