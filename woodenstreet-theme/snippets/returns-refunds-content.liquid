@@ -81,6 +81,36 @@
     gap: 10px;
   }
 
+  .bw-returns__summary-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .bw-returns__summary-card {
+    padding: 14px 16px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    display: grid;
+    gap: 4px;
+  }
+
+  .bw-returns__summary-label {
+    color: rgba(248, 241, 235, 0.68);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .bw-returns__summary-value {
+    color: #f8f1eb;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.45;
+  }
+
   .bw-returns__actions {
     display: flex;
     flex-wrap: wrap;
@@ -368,6 +398,10 @@
     .bw-returns__process {
       grid-template-columns: 1fr;
     }
+
+    .bw-returns__summary-row {
+      grid-template-columns: 1fr;
+    }
   }
 
   @media (max-width: 760px) {
@@ -383,6 +417,10 @@
       max-width: none;
       font-size: clamp(28px, 10vw, 38px);
     }
+
+    .bw-returns__summary-row {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 
@@ -397,6 +435,20 @@
           <span class="bw-returns__chip">Return window</span>
           <span class="bw-returns__chip">Cancellation rules</span>
           <span class="bw-returns__chip">Replacement support</span>
+        </div>
+        <div class="bw-returns__summary-row" aria-label="Return policy quick summary">
+          <div class="bw-returns__summary-card">
+            <span class="bw-returns__summary-label">When to act</span>
+            <span class="bw-returns__summary-value">Raise the request as soon as you spot the issue</span>
+          </div>
+          <div class="bw-returns__summary-card">
+            <span class="bw-returns__summary-label">What helps</span>
+            <span class="bw-returns__summary-value">Photos, order ID, and product name speed up review</span>
+          </div>
+          <div class="bw-returns__summary-card">
+            <span class="bw-returns__summary-label">Big items</span>
+            <span class="bw-returns__summary-value">Large furniture usually follows replacement-first handling</span>
+          </div>
         </div>
         <div class="bw-returns__actions">
           <a class="bw-returns__action bw-returns__action--solid" href="{{ contact_url }}">Talk To Bluewud</a>

@@ -17,7 +17,7 @@
   assign modular_kitchen_calculator_url = '/collections/kitchen-racks#kitchen-calculator'
   assign modular_wardrobe_calculator_url = '/collections/wardrobe#wardrobe-calculator'
   assign home_interiors_calculator_url = '/collections/kitchen-racks#broader-planning'
-  assign estimate_url = '/pages/contact-us'
+  assign estimate_url = '/pages/get-free-estimate'
   assign curated_nav_labels = 'Living Room|Bedroom|Study Tables|TV Units|Bookshelves|Modular Kitchen|Wardrobes' | split: '|'
   assign curated_nav_urls = '/collections/living-room|/collections/bed-room|/collections/study-tables|/collections/tv-unit-furniture|/collections/book-shelves|/collections/kitchen-racks|/collections/wardrobe' | split: '|'
   assign drawer_nav_labels = 'Living Room|Bedroom|Study Tables|TV Units|Bookshelves|Modular Kitchen|Wardrobes|New Launches|Chest of Drawer' | split: '|'
@@ -57,6 +57,10 @@
 
   if pages['get-free-estimate'] != blank
     assign estimate_url = pages['get-free-estimate'].url
+  endif
+
+  if pages['get-free-estimate'] == blank and pages['contact-us'] != blank
+    assign estimate_url = pages['contact-us'].url
   endif
 
   if cta_url == blank

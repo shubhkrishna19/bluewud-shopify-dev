@@ -234,7 +234,7 @@
   endif
 
   if is_business_support_page
-    assign page_content_class = page_content_class | append: ' bw-page__content--contact'
+    assign page_content_class = page_content_class | append: ' bw-page__content--support'
   endif
 
   if is_kitchen_page
@@ -365,6 +365,13 @@
   }
 
   .bw-page__content--contact {
+    padding: 0;
+    background: transparent;
+    border: 0;
+    box-shadow: none;
+  }
+
+  .bw-page__content--support {
     padding: 0;
     background: transparent;
     border: 0;

@@ -178,6 +178,26 @@
     line-height: 1.8;
   }
 
+  .bw-about__signal-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .bw-about__signal-tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: rgba(32, 23, 19, 0.06);
+    color: #201713;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
   .bw-about__stats {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -526,11 +546,16 @@
       </div>
     </div>
 
-    <aside class="bw-about__signal">
-      <p class="bw-about__signal-title">A brand story with enough structure to earn trust fast.</p>
-      <p class="bw-about__signal-copy">The page is framed to communicate scale, in-house capability, and the customer-facing support that makes large furniture purchases feel more manageable.</p>
+  <aside class="bw-about__signal">
+    <p class="bw-about__signal-title">A brand story with enough structure to earn trust fast.</p>
+    <p class="bw-about__signal-copy">The page is framed to communicate scale, in-house capability, and the customer-facing support that makes large furniture purchases feel more manageable.</p>
+    <div class="bw-about__signal-tags" aria-label="Bluewud trust signals">
+      <span class="bw-about__signal-tag">In-house design</span>
+      <span class="bw-about__signal-tag">Noida manufacturing</span>
+      <span class="bw-about__signal-tag">Direct support</span>
+    </div>
 
-      <div class="bw-about__stats">
+    <div class="bw-about__stats">
         <div class="bw-about__stat">
           <div class="bw-about__stat-value">2015</div>
           <p class="bw-about__stat-label">Started with laptop tables that quickly became bestsellers.</p>

@@ -7,7 +7,7 @@
 
 <style>
   .bw-categories {
-    padding: 70px 24px;
+    padding: 78px 24px 72px;
     background: #faf6f1;
   }
 
@@ -18,7 +18,7 @@
 
   .bw-categories__header {
     max-width: 720px;
-    margin: 0 auto 34px;
+    margin: 0 auto 38px;
     text-align: center;
   }
 
@@ -50,17 +50,17 @@
   .bw-categories__grid {
     display: grid;
     grid-template-columns: repeat(12, minmax(0, 1fr));
-    gap: 18px;
+    gap: 20px;
   }
 
   .bw-categories__card {
     position: relative;
-    min-height: 300px;
-    border-radius: 28px;
+    min-height: 310px;
+    border-radius: 30px;
     overflow: hidden;
     color: #fff;
     text-decoration: none;
-    box-shadow: 0 22px 60px rgba(35, 24, 19, 0.12);
+    box-shadow: 0 24px 64px rgba(35, 24, 19, 0.12);
   }
 
   .bw-categories__card--large {
@@ -147,7 +147,7 @@
   .bw-categories__overlay {
     position: absolute;
     inset: 0;
-    background: linear-gradient(180deg, rgba(11, 8, 6, 0.06) 10%, rgba(11, 8, 6, 0.72) 100%);
+    background: linear-gradient(180deg, rgba(11, 8, 6, 0.04) 10%, rgba(11, 8, 6, 0.66) 72%, rgba(11, 8, 6, 0.82) 100%);
   }
 
   .bw-categories__content {
@@ -155,11 +155,12 @@
     z-index: 1;
     height: 100%;
     box-sizing: border-box;
-    padding: 24px 30px 40px;
+    padding: 24px 30px 42px;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    gap: 6px;
+    gap: 8px;
+    max-width: 100%;
   }
 
   .bw-categories__kicker {
@@ -202,7 +203,7 @@
 
   @media (max-width: 720px) {
     .bw-categories {
-      padding: 54px 16px;
+      padding: 56px 16px 52px;
     }
 
     .bw-categories__grid {
@@ -212,12 +213,12 @@
     .bw-categories__card--large,
     .bw-categories__card--small {
       grid-column: auto;
-      min-height: 260px;
+      min-height: 268px;
     }
 
     .bw-categories__content {
       box-sizing: border-box;
-      padding: 18px 20px 28px;
+      padding: 18px 20px 30px;
     }
 
     .bw-categories__name {

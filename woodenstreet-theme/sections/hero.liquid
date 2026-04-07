@@ -22,7 +22,7 @@
 
 <style>
   .bw-hero {
-    padding: 22px 24px 42px;
+    padding: 28px 24px 46px;
     background: linear-gradient(180deg, #f7f1eb 0%, #faf6f1 100%);
   }
 
@@ -33,7 +33,7 @@
 
   .bw-hero__slider {
     position: relative;
-    border-radius: 34px;
+    border-radius: 36px;
     overflow: hidden;
     background: #ece4dd;
     box-shadow: 0 28px 80px rgba(55, 39, 29, 0.1);
@@ -47,7 +47,7 @@
 
   .bw-hero__viewport {
     position: relative;
-    min-height: 580px;
+    min-height: 600px;
   }
 
   .bw-hero__slide {
@@ -108,7 +108,7 @@
     z-index: 2;
     display: flex;
     align-items: center;
-    padding: 42px 54px;
+    padding: 48px 58px;
   }
 
   .bw-hero__content--left {
@@ -128,12 +128,13 @@
 
   .bw-hero__card {
     position: relative;
-    max-width: 520px;
-    padding: 24px 30px 26px;
-    border-radius: 28px;
-    background: rgba(255, 250, 246, 0.8);
-    backdrop-filter: blur(8px);
-    box-shadow: 0 22px 60px rgba(35, 24, 19, 0.14);
+    max-width: 540px;
+    padding: 26px 32px 28px;
+    border-radius: 30px;
+    background: rgba(255, 250, 246, 0.84);
+    border: 1px solid rgba(255, 255, 255, 0.34);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 24px 64px rgba(35, 24, 19, 0.14);
   }
 
   .bw-hero__content--center .bw-hero__card {
@@ -142,8 +143,14 @@
   }
 
   .bw-hero__eyebrow {
-    margin: 0 0 10px;
-    color: #775d50;
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    margin: 0 0 12px;
+    padding: 0 11px;
+    border-radius: 999px;
+    background: rgba(36, 25, 18, 0.06);
+    color: #6d5346;
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.16em;
@@ -178,6 +185,7 @@
   }
 
   .bw-hero__copy {
+    max-width: 42ch;
     margin: 16px 0 0;
     color: #5f4d42;
     font-size: 16px;
@@ -190,7 +198,7 @@
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
-    margin-top: 22px;
+    margin-top: 24px;
   }
 
   .bw-hero__content--right .bw-hero__actions {
@@ -219,7 +227,7 @@
   .bw-hero__button {
     background: #c96c62;
     color: #fffaf6;
-    box-shadow: 0 14px 30px rgba(201, 108, 98, 0.28);
+    box-shadow: 0 16px 34px rgba(201, 108, 98, 0.28);
   }
 
   .bw-hero__secondary {
@@ -268,7 +276,7 @@
   .bw-hero__dots {
     position: absolute;
     left: 50%;
-    bottom: 18px;
+    bottom: 20px;
     z-index: 4;
     display: flex;
     align-items: center;
@@ -298,7 +306,7 @@
     }
 
     .bw-hero__content {
-      padding: 28px 28px 54px;
+      padding: 28px 28px 58px;
       align-items: flex-end;
     }
 
@@ -318,25 +326,25 @@
 
   @media (max-width: 720px) {
     .bw-hero {
-      padding: 18px 16px 32px;
+      padding: 18px 16px 34px;
     }
 
     .bw-hero__slider {
-      border-radius: 24px;
+      border-radius: 26px;
     }
 
     .bw-hero__viewport {
-      min-height: 430px;
+      min-height: 440px;
     }
 
     .bw-hero__content {
-      padding: 18px 18px 56px;
+      padding: 18px 18px 60px;
     }
 
     .bw-hero__card {
-      padding: 20px 18px 20px;
-      border-radius: 22px;
-      background: rgba(255, 250, 246, 0.86);
+      padding: 20px 18px 22px;
+      border-radius: 24px;
+      background: rgba(255, 250, 246, 0.88);
     }
 
     .bw-hero__copy {

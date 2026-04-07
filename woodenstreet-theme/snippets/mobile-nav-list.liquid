@@ -56,6 +56,9 @@
           aria-haspopup="true"
           aria-expanded="false"
         {% endif %}
+        {% if menu_item.active %}
+          aria-current="page"
+        {% endif %}
       >
         {{ menu_item.title }}
       </a>

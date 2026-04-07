@@ -1,3 +1,13 @@
+{% liquid
+  assign estimate_url = '/pages/get-free-estimate'
+
+  if pages['get-free-estimate'] != blank
+    assign estimate_url = pages['get-free-estimate'].url
+  elsif pages['contact-us'] != blank
+    assign estimate_url = pages['contact-us'].url
+  endif
+%}
+
 <script
   src="{{ 'dialog.js' | asset_url }}"
   type="module"
@@ -27,6 +37,22 @@
     >
       {{ 'content.search' | t }}
     </h2>
+    <div class="search-modal__intro">
+      <div class="search-modal__intro-copy">
+        <p class="search-modal__eyebrow">Search Bluewud</p>
+        <p class="search-modal__description">
+          Find products, collections, and planning pages without losing the thread.
+        </p>
+      </div>
+
+      <div class="search-modal__shortcuts" aria-label="Search shortcuts">
+        <a class="search-modal__shortcut" href="{{ routes.search_url }}?type=product&q=modular%20kitchen">Modular Kitchen</a>
+        <a class="search-modal__shortcut" href="{{ routes.search_url }}?type=product&q=wardrobe">Wardrobes</a>
+        <a class="search-modal__shortcut" href="{{ routes.search_url }}?type=product&q=study%20table">Study Tables</a>
+        <a class="search-modal__shortcut" href="{{ estimate_url }}">Get Free Estimate</a>
+      </div>
+    </div>
+
     <div
       class="predictive-search color-{{ settings.popover_color_scheme }}{% if class != blank %} {{ class | strip }}{% endif %}"
       data-predictive-search
@@ -164,6 +190,80 @@
     .search-modal__content::backdrop {
       display: none;
     }
+  }
+
+  .search-modal__intro {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.1rem 1.25rem 0.9rem;
+    border-bottom: var(--search-border-width) solid rgb(var(--color-border-rgb) / 0.7);
+    background:
+      linear-gradient(180deg, rgb(var(--color-background-rgb) / 0.92), rgb(var(--color-background-rgb)));
+
+    @media screen and (max-width: 749px) {
+      flex-direction: column;
+      align-items: flex-start;
+      padding-inline: 1rem;
+    }
+  }
+
+  .search-modal__intro-copy {
+    display: grid;
+    gap: 0.2rem;
+  }
+
+  .search-modal__eyebrow {
+    margin: 0;
+    font-size: 0.76rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgb(var(--color-primary-rgb));
+    font-weight: 600;
+  }
+
+  .search-modal__description {
+    margin: 0;
+    color: rgb(var(--color-foreground-rgb) / 0.72);
+    line-height: 1.5;
+    max-width: 38rem;
+  }
+
+  .search-modal__shortcuts {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.55rem;
+    justify-content: flex-end;
+
+    @media screen and (max-width: 749px) {
+      justify-content: flex-start;
+    }
+  }
+
+  .search-modal__shortcut {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.5rem;
+    padding: 0.55rem 0.9rem;
+    border-radius: 999px;
+    border: var(--border-width-sm) solid rgb(var(--color-border-rgb) / 0.72);
+    background: rgb(var(--color-foreground-rgb) / 0.03);
+    color: rgb(var(--color-foreground-rgb));
+    text-decoration: none;
+    font-size: 0.88rem;
+    white-space: nowrap;
+    transition:
+      transform var(--animation-speed-medium) var(--animation-easing),
+      background-color var(--animation-speed-medium) var(--animation-easing),
+      border-color var(--animation-speed-medium) var(--animation-easing);
+  }
+
+  .search-modal__shortcut:hover {
+    transform: translateY(-1px);
+    background: rgb(var(--color-primary-rgb) / 0.08);
+    border-color: rgb(var(--color-primary-rgb) / 0.2);
   }
 
   .dialog-modal[open].search-modal__content {

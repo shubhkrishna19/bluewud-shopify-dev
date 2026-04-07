@@ -88,9 +88,10 @@
     gap: 16px;
     padding: 18px;
     border-radius: 30px;
-    background: rgba(255, 252, 248, 0.76);
+    background:
+      linear-gradient(180deg, rgba(255, 253, 250, 0.98) 0%, rgba(249, 243, 237, 0.94) 100%);
     border: 1px solid rgba(45, 33, 27, 0.08);
-    box-shadow: 0 20px 56px rgba(35, 24, 19, 0.08);
+    box-shadow: 0 24px 60px rgba(35, 24, 19, 0.09);
   }
 
   .bw-testimonials__toolbar {
@@ -119,20 +120,28 @@
     width: 48px;
     height: 48px;
     border-radius: 50%;
-    border: 1px solid rgba(45, 33, 27, 0.12);
-    background: #fff;
+    border: 1px solid rgba(53, 90, 109, 0.18);
+    background: linear-gradient(180deg, #ffffff 0%, #f7f0e8 100%);
     color: #201713;
     display: inline-flex;
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    transition: transform 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+    box-shadow: 0 10px 24px rgba(35, 24, 19, 0.08);
+    transition:
+      transform 0.2s ease,
+      border-color 0.2s ease,
+      color 0.2s ease,
+      box-shadow 0.2s ease,
+      background 0.2s ease;
   }
 
   .bw-testimonials__nav-button:hover {
-    transform: translateY(-1px);
-    border-color: rgba(53, 90, 109, 0.22);
+    transform: translateY(-2px);
+    border-color: rgba(53, 90, 109, 0.34);
     color: #355a6d;
+    background: linear-gradient(180deg, #ffffff 0%, #f1f7fa 100%);
+    box-shadow: 0 14px 28px rgba(35, 24, 19, 0.12);
   }
 
   .bw-testimonials__nav-button svg {
@@ -150,17 +159,28 @@
   .bw-testimonials__reviews-summary {
     display: inline-flex;
     align-items: center;
+    gap: 8px;
     text-decoration: none;
     min-height: 42px;
     padding: 0 16px;
     border-radius: 999px;
-    background: rgba(255, 255, 255, 0.9);
-    border: 1px solid rgba(45, 33, 27, 0.08);
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(53, 90, 109, 0.14);
     color: #5f4f46;
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.05em;
     text-transform: uppercase;
+    box-shadow: 0 10px 20px rgba(35, 24, 19, 0.05);
+  }
+
+  .bw-testimonials__reviews-summary::before {
+    content: '';
+    width: 7px;
+    height: 7px;
+    border-radius: 999px;
+    background: #355a6d;
+    box-shadow: 0 0 0 4px rgba(53, 90, 109, 0.12);
   }
 
   .bw-testimonials__all-link {
@@ -170,13 +190,21 @@
     min-height: 42px;
     padding: 0 16px;
     border-radius: 999px;
-    background: #201713;
+    background: linear-gradient(135deg, #201713 0%, #355a6d 100%);
     color: #f8f1eb;
     font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     text-decoration: none;
+    box-shadow: 0 12px 26px rgba(35, 24, 19, 0.13);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+  }
+
+  .bw-testimonials__all-link:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 16px 30px rgba(35, 24, 19, 0.16);
+    filter: saturate(1.05);
   }
 
   .bw-testimonials__dot {
@@ -187,12 +215,17 @@
     border-radius: 999px;
     background: rgba(45, 33, 27, 0.16);
     cursor: pointer;
-    transition: transform 0.2s ease, background 0.2s ease, width 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      background 0.2s ease,
+      width 0.2s ease,
+      box-shadow 0.2s ease;
   }
 
   .bw-testimonials__dot.is-active {
-    width: 28px;
-    background: #355a6d;
+    width: 30px;
+    background: linear-gradient(135deg, #201713 0%, #355a6d 100%);
+    box-shadow: 0 8px 16px rgba(35, 24, 19, 0.12);
   }
 
   .bw-testimonials__layout {
@@ -219,21 +252,30 @@
     background: rgba(255, 255, 255, 0.94);
     text-align: left;
     cursor: pointer;
-    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+    transition:
+      transform 0.2s ease,
+      border-color 0.2s ease,
+      box-shadow 0.2s ease,
+      background 0.2s ease;
   }
 
   .bw-testimonials__tab:hover,
   .bw-testimonials__tab.is-active {
-    transform: translateY(-1px);
-    border-color: rgba(53, 90, 109, 0.24);
-    box-shadow: 0 18px 42px rgba(35, 24, 19, 0.08);
+    transform: translateY(-2px);
+    border-color: rgba(53, 90, 109, 0.28);
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.98) 0%, rgba(245, 248, 250, 0.96) 100%);
+    box-shadow: 0 18px 42px rgba(35, 24, 19, 0.09);
+  }
+
+  .bw-testimonials__tab.is-active {
+    border-color: rgba(53, 90, 109, 0.38);
   }
 
   .bw-testimonials__tab-avatar {
     width: 42px;
     height: 42px;
     border-radius: 50%;
-    background: linear-gradient(180deg, #2a1d16 0%, #4b3528 100%);
+    background: linear-gradient(180deg, #201713 0%, #355a6d 100%);
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -274,9 +316,10 @@
     padding: 28px;
     border-radius: 28px;
     background:
-      radial-gradient(circle at top right, rgba(53, 90, 109, 0.08), transparent 28%),
-      linear-gradient(180deg, #fffdfa 0%, #fff8f2 100%);
+      radial-gradient(circle at top right, rgba(53, 90, 109, 0.1), transparent 28%),
+      linear-gradient(180deg, #fffdfa 0%, #fff7ef 100%);
     border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 22px 48px rgba(35, 24, 19, 0.08);
   }
 
   .bw-testimonials__panel.is-active {
@@ -295,7 +338,7 @@
   .bw-testimonials__stars {
     color: #a66a43;
     font-size: 16px;
-    letter-spacing: 0.18em;
+    letter-spacing: 0.14em;
   }
 
   .bw-testimonials__tag {
@@ -382,11 +425,11 @@
   .bw-testimonials__live {
     display: grid;
     gap: 18px;
-    padding: 24px 28px 6px;
+    padding: 24px 28px 18px;
     border-radius: 28px;
     background:
       radial-gradient(circle at top right, rgba(53, 90, 109, 0.06), transparent 28%),
-      linear-gradient(180deg, rgba(255, 252, 248, 0.94) 0%, rgba(251, 246, 240, 0.94) 100%);
+      linear-gradient(180deg, rgba(255, 252, 248, 0.96) 0%, rgba(248, 242, 236, 0.94) 100%);
     border: 1px solid rgba(45, 33, 27, 0.08);
   }
 
@@ -432,11 +475,16 @@
     flex-wrap: wrap;
     gap: 10px;
     align-items: center;
+    justify-content: flex-end;
   }
 
   .bw-testimonials__live-widget {
     overflow: hidden;
-    border-radius: 22px;
+    border-radius: 26px;
+    padding: 14px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.75);
   }
 
   @media (max-width: 1100px) {
@@ -606,7 +654,7 @@
                 data-testimonial-panel="{{ forloop.index0 }}"
               >
                 <div class="bw-testimonials__panel-top">
-                  <span class="bw-testimonials__stars">★★★★★</span>
+                  <span class="bw-testimonials__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
                   <span class="bw-testimonials__tag">{{ block.settings.badge | default: 'Verified customer' }}</span>
                 </div>
                 <p class="bw-testimonials__quote">"{{ block.settings.quote | default: 'Bluewud made the whole room feel complete, and the delivery and support were both easy to follow.' }}"</p>
@@ -635,7 +683,7 @@
           {% else %}
             <article class="bw-testimonials__panel is-active" id="testimonial-panel-0" role="tabpanel" data-testimonial-panel="0">
               <div class="bw-testimonials__panel-top">
-                <span class="bw-testimonials__stars">★★★★★</span>
+                <span class="bw-testimonials__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
                 <span class="bw-testimonials__tag">Verified customer</span>
               </div>
               <p class="bw-testimonials__quote">"The finish looked even better in person. Delivery updates were clear, and the unit brought the whole room together beautifully."</p>
@@ -656,7 +704,7 @@
 
             <article class="bw-testimonials__panel" id="testimonial-panel-1" role="tabpanel" data-testimonial-panel="1">
               <div class="bw-testimonials__panel-top">
-                <span class="bw-testimonials__stars">★★★★★</span>
+                <span class="bw-testimonials__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
                 <span class="bw-testimonials__tag">Verified customer</span>
               </div>
               <p class="bw-testimonials__quote">"We were buying online for the first time, but the product details and support made it easy to decide. The bed looks beautiful."</p>
@@ -677,7 +725,7 @@
 
             <article class="bw-testimonials__panel" id="testimonial-panel-2" role="tabpanel" data-testimonial-panel="2">
               <div class="bw-testimonials__panel-top">
-                <span class="bw-testimonials__stars">★★★★★</span>
+                <span class="bw-testimonials__stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
                 <span class="bw-testimonials__tag">Verified customer</span>
               </div>
               <p class="bw-testimonials__quote">"This was our second Bluewud order and the quality stayed consistent. Practical, well-finished, and absolutely worth it."</p>

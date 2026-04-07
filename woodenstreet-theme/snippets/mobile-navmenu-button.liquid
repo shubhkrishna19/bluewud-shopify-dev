@@ -10,8 +10,11 @@
 
 <button
   class="navmenu-button"
+  type="button"
   data-navmenu-trigger
+  aria-haspopup="true"
   aria-expanded="false"
+  aria-label="{{ button_label | escape }}"
 >
   <div class="navmenu-button-wrapper" tabindex="-1">
     <span class="navmenu-icon {% if depth %}navmenu-icon-depth-{{ depth }}{% endif %}">

@@ -21,25 +21,146 @@
 
 {% assign sanitized_terms = sanitized_terms | strip %}
 
-<div class="productgrid--footer-item">
-  <h2 class="productgrid--footer-title">
-    {{ title | t }}
-  </h2>
-
-  <ul class="productgrid--footer-results-list">
+<div class="search-results-content">
+  <div class="search-results-content__header">
+    <div>
+      <p class="search-results-content__eyebrow">{{ title }}</p>
+      <h4 class="search-results-content__title">
+        {% if results_count > 0 %}
+          {{ results_count }} match{% if results_count != 1 %}es{% endif %}
+        {% else %}
+          No matches yet
+        {% endif %}
+      </h4>
+    </div>
     {% if results_count > 0 %}
-      {% for item in results %}
-        {% if item.object_type != results_type %}{% continue %}{% endif %}
-        <li>
-          <a href="{{ item.url }}">
-            {{ item.title }}
-          </a>
-        </li>
-      {% endfor %}
-    {% else %}
-      <li>
-        {{ 'search.general.no_results_title' | t: terms: sanitized_terms }}
-      </li>
+      <span class="search-results-content__badge">{{ results_type | capitalize }}</span>
     {% endif %}
-  </ul>
+  </div>
+
+  {% if results_count > 0 %}
+    <div class="search-results-content__grid">
+      {% for item in results %}
+        {% if item.object_type != results_type %}
+          {% continue %}
+        {% endif %}
+
+        <a class="search-results-content__card" href="{{ item.url }}">
+          <span class="search-results-content__card-tag">{{ results_type | capitalize }}</span>
+          <span class="search-results-content__card-title">{{ item.title | highlight: sanitized_terms }}</span>
+
+          {% if item.content != blank %}
+            <span class="search-results-content__card-text">
+              {{ item.content | strip_html | truncate: 110 }}
+            </span>
+          {% endif %}
+        </a>
+      {% endfor %}
+    </div>
+  {% else %}
+    <div class="search-results-content__empty">
+      No {{ title | downcase }} found for “{{ sanitized_terms }}”.
+    </div>
+  {% endif %}
 </div>
+
+{% stylesheet %}
+  .search-results-content {
+    display: grid;
+    gap: 1rem;
+    padding: clamp(1.1rem, 2.5vw, 1.6rem);
+    border-radius: 1.4rem;
+    border: var(--border-width-sm) solid rgb(var(--color-border-rgb) / 0.72);
+    background: rgb(var(--color-background-rgb));
+    box-shadow: 0 12px 30px rgb(var(--color-foreground-rgb) / 0.04);
+  }
+
+  .search-results-content__header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .search-results-content__eyebrow {
+    margin: 0;
+    color: rgb(var(--color-primary-rgb));
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.75rem;
+    font-weight: 600;
+  }
+
+  .search-results-content__title {
+    margin: 0.15rem 0 0;
+    font-size: clamp(1.1rem, 1.8vw, 1.4rem);
+    line-height: 1.2;
+  }
+
+  .search-results-content__badge,
+  .search-results-content__card-tag {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2rem;
+    padding: 0.3rem 0.75rem;
+    border-radius: 999px;
+    background: rgb(var(--color-primary-rgb) / 0.08);
+    color: rgb(var(--color-primary-rgb));
+    font-size: 0.74rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .search-results-content__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+  }
+
+  @media screen and (min-width: 750px) {
+    .search-results-content__grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  .search-results-content__card {
+    display: grid;
+    gap: 0.55rem;
+    align-content: start;
+    min-height: 100%;
+    padding: 1rem;
+    border-radius: 1.1rem;
+    border: var(--border-width-sm) solid rgb(var(--color-border-rgb) / 0.72);
+    background: rgb(var(--color-foreground-rgb) / 0.02);
+    color: rgb(var(--color-foreground-rgb));
+    text-decoration: none;
+    transition:
+      transform var(--animation-speed-medium) var(--animation-easing),
+      box-shadow var(--animation-speed-medium) var(--animation-easing),
+      border-color var(--animation-speed-medium) var(--animation-easing);
+  }
+
+  .search-results-content__card:hover {
+    transform: translateY(-2px);
+    border-color: rgb(var(--color-primary-rgb) / 0.2);
+    box-shadow: 0 12px 24px rgb(var(--color-foreground-rgb) / 0.05);
+  }
+
+  .search-results-content__card-title {
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .search-results-content__card-text {
+    color: rgb(var(--color-foreground-rgb) / 0.72);
+    line-height: 1.5;
+    font-size: 0.92rem;
+  }
+
+  .search-results-content__empty {
+    padding: 1rem 0.25rem 0.2rem;
+    color: rgb(var(--color-foreground-rgb) / 0.72);
+  }
+{% endstylesheet %}

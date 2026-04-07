@@ -1,6 +1,6 @@
 <style>
   .bw-trust {
-    padding: 22px 24px 4px;
+    padding: 18px 24px 4px;
     background:
       radial-gradient(circle at 50% 0%, rgba(166, 106, 67, 0.08), transparent 44%),
       linear-gradient(180deg, #f3ece4 0%, #faf6f1 100%);
@@ -10,13 +10,13 @@
     max-width: 1440px;
     margin: 0 auto;
     display: grid;
-    gap: 14px;
+    gap: 16px;
   }
 
   .bw-trust__intro {
     display: grid;
-    gap: 6px;
-    max-width: 48ch;
+    gap: 8px;
+    max-width: 56ch;
   }
 
   .bw-trust__eyebrow {
@@ -30,7 +30,7 @@
   .bw-trust__headline {
     margin: 0;
     color: #211711;
-    font-size: clamp(24px, 3vw, 30px);
+    font-size: clamp(24px, 3vw, 31px);
     line-height: 1.08;
     letter-spacing: -0.03em;
   }
@@ -38,18 +38,18 @@
   .bw-trust__grid {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 16px;
+    gap: 18px;
   }
 
   .bw-trust__card {
     position: relative;
     overflow: hidden;
     display: grid;
-    gap: 16px;
-    padding: 20px;
-    border-radius: 28px;
+    gap: 14px;
+    padding: 22px;
+    border-radius: 30px;
     background:
-      linear-gradient(180deg, rgba(247, 240, 233, 0.96) 0%, rgba(243, 235, 226, 0.92) 100%);
+      linear-gradient(180deg, rgba(249, 244, 238, 0.98) 0%, rgba(244, 237, 229, 0.94) 100%);
     border: 1px solid rgba(45, 33, 27, 0.08);
     box-shadow: 0 14px 34px rgba(35, 24, 19, 0.06);
     transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
@@ -72,15 +72,15 @@
 
   .bw-trust__card-top {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-between;
     gap: 12px;
   }
 
   .bw-trust__icon {
-    width: 56px;
-    height: 56px;
-    border-radius: 20px;
+    width: 54px;
+    height: 54px;
+    border-radius: 18px;
     background: linear-gradient(180deg, #2a1d16 0%, #4b3528 100%);
     display: flex;
     align-items: center;
@@ -90,15 +90,15 @@
   }
 
   .bw-trust__icon svg {
-    width: 22px;
-    height: 22px;
+    width: 20px;
+    height: 20px;
   }
 
   .bw-trust__tag {
     display: inline-flex;
     align-items: center;
-    min-height: 28px;
-    padding: 0 10px;
+    min-height: 30px;
+    padding: 0 11px;
     border-radius: 999px;
     background: rgba(255, 250, 246, 0.58);
     color: #7a5e4d;
@@ -110,13 +110,13 @@
 
   .bw-trust__body {
     display: grid;
-    gap: 8px;
+    gap: 7px;
   }
 
   .bw-trust__title {
     margin: 0;
     color: #211711;
-    font-size: 19px;
+    font-size: 18px;
     font-weight: 700;
     line-height: 1.18;
     letter-spacing: -0.02em;
@@ -126,7 +126,7 @@
     margin: 0;
     color: #66554c;
     font-size: 14px;
-    line-height: 1.65;
+    line-height: 1.7;
   }
 
   @media (max-width: 1100px) {
@@ -137,7 +137,7 @@
 
   @media (max-width: 700px) {
     .bw-trust {
-      padding: 16px 16px 2px;
+      padding: 14px 16px 2px;
     }
 
     .bw-trust__grid {
@@ -146,7 +146,7 @@
 
     .bw-trust__card {
       padding: 20px;
-      border-radius: 24px;
+      border-radius: 26px;
     }
   }
 </style>

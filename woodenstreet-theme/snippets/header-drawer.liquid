@@ -15,6 +15,11 @@
   assign block_settings = block.settings
   assign max_featured_items = 4
   assign image_border_radius = block_settings.image_border_radius
+  assign modular_kitchen_url = '/collections/kitchen-racks'
+  assign modular_wardrobe_url = '/collections/wardrobe'
+  assign modular_kitchen_calculator_url = '/collections/kitchen-racks#kitchen-calculator'
+  assign modular_wardrobe_calculator_url = '/collections/wardrobe#wardrobe-calculator'
+  assign estimate_url = '/pages/get-free-estimate'
 
   if block_settings.menu_style == 'featured_collections'
     assign ratio = block_settings.featured_collections_aspect_ratio
@@ -34,6 +39,26 @@
   assign eager_loading = false
   if section.index == blank
     assign eager_loading = true
+  endif
+
+  if pages['modular-kitchen-designs'] != blank
+    assign modular_kitchen_url = pages['modular-kitchen-designs'].url
+    assign modular_kitchen_calculator_url = modular_kitchen_url | append: '#kitchen-calculator'
+  endif
+  if pages['modular-wardrobe-designs'] != blank
+    assign modular_wardrobe_url = pages['modular-wardrobe-designs'].url
+    assign modular_wardrobe_calculator_url = modular_wardrobe_url | append: '#wardrobe-calculator'
+  endif
+  if pages['modular-kitchen-cost-calculator'] != blank
+    assign modular_kitchen_calculator_url = pages['modular-kitchen-cost-calculator'].url
+  endif
+  if pages['modular-wardrobe-cost-calculator'] != blank
+    assign modular_wardrobe_calculator_url = pages['modular-wardrobe-cost-calculator'].url
+  endif
+  if pages['get-free-estimate'] != blank
+    assign estimate_url = pages['get-free-estimate'].url
+  elsif pages['contact-us'] != blank
+    assign estimate_url = pages['contact-us'].url
   endif
 %}
 
@@ -559,6 +584,133 @@
           {% endif %}
         </ul>
       </nav>
+      {% if data_header_drawer_type == 'mobile-drawer' %}
+        <section
+          class="menu-drawer__mobile-planning"
+          aria-label="Planning shortcuts"
+          style="
+            margin: 0 var(--padding-xl) var(--padding-lg);
+            padding: var(--padding-lg);
+            border: 1px solid rgb(var(--color-foreground) / 0.08);
+            border-radius: 1.6rem;
+            background: linear-gradient(180deg, rgb(var(--color-foreground) / 0.02), rgb(var(--color-background)));
+          "
+        >
+          <div style="display:flex; align-items:baseline; justify-content:space-between; gap: var(--padding-sm); margin-bottom: var(--padding-md);">
+            <p style="margin:0; font-size:1.1rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color: rgb(var(--color-foreground) / 0.7);">
+              Planning shortcuts
+            </p>
+            <span style="font-size:1rem; color: rgb(var(--color-foreground) / 0.45);">
+              Fast access
+            </span>
+          </div>
+
+          <div style="display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--padding-xs);">
+            <a
+              href="/collections/kitchen-racks"
+              style="
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                min-height: 4.8rem;
+                padding: 0.8rem 1rem;
+                border-radius: 999px;
+                border: 1px solid rgb(var(--color-foreground) / 0.1);
+                background: rgb(var(--color-background));
+                color: rgb(var(--color-foreground));
+                text-decoration:none;
+                font-size: 1.15rem;
+                font-weight: 700;
+                letter-spacing: 0.03em;
+              "
+            >
+              Modular Kitchen
+            </a>
+            <a
+              href="/collections/wardrobe"
+              style="
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                min-height: 4.8rem;
+                padding: 0.8rem 1rem;
+                border-radius: 999px;
+                border: 1px solid rgb(var(--color-foreground) / 0.1);
+                background: rgb(var(--color-background));
+                color: rgb(var(--color-foreground));
+                text-decoration:none;
+                font-size: 1.15rem;
+                font-weight: 700;
+                letter-spacing: 0.03em;
+              "
+            >
+              Wardrobes
+            </a>
+            <a
+              href="{{ modular_kitchen_calculator_url }}"
+              style="
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                min-height: 4.8rem;
+                padding: 0.8rem 1rem;
+                border-radius: 999px;
+                border: 1px solid rgb(var(--color-foreground) / 0.1);
+                background: rgb(var(--color-background));
+                color: rgb(var(--color-foreground));
+                text-decoration:none;
+                font-size: 1.15rem;
+                font-weight: 700;
+                letter-spacing: 0.03em;
+              "
+            >
+              Kitchen Calculator
+            </a>
+            <a
+              href="{{ modular_wardrobe_calculator_url }}"
+              style="
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                min-height: 4.8rem;
+                padding: 0.8rem 1rem;
+                border-radius: 999px;
+                border: 1px solid rgb(var(--color-foreground) / 0.1);
+                background: rgb(var(--color-background));
+                color: rgb(var(--color-foreground));
+                text-decoration:none;
+                font-size: 1.15rem;
+                font-weight: 700;
+                letter-spacing: 0.03em;
+              "
+            >
+              Wardrobe Calculator
+            </a>
+            <a
+              href="{{ estimate_url }}"
+              style="
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                min-height: 4.8rem;
+                padding: 0.8rem 1rem;
+                border-radius: 999px;
+                border: 1px solid rgb(var(--color-foreground) / 0.1);
+                background: rgb(var(--color-foreground));
+                color: rgb(var(--color-background));
+                text-decoration:none;
+                font-size: 1.15rem;
+                font-weight: 700;
+                letter-spacing: 0.03em;
+                grid-column: 1 / -1;
+              "
+            >
+              Get Free Estimate
+            </a>
+          </div>
+        </section>
+      {% endif %}
+
       <div
         class="menu-drawer__utility-links menu-drawer__animated-element"
         style="--menu-drawer-animation-index: {{ linklist.links.size }};"

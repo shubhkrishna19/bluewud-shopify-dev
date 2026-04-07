@@ -6,7 +6,7 @@
   assign interiors_calculator_url = '/pages/home-interiors-cost-calculator'
   assign wardrobe_design_url = '/collections/wardrobe'
   assign kitchen_design_url = '/collections/kitchen-racks'
-  assign estimate_url = '/pages/get-free-estimate'
+  assign estimate_url = '/pages/contact-us'
   assign contact_url = '/pages/contact-us'
 
   if pages['modular-wardrobe-designs'] != blank
@@ -35,6 +35,9 @@
   endif
   if pages['get-free-estimate'] != blank
     assign estimate_url = pages['get-free-estimate'].url
+  endif
+  if pages['get-free-estimate'] == blank and pages['contact-us'] != blank
+    assign estimate_url = pages['contact-us'].url
   endif
 
   assign estimate_context_title = 'Project brief'
@@ -611,6 +614,7 @@
           <a class="is-primary" href="{{ kitchen_design_url }}">Kitchen planning</a>
           <a href="{{ wardrobe_design_url }}">Wardrobe planning</a>
           <a href="{{ interiors_calculator_url }}">Interiors calculator</a>
+          <a href="{{ estimate_url }}">Estimate desk</a>
           <a href="{{ contact_url }}">Contact Bluewud</a>
           <a href="tel:+918800609609">Call +91-8800-609-609</a>
         </div>

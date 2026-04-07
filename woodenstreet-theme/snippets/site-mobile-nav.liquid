@@ -1,3 +1,35 @@
+{% liquid
+  assign mobile_kitchen_url = '/collections/kitchen-racks'
+  assign mobile_wardrobe_url = '/collections/wardrobe'
+  assign mobile_kitchen_calculator_url = '/collections/kitchen-racks#kitchen-calculator'
+  assign mobile_wardrobe_calculator_url = '/collections/wardrobe#wardrobe-calculator'
+  assign mobile_estimate_url = '/pages/get-free-estimate'
+
+  if pages['modular-kitchen-designs'] != blank
+    assign mobile_kitchen_url = pages['modular-kitchen-designs'].url
+    assign mobile_kitchen_calculator_url = mobile_kitchen_url | append: '#kitchen-calculator'
+  endif
+
+  if pages['modular-wardrobe-designs'] != blank
+    assign mobile_wardrobe_url = pages['modular-wardrobe-designs'].url
+    assign mobile_wardrobe_calculator_url = mobile_wardrobe_url | append: '#wardrobe-calculator'
+  endif
+
+  if pages['modular-kitchen-cost-calculator'] != blank
+    assign mobile_kitchen_calculator_url = pages['modular-kitchen-cost-calculator'].url
+  endif
+
+  if pages['modular-wardrobe-cost-calculator'] != blank
+    assign mobile_wardrobe_calculator_url = pages['modular-wardrobe-cost-calculator'].url
+  endif
+
+  if pages['get-free-estimate'] != blank
+    assign mobile_estimate_url = pages['get-free-estimate'].url
+  elsif pages['contact-us'] != blank
+    assign mobile_estimate_url = pages['contact-us'].url
+  endif
+%}
+
 <div class="site-mobile-nav" id="site-mobile-nav" data-mobile-nav tabindex="0">
   <div class="mobile-nav-panel" data-mobile-nav-panel>
 
@@ -19,6 +51,131 @@
         menu: section.settings.menu,
         blocks: blocks,
       %}
+
+      <section
+        class="mobile-nav-quick-links"
+        aria-label="Planning shortcuts"
+        style="
+          margin: var(--padding-lg) var(--padding-xl) 0;
+          padding: var(--padding-lg);
+          border: 1px solid rgb(var(--color-foreground) / 0.08);
+          border-radius: 1.6rem;
+          background: linear-gradient(180deg, rgb(var(--color-foreground) / 0.02), rgb(var(--color-background)));
+        "
+      >
+        <div style="display:flex; align-items:baseline; justify-content:space-between; gap: var(--padding-sm); margin-bottom: var(--padding-md);">
+          <p style="margin:0; font-size:1.1rem; font-weight:700; letter-spacing:0.08em; text-transform:uppercase; color: rgb(var(--color-foreground) / 0.7);">
+            Planning shortcuts
+          </p>
+          <span style="font-size:1rem; color: rgb(var(--color-foreground) / 0.45);">
+            Start here
+          </span>
+        </div>
+
+        <div style="display:grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--padding-xs);">
+          <a
+            href="{{ mobile_kitchen_url }}"
+            style="
+              display:flex;
+              align-items:center;
+              justify-content:center;
+              min-height: 4.8rem;
+              padding: 0.8rem 1rem;
+              border-radius: 999px;
+              border: 1px solid rgb(var(--color-foreground) / 0.1);
+              background: rgb(var(--color-background));
+              color: rgb(var(--color-foreground));
+              text-decoration:none;
+              font-size: 1.15rem;
+              font-weight: 700;
+              letter-spacing: 0.03em;
+            "
+          >
+            Modular Kitchen
+          </a>
+          <a
+            href="{{ mobile_wardrobe_url }}"
+            style="
+              display:flex;
+              align-items:center;
+              justify-content:center;
+              min-height: 4.8rem;
+              padding: 0.8rem 1rem;
+              border-radius: 999px;
+              border: 1px solid rgb(var(--color-foreground) / 0.1);
+              background: rgb(var(--color-background));
+              color: rgb(var(--color-foreground));
+              text-decoration:none;
+              font-size: 1.15rem;
+              font-weight: 700;
+              letter-spacing: 0.03em;
+            "
+          >
+            Wardrobes
+          </a>
+          <a
+            href="{{ mobile_kitchen_calculator_url }}"
+            style="
+              display:flex;
+              align-items:center;
+              justify-content:center;
+              min-height: 4.8rem;
+              padding: 0.8rem 1rem;
+              border-radius: 999px;
+              border: 1px solid rgb(var(--color-foreground) / 0.1);
+              background: rgb(var(--color-background));
+              color: rgb(var(--color-foreground));
+              text-decoration:none;
+              font-size: 1.15rem;
+              font-weight: 700;
+              letter-spacing: 0.03em;
+            "
+          >
+            Kitchen Calculator
+          </a>
+          <a
+            href="{{ mobile_wardrobe_calculator_url }}"
+            style="
+              display:flex;
+              align-items:center;
+              justify-content:center;
+              min-height: 4.8rem;
+              padding: 0.8rem 1rem;
+              border-radius: 999px;
+              border: 1px solid rgb(var(--color-foreground) / 0.1);
+              background: rgb(var(--color-background));
+              color: rgb(var(--color-foreground));
+              text-decoration:none;
+              font-size: 1.15rem;
+              font-weight: 700;
+              letter-spacing: 0.03em;
+            "
+          >
+            Wardrobe Calculator
+          </a>
+          <a
+            href="{{ mobile_estimate_url }}"
+            style="
+              display:flex;
+              align-items:center;
+              justify-content:center;
+              min-height: 4.8rem;
+              padding: 0.8rem 1rem;
+              border-radius: 999px;
+              border: 1px solid rgb(var(--color-foreground) / 0.1);
+              background: rgb(var(--color-foreground));
+              color: rgb(var(--color-background));
+              text-decoration:none;
+              font-size: 1.15rem;
+              font-weight: 700;
+              letter-spacing: 0.03em;
+              grid-column: 1 / -1;
+            "
+          >
+            Get Free Estimate
+          </a>
+        </div>
+      </section>
 
       {% if section.settings.secondary_menu != blank %}
         <span class="mobile-nav-content__border"></span>

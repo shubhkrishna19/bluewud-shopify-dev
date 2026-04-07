@@ -1,184 +1,579 @@
-{% comment %} Fresh Search Section {% endcomment %}
-<style>
-.search-page {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 40px 30px;
-}
-.search-header {
-  text-align: center;
-  margin-bottom: 50px;
-}
-.search-header h1 {
-  font-size: 40px;
-  font-weight: 700;
-  color: #1a1a1a;
-  margin: 0 0 20px;
-  font-family: 'Poppins', sans-serif;
-}
-.search-form {
-  max-width: 600px;
-  margin: 0 auto;
-  display: flex;
-  gap: 10px;
-}
-.search-form input {
-  flex: 1;
-  padding: 16px 20px;
-  font-size: 16px;
-  border: 2px solid #e0e0e0;
-  border-radius: 8px;
-  outline: none;
-  transition: border-color 0.3s;
-}
-.search-form input:focus {
-  border-color: #c47d4e;
-}
-.search-form button {
-  padding: 16px 30px;
-  background: #c47d4e;
-  color: white;
-  border: none;
-  border-radius: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-.search-form button:hover {
-  background: #a86840;
-}
-.search-results-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 25px;
-  margin-top: 40px;
-}
-.search-result-card {
-  background: white;
-  border-radius: 12px;
-  overflow: hidden;
-  text-decoration: none;
-  transition: all 0.3s;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-}
-.search-result-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 15px 40px rgba(0,0,0,0.12);
-}
-.search-result-image {
-  aspect-ratio: 1;
-  background: #f5f5f5;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.search-result-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-.search-result-info {
-  padding: 20px;
-}
-.search-result-title {
-  font-size: 15px;
-  font-weight: 600;
-  color: #1a1a1a;
-  margin: 0 0 8px;
-  line-height: 1.4;
-}
-.search-result-price {
-  font-size: 18px;
-  font-weight: 700;
-  color: #c47d4e;
-}
-.search-no-results {
-  text-align: center;
-  padding: 60px 20px;
-}
-.search-no-results h2 {
-  font-size: 24px;
-  color: #333;
-  margin: 0 0 15px;
-}
-.search-no-results p {
-  color: #666;
-  font-size: 16px;
-}
-.search-result-count {
-  text-align: center;
-  color: #666;
-  font-size: 14px;
-  margin-bottom: 30px;
-}
-@media (max-width: 968px) {
-  .search-results-grid { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 480px) {
-  .search-results-grid { grid-template-columns: 1fr; }
-  .search-form { flex-direction: column; }
-}
-</style>
+{% liquid
+  capture sanitized_terms
+    render 'search-sanitizer',
+      search_terms: search.terms
+  endcapture
 
-<div class="search-page">
-  <div class="search-header">
-    <h1>Search</h1>
-    <form action="{{ routes.search_url }}" method="get" class="search-form" role="search">
-      <input
-        type="search"
-        name="q"
-        value="{{ search.terms | escape }}"
-        placeholder="Search for products..."
-        aria-label="Search"
-      >
-      <button type="submit">Search</button>
-    </form>
-  </div>
+  assign sanitized_terms = sanitized_terms | strip
+  assign has_search_query = sanitized_terms != blank
+  assign product_results_count = 0
+  assign page_results_count = 0
+  assign article_results_count = 0
+  assign modular_kitchen_url = '/collections/kitchen-racks'
+  assign modular_wardrobe_url = '/collections/wardrobe'
+  assign estimate_url = '/pages/get-free-estimate'
 
-  {% if search.performed %}
-    <div class="search-result-count">
-      {{ search.results_count }} result{% if search.results_count != 1 %}s{% endif %} for "{{ search.terms }}"
+  if pages['modular-kitchen-designs'] != blank
+    assign modular_kitchen_url = pages['modular-kitchen-designs'].url
+  endif
+
+  if pages['modular-wardrobe-designs'] != blank
+    assign modular_wardrobe_url = pages['modular-wardrobe-designs'].url
+  endif
+
+  if pages['get-free-estimate'] != blank
+    assign estimate_url = pages['get-free-estimate'].url
+  elsif pages['contact-us'] != blank
+    assign estimate_url = pages['contact-us'].url
+  endif
+
+  for item in search.results
+    case item.object_type
+      when 'product'
+        assign product_results_count = product_results_count | plus: 1
+      when 'page'
+        assign page_results_count = page_results_count | plus: 1
+      when 'article'
+        assign article_results_count = article_results_count | plus: 1
+    endcase
+  endfor
+%}
+
+<section class="search-page color-{{ settings.popover_color_scheme }}">
+  <div class="search-page__shell page-width">
+    <div class="search-page__hero">
+      <div class="search-page__hero-copy">
+        <p class="search-page__eyebrow">Search Bluewud</p>
+        <h1 class="search-page__title">Find products, collections, and planning pages faster.</h1>
+        <p class="search-page__lede">
+          Search by room, material, or shopping intent. Use the suggestions to jump straight into living room
+          furniture, modular planning, wardrobes, or support pages without starting over.
+        </p>
+      </div>
+
+      <div class="search-page__search-card">
+        <form
+          action="{{ routes.search_url }}"
+          method="get"
+          role="search"
+          class="search-page__form"
+        >
+          <div class="search-page__form-card">
+            <label for="search-page-input" class="visually-hidden">
+              {{ 'search.form.label' | t }}
+            </label>
+            <span class="svg-wrapper search-page__icon">
+              {{ 'icon-search.svg' | inline_asset_content }}
+            </span>
+            <input
+              id="search-page-input"
+              class="search-page__input"
+              type="search"
+              name="q"
+              autocomplete="off"
+              placeholder="{{ 'search.form.placeholder' | t }}"
+              value="{% if has_search_query %}{{ sanitized_terms | escape }}{% endif %}"
+            >
+            <input type="hidden" name="type" value="article,page,product">
+
+            {% if has_search_query %}
+              <a
+              class="search-page__clear"
+                href="{{ routes.search_url }}?type=article,page,product&q="
+                aria-label="{{ 'accessibility.reset_search' | t }}"
+              >
+                {{ 'actions.clear' | t }}
+              </a>
+            {% endif %}
+
+            <button
+              class="button button-primary search-page__submit"
+              type="submit"
+              aria-label="{{ 'general.accessibility.search' | t }}"
+            >
+              Search
+            </button>
+          </div>
+        </form>
+
+        <p class="search-page__form-note">
+          Try “modular kitchen”, “wardrobe”, “study tables”, or “bestsellers”.
+        </p>
+      </div>
     </div>
 
-    {% if search.results_count == 0 %}
-      <div class="search-no-results">
-        <h2>No results found</h2>
-        <p>Try adjusting your search or browse our categories.</p>
-        <a href="/collections/all" style="color: #c47d4e; text-decoration: underline;">View All Products</a>
-      </div>
-    {% else %}
-      <div class="search-results-grid">
-        {% for item in search.results %}
-          {% if item.object_type == 'product' %}
-            <a href="{{ item.url }}" class="search-result-card">
-              <div class="search-result-image">
-                {% if item.featured_image != blank %}
-                  {{ item.featured_image | image_url: width: 400 | image_tag: loading: 'lazy' }}
-                {% else %}
-                  <span style="font-size: 40px;">🛋️</span>
-                {% endif %}
-              </div>
-              <div class="search-result-info">
-                <h3 class="search-result-title">{{ item.title }}</h3>
-                <div class="search-result-price">{{ item.price | money }}</div>
-              </div>
-            </a>
+    <div class="search-page__quicklinks" aria-label="Popular search shortcuts">
+      <a class="search-page__quicklink" href="{{ routes.search_url }}?type=article,page,product&q=modular%20kitchen">Modular Kitchen Ideas</a>
+      <a class="search-page__quicklink" href="{{ routes.search_url }}?type=article,page,product&q=wardrobe">Wardrobe Ideas</a>
+      <a class="search-page__quicklink" href="{{ routes.search_url }}?type=article,page,product&q=study%20table">Study Tables</a>
+      <a class="search-page__quicklink" href="{{ routes.search_url }}?type=article,page,product&q=bestsellers">Bestsellers</a>
+      <a class="search-page__quicklink" href="{{ estimate_url }}">Get Free Estimate</a>
+      <a class="search-page__quicklink" href="{{ modular_kitchen_url }}">Modular Kitchen</a>
+    </div>
+
+    {% if search.performed %}
+      <div class="search-page__results-meta">
+        <div>
+          <p class="search-page__results-eyebrow">Results for</p>
+          <h2 class="search-page__results-title">“{{ sanitized_terms }}”</h2>
+        </div>
+
+        <div class="search-page__results-stats" aria-label="Result counts">
+          <span>{{ search.results_count }} total</span>
+          {% if product_results_count > 0 %}
+            <span>{{ product_results_count }} products</span>
           {% endif %}
-        {% endfor %}
+          {% if page_results_count > 0 %}
+            <span>{{ page_results_count }} pages</span>
+          {% endif %}
+          {% if article_results_count > 0 %}
+            <span>{{ article_results_count }} articles</span>
+          {% endif %}
+        </div>
+      </div>
+
+      {% if search.results_count > 0 %}
+        {% if product_results_count > 0 %}
+          <div class="search-page__section">
+            <div class="search-page__section-header">
+              <div>
+                <p class="search-page__section-eyebrow">Products</p>
+                <h3>Best matches first</h3>
+              </div>
+              <span class="search-page__section-count">{{ product_results_count }} found</span>
+            </div>
+
+            <div class="search-page__products-grid">
+              {% for item in search.results %}
+                {% if item.object_type != 'product' %}
+                  {% continue %}
+                {% endif %}
+
+                <article class="search-page__product-card">
+                  {% render 'resource-card',
+                    resource_type: 'product',
+                    resource: item,
+                    image_width: 500,
+                    image_hover: true,
+                    image_aspect_ratio: '4 / 5'
+                  %}
+                </article>
+              {% endfor %}
+            </div>
+          </div>
+        {% endif %}
+
+        {% if page_results_count > 0 %}
+          <div class="search-page__section">
+            {% render 'results-search-content',
+              title: 'Pages',
+              results: search.results,
+              results_type: 'page',
+              results_count: page_results_count
+            %}
+          </div>
+        {% endif %}
+
+        {% if article_results_count > 0 %}
+          <div class="search-page__section">
+            {% render 'results-search-content',
+              title: 'Articles',
+              results: search.results,
+              results_type: 'article',
+              results_count: article_results_count
+            %}
+          </div>
+        {% endif %}
+      {% else %}
+        <div class="search-page__empty">
+          <div class="search-page__empty-card">
+            <p class="search-page__section-eyebrow">No exact match</p>
+            <h3>Try a broader product name or browse a shortcut below.</h3>
+            <p>
+              If you were looking for a planning page, collection, or support answer, the quickest path is usually
+              one of the suggested routes.
+            </p>
+          </div>
+
+          <div class="search-page__empty-links">
+            <a class="search-page__quicklink" href="{{ routes.search_url }}?type=article,page,product&q=bed">Beds</a>
+            <a class="search-page__quicklink" href="{{ routes.search_url }}?type=article,page,product&q=sofa">Sofas</a>
+            <a class="search-page__quicklink" href="{{ modular_wardrobe_url }}">Wardrobe Collection</a>
+            <a class="search-page__quicklink" href="{{ modular_kitchen_url }}">Modular Kitchen</a>
+            <a class="search-page__quicklink" href="/pages/help-center">Help Center</a>
+          </div>
+        </div>
+      {% endif %}
+    {% else %}
+      <div class="search-page__start">
+        <div class="search-page__start-card">
+          <p class="search-page__section-eyebrow">Popular starting points</p>
+          <h3>Search from the most requested Bluewud intents.</h3>
+          <p>Browse the most common rooms, planning pages, and support routes before typing a query.</p>
+        </div>
+
+        <div class="search-page__start-grid">
+          <a class="search-page__start-tile" href="{{ modular_kitchen_url }}">
+            <span class="search-page__start-tile-label">Modular Kitchen</span>
+            <strong>Design-led kitchen planning</strong>
+          </a>
+          <a class="search-page__start-tile" href="{{ modular_wardrobe_url }}">
+            <span class="search-page__start-tile-label">Wardrobes</span>
+            <strong>Storage-led wardrobe ideas</strong>
+          </a>
+          <a class="search-page__start-tile" href="{{ estimate_url }}">
+            <span class="search-page__start-tile-label">Get Free Estimate</span>
+            <strong>Talk to the Bluewud team</strong>
+          </a>
+          <a class="search-page__start-tile" href="{{ routes.search_url }}?type=product&q=bestsellers">
+            <span class="search-page__start-tile-label">Bestsellers</span>
+            <strong>Fastest path to proven sellers</strong>
+          </a>
+        </div>
       </div>
     {% endif %}
-  {% else %}
-    <div class="search-no-results">
-      <h2>What are you looking for?</h2>
-      <p>Search for sofas, beds, dining tables, and more.</p>
-    </div>
-  {% endif %}
-</div>
+  </div>
+</section>
+
+{% stylesheet %}
+  .search-page {
+    padding-block: clamp(1.5rem, 3vw, 3rem) clamp(3rem, 6vw, 5rem);
+    background:
+      radial-gradient(circle at top, rgb(var(--color-primary-rgb) / 0.05), transparent 40%),
+      linear-gradient(180deg, rgb(var(--color-background-rgb)), rgb(var(--color-background-rgb) / 0.92));
+  }
+
+  .search-page__shell {
+    display: grid;
+    gap: clamp(1.25rem, 3vw, 2rem);
+  }
+
+  .search-page__hero {
+    display: grid;
+    gap: clamp(1rem, 2.5vw, 1.75rem);
+    grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.95fr);
+    align-items: stretch;
+  }
+
+  @media screen and (max-width: 989px) {
+    .search-page__hero {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .search-page__hero-copy,
+  .search-page__search-card,
+  .search-page__start-card,
+  .search-page__empty-card {
+    background: rgb(var(--color-background-rgb));
+    border: var(--border-width-sm) solid rgb(var(--color-border-rgb) / 0.7);
+    border-radius: clamp(1.25rem, 2vw, 1.75rem);
+    box-shadow: 0 18px 50px rgb(var(--color-foreground-rgb) / 0.05);
+  }
+
+  .search-page__hero-copy {
+    padding: clamp(1.5rem, 4vw, 2.75rem);
+    display: grid;
+    align-content: center;
+    gap: 0.85rem;
+  }
+
+  .search-page__eyebrow,
+  .search-page__section-eyebrow,
+  .search-page__results-eyebrow {
+    margin: 0;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    font-size: 0.78rem;
+    color: rgb(var(--color-primary-rgb));
+    font-weight: 600;
+  }
+
+  .search-page__title,
+  .search-page__results-title,
+  .search-page__start-card h3,
+  .search-page__empty-card h3 {
+    margin: 0;
+    color: rgb(var(--color-foreground-rgb));
+  }
+
+  .search-page__title {
+    font-size: clamp(2rem, 4vw, 3.6rem);
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .search-page__lede,
+  .search-page__form-note,
+  .search-page__start-card p,
+  .search-page__empty-card p {
+    margin: 0;
+    color: rgb(var(--color-foreground-rgb) / 0.74);
+    line-height: 1.6;
+  }
+
+  .search-page__search-card {
+    padding: clamp(1.25rem, 2.5vw, 2rem);
+    display: grid;
+    align-content: center;
+    gap: 0.9rem;
+  }
+
+  .search-page__form-card {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    padding: 0.5rem 0.55rem 0.5rem 1rem;
+    border-radius: 999px;
+    background: rgb(var(--color-foreground-rgb) / 0.03);
+    border: var(--border-width-sm) solid rgb(var(--color-border-rgb) / 0.72);
+  }
+
+  @media screen and (max-width: 749px) {
+    .search-page__form-card {
+      flex-wrap: wrap;
+      padding: 0.8rem;
+      border-radius: 1.35rem;
+    }
+
+    .search-page__submit {
+      width: 100%;
+    }
+
+    .search-page__clear {
+      order: 3;
+      margin-inline-start: auto;
+    }
+  }
+
+  .search-page__icon {
+    color: rgb(var(--color-foreground-rgb) / 0.54);
+    flex: 0 0 auto;
+  }
+
+  .search-page__input {
+    appearance: none;
+    border: 0;
+    background: transparent;
+    color: rgb(var(--color-foreground-rgb));
+    width: 100%;
+    min-width: 0;
+    font: inherit;
+    font-size: 1rem;
+    outline: none;
+    padding: 0.6rem 0;
+  }
+
+  .search-page__input::placeholder {
+    color: rgb(var(--color-foreground-rgb) / 0.48);
+  }
+
+  .search-page__clear {
+    color: rgb(var(--color-foreground-rgb) / 0.68);
+    font-size: 0.9rem;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  .search-page__submit {
+    border-radius: 999px;
+    padding-inline: 1.2rem;
+    flex: 0 0 auto;
+  }
+
+  .search-page__quicklinks,
+  .search-page__empty-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+  }
+
+  .search-page__quicklink {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.8rem;
+    padding: 0.65rem 1rem;
+    border-radius: 999px;
+    border: var(--border-width-sm) solid rgb(var(--color-border-rgb) / 0.7);
+    background: rgb(var(--color-foreground-rgb) / 0.025);
+    color: rgb(var(--color-foreground-rgb));
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition:
+      transform var(--animation-speed-medium) var(--animation-easing),
+      background-color var(--animation-speed-medium) var(--animation-easing),
+      border-color var(--animation-speed-medium) var(--animation-easing);
+  }
+
+  .search-page__quicklink:hover {
+    transform: translateY(-1px);
+    background: rgb(var(--color-primary-rgb) / 0.08);
+    border-color: rgb(var(--color-primary-rgb) / 0.24);
+  }
+
+  .search-page__results-meta {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: clamp(1rem, 2vw, 1.4rem) clamp(1rem, 2vw, 1.5rem);
+    border-radius: 1.35rem;
+    background: rgb(var(--color-background-rgb));
+    border: var(--border-width-sm) solid rgb(var(--color-border-rgb) / 0.72);
+    box-shadow: 0 12px 30px rgb(var(--color-foreground-rgb) / 0.04);
+  }
+
+  @media screen and (max-width: 749px) {
+    .search-page__results-meta {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+
+  .search-page__results-title {
+    font-size: clamp(1.5rem, 3vw, 2.4rem);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+
+  .search-page__results-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .search-page__results-stats span,
+  .search-page__section-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.2rem;
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    background: rgb(var(--color-primary-rgb) / 0.08);
+    color: rgb(var(--color-primary-rgb));
+    font-size: 0.82rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    font-weight: 600;
+  }
+
+  .search-page__section {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .search-page__section-header {
+    display: flex;
+    align-items: end;
+    justify-content: space-between;
+    gap: 1rem;
+  }
+
+  .search-page__section-header h3,
+  .search-page__empty-card h3,
+  .search-page__start-card h3 {
+    font-size: clamp(1.25rem, 2vw, 1.65rem);
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+  }
+
+  .search-page__products-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: clamp(0.9rem, 1.8vw, 1.25rem);
+  }
+
+  @media screen and (min-width: 750px) {
+    .search-page__products-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+  }
+
+  @media screen and (min-width: 1100px) {
+    .search-page__products-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  .search-page__product-card {
+    min-width: 0;
+  }
+
+  .search-page__empty,
+  .search-page__start {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .search-page__empty-card,
+  .search-page__start-card {
+    padding: clamp(1.25rem, 2.5vw, 1.8rem);
+  }
+
+  .search-page__start-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.9rem;
+  }
+
+  @media screen and (max-width: 749px) {
+    .search-page__start-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .search-page__start-tile {
+    display: grid;
+    gap: 0.45rem;
+    padding: 1rem 1.1rem;
+    border-radius: 1.15rem;
+    border: var(--border-width-sm) solid rgb(var(--color-border-rgb) / 0.72);
+    background: rgb(var(--color-foreground-rgb) / 0.02);
+    color: rgb(var(--color-foreground-rgb));
+    text-decoration: none;
+    transition:
+      transform var(--animation-speed-medium) var(--animation-easing),
+      box-shadow var(--animation-speed-medium) var(--animation-easing),
+      border-color var(--animation-speed-medium) var(--animation-easing);
+  }
+
+  .search-page__start-tile:hover {
+    transform: translateY(-2px);
+    border-color: rgb(var(--color-primary-rgb) / 0.2);
+    box-shadow: 0 12px 24px rgb(var(--color-foreground-rgb) / 0.05);
+  }
+
+  .search-page__start-tile-label {
+    font-size: 0.8rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: rgb(var(--color-primary-rgb));
+    font-weight: 600;
+  }
+
+  .search-page__start-tile strong {
+    font-size: 1rem;
+    line-height: 1.35;
+  }
+
+  .search-page__results-meta,
+  .search-page__section,
+  .search-page__empty,
+  .search-page__start {
+    margin-block-start: 0.25rem;
+  }
+{% endstylesheet %}
 
 {% schema %}
 {
   "name": "Search",
-  "presets": [{ "name": "Search" }]
+  "settings": [],
+  "presets": [
+    {
+      "name": "Search"
+    }
+  ]
 }
 {% endschema %}

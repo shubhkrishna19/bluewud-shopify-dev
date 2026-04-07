@@ -9,7 +9,7 @@
   assign calculator_url = '/collections/kitchen-racks#kitchen-calculator'
   assign wardrobe_calculator_url = '/collections/wardrobe#wardrobe-calculator'
   assign interiors_calculator_url = '/collections/kitchen-racks#broader-planning'
-  assign estimate_url = '/pages/contact-us'
+  assign estimate_url = '/pages/get-free-estimate'
   assign contact_url = '/pages/contact-us'
   assign default_variant = 'all'
   assign page_handle = blank
@@ -70,6 +70,9 @@
   endif
   if pages['get-free-estimate'] != blank
     assign estimate_url = pages['get-free-estimate'].url
+  endif
+  if pages['get-free-estimate'] == blank and pages['contact-us'] != blank
+    assign estimate_url = pages['contact-us'].url
   endif
   if show_inline_calculator
     assign main_url = '/collections/kitchen-racks'
@@ -270,6 +273,11 @@
     grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 16px;
   }
+  .bw-modular__decision-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
   .bw-modular__card,
   .bw-modular__product {
     padding: 22px;
@@ -328,6 +336,43 @@
     color: #66554c;
     font-size: 14px;
     line-height: 1.75;
+  }
+  .bw-modular__decision-card {
+    display: grid;
+    gap: 12px;
+    align-content: start;
+    padding: 22px;
+    border-radius: 24px;
+    background: rgba(255, 251, 247, 0.94);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 18px 40px rgba(35, 24, 19, 0.05);
+  }
+  .bw-modular__decision-card h3 {
+    margin: 0;
+    color: #201713;
+    font-size: 18px;
+    line-height: 1.18;
+    letter-spacing: -0.03em;
+  }
+  .bw-modular__decision-card p {
+    margin: 0;
+    color: #66554c;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .bw-modular__decision-tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    width: fit-content;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: rgba(79, 120, 143, 0.12);
+    color: #4f788f;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
   .bw-modular__blueprint-actions {
     display: flex;
@@ -642,6 +687,31 @@
 
     <section class="bw-modular__block">
       <div class="bw-modular__section-head">
+        <div class="bw-modular__eyebrow">Decision lens</div>
+        <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">Before finishes and hardware, make the layout choice feel obvious</h2>
+        <p class="bw-modular__copy">The kitchen becomes easier to price and easier to live with when the room fit, storage load, and cooking pattern are already clear.</p>
+      </div>
+      <div class="bw-modular__decision-grid">
+        <article class="bw-modular__decision-card">
+          <span class="bw-modular__decision-tag">Best when</span>
+          <h3>Room shape, circulation, and storage have to balance together</h3>
+          <p>Choose the layout that fits the room first. That makes the later finish and hardware decisions sharper, calmer, and easier to compare.</p>
+        </article>
+        <article class="bw-modular__decision-card">
+          <span class="bw-modular__decision-tag">Watch out for</span>
+          <h3>A premium look that interrupts everyday movement</h3>
+          <p>Good modular planning should feel easy on day one and still feel easy years later. If the kitchen becomes crowded, the shape needs another pass.</p>
+        </article>
+        <article class="bw-modular__decision-card">
+          <span class="bw-modular__decision-tag">Estimate should ask</span>
+          <h3>Room size, appliances, storage intensity, and finish tier</h3>
+          <p>These details make the Bluewud estimate meaningful and prevent the conversation from becoming a vague style request.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="bw-modular__block">
+      <div class="bw-modular__section-head">
         <div class="bw-modular__eyebrow">Planning and process</div>
         <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">The strongest modular-kitchen projects follow a clear sequence</h2>
         <p class="bw-modular__copy">A kitchen becomes easier to design and easier to estimate when the brief develops in the right order. Layout leads, materials follow, and storage plus appliance planning complete the picture.</p>
@@ -768,6 +838,29 @@
     </section>
     <section class="bw-modular__block">
       <div class="bw-modular__section-head">
+        <div class="bw-modular__eyebrow">L-shape decision lens</div>
+        <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">An L-shape kitchen works best when the room needs openness without losing structure</h2>
+      </div>
+      <div class="bw-modular__decision-grid">
+        <article class="bw-modular__decision-card">
+          <span class="bw-modular__decision-tag">Best when</span>
+          <h3>The room needs a comfortable corner-led workflow</h3>
+          <p>This layout is strongest when the kitchen should stay light, easy to move through, and still practical for everyday cooking and cleanup.</p>
+        </article>
+        <article class="bw-modular__decision-card">
+          <span class="bw-modular__decision-tag">Watch out for</span>
+          <h3>The corner becomes wasteful or one leg gets overloaded</h3>
+          <p>Corner storage, appliance placement, and the refrigerator position should be balanced early so the shape does not lose its clarity later.</p>
+        </article>
+        <article class="bw-modular__decision-card">
+          <span class="bw-modular__decision-tag">Design priority</span>
+          <h3>Keep the finish airy and the work triangle easy</h3>
+          <p>An L-shape kitchen looks best when it preserves openness while the sink, hob, and fridge stay connected in a clean, usable sequence.</p>
+        </article>
+      </div>
+    </section>
+    <section class="bw-modular__block">
+      <div class="bw-modular__section-head">
         <div class="bw-modular__eyebrow">L-shape action path</div>
         <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">If the room wants openness and efficiency, this is the branch to deepen first</h2>
         <p class="bw-modular__copy">The L-shape route should help the customer understand room fit, storage balance, and where the next consultation step should begin.</p>
@@ -856,6 +949,29 @@
     </section>
     <section class="bw-modular__block">
       <div class="bw-modular__section-head">
+        <div class="bw-modular__eyebrow">U-shape decision lens</div>
+        <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">Choose a U-shape when storage depth and countertop continuity matter more than openness</h2>
+      </div>
+      <div class="bw-modular__decision-grid">
+        <article class="bw-modular__decision-card">
+          <span class="bw-modular__decision-tag">Best when</span>
+          <h3>The kitchen is wide enough to support a serious working perimeter</h3>
+          <p>This format is strongest when the household wants more storage, more prep surface, and a visibly more serious cooking setup.</p>
+        </article>
+        <article class="bw-modular__decision-card">
+          <span class="bw-modular__decision-tag">Watch out for</span>
+          <h3>The center aisle gets too tight for real movement</h3>
+          <p>A premium U-shape still has to feel easy to live in. The middle needs enough space so the kitchen does not become dense or tiring.</p>
+        </article>
+        <article class="bw-modular__decision-card">
+          <span class="bw-modular__decision-tag">Design priority</span>
+          <h3>Protect circulation while maximizing usable counters</h3>
+          <p>When the room can support it, U-shape planning can feel exceptionally complete because the work triangle and storage runs are both naturally strong.</p>
+        </article>
+      </div>
+    </section>
+    <section class="bw-modular__block">
+      <div class="bw-modular__section-head">
         <div class="bw-modular__eyebrow">U-shape action path</div>
         <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">When storage and counter space matter most, the next step should stay very specific</h2>
         <p class="bw-modular__copy">A U-shape brief is strongest when the room width, aisle comfort, and appliance plan are already being treated as one decision set.</p>
@@ -925,6 +1041,29 @@
         <article class="bw-modular__card"><h3>Where it fits best</h3><p>Apartment kitchens and utility-conscious homes that need more function without asking for large floor area.</p></article>
         <article class="bw-modular__card"><h3>Planning focus</h3><p>Storage split, sink-hob balance, and making sure both runs do not feel visually heavy together.</p></article>
         <article class="bw-modular__card"><h3>Buyer mindset</h3><p>Usually chosen by practical buyers who value movement efficiency and cleaner day-to-day use over showpiece form.</p></article>
+      </div>
+    </section>
+    <section class="bw-modular__block">
+      <div class="bw-modular__section-head">
+        <div class="bw-modular__eyebrow">Parallel decision lens</div>
+        <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">Parallel kitchens need one extra layer of discipline to feel premium</h2>
+      </div>
+      <div class="bw-modular__decision-grid">
+        <article class="bw-modular__decision-card">
+          <span class="bw-modular__decision-tag">Best when</span>
+          <h3>The room is compact but still has enough aisle discipline</h3>
+          <p>This layout is strongest when the space wants a practical split between wet and dry work without adding unnecessary visual weight.</p>
+        </article>
+        <article class="bw-modular__decision-card">
+          <span class="bw-modular__decision-tag">Watch out for</span>
+          <h3>Both runs start feeling crowded or unbalanced</h3>
+          <p>The two sides should be planned as a pair, with storage and appliance placement working together instead of competing for the same space.</p>
+        </article>
+        <article class="bw-modular__decision-card">
+          <span class="bw-modular__decision-tag">Design priority</span>
+          <h3>Separate functions while keeping the aisle calm</h3>
+          <p>When the split is handled well, a parallel kitchen can be one of the most efficient and cost-rational premium solutions for smaller homes.</p>
+        </article>
       </div>
     </section>
     <section class="bw-modular__block">
@@ -1002,6 +1141,29 @@
     </section>
     <section class="bw-modular__block">
       <div class="bw-modular__section-head">
+        <div class="bw-modular__eyebrow">Straight decision lens</div>
+        <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">Straight kitchens work when the home values clarity over visual complexity</h2>
+      </div>
+      <div class="bw-modular__decision-grid">
+        <article class="bw-modular__decision-card">
+          <span class="bw-modular__decision-tag">Best when</span>
+          <h3>The room is compact and every millimeter has to earn its place</h3>
+          <p>This layout is strongest when the customer wants a calm, linear kitchen that feels intentional without taking over the room.</p>
+        </article>
+        <article class="bw-modular__decision-card">
+          <span class="bw-modular__decision-tag">Watch out for</span>
+          <h3>Storage is left underplanned because the run looks minimal</h3>
+          <p>A straight kitchen can look clean and still fail if the vertical planning, appliance pockets, and drawer logic are not handled carefully.</p>
+        </article>
+        <article class="bw-modular__decision-card">
+          <span class="bw-modular__decision-tag">Design priority</span>
+          <h3>Keep the line disciplined and the clutter hidden</h3>
+          <p>The premium effect here comes from proportion, restraint, and making sure the single-wall setup still feels complete in daily use.</p>
+        </article>
+      </div>
+    </section>
+    <section class="bw-modular__block">
+      <div class="bw-modular__section-head">
         <div class="bw-modular__eyebrow">Straight action path</div>
         <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">The simplest layout should still feel deliberate, not reduced</h2>
         <p class="bw-modular__copy">Straight kitchens reward disciplined decisions, so the next step should focus on storage optimization and finish clarity before anything else.</p>
@@ -1071,6 +1233,29 @@
         <article class="bw-modular__card"><h3>Where it fits best</h3><p>Homes where the kitchen is part of entertaining, hosting, and a more open premium interiors language.</p></article>
         <article class="bw-modular__card"><h3>Planning focus</h3><p>Circulation clearance, appliance placement, and whether the island is prep-led, seating-led, or both.</p></article>
         <article class="bw-modular__card"><h3>Buyer mindset</h3><p>Usually chosen by customers who want the kitchen to become a visual and social anchor of the home.</p></article>
+      </div>
+    </section>
+    <section class="bw-modular__block">
+      <div class="bw-modular__section-head">
+        <div class="bw-modular__eyebrow">Island decision lens</div>
+        <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">An island is worth planning only when the room can support its social and spatial weight</h2>
+      </div>
+      <div class="bw-modular__decision-grid">
+        <article class="bw-modular__decision-card">
+          <span class="bw-modular__decision-tag">Best when</span>
+          <h3>The kitchen can breathe on all sides and still feel open</h3>
+          <p>This format works best when the island can become a real center of movement, prep, and hosting without cluttering the room.</p>
+        </article>
+        <article class="bw-modular__decision-card">
+          <span class="bw-modular__decision-tag">Watch out for</span>
+          <h3>The island is added without enough clearance or purpose</h3>
+          <p>An island should not feel like a leftover feature. It needs enough space and a clear job, whether that is prep, serving, seating, or storage.</p>
+        </article>
+        <article class="bw-modular__decision-card">
+          <span class="bw-modular__decision-tag">Design priority</span>
+          <h3>Make the island feel like an anchor, not an obstacle</h3>
+          <p>When it is done well, the island changes the room into a more premium and social interior space instead of only increasing the cabinet count.</p>
+        </article>
       </div>
     </section>
     <section class="bw-modular__block">
@@ -1145,7 +1330,6 @@
     var root = document.querySelector('[data-bw-modular-page]');
     if (!root) return;
     var defaultVariant = root.getAttribute('data-default-variant') || 'all';
-    var currentPath = window.location.pathname;
     var toggles = Array.prototype.slice.call(root.querySelectorAll('[data-variant-toggle]'));
     var panels = Array.prototype.slice.call(root.querySelectorAll('[data-variant-panel]'));
 
@@ -1157,7 +1341,9 @@
 
     function activate(variant) {
       toggles.forEach(function (toggle) {
-        toggle.classList.toggle('is-active', toggle.getAttribute('data-variant-toggle') === variant);
+        var isActive = toggle.getAttribute('data-variant-toggle') === variant;
+        toggle.classList.toggle('is-active', isActive);
+        toggle.setAttribute('aria-pressed', isActive ? 'true' : 'false');
       });
       panels.forEach(function (panel) {
         var isActive = panel.getAttribute('data-variant-panel') === variant;
@@ -1204,29 +1390,22 @@
       document.body.classList.remove('bw-header-drawer-open');
     }
 
+    function updateLocationForVariant(variant) {
+      var nextUrl = new URL(window.location.href);
+      if (variant === 'all') {
+        nextUrl.hash = '';
+      } else {
+        nextUrl.hash = variant;
+      }
+      window.history.replaceState({}, '', nextUrl.pathname + nextUrl.search + nextUrl.hash);
+    }
+
     toggles.forEach(function (toggle) {
       toggle.addEventListener('click', function (event) {
-        var href = toggle.getAttribute('href') || '';
-        var variant = toggle.getAttribute('data-variant-toggle');
-        if (!href) {
-          event.preventDefault();
-          activate(variant);
-          return;
-        }
-
-        var targetUrl = new URL(href, window.location.origin);
-        var isSamePath = targetUrl.pathname === currentPath;
-        var isHashFallback = targetUrl.hash && (targetUrl.pathname === currentPath || targetUrl.pathname === '/collections/kitchen-racks');
-
-        if (isSamePath || isHashFallback) {
-          event.preventDefault();
-          if (targetUrl.hash) {
-            window.history.replaceState({}, '', targetUrl.hash);
-          } else if (variant === 'all') {
-            window.history.replaceState({}, '', currentPath);
-          }
-          activate(variant);
-        }
+        var variant = toggle.getAttribute('data-variant-toggle') || defaultVariant;
+        event.preventDefault();
+        activate(variant);
+        updateLocationForVariant(variant);
       });
     });
 
@@ -1261,6 +1440,14 @@
         if (event.target === modal) closeModal();
       });
     }
+
+    window.addEventListener('hashchange', function () {
+      activate(variantFromLocation());
+    });
+
+    window.addEventListener('popstate', function () {
+      activate(variantFromLocation());
+    });
 
     activate(variantFromLocation());
   })();

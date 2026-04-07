@@ -22,6 +22,7 @@
       class="recently-viewed-wrapper"
       ref="recentlyViewedWrapper"
     >
+      <p class="predictive-search-results__eyebrow">Recent activity</p>
       <h4
         class="predictive-search-results__title"
         ref="recentlyViewedTitle[]"
@@ -83,6 +84,7 @@
       </ul>
     </div>
   {% else %}
+    <p class="predictive-search-results__eyebrow">Featured products</p>
     <h4 class="predictive-search-results__title">
       {{ title }}
     </h4>
@@ -113,6 +115,16 @@
 </div>
 
 {% stylesheet %}
+  .predictive-search-results__eyebrow {
+    margin: 0 0 var(--margin-2xs);
+    padding-inline: var(--padding-xl);
+    color: rgb(var(--color-primary-rgb));
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.74rem;
+    font-weight: 600;
+  }
+
   .predictive-search-results__products {
     padding-inline: var(--padding-xl);
   }

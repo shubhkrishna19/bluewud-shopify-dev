@@ -8,7 +8,7 @@
   assign calculator_url = '/collections/wardrobe#wardrobe-calculator'
   assign kitchen_calculator_url = '/collections/kitchen-racks#kitchen-calculator'
   assign interiors_calculator_url = '/collections/kitchen-racks#broader-planning'
-  assign estimate_url = '/pages/contact-us'
+  assign estimate_url = '/pages/get-free-estimate'
   assign contact_url = '/pages/contact-us'
   assign phone_url = 'tel:+918800609609'
   assign is_collection_context = true
@@ -79,6 +79,9 @@
   endif
   if pages['get-free-estimate'] != blank
     assign estimate_url = pages['get-free-estimate'].url
+  endif
+  if pages['get-free-estimate'] == blank and pages['contact-us'] != blank
+    assign estimate_url = pages['contact-us'].url
   endif
   if is_collection_context
     assign main_url = '#wardrobe-overview'
@@ -177,6 +180,77 @@
     text-transform: uppercase;
   }
   .bw-wardrobe-journey-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    min-height: 42px;
+    padding: 0 18px;
+    border-radius: 999px;
+    background: #201713;
+    color: #fff7f1;
+    border: 0;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .bw-wardrobe-route {
+    display: grid;
+    gap: 18px;
+  }
+  .bw-wardrobe-route-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .bw-wardrobe-route-card {
+    display: grid;
+    gap: 12px;
+    align-content: start;
+    padding: 22px;
+    border-radius: 26px;
+    background: rgba(32, 23, 19, 0.04);
+    border: 1px solid rgba(32, 23, 19, 0.08);
+  }
+  .bw-wardrobe-route-card--accent {
+    background: radial-gradient(circle at top left, rgba(79, 120, 143, 0.12), transparent 28%), linear-gradient(180deg, #fffaf6 0%, #f5ede6 100%);
+  }
+  .bw-wardrobe-route-step {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    min-height: 30px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: rgba(32, 23, 19, 0.08);
+    color: #6f584c;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .bw-wardrobe-route-card h3 {
+    margin: 0;
+    color: #201713;
+    font-size: 18px;
+    line-height: 1.18;
+    letter-spacing: -0.03em;
+  }
+  .bw-wardrobe-route-card p {
+    margin: 0;
+    color: #66554c;
+    font-size: 14px;
+    line-height: 1.78;
+  }
+  .bw-wardrobe-route-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .bw-wardrobe-route-link {
     display: inline-flex;
     align-items: center;
     justify-content: center;
@@ -461,7 +535,7 @@
     border-radius: 999px; background: rgba(32,23,19,0.06); color: #201713; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
   }
   @media (max-width: 1024px) {
-    .bw-wardrobe-spotlight, .bw-wardrobe-grid-4, .bw-wardrobe-grid-3, .bw-wardrobe-products, .bw-wardrobe-grid-2, .bw-wardrobe-compare-grid, .bw-wardrobe-journey-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .bw-wardrobe-spotlight, .bw-wardrobe-grid-4, .bw-wardrobe-grid-3, .bw-wardrobe-products, .bw-wardrobe-grid-2, .bw-wardrobe-compare-grid, .bw-wardrobe-journey-grid, .bw-wardrobe-route-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bw-wardrobe-measure-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bw-wardrobe-lens-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bw-wardrobe-spotlight { grid-template-columns: 1fr; }
@@ -471,7 +545,7 @@
     .bw-wardrobe-subnav { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
     .bw-wardrobe-subnav::-webkit-scrollbar { display: none; }
     .bw-wardrobe-chip { flex: 0 0 auto; white-space: nowrap; }
-    .bw-wardrobe-grid-4, .bw-wardrobe-grid-3, .bw-wardrobe-grid-2, .bw-wardrobe-products, .bw-wardrobe-compare-grid, .bw-wardrobe-journey-grid, .bw-wardrobe-measure-grid { grid-template-columns: 1fr; }
+    .bw-wardrobe-grid-4, .bw-wardrobe-grid-3, .bw-wardrobe-grid-2, .bw-wardrobe-products, .bw-wardrobe-compare-grid, .bw-wardrobe-journey-grid, .bw-wardrobe-measure-grid, .bw-wardrobe-route-grid { grid-template-columns: 1fr; }
     .bw-wardrobe-lens-grid { grid-template-columns: 1fr; }
     .bw-wardrobe-embedded-calculator { padding: 20px; border-radius: 24px; }
     .bw-wardrobe-product-media { min-height: 220px; }
@@ -486,6 +560,97 @@
       <a class="bw-wardrobe-chip{% if wardrobe_variant == 'hinged' %} is-current{% endif %}" href="{{ hinged_url }}" data-wardrobe-chip="hinged">Hinged</a>
       <a class="bw-wardrobe-chip{% if wardrobe_variant == 'walk-in' %} is-current{% endif %}" href="{{ walk_in_url }}" data-wardrobe-chip="walk-in">Walk-in</a>
       <a class="bw-wardrobe-chip" href="{{ calculator_url }}" data-wardrobe-chip="calculator">Wardrobe Calculator</a>
+    </div>
+  </section>
+
+  <section class="bw-wardrobe-block bw-wardrobe-route">
+    <div class="bw-wardrobe-head">
+      <span class="bw-wardrobe-eyebrow">Route map</span>
+      {% if wardrobe_variant == 'sliding' %}
+        <h2 class="bw-wardrobe-title">Sliding wardrobes should move like a guided decision, not a dead-end product page</h2>
+        <p class="bw-wardrobe-copy">Start with clearance, then settle the panel rhythm, then use the calculator or estimate once the room has a clear sliding brief.</p>
+      {% elsif wardrobe_variant == 'hinged' %}
+        <h2 class="bw-wardrobe-title">Hinged wardrobes need a better path between room fit, internal structure, and pricing</h2>
+        <p class="bw-wardrobe-copy">The most useful next step is to compare access, internal storage, and hardware before the project moves into estimate mode.</p>
+      {% elsif wardrobe_variant == 'walk-in' %}
+        <h2 class="bw-wardrobe-title">Walk-in wardrobes should read like a room strategy, not just a storage layout</h2>
+        <p class="bw-wardrobe-copy">Use this route map to move from zoning, to planning, to consultation without losing the room-scale context that makes walk-ins work.</p>
+      {% else %}
+        <h2 class="bw-wardrobe-title">Use this page to settle the wardrobe direction before the project moves to pricing</h2>
+        <p class="bw-wardrobe-copy">The strongest wardrobe briefs start with a clear route: choose the format, understand the room demands, then use the calculator or estimate with intent.</p>
+      {% endif %}
+    </div>
+    <div class="bw-wardrobe-route-grid">
+      {% if wardrobe_variant == 'sliding' %}
+        <article class="bw-wardrobe-route-card">
+          <span class="bw-wardrobe-route-step">01</span>
+          <h3>Start with clearance</h3>
+          <p>Sliding is strongest when it solves a real movement problem in the bedroom, so the bed line and wall width matter first.</p>
+        </article>
+        <article class="bw-wardrobe-route-card">
+          <span class="bw-wardrobe-route-step">02</span>
+          <h3>Set the panel logic</h3>
+          <p>Track quality, mirror ratio, and shutter alignment should be decided before the wardrobe turns into a loose visual concept.</p>
+        </article>
+        <article class="bw-wardrobe-route-card bw-wardrobe-route-card--accent">
+          <span class="bw-wardrobe-route-step">03</span>
+          <h3>Move into estimate with a tighter brief</h3>
+          <p>Once the format and internal access pattern feel right, the calculator and estimate flow can become genuinely useful.</p>
+        </article>
+      {% elsif wardrobe_variant == 'hinged' %}
+        <article class="bw-wardrobe-route-card">
+          <span class="bw-wardrobe-route-step">01</span>
+          <h3>Check swing and access</h3>
+          <p>Hinged wardrobes work best when door clearance and full-bay visibility are settled together instead of separately.</p>
+        </article>
+        <article class="bw-wardrobe-route-card">
+          <span class="bw-wardrobe-route-step">02</span>
+          <h3>Write the inside brief</h3>
+          <p>Drawers, hanging, shelves, lofts, and lockable sections should be mapped as one storage system before pricing starts.</p>
+        </article>
+        <article class="bw-wardrobe-route-card bw-wardrobe-route-card--accent">
+          <span class="bw-wardrobe-route-step">03</span>
+          <h3>Use the calculator or estimate next</h3>
+          <p>When the room and internal structure are aligned, the wardrobe calculator and estimate button become the right next step.</p>
+        </article>
+      {% elsif wardrobe_variant == 'walk-in' %}
+        <article class="bw-wardrobe-route-card">
+          <span class="bw-wardrobe-route-step">01</span>
+          <h3>Define the room zones</h3>
+          <p>Walk-ins need circulation, dressing, storage, and mirror placement to be treated as one room plan.</p>
+        </article>
+        <article class="bw-wardrobe-route-card">
+          <span class="bw-wardrobe-route-step">02</span>
+          <h3>Balance openness and privacy</h3>
+          <p>Open shelving, closed storage, and dressing surfaces should all be staged with intent, not left to the last minute.</p>
+        </article>
+        <article class="bw-wardrobe-route-card bw-wardrobe-route-card--accent">
+          <span class="bw-wardrobe-route-step">03</span>
+          <h3>Consult once the zone map feels solid</h3>
+          <p>Walk-ins become much easier to estimate when the room logic is in place and the customer is ready to discuss execution.</p>
+        </article>
+      {% else %}
+        <article class="bw-wardrobe-route-card">
+          <span class="bw-wardrobe-route-step">01</span>
+          <h3>Compare the three formats</h3>
+          <p>Sliding, hinged, and walk-in each solve a different bedroom problem. This is where the customer should separate them cleanly.</p>
+        </article>
+        <article class="bw-wardrobe-route-card">
+          <span class="bw-wardrobe-route-step">02</span>
+          <h3>Write the storage list</h3>
+          <p>Hanging, drawers, accessories, seasonal storage, and loft needs should be listed before the finish conversation starts.</p>
+        </article>
+        <article class="bw-wardrobe-route-card bw-wardrobe-route-card--accent">
+          <span class="bw-wardrobe-route-step">03</span>
+          <h3>Use the calculator when the brief feels grounded</h3>
+          <p>Once the customer has a format in mind, the wardrobe calculator and estimate flow move from browsing to planning.</p>
+        </article>
+      {% endif %}
+    </div>
+    <div class="bw-wardrobe-route-actions">
+      <a class="bw-wardrobe-route-link" href="{{ calculator_url }}">Open Wardrobe Calculator</a>
+      <button class="bw-wardrobe-button--secondary" type="button" data-bw-wardrobe-estimate-open data-estimate-trigger="route">Get Free Estimate</button>
+      <a class="bw-wardrobe-button--secondary" href="{{ contact_url }}">Talk To Bluewud</a>
     </div>
   </section>
 

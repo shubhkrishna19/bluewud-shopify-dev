@@ -113,6 +113,36 @@
     gap: 8px;
   }
 
+  .bw-offers__summary-row {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .bw-offers__summary-card {
+    padding: 14px 16px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    display: grid;
+    gap: 4px;
+  }
+
+  .bw-offers__summary-label {
+    color: rgba(248, 241, 235, 0.66);
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .bw-offers__summary-value {
+    color: #f8f1eb;
+    font-size: 13px;
+    font-weight: 700;
+    line-height: 1.4;
+  }
+
   .bw-offers__tag {
     display: inline-flex;
     align-items: center;
@@ -257,6 +287,22 @@
     color: #66554c;
     font-size: 14px;
     line-height: 1.7;
+  }
+
+  .bw-offers__card-link {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    min-height: 38px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(32, 23, 19, 0.06);
+    color: #201713;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
 
   .bw-offers__card-link {
@@ -447,6 +493,10 @@
     .bw-offers__utility-grid {
       grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    .bw-offers__summary-row {
+      grid-template-columns: 1fr;
+    }
   }
 
   @media (max-width: 760px) {
@@ -466,6 +516,10 @@
     .bw-offers__utility-grid {
       grid-template-columns: 1fr;
     }
+
+    .bw-offers__summary-row {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 
@@ -479,6 +533,20 @@
         <span class="bw-offers__tag">Coupon offers</span>
         <span class="bw-offers__tag">Payment rewards</span>
         <span class="bw-offers__tag">Limited-time savings</span>
+      </div>
+      <div class="bw-offers__summary-row" aria-label="Offer quick summary">
+        <div class="bw-offers__summary-card">
+          <span class="bw-offers__summary-label">Codes</span>
+          <span class="bw-offers__summary-value">Check the active coupon before checkout</span>
+        </div>
+        <div class="bw-offers__summary-card">
+          <span class="bw-offers__summary-label">Payments</span>
+          <span class="bw-offers__summary-value">Some savings apply only to specific methods</span>
+        </div>
+        <div class="bw-offers__summary-card">
+          <span class="bw-offers__summary-label">Bigger orders</span>
+          <span class="bw-offers__summary-value">Bulk support is available for project briefs</span>
+        </div>
       </div>
       <div class="bw-offers__action-row">
         <a class="bw-offers__action bw-offers__action--solid" href="{{ products_url }}">Browse products</a>
@@ -536,7 +604,7 @@
       </div>
       <h3 class="bw-offers__card-title">Payment-led savings made easy.</h3>
       <p class="bw-offers__card-copy">See the cards and payment methods that currently qualify for instant discounts or rewards before you head to checkout.</p>
-      <a class="bw-offers__card-link" href="{{ contact_url }}">Ask before you pay</a>
+      <a class="bw-offers__card-link" href="{{ payment_security_url }}">Review payment support</a>
     </article>
 
     <article class="bw-offers__card">
@@ -546,7 +614,7 @@
       </div>
       <h3 class="bw-offers__card-title">Use the right code at the right moment.</h3>
       <p class="bw-offers__card-copy">Some savings need a code, some apply automatically, and some are linked to the payment method. We keep that distinction visible here.</p>
-      <a class="bw-offers__card-link" href="{{ products_url }}">Browse products</a>
+      <a class="bw-offers__card-link" href="{{ products_url }}">Browse eligible products</a>
     </article>
 
     <article class="bw-offers__card">
@@ -556,7 +624,7 @@
       </div>
       <h3 class="bw-offers__card-title">For larger furnishing requirements.</h3>
       <p class="bw-offers__card-copy">Office, hospitality, GST-led, and multi-piece orders can follow a different buying path. Keep the conversation open before checkout.</p>
-      <a class="bw-offers__card-link" href="{{ bulk_url }}">Open bulk page</a>
+      <a class="bw-offers__card-link" href="{{ bulk_url }}">Open bulk path</a>
     </article>
   </div>
 

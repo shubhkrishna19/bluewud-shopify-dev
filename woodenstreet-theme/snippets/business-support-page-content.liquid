@@ -20,6 +20,7 @@
       assign intro_eyebrow = 'Bluewud business desk'
       assign section_title = 'Bulk orders need a cleaner business path than a normal storefront checkout'
       assign section_copy = 'Use this page for hospitality, office, reseller, institutional, or GST-led furniture requirements. The goal is to move quickly from browsing into a usable procurement brief.'
+      assign section_note = 'Project buyers should leave this page knowing exactly what information to share next.'
       assign stat_labels = 'Use cases|Commercial support|Quoting posture' | split: '|'
       assign stat_values = 'Office, hospitality, reseller|GST-ready discussion|Project-led pricing' | split: '|'
       assign card_titles = 'What to share first|Who this is for|Best next step' | split: '|'
@@ -182,6 +183,18 @@
     font-size: 15px;
     line-height: 1.9;
   }
+  .bw-business-page__note-inline {
+    padding: 16px 18px;
+    border-radius: 20px;
+    background: rgba(32, 23, 19, 0.04);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    color: #4d4038;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .bw-business-page__note-inline strong {
+    color: #201713;
+  }
   .bw-business-page__rte h1,
   .bw-business-page__rte h2,
   .bw-business-page__rte h3,
@@ -333,6 +346,11 @@
       <span class="bw-business-page__eyebrow">{{ intro_eyebrow }}</span>
       <h2 class="bw-business-page__title">{{ section_title }}</h2>
       <p class="bw-business-page__copy">{{ section_copy }}</p>
+      {% if section_note != blank %}
+        <div class="bw-business-page__note-inline">
+          <strong>What this page should do next:</strong> {{ section_note }}
+        </div>
+      {% endif %}
       <div class="bw-business-page__rte">
         {{ page.content }}
       </div>
