@@ -199,6 +199,26 @@
     line-height: 1.7;
   }
 
+  .bw-cart__summary-badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .bw-cart__summary-badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: rgba(32, 23, 19, 0.06);
+    color: #201713;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
   .bw-cart__summary-line {
     display: flex;
     justify-content: space-between;
@@ -420,6 +440,11 @@
           <div class="bw-cart__summary">
             <h2 class="bw-cart__summary-title">Order summary</h2>
             <p class="bw-cart__summary-copy">Clear totals, simple updates, and support when you need it.</p>
+            <div class="bw-cart__summary-badges" aria-label="Checkout reassurance">
+              <span class="bw-cart__summary-badge">Secure checkout</span>
+              <span class="bw-cart__summary-badge">Easy returns</span>
+              <span class="bw-cart__summary-badge">Delivery guidance</span>
+            </div>
 
             <div class="bw-cart__summary-line">
               <span>Subtotal</span>

@@ -123,6 +123,59 @@
     line-height: 1.8;
   }
 
+  .bw-collection__hero-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 4px;
+  }
+
+  .bw-collection__hero-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 46px;
+    padding: 0 18px;
+    border-radius: 999px;
+    background: #fff7f1;
+    color: #201713;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    box-shadow: 0 10px 24px rgba(20, 13, 9, 0.14);
+  }
+
+  .bw-collection__hero-button.is-secondary {
+    background: rgba(255, 255, 255, 0.12);
+    color: #fff7f1;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    box-shadow: none;
+  }
+
+  .bw-collection__hero-trust {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 2px;
+  }
+
+  .bw-collection__hero-badge {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+    color: rgba(255, 247, 241, 0.92);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
   .bw-collection__chips {
     display: flex;
     flex-wrap: wrap;
@@ -362,6 +415,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    align-self: flex-start;
+    margin-top: auto;
     min-height: 46px;
     padding: 0 18px;
     border-radius: 999px;
@@ -552,6 +607,15 @@
         </div>
         <h1 class="bw-collection__title">{{ hero_title }}</h1>
         <p class="bw-collection__copy">{{ hero_copy }}</p>
+        <div class="bw-collection__hero-actions">
+          <a class="bw-collection__hero-button" href="/collections/hp-bluewuds-bestseller">Shop bestsellers</a>
+          <a class="bw-collection__hero-button is-secondary" href="/pages/contact-us">Talk to Bluewud</a>
+        </div>
+        <div class="bw-collection__hero-trust" aria-label="Collection trust cues">
+          <span class="bw-collection__hero-badge">Easy EMI</span>
+          <span class="bw-collection__hero-badge">Secure checkout</span>
+          <span class="bw-collection__hero-badge">Pan-India delivery</span>
+        </div>
       </div>
     </div>
 

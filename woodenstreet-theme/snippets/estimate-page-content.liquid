@@ -3,7 +3,7 @@
   assign kitchen_page_url = '/collections/kitchen-racks'
   assign wardrobe_calculator_url = '/collections/wardrobe#wardrobe-calculator'
   assign kitchen_calculator_url = '/collections/kitchen-racks#kitchen-calculator'
-  assign interiors_calculator_url = '/collections/kitchen-racks#broader-planning'
+  assign interiors_calculator_url = '/pages/home-interiors-cost-calculator'
   assign wardrobe_design_url = '/collections/wardrobe'
   assign kitchen_design_url = '/collections/kitchen-racks'
   assign estimate_url = '/pages/get-free-estimate'
@@ -23,6 +23,9 @@
   endif
   if pages['home-interiors-cost-calculator'] != blank
     assign interiors_calculator_url = pages['home-interiors-cost-calculator'].url
+  endif
+  if pages['home-interiors-cost-calculator'] == blank
+    assign interiors_calculator_url = '/collections/kitchen-racks#broader-planning'
   endif
   if pages['modular-wardrobe-designs'] != blank
     assign wardrobe_design_url = pages['modular-wardrobe-designs'].url

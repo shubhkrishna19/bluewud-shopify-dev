@@ -4,8 +4,8 @@
   assign wardrobe_sliding_url = wardrobe_main_url
   assign wardrobe_hinged_url = wardrobe_main_url
   assign wardrobe_walkin_url = wardrobe_main_url
-  assign kitchen_calculator_url = '/pages/modular-kitchen-cost-calculator'
-  assign interiors_calculator_url = '/pages/home-interiors-cost-calculator'
+  assign kitchen_calculator_url = '/collections/kitchen-racks#kitchen-calculator'
+  assign interiors_calculator_url = '/collections/kitchen-racks#broader-planning'
   assign estimate_url = '/pages/get-free-estimate'
 
   if pages['modular-wardrobe-designs'] != blank
@@ -25,6 +25,9 @@
   endif
   if pages['home-interiors-cost-calculator'] != blank
     assign interiors_calculator_url = pages['home-interiors-cost-calculator'].url
+  endif
+  if pages['home-interiors-cost-calculator'] == blank
+    assign interiors_calculator_url = '/collections/kitchen-racks#broader-planning'
   endif
   if pages['get-free-estimate'] != blank
     assign estimate_url = pages['get-free-estimate'].url

@@ -31,7 +31,19 @@
     assign page_intro = 'Browse Bluewud support questions by topic with quick answers for orders, shipping, cancellations, and installation.'
   endif
 
+  if page.handle == 'faq' or page.handle == 'faqs'
+    assign is_help_center = true
+    assign page_eyebrow = 'Bluewud support'
+    assign page_intro = 'Browse Bluewud support questions by topic with quick answers for orders, shipping, cancellations, and installation.'
+  endif
+
   if page.handle == 'returns-refunds'
+    assign is_returns_refunds = true
+    assign page_eyebrow = 'Returns, refunds and replacements'
+    assign page_intro = 'A clear view of Bluewud return eligibility, cancellation timing, exchange support, and the product categories that are handled through replacement instead of full return.'
+  endif
+
+  if page.handle == 'returns-and-refunds'
     assign is_returns_refunds = true
     assign page_eyebrow = 'Returns, refunds and replacements'
     assign page_intro = 'A clear view of Bluewud return eligibility, cancellation timing, exchange support, and the product categories that are handled through replacement instead of full return.'
@@ -67,6 +79,12 @@
     assign page_intro = 'Recognition, milestones, and achievements should strengthen customer trust and connect naturally back into the buying journey.'
   endif
 
+  if page.handle == 'award-achievement'
+    assign is_business_support_page = true
+    assign page_eyebrow = 'Bluewud credibility'
+    assign page_intro = 'Recognition, milestones, and achievements should strengthen customer trust and connect naturally back into the buying journey.'
+  endif
+
   if page.handle == 'policies'
     assign is_business_support_page = true
     assign page_eyebrow = 'Bluewud policy desk'
@@ -74,6 +92,12 @@
   endif
 
   if page.handle == 'payment-security'
+    assign is_business_support_page = true
+    assign page_eyebrow = 'Bluewud payment confidence'
+    assign page_intro = 'This page should reduce payment hesitation and help larger furniture buyers feel more secure before they complete checkout.'
+  endif
+
+  if page.handle == 'payment-and-security'
     assign is_business_support_page = true
     assign page_eyebrow = 'Bluewud payment confidence'
     assign page_intro = 'This page should reduce payment hesitation and help larger furniture buyers feel more secure before they complete checkout.'

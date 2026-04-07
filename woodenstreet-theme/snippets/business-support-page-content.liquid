@@ -36,7 +36,7 @@
       assign card_copies = 'Use this page to confirm location, hours, and what kind of requirements are worth discussing in person.|If the requirement is modular, a quick estimate brief first usually makes the studio conversation more productive.|The strongest path is to bring product references, room photos, or dimensions so the visit starts with context.' | split: '|'
       assign card_urls = contact_url | append: '|' | append: estimate_url | append: '|' | append: contact_url | split: '|'
       assign card_labels = 'Contact Before Visit|Share Project Brief|Talk To Bluewud' | split: '|'
-    when 'award-achievment'
+    when 'award-achievment', 'award-achievement'
       assign intro_eyebrow = 'Bluewud credibility'
       assign section_title = 'This page should reinforce trust, not just list achievements'
       assign section_copy = "Awards, recognition, and milestones work best when they support the customer's confidence in the brand and lead naturally back into shopping or project consultation."

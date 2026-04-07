@@ -7,7 +7,7 @@
   .bw-newsletter__inner {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 44px;
+    padding: 44px 42px;
     border-radius: 32px;
     background: linear-gradient(135deg, #241913 0%, #3d2a21 100%);
     color: #f8f1eb;
@@ -58,8 +58,14 @@
 
   .bw-newsletter__form {
     display: grid;
-    gap: 12px;
+    gap: 10px;
     align-content: start;
+  }
+
+  .bw-newsletter__form-row {
+    display: flex;
+    gap: 10px;
+    align-items: stretch;
   }
 
   .bw-newsletter__field {
@@ -73,18 +79,28 @@
     background: rgba(255, 255, 255, 0.08);
     color: #f8f1eb;
     font-size: 15px;
+    transition: border-color 0.2s ease, background 0.2s ease;
   }
 
   .bw-newsletter__field::placeholder {
     color: rgba(248, 241, 235, 0.5);
   }
 
+  .bw-newsletter__field:focus {
+    outline: none;
+    border-color: rgba(231, 196, 173, 0.6);
+    background: rgba(255, 255, 255, 0.1);
+  }
+
   .bw-newsletter__submit {
-    display: block;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
     box-sizing: border-box;
-    width: 100%;
+    width: auto;
     min-height: 54px;
-    border: none;
+    padding: 0 20px;
+    border: 1px solid rgba(248, 241, 235, 0.1);
     border-radius: 999px;
     background: #f8f1eb;
     color: #241913;
@@ -93,6 +109,13 @@
     letter-spacing: 0.08em;
     text-transform: uppercase;
     cursor: pointer;
+    white-space: nowrap;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+
+  .bw-newsletter__submit:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 14px 24px rgba(0, 0, 0, 0.16);
   }
 
   .bw-newsletter__note,
@@ -106,6 +129,14 @@
   @media (max-width: 920px) {
     .bw-newsletter__inner {
       grid-template-columns: 1fr;
+    }
+
+    .bw-newsletter__form-row {
+      flex-direction: column;
+    }
+
+    .bw-newsletter__submit {
+      width: 100%;
     }
   }
 
@@ -142,8 +173,10 @@
 
     {% form 'customer', class: 'bw-newsletter__form' %}
       <input type="hidden" name="contact[tags]" value="newsletter">
-      <input class="bw-newsletter__field" type="email" name="contact[email]" placeholder="Enter your email address" required>
-      <button class="bw-newsletter__submit" type="submit">Join the private list</button>
+      <div class="bw-newsletter__form-row">
+        <input class="bw-newsletter__field" type="email" name="contact[email]" placeholder="Enter your email address" required>
+        <button class="bw-newsletter__submit" type="submit">Join the private list</button>
+      </div>
       {% if form.posted_successfully? %}
         <p class="bw-newsletter__message">Thanks. You are now subscribed for Bluewud updates.</p>
       {% endif %}

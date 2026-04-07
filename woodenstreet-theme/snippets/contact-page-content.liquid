@@ -1,7 +1,111 @@
 <style>
   .bw-contact {
     display: grid;
-    gap: 24px;
+    gap: 22px;
+  }
+
+  .bw-contact__hero {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(300px, 0.92fr);
+    gap: 18px;
+  }
+
+  .bw-contact__hero-main,
+  .bw-contact__hero-side {
+    border-radius: 30px;
+    background: rgba(255, 251, 247, 0.94);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 24px 70px rgba(35, 24, 19, 0.08);
+  }
+
+  .bw-contact__hero-main {
+    padding: 30px;
+    background:
+      radial-gradient(circle at top right, rgba(166, 106, 67, 0.12), transparent 28%),
+      linear-gradient(135deg, #fffaf6 0%, #f5ede6 100%);
+    display: grid;
+    gap: 18px;
+  }
+
+  .bw-contact__hero-side {
+    padding: 24px;
+    display: grid;
+    gap: 14px;
+    align-content: start;
+  }
+
+  .bw-contact__hero-eyebrow {
+    color: #8a684f;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .bw-contact__hero-title {
+    margin: 0;
+    color: #201713;
+    font-size: clamp(30px, 4vw, 48px);
+    line-height: 1.03;
+    letter-spacing: -0.05em;
+    max-width: 14ch;
+  }
+
+  .bw-contact__hero-copy {
+    margin: 0;
+    color: #64544a;
+    font-size: 15px;
+    line-height: 1.85;
+    max-width: 70ch;
+  }
+
+  .bw-contact__hero-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .bw-contact__hero-chip {
+    display: inline-flex;
+    align-items: center;
+    min-height: 36px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(32, 23, 19, 0.06);
+    color: #201713;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .bw-contact__hero-stat-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .bw-contact__hero-stat {
+    padding: 16px;
+    border-radius: 20px;
+    background: rgba(32, 23, 19, 0.04);
+    display: grid;
+    gap: 6px;
+  }
+
+  .bw-contact__hero-stat-label {
+    color: #8a684f;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .bw-contact__hero-stat-value {
+    color: #201713;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.2;
   }
 
   .bw-contact__cards {
@@ -19,9 +123,9 @@
   }
 
   .bw-contact__card {
-    padding: 22px;
+    padding: 24px;
     display: grid;
-    gap: 10px;
+    gap: 12px;
   }
 
   .bw-contact__card-eyebrow {
@@ -35,7 +139,7 @@
   .bw-contact__card-title {
     margin: 0;
     color: #201713;
-    font-size: 22px;
+    font-size: 20px;
     line-height: 1.15;
     letter-spacing: -0.03em;
   }
@@ -104,7 +208,14 @@
 
   .bw-contact__form {
     display: grid;
-    gap: 16px;
+    gap: 14px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .bw-contact__form .bw-contact__field:nth-child(1),
+  .bw-contact__form .bw-contact__field:nth-child(4),
+  .bw-contact__form .bw-contact__submit {
+    grid-column: 1 / -1;
   }
 
   .bw-contact__field {
@@ -175,8 +286,12 @@
     gap: 16px;
   }
 
+  .bw-contact__info-grid--highlight {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
   .bw-contact__info-block {
-    padding: 18px;
+    padding: 20px;
     border-radius: 22px;
     background: rgba(32, 23, 19, 0.04);
     display: grid;
@@ -214,9 +329,39 @@
     line-height: 1.9;
   }
 
+  .bw-contact__quick-links {
+    display: grid;
+    gap: 10px;
+  }
+
+  .bw-contact__quick-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 14px;
+    padding: 14px 16px;
+    border-radius: 18px;
+    background: rgba(32, 23, 19, 0.04);
+    color: #201713;
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .bw-contact__quick-link strong {
+    font-size: 14px;
+  }
+
   @media (max-width: 980px) {
+    .bw-contact__hero,
     .bw-contact__cards,
     .bw-contact__layout {
+      grid-template-columns: 1fr;
+    }
+
+    .bw-contact__hero-stat-grid,
+    .bw-contact__info-grid--highlight,
+    .bw-contact__form {
       grid-template-columns: 1fr;
     }
   }
@@ -226,15 +371,60 @@
       gap: 18px;
     }
 
+    .bw-contact__hero-main,
+    .bw-contact__hero-side,
     .bw-contact__card,
     .bw-contact__panel {
       padding: 20px;
       border-radius: 24px;
     }
+
+    .bw-contact__hero-title {
+      max-width: none;
+      font-size: clamp(28px, 10vw, 38px);
+    }
   }
 </style>
 
 <div class="bw-contact">
+  <section class="bw-contact__hero">
+    <div class="bw-contact__hero-main">
+      <span class="bw-contact__hero-eyebrow">Bluewud support and sales</span>
+      <h2 class="bw-contact__hero-title">Talk to the team with the right context.</h2>
+      <p class="bw-contact__hero-copy">Use this page when a product question turns into a real buying conversation. The clearer the room, product, or project context, the faster Bluewud can route you to the right next step.</p>
+      <div class="bw-contact__hero-chips">
+        <span class="bw-contact__hero-chip">Order support</span>
+        <span class="bw-contact__hero-chip">Installation help</span>
+        <span class="bw-contact__hero-chip">Bulk enquiries</span>
+      </div>
+      <div class="bw-contact__hero-stat-grid">
+        <div class="bw-contact__hero-stat">
+          <span class="bw-contact__hero-stat-label">Call or WhatsApp</span>
+          <span class="bw-contact__hero-stat-value">+91-8800-609-609</span>
+        </div>
+        <div class="bw-contact__hero-stat">
+          <span class="bw-contact__hero-stat-label">Email</span>
+          <span class="bw-contact__hero-stat-value">care@bluewud.com</span>
+        </div>
+        <div class="bw-contact__hero-stat">
+          <span class="bw-contact__hero-stat-label">Hours</span>
+          <span class="bw-contact__hero-stat-value">Weekdays, 9 AM to 6 PM</span>
+        </div>
+      </div>
+    </div>
+
+    <aside class="bw-contact__hero-side">
+      <div class="bw-contact__info-block">
+        <h3 class="bw-contact__info-title">Fast routes</h3>
+        <div class="bw-contact__quick-links">
+          <a class="bw-contact__quick-link" href="tel:+918800609609"><strong>Call support</strong><span>Quickest for urgent help</span></a>
+          <a class="bw-contact__quick-link" href="https://wa.me/918800609609"><strong>WhatsApp</strong><span>Best for short product questions</span></a>
+          <a class="bw-contact__quick-link" href="/pages/get-free-estimate"><strong>Get estimate</strong><span>Best for kitchen and wardrobe briefs</span></a>
+        </div>
+      </div>
+    </aside>
+  </section>
+
   <div class="bw-contact__cards">
     <article class="bw-contact__card">
       <span class="bw-contact__card-eyebrow">General support</span>
@@ -306,7 +496,7 @@
         <p class="bw-contact__copy">The live Bluewud contact information is now separated into clearer blocks so it reads like support infrastructure rather than a text dump.</p>
       </div>
 
-      <div class="bw-contact__info-grid">
+      <div class="bw-contact__info-grid bw-contact__info-grid--highlight">
         <div class="bw-contact__info-block">
           <h3 class="bw-contact__info-title">Corporate Office Address</h3>
           <div class="bw-contact__info-copy">Bluewud Concepts Pvt. Ltd.<br>A-108, Sector 65<br>Noida, Uttar Pradesh 201301</div>

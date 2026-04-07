@@ -6,7 +6,32 @@
 
   .bw-help-center__hero {
     display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+    gap: 16px;
+  }
+
+  .bw-help-center__hero-copy,
+  .bw-help-center__hero-side {
+    border-radius: 30px;
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    background: rgba(255, 251, 247, 0.94);
+    box-shadow: 0 24px 70px rgba(35, 24, 19, 0.08);
+  }
+
+  .bw-help-center__hero-copy {
+    padding: 28px 30px;
+    display: grid;
     gap: 12px;
+    background:
+      radial-gradient(circle at top right, rgba(53, 90, 109, 0.08), transparent 28%),
+      linear-gradient(180deg, #fffaf6 0%, #f6ede5 100%);
+  }
+
+  .bw-help-center__hero-side {
+    padding: 24px;
+    display: grid;
+    gap: 14px;
+    align-content: start;
   }
 
   .bw-help-center__eyebrow {
@@ -31,6 +56,49 @@
     color: #64544a;
     font-size: 16px;
     line-height: 1.8;
+  }
+
+  .bw-help-center__hero-quick {
+    display: grid;
+    gap: 10px;
+  }
+
+  .bw-help-center__hero-quick-title {
+    margin: 0;
+    color: #201713;
+    font-size: 18px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .bw-help-center__hero-quick-copy {
+    margin: 0;
+    color: #64544a;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .bw-help-center__hero-links {
+    display: grid;
+    gap: 10px;
+  }
+
+  .bw-help-center__hero-link {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    align-items: center;
+    padding: 14px 16px;
+    border-radius: 18px;
+    background: rgba(32, 23, 19, 0.04);
+    color: #201713;
+    text-decoration: none;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+
+  .bw-help-center__hero-link strong {
+    font-size: 14px;
   }
 
   .bw-help-center__cards {
@@ -73,7 +141,7 @@
   .bw-help-center__card-title {
     margin: 0;
     color: #201713;
-    font-size: 19px;
+    font-size: 18px;
     line-height: 1.16;
     letter-spacing: -0.02em;
   }
@@ -141,6 +209,35 @@
     color: #64544a;
     font-size: 15px;
     line-height: 1.8;
+  }
+
+  .bw-help-center__panel-summary {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .bw-help-center__panel-summary-card {
+    padding: 16px;
+    border-radius: 18px;
+    background: rgba(32, 23, 19, 0.04);
+    display: grid;
+    gap: 6px;
+  }
+
+  .bw-help-center__panel-summary-label {
+    color: #8a684f;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .bw-help-center__panel-summary-value {
+    color: #201713;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.2;
   }
 
   .bw-help-center__faq {
@@ -239,8 +336,14 @@
   }
 
   @media (max-width: 1100px) {
+    .bw-help-center__hero,
     .bw-help-center__cards {
       grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .bw-help-center__panel-summary,
+    .bw-help-center__support {
+      grid-template-columns: 1fr;
     }
 
     .bw-help-center__support {
@@ -249,13 +352,20 @@
   }
 
   @media (max-width: 720px) {
+    .bw-help-center__hero,
     .bw-help-center__cards {
       grid-template-columns: 1fr;
     }
 
+    .bw-help-center__hero-copy,
+    .bw-help-center__hero-side,
     .bw-help-center__panel {
       padding: 18px;
       border-radius: 22px;
+    }
+
+    .bw-help-center__title {
+      font-size: clamp(28px, 10vw, 40px);
     }
 
     .bw-help-center__faq-question {
@@ -271,9 +381,22 @@
 
 <div class="bw-help-center" data-help-center>
   <div class="bw-help-center__hero">
-    <span class="bw-help-center__eyebrow">Bluewud help center</span>
-    <h2 class="bw-help-center__title">Find the right answer faster.</h2>
-    <p class="bw-help-center__intro">Browse the most common Bluewud support questions by topic. Tap a category card to open a focused set of answers instead of scrolling a single long page.</p>
+    <div class="bw-help-center__hero-copy">
+      <span class="bw-help-center__eyebrow">Bluewud help center</span>
+      <h2 class="bw-help-center__title">Find the right answer faster.</h2>
+      <p class="bw-help-center__intro">Browse the most common Bluewud support questions by topic. Tap a category card to open a focused set of answers instead of scrolling a single long page.</p>
+    </div>
+    <aside class="bw-help-center__hero-side">
+      <div class="bw-help-center__hero-quick">
+        <h3 class="bw-help-center__hero-quick-title">Need a faster route?</h3>
+        <p class="bw-help-center__hero-quick-copy">Use the quick actions if your question is about a live order, a modular project, or direct support rather than a general FAQ search.</p>
+      </div>
+      <div class="bw-help-center__hero-links">
+        <a class="bw-help-center__hero-link" href="/pages/contact-us"><strong>Contact Bluewud</strong><span>For direct help</span></a>
+        <a class="bw-help-center__hero-link" href="/pages/get-free-estimate"><strong>Get Free Estimate</strong><span>For kitchen and wardrobe briefs</span></a>
+        <a class="bw-help-center__hero-link" href="/pages/buy-in-bulk"><strong>Buy In Bulk</strong><span>For larger project needs</span></a>
+      </div>
+    </aside>
   </div>
 
   <div class="bw-help-center__cards" role="tablist" aria-label="Help center categories">
@@ -340,6 +463,11 @@
       <h3 class="bw-help-center__panel-title">Order placement, payment, and confirmation</h3>
       <p class="bw-help-center__panel-copy">Use this section for the most common order questions from browsing to payment confirmation and post-purchase changes.</p>
     </div>
+    <div class="bw-help-center__panel-summary">
+      <div class="bw-help-center__panel-summary-card"><span class="bw-help-center__panel-summary-label">Best for</span><span class="bw-help-center__panel-summary-value">Checkout and confirmation</span></div>
+      <div class="bw-help-center__panel-summary-card"><span class="bw-help-center__panel-summary-label">Fast route</span><span class="bw-help-center__panel-summary-value">Contact support</span></div>
+      <div class="bw-help-center__panel-summary-card"><span class="bw-help-center__panel-summary-label">If it is project-led</span><span class="bw-help-center__panel-summary-value">Open estimate desk</span></div>
+    </div>
     <div class="bw-help-center__faq">
       <div class="bw-help-center__faq-item is-open">
         <button class="bw-help-center__faq-question" type="button" aria-expanded="true">
@@ -379,6 +507,11 @@
       <span class="bw-help-center__panel-eyebrow">Shipping &amp; Delivery</span>
       <h3 class="bw-help-center__panel-title">Delivery timing, shipping modes, and tracking</h3>
       <p class="bw-help-center__panel-copy">This section groups the logistics questions shoppers ask most before and after dispatch.</p>
+    </div>
+    <div class="bw-help-center__panel-summary">
+      <div class="bw-help-center__panel-summary-card"><span class="bw-help-center__panel-summary-label">Best for</span><span class="bw-help-center__panel-summary-value">Delivery timing</span></div>
+      <div class="bw-help-center__panel-summary-card"><span class="bw-help-center__panel-summary-label">Fast route</span><span class="bw-help-center__panel-summary-value">Track an order</span></div>
+      <div class="bw-help-center__panel-summary-card"><span class="bw-help-center__panel-summary-label">If delayed</span><span class="bw-help-center__panel-summary-value">Contact support</span></div>
     </div>
     <div class="bw-help-center__faq">
       <div class="bw-help-center__faq-item">
@@ -426,6 +559,11 @@
       <h3 class="bw-help-center__panel-title">Order edits, cancellation rules, and refunds</h3>
       <p class="bw-help-center__panel-copy">A focused area for shoppers who need to change or stop an order after purchase.</p>
     </div>
+    <div class="bw-help-center__panel-summary">
+      <div class="bw-help-center__panel-summary-card"><span class="bw-help-center__panel-summary-label">Best for</span><span class="bw-help-center__panel-summary-value">Edits and cancellations</span></div>
+      <div class="bw-help-center__panel-summary-card"><span class="bw-help-center__panel-summary-label">Fast route</span><span class="bw-help-center__panel-summary-value">Email support</span></div>
+      <div class="bw-help-center__panel-summary-card"><span class="bw-help-center__panel-summary-label">If already shipped</span><span class="bw-help-center__panel-summary-value">Follow support flow</span></div>
+    </div>
     <div class="bw-help-center__faq">
       <div class="bw-help-center__faq-item">
         <button class="bw-help-center__faq-question" type="button" aria-expanded="false">
@@ -459,6 +597,11 @@
       <span class="bw-help-center__panel-eyebrow">Installation</span>
       <h3 class="bw-help-center__panel-title">Setup guidance and on-call assistance</h3>
       <p class="bw-help-center__panel-copy">Help for self-installation and support if the product needs setup guidance after delivery.</p>
+    </div>
+    <div class="bw-help-center__panel-summary">
+      <div class="bw-help-center__panel-summary-card"><span class="bw-help-center__panel-summary-label">Best for</span><span class="bw-help-center__panel-summary-value">Setup questions</span></div>
+      <div class="bw-help-center__panel-summary-card"><span class="bw-help-center__panel-summary-label">Fast route</span><span class="bw-help-center__panel-summary-value">Call support</span></div>
+      <div class="bw-help-center__panel-summary-card"><span class="bw-help-center__panel-summary-label">For larger projects</span><span class="bw-help-center__panel-summary-value">Open estimate desk</span></div>
     </div>
     <div class="bw-help-center__faq">
       <div class="bw-help-center__faq-item is-open">

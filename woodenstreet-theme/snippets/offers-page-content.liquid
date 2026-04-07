@@ -1,3 +1,13 @@
+{% liquid
+  assign contact_url = '/pages/contact-us'
+  assign bulk_url = '/pages/buy-in-bulk'
+  assign help_center_url = '/pages/help-center'
+  assign products_url = routes.all_products_collection_url
+  assign estimate_url = '/pages/get-free-estimate'
+  assign payment_security_url = '/pages/payment-security'
+  assign returns_url = '/pages/returns-refunds'
+%}
+
 <style>
   .bw-offers {
     display: grid;
@@ -8,6 +18,35 @@
   .bw-offers__body {
     display: grid;
     gap: 16px;
+  }
+
+  .bw-offers__action-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .bw-offers__action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.16);
+    background: rgba(255, 255, 255, 0.08);
+    color: #f8f1eb;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .bw-offers__action--solid {
+    background: #f8f1eb;
+    color: #201713;
+    border-color: #f8f1eb;
   }
 
   .bw-offers__hero {
@@ -230,6 +269,55 @@
     width: fit-content;
   }
 
+  .bw-offers__utility-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .bw-offers__utility-card {
+    display: grid;
+    gap: 10px;
+    padding: 20px 22px;
+    border-radius: 24px;
+    background: rgba(255, 251, 247, 0.94);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 16px 40px rgba(35, 24, 19, 0.06);
+  }
+
+  .bw-offers__utility-label {
+    color: #8a684f;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .bw-offers__utility-title {
+    margin: 0;
+    color: #201713;
+    font-size: 17px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+
+  .bw-offers__utility-copy {
+    margin: 0;
+    color: #66554c;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+
+  .bw-offers__utility-link {
+    color: #8a684f;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    width: fit-content;
+  }
+
   .bw-offers__details {
     padding: 30px;
     background: rgba(255, 251, 247, 0.94);
@@ -355,6 +443,10 @@
     .bw-offers__cards {
       grid-template-columns: 1fr;
     }
+
+    .bw-offers__utility-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
   }
 
   @media (max-width: 760px) {
@@ -370,6 +462,10 @@
       max-width: none;
       font-size: clamp(28px, 10vw, 38px);
     }
+
+    .bw-offers__utility-grid {
+      grid-template-columns: 1fr;
+    }
   }
 </style>
 
@@ -384,6 +480,11 @@
         <span class="bw-offers__tag">Payment rewards</span>
         <span class="bw-offers__tag">Limited-time savings</span>
       </div>
+      <div class="bw-offers__action-row">
+        <a class="bw-offers__action bw-offers__action--solid" href="{{ products_url }}">Browse products</a>
+        <a class="bw-offers__action" href="{{ estimate_url }}">Get free estimate</a>
+        <a class="bw-offers__action" href="{{ bulk_url }}">Bulk support</a>
+      </div>
     </article>
 
     <article class="bw-offers__steps">
@@ -393,7 +494,37 @@
         <li><span><strong>Apply the offer correctly at checkout.</strong> If a code is needed, enter it during checkout. If it is a payment offer, complete payment using the eligible provider.</span></li>
         <li><span><strong>Use support if anything looks unclear.</strong> Reach out before placing the order if the discount logic or cashback rules are not obvious.</span></li>
       </ol>
-      <a class="bw-offers__cta" href="{{ routes.all_products_collection_url }}">Shop eligible products</a>
+      <a class="bw-offers__cta" href="{{ products_url }}">Shop eligible products</a>
+    </article>
+  </div>
+
+  <div class="bw-offers__utility-grid">
+    <article class="bw-offers__utility-card">
+      <span class="bw-offers__utility-label">Need clarity?</span>
+      <h3 class="bw-offers__utility-title">Check whether a payment offer or code applies.</h3>
+      <p class="bw-offers__utility-copy">If the savings logic is unclear, speak with support before checkout so the order is not held up later.</p>
+      <a class="bw-offers__utility-link" href="{{ contact_url }}">Contact Bluewud</a>
+    </article>
+
+    <article class="bw-offers__utility-card">
+      <span class="bw-offers__utility-label">Large orders</span>
+      <h3 class="bw-offers__utility-title">Use a better path for bigger furnishing requirements.</h3>
+      <p class="bw-offers__utility-copy">Office, hospitality, and multi-piece purchases deserve a direct brief instead of a normal retail-only path.</p>
+      <a class="bw-offers__utility-link" href="{{ bulk_url }}">Open bulk page</a>
+    </article>
+
+    <article class="bw-offers__utility-card">
+      <span class="bw-offers__utility-label">Checkout confidence</span>
+      <h3 class="bw-offers__utility-title">Review security and refund posture before paying.</h3>
+      <p class="bw-offers__utility-copy">The cleanest offer page still works best when the payment and returns context is easy to find nearby.</p>
+      <a class="bw-offers__utility-link" href="{{ payment_security_url }}">Payment security</a>
+    </article>
+
+    <article class="bw-offers__utility-card">
+      <span class="bw-offers__utility-label">Need a fallback?</span>
+      <h3 class="bw-offers__utility-title">Use help center or estimate when the offer question is tied to a real order.</h3>
+      <p class="bw-offers__utility-copy">Support works best when the order or project context is already clear enough to discuss with the team.</p>
+      <a class="bw-offers__utility-link" href="{{ help_center_url }}">Open help center</a>
     </article>
   </div>
 
@@ -405,7 +536,7 @@
       </div>
       <h3 class="bw-offers__card-title">Payment-led savings made easy.</h3>
       <p class="bw-offers__card-copy">See the cards and payment methods that currently qualify for instant discounts or rewards before you head to checkout.</p>
-      <a class="bw-offers__card-link" href="/pages/contact-us">Ask before you pay</a>
+      <a class="bw-offers__card-link" href="{{ contact_url }}">Ask before you pay</a>
     </article>
 
     <article class="bw-offers__card">
@@ -415,7 +546,7 @@
       </div>
       <h3 class="bw-offers__card-title">Use the right code at the right moment.</h3>
       <p class="bw-offers__card-copy">Some savings need a code, some apply automatically, and some are linked to the payment method. We keep that distinction visible here.</p>
-      <a class="bw-offers__card-link" href="{{ routes.all_products_collection_url }}">Browse products</a>
+      <a class="bw-offers__card-link" href="{{ products_url }}">Browse products</a>
     </article>
 
     <article class="bw-offers__card">
@@ -425,7 +556,7 @@
       </div>
       <h3 class="bw-offers__card-title">For larger furnishing requirements.</h3>
       <p class="bw-offers__card-copy">Office, hospitality, GST-led, and multi-piece orders can follow a different buying path. Keep the conversation open before checkout.</p>
-      <a class="bw-offers__card-link" href="/pages/buy-in-bulk">Open bulk page</a>
+      <a class="bw-offers__card-link" href="{{ bulk_url }}">Open bulk page</a>
     </article>
   </div>
 
@@ -445,19 +576,19 @@
       <article class="bw-offers__sidebar-card">
         <h3>Need help applying a coupon?</h3>
         <p>If a code does not apply as expected or a payment offer is unclear, speak with the Bluewud team before you place the order.</p>
-        <a href="/pages/contact-us">Contact support</a>
+        <a href="{{ contact_url }}">Contact support</a>
       </article>
 
       <article class="bw-offers__sidebar-card">
         <h3>Planning a larger order?</h3>
         <p>For office, hospitality, GST-led, or multi-piece furnishing requirements, Bluewud can support you beyond standard shopper offers.</p>
-        <a href="/pages/buy-in-bulk">Open Buy In Bulk</a>
+        <a href="{{ bulk_url }}">Open Buy In Bulk</a>
       </article>
 
       <article class="bw-offers__sidebar-card">
         <h3>Want upcoming offer alerts?</h3>
         <p>Stay close to launches, campaigns, and seasonal savings through the Bluewud newsletter and help pages.</p>
-        <a href="/pages/help-center">Visit help center</a>
+        <a href="{{ help_center_url }}">Visit help center</a>
       </article>
     </aside>
   </div>

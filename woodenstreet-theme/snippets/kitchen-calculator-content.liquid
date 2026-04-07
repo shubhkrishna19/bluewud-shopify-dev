@@ -8,7 +8,7 @@
   assign island_url = '/collections/kitchen-racks#island'
   assign wardrobe_calculator_url = '/collections/wardrobe#wardrobe-calculator'
   assign interiors_calculator_url = '/collections/kitchen-racks#broader-planning'
-  assign estimate_url = '/pages/contact-us'
+  assign estimate_url = '/pages/get-free-estimate'
 
   if pages['modular-kitchen-designs'] != blank
     assign main_url = pages['modular-kitchen-designs'].url
@@ -38,6 +38,9 @@
   endif
   if pages['home-interiors-cost-calculator'] != blank
     assign interiors_calculator_url = pages['home-interiors-cost-calculator'].url
+  endif
+  if pages['home-interiors-cost-calculator'] == blank
+    assign interiors_calculator_url = '/collections/kitchen-racks#broader-planning'
   endif
   if pages['get-free-estimate'] != blank
     assign estimate_url = pages['get-free-estimate'].url

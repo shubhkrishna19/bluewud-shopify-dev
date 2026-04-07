@@ -1,3 +1,12 @@
+{% liquid
+  assign contact_url = '/pages/contact-us'
+  assign help_center_url = '/pages/help-center'
+  assign estimate_url = '/pages/get-free-estimate'
+  assign bulk_url = '/pages/buy-in-bulk'
+  assign security_url = '/pages/payment-security'
+  assign products_url = routes.all_products_collection_url
+%}
+
 <style>
   .bw-returns {
     display: grid;
@@ -18,6 +27,11 @@
     grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
     gap: 18px;
     overflow: hidden;
+  }
+
+  .bw-returns__hero-main {
+    display: grid;
+    gap: 18px;
   }
 
   .bw-returns__hero-copy {
@@ -65,6 +79,35 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+  }
+
+  .bw-returns__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .bw-returns__action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 16px;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    background: rgba(255, 255, 255, 0.08);
+    color: #f8f1eb;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .bw-returns__action--solid {
+    background: #f8f1eb;
+    color: #201713;
+    border-color: #f8f1eb;
   }
 
   .bw-returns__chip {
@@ -125,6 +168,44 @@
     display: grid;
     grid-template-columns: minmax(0, 1.04fr) minmax(280px, 0.96fr);
     gap: 18px;
+  }
+
+  .bw-returns__process {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .bw-returns__process-card {
+    padding: 20px 22px;
+    border-radius: 24px;
+    background: rgba(255, 251, 247, 0.94);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 16px 40px rgba(35, 24, 19, 0.06);
+    display: grid;
+    gap: 8px;
+  }
+
+  .bw-returns__process-label {
+    color: #8a684f;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .bw-returns__process-card h3 {
+    margin: 0;
+    color: #201713;
+    font-size: 18px;
+    line-height: 1.18;
+  }
+
+  .bw-returns__process-card p {
+    margin: 0;
+    color: #66554c;
+    font-size: 14px;
+    line-height: 1.75;
   }
 
   .bw-returns__section {
@@ -210,6 +291,28 @@
     align-content: start;
   }
 
+  .bw-returns__aside-actions {
+    display: grid;
+    gap: 10px;
+  }
+
+  .bw-returns__aside-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 16px;
+    border-radius: 999px;
+    background: #201713;
+    color: #f8f1eb;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    width: fit-content;
+  }
+
   .bw-returns__aside-title {
     margin: 0;
     color: #201713;
@@ -261,7 +364,8 @@
 
   @media (max-width: 980px) {
     .bw-returns__hero,
-    .bw-returns__grid {
+    .bw-returns__grid,
+    .bw-returns__process {
       grid-template-columns: 1fr;
     }
   }
@@ -285,13 +389,20 @@
 <div class="bw-returns">
   <section class="bw-returns__hero">
     <div class="bw-returns__hero-copy">
-      <span class="bw-returns__eyebrow">Policy clarity</span>
-      <h2 class="bw-returns__title">Returns and refunds, explained with less friction.</h2>
-      <p class="bw-returns__copy">This page keeps the important parts easy to read: what qualifies for a return, when to raise a request, how cancellations work, and which larger items are supported through replacement instead of a full return.</p>
-      <div class="bw-returns__chips">
-        <span class="bw-returns__chip">Return window</span>
-        <span class="bw-returns__chip">Cancellation rules</span>
-        <span class="bw-returns__chip">Replacement support</span>
+      <div class="bw-returns__hero-main">
+        <span class="bw-returns__eyebrow">Policy clarity</span>
+        <h2 class="bw-returns__title">Returns and refunds, explained with less friction.</h2>
+        <p class="bw-returns__copy">This page keeps the important parts easy to read: what qualifies for a return, when to raise a request, how cancellations work, and which larger items are supported through replacement instead of a full return.</p>
+        <div class="bw-returns__chips">
+          <span class="bw-returns__chip">Return window</span>
+          <span class="bw-returns__chip">Cancellation rules</span>
+          <span class="bw-returns__chip">Replacement support</span>
+        </div>
+        <div class="bw-returns__actions">
+          <a class="bw-returns__action bw-returns__action--solid" href="{{ contact_url }}">Talk To Bluewud</a>
+          <a class="bw-returns__action" href="{{ help_center_url }}">Open Help Center</a>
+          <a class="bw-returns__action" href="{{ estimate_url }}">Open Estimate Desk</a>
+        </div>
       </div>
     </div>
 
@@ -370,7 +481,28 @@
         <li>Email: <a href="mailto:care@bluewud.com">care@bluewud.com</a></li>
         <li>Open the help center for related shipping and installation questions</li>
       </ul>
-      <a class="bw-returns__cta" href="/pages/contact-us">Contact support</a>
+      <div class="bw-returns__aside-actions">
+        <a class="bw-returns__aside-link" href="{{ contact_url }}">Contact support</a>
+        <a class="bw-returns__cta" href="{{ help_center_url }}">Open help center</a>
+      </div>
     </aside>
+  </div>
+
+  <div class="bw-returns__process">
+    <article class="bw-returns__process-card">
+      <span class="bw-returns__process-label">Step 1</span>
+      <h3>Raise the request early</h3>
+      <p>The faster the customer shares the issue, the easier it is to confirm eligibility against the delivery timeline.</p>
+    </article>
+    <article class="bw-returns__process-card">
+      <span class="bw-returns__process-label">Step 2</span>
+      <h3>Keep the order details ready</h3>
+      <p>Order number, product name, and photos help the team route the case without unnecessary back-and-forth.</p>
+    </article>
+    <article class="bw-returns__process-card">
+      <span class="bw-returns__process-label">Step 3</span>
+      <h3>Use the right support path</h3>
+      <p>Some questions resolve through a policy read, while others are faster when handled directly by support or estimate.</p>
+    </article>
   </div>
 </div>
