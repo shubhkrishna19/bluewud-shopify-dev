@@ -79,10 +79,28 @@
     assign page_intro = 'This page should reduce payment hesitation and help larger furniture buyers feel more secure before they complete checkout.'
   endif
 
+  if page.handle == 'privacy-statement' or page.handle == 'privacy-policy'
+    assign is_business_support_page = true
+    assign page_eyebrow = 'Bluewud privacy'
+    assign page_intro = 'A privacy page should be readable, customer-safe, and clear about what Bluewud collects, why it matters, and where support steps in when the customer wants clarification.'
+  endif
+
+  if page.handle == 'installation-cancellation' or page.handle == 'installation-cancellation-policy'
+    assign is_business_support_page = true
+    assign page_eyebrow = 'Bluewud installation and cancellation'
+    assign page_intro = 'This page should explain assembly support, visit expectations, and cancellation timing in a way that reduces confusion before larger furniture purchases.'
+  endif
+
   if page.handle == 'terms-of-use'
     assign is_business_support_page = true
     assign page_eyebrow = 'Bluewud terms'
     assign page_intro = 'A cleaner terms page should stay readable, structured, and connected to real help paths when customers need practical clarification.'
+  endif
+
+  if page.handle == 'terms-of-service'
+    assign is_business_support_page = true
+    assign page_eyebrow = 'Bluewud service terms'
+    assign page_intro = 'Service terms should feel structured and readable, while still routing customers back to help quickly when their question is practical rather than legal.'
   endif
 
   if page.handle == 'modular-kitchen-designs'

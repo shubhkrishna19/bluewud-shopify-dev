@@ -6,9 +6,9 @@
   assign parallel_url = '/collections/kitchen-racks#parallel'
   assign straight_url = '/collections/kitchen-racks#straight'
   assign island_url = '/collections/kitchen-racks#island'
-  assign calculator_url = '/pages/contact-us'
-  assign wardrobe_calculator_url = '/pages/contact-us'
-  assign interiors_calculator_url = '/pages/contact-us'
+  assign calculator_url = '/collections/kitchen-racks#kitchen-calculator'
+  assign wardrobe_calculator_url = '/collections/wardrobe#wardrobe-calculator'
+  assign interiors_calculator_url = '/collections/kitchen-racks#broader-planning'
   assign estimate_url = '/pages/contact-us'
   assign contact_url = '/pages/contact-us'
   assign default_variant = 'all'
@@ -299,6 +299,42 @@
     font-size: 14px;
     line-height: 1.75;
   }
+  .bw-modular__blueprint {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .bw-modular__blueprint-card {
+    display: grid;
+    gap: 12px;
+    align-content: start;
+    padding: 22px;
+    border-radius: 24px;
+    background: rgba(32, 23, 19, 0.04);
+    border: 1px solid rgba(32, 23, 19, 0.08);
+  }
+  .bw-modular__blueprint-card--accent {
+    background: radial-gradient(circle at top left, rgba(79, 120, 143, 0.12), transparent 28%), linear-gradient(180deg, #fffaf6 0%, #f5ede6 100%);
+  }
+  .bw-modular__blueprint-card h3 {
+    margin: 0;
+    color: #201713;
+    font-size: 18px;
+    line-height: 1.18;
+    letter-spacing: -0.03em;
+  }
+  .bw-modular__blueprint-card p {
+    margin: 0;
+    color: #66554c;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .bw-modular__blueprint-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
+  }
   .bw-modular__product-media {
     min-height: 220px;
     border-radius: 18px;
@@ -375,6 +411,7 @@
   @media (max-width: 1024px) {
     .bw-modular__hero,
     .bw-modular__cards,
+    .bw-modular__blueprint,
     .bw-modular__products,
     .bw-modular__launchpad { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bw-modular__hero { grid-template-columns: 1fr; }
@@ -386,6 +423,7 @@
     .bw-modular__tabs::-webkit-scrollbar { display: none; }
     .bw-modular__tab { flex: 0 0 auto; white-space: nowrap; }
     .bw-modular__cards,
+    .bw-modular__blueprint,
     .bw-modular__products,
     .bw-modular__launchpad { grid-template-columns: 1fr; }
   }
@@ -418,6 +456,36 @@
     </div>
   </section>
 
+  <section class="bw-modular__block">
+    <div class="bw-modular__section-head">
+      <div class="bw-modular__eyebrow">Project blueprint</div>
+      <h2 class="bw-modular__title" style="font-size:clamp(22px, 3vw, 30px);">Use the planning steps to turn a layout into a kitchen brief Bluewud can actually price</h2>
+      <p class="bw-modular__copy">The page works better when the customer understands what to measure, what to shortlist, and what to send into the estimate workflow next.</p>
+    </div>
+    <div class="bw-modular__blueprint">
+      <article class="bw-modular__blueprint-card">
+        <h3>1. Confirm the room</h3>
+        <p>Measure walls, openings, service points, and movement paths so the layout choice is based on the real room instead of just inspiration.</p>
+      </article>
+      <article class="bw-modular__blueprint-card">
+        <h3>2. Shortlist the format</h3>
+        <p>Pick L-shape, U-shape, parallel, straight, or island before you worry about handles, shutters, or countertop style.</p>
+      </article>
+      <article class="bw-modular__blueprint-card">
+        <h3>3. Collect the planning details</h3>
+        <p>Storage needs, appliances, finish preference, and budget direction should all sit together before the estimate conversation starts.</p>
+      </article>
+      <article class="bw-modular__blueprint-card bw-modular__blueprint-card--accent">
+        <h3>4. Move into a sharper next step</h3>
+        <p>The more complete the brief, the more useful the calculator and estimate become.</p>
+        <div class="bw-modular__blueprint-actions">
+          <a class="bw-modular__button" href="{{ calculator_entry_url }}">Open Kitchen Calculator</a>
+          <button class="bw-modular__button--secondary" type="button" data-bw-estimate-open data-estimate-context="Modular Kitchen" data-estimate-trigger="blueprint">Get Free Estimate</button>
+        </div>
+      </article>
+    </div>
+  </section>
+
   <section class="bw-modular__block" id="broader-planning">
     <div class="bw-modular__section-head">
       <div class="bw-modular__eyebrow">Review shortcuts</div>
@@ -441,7 +509,7 @@
       </article>
       <article class="bw-modular__launch-card">
         <h3>Home interiors brief</h3>
-        <p>This path is for larger-scope room planning. If the dedicated page is missing in preview, use the estimate flow for now and I’ll keep tightening the route structure.</p>
+        <p>This path is for larger-scope room planning. If the dedicated page is missing in preview, use the review-safe planning route for now and we will keep tightening the route structure.</p>
         <div class="bw-modular__actions">
           <a class="bw-modular__button--secondary" href="{{ interiors_entry_url }}">Open Interiors Path</a>
         </div>
@@ -502,7 +570,7 @@
   </section>
 
   {% capture product_grid %}
-    <section class="bw-modular__block">
+    <section class="bw-modular__block" id="modular-kitchen-products">
       <div class="bw-modular__section-head">
         <div class="bw-modular__eyebrow">Live kitchen directions</div>
         <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">Browse actual kitchen-led products from the store</h2>
@@ -700,6 +768,38 @@
     </section>
     <section class="bw-modular__block">
       <div class="bw-modular__section-head">
+        <div class="bw-modular__eyebrow">L-shape action path</div>
+        <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">If the room wants openness and efficiency, this is the branch to deepen first</h2>
+        <p class="bw-modular__copy">The L-shape route should help the customer understand room fit, storage balance, and where the next consultation step should begin.</p>
+      </div>
+      <div class="bw-modular__blueprint">
+        <article class="bw-modular__blueprint-card">
+          <h3>Room fit</h3>
+          <p>Use the two-wall shape to keep movement easy while still allowing enough prep space for daily cooking and cleanup.</p>
+        </article>
+        <article class="bw-modular__blueprint-card">
+          <h3>What to confirm</h3>
+          <p>Measure both wall lengths, the fridge position, and the intended storage load before selecting finishes or accessories.</p>
+        </article>
+        <article class="bw-modular__blueprint-card bw-modular__blueprint-card--accent">
+          <h3>Next action</h3>
+          <p>Open the calculator if you want a sharper brief, or move straight to estimate if the room and storage goals are already clear.</p>
+          <div class="bw-modular__blueprint-actions">
+            <a class="bw-modular__button" href="{{ calculator_entry_url }}">Plan L-shape</a>
+            <button class="bw-modular__button--secondary" type="button" data-bw-estimate-open data-estimate-context="Modular Kitchen" data-estimate-trigger="l-shape">Get Free Estimate</button>
+          </div>
+        </article>
+        <article class="bw-modular__blueprint-card">
+          <h3>Browse examples</h3>
+          <p>Use the product block below to keep the layout and real catalog examples connected during review.</p>
+          <div class="bw-modular__blueprint-actions">
+            <a class="bw-modular__button--secondary" href="#modular-kitchen-products">See kitchen products</a>
+          </div>
+        </article>
+      </div>
+    </section>
+    <section class="bw-modular__block">
+      <div class="bw-modular__section-head">
         <div class="bw-modular__eyebrow">Bluewud planning guidance</div>
         <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">The success of an L-shape kitchen depends on a few key decisions</h2>
       </div>
@@ -755,6 +855,38 @@
       </div>
     </section>
     <section class="bw-modular__block">
+      <div class="bw-modular__section-head">
+        <div class="bw-modular__eyebrow">U-shape action path</div>
+        <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">When storage and counter space matter most, the next step should stay very specific</h2>
+        <p class="bw-modular__copy">A U-shape brief is strongest when the room width, aisle comfort, and appliance plan are already being treated as one decision set.</p>
+      </div>
+      <div class="bw-modular__blueprint">
+        <article class="bw-modular__blueprint-card">
+          <h3>Room fit</h3>
+          <p>Use this shape when the kitchen can handle a more enclosed working environment without sacrificing movement comfort.</p>
+        </article>
+        <article class="bw-modular__blueprint-card">
+          <h3>What to confirm</h3>
+          <p>Measure aisle width, hob and sink positions, and whether tall units or pantry volumes should anchor the perimeter.</p>
+        </article>
+        <article class="bw-modular__blueprint-card bw-modular__blueprint-card--accent">
+          <h3>Next action</h3>
+          <p>Open the calculator for a deeper scope brief or send the project into the estimate step once room dimensions are settled.</p>
+          <div class="bw-modular__blueprint-actions">
+            <a class="bw-modular__button" href="{{ calculator_entry_url }}">Plan U-shape</a>
+            <button class="bw-modular__button--secondary" type="button" data-bw-estimate-open data-estimate-context="Modular Kitchen" data-estimate-trigger="u-shape">Get Free Estimate</button>
+          </div>
+        </article>
+        <article class="bw-modular__blueprint-card">
+          <h3>Browse examples</h3>
+          <p>Use live product examples to keep the layout conversation grounded in what can actually be built and reviewed.</p>
+          <div class="bw-modular__blueprint-actions">
+            <a class="bw-modular__button--secondary" href="#modular-kitchen-products">See kitchen products</a>
+          </div>
+        </article>
+      </div>
+    </section>
+    <section class="bw-modular__block">
       <div class="bw-modular__cards">
         <article class="bw-modular__card"><h3>What makes it compelling</h3><p>Three-sided planning creates a kitchen that can handle heavier cooking, more storage, and more surface area without feeling improvised.</p></article>
         <article class="bw-modular__card"><h3>Where people go wrong</h3><p>If the center aisle is too narrow, even a premium finish will not rescue the experience. Movement comfort has to lead the design.</p></article>
@@ -793,6 +925,38 @@
         <article class="bw-modular__card"><h3>Where it fits best</h3><p>Apartment kitchens and utility-conscious homes that need more function without asking for large floor area.</p></article>
         <article class="bw-modular__card"><h3>Planning focus</h3><p>Storage split, sink-hob balance, and making sure both runs do not feel visually heavy together.</p></article>
         <article class="bw-modular__card"><h3>Buyer mindset</h3><p>Usually chosen by practical buyers who value movement efficiency and cleaner day-to-day use over showpiece form.</p></article>
+      </div>
+    </section>
+    <section class="bw-modular__block">
+      <div class="bw-modular__section-head">
+        <div class="bw-modular__eyebrow">Parallel action path</div>
+        <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">Two runs need tighter decisions, so the action path should be even simpler</h2>
+        <p class="bw-modular__copy">A parallel kitchen becomes clearer when prep, washing, and cooking roles are already separated in the mind before the first estimate conversation.</p>
+      </div>
+      <div class="bw-modular__blueprint">
+        <article class="bw-modular__blueprint-card">
+          <h3>Room fit</h3>
+          <p>Best for tighter kitchens where two facing lines can still preserve a sensible walking aisle and efficient workflow.</p>
+        </article>
+        <article class="bw-modular__blueprint-card">
+          <h3>What to confirm</h3>
+          <p>Check the aisle width, appliance placement, and how the two sides will split wet, dry, and cooking roles.</p>
+        </article>
+        <article class="bw-modular__blueprint-card bw-modular__blueprint-card--accent">
+          <h3>Next action</h3>
+          <p>Move into calculator mode if you want to compare a more functional brief, or use estimate when the room is already measurable.</p>
+          <div class="bw-modular__blueprint-actions">
+            <a class="bw-modular__button" href="{{ calculator_entry_url }}">Plan Parallel</a>
+            <button class="bw-modular__button--secondary" type="button" data-bw-estimate-open data-estimate-context="Modular Kitchen" data-estimate-trigger="parallel">Get Free Estimate</button>
+          </div>
+        </article>
+        <article class="bw-modular__blueprint-card">
+          <h3>Browse examples</h3>
+          <p>Keep the compact-kitchen examples nearby so the planning conversation stays grounded in actual product direction.</p>
+          <div class="bw-modular__blueprint-actions">
+            <a class="bw-modular__button--secondary" href="#modular-kitchen-products">See kitchen products</a>
+          </div>
+        </article>
       </div>
     </section>
     <section class="bw-modular__block">
@@ -837,6 +1001,38 @@
       </div>
     </section>
     <section class="bw-modular__block">
+      <div class="bw-modular__section-head">
+        <div class="bw-modular__eyebrow">Straight action path</div>
+        <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">The simplest layout should still feel deliberate, not reduced</h2>
+        <p class="bw-modular__copy">Straight kitchens reward disciplined decisions, so the next step should focus on storage optimization and finish clarity before anything else.</p>
+      </div>
+      <div class="bw-modular__blueprint">
+        <article class="bw-modular__blueprint-card">
+          <h3>Room fit</h3>
+          <p>Works best in compact homes where one wall can carry the whole kitchen without crowding the rest of the room.</p>
+        </article>
+        <article class="bw-modular__blueprint-card">
+          <h3>What to confirm</h3>
+          <p>Prioritize vertical storage, appliance pockets, and a clear decision on how much closed storage the run needs.</p>
+        </article>
+        <article class="bw-modular__blueprint-card bw-modular__blueprint-card--accent">
+          <h3>Next action</h3>
+          <p>Open the calculator to make the brief more concrete, or move to estimate once the wall size and storage need are known.</p>
+          <div class="bw-modular__blueprint-actions">
+            <a class="bw-modular__button" href="{{ calculator_entry_url }}">Plan Straight</a>
+            <button class="bw-modular__button--secondary" type="button" data-bw-estimate-open data-estimate-context="Modular Kitchen" data-estimate-trigger="straight">Get Free Estimate</button>
+          </div>
+        </article>
+        <article class="bw-modular__blueprint-card">
+          <h3>Browse examples</h3>
+          <p>Keep the catalog examples nearby so the customer can connect compact planning with actual product directions.</p>
+          <div class="bw-modular__blueprint-actions">
+            <a class="bw-modular__button--secondary" href="#modular-kitchen-products">See kitchen products</a>
+          </div>
+        </article>
+      </div>
+    </section>
+    <section class="bw-modular__block">
       <div class="bw-modular__cards">
         <article class="bw-modular__card"><h3>How to make it feel premium</h3><p>In a straight kitchen, proportion, handle strategy, finish consistency, and disciplined appliance planning matter even more because there is nowhere to hide visual clutter.</p></article>
         <article class="bw-modular__card"><h3>What to confirm first</h3><p>The customer should think about pantry need, microwave placement, and how much closed storage is required before prioritizing the front look alone.</p></article>
@@ -875,6 +1071,38 @@
         <article class="bw-modular__card"><h3>Where it fits best</h3><p>Homes where the kitchen is part of entertaining, hosting, and a more open premium interiors language.</p></article>
         <article class="bw-modular__card"><h3>Planning focus</h3><p>Circulation clearance, appliance placement, and whether the island is prep-led, seating-led, or both.</p></article>
         <article class="bw-modular__card"><h3>Buyer mindset</h3><p>Usually chosen by customers who want the kitchen to become a visual and social anchor of the home.</p></article>
+      </div>
+    </section>
+    <section class="bw-modular__block">
+      <div class="bw-modular__section-head">
+        <div class="bw-modular__eyebrow">Island action path</div>
+        <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">Island kitchens need a stronger brief because they change how the room is used</h2>
+        <p class="bw-modular__copy">This path should help the customer think through circulation, hosting, and whether the island is meant for prep, seating, or both.</p>
+      </div>
+      <div class="bw-modular__blueprint">
+        <article class="bw-modular__blueprint-card">
+          <h3>Room fit</h3>
+          <p>Works best in larger open kitchens where the island can exist without choking the movement around it.</p>
+        </article>
+        <article class="bw-modular__blueprint-card">
+          <h3>What to confirm</h3>
+          <p>Decide early whether the island should support prep, serving, seating, or storage so the design direction is clear.</p>
+        </article>
+        <article class="bw-modular__blueprint-card bw-modular__blueprint-card--accent">
+          <h3>Next action</h3>
+          <p>Move into calculator mode for a stronger project brief or go straight to estimate if the room dimensions are already final.</p>
+          <div class="bw-modular__blueprint-actions">
+            <a class="bw-modular__button" href="{{ calculator_entry_url }}">Plan Island</a>
+            <button class="bw-modular__button--secondary" type="button" data-bw-estimate-open data-estimate-context="Modular Kitchen" data-estimate-trigger="island">Get Free Estimate</button>
+          </div>
+        </article>
+        <article class="bw-modular__blueprint-card">
+          <h3>Browse examples</h3>
+          <p>Keep the product block visible so the island brief stays connected to actual Bluewud kitchen-led product examples.</p>
+          <div class="bw-modular__blueprint-actions">
+            <a class="bw-modular__button--secondary" href="#modular-kitchen-products">See kitchen products</a>
+          </div>
+        </article>
       </div>
     </section>
     <section class="bw-modular__block">

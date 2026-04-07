@@ -7,7 +7,7 @@
   assign walk_in_url = '/collections/wardrobe'
   assign calculator_url = '/collections/wardrobe#wardrobe-calculator'
   assign kitchen_calculator_url = '/collections/kitchen-racks#kitchen-calculator'
-  assign interiors_calculator_url = '/pages/contact-us'
+  assign interiors_calculator_url = '/collections/kitchen-racks#broader-planning'
   assign estimate_url = '/pages/contact-us'
   assign contact_url = '/pages/contact-us'
   assign phone_url = 'tel:+918800609609'
@@ -329,6 +329,11 @@
   .bw-wardrobe-grid-4 { grid-template-columns: repeat(4, minmax(0, 1fr)); }
   .bw-wardrobe-grid-3 { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .bw-wardrobe-grid-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .bw-wardrobe-measure-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
   .bw-wardrobe-card, .bw-wardrobe-process, .bw-wardrobe-faq {
     padding: 22px; border-radius: 24px; background: rgba(32, 23, 19, 0.04);
   }
@@ -345,6 +350,66 @@
   }
   .bw-wardrobe-card p + p, .bw-wardrobe-faq p + p {
     margin-top: 8px;
+  }
+  .bw-wardrobe-measure-card {
+    display: grid;
+    gap: 12px;
+    padding: 24px;
+    border-radius: 26px;
+    background: rgba(255, 251, 247, 0.94);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 18px 48px rgba(35, 24, 19, 0.06);
+  }
+  .bw-wardrobe-measure-card--accent {
+    background: radial-gradient(circle at top left, rgba(79, 120, 143, 0.12), transparent 28%), linear-gradient(180deg, #fffaf6 0%, #f6eee7 100%);
+  }
+  .bw-wardrobe-measure-step {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    min-height: 30px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: rgba(32, 23, 19, 0.08);
+    color: #6f584c;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .bw-wardrobe-measure-card h3 {
+    margin: 0;
+    color: #201713;
+    font-size: 18px;
+    line-height: 1.18;
+    letter-spacing: -0.03em;
+  }
+  .bw-wardrobe-measure-card p {
+    margin: 0;
+    color: #66554c;
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .bw-wardrobe-measure-actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+  }
+  .bw-wardrobe-measure-link {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 42px;
+    padding: 0 18px;
+    border-radius: 999px;
+    background: #201713;
+    color: #fff7f1;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
   .bw-wardrobe-compare-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .bw-wardrobe-compare-card {
@@ -397,6 +462,7 @@
   }
   @media (max-width: 1024px) {
     .bw-wardrobe-spotlight, .bw-wardrobe-grid-4, .bw-wardrobe-grid-3, .bw-wardrobe-products, .bw-wardrobe-grid-2, .bw-wardrobe-compare-grid, .bw-wardrobe-journey-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .bw-wardrobe-measure-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bw-wardrobe-lens-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bw-wardrobe-spotlight { grid-template-columns: 1fr; }
   }
@@ -405,7 +471,7 @@
     .bw-wardrobe-subnav { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
     .bw-wardrobe-subnav::-webkit-scrollbar { display: none; }
     .bw-wardrobe-chip { flex: 0 0 auto; white-space: nowrap; }
-    .bw-wardrobe-grid-4, .bw-wardrobe-grid-3, .bw-wardrobe-grid-2, .bw-wardrobe-products, .bw-wardrobe-compare-grid, .bw-wardrobe-journey-grid { grid-template-columns: 1fr; }
+    .bw-wardrobe-grid-4, .bw-wardrobe-grid-3, .bw-wardrobe-grid-2, .bw-wardrobe-products, .bw-wardrobe-compare-grid, .bw-wardrobe-journey-grid, .bw-wardrobe-measure-grid { grid-template-columns: 1fr; }
     .bw-wardrobe-lens-grid { grid-template-columns: 1fr; }
     .bw-wardrobe-embedded-calculator { padding: 20px; border-radius: 24px; }
     .bw-wardrobe-product-media { min-height: 220px; }
@@ -711,6 +777,53 @@
       <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">Shutters</span><h3>Mirror, glass, and feature panels</h3><p>Used well, reflective and glass-led shutters enlarge the room and sharpen the look. Used badly, they quickly make the elevation feel busy.</p></article>
       <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">Finish</span><h3>Laminate, acrylic, matte, and wood tones</h3><p>Choose the finish for maintenance, light reflection, and bedroom mood, not just for the showroom effect of one sample board.</p></article>
       <article class="bw-wardrobe-card"><span class="bw-wardrobe-card-label">Details</span><h3>Profiles, handles, lighting, and edge discipline</h3><p>The difference between ordinary and premium often sits in profile thickness, handle restraint, internal lighting, and sharper alignment.</p></article>
+    </div>
+  </section>
+
+  <section class="bw-wardrobe-block">
+    <div class="bw-wardrobe-head">
+      <span class="bw-wardrobe-eyebrow">Measurement and space guide</span>
+      {% if wardrobe_variant == 'sliding' %}
+        <h2 class="bw-wardrobe-title">Sliding wardrobes need the room width, track line, and bay access decided together</h2>
+        <p class="bw-wardrobe-copy">This guide keeps the decision grounded in the actual bedroom so the estimate can reflect clearance, access, and panel rhythm rather than only the visual elevation.</p>
+      {% elsif wardrobe_variant == 'hinged' %}
+        <h2 class="bw-wardrobe-title">Hinged wardrobes feel better when front clearance and door rhythm are measured early</h2>
+        <p class="bw-wardrobe-copy">The stronger hinged wardrobe brief starts with swing clearance, then moves to bay count, then to inside storage depth and hardware comfort.</p>
+      {% elsif wardrobe_variant == 'walk-in' %}
+        <h2 class="bw-wardrobe-title">Walk-in wardrobes should be measured like a small room, not a cabinet line</h2>
+        <p class="bw-wardrobe-copy">This format becomes more useful when circulation, dressing point, mirror position, and storage zoning are mapped before pricing or finishes are discussed.</p>
+      {% else %}
+        <h2 class="bw-wardrobe-title">A better wardrobe brief begins with room fit, access, and what the wardrobe must store</h2>
+        <p class="bw-wardrobe-copy">These checkpoints help the customer settle the practical side of the project first, so the calculator and estimate can feel more grounded.</p>
+      {% endif %}
+    </div>
+    <div class="bw-wardrobe-measure-grid">
+      {% if wardrobe_variant == 'sliding' %}
+        <article class="bw-wardrobe-measure-card"><span class="bw-wardrobe-measure-step">01</span><h3>Check wall width first</h3><p>Sliding wardrobes work best when the wall line is measured precisely and the panel spans are planned around the actual room width.</p></article>
+        <article class="bw-wardrobe-measure-card"><span class="bw-wardrobe-measure-step">02</span><h3>Confirm track depth</h3><p>The track and shutter stack need enough allowance so the wardrobe remains smooth, stable, and visually disciplined.</p></article>
+        <article class="bw-wardrobe-measure-card"><span class="bw-wardrobe-measure-step">03</span><h3>Protect the usable bays</h3><p>Place the daily-use storage in the most accessible sections, because the panels will always overlap part of the interior.</p></article>
+        <article class="bw-wardrobe-measure-card bw-wardrobe-measure-card--accent"><span class="bw-wardrobe-measure-step">04</span><h3>Plan mirror and finish width</h3><p>Reflective or feature panels should be balanced against the room so the wardrobe feels premium without taking over the wall.</p></article>
+      {% elsif wardrobe_variant == 'hinged' %}
+        <article class="bw-wardrobe-measure-card"><span class="bw-wardrobe-measure-step">01</span><h3>Measure the swing space</h3><p>Hinged wardrobes need the front clearance checked against the bed, side tables, and circulation path before anything else is locked.</p></article>
+        <article class="bw-wardrobe-measure-card"><span class="bw-wardrobe-measure-step">02</span><h3>Count the door rhythm</h3><p>Panel count and door widths affect how the wardrobe feels in daily use, so the elevation should stay proportionate and calm.</p></article>
+        <article class="bw-wardrobe-measure-card"><span class="bw-wardrobe-measure-step">03</span><h3>Write the inside brief</h3><p>Full access is the real advantage here, which means hanging, drawers, shelves, and lofts should be mapped as one complete storage plan.</p></article>
+        <article class="bw-wardrobe-measure-card bw-wardrobe-measure-card--accent"><span class="bw-wardrobe-measure-step">04</span><h3>Leave room for handles and hardware</h3><p>Handle projection, hinge quality, and shutter weight can change the final feel more than buyers usually expect during early planning.</p></article>
+      {% elsif wardrobe_variant == 'walk-in' %}
+        <article class="bw-wardrobe-measure-card"><span class="bw-wardrobe-measure-step">01</span><h3>Map circulation early</h3><p>Walk-in wardrobes feel premium when movement around the room stays comfortable and the dressing path is not blocked by storage.</p></article>
+        <article class="bw-wardrobe-measure-card"><span class="bw-wardrobe-measure-step">02</span><h3>Place the dressing point</h3><p>The mirror, bench, or dresser should sit where it actually helps the user prepare, not where there is leftover space.</p></article>
+        <article class="bw-wardrobe-measure-card"><span class="bw-wardrobe-measure-step">03</span><h3>Balance closed and open storage</h3><p>Open shelving brings lightness, while concealed storage keeps the room orderly. The balance should be intentional from the start.</p></article>
+        <article class="bw-wardrobe-measure-card bw-wardrobe-measure-card--accent"><span class="bw-wardrobe-measure-step">04</span><h3>Think like a room planner</h3><p>Once walk-in planning is treated like a room strategy, the estimate becomes much more accurate and the final result feels more composed.</p></article>
+      {% else %}
+        <article class="bw-wardrobe-measure-card"><span class="bw-wardrobe-measure-step">01</span><h3>Measure the wall and ceiling height</h3><p>Width, height, and any loft condition are the first things needed to understand the project shape properly.</p></article>
+        <article class="bw-wardrobe-measure-card"><span class="bw-wardrobe-measure-step">02</span><h3>Decide the opening style</h3><p>Sliding, hinged, or walk-in should be selected before the front styling starts, because each one changes how the room works.</p></article>
+        <article class="bw-wardrobe-measure-card"><span class="bw-wardrobe-measure-step">03</span><h3>List what must be stored</h3><p>Clothes, bags, bedding, accessories, and valuables all need different internal treatment, and that impacts the estimate.</p></article>
+        <article class="bw-wardrobe-measure-card bw-wardrobe-measure-card--accent"><span class="bw-wardrobe-measure-step">04</span><h3>Keep the estimate ready</h3><p>Once the customer has the room size and storage list, the calculator and estimate flow can move much faster and with less rework.</p></article>
+      {% endif %}
+    </div>
+    <div class="bw-wardrobe-measure-actions">
+      <a class="bw-wardrobe-measure-link" href="{{ calculator_url }}">Open Wardrobe Calculator</a>
+      <button class="bw-wardrobe-button--secondary" type="button" data-bw-wardrobe-estimate-open data-estimate-trigger="measure">Get Free Estimate</button>
+      <a class="bw-wardrobe-button--secondary" href="{{ contact_url }}">Talk To Bluewud</a>
     </div>
   </section>
 

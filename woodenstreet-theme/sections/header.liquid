@@ -14,6 +14,10 @@
   assign current_path = request.path
   assign modular_kitchen_url = '/collections/kitchen-racks'
   assign modular_wardrobe_url = '/collections/wardrobe'
+  assign modular_kitchen_calculator_url = '/collections/kitchen-racks#kitchen-calculator'
+  assign modular_wardrobe_calculator_url = '/collections/wardrobe#wardrobe-calculator'
+  assign home_interiors_calculator_url = '/collections/kitchen-racks#broader-planning'
+  assign estimate_url = '/pages/contact-us'
   assign curated_nav_labels = 'Living Room|Bedroom|Study Tables|TV Units|Bookshelves|Modular Kitchen|Wardrobes' | split: '|'
   assign curated_nav_urls = '/collections/living-room|/collections/bed-room|/collections/study-tables|/collections/tv-unit-furniture|/collections/book-shelves|/collections/kitchen-racks|/collections/wardrobe' | split: '|'
   assign drawer_nav_labels = 'Living Room|Bedroom|Study Tables|TV Units|Bookshelves|Modular Kitchen|Wardrobes|New Launches|Chest of Drawer' | split: '|'
@@ -31,10 +35,28 @@
 
   if pages['modular-kitchen-designs'] != blank
     assign modular_kitchen_url = pages['modular-kitchen-designs'].url
+    assign modular_kitchen_calculator_url = modular_kitchen_url | append: '#kitchen-calculator'
   endif
 
   if pages['modular-wardrobe-designs'] != blank
     assign modular_wardrobe_url = pages['modular-wardrobe-designs'].url
+    assign modular_wardrobe_calculator_url = modular_wardrobe_url | append: '#wardrobe-calculator'
+  endif
+
+  if pages['modular-kitchen-cost-calculator'] != blank
+    assign modular_kitchen_calculator_url = pages['modular-kitchen-cost-calculator'].url
+  endif
+
+  if pages['modular-wardrobe-cost-calculator'] != blank
+    assign modular_wardrobe_calculator_url = pages['modular-wardrobe-cost-calculator'].url
+  endif
+
+  if pages['home-interiors-cost-calculator'] != blank
+    assign home_interiors_calculator_url = pages['home-interiors-cost-calculator'].url
+  endif
+
+  if pages['get-free-estimate'] != blank
+    assign estimate_url = pages['get-free-estimate'].url
   endif
 
   if cta_url == blank
@@ -472,6 +494,32 @@
     gap: 10px;
   }
 
+  .bw-header__drawer-planning {
+    display: grid;
+    gap: 10px;
+  }
+
+  .bw-header__drawer-planning-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .bw-header__drawer-pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 0 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(35, 24, 19, 0.09);
+    background: rgba(255, 255, 255, 0.74);
+    color: #231813;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
   .bw-header__drawer-panel > * {
     opacity: 0;
     transform: translateY(10px);
@@ -488,6 +536,7 @@
   .bw-header__drawer.is-open .bw-header__drawer-panel > :nth-child(3) { transition-delay: 0.12s; }
   .bw-header__drawer.is-open .bw-header__drawer-panel > :nth-child(4) { transition-delay: 0.16s; }
   .bw-header__drawer.is-open .bw-header__drawer-panel > :nth-child(5) { transition-delay: 0.2s; }
+  .bw-header__drawer.is-open .bw-header__drawer-panel > :nth-child(6) { transition-delay: 0.24s; }
 
   .bw-header__drawer-heading {
     color: #6d5b52;
@@ -793,6 +842,18 @@
           <a class="bw-header__drawer-link" href="{{ nav_url }}"{% if current_path == nav_url %} aria-current="page"{% endif %}>{{ nav_label }}</a>
         {% endfor %}
       {% endif %}
+    </div>
+
+    <div class="bw-header__drawer-planning">
+      <div class="bw-header__drawer-heading">Planning</div>
+      <div class="bw-header__drawer-planning-links">
+        <a class="bw-header__drawer-pill" href="{{ modular_kitchen_url }}">Modular Kitchen</a>
+        <a class="bw-header__drawer-pill" href="{{ modular_kitchen_calculator_url }}">Kitchen Calculator</a>
+        <a class="bw-header__drawer-pill" href="{{ modular_wardrobe_url }}">Wardrobes</a>
+        <a class="bw-header__drawer-pill" href="{{ modular_wardrobe_calculator_url }}">Wardrobe Calculator</a>
+        <a class="bw-header__drawer-pill" href="{{ home_interiors_calculator_url }}">Home Interiors</a>
+        <a class="bw-header__drawer-pill" href="{{ estimate_url }}">Get Free Estimate</a>
+      </div>
     </div>
 
     <div class="bw-header__drawer-links">

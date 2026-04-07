@@ -3,10 +3,11 @@
   assign kitchen_page_url = '/collections/kitchen-racks'
   assign wardrobe_calculator_url = '/collections/wardrobe#wardrobe-calculator'
   assign kitchen_calculator_url = '/collections/kitchen-racks#kitchen-calculator'
-  assign interiors_calculator_url = '/pages/home-interiors-cost-calculator'
-  assign wardrobe_design_url = '/pages/modular-wardrobe-designs'
-  assign kitchen_design_url = '/pages/modular-kitchen-designs'
+  assign interiors_calculator_url = '/collections/kitchen-racks#broader-planning'
+  assign wardrobe_design_url = '/collections/wardrobe'
+  assign kitchen_design_url = '/collections/kitchen-racks'
   assign estimate_url = '/pages/get-free-estimate'
+  assign contact_url = '/pages/contact-us'
 
   if pages['modular-wardrobe-designs'] != blank
     assign wardrobe_page_url = pages['modular-wardrobe-designs'].url
@@ -607,7 +608,7 @@
           <a class="is-primary" href="{{ kitchen_design_url }}">Kitchen planning</a>
           <a href="{{ wardrobe_design_url }}">Wardrobe planning</a>
           <a href="{{ interiors_calculator_url }}">Interiors calculator</a>
-          <a href="/pages/contact-us">Contact Bluewud</a>
+          <a href="{{ contact_url }}">Contact Bluewud</a>
           <a href="tel:+918800609609">Call +91-8800-609-609</a>
         </div>
       </div>

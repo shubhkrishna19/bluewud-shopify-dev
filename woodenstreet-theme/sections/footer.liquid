@@ -5,7 +5,7 @@
   assign modular_wardrobe_url = '/collections/wardrobe'
   assign modular_kitchen_calculator_url = '/collections/kitchen-racks#kitchen-calculator'
   assign modular_wardrobe_calculator_url = '/collections/wardrobe#wardrobe-calculator'
-  assign home_interiors_calculator_url = '/pages/contact-us'
+  assign home_interiors_calculator_url = '/collections/kitchen-racks#broader-planning'
   assign estimate_url = '/pages/contact-us'
 
   if pages['modular-kitchen-designs'] != blank
@@ -244,8 +244,10 @@
           <div class="bw-footer__heading">Plan Your Space</div>
           <ul class="bw-footer__planning-links" aria-label="Planning links">
             <li><a href="{{ modular_kitchen_url }}">Modular Kitchen</a></li>
+            <li><a href="{{ modular_kitchen_calculator_url }}">Kitchen Calculator</a></li>
             <li><a href="{{ modular_wardrobe_url }}">Wardrobes</a></li>
-            <li><a href="{{ home_interiors_calculator_url }}">Home Interiors</a></li>
+            <li><a href="{{ modular_wardrobe_calculator_url }}">Wardrobe Calculator</a></li>
+            <li><a href="{{ home_interiors_calculator_url }}">Home Interiors Calculator</a></li>
             <li><a href="{{ estimate_url }}">Get Free Estimate</a></li>
           </ul>
         </div>

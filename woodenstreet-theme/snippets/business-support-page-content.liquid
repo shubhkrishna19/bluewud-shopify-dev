@@ -1,5 +1,10 @@
 {% liquid
   assign page_handle = page.handle | default: ''
+  assign contact_url = '/pages/contact-us'
+  assign estimate_url = '/pages/get-free-estimate'
+  assign help_center_url = '/pages/help-center'
+  assign kitchen_url = '/collections/kitchen-racks'
+  assign bestseller_url = '/collections/hp-bluewuds-bestseller'
   assign intro_eyebrow = 'Bluewud support'
   assign section_title = 'Built for clearer conversations and cleaner next steps'
   assign section_copy = 'This page keeps the important information readable, while still giving the customer a clear action path back into the Bluewud team.'
@@ -7,7 +12,7 @@
   assign stat_values = '15+ years|Direct team access|Clear next step' | split: '|'
   assign card_titles = 'Need help now?|Prefer direct contact?|What to keep ready' | split: '|'
   assign card_copies = 'Call, WhatsApp, or submit the right brief so the Bluewud team can help faster.|Use the contact page or estimate path when your requirement goes beyond a simple page answer.|Room dimensions, product references, city, and budget direction always make the next conversation better.' | split: '|'
-  assign card_urls = '/pages/contact-us|/pages/contact-us|/pages/get-free-estimate' | split: '|'
+  assign card_urls = contact_url | append: '|' | append: contact_url | append: '|' | append: estimate_url | split: '|'
   assign card_labels = 'Contact Bluewud|Open Contact Page|Get Free Estimate' | split: '|'
 
   case page_handle
@@ -19,7 +24,7 @@
       assign stat_values = 'Office, hospitality, reseller|GST-ready discussion|Project-led pricing' | split: '|'
       assign card_titles = 'What to share first|Who this is for|Best next step' | split: '|'
       assign card_copies = 'Quantity, city, timeline, GST requirement, and the product shortlist will help the team route the enquiry correctly from the first reply.|This path is best for office furnishing, hospitality, B2B sourcing, interior projects, and recurring procurement needs.|Use the estimate or contact path once the scope is clear enough to discuss quantity and delivery feasibility.' | split: '|'
-      assign card_urls = '/pages/get-free-estimate|/pages/contact-us|/pages/get-free-estimate' | split: '|'
+      assign card_urls = estimate_url | append: '|' | append: contact_url | append: '|' | append: estimate_url | split: '|'
       assign card_labels = 'Open Estimate Desk|Talk To Bluewud|Start Bulk Brief' | split: '|'
     when 'visit-us'
       assign intro_eyebrow = 'Bluewud studio visit'
@@ -29,17 +34,17 @@
       assign stat_values = 'See, compare, discuss|Furniture and modular planning|Bring shortlist and room brief' | split: '|'
       assign card_titles = 'Plan the visit|Need pre-visit help?|Best next step' | split: '|'
       assign card_copies = 'Use this page to confirm location, hours, and what kind of requirements are worth discussing in person.|If the requirement is modular, a quick estimate brief first usually makes the studio conversation more productive.|The strongest path is to bring product references, room photos, or dimensions so the visit starts with context.' | split: '|'
-      assign card_urls = '/pages/contact-us|/pages/get-free-estimate|/pages/contact-us' | split: '|'
+      assign card_urls = contact_url | append: '|' | append: estimate_url | append: '|' | append: contact_url | split: '|'
       assign card_labels = 'Contact Before Visit|Share Project Brief|Talk To Bluewud' | split: '|'
     when 'award-achievment'
       assign intro_eyebrow = 'Bluewud credibility'
       assign section_title = 'This page should reinforce trust, not just list achievements'
-      assign section_copy = 'Awards, recognition, and milestones work best when they support the customer’s confidence in the brand and lead naturally back into shopping or project consultation.'
+      assign section_copy = "Awards, recognition, and milestones work best when they support the customer's confidence in the brand and lead naturally back into shopping or project consultation."
       assign stat_labels = 'Brand trust|Design maturity|Customer confidence' | split: '|'
       assign stat_values = 'Recognition-led|Built over years|Stronger buying confidence' | split: '|'
       assign card_titles = 'Why this matters|What it signals|Best next step' | split: '|'
       assign card_copies = 'Recognition gives buyers reassurance that they are considering a brand with seriousness and consistency behind it.|Awards and achievements should strengthen the perception of craftsmanship, reliability, and design maturity.|Once trust is built, the natural next step is to continue browsing or begin a project conversation.' | split: '|'
-      assign card_urls = '/collections/living-room|/collections/kitchen-racks|/pages/get-free-estimate' | split: '|'
+      assign card_urls = '/collections/living-room|' | append: kitchen_url | append: '|' | append: estimate_url | split: '|'
       assign card_labels = 'Continue Browsing|Explore Modular Planning|Start Project Brief' | split: '|'
     when 'policies'
       assign intro_eyebrow = 'Bluewud policy desk'
@@ -49,7 +54,7 @@
       assign stat_values = 'Clarifies expectations|Pre-order checks|Ask support directly' | split: '|'
       assign card_titles = 'Read this before ordering|Need a simpler answer?|Best next step' | split: '|'
       assign card_copies = 'Use this page to reduce doubt before buying, especially when the product is large, custom-feeling, or part of a bigger furnishing decision.|If a customer is unsure how policies apply to a real order, the support path matters more than reading the page twice.|Move to contact or estimate once the order or project details become specific enough to discuss.' | split: '|'
-      assign card_urls = '/pages/contact-us|/pages/help-center|/pages/get-free-estimate' | split: '|'
+      assign card_urls = contact_url | append: '|' | append: help_center_url | append: '|' | append: estimate_url | split: '|'
       assign card_labels = 'Contact Bluewud|Open Help Center|Get Free Estimate' | split: '|'
     when 'payment-security'
       assign intro_eyebrow = 'Bluewud payment confidence'
@@ -59,8 +64,28 @@
       assign stat_values = 'Payment safety|Security and checkout clarity|Less checkout hesitation' | split: '|'
       assign card_titles = 'Buying a high-value product?|Need checkout help?|Best next step' | split: '|'
       assign card_copies = 'Furniture buyers often hesitate when ticket size rises. This page should lower that hesitation before the customer abandons checkout.|If the issue is not policy but confidence, a quick human answer often closes the gap faster than more reading.|Move to contact support or continue browsing once the payment concern feels settled.' | split: '|'
-      assign card_urls = '/pages/contact-us|/cart|/collections/hp-bluewuds-bestseller' | split: '|'
+      assign card_urls = contact_url | append: '|/cart|' | append: bestseller_url | split: '|'
       assign card_labels = 'Talk To Bluewud|Return To Cart|Browse Bestsellers' | split: '|'
+    when 'privacy-statement', 'privacy-policy'
+      assign intro_eyebrow = 'Bluewud privacy'
+      assign section_title = 'Privacy pages should answer real customer concerns without feeling legal-heavy'
+      assign section_copy = 'The customer usually wants one thing here: confidence that their data, order information, and contact details are handled responsibly. The page should stay readable and route easily into human help when needed.'
+      assign stat_labels = 'What this covers|Customer priority|If still unsure' | split: '|'
+      assign stat_values = 'Data use and communication|Trust and transparency|Ask support directly' | split: '|'
+      assign card_titles = 'What customers care about most|Need a simple explanation?|Best next step' | split: '|'
+      assign card_copies = 'This page should make it easy to understand what Bluewud collects, where information is used, and how communication happens after a customer shares contact details.|If a buyer is asking whether their information is safe, the fastest path is usually a human clarification instead of dense policy reading.|Use contact or help center once the privacy question becomes practical and tied to a real enquiry or order.' | split: '|'
+      assign card_urls = help_center_url | append: '|' | append: contact_url | append: '|' | append: estimate_url | split: '|'
+      assign card_labels = 'Open Help Center|Contact Bluewud|Open Estimate Desk' | split: '|'
+    when 'installation-cancellation', 'installation-cancellation-policy'
+      assign intro_eyebrow = 'Bluewud installation and cancellation'
+      assign section_title = 'Installation and cancellation pages should reduce surprise before large deliveries happen'
+      assign section_copy = 'Customers come here to understand who assembles what, how visits work, and when cancellation becomes harder because the order has already moved forward. This page should keep that journey clear.'
+      assign stat_labels = 'What customers need|Where confusion happens|Best support path' | split: '|'
+      assign stat_values = 'Assembly and timing clarity|Dispatch and visit timing|Support plus estimate' | split: '|'
+      assign card_titles = 'Before delivery happens|Need project-specific clarification?|Best next step' | split: '|'
+      assign card_copies = 'Use this page to explain visit expectations, what counts as installation support, and where the cancellation window changes once dispatch or scheduling begins.|If the order is part of a larger furnishing requirement, estimate-first support usually gives a more accurate answer than a generic policy read.|Move into contact or estimate once the question is tied to a real city, order, or project timeline.' | split: '|'
+      assign card_urls = contact_url | append: '|' | append: estimate_url | append: '|' | append: help_center_url | split: '|'
+      assign card_labels = 'Talk To Bluewud|Share Project Brief|Open Help Center' | split: '|'
     when 'terms-of-use'
       assign intro_eyebrow = 'Bluewud terms'
       assign section_title = 'Terms pages should stay clean, readable, and secondary to the real support path'
@@ -69,7 +94,17 @@
       assign stat_values = 'Legal clarity|Readable structure|Ask support' | split: '|'
       assign card_titles = 'What this page is for|Need practical guidance?|Best next step' | split: '|'
       assign card_copies = 'This page exists to define terms clearly, not overwhelm the customer. Clean structure makes a legal page feel more trustworthy.|If the user has a real order or project question, help center and contact pathways are more useful than dense reading alone.|Use support or estimate once the legal question becomes tied to a real order, delivery, or project requirement.' | split: '|'
-      assign card_urls = '/pages/help-center|/pages/contact-us|/pages/get-free-estimate' | split: '|'
+      assign card_urls = help_center_url | append: '|' | append: contact_url | append: '|' | append: estimate_url | split: '|'
+      assign card_labels = 'Open Help Center|Contact Bluewud|Open Estimate Desk' | split: '|'
+    when 'terms-of-service'
+      assign intro_eyebrow = 'Bluewud service terms'
+      assign section_title = 'Service terms should feel structured, calm, and easy to navigate'
+      assign section_copy = 'The customer should be able to read this page without feeling buried. The goal is to preserve legal clarity while still leaving a practical route back to human help when the question is service-specific.'
+      assign stat_labels = 'What this defines|Why it matters|If the question is practical' | split: '|'
+      assign stat_values = 'Service boundaries|Expectation setting|Talk to support' | split: '|'
+      assign card_titles = 'How to use this page|Need a real-world answer?|Best next step' | split: '|'
+      assign card_copies = 'Use this page when the question is about how Bluewud services, support, or commitments are framed at a general level.|If the issue relates to an active order or a furnishing requirement, help center or contact support will usually resolve it faster than more policy reading.|Use help, support, or estimate once the question becomes tied to a project or order decision.' | split: '|'
+      assign card_urls = help_center_url | append: '|' | append: contact_url | append: '|' | append: estimate_url | split: '|'
       assign card_labels = 'Open Help Center|Contact Bluewud|Open Estimate Desk' | split: '|'
   endcase
 %}
@@ -319,9 +354,9 @@
         <h3 class="bw-business-page__title">If this page answers the doubt, the next click should be obvious</h3>
         <p class="bw-business-page__copy">The strongest support pages reduce friction, then send the customer back into the right Bluewud path instead of leaving them stranded in static content.</p>
         <div class="bw-business-page__note-links">
-          <a href="/pages/contact-us">Contact Us</a>
-          <a href="/pages/help-center">Help Center</a>
-          <a href="/pages/get-free-estimate">Estimate Desk</a>
+          <a href="{{ contact_url }}">Contact Us</a>
+          <a href="{{ help_center_url }}">Help Center</a>
+          <a href="{{ estimate_url }}">Estimate Desk</a>
         </div>
       </section>
     </aside>
