@@ -1,9 +1,6 @@
-{% liquid
-  capture sanitized_terms
-    render 'search-sanitizer',
-      search_terms: search.terms
-  endcapture
+{% capture sanitized_terms %}{% render 'search-sanitizer', search_terms: search.terms %}{% endcapture %}
 
+{% liquid
   assign sanitized_terms = sanitized_terms | strip
   assign has_search_query = sanitized_terms != blank
   assign product_results_count = 0
