@@ -44,10 +44,10 @@
     <div class="search-page__hero">
       <div class="search-page__hero-copy">
         <p class="search-page__eyebrow">Search Bluewud</p>
-        <h1 class="search-page__title">Find products, collections, and planning pages faster.</h1>
+        <h1 class="search-page__title">Find the right room, product, or planning page faster.</h1>
         <p class="search-page__lede">
-          Search by room, material, or shopping intent. Use the suggestions to jump straight into living room
-          furniture, modular planning, wardrobes, or support pages without starting over.
+          Search by room, material, layout, or project intent. Use the suggestions to jump straight into living room
+          furniture, modular planning, wardrobes, bestsellers, or support pages without starting over.
         </p>
       </div>
 
@@ -97,7 +97,7 @@
         </form>
 
         <p class="search-page__form-note">
-          Try “modular kitchen”, “wardrobe”, “study tables”, or “bestsellers”.
+          Try "modular kitchen", "wardrobe", "study tables", "bestsellers", or "estimate".
         </p>
       </div>
     </div>
@@ -115,7 +115,7 @@
       <div class="search-page__results-meta">
         <div>
           <p class="search-page__results-eyebrow">Results for</p>
-          <h2 class="search-page__results-title">“{{ sanitized_terms }}”</h2>
+          <h2 class="search-page__results-title">"{{ sanitized_terms | escape }}"</h2>
         </div>
 
         <div class="search-page__results-stats" aria-label="Result counts">
@@ -138,7 +138,7 @@
             <div class="search-page__section-header">
               <div>
                 <p class="search-page__section-eyebrow">Products</p>
-                <h3>Best matches first</h3>
+                <h3>Most relevant first</h3>
               </div>
               <span class="search-page__section-count">{{ product_results_count }} found</span>
             </div>
@@ -188,10 +188,10 @@
         <div class="search-page__empty">
           <div class="search-page__empty-card">
             <p class="search-page__section-eyebrow">No exact match</p>
-            <h3>Try a broader product name or browse a shortcut below.</h3>
+            <h3>Try a broader term or browse a shortcut below.</h3>
             <p>
               If you were looking for a planning page, collection, or support answer, the quickest path is usually
-              one of the suggested routes.
+              one of the suggested routes below.
             </p>
           </div>
 
@@ -208,8 +208,8 @@
       <div class="search-page__start">
         <div class="search-page__start-card">
           <p class="search-page__section-eyebrow">Popular starting points</p>
-          <h3>Search from the most requested Bluewud intents.</h3>
-          <p>Browse the most common rooms, planning pages, and support routes before typing a query.</p>
+          <h3>Start from the most requested Bluewud paths.</h3>
+          <p>Browse the most common room, planning, and support routes before typing a query.</p>
         </div>
 
         <div class="search-page__start-grid">

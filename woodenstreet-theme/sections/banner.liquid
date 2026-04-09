@@ -1,26 +1,41 @@
 {% liquid
-  assign banner_eyebrow = section.settings.eyebrow | default: 'Bluewud for larger furnishing needs'
-  assign banner_title = section.settings.title | default: 'For homes, projects, and larger furnishing requirements.'
-  assign banner_copy = section.settings.copy | default: 'Whether you are setting up a new home, upgrading a workspace, or planning a larger order, Bluewud keeps the experience simple, dependable, and personal.'
-  assign primary_label = section.settings.primary_label | default: 'Buy In Bulk'
+  assign banner_eyebrow = section.settings.eyebrow | default: 'Planning more than one room?'
+  assign banner_title = section.settings.title | default: 'Bluewud helps customers shortlist room by room.'
+  assign banner_copy = section.settings.copy | default: 'From a first apartment to a fuller home project, Bluewud is built to help people compare faster, ask better questions, and move forward with confidence.'
+  assign primary_label = section.settings.primary_label | default: 'Get Free Estimate'
   assign primary_url = section.settings.primary_url
   assign secondary_label = section.settings.secondary_label | default: 'Visit Us'
   assign secondary_url = section.settings.secondary_url
   assign banner_image = section.settings.banner_image
+  assign estimate_page = pages['get-free-estimate']
+  assign visit_us_page = pages['visit-us']
+  assign contact_page = pages['contact-us']
 
   if primary_url == blank
-    assign primary_url = '/pages/buy-in-bulk'
+    if estimate_page != blank and estimate_page.url != blank
+      assign primary_url = estimate_page.url
+    elsif contact_page != blank and contact_page.url != blank
+      assign primary_url = contact_page.url
+    else
+      assign primary_url = routes.root_url
+    endif
   endif
 
   if secondary_url == blank
-    assign secondary_url = '/pages/visit-us'
+    if visit_us_page != blank and visit_us_page.url != blank
+      assign secondary_url = visit_us_page.url
+    elsif contact_page != blank and contact_page.url != blank
+      assign secondary_url = contact_page.url
+    else
+      assign secondary_url = routes.root_url
+    endif
   endif
 
   assign banner_collection = collections['hp-bluewuds-bestseller']
   assign banner_product = blank
   assign banner_fallback_image = blank
-  assign banner_badge_title = 'Plan a larger order with ease'
-  assign banner_badge_copy = 'Get dedicated help for project orders, GST-led purchases, showroom visits, and personalised assistance before you place the order.'
+  assign banner_badge_title = 'Project support that feels personal'
+  assign banner_badge_copy = 'Get dedicated help for showroom visits, project orders, and the questions that matter before you place the order.'
 
   if banner_collection == blank
     assign banner_collection = collections['living-room']
@@ -269,15 +284,15 @@
       <div class="bw-story__bullets">
         <div class="bw-story__bullet">
           <span class="bw-story__bullet-mark">1</span>
-          <span>Expert support for homes, offices, and hospitality spaces.</span>
+          <span>Expert support for homes, workspaces, and larger furnishing decisions.</span>
         </div>
         <div class="bw-story__bullet">
           <span class="bw-story__bullet-mark">2</span>
-          <span>Showroom visits, bulk enquiries, and direct assistance when you need it.</span>
+          <span>Showroom visits, estimate help, and direct support when the order needs a human touch.</span>
         </div>
         <div class="bw-story__bullet">
           <span class="bw-story__bullet-mark">3</span>
-          <span>Thoughtful furniture with dependable quality, finish, and service.</span>
+          <span>Furniture chosen for dependable quality, finish, and the confidence to buy once.</span>
         </div>
       </div>
 
@@ -316,25 +331,25 @@
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow",
-      "default": "Bluewud for larger furnishing needs"
+      "default": "Planning more than one room?"
     },
     {
       "type": "textarea",
       "id": "title",
       "label": "Title",
-      "default": "For homes, projects, and larger furnishing requirements."
+      "default": "Bluewud helps customers shortlist room by room."
     },
     {
       "type": "textarea",
       "id": "copy",
       "label": "Copy",
-      "default": "Whether you are setting up a new home, upgrading a workspace, or planning a larger order, Bluewud keeps the experience simple, dependable, and personal."
+      "default": "From a first apartment to a fuller home project, Bluewud is built to help people compare faster, ask better questions, and move forward with confidence."
     },
     {
       "type": "text",
       "id": "primary_label",
       "label": "Primary CTA label",
-      "default": "Buy In Bulk"
+      "default": "Get Free Estimate"
     },
     {
       "type": "url",

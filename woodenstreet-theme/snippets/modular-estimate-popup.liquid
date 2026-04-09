@@ -8,7 +8,7 @@
   .bw-estimate-modal {
     position: fixed;
     inset: 0;
-    z-index: 70;
+    z-index: 12000;
     display: none;
   }
   .bw-estimate-modal.is-open {
@@ -168,19 +168,20 @@
       <div>
         <div class="bw-estimate-modal__eyebrow">{{ context_label }}</div>
         <h2 class="bw-estimate-modal__title" id="{{ modal_id }}-title">{{ modal_title }}</h2>
-        <p class="bw-estimate-modal__copy">Share your details and we’ll reach out with the right next step based on the options you selected.</p>
+        <p class="bw-estimate-modal__copy">Share your details and the Bluewud team will follow up with the right next step based on the layout, materials, and options you selected.</p>
       </div>
       <button class="bw-estimate-modal__close" type="button" aria-label="Close estimate popup" data-bw-estimate-close>&times;</button>
     </div>
 
     <div class="bw-estimate-modal__summary">
-      <div class="bw-estimate-modal__summary-label">Selected brief</div>
+      <div class="bw-estimate-modal__summary-label">Project brief</div>
       <div class="bw-estimate-modal__summary-text" data-bw-estimate-summary-text>No options selected yet.</div>
     </div>
 
     {% form 'contact' %}
       <input type="hidden" name="contact[project_context]" value="{{ context_label }}" data-bw-estimate-context-input>
       <input type="hidden" name="contact[selected_brief]" value="" data-bw-estimate-summary-input>
+      <input type="hidden" name="contact[reference_source]" value="" data-bw-estimate-source-input>
 
       <div class="bw-estimate-modal__grid">
         <div class="bw-estimate-modal__field">
@@ -226,9 +227,9 @@
       </div>
 
       <div style="margin-top:18px;">
-        <button class="bw-estimate-modal__submit" type="submit">Request A Callback</button>
+        <button class="bw-estimate-modal__submit" type="submit">Send Project Brief</button>
       </div>
-      <p class="bw-estimate-modal__helper">Your selected options are automatically attached to this enquiry so the Bluewud team gets a cleaner brief from the start.</p>
+      <p class="bw-estimate-modal__helper">Your selected options are attached automatically so Bluewud receives a cleaner, more usable enquiry from the start.</p>
     {% endform %}
   </div>
 </div>

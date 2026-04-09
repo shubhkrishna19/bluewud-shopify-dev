@@ -271,10 +271,10 @@
   <div class="bw-featured__inner">
     <div class="bw-featured__header">
       <div>
-        <span class="bw-featured__eyebrow">Most-loved Bluewud picks</span>
-        <h2 class="bw-featured__title">Bestsellers for modern homes.</h2>
-        <p class="bw-featured__copy">Discover customer favourites across living, bedroom, and storage categories, selected for strong design, everyday utility, and great value.</p>
-        <span class="bw-featured__meta">{% if featured_collection != blank and featured_collection.products.size > 0 %}{{ featured_collection.products.size }} products ready to browse{% else %}Connected collection will populate here{% endif %}</span>
+    <span class="bw-featured__eyebrow">Most-loved Bluewud picks</span>
+        <h2 class="bw-featured__title">Bestsellers customers shortlist first.</h2>
+        <p class="bw-featured__copy">Browse the pieces that balance usefulness, finish, and room fit across living, bedroom, and storage spaces.</p>
+        <span class="bw-featured__meta">{% if featured_collection != blank and featured_collection.products.size > 0 %}{{ featured_collection.products.size }} products ready to browse{% else %}Choose a collection to feature Bluewud products here{% endif %}</span>
       </div>
       <a class="bw-featured__view-all" href="{{ featured_collection.url | default: routes.all_products_collection_url }}">View all furniture</a>
     </div>
@@ -310,14 +310,14 @@
                   <span class="bw-featured__savings">Better value</span>
                 {% endif %}
               </div>
-              <span class="bw-featured__cta bw-featured__card-link">Open product</span>
+              <span class="bw-featured__cta bw-featured__card-link">View details</span>
             </div>
           </a>
         {% endfor %}
       </div>
     {% else %}
       <div class="bw-featured__empty">
-        Connect a collection in the theme editor to populate this grid with Bluewud products.
+        Connect a collection in the theme editor to show the Bluewud products customers should see first.
       </div>
     {% endif %}
   </div>

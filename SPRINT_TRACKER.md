@@ -147,6 +147,11 @@ Files:
 - redundant kitchen planning band hidden when the calculator already exists inline on the same page
 - kitchen and wardrobe top tab rails darkened and aligned for better readability
 - header dropdown stacking raised again to sit above page content more reliably
+- homepage section copy is being rewritten around clearer room intent, trust, and return motivation
+- support and information pages are being tightened to sound shorter, cleaner, and more customer-first
+- search and empty-state language is being reframed as a premium shopping helper instead of generic search UI
+- shared estimate-popup copy and stacking are improved so the conversion step feels native to the theme
+- modular kitchen image masters are now part of the tracked theme asset plan, not only local preview state
 
 ## Current Review Routes
 

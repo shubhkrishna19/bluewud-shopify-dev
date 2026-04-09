@@ -300,9 +300,9 @@
 <section class="bw-categories">
   <div class="bw-categories__inner">
     <div class="bw-categories__header">
-      <span class="bw-categories__eyebrow">Shop by category</span>
-      <h2 class="bw-categories__title">Explore furniture for every room.</h2>
-      <p class="bw-categories__copy">From statement pieces to everyday storage, discover collections designed to bring comfort, utility, and finish into your home.</p>
+      <span class="bw-categories__eyebrow">Shop by room</span>
+      <h2 class="bw-categories__title">Start with the room that shapes daily life.</h2>
+      <p class="bw-categories__copy">From statement pieces to everyday storage, Bluewud categories are arranged so customers can move from inspiration to the right room faster.</p>
     </div>
 
     <div class="bw-categories__grid">
@@ -325,7 +325,7 @@
               {% if living_collection != blank and living_collection.all_products_count > 0 %}
                 {{ living_collection.all_products_count }} products
               {% else %}
-                Sofas, coffee tables, TV units
+                Sofas, tables, and media units
               {% endif %}
             </span>
           </div>
@@ -351,7 +351,7 @@
               {% if bedroom_collection != blank and bedroom_collection.all_products_count > 0 %}
                 {{ bedroom_collection.all_products_count }} products
               {% else %}
-                Beds, side tables, wardrobes
+                Beds, storage, and side tables
               {% endif %}
             </span>
           </div>
@@ -379,7 +379,7 @@
               {% elsif study_product != blank %}
                 {{ study_product.title }}
               {% else %}
-                WFH and compact setups
+                Work-ready desks and compact setups
               {% endif %}
             </span>
           </div>
@@ -405,7 +405,7 @@
               {% if tv_collection != blank and tv_collection.all_products_count > 0 %}
                 {{ tv_collection.all_products_count }} products
               {% else %}
-                Storage with presence
+                Storage with visual presence
               {% endif %}
             </span>
           </div>

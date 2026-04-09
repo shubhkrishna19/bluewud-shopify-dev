@@ -1,11 +1,15 @@
 {% liquid
   assign testimonials_eyebrow = section.settings.eyebrow | default: 'Loved by Bluewud homes'
-  assign testimonials_title = section.settings.title | default: 'Stories from homes that chose Bluewud.'
-  assign testimonials_copy = section.settings.copy | default: 'From first apartment setups to full-room upgrades, customers return to Bluewud for furniture that looks good, lasts well, and fits into everyday life.'
+  assign testimonials_title = section.settings.title | default: 'What buyers say once the room starts feeling complete.'
+  assign testimonials_copy = section.settings.copy | default: 'From first apartments to fuller home upgrades, customers return to Bluewud for furniture that looks good, lasts well, and feels easy to live with.'
   assign stat_one = section.settings.stat_one | default: '20 Lakh+ Customers'
   assign stat_two = section.settings.stat_two | default: '15+ Years'
   assign stat_three = section.settings.stat_three | default: 'Pan-India Reach'
-  assign reviews_page_url = '/pages/reviews'
+  assign reviews_page = pages['reviews']
+  assign reviews_page_url = routes.root_url
+  if reviews_page != blank and reviews_page.url != blank
+    assign reviews_page_url = reviews_page.url
+  endif
   assign live_reviews_count = shop.metafields.judgeme.all_reviews_count
   assign has_live_reviews = false
   assign has_blocks = false
@@ -592,9 +596,9 @@
         </div>
         <div class="bw-testimonials__actions">
           {% if live_reviews_count != blank %}
-            <a class="bw-testimonials__reviews-summary" href="{{ reviews_page_url }}">{{ live_reviews_count }}+ customer reviews</a>
+          <a class="bw-testimonials__reviews-summary" href="{{ reviews_page_url }}">{{ live_reviews_count }}+ customer reviews</a>
           {% endif %}
-          <a class="bw-testimonials__all-link" href="{{ reviews_page_url }}">Browse all reviews</a>
+          <a class="bw-testimonials__all-link" href="{{ reviews_page_url }}">See all reviews</a>
           <div class="bw-testimonials__dots" role="tablist" aria-label="Review pagination" data-testimonial-dots></div>
         </div>
       </div>
@@ -753,8 +757,8 @@
         <div class="bw-testimonials__live-header">
           <div class="bw-testimonials__live-copy">
             <span class="bw-testimonials__live-kicker">More customer voices</span>
-            <h3 class="bw-testimonials__live-title">Browse a wider stream of real Bluewud reviews.</h3>
-            <p class="bw-testimonials__live-text">The curated stories above create fast confidence. This section opens the deeper review base already collected on the store for customers who want more validation before purchase.</p>
+            <h3 class="bw-testimonials__live-title">Browse more real Bluewud reviews.</h3>
+            <p class="bw-testimonials__live-text">The curated stories above create fast confidence. This section opens the deeper review base already collected on the store for customers who want more proof before purchase.</p>
           </div>
           <div class="bw-testimonials__live-actions">
             {% render 'judgeme_widgets', widget_type: 'judgeme_all_reviews_text', concierge_install: true %}
@@ -856,13 +860,13 @@
       "type": "text",
       "id": "title",
       "label": "Heading",
-      "default": "Stories from homes that chose Bluewud."
+      "default": "What buyers say after the room comes together."
     },
     {
       "type": "textarea",
       "id": "copy",
       "label": "Description",
-      "default": "From first apartment setups to full-room upgrades, customers return to Bluewud for furniture that looks good, lasts well, and fits into everyday life."
+      "default": "From first apartments to fuller home upgrades, customers return to Bluewud for furniture that looks good, lasts well, and feels easy to live with."
     },
     {
       "type": "text",

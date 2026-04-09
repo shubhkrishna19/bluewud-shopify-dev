@@ -3,7 +3,7 @@
   assign page_eyebrow = 'Bluewud information'
 
   if page_intro == blank
-    assign page_intro = 'Discover everything you need to know about Bluewud, from support and policies to business and contact information.'
+    assign page_intro = 'Find Bluewud support, policy, and company information quickly.'
   endif
 
   assign is_help_center = false
@@ -22,193 +22,193 @@
   if page.handle == 'about-us'
     assign is_about_page = true
     assign page_eyebrow = 'Bluewud story'
-    assign page_intro = 'Bluewud designs, manufactures, and markets innovative furniture and decor for modern Indian homes, with in-house design, a Noida manufacturing base, and a product story that began with bestseller laptop tables in 2015.'
+    assign page_intro = 'Bluewud designs furniture for modern Indian homes with a focus on daily use and premium finish.'
   endif
 
   if page.handle == 'help-center'
     assign is_help_center = true
     assign page_eyebrow = 'Bluewud support'
-    assign page_intro = 'Browse Bluewud support questions by topic with quick answers for orders, shipping, cancellations, and installation.'
+    assign page_intro = 'Quick answers on orders, delivery, cancellations, installation, and support.'
   endif
 
   if page.handle == 'faq' or page.handle == 'faqs'
     assign is_help_center = true
     assign page_eyebrow = 'Bluewud support'
-    assign page_intro = 'Browse Bluewud support questions by topic with quick answers for orders, shipping, cancellations, and installation.'
+    assign page_intro = 'Browse support questions by topic for quick answers on orders, delivery, cancellations, and installation.'
   endif
 
   if page.handle == 'returns-refunds'
     assign is_returns_refunds = true
     assign page_eyebrow = 'Returns, refunds and replacements'
-    assign page_intro = 'A clear view of Bluewud return eligibility, cancellation timing, exchange support, and the product categories that are handled through replacement instead of full return.'
+    assign page_intro = 'Clear rules for returns, refunds, cancellations, and replacements.'
   endif
 
   if page.handle == 'returns-and-refunds'
     assign is_returns_refunds = true
     assign page_eyebrow = 'Returns, refunds and replacements'
-    assign page_intro = 'A clear view of Bluewud return eligibility, cancellation timing, exchange support, and the product categories that are handled through replacement instead of full return.'
+    assign page_intro = 'Clear rules for returns, refunds, cancellations, and larger-item handling.'
   endif
 
   if page.handle == 'offers-discount'
     assign is_offers_page = true
     assign page_eyebrow = 'Bluewud offers'
-    assign page_intro = 'See current coupon savings, payment offers, and key terms in one place before checkout.'
+    assign page_intro = 'See current savings and the terms that matter before checkout.'
   endif
 
   if page.handle == 'contact-us'
     assign is_contact_page = true
     assign page_eyebrow = 'Bluewud contact'
-    assign page_intro = 'Reach Bluewud for order assistance, installation support, product questions, or purchase guidance through phone, WhatsApp, email, or the contact form below.'
+    assign page_intro = 'Reach Bluewud for order help, installation support, or project questions.'
   endif
 
   if page.handle == 'buy-in-bulk'
     assign is_business_support_page = true
     assign page_eyebrow = 'Bluewud business desk'
-    assign page_intro = 'Use this page for bulk, GST-led, project, hospitality, or office furniture requirements that need a more direct commercial conversation than a normal storefront order.'
+    assign page_intro = 'Use this page for bulk, GST-led, or project furnishing enquiries.'
   endif
 
   if page.handle == 'visit-us'
     assign is_business_support_page = true
     assign page_eyebrow = 'Bluewud studio visit'
-    assign page_intro = 'Plan a more useful Bluewud visit by bringing the right shortlist, room context, and project questions before you arrive.'
+    assign page_intro = 'Plan a focused Bluewud visit with the right shortlist and questions.'
   endif
 
   if page.handle == 'award-achievment'
     assign is_business_support_page = true
     assign page_eyebrow = 'Bluewud credibility'
-    assign page_intro = 'Recognition, milestones, and achievements should strengthen customer trust and connect naturally back into the buying journey.'
+    assign page_intro = 'Recognition that builds trust and supports the buying journey.'
   endif
 
   if page.handle == 'award-achievement'
     assign is_business_support_page = true
     assign page_eyebrow = 'Bluewud credibility'
-    assign page_intro = 'Recognition, milestones, and achievements should strengthen customer trust and connect naturally back into the buying journey.'
+    assign page_intro = 'Recognition that builds trust and supports the buying journey.'
   endif
 
   if page.handle == 'policies'
     assign is_business_support_page = true
     assign page_eyebrow = 'Bluewud policy desk'
-    assign page_intro = 'This page should make ordering expectations, support boundaries, and customer confidence easier to understand before purchase.'
+    assign page_intro = 'Clear ordering expectations and support boundaries.'
   endif
 
   if page.handle == 'payment-security'
     assign is_business_support_page = true
     assign page_eyebrow = 'Bluewud payment confidence'
-    assign page_intro = 'This page should reduce payment hesitation and help larger furniture buyers feel more secure before they complete checkout.'
+    assign page_intro = 'Help shoppers feel secure before checkout.'
   endif
 
   if page.handle == 'payment-and-security'
     assign is_business_support_page = true
     assign page_eyebrow = 'Bluewud payment confidence'
-    assign page_intro = 'This page should reduce payment hesitation and help larger furniture buyers feel more secure before they complete checkout.'
+    assign page_intro = 'Help shoppers feel secure before checkout.'
   endif
 
   if page.handle == 'privacy-statement' or page.handle == 'privacy-policy'
     assign is_business_support_page = true
     assign page_eyebrow = 'Bluewud privacy'
-    assign page_intro = 'A privacy page should be readable, customer-safe, and clear about what Bluewud collects, why it matters, and where support steps in when the customer wants clarification.'
+    assign page_intro = 'Privacy, kept clear and easy to understand.'
   endif
 
   if page.handle == 'installation-cancellation' or page.handle == 'installation-cancellation-policy'
     assign is_business_support_page = true
     assign page_eyebrow = 'Bluewud installation and cancellation'
-    assign page_intro = 'This page should explain assembly support, visit expectations, and cancellation timing in a way that reduces confusion before larger furniture purchases.'
+    assign page_intro = 'Explain installation support and cancellation timing clearly.'
   endif
 
   if page.handle == 'terms-of-use'
     assign is_business_support_page = true
     assign page_eyebrow = 'Bluewud terms'
-    assign page_intro = 'A cleaner terms page should stay readable, structured, and connected to real help paths when customers need practical clarification.'
+    assign page_intro = 'Readable terms with a quick path back to support.'
   endif
 
   if page.handle == 'terms-of-service'
     assign is_business_support_page = true
     assign page_eyebrow = 'Bluewud service terms'
-    assign page_intro = 'Service terms should feel structured and readable, while still routing customers back to help quickly when their question is practical rather than legal.'
+    assign page_intro = 'Structured service terms with a clear support path.'
   endif
 
   if page.handle == 'modular-kitchen-designs'
     assign is_kitchen_page = true
     assign page_eyebrow = 'Bluewud kitchen studio'
-    assign page_intro = 'Explore Bluewud modular kitchen planning through layout-led guidance, finish direction, workflow decisions, and estimate-ready paths for modern Indian homes.'
+    assign page_intro = 'Explore Bluewud modular kitchen planning through layout, finish, workflow, and estimate-ready paths.'
   endif
 
   if page.handle == 'l-shape-modular-kitchen-design'
     assign is_kitchen_page = true
     assign page_eyebrow = 'L-shape kitchen planning'
-    assign page_intro = 'One of the most versatile kitchen formats for homes that need efficient movement, cleaner zoning, and practical countertop continuity.'
+    assign page_intro = 'A versatile format for efficient movement, cleaner zoning, and practical countertop continuity.'
   endif
 
   if page.handle == 'u-shape-modular-kitchen-design'
     assign is_kitchen_page = true
     assign page_eyebrow = 'U-shape kitchen planning'
-    assign page_intro = 'A stronger option when you want more storage, deeper work triangles, and a kitchen that feels serious about utility.'
+    assign page_intro = 'A stronger option when more storage, prep surface, and utility matter.'
   endif
 
   if page.handle == 'parallel-modular-kitchen-design'
     assign is_kitchen_page = true
     assign page_eyebrow = 'Parallel kitchen planning'
-    assign page_intro = 'A practical format for tighter layouts where opposite counters help separate prep, cooking, and utility with better efficiency.'
+    assign page_intro = 'A practical format for tighter layouts where opposite counters improve efficiency.'
   endif
 
   if page.handle == 'straight-modular-kitchen'
     assign is_kitchen_page = true
     assign page_eyebrow = 'Straight kitchen planning'
-    assign page_intro = 'A compact linear kitchen format that works best when space is restricted but daily function still needs to feel composed and premium.'
+    assign page_intro = 'A compact linear format that keeps small spaces composed and practical.'
   endif
 
   if page.handle == 'kitchen-island-design'
     assign is_kitchen_page = true
     assign page_eyebrow = 'Kitchen island planning'
-    assign page_intro = 'An island kitchen is about presence, prep space, and circulation, and works best when room dimensions support generous movement around the core.'
+    assign page_intro = 'An island kitchen needs presence, prep space, and room to move comfortably.'
   endif
 
   if page.handle == 'modular-kitchen-cost-calculator'
     assign is_kitchen_calculator = true
     assign page_eyebrow = 'Kitchen price planning'
-    assign page_intro = 'Use this directional modular kitchen calculator to shortlist layout, finish, and hardware choices before getting a refined Bluewud estimate.'
+    assign page_intro = 'Use this calculator to shortlist layout, finish, and hardware choices before a Bluewud estimate.'
   endif
 
   if page.handle == 'home-interiors-cost-calculator'
     assign is_home_interiors_calculator = true
     assign page_eyebrow = 'Home interiors planning'
-    assign page_intro = 'Build a first interiors brief by selecting the rooms, scope, and furnishing priorities you want Bluewud to help plan.'
+    assign page_intro = 'Build a first interiors brief by selecting rooms, scope, and furnishing priorities.'
   endif
 
   if page.handle == 'modular-wardrobe-designs'
     assign is_wardrobe_page = true
     assign page_eyebrow = 'Bluewud wardrobe studio'
-    assign page_intro = 'Explore Bluewud wardrobe planning through format-led guidance, material decisions, storage ideas, and estimate-ready pathways for modern Indian bedrooms.'
+    assign page_intro = 'Explore wardrobe planning through format, material, storage, and estimate-ready paths.'
   endif
 
   if page.handle == 'sliding-wardrobe-designs'
     assign is_wardrobe_page = true
     assign page_eyebrow = 'Sliding wardrobe planning'
-    assign page_intro = 'A sharper direction for compact bedrooms and contemporary master suites where door swing space is limited but storage still needs to feel premium.'
+    assign page_intro = 'A strong choice for compact bedrooms where door swing space is limited.'
   endif
 
   if page.handle == 'hinged-wardrobes'
     assign is_wardrobe_page = true
     assign page_eyebrow = 'Hinged wardrobe planning'
-    assign page_intro = 'Classic full-access shutters, strong internal visibility, and practical daily storage for bedrooms that have enough front clearance.'
+    assign page_intro = 'Classic full-access shutters with easy internal visibility and daily use.'
   endif
 
   if page.handle == 'walk-in-wardrobes'
     assign is_wardrobe_page = true
     assign page_eyebrow = 'Walk-in wardrobe planning'
-    assign page_intro = 'A more luxurious storage format for larger bedrooms where organization, dressing, and interior presence need to work together.'
+    assign page_intro = 'A premium storage format for larger bedrooms that need dressing and organization together.'
   endif
 
   if page.handle == 'modular-wardrobe-cost-calculator'
     assign is_wardrobe_calculator = true
     assign page_eyebrow = 'Wardrobe price planning'
-    assign page_intro = 'Use this directional wardrobe calculator to shortlist format, size, and finish choices before speaking with the Bluewud team for a more accurate estimate.'
+    assign page_intro = 'Use this calculator to shortlist format, size, and finish before speaking with Bluewud.'
   endif
 
   if page.handle == 'get-free-estimate' or page.handle == 'free-estimate'
     assign is_estimate_page = true
     assign page_eyebrow = 'Bluewud estimate desk'
-    assign page_intro = 'Share your project details with the Bluewud team so we can help scope budget, format, finishes, and the best next planning step for your home.'
+    assign page_intro = 'Share your project details so Bluewud can scope budget, format, finishes, and next steps.'
   endif
 
   assign page_content_class = 'bw-page__content'
@@ -543,24 +543,24 @@
 
     {% unless is_help_center or is_about_page or is_returns_refunds or is_offers_page or is_contact_page or is_business_support_page or is_kitchen_page or is_kitchen_calculator or is_home_interiors_calculator or is_wardrobe_page or is_wardrobe_calculator or is_estimate_page %}
       <div class="bw-page__support">
-        <div class="bw-page__support-card">
-          <h2>Need direct help?</h2>
-          <p>Speak with the Bluewud team for quick assistance with orders, support, or product questions.</p>
-          <a href="tel:+918800609609">Call +91-8800-609-609</a>
-        </div>
+    <div class="bw-page__support-card">
+      <h2>Need direct help?</h2>
+      <p>Speak with the Bluewud team for quick help with orders, support, or product questions.</p>
+      <a href="tel:+918800609609">Call +91-8800-609-609</a>
+    </div>
 
-        <div class="bw-page__support-card">
-          <h2>Visit the help center</h2>
-          <p>Find answers to delivery, returns, payments, and other common questions.</p>
-          <a href="/pages/help-center">Open help center</a>
-        </div>
+    <div class="bw-page__support-card">
+      <h2>Visit the help center</h2>
+      <p>Find quick answers on delivery, returns, payments, and more.</p>
+      <a href="/pages/help-center">Open help center</a>
+    </div>
 
-        <div class="bw-page__support-card">
-          <h2>Business requirement?</h2>
-          <p>For office, hospitality, or GST-led purchases, our bulk team is ready to help.</p>
-          <a href="/pages/buy-in-bulk">Open Buy In Bulk</a>
-        </div>
-      </div>
+    <div class="bw-page__support-card">
+      <h2>Business requirement?</h2>
+      <p>For office, hospitality, or GST-led purchases, our bulk team can help.</p>
+      <a href="/pages/buy-in-bulk">Open Buy In Bulk</a>
+    </div>
+  </div>
     {% endunless %}
   </div>
 </section>

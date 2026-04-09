@@ -27,9 +27,9 @@
       <p class="search-results-content__eyebrow">{{ title }}</p>
       <h4 class="search-results-content__title">
         {% if results_count > 0 %}
-          {{ results_count }} match{% if results_count != 1 %}es{% endif %}
+          {{ results_count }} result{% if results_count != 1 %}s{% endif %}
         {% else %}
-          No matches yet
+          Nothing matched yet
         {% endif %}
       </h4>
     </div>
@@ -59,7 +59,7 @@
     </div>
   {% else %}
     <div class="search-results-content__empty">
-      No {{ title | downcase }} found for “{{ sanitized_terms }}”.
+      No {{ title | downcase }} matched "{{ sanitized_terms }}". Try a broader term or switch to a room, product, or planning shortcut.
     </div>
   {% endif %}
 </div>

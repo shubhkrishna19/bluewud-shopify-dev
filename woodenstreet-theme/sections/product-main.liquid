@@ -1003,7 +1003,7 @@
           {% if product_subtitle != blank %}
             {{ product_subtitle }}
           {% else %}
-            Thoughtfully designed furniture for modern Indian homes, with clear details, dependable support, and finishes you will love living with.
+            Thoughtfully designed furniture for modern Indian homes, with clear details, dependable support, and finishes made to suit everyday living.
           {% endif %}
         </p>
         <div class="bw-product__rating">
@@ -1021,10 +1021,6 @@
           <div class="bw-product__proof">
             <span class="bw-product__proof-label">15+ years</span>
             <span class="bw-product__proof-copy">Crafting furniture for homes across India.</span>
-          </div>
-          <div class="bw-product__proof">
-            <span class="bw-product__proof-label">20L+ customers</span>
-            <span class="bw-product__proof-copy">Chosen by families in cities across the country.</span>
           </div>
           <div class="bw-product__proof">
             <span class="bw-product__proof-label">7 year warranty</span>
@@ -1128,18 +1124,18 @@
         {% endform %}
 
         <div class="bw-product__support">
-          <div class="bw-product__support-card">
-            <strong>Payment confidence</strong>
-            <a href="/pages/payment-security">Secure payment options and helpful checkout guidance.</a>
-          </div>
-          <div class="bw-product__support-card">
-            <strong>Need project pricing?</strong>
-            <a href="/pages/buy-in-bulk">Bulk purchase support for larger furnishing requirements.</a>
-          </div>
-          <div class="bw-product__support-card">
-            <strong>Talk to Bluewud</strong>
-            <a href="/pages/contact-us">Talk to the Bluewud team for product or order questions.</a>
-          </div>
+        <div class="bw-product__support-card">
+          <strong>Payment confidence</strong>
+          <a href="/pages/payment-security">Secure payment options and clear checkout guidance.</a>
+        </div>
+        <div class="bw-product__support-card">
+          <strong>Need project pricing?</strong>
+          <a href="/pages/buy-in-bulk">Project and bulk purchase support for larger furnishing requirements.</a>
+        </div>
+        <div class="bw-product__support-card">
+          <strong>Talk to Bluewud</strong>
+          <a href="/pages/contact-us">Ask the Bluewud team about fit, finish, delivery, or orders.</a>
+        </div>
         </div>
 
         <div class="bw-product__details">
@@ -1161,14 +1157,14 @@
               {% if estimate_shipping_time != blank %}
                 <p>Estimated dispatch begins in approximately {{ estimate_shipping_time }} day{% unless estimate_shipping_time == '1' %}s{% endunless %} after order confirmation.</p>
               {% endif %}
-              <p>For more information, you can <a href="/pages/visit-us">visit us</a>, explore the <a href="/pages/help-center">help center</a>, or review <a href="/pages/returns-refunds">returns and refunds</a>.</p>
+              <p>For more information, you can <a href="/pages/visit-us">visit us</a>, explore the <a href="/pages/help-center">help center</a>, or review <a href="/pages/returns-refunds">returns and refunds</a> before checking out.</p>
             </div>
           </details>
 
           <details class="bw-product__details-item">
             <summary>Payment, EMI, and order confidence</summary>
             <div class="bw-product__details-body">
-              <p>Bluewud supports secure payments, selected EMI options, and guided assistance for buyers who want clarity before placing an order. You can review <a href="/pages/payment-security">payment and security</a> details or reach out to the <a href="/pages/contact-us">Bluewud team</a>.</p>
+              <p>Bluewud supports secure payments, selected EMI options, and guided assistance for buyers who want clarity before ordering. You can review <a href="/pages/payment-security">payment and security</a> details or reach out to the <a href="/pages/contact-us">Bluewud team</a> for help.</p>
             </div>
           </details>
 
@@ -1185,8 +1181,8 @@
     <div class="bw-product__reviews">
       <div class="bw-product__reviews-header">
         <span class="bw-product__reviews-eyebrow">Customer reviews</span>
-        <h2 class="bw-product__reviews-title">What buyers are saying about this product.</h2>
-        <p class="bw-product__reviews-copy">Live product reviews help shoppers understand finish, delivery experience, assembly confidence, and everyday usability before they place the order.</p>
+        <h2 class="bw-product__reviews-title">What buyers are saying before they decide.</h2>
+        <p class="bw-product__reviews-copy">Live product reviews help shoppers understand finish, delivery, assembly, and everyday usability before they buy.</p>
       </div>
       {% render 'judgeme_widgets', widget_type: 'judgeme_review_widget', concierge_install: true, product: product %}
     </div>
@@ -1196,10 +1192,10 @@
         <div class="bw-product__related-header">
           <div class="bw-product__related-copy">
             <span class="bw-product__related-eyebrow">You may also like</span>
-            <h2 class="bw-product__related-title">Complementary pieces worth considering.</h2>
-            <p class="bw-product__related-text">A tighter set of picks from {{ recommendation_collection.title }} to help buyers continue with matching, complementary, or adjacent choices without crowding the page.</p>
+            <h2 class="bw-product__related-title">Pieces that pair well with this one.</h2>
+            <p class="bw-product__related-text">A tighter set of picks from {{ recommendation_collection.title }} to help buyers continue with matching and complementary choices without crowding the page.</p>
           </div>
-          <a class="bw-product__related-link" href="{{ recommendation_collection.url }}">Browse collection</a>
+          <a class="bw-product__related-link" href="{{ recommendation_collection.url }}">Browse matching collection</a>
         </div>
 
         <div class="bw-product__related-grid">
