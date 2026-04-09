@@ -158,7 +158,7 @@
   }
   .bw-flow__journey-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(5, minmax(0, 1fr));
     gap: 12px;
     margin-top: 4px;
   }
@@ -592,12 +592,7 @@
           <p class="bw-flow__stage-copy">Use the guide links only if the room still feels undecided. Once the direction is clear, stay in this calculator and send one sharper kitchen brief.</p>
         </div>
       <div class="bw-flow__journey-links" aria-label="Kitchen layout guides">
-        <a class="bw-flow__button--secondary" href="{{ main_url }}">All Kitchen Guides</a>
-        <a class="bw-flow__button--secondary" href="{{ l_url }}">L-shape</a>
-        <a class="bw-flow__button--secondary" href="{{ u_url }}">U-shape</a>
-        <a class="bw-flow__button--secondary" href="{{ parallel_url }}">Parallel</a>
-        <a class="bw-flow__button--secondary" href="{{ straight_url }}">Straight</a>
-        <a class="bw-flow__button--secondary" href="{{ island_url }}">Island</a>
+        <a class="bw-flow__button--secondary" href="{{ main_url }}">Open All Kitchen Guides</a>
       </div>
       <div class="bw-flow__journey-grid" aria-label="Kitchen layout previews">
         <a class="bw-flow__journey-card" href="{{ l_url }}">
@@ -609,6 +604,16 @@
           <span class="bw-flow__journey-card-media"><img src="{{ kitchen_image_u_url }}" alt="U-shape modular kitchen preview" loading="lazy" width="720" height="540"></span>
           <span class="bw-flow__journey-card-title">U-shape</span>
           <span class="bw-flow__journey-card-copy">Better for storage-heavy cooking and prep zones.</span>
+        </a>
+        <a class="bw-flow__journey-card" href="{{ parallel_url }}">
+          <span class="bw-flow__journey-card-media"><img src="{{ kitchen_image_parallel_url }}" alt="Parallel modular kitchen preview" loading="lazy" width="720" height="540"></span>
+          <span class="bw-flow__journey-card-title">Parallel</span>
+          <span class="bw-flow__journey-card-copy">Fast two-run planning when width is tighter but storage still matters.</span>
+        </a>
+        <a class="bw-flow__journey-card" href="{{ straight_url }}">
+          <span class="bw-flow__journey-card-media"><img src="{{ kitchen_image_straight_url }}" alt="Straight modular kitchen preview" loading="lazy" width="720" height="540"></span>
+          <span class="bw-flow__journey-card-title">Straight</span>
+          <span class="bw-flow__journey-card-copy">Single-wall direction for compact homes that need a cleaner visual line.</span>
         </a>
         <a class="bw-flow__journey-card" href="{{ island_url }}">
           <span class="bw-flow__journey-card-media"><img src="{{ kitchen_image_island_url }}" alt="Island modular kitchen preview" loading="lazy" width="720" height="540"></span>

@@ -17,6 +17,16 @@
   assign kitchen_preview = blank
   assign study_preview = blank
   assign dining_preview = blank
+  assign living_preview_src = blank
+  assign bedroom_preview_src = blank
+  assign wardrobe_preview_src = blank
+  assign study_preview_src = blank
+  assign dining_preview_src = blank
+  assign living_preview_alt = 'Bluewud living room planning preview'
+  assign bedroom_preview_alt = 'Bluewud bedroom planning preview'
+  assign wardrobe_preview_alt = 'Bluewud wardrobe planning preview'
+  assign study_preview_alt = 'Bluewud study planning preview'
+  assign dining_preview_alt = 'Bluewud dining planning preview'
   assign kitchen_preview_src = 'modular-kitchen-light-oak-l-shape.png' | asset_url
   assign kitchen_preview_alt = 'Bluewud modular kitchen planning preview'
 
@@ -81,6 +91,56 @@
     elsif dining_collection.products.first.featured_image != blank
       assign dining_preview = dining_collection.products.first.featured_image
     endif
+  endif
+
+  if living_preview != blank
+    assign living_preview_src = living_preview | image_url: width: 1200
+    assign living_preview_alt = living_collection.title | default: living_preview_alt
+  elsif bedroom_preview != blank
+    assign living_preview_src = bedroom_preview | image_url: width: 1200
+    assign living_preview_alt = bedroom_collection.title | default: living_preview_alt
+  else
+    assign living_preview_src = kitchen_preview_src
+  endif
+
+  if bedroom_preview != blank
+    assign bedroom_preview_src = bedroom_preview | image_url: width: 1200
+    assign bedroom_preview_alt = bedroom_collection.title | default: bedroom_preview_alt
+  elsif living_preview != blank
+    assign bedroom_preview_src = living_preview | image_url: width: 1200
+    assign bedroom_preview_alt = living_collection.title | default: bedroom_preview_alt
+  else
+    assign bedroom_preview_src = kitchen_preview_src
+  endif
+
+  if wardrobe_preview != blank
+    assign wardrobe_preview_src = wardrobe_preview | image_url: width: 1200
+    assign wardrobe_preview_alt = wardrobe_collection.title | default: wardrobe_preview_alt
+  elsif bedroom_preview != blank
+    assign wardrobe_preview_src = bedroom_preview | image_url: width: 1200
+    assign wardrobe_preview_alt = bedroom_collection.title | default: wardrobe_preview_alt
+  else
+    assign wardrobe_preview_src = kitchen_preview_src
+  endif
+
+  if study_preview != blank
+    assign study_preview_src = study_preview | image_url: width: 1200
+    assign study_preview_alt = study_collection.title | default: study_preview_alt
+  elsif living_preview != blank
+    assign study_preview_src = living_preview | image_url: width: 1200
+    assign study_preview_alt = living_collection.title | default: study_preview_alt
+  else
+    assign study_preview_src = kitchen_preview_src
+  endif
+
+  if dining_preview != blank
+    assign dining_preview_src = dining_preview | image_url: width: 1200
+    assign dining_preview_alt = dining_collection.title | default: dining_preview_alt
+  elsif living_preview != blank
+    assign dining_preview_src = living_preview | image_url: width: 1200
+    assign dining_preview_alt = living_collection.title | default: dining_preview_alt
+  else
+    assign dining_preview_src = kitchen_preview_src
   endif
 %}
 
@@ -755,17 +815,11 @@
       <div class="bw-hi__hero-visual">
         <div class="bw-hi__hero-visual-strip">
           <div class="bw-hi__hero-visual-card">
-            {% if living_preview != blank %}
-              {{ living_preview | image_url: width: 640 | image_tag: loading: 'lazy', widths: '320, 480, 640', sizes: '(max-width: 720px) 50vw, 20vw', alt: living_collection.title | default: 'Bluewud living room planning preview' }}
-            {% endif %}
+            <img src="{{ living_preview_src }}" alt="{{ living_preview_alt }}" loading="lazy" width="640" height="480">
             <span>Living</span>
           </div>
           <div class="bw-hi__hero-visual-card">
-            {% if kitchen_preview != blank %}
-              {{ kitchen_preview | image_url: width: 640 | image_tag: loading: 'lazy', widths: '320, 480, 640', sizes: '(max-width: 720px) 50vw, 20vw', alt: kitchen_preview_alt }}
-            {% else %}
-              <img src="{{ kitchen_preview_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="640" height="480">
-            {% endif %}
+            <img src="{{ kitchen_preview_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="640" height="480">
             <span>Kitchen</span>
           </div>
         </div>
@@ -810,36 +864,30 @@
       <div class="bw-hi__section">
         <div class="bw-hi__label">Which spaces are in scope?</div>
         <div class="bw-hi__choices" data-hi-group="rooms">
-          <label class="bw-hi__choice bw-hi__choice--visual" data-hi-room-card data-preview-caption="Build a living room-led brief around seating, TV, storage, and social-use comfort." {% if living_preview != blank %}data-preview-src="{{ living_preview | image_url: width: 1200 }}" data-preview-alt="{{ living_collection.title | default: 'Bluewud living room planning preview' }}"{% endif %}>
+          <label class="bw-hi__choice bw-hi__choice--visual" data-hi-room-card data-preview-caption="Build a living room-led brief around seating, TV, storage, and social-use comfort." data-preview-src="{{ living_preview_src }}" data-preview-alt="{{ living_preview_alt }}">
             <input type="checkbox" value="Living Room">
             <span class="bw-hi__choice-media">
-              {% if living_preview != blank %}
-                {{ living_preview | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 540, 720, 900', sizes: '(max-width: 720px) 100vw, 33vw', alt: living_collection.title | default: 'Bluewud living room planning preview' }}
-              {% endif %}
+              <img src="{{ living_preview_src }}" alt="{{ living_preview_alt }}" loading="lazy" width="900" height="675">
             </span>
             <span class="bw-hi__choice-copy">
               <span class="bw-hi__choice-title">Living Room</span>
               <span class="bw-hi__choice-note">Seating, TV, centre tables, and storage-led comfort.</span>
             </span>
           </label>
-          <label class="bw-hi__choice bw-hi__choice--visual" data-hi-room-card data-preview-caption="Shape the bedroom brief around sleep, side storage, wardrobes, and calmer daily movement." {% if bedroom_preview != blank %}data-preview-src="{{ bedroom_preview | image_url: width: 1200 }}" data-preview-alt="{{ bedroom_collection.title | default: 'Bluewud bedroom planning preview' }}"{% endif %}>
+          <label class="bw-hi__choice bw-hi__choice--visual" data-hi-room-card data-preview-caption="Shape the bedroom brief around sleep, side storage, wardrobes, and calmer daily movement." data-preview-src="{{ bedroom_preview_src }}" data-preview-alt="{{ bedroom_preview_alt }}">
             <input type="checkbox" value="Bedroom">
             <span class="bw-hi__choice-media">
-              {% if bedroom_preview != blank %}
-                {{ bedroom_preview | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 540, 720, 900', sizes: '(max-width: 720px) 100vw, 33vw', alt: bedroom_collection.title | default: 'Bluewud bedroom planning preview' }}
-              {% endif %}
+              <img src="{{ bedroom_preview_src }}" alt="{{ bedroom_preview_alt }}" loading="lazy" width="900" height="675">
             </span>
             <span class="bw-hi__choice-copy">
               <span class="bw-hi__choice-title">Bedroom</span>
               <span class="bw-hi__choice-note">Beds, side tables, dressers, and room-led storage.</span>
             </span>
           </label>
-          <label class="bw-hi__choice bw-hi__choice--visual" data-hi-room-card data-preview-caption="Wardrobe-led briefs work best when storage format, finish direction, and internals are clear early." {% if wardrobe_preview != blank %}data-preview-src="{{ wardrobe_preview | image_url: width: 1200 }}" data-preview-alt="{{ wardrobe_collection.title | default: 'Bluewud wardrobe planning preview' }}"{% endif %}>
+          <label class="bw-hi__choice bw-hi__choice--visual" data-hi-room-card data-preview-caption="Wardrobe-led briefs work best when storage format, finish direction, and internals are clear early." data-preview-src="{{ wardrobe_preview_src }}" data-preview-alt="{{ wardrobe_preview_alt }}">
             <input type="checkbox" value="Wardrobe">
             <span class="bw-hi__choice-media">
-              {% if wardrobe_preview != blank %}
-                {{ wardrobe_preview | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 540, 720, 900', sizes: '(max-width: 720px) 100vw, 33vw', alt: wardrobe_collection.title | default: 'Bluewud wardrobe planning preview' }}
-              {% endif %}
+              <img src="{{ wardrobe_preview_src }}" alt="{{ wardrobe_preview_alt }}" loading="lazy" width="900" height="675">
             </span>
             <span class="bw-hi__choice-copy">
               <span class="bw-hi__choice-title">Wardrobe</span>
@@ -860,24 +908,20 @@
               <span class="bw-hi__choice-note">Layout, storage, appliances, and material direction.</span>
             </span>
           </label>
-          <label class="bw-hi__choice bw-hi__choice--visual" data-hi-room-card data-preview-caption="WFH planning should balance compact footprints, storage, and long-hour comfort." {% if study_preview != blank %}data-preview-src="{{ study_preview | image_url: width: 1200 }}" data-preview-alt="{{ study_collection.title | default: 'Bluewud study planning preview' }}"{% endif %}>
+          <label class="bw-hi__choice bw-hi__choice--visual" data-hi-room-card data-preview-caption="WFH planning should balance compact footprints, storage, and long-hour comfort." data-preview-src="{{ study_preview_src }}" data-preview-alt="{{ study_preview_alt }}">
             <input type="checkbox" value="Study / WFH">
             <span class="bw-hi__choice-media">
-              {% if study_preview != blank %}
-                {{ study_preview | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 540, 720, 900', sizes: '(max-width: 720px) 100vw, 33vw', alt: study_collection.title | default: 'Bluewud study planning preview' }}
-              {% endif %}
+              <img src="{{ study_preview_src }}" alt="{{ study_preview_alt }}" loading="lazy" width="900" height="675">
             </span>
             <span class="bw-hi__choice-copy">
               <span class="bw-hi__choice-title">Study / WFH</span>
               <span class="bw-hi__choice-note">Tables, storage, shelving, and workday ergonomics.</span>
             </span>
           </label>
-          <label class="bw-hi__choice bw-hi__choice--visual" data-hi-room-card data-preview-caption="Dining-led briefs often start with social-use furniture and how the room connects to living or kitchen flow." {% if dining_preview != blank %}data-preview-src="{{ dining_preview | image_url: width: 1200 }}" data-preview-alt="{{ dining_collection.title | default: 'Bluewud dining planning preview' }}"{% endif %}>
+          <label class="bw-hi__choice bw-hi__choice--visual" data-hi-room-card data-preview-caption="Dining-led briefs often start with social-use furniture and how the room connects to living or kitchen flow." data-preview-src="{{ dining_preview_src }}" data-preview-alt="{{ dining_preview_alt }}">
             <input type="checkbox" value="Dining">
             <span class="bw-hi__choice-media">
-              {% if dining_preview != blank %}
-                {{ dining_preview | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 540, 720, 900', sizes: '(max-width: 720px) 100vw, 33vw', alt: dining_collection.title | default: 'Bluewud dining planning preview' }}
-              {% endif %}
+              <img src="{{ dining_preview_src }}" alt="{{ dining_preview_alt }}" loading="lazy" width="900" height="675">
             </span>
             <span class="bw-hi__choice-copy">
               <span class="bw-hi__choice-title">Dining / Hosting</span>
@@ -935,13 +979,7 @@
 
     <aside class="bw-hi__summary">
       <div class="bw-hi__summary-visual">
-        {% if living_preview != blank %}
-          {{ living_preview | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480, 720, 960, 1200', sizes: '(max-width: 980px) 100vw, 40vw', alt: living_collection.title | default: 'Bluewud interiors planning preview', data-hi-summary-image: '' }}
-        {% elsif kitchen_preview != blank %}
-          {{ kitchen_preview | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480, 720, 960, 1200', sizes: '(max-width: 980px) 100vw, 40vw', alt: kitchen_preview_alt, data-hi-summary-image: '' }}
-        {% else %}
-          <img src="{{ kitchen_preview_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="1200" height="900" data-hi-summary-image>
-        {% endif %}
+        <img src="{{ living_preview_src }}" alt="{{ living_preview_alt }}" loading="lazy" width="1200" height="900" data-hi-summary-image>
       </div>
       <p class="bw-hi__summary-caption" data-hi-summary-caption>Choose the room mix first. The lead room will preview here so the brief feels anchored to a real space instead of abstract scope.</p>
       <div class="bw-hi__head">
@@ -968,7 +1006,7 @@
 
       <div class="bw-hi__actions">
         <button class="bw-hi__button" type="button" data-hi-popup-open>Get Free Estimate</button>
-        <a class="bw-hi__button--secondary" href="{{ kitchen_calculator_url }}">Kitchen Planner</a>
+        <a class="bw-hi__button--secondary" href="{{ modular_kitchen_url }}">Explore Kitchen Designs</a>
       </div>
     </aside>
   </div>
