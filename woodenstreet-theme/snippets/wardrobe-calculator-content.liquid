@@ -1,4 +1,5 @@
 {% liquid
+  assign is_embedded = embedded | default: false
   assign contact_url = '/pages/contact-us'
   assign wardrobe_main_url = '/collections/wardrobe'
   assign wardrobe_sliding_url = wardrobe_main_url
@@ -331,6 +332,25 @@
     font-size: 14px;
   }
   .bw-flow__summary-line strong { color: #fff7f1; text-align: right; }
+  .bw-flow__summary-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .bw-flow__summary-tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: rgba(255, 247, 241, 0.12);
+    color: #fff7f1;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
   .bw-flow__badge {
     display: inline-flex;
     align-items: center;
@@ -366,6 +386,19 @@
 </style>
 
 <div class="bw-flow" data-bw-wardrobe-flow>
+  {% unless is_embedded %}
+    <section class="bw-planning-rail">
+      <div class="bw-planning-rail__items" aria-label="Wardrobe planning navigation">
+        <a class="bw-planning-rail__link" href="{{ wardrobe_main_url }}">All wardrobes</a>
+        <a class="bw-planning-rail__link" href="{{ wardrobe_sliding_url }}">Sliding</a>
+        <a class="bw-planning-rail__link" href="{{ wardrobe_hinged_url }}">Hinged</a>
+        <a class="bw-planning-rail__link" href="{{ wardrobe_walkin_url }}">Walk-in</a>
+        <a class="bw-planning-rail__link bw-planning-rail__link--accent is-current" href="{{ wardrobe_main_url | append: '#wardrobe-calculator' }}">Wardrobe Calculator</a>
+        <a class="bw-planning-rail__link" href="{{ estimate_url }}">Get Free Estimate</a>
+      </div>
+    </section>
+  {% endunless %}
+
   <div class="bw-flow__shell">
     <section class="bw-flow__panel">
       <div class="bw-flow__head">
@@ -595,6 +628,7 @@
         <div class="bw-flow__summary-line"><span>Internals</span><strong data-summary-internals>None selected</strong></div>
         <div class="bw-flow__summary-line"><span>Mirror</span><strong data-summary-mirror>No mirror</strong></div>
       </div>
+      <div class="bw-flow__summary-tags" data-summary-tags></div>
 
       <p class="bw-flow__assist">Once submitted, the estimate popup will carry the wardrobe type, room dimensions, material direction, and internal requirements so Bluewud receives a usable planning brief from the start.</p>
       <div class="bw-flow__actions">
@@ -694,6 +728,22 @@
         if (node) node.textContent = summaryMap[key];
       });
       if (bandNode) bandNode.textContent = projectBand();
+      var tagsNode = root.querySelector('[data-summary-tags]');
+      if (tagsNode) {
+        var tags = [
+          summaryMap.type,
+          summaryMap.carcass,
+          summaryMap.shutter,
+          summaryMap.finish,
+          summaryMap.mirror
+        ];
+        internals.slice(0, 4).forEach(function (item) { tags.push(item); });
+        tagsNode.innerHTML = tags
+          .filter(Boolean)
+          .slice(0, 9)
+          .map(function (item) { return '<span class="bw-flow__summary-tag">' + item + '</span>'; })
+          .join('');
+      }
       persistPayload('calculator-progress');
     }
 

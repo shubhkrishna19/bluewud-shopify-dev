@@ -203,6 +203,74 @@
     color: #201713;
     text-align: right;
   }
+  .bw-estimate__carry {
+    display: grid;
+    gap: 12px;
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(45, 33, 27, 0.08);
+  }
+  .bw-estimate__carry[hidden] {
+    display: none;
+  }
+  .bw-estimate__carry-title {
+    margin: 0;
+    color: #201713;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .bw-estimate__carry-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .bw-estimate__carry-copy {
+    margin: 0;
+    color: #66554c;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .bw-estimate__carry-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .bw-estimate__carry-card {
+    display: grid;
+    gap: 6px;
+    padding: 14px 16px;
+    border-radius: 18px;
+    background: rgba(32, 23, 19, 0.04);
+  }
+  .bw-estimate__carry-card span {
+    color: #8a684f;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .bw-estimate__carry-card strong {
+    color: #201713;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .bw-estimate__carry-reset {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 34px;
+    padding: 0 12px;
+    border-radius: 999px;
+    border: 1px solid rgba(32, 23, 19, 0.14);
+    background: rgba(255, 255, 255, 0.72);
+    color: #201713;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
   .bw-estimate__pills {
     display: flex;
     flex-wrap: wrap;
@@ -492,6 +560,17 @@
 </style>
 
 <div class="bw-estimate">
+  <section class="bw-planning-rail">
+    <div class="bw-planning-rail__items" aria-label="Planning and estimate navigation">
+      <a class="bw-planning-rail__link" href="{{ kitchen_design_url }}">Modular Kitchen</a>
+      <a class="bw-planning-rail__link" href="{{ wardrobe_design_url }}">Wardrobes</a>
+      <a class="bw-planning-rail__link" href="{{ kitchen_calculator_url }}">Kitchen Calculator</a>
+      <a class="bw-planning-rail__link" href="{{ wardrobe_calculator_url }}">Wardrobe Calculator</a>
+      <a class="bw-planning-rail__link" href="{{ interiors_calculator_url }}">Home Interiors</a>
+      <a class="bw-planning-rail__link bw-planning-rail__link--accent is-current" href="{{ estimate_url }}">Get Free Estimate</a>
+    </div>
+  </section>
+
   <section class="bw-estimate__hero">
     <span class="bw-estimate__eyebrow">{{ estimate_context_title }}</span>
     <h2 class="bw-estimate__title">Get Free Estimate</h2>
@@ -523,6 +602,14 @@
           <li><span>Budget posture</span><strong data-bw-summary-budget>Under Rs. 1 lakh</strong></li>
           <li><span>Reference source</span><strong data-bw-summary-reference>Website planning page</strong></li>
         </ul>
+        <div class="bw-estimate__carry" data-bw-carry-summary hidden>
+          <div class="bw-estimate__carry-top">
+            <p class="bw-estimate__carry-title">Selections carried from your latest planner</p>
+            <button class="bw-estimate__carry-reset" type="button" data-bw-carry-reset>Clear brief</button>
+          </div>
+          <p class="bw-estimate__carry-copy">These options are attached to the enquiry automatically so the Bluewud team receives the actual planning brief, not just a generic contact request.</p>
+          <div class="bw-estimate__carry-grid" data-bw-carry-grid></div>
+        </div>
       </div>
 
       <div class="bw-estimate__context">
@@ -733,7 +820,25 @@
     var stageSummary = root.querySelector('[data-bw-summary-stage]');
     var budgetSummary = root.querySelector('[data-bw-summary-budget]');
     var referenceSummary = root.querySelector('[data-bw-summary-reference]');
+    var carrySummary = root.querySelector('[data-bw-carry-summary]');
+    var carryGrid = root.querySelector('[data-bw-carry-grid]');
+    var carryReset = root.querySelector('[data-bw-carry-reset]');
     var storedBrief = window.BluewudProjectBriefStore ? window.BluewudProjectBriefStore.read() : null;
+    var briefFreshnessWindow = 1000 * 60 * 60 * 8;
+
+    function storedBriefIsFresh(entry) {
+      if (!entry || !entry.updatedAt) return false;
+      var stamp = Date.parse(entry.updatedAt);
+      if (Number.isNaN(stamp)) return false;
+      return Date.now() - stamp <= briefFreshnessWindow;
+    }
+
+    if (storedBrief && !storedBriefIsFresh(storedBrief)) {
+      if (window.BluewudProjectBriefStore && window.BluewudProjectBriefStore.clear) {
+        window.BluewudProjectBriefStore.clear();
+      }
+      storedBrief = null;
+    }
 
     function syncProjectType(targetChoice) {
       typeChoices.forEach(function (item) {
@@ -754,8 +859,67 @@
       input.checked = true;
       syncProjectType(match);
     }
+    function escapeHtml(value) {
+      return String(value)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+    function formatLabel(key) {
+      return String(key)
+        .replace(/_/g, ' ')
+        .replace(/\b\w/g, function (character) { return character.toUpperCase(); });
+    }
+    function renderStoredSelections() {
+      if (!carrySummary || !carryGrid) return;
+      var options = storedBrief && storedBrief.selectedOptions ? storedBrief.selectedOptions : null;
+      if (!options) {
+        carrySummary.hidden = true;
+        carryGrid.innerHTML = '';
+        return;
+      }
+
+      var excludedKeys = {
+        source_trigger: true,
+        page_family: true,
+        estimate_form: true
+      };
+      var cards = [];
+
+      Object.keys(options).forEach(function (key) {
+        if (excludedKeys[key]) return;
+        var value = options[key];
+        if (Array.isArray(value)) {
+          if (!value.length) return;
+          value = value.join(', ');
+        }
+        if (value === null || value === undefined || value === '') return;
+        cards.push(
+          '<div class="bw-estimate__carry-card"><span>' +
+          escapeHtml(formatLabel(key)) +
+          '</span><strong>' +
+          escapeHtml(value) +
+          '</strong></div>'
+        );
+      });
+
+      if (!cards.length) {
+        carrySummary.hidden = true;
+        carryGrid.innerHTML = '';
+        return;
+      }
+
+      carrySummary.hidden = false;
+      carryGrid.innerHTML = cards.join('');
+    }
 
     function updateSummary() {
+      if (window.BluewudProjectBriefStore) {
+        var liveBrief = window.BluewudProjectBriefStore.read();
+        storedBrief = storedBriefIsFresh(liveBrief) ? liveBrief : null;
+      }
       var selectedProject = root.querySelector('[data-bw-estimate-type] input[name="contact[project_type]"]:checked');
 
       if (projectSummary && selectedProject) {
@@ -799,14 +963,21 @@
       if (routeField) {
         routeField.value = storedBrief && storedBrief.projectRoute ? storedBrief.projectRoute : (window.location.pathname + window.location.search);
       }
+      var mergedSelectedOptions = Object.assign({}, storedBrief && storedBrief.selectedOptions ? storedBrief.selectedOptions : {}, {
+        estimate_form: {
+          city: cityField ? cityField.value : '',
+          property_type: propertyField ? propertyField.value : '',
+          space_size: spaceField ? spaceField.value : '',
+          timeline: timelineField ? timelineField.value : '',
+          budget_range: budgetField ? budgetField.value : '',
+          contact_preference: contactPreferenceField ? contactPreferenceField.value : '',
+          reference_source: referenceField ? referenceField.value : ''
+        }
+      });
       if (optionsField) {
-        if (storedBrief && storedBrief.selectedOptions) {
-          try {
-            optionsField.value = JSON.stringify(storedBrief.selectedOptions);
-          } catch (error) {
-            optionsField.value = '';
-          }
-        } else {
+        try {
+          optionsField.value = JSON.stringify(mergedSelectedOptions);
+        } catch (error) {
           optionsField.value = '';
         }
       }
@@ -818,19 +989,12 @@
           referenceSource: referenceField ? referenceField.value : '',
           projectRoute: routeField ? routeField.value : (window.location.pathname + window.location.search),
           selectedBrief: hiddenBrief ? hiddenBrief.value : '',
-          selectedOptions: Object.assign({}, storedBrief && storedBrief.selectedOptions ? storedBrief.selectedOptions : {}, {
-            estimate_form: {
-              city: cityField ? cityField.value : '',
-              property_type: propertyField ? propertyField.value : '',
-              space_size: spaceField ? spaceField.value : '',
-              timeline: timelineField ? timelineField.value : '',
-              budget_range: budgetField ? budgetField.value : '',
-              contact_preference: contactPreferenceField ? contactPreferenceField.value : '',
-              reference_source: referenceField ? referenceField.value : ''
-            }
-          })
+          selectedOptions: mergedSelectedOptions
         });
+        storedBrief = window.BluewudProjectBriefStore.read();
       }
+
+      renderStoredSelections();
     }
 
     typeChoices.forEach(function (choice) {
@@ -915,6 +1079,21 @@
       field.addEventListener('change', updateSummary);
     });
 
+    if (carryReset) {
+      carryReset.addEventListener('click', function () {
+        if (window.BluewudProjectBriefStore && window.BluewudProjectBriefStore.clear) {
+          window.BluewudProjectBriefStore.clear();
+        }
+        storedBrief = null;
+        if (contextField) contextField.value = 'Modular planning brief';
+        if (routeField) routeField.value = window.location.pathname + window.location.search;
+        if (optionsField) optionsField.value = '';
+        renderStoredSelections();
+        updateSummary();
+      });
+    }
+
     updateSummary();
+    renderStoredSelections();
   })();
 </script>

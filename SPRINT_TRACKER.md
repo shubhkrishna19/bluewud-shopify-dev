@@ -155,6 +155,12 @@ Files:
 - modular kitchen and wardrobe top navigation rails are being unified into one shared planning-rail component so the experience stays visually consistent across planner pages
 - calculator selections now persist into a shared project brief store so moving from planner to estimate no longer drops the customer context
 - popup and estimate submissions now carry route and selected-options payload fields through the native Shopify contact workflow
+- the estimate page now visibly renders the carried planner selections so customers can review what is being sent before they submit the enquiry
+- a modular kitchen imagery prompt pack now exists at `docs/modular-kitchen-imagery-prompt-pack.md` to guide future generation and review of missing kitchen visuals
+- standalone calculator and estimate pages now expose the same planning-rail system so navigation stays consistent beyond the main planner landing pages
+- the estimate page now visibly shows carried-forward planner selections and lets the customer clear the imported brief before sending the enquiry
+- the project brief store now has a clear/reset path and freshness guard so stale planner data is less likely to bleed into a new request
+- modular kitchen image prompting and review guidance now lives in `docs/modular-kitchen-imagery-prompt-pack.md`
 
 ## Current Review Routes
 

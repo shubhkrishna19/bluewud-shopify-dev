@@ -1,4 +1,5 @@
 {% liquid
+  assign is_embedded = embedded | default: false
   assign contact_url = '/pages/contact-us'
   assign main_url = '/collections/kitchen-racks'
   assign l_url = '/collections/kitchen-racks#l-shape'
@@ -373,6 +374,25 @@
     font-size: 14px;
   }
   .bw-flow__summary-line strong { color: #fff7f1; text-align: right; }
+  .bw-flow__summary-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .bw-flow__summary-tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: rgba(255, 247, 241, 0.12);
+    color: #fff7f1;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
   .bw-flow__badge {
     display: inline-flex;
     align-items: center;
@@ -441,6 +461,21 @@
 </style>
 
 <div class="bw-flow" data-bw-kitchen-flow>
+  {% unless is_embedded %}
+    <section class="bw-planning-rail">
+      <div class="bw-planning-rail__items" aria-label="Kitchen planning navigation">
+        <a class="bw-planning-rail__link" href="{{ main_url }}">All layouts</a>
+        <a class="bw-planning-rail__link" href="{{ l_url }}">L-shape</a>
+        <a class="bw-planning-rail__link" href="{{ u_url }}">U-shape</a>
+        <a class="bw-planning-rail__link" href="{{ parallel_url }}">Parallel</a>
+        <a class="bw-planning-rail__link" href="{{ straight_url }}">Straight</a>
+        <a class="bw-planning-rail__link" href="{{ island_url }}">Island</a>
+        <a class="bw-planning-rail__link bw-planning-rail__link--accent is-current" href="{{ main_url | append: '#kitchen-calculator' }}">Kitchen Calculator</a>
+        <a class="bw-planning-rail__link" href="{{ estimate_url }}">Get Free Estimate</a>
+      </div>
+    </section>
+  {% endunless %}
+
   <div class="bw-flow__shell">
     <section class="bw-flow__panel">
       <div class="bw-flow__head">
@@ -648,6 +683,7 @@
         <div class="bw-flow__summary-line"><span>Add-ons</span><strong data-summary-addons>None selected</strong></div>
         <div class="bw-flow__summary-line"><span>Appliances</span><strong data-summary-appliances>Hob, Chimney</strong></div>
       </div>
+      <div class="bw-flow__summary-tags" data-summary-tags></div>
       <p class="bw-flow__assist">Once you submit this, the estimate popup will carry the selected layout, measurements, material path, and add-ons so the Bluewud team receives a far more usable enquiry.</p>
       <div class="bw-flow__actions">
         <button class="bw-flow__button" type="button" data-bw-kitchen-popup-open>Get Free Estimate</button>
@@ -793,6 +829,22 @@
       }
       if (summaryCaptionNode && layoutVisual) {
         summaryCaptionNode.textContent = layoutVisual.caption;
+      }
+      var tagsNode = root.querySelector('[data-summary-tags]');
+      if (tagsNode) {
+        var tags = [
+          summaryMap.layout,
+          summaryMap.carcass,
+          summaryMap.shutter,
+          summaryMap.countertop
+        ];
+        addons.slice(0, 3).forEach(function (item) { tags.push(item); });
+        selectedChecks('appliances').slice(0, 3).forEach(function (item) { tags.push(item); });
+        tagsNode.innerHTML = tags
+          .filter(Boolean)
+          .slice(0, 9)
+          .map(function (item) { return '<span class="bw-flow__summary-tag">' + item + '</span>'; })
+          .join('');
       }
       persistPayload('calculator-progress');
     }

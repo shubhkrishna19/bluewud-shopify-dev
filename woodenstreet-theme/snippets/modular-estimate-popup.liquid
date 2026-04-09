@@ -90,6 +90,38 @@
     font-size: 14px;
     line-height: 1.7;
   }
+  .bw-estimate-modal__details {
+    display: grid;
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .bw-estimate-modal__details[hidden] {
+    display: none;
+  }
+  .bw-estimate-modal__detail-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .bw-estimate-modal__detail-card {
+    display: grid;
+    gap: 4px;
+    padding: 12px 14px;
+    border-radius: 16px;
+    background: rgba(32, 23, 19, 0.04);
+  }
+  .bw-estimate-modal__detail-label {
+    color: #8a684f;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .bw-estimate-modal__detail-value {
+    color: #201713;
+    font-size: 13px;
+    line-height: 1.6;
+  }
   .bw-estimate-modal__grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -176,6 +208,10 @@
     <div class="bw-estimate-modal__summary">
       <div class="bw-estimate-modal__summary-label">Project brief</div>
       <div class="bw-estimate-modal__summary-text" data-bw-estimate-summary-text>No options selected yet.</div>
+    </div>
+    <div class="bw-estimate-modal__details" data-bw-estimate-details hidden>
+      <div class="bw-estimate-modal__summary-label">Selected options</div>
+      <div class="bw-estimate-modal__detail-grid" data-bw-estimate-detail-grid></div>
     </div>
 
     {% form 'contact' %}
@@ -280,6 +316,47 @@
       var typeInput = modal.querySelector('[data-bw-estimate-type-input]');
       var routeInput = modal.querySelector('[data-bw-estimate-route-input]');
       var payloadInput = modal.querySelector('[data-bw-estimate-payload-input]');
+      var detailsWrap = modal.querySelector('[data-bw-estimate-details]');
+      var detailGrid = modal.querySelector('[data-bw-estimate-detail-grid]');
+
+      function optionLabel(key) {
+        var map = {
+          layout: 'Layout',
+          property_type: 'Property',
+          usage_level: 'Usage',
+          wall_a_ft: 'Wall A',
+          wall_b_ft: 'Wall B',
+          wall_c_ft: 'Wall C',
+          ceiling_ft: 'Ceiling',
+          upper_cabinets: 'Upper cabinets',
+          carcass_material: 'Carcass',
+          shutter_material: 'Shutter',
+          countertop: 'Countertop',
+          addons: 'Add-ons',
+          appliances: 'Appliances',
+          wardrobe_type: 'Wardrobe type',
+          room_type: 'Room type',
+          storage_intensity: 'Storage',
+          width_ft: 'Width',
+          height_ft: 'Height',
+          depth_ft: 'Depth',
+          loft: 'Loft',
+          finish: 'Finish',
+          internals: 'Internals',
+          mirror_need: 'Mirror',
+          rooms: 'Rooms',
+          intent: 'Intent',
+          budget_posture: 'Budget',
+          timeline: 'Timeline'
+        };
+        return map[key] || key.replace(/_/g, ' ').replace(/\b\w/g, function (char) { return char.toUpperCase(); });
+      }
+
+      function optionValue(value) {
+        if (Array.isArray(value)) return value.filter(Boolean).join(', ');
+        if (value && typeof value === 'object') return '';
+        return value == null ? '' : String(value);
+      }
 
       if (summaryText && payload.selectedBrief) summaryText.textContent = payload.selectedBrief;
       if (summaryInput) summaryInput.value = payload.selectedBrief || '';
@@ -288,10 +365,35 @@
       if (typeInput) typeInput.value = payload.projectType || '';
       if (routeInput) routeInput.value = payload.projectRoute || '';
       if (payloadInput) payloadInput.value = serializeOptions(payload.selectedOptions);
+      if (detailsWrap && detailGrid) {
+        var cards = [];
+        if (payload.selectedOptions && typeof payload.selectedOptions === 'object') {
+          Object.keys(payload.selectedOptions).forEach(function (key) {
+            if (key === 'source_trigger' || key === 'page_family' || key === 'estimate_form') return;
+            var formatted = optionValue(payload.selectedOptions[key]);
+            if (!formatted) return;
+            cards.push('<div class="bw-estimate-modal__detail-card"><span class="bw-estimate-modal__detail-label">' + optionLabel(key) + '</span><span class="bw-estimate-modal__detail-value">' + formatted + '</span></div>');
+          });
+        }
+        if (cards.length) {
+          detailsWrap.hidden = false;
+          detailGrid.innerHTML = cards.join('');
+        } else {
+          detailsWrap.hidden = true;
+          detailGrid.innerHTML = '';
+        }
+      }
     }
 
     window.BluewudProjectBriefStore = {
       read: safeRead,
+      clear: function () {
+        try {
+          window.localStorage.removeItem(storageKey);
+        } catch (error) {
+          return;
+        }
+      },
       save: function (payload) {
         if (!payload) return;
         safeWrite({
