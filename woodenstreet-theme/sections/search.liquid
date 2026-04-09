@@ -2,7 +2,10 @@
 
 {% liquid
   assign sanitized_terms = sanitized_terms | strip
-  assign has_search_query = sanitized_terms != blank
+  assign has_search_query = false
+  if sanitized_terms != blank
+    assign has_search_query = true
+  endif
   assign product_results_count = 0
   assign page_results_count = 0
   assign article_results_count = 0
