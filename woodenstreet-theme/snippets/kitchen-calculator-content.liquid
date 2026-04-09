@@ -8,8 +8,6 @@
   assign straight_url = '/collections/kitchen-racks#straight'
   assign island_url = '/collections/kitchen-racks#island'
   assign calculator_url = '/pages/modular-kitchen-cost-calculator'
-  assign wardrobe_calculator_url = '/pages/modular-wardrobe-cost-calculator'
-  assign interiors_calculator_url = '/pages/home-interiors-cost-calculator'
   assign estimate_url = contact_url
   assign kitchen_image_l_url = 'modular-kitchen-light-oak-l-shape.png' | asset_url
   assign kitchen_image_u_url = 'modular-kitchen-walnut-u-shape.png' | asset_url
@@ -42,12 +40,6 @@
   endif
   if pages['modular-kitchen-cost-calculator'] != blank
     assign calculator_url = pages['modular-kitchen-cost-calculator'].url
-  endif
-  if pages['modular-wardrobe-cost-calculator'] != blank
-    assign wardrobe_calculator_url = pages['modular-wardrobe-cost-calculator'].url
-  endif
-  if pages['home-interiors-cost-calculator'] != blank
-    assign interiors_calculator_url = pages['home-interiors-cost-calculator'].url
   endif
   if pages['get-free-estimate'] != blank
     assign estimate_url = pages['get-free-estimate'].url
@@ -163,6 +155,48 @@
     display: flex;
     flex-wrap: wrap;
     gap: 10px;
+  }
+  .bw-flow__journey-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 4px;
+  }
+  .bw-flow__journey-card {
+    display: grid;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(32, 23, 19, 0.08);
+    text-decoration: none;
+    color: inherit;
+  }
+  .bw-flow__journey-card-media {
+    display: block;
+    overflow: hidden;
+    border-radius: 16px;
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
+  }
+  .bw-flow__journey-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bw-flow__journey-card-title {
+    margin: 0;
+    color: #201713;
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+  .bw-flow__journey-card-copy {
+    margin: 0;
+    color: #66554c;
+    font-size: 13px;
+    line-height: 1.6;
   }
   .bw-flow__progress {
     display: grid;
@@ -468,14 +502,52 @@
     max-width: 68ch;
   }
   .bw-flow__network-links {
-    display: flex;
-    flex-wrap: wrap;
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .bw-flow__network-card {
+    display: grid;
     gap: 10px;
+    padding: 12px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(32, 23, 19, 0.08);
+    color: inherit;
+    text-decoration: none;
+  }
+  .bw-flow__network-card-media {
+    display: block;
+    overflow: hidden;
+    aspect-ratio: 4 / 3;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
+  }
+  .bw-flow__network-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bw-flow__network-card-title {
+    margin: 0;
+    color: #201713;
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+  .bw-flow__network-card-copy {
+    margin: 0;
+    color: #66554c;
+    font-size: 13px;
+    line-height: 1.6;
   }
   @media (max-width: 980px) {
     .bw-flow__shell { grid-template-columns: 1fr; }
     .bw-flow__summary { position: static; }
     .bw-flow__progress { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .bw-flow__journey-grid,
+    .bw-flow__network-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (max-width: 720px) {
     .bw-flow__panel,
@@ -483,6 +555,8 @@
     .bw-flow__progress,
     .bw-flow__grid { grid-template-columns: 1fr; }
     .bw-flow__summary-cues { grid-template-columns: 1fr; }
+    .bw-flow__journey-grid,
+    .bw-flow__network-links { grid-template-columns: 1fr; }
     .bw-flow__actions { flex-direction: column-reverse; align-items: stretch; }
     .bw-flow__summary-visual { min-height: 180px; }
   }
@@ -517,14 +591,31 @@
           <h3 class="bw-flow__stage-title">Compare the layout once, then finish the brief here</h3>
           <p class="bw-flow__stage-copy">Use the guide links only if the room still feels undecided. Once the direction is clear, stay in this calculator and send one sharper kitchen brief.</p>
         </div>
-        <div class="bw-flow__journey-links" aria-label="Kitchen layout guides">
-          <a class="bw-flow__button--secondary" href="{{ main_url }}">All Kitchen Guides</a>
-          <a class="bw-flow__button--secondary" href="{{ l_url }}">L-shape</a>
-          <a class="bw-flow__button--secondary" href="{{ u_url }}">U-shape</a>
-          <a class="bw-flow__button--secondary" href="{{ parallel_url }}">Parallel</a>
-          <a class="bw-flow__button--secondary" href="{{ straight_url }}">Straight</a>
-          <a class="bw-flow__button--secondary" href="{{ island_url }}">Island</a>
-        </div>
+      <div class="bw-flow__journey-links" aria-label="Kitchen layout guides">
+        <a class="bw-flow__button--secondary" href="{{ main_url }}">All Kitchen Guides</a>
+        <a class="bw-flow__button--secondary" href="{{ l_url }}">L-shape</a>
+        <a class="bw-flow__button--secondary" href="{{ u_url }}">U-shape</a>
+        <a class="bw-flow__button--secondary" href="{{ parallel_url }}">Parallel</a>
+        <a class="bw-flow__button--secondary" href="{{ straight_url }}">Straight</a>
+        <a class="bw-flow__button--secondary" href="{{ island_url }}">Island</a>
+      </div>
+      <div class="bw-flow__journey-grid" aria-label="Kitchen layout previews">
+        <a class="bw-flow__journey-card" href="{{ l_url }}">
+          <span class="bw-flow__journey-card-media"><img src="{{ kitchen_image_l_url }}" alt="L-shape modular kitchen preview" loading="lazy" width="720" height="540"></span>
+          <span class="bw-flow__journey-card-title">L-shape</span>
+          <span class="bw-flow__journey-card-copy">Balanced corner-led planning for most apartments.</span>
+        </a>
+        <a class="bw-flow__journey-card" href="{{ u_url }}">
+          <span class="bw-flow__journey-card-media"><img src="{{ kitchen_image_u_url }}" alt="U-shape modular kitchen preview" loading="lazy" width="720" height="540"></span>
+          <span class="bw-flow__journey-card-title">U-shape</span>
+          <span class="bw-flow__journey-card-copy">Better for storage-heavy cooking and prep zones.</span>
+        </a>
+        <a class="bw-flow__journey-card" href="{{ island_url }}">
+          <span class="bw-flow__journey-card-media"><img src="{{ kitchen_image_island_url }}" alt="Island modular kitchen preview" loading="lazy" width="720" height="540"></span>
+          <span class="bw-flow__journey-card-title">Island</span>
+          <span class="bw-flow__journey-card-copy">Premium open-plan direction with hosting flexibility.</span>
+        </a>
+      </div>
       </section>
 
       <div class="bw-flow__progress">
@@ -732,14 +823,36 @@
 
   <section class="bw-flow__network">
     <div class="bw-flow__network-head">
-      <span class="bw-flow__eyebrow">Related planning paths</span>
-      <h3 class="bw-flow__network-title">Keep the next step close without pulling focus away from the kitchen brief</h3>
-      <p class="bw-flow__network-copy">Use these only when the requirement expands beyond this kitchen scope. The main calculator stays focused while wardrobe, interiors, and estimate routes remain easy to reach.</p>
+      <span class="bw-flow__eyebrow">Visual layout library</span>
+      <h3 class="bw-flow__network-title">Use these references to compare the main kitchen directions visually</h3>
+      <p class="bw-flow__network-copy">The page stays calculator-first, but these image cards keep the most useful layout references close enough to browse without losing focus.</p>
     </div>
-    <div class="bw-flow__network-links">
-      <a class="bw-flow__button--secondary" href="{{ wardrobe_calculator_url }}">Wardrobe Calculator</a>
-      <a class="bw-flow__button--secondary" href="{{ interiors_calculator_url }}">Home Interiors</a>
-      <a class="bw-flow__button--secondary" href="{{ estimate_url }}">Get Free Estimate</a>
+    <div class="bw-flow__network-links" aria-label="Kitchen layout image references">
+      <a class="bw-flow__network-card" href="{{ l_url }}">
+        <span class="bw-flow__network-card-media"><img src="{{ kitchen_image_l_url }}" alt="L-shape modular kitchen reference" loading="lazy" width="720" height="540"></span>
+        <span class="bw-flow__network-card-title">L-shape</span>
+        <span class="bw-flow__network-card-copy">Clean corner flow for everyday kitchens.</span>
+      </a>
+      <a class="bw-flow__network-card" href="{{ u_url }}">
+        <span class="bw-flow__network-card-media"><img src="{{ kitchen_image_u_url }}" alt="U-shape modular kitchen reference" loading="lazy" width="720" height="540"></span>
+        <span class="bw-flow__network-card-title">U-shape</span>
+        <span class="bw-flow__network-card-copy">More wraparound storage and prep volume.</span>
+      </a>
+      <a class="bw-flow__network-card" href="{{ parallel_url }}">
+        <span class="bw-flow__network-card-media"><img src="{{ kitchen_image_parallel_url }}" alt="Parallel modular kitchen reference" loading="lazy" width="720" height="540"></span>
+        <span class="bw-flow__network-card-title">Parallel</span>
+        <span class="bw-flow__network-card-copy">Efficient two-run planning for tighter rooms.</span>
+      </a>
+      <a class="bw-flow__network-card" href="{{ straight_url }}">
+        <span class="bw-flow__network-card-media"><img src="{{ kitchen_image_straight_url }}" alt="Straight modular kitchen reference" loading="lazy" width="720" height="540"></span>
+        <span class="bw-flow__network-card-title">Straight</span>
+        <span class="bw-flow__network-card-copy">Single-wall layout with a calmer visual read.</span>
+      </a>
+      <a class="bw-flow__network-card" href="{{ island_url }}">
+        <span class="bw-flow__network-card-media"><img src="{{ kitchen_image_island_url }}" alt="Island modular kitchen reference" loading="lazy" width="720" height="540"></span>
+        <span class="bw-flow__network-card-title">Island</span>
+        <span class="bw-flow__network-card-copy">Best when the room can support a premium centrepiece.</span>
+      </a>
     </div>
   </section>
 </div>
