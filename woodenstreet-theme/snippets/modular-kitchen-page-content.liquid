@@ -6,23 +6,18 @@
   assign parallel_url = '/collections/kitchen-racks#parallel'
   assign straight_url = '/collections/kitchen-racks#straight'
   assign island_url = '/collections/kitchen-racks#island'
-  assign calculator_url = '/collections/kitchen-racks#kitchen-calculator'
-  assign wardrobe_calculator_url = '/collections/wardrobe#wardrobe-calculator'
-  assign interiors_calculator_url = '/collections/kitchen-racks#broader-planning'
+  assign calculator_url = '/pages/modular-kitchen-cost-calculator'
+  assign wardrobe_calculator_url = '/pages/modular-wardrobe-cost-calculator'
+  assign interiors_calculator_url = '/pages/home-interiors-cost-calculator'
   assign estimate_url = '/pages/get-free-estimate'
   assign contact_url = '/pages/contact-us'
   assign default_variant = 'all'
   assign page_handle = blank
-  assign calculator_entry_url = calculator_url
   assign calculator_cta_url = calculator_url
-  assign wardrobe_calculator_entry_url = wardrobe_calculator_url
-  assign interiors_entry_url = interiors_calculator_url
-  assign show_inline_calculator = false
+  assign calculator_source_param = 'Modular Kitchen Guide' | url_encode
 
   if page != blank
     assign page_handle = page.handle
-  else
-    assign show_inline_calculator = true
   endif
 
   if page_handle == 'l-shape-modular-kitchen-design'
@@ -75,29 +70,11 @@
   if pages['get-free-estimate'] == blank and pages['contact-us'] != blank
     assign estimate_url = pages['contact-us'].url
   endif
-  if show_inline_calculator
-    assign main_url = '/collections/kitchen-racks'
-    assign l_url = main_url | append: '#l-shape'
-    assign u_url = main_url | append: '#u-shape'
-    assign parallel_url = main_url | append: '#parallel'
-    assign straight_url = main_url | append: '#straight'
-    assign island_url = main_url | append: '#island'
-    assign calculator_entry_url = '#kitchen-calculator'
-    assign calculator_cta_url = '#kitchen-calculator'
+
+  if default_variant == 'all'
+    assign calculator_cta_url = calculator_url | append: '?source=' | append: calculator_source_param
   else
-    assign calculator_entry_url = calculator_url
-    assign calculator_source_param = 'Modular Kitchen Guide' | url_encode
-    if default_variant == 'all'
-      assign calculator_cta_url = calculator_url | append: '?source=' | append: calculator_source_param
-    else
-      assign calculator_cta_url = calculator_url | append: '?layout=' | append: default_variant | append: '&source=' | append: calculator_source_param
-    endif
-  endif
-  if pages['modular-wardrobe-cost-calculator'] == blank
-    assign wardrobe_calculator_entry_url = '/collections/wardrobe#wardrobe-calculator'
-  endif
-  if pages['home-interiors-cost-calculator'] == blank and show_inline_calculator
-    assign interiors_entry_url = '#broader-planning'
+    assign calculator_cta_url = calculator_url | append: '?layout=' | append: default_variant | append: '&source=' | append: calculator_source_param
   endif
 
   assign hero_all = blank
@@ -161,8 +138,7 @@
 <style>
   .bw-modular { display: grid; gap: 24px; }
   .bw-modular > .bw-planning-rail { order: -2; }
-  .bw-modular > .bw-modular__tool { order: -1; }
-  .bw-modular > .bw-modular__guide { order: 0; }
+  .bw-modular > .bw-modular__guide { order: -1; }
   .bw-modular > .bw-modular__panel,
   .bw-modular > .bw-modular__block,
   .bw-modular > .bw-modular__band { order: 1; }
@@ -698,7 +674,7 @@
       <a class="bw-planning-rail__link{% if default_variant == 'parallel' %} is-current{% endif %}" href="{{ parallel_url }}" data-variant-toggle="parallel">Parallel</a>
       <a class="bw-planning-rail__link{% if default_variant == 'straight' %} is-current{% endif %}" href="{{ straight_url }}" data-variant-toggle="straight">Straight</a>
       <a class="bw-planning-rail__link{% if default_variant == 'island' %} is-current{% endif %}" href="{{ island_url }}" data-variant-toggle="island">Island</a>
-      <a class="bw-planning-rail__link bw-planning-rail__link--accent" href="{{ calculator_cta_url }}">Kitchen Calculator</a>
+      <a class="bw-planning-rail__link bw-planning-rail__link--accent" href="{{ calculator_cta_url }}" data-calculator-link>Kitchen Calculator</a>
     </div>
   </section>
 
@@ -725,7 +701,7 @@
         <h3>4. Move into a sharper next step</h3>
         <p>The more complete the brief, the more useful the calculator and estimate become.</p>
         <div class="bw-modular__blueprint-actions">
-          <a class="bw-modular__button" href="{{ calculator_cta_url }}">Open Kitchen Calculator</a>
+          <a class="bw-modular__button" href="{{ calculator_cta_url }}" data-calculator-link>Open Kitchen Calculator</a>
         </div>
       </article>
     </div>
@@ -953,7 +929,7 @@
             <li>Use the calculator or estimate form once the project brief is specific enough to price properly.</li>
           </ul>
           <div class="bw-modular__actions">
-          <a class="bw-modular__button" href="{{ calculator_cta_url }}">Start Kitchen Calculator</a>
+          <a class="bw-modular__button" href="{{ calculator_cta_url }}" data-calculator-link>Start Kitchen Calculator</a>
           </div>
           <div class="bw-modular__proof-strip" aria-label="Kitchen reassurance">
             <span class="bw-modular__proof-pill">Design support included</span>
@@ -1102,7 +1078,7 @@
             <li>Works especially well when the family wants utility and visual calm together.</li>
           </ul>
           <div class="bw-modular__actions">
-          <a class="bw-modular__button" href="{{ calculator_cta_url }}">Plan This Layout</a>
+          <a class="bw-modular__button" href="{{ calculator_cta_url }}" data-calculator-link>Plan This Layout</a>
           </div>
         </div>
         <div class="bw-modular__visual">
@@ -1163,7 +1139,7 @@
           <h3>Next action</h3>
           <p>Open the calculator if you want a sharper brief, or move straight to estimate if the room and storage goals are already clear.</p>
           <div class="bw-modular__blueprint-actions">
-          <a class="bw-modular__button" href="{{ calculator_cta_url }}">Plan L-shape</a>
+          <a class="bw-modular__button" href="{{ calculator_cta_url }}" data-calculator-link>Plan L-shape</a>
           </div>
         </article>
         <article class="bw-modular__blueprint-card">
@@ -1210,7 +1186,7 @@
             <li>Needs enough width for comfortable movement.</li>
           </ul>
           <div class="bw-modular__actions">
-          <a class="bw-modular__button" href="{{ calculator_cta_url }}">Plan This Layout</a>
+          <a class="bw-modular__button" href="{{ calculator_cta_url }}" data-calculator-link>Plan This Layout</a>
           </div>
         </div>
         <div class="bw-modular__visual">
@@ -1267,7 +1243,7 @@
           <h3>Next action</h3>
           <p>Open the calculator for a deeper scope brief or send the project into the estimate step once room dimensions are settled.</p>
           <div class="bw-modular__blueprint-actions">
-          <a class="bw-modular__button" href="{{ calculator_cta_url }}">Plan U-shape</a>
+          <a class="bw-modular__button" href="{{ calculator_cta_url }}" data-calculator-link>Plan U-shape</a>
           </div>
         </article>
         <article class="bw-modular__blueprint-card">
@@ -1299,7 +1275,7 @@
             <li>Works best when aisle width is planned carefully.</li>
           </ul>
           <div class="bw-modular__actions">
-          <a class="bw-modular__button" href="{{ calculator_cta_url }}">Plan This Layout</a>
+          <a class="bw-modular__button" href="{{ calculator_cta_url }}" data-calculator-link>Plan This Layout</a>
           </div>
         </div>
         <div class="bw-modular__visual">
@@ -1356,7 +1332,7 @@
           <h3>Next action</h3>
           <p>Move into calculator mode if you want to compare a more functional brief, or use estimate when the room is already measurable.</p>
           <div class="bw-modular__blueprint-actions">
-          <a class="bw-modular__button" href="{{ calculator_cta_url }}">Plan Parallel</a>
+          <a class="bw-modular__button" href="{{ calculator_cta_url }}" data-calculator-link>Plan Parallel</a>
           </div>
         </article>
         <article class="bw-modular__blueprint-card">
@@ -1388,7 +1364,7 @@
             <li>Needs strong storage optimization to stay clutter-free.</li>
           </ul>
           <div class="bw-modular__actions">
-          <a class="bw-modular__button" href="{{ calculator_cta_url }}">Plan This Layout</a>
+          <a class="bw-modular__button" href="{{ calculator_cta_url }}" data-calculator-link>Plan This Layout</a>
           </div>
         </div>
         <div class="bw-modular__visual">
@@ -1445,7 +1421,7 @@
           <h3>Next action</h3>
           <p>Open the calculator to make the brief more concrete, or move to estimate once the wall size and storage need are known.</p>
           <div class="bw-modular__blueprint-actions">
-          <a class="bw-modular__button" href="{{ calculator_cta_url }}">Plan Straight</a>
+          <a class="bw-modular__button" href="{{ calculator_cta_url }}" data-calculator-link>Plan Straight</a>
           </div>
         </article>
         <article class="bw-modular__blueprint-card">
@@ -1477,7 +1453,7 @@
             <li>Needs enough movement clearance on all sides.</li>
           </ul>
           <div class="bw-modular__actions">
-          <a class="bw-modular__button" href="{{ calculator_cta_url }}">Plan This Layout</a>
+          <a class="bw-modular__button" href="{{ calculator_cta_url }}" data-calculator-link>Plan This Layout</a>
           </div>
         </div>
         <div class="bw-modular__visual">
@@ -1534,7 +1510,7 @@
           <h3>Next action</h3>
           <p>Move into calculator mode for a stronger project brief or go straight to estimate if the room dimensions are already final.</p>
           <div class="bw-modular__blueprint-actions">
-          <a class="bw-modular__button" href="{{ calculator_cta_url }}">Plan Island</a>
+          <a class="bw-modular__button" href="{{ calculator_cta_url }}" data-calculator-link>Plan Island</a>
           </div>
         </article>
         <article class="bw-modular__blueprint-card">
@@ -1553,44 +1529,30 @@
     {{ product_grid }}
   </section>
 
-  {% unless show_inline_calculator %}
-    <section class="bw-modular__band">
-      <div class="bw-modular__eyebrow">Move from inspiration to planning</div>
-      <h2 class="bw-modular__title">Shortlist the layout, then build the brief in the calculator</h2>
-      <p class="bw-modular__copy">The strongest next step is not endless browsing. It is selecting the right layout and submitting a clearer requirements brief to the Bluewud team.</p>
-      <div class="bw-modular__actions">
-        <a class="bw-modular__button" href="{{ calculator_cta_url }}">Open Kitchen Calculator</a>
-        <button class="bw-modular__button--secondary" type="button" data-bw-estimate-open data-estimate-context="Modular Kitchen" data-estimate-trigger="band">Get Free Estimate</button>
-      </div>
-    </section>
-  {% endunless %}
-
-  {% if show_inline_calculator %}
-    <section class="bw-modular__tool" id="kitchen-calculator">
-      {% render 'kitchen-calculator-content', embedded: true %}
-    </section>
-    <section class="bw-modular__block bw-modular__guide" aria-label="How to use the kitchen planner">
-      <div class="bw-modular__section-head">
-        <div class="bw-modular__eyebrow">Kitchen preflight</div>
-        <h2 class="bw-modular__title" style="font-size:clamp(22px, 3vw, 30px);">Use the calculator first. Use the reference blocks after.</h2>
-        <p class="bw-modular__copy">The selector above should carry the live brief. The sections below are there to help sharpen layout fit, finish direction, and estimate readiness once the room starts making sense.</p>
-      </div>
-      <div class="bw-modular__guide-grid">
-        <article class="bw-modular__guide-card">
-          <strong>Lock the geometry first</strong>
-          <p>L-shape, U-shape, parallel, straight, or island should be settled before finishes and accessories take over the decision.</p>
-        </article>
-        <article class="bw-modular__guide-card">
-          <strong>Use finishes to refine, not to guess</strong>
-          <p>Material, countertop, hardware, and appliance choices matter most after the room shape and storage load are clear.</p>
-        </article>
-        <article class="bw-modular__guide-card">
-          <strong>Estimate once the brief feels grounded</strong>
-          <p>A sharper kitchen brief gives Bluewud a better starting point for design and pricing than a generic style-led enquiry.</p>
-        </article>
-      </div>
-    </section>
-  {% endif %}
+  <section class="bw-modular__block bw-modular__guide" aria-label="How to use the kitchen planner">
+    <div class="bw-modular__section-head">
+      <div class="bw-modular__eyebrow">Kitchen preflight</div>
+      <h2 class="bw-modular__title" style="font-size:clamp(22px, 3vw, 30px);">Use the calculator as its own page. Use this guide to sharpen the brief first.</h2>
+      <p class="bw-modular__copy">This page should help the customer choose the right layout, finish direction, and estimate timing. The calculator now lives on its own page so the actual brief-building flow stays cleaner.</p>
+    </div>
+    <div class="bw-modular__guide-grid">
+      <article class="bw-modular__guide-card">
+        <strong>Lock the geometry first</strong>
+        <p>L-shape, U-shape, parallel, straight, or island should be settled before finishes and accessories take over the decision.</p>
+      </article>
+      <article class="bw-modular__guide-card">
+        <strong>Use finishes to refine, not to guess</strong>
+        <p>Material, countertop, hardware, and appliance choices matter most after the room shape and storage load are clear.</p>
+      </article>
+      <article class="bw-modular__guide-card">
+        <strong>Move to the calculator when the room makes sense</strong>
+        <p>Once the layout feels right, open the standalone kitchen calculator and send one stronger brief into the estimate flow.</p>
+        <div class="bw-modular__actions">
+          <a class="bw-modular__button" href="{{ calculator_cta_url }}" data-calculator-link>Open Kitchen Calculator</a>
+        </div>
+      </article>
+    </div>
+  </section>
 </div>
 
 {% render 'modular-estimate-popup', modal_id: 'bw-kitchen-estimate-popup', modal_title: 'Get a modular kitchen estimate', context_label: 'Bluewud modular kitchen' %}
@@ -1720,25 +1682,16 @@
       });
     });
 
-    root.querySelectorAll('a[href="#kitchen-calculator"]').forEach(function (link) {
+    root.querySelectorAll('[data-calculator-link]').forEach(function (link) {
       link.addEventListener('click', function (event) {
-        var target = root.querySelector('#kitchen-calculator');
-        if (!target) return;
         event.preventDefault();
         var activeVariant = activeVariantKey();
-        var calculatorRoot = target.querySelector('[data-bw-kitchen-flow]');
-        if (calculatorRoot) {
-          calculatorRoot.dispatchEvent(new CustomEvent('bw:kitchen-layout-select', {
-            detail: { layout: activeVariant }
-          }));
-        }
-        var nextUrl = new URL(window.location.href);
+        var nextUrl = new URL('{{ calculator_url }}', window.location.origin);
         if (activeVariant && activeVariant !== 'all') nextUrl.searchParams.set('layout', activeVariant);
         else nextUrl.searchParams.delete('layout');
-        nextUrl.hash = 'kitchen-calculator';
-        window.history.replaceState({}, '', nextUrl.pathname + nextUrl.search + nextUrl.hash);
-        persistPlanningPayload('calculator-jump');
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        nextUrl.searchParams.set('source', 'Modular Kitchen Guide');
+        persistPlanningPayload('calculator-open');
+        window.location.assign(nextUrl.pathname + nextUrl.search);
       });
     });
 

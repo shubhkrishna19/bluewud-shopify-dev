@@ -1,8 +1,8 @@
 {% liquid
   assign wardrobe_page_url = '/collections/wardrobe'
   assign kitchen_page_url = '/collections/kitchen-racks'
-  assign wardrobe_calculator_url = '/collections/wardrobe#wardrobe-calculator'
-  assign kitchen_calculator_url = '/collections/kitchen-racks#kitchen-calculator'
+  assign wardrobe_calculator_url = '/pages/modular-wardrobe-cost-calculator'
+  assign kitchen_calculator_url = '/pages/modular-kitchen-cost-calculator'
   assign interiors_calculator_url = '/pages/home-interiors-cost-calculator'
   assign wardrobe_design_url = '/collections/wardrobe'
   assign kitchen_design_url = '/collections/kitchen-racks'
@@ -23,9 +23,6 @@
   endif
   if pages['home-interiors-cost-calculator'] != blank
     assign interiors_calculator_url = pages['home-interiors-cost-calculator'].url
-  endif
-  if pages['home-interiors-cost-calculator'] == blank
-    assign interiors_calculator_url = '/collections/kitchen-racks#broader-planning'
   endif
   if pages['modular-wardrobe-designs'] != blank
     assign wardrobe_design_url = pages['modular-wardrobe-designs'].url
@@ -604,11 +601,11 @@
     <div class="bw-estimate__hero-grid">
       <div class="bw-estimate__brief">
         <p class="bw-estimate__brief-title">Choose the project direction first</p>
-        <p class="bw-estimate__brief-copy">This estimate page works best when the customer already has a room type or layout in mind. Use the links below to keep the journey tight and consistent.</p>
+        <p class="bw-estimate__brief-copy">Use the standalone planners below if you want to shape the brief first. If the scope is already clear, submit the estimate directly and we will take it forward from there.</p>
         <ul class="bw-estimate__brief-list">
-          <li>Pick a modular kitchen, wardrobe, or broader interiors route.</li>
-          <li>Share the room context so the team can narrow scope faster.</li>
-          <li>Move into the contact form once the brief feels ready.</li>
+          <li>Pick the right planning route only if you still need to shape the brief.</li>
+          <li>Keep the room context and priorities clear enough for the team to respond well.</li>
+          <li>Use this estimate form when you are ready to move into a real quote conversation.</li>
         </ul>
         <div class="bw-estimate__pills">
           <a class="bw-estimate__pill bw-estimate__pill--highlight" href="{{ kitchen_design_url }}">Modular Kitchen</a>
@@ -644,11 +641,11 @@
       </div>
 
       <div class="bw-estimate__context">
-        <span class="bw-estimate__context-label">Planning shortcuts</span>
+        <span class="bw-estimate__context-label">Standalone planners</span>
         <ul class="bw-estimate__context-list">
-          <li><span>Kitchen route</span><strong><a class="bw-estimate__pill" href="{{ kitchen_calculator_url }}">Open calculator</a></strong></li>
-          <li><span>Wardrobe route</span><strong><a class="bw-estimate__pill" href="{{ wardrobe_calculator_url }}">Open calculator</a></strong></li>
-          <li><span>Interiors route</span><strong><a class="bw-estimate__pill" href="{{ interiors_calculator_url }}">Open calculator</a></strong></li>
+          <li><span>Kitchen route</span><strong><a class="bw-estimate__pill" href="{{ kitchen_calculator_url }}">Open planner</a></strong></li>
+          <li><span>Wardrobe route</span><strong><a class="bw-estimate__pill" href="{{ wardrobe_calculator_url }}">Open planner</a></strong></li>
+          <li><span>Interiors route</span><strong><a class="bw-estimate__pill" href="{{ interiors_calculator_url }}">Open planner</a></strong></li>
         </ul>
       </div>
     </div>

@@ -1,18 +1,16 @@
 {% liquid
   assign mobile_kitchen_url = '/collections/kitchen-racks'
   assign mobile_wardrobe_url = '/collections/wardrobe'
-  assign mobile_kitchen_calculator_url = '/collections/kitchen-racks#kitchen-calculator'
-  assign mobile_wardrobe_calculator_url = '/collections/wardrobe#wardrobe-calculator'
+  assign mobile_kitchen_calculator_url = '/pages/modular-kitchen-cost-calculator'
+  assign mobile_wardrobe_calculator_url = '/pages/modular-wardrobe-cost-calculator'
   assign mobile_estimate_url = '/pages/get-free-estimate'
 
   if pages['modular-kitchen-designs'] != blank
     assign mobile_kitchen_url = pages['modular-kitchen-designs'].url
-    assign mobile_kitchen_calculator_url = mobile_kitchen_url | append: '#kitchen-calculator'
   endif
 
   if pages['modular-wardrobe-designs'] != blank
     assign mobile_wardrobe_url = pages['modular-wardrobe-designs'].url
-    assign mobile_wardrobe_calculator_url = mobile_wardrobe_url | append: '#wardrobe-calculator'
   endif
 
   if pages['modular-kitchen-cost-calculator'] != blank

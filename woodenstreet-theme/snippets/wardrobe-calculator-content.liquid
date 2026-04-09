@@ -5,8 +5,9 @@
   assign wardrobe_sliding_url = wardrobe_main_url
   assign wardrobe_hinged_url = wardrobe_main_url
   assign wardrobe_walkin_url = wardrobe_main_url
-  assign kitchen_calculator_url = '/collections/kitchen-racks#kitchen-calculator'
-  assign interiors_calculator_url = '/collections/kitchen-racks#broader-planning'
+  assign calculator_url = '/pages/modular-wardrobe-cost-calculator'
+  assign kitchen_calculator_url = '/pages/modular-kitchen-cost-calculator'
+  assign interiors_calculator_url = '/pages/home-interiors-cost-calculator'
   assign estimate_url = '/pages/get-free-estimate'
 
   if pages['modular-wardrobe-designs'] != blank
@@ -21,14 +22,14 @@
   if pages['walk-in-wardrobes'] != blank
     assign wardrobe_walkin_url = pages['walk-in-wardrobes'].url
   endif
+  if pages['modular-wardrobe-cost-calculator'] != blank
+    assign calculator_url = pages['modular-wardrobe-cost-calculator'].url
+  endif
   if pages['modular-kitchen-cost-calculator'] != blank
     assign kitchen_calculator_url = pages['modular-kitchen-cost-calculator'].url
   endif
   if pages['home-interiors-cost-calculator'] != blank
     assign interiors_calculator_url = pages['home-interiors-cost-calculator'].url
-  endif
-  if pages['home-interiors-cost-calculator'] == blank
-    assign interiors_calculator_url = '/collections/kitchen-racks#broader-planning'
   endif
   if pages['get-free-estimate'] != blank
     assign estimate_url = pages['get-free-estimate'].url
@@ -393,7 +394,7 @@
         <a class="bw-planning-rail__link" href="{{ wardrobe_sliding_url }}">Sliding</a>
         <a class="bw-planning-rail__link" href="{{ wardrobe_hinged_url }}">Hinged</a>
         <a class="bw-planning-rail__link" href="{{ wardrobe_walkin_url }}">Walk-in</a>
-        <a class="bw-planning-rail__link bw-planning-rail__link--accent is-current" href="{{ wardrobe_main_url | append: '#wardrobe-calculator' }}">Wardrobe Calculator</a>
+        <a class="bw-planning-rail__link bw-planning-rail__link--accent is-current" href="{{ calculator_url }}">Wardrobe Calculator</a>
         <a class="bw-planning-rail__link" href="{{ estimate_url }}">Get Free Estimate</a>
       </div>
     </section>
@@ -756,7 +757,7 @@
         projectType: 'Modular Wardrobe',
         projectContext: 'Bluewud modular wardrobe',
         referenceSource: 'Wardrobe calculator',
-        projectRoute: window.location.pathname + window.location.search + '#wardrobe-calculator',
+        projectRoute: window.location.pathname + window.location.search,
         selectedBrief: briefSummary(),
         selectedOptions: {
           wardrobe_type: selectedRadio('wardrobe_type'),

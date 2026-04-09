@@ -5,9 +5,9 @@
   assign sliding_url = '/collections/wardrobe'
   assign hinged_url = '/collections/wardrobe'
   assign walk_in_url = '/collections/wardrobe'
-  assign calculator_url = '/collections/wardrobe#wardrobe-calculator'
-  assign kitchen_calculator_url = '/collections/kitchen-racks#kitchen-calculator'
-  assign interiors_calculator_url = '/collections/kitchen-racks#broader-planning'
+  assign calculator_url = '/pages/modular-wardrobe-cost-calculator'
+  assign kitchen_calculator_url = '/pages/modular-kitchen-cost-calculator'
+  assign interiors_calculator_url = '/pages/home-interiors-cost-calculator'
   assign estimate_url = '/pages/get-free-estimate'
   assign contact_url = '/pages/contact-us'
   assign phone_url = 'tel:+918800609609'
@@ -69,9 +69,6 @@
   if pages['modular-wardrobe-cost-calculator'] != blank
     assign calculator_url = pages['modular-wardrobe-cost-calculator'].url
   endif
-  if is_collection_context
-    assign calculator_url = '#wardrobe-calculator'
-  endif
   if pages['modular-kitchen-cost-calculator'] != blank
     assign kitchen_calculator_url = pages['modular-kitchen-cost-calculator'].url
   endif
@@ -89,27 +86,24 @@
     assign sliding_url = '#sliding-wardrobe'
     assign hinged_url = '#hinged-wardrobe'
     assign walk_in_url = '#walk-in-wardrobe'
-    assign calculator_cta_url = '#wardrobe-calculator'
-  else
-    assign wardrobe_source_param = 'Modular Wardrobe Guide' | url_encode
-    case wardrobe_variant
-      when 'sliding'
-        assign calculator_cta_url = calculator_url | append: '?type=Sliding&source=' | append: wardrobe_source_param
-      when 'hinged'
-        assign calculator_cta_url = calculator_url | append: '?type=Hinged&source=' | append: wardrobe_source_param
-      when 'walk-in'
-        assign calculator_cta_url = calculator_url | append: '?type=Walk-in&source=' | append: wardrobe_source_param
-      else
-        assign calculator_cta_url = calculator_url | append: '?source=' | append: wardrobe_source_param
-    endcase
   endif
+  assign wardrobe_source_param = 'Modular Wardrobe Guide' | url_encode
+  case wardrobe_variant
+    when 'sliding'
+      assign calculator_cta_url = calculator_url | append: '?type=Sliding&source=' | append: wardrobe_source_param
+    when 'hinged'
+      assign calculator_cta_url = calculator_url | append: '?type=Hinged&source=' | append: wardrobe_source_param
+    when 'walk-in'
+      assign calculator_cta_url = calculator_url | append: '?type=Walk-in&source=' | append: wardrobe_source_param
+    else
+      assign calculator_cta_url = calculator_url | append: '?source=' | append: wardrobe_source_param
+  endcase
 %}
 
 <style>
   .bw-wardrobe-page { display: grid; gap: 22px; }
   .bw-wardrobe-page > .bw-planning-rail { order: -2; }
-  .bw-wardrobe-page > .bw-wardrobe-calculator-anchor { order: -1; }
-  .bw-wardrobe-page > .bw-wardrobe-guide { order: 0; }
+  .bw-wardrobe-page > .bw-wardrobe-guide { order: -1; }
   .bw-wardrobe-page > .bw-wardrobe-block { order: 1; }
   .bw-wardrobe-block {
     padding: 26px 28px;
@@ -577,44 +571,6 @@
     text-transform: uppercase;
     cursor: pointer;
   }
-  .bw-wardrobe-calculator-anchor {
-    scroll-margin-top: 120px;
-  }
-  .bw-wardrobe-embedded-calculator {
-    display: grid;
-    gap: 18px;
-    margin-top: 18px;
-    padding: 24px;
-    border-radius: 28px;
-    background: rgba(255, 251, 247, 0.92);
-    border: 1px solid rgba(45, 33, 27, 0.08);
-    box-shadow: 0 20px 54px rgba(35, 24, 19, 0.07);
-  }
-  .bw-wardrobe-embedded-calculator__head {
-    display: grid;
-    gap: 8px;
-  }
-  .bw-wardrobe-embedded-calculator__eyebrow {
-    color: #8a684f;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-  }
-  .bw-wardrobe-embedded-calculator__title {
-    margin: 0;
-    color: #201713;
-    font-size: clamp(24px, 3vw, 34px);
-    line-height: 1.08;
-    letter-spacing: -0.03em;
-  }
-  .bw-wardrobe-embedded-calculator__copy {
-    margin: 0;
-    color: #66554c;
-    font-size: 14px;
-    line-height: 1.8;
-    max-width: 68ch;
-  }
   .bw-wardrobe-spotlight {
     display: grid; grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr); gap: 18px;
   }
@@ -786,7 +742,6 @@
     .bw-wardrobe-grid-4, .bw-wardrobe-grid-3, .bw-wardrobe-grid-2, .bw-wardrobe-products, .bw-wardrobe-compare-grid, .bw-wardrobe-journey-grid, .bw-wardrobe-measure-grid, .bw-wardrobe-route-grid, .bw-wardrobe-gallery-grid, .bw-wardrobe-consult-grid, .bw-wardrobe-proof-grid, .bw-wardrobe-guide-grid { grid-template-columns: 1fr; }
     .bw-wardrobe-gallery-main-card, .bw-wardrobe-gallery-card { grid-template-columns: 1fr; }
     .bw-wardrobe-lens-grid { grid-template-columns: 1fr; }
-    .bw-wardrobe-embedded-calculator { padding: 20px; border-radius: 24px; }
     .bw-wardrobe-product-media { min-height: 220px; }
   }
 </style>
@@ -798,7 +753,7 @@
       <a class="bw-planning-rail__link{% if wardrobe_variant == 'sliding' %} is-current{% endif %}" href="{{ sliding_url }}" data-wardrobe-chip="sliding">Sliding</a>
       <a class="bw-planning-rail__link{% if wardrobe_variant == 'hinged' %} is-current{% endif %}" href="{{ hinged_url }}" data-wardrobe-chip="hinged">Hinged</a>
       <a class="bw-planning-rail__link{% if wardrobe_variant == 'walk-in' %} is-current{% endif %}" href="{{ walk_in_url }}" data-wardrobe-chip="walk-in">Walk-in</a>
-      <a class="bw-planning-rail__link bw-planning-rail__link--accent" href="{{ calculator_cta_url }}" data-wardrobe-chip="calculator">Wardrobe Calculator</a>
+      <a class="bw-planning-rail__link bw-planning-rail__link--accent" href="{{ calculator_cta_url }}" data-wardrobe-calculator-link>Wardrobe Calculator</a>
     </div>
   </section>
 
@@ -887,7 +842,7 @@
       {% endif %}
     </div>
     <div class="bw-wardrobe-route-actions">
-      <a class="bw-wardrobe-route-link" href="{{ calculator_cta_url }}">Open Wardrobe Calculator</a>
+      <a class="bw-wardrobe-route-link" href="{{ calculator_cta_url }}" data-wardrobe-calculator-link>Open Wardrobe Calculator</a>
       <button class="bw-wardrobe-button--secondary" type="button" data-bw-wardrobe-estimate-open data-estimate-trigger="route">Get Free Estimate</button>
     </div>
   </section>
@@ -988,7 +943,7 @@
             <h3>Keep the wardrobe picture room-led, not catalog-led</h3>
             <p>The strongest decisions start with clearance, access, and internal storage, then move to finish and detailing once the room feels grounded.</p>
             <div class="bw-wardrobe-gallery-actions">
-          <a class="bw-wardrobe-gallery-link" href="{{ calculator_cta_url }}">Use Calculator</a>
+              <a class="bw-wardrobe-gallery-link" href="{{ calculator_cta_url }}" data-wardrobe-calculator-link>Use Calculator</a>
             </div>
           </div>
         </article>
@@ -1030,7 +985,7 @@
           <p>Use this when the project is wardrobe-first and this page already feels close to the right format, storage brief, and finish direction.</p>
         </div>
         <p class="bw-wardrobe-journey-meta">Best when: you want a wardrobe-specific budget direction before talking.</p>
-        <a class="bw-wardrobe-journey-link" href="{{ calculator_cta_url }}">Open Wardrobe Calculator</a>
+        <a class="bw-wardrobe-journey-link" href="{{ calculator_cta_url }}" data-wardrobe-calculator-link>Open Wardrobe Calculator</a>
       </article>
       <article class="bw-wardrobe-journey-card">
         <span class="bw-wardrobe-journey-step">Step 2</span>
@@ -1100,7 +1055,7 @@
         <p class="bw-wardrobe-copy" style="margin-top:12px;">{{ spotlight_copy }}</p>
         <div class="bw-wardrobe-actions" style="margin-top:18px;">
           <button class="bw-wardrobe-button" type="button" data-bw-wardrobe-estimate-open data-estimate-trigger="hero">Get Free Estimate</button>
-          <a class="bw-wardrobe-button--secondary" href="{{ calculator_cta_url }}">Price Calculator</a>
+          <a class="bw-wardrobe-button--secondary" href="{{ calculator_cta_url }}" data-wardrobe-calculator-link>Price Calculator</a>
         </div>
         <ul class="bw-wardrobe-list">
           {% for point in spotlight_points %}
@@ -1179,7 +1134,7 @@
       {% endif %}
     </div>
     <div class="bw-wardrobe-lens-actions">
-      <a class="bw-wardrobe-lens-link" href="{{ calculator_cta_url }}">Open Wardrobe Calculator</a>
+      <a class="bw-wardrobe-lens-link" href="{{ calculator_cta_url }}" data-wardrobe-calculator-link>Open Wardrobe Calculator</a>
       <button class="bw-wardrobe-button--secondary" type="button" data-bw-wardrobe-estimate-open data-estimate-trigger="lens">Get Free Estimate</button>
     </div>
   </section>
@@ -1394,7 +1349,7 @@
       {% endif %}
     </div>
     <div class="bw-wardrobe-measure-actions">
-      <a class="bw-wardrobe-measure-link" href="{{ calculator_cta_url }}">Open Wardrobe Calculator</a>
+      <a class="bw-wardrobe-measure-link" href="{{ calculator_cta_url }}" data-wardrobe-calculator-link>Open Wardrobe Calculator</a>
       <button class="bw-wardrobe-button--secondary" type="button" data-bw-wardrobe-estimate-open data-estimate-trigger="measure">Get Free Estimate</button>
     </div>
   </section>
@@ -1429,39 +1384,30 @@
     </div>
   </section>
 
-  {% if is_collection_context %}
-    <section class="bw-wardrobe-block bw-wardrobe-calculator-anchor" id="wardrobe-calculator">
-      <div class="bw-wardrobe-embedded-calculator">
-        <div class="bw-wardrobe-embedded-calculator__head">
-          <span class="bw-wardrobe-embedded-calculator__eyebrow">Wardrobe calculator</span>
-          <h2 class="bw-wardrobe-embedded-calculator__title">Start the wardrobe brief here while the format options stay in view</h2>
-          <p class="bw-wardrobe-embedded-calculator__copy">Choose the wardrobe type, measurements, finish direction, and internals first. The supporting guidance below helps once the brief starts feeling real.</p>
+  <section class="bw-wardrobe-block bw-wardrobe-guide" aria-label="How to use the wardrobe planner">
+    <div class="bw-wardrobe-head">
+      <span class="bw-wardrobe-eyebrow">Wardrobe preflight</span>
+      <h2 class="bw-wardrobe-title">Use the wardrobe calculator as its own page. Use this guide to sharpen the brief first.</h2>
+      <p class="bw-wardrobe-copy">This page should help the buyer choose the right opening style, storage approach, and finish direction. The actual calculator now lives on its own page so the brief-building flow stays cleaner.</p>
+    </div>
+    <div class="bw-wardrobe-guide-grid">
+      <article class="bw-wardrobe-guide-card">
+        <strong>Choose the opening style honestly</strong>
+        <p>Sliding, hinged, and walk-in should answer the room and clearance first, not just the look of the elevation.</p>
+      </article>
+      <article class="bw-wardrobe-guide-card">
+        <strong>Let internals guide the finish</strong>
+        <p>Drawers, lofts, hanging, mirrors, and accessories usually decide the real utility long before color and shutter moodboards do.</p>
+      </article>
+      <article class="bw-wardrobe-guide-card">
+        <strong>Move to the calculator when the storage brief is clear</strong>
+        <p>Once the room size, opening type, and internal mix are grounded, open the standalone wardrobe calculator and send one sharper brief into the estimate flow.</p>
+        <div class="bw-wardrobe-actions">
+          <a class="bw-wardrobe-button" href="{{ calculator_cta_url }}" data-wardrobe-calculator-link>Open Wardrobe Calculator</a>
         </div>
-      {% render 'wardrobe-calculator-content', embedded: true %}
-      </div>
-    </section>
-    <section class="bw-wardrobe-block bw-wardrobe-guide" aria-label="How to use the wardrobe planner">
-      <div class="bw-wardrobe-head">
-        <span class="bw-wardrobe-eyebrow">Wardrobe preflight</span>
-        <h2 class="bw-wardrobe-title">Use the wardrobe selector first. Use the guides after.</h2>
-        <p class="bw-wardrobe-copy">The calculator above should carry the active format, measurements, and internals. The sections below are there to help the buyer compare routes, finishes, and room-fit once the shortlist starts feeling real.</p>
-      </div>
-      <div class="bw-wardrobe-guide-grid">
-        <article class="bw-wardrobe-guide-card">
-          <strong>Choose the opening style honestly</strong>
-          <p>Sliding, hinged, and walk-in should answer the room and clearance first, not just the look of the elevation.</p>
-        </article>
-        <article class="bw-wardrobe-guide-card">
-          <strong>Let internals guide the finish</strong>
-          <p>Drawers, lofts, hanging, mirrors, and accessories usually decide the real utility long before color and shutter moodboards do.</p>
-        </article>
-        <article class="bw-wardrobe-guide-card">
-          <strong>Estimate when the storage brief is clear</strong>
-          <p>A wardrobe enquiry becomes much more useful once the room size, opening type, and internal mix are already defined.</p>
-        </article>
-      </div>
-    </section>
-  {% endif %}
+      </article>
+    </div>
+  </section>
 
   <section class="bw-wardrobe-block">
     <div class="bw-wardrobe-head">
@@ -1632,7 +1578,6 @@
       if (hash === 'sliding-wardrobe') return 'sliding';
       if (hash === 'hinged-wardrobe') return 'hinged';
       if (hash === 'walk-in-wardrobe') return 'walk-in';
-      if (hash === 'wardrobe-calculator') return 'calculator';
       var type = (params.get('type') || '').toLowerCase();
       if (type === 'sliding') return 'sliding';
       if (type === 'hinged') return 'hinged';
@@ -1640,12 +1585,7 @@
       return 'all';
     }
     function wardrobeTypeForCalculator() {
-      var chip = chipFromHash();
-      if (chip === 'calculator') {
-        var activeChip = root.querySelector('[data-wardrobe-chip].is-current');
-        chip = activeChip ? activeChip.getAttribute('data-wardrobe-chip') : 'all';
-      }
-      return chip === 'calculator' ? 'all' : chip;
+      return chipFromHash() || 'all';
     }
 
     function closeModal() {
@@ -1722,26 +1662,16 @@
       });
     });
 
-    root.querySelectorAll('a[href="#wardrobe-calculator"]').forEach(function (link) {
+    root.querySelectorAll('[data-wardrobe-calculator-link]').forEach(function (link) {
       link.addEventListener('click', function (event) {
-        var target = root.querySelector('#wardrobe-calculator');
-        if (!target) return;
         event.preventDefault();
-        var calculatorRoot = target.querySelector('[data-bw-wardrobe-flow]');
-        if (calculatorRoot) {
-          calculatorRoot.dispatchEvent(new CustomEvent('bw:wardrobe-type-select', {
-            detail: { type: wardrobeTypeForCalculator() }
-          }));
-        }
-        var nextUrl = new URL(window.location.href);
+        var nextUrl = new URL('{{ calculator_url }}', window.location.origin);
         var currentType = wardrobeTypeForCalculator();
         if (currentType && currentType !== 'all') nextUrl.searchParams.set('type', currentType);
         else nextUrl.searchParams.delete('type');
-        setCurrentChip('calculator');
-        nextUrl.hash = 'wardrobe-calculator';
-        window.history.replaceState({}, '', nextUrl.pathname + nextUrl.search + nextUrl.hash);
-        persistPlanningPayload('calculator-jump');
-        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        nextUrl.searchParams.set('source', 'Modular Wardrobe Guide');
+        persistPlanningPayload('calculator-open');
+        window.location.assign(nextUrl.pathname + nextUrl.search);
       });
     });
 

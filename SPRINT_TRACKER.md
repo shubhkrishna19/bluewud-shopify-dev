@@ -19,6 +19,7 @@ Ship a Bluewud-ready WoodenStreet-style base theme that:
 - theme settings and Shopify GUI edits must keep reflecting in the build
 - modular pages, calculators, and estimate flow must behave like a real customer journey
 - every important button and route must land somewhere intentional
+- calculators live on standalone pages; guide pages should reference them, not embed them
 
 ## Active Request Board
 
@@ -63,7 +64,7 @@ Needed:
 - keep the richer kitchen page content length and quality
 - use the new kitchen images throughout the funnel
 - make layout chips and calculator flow feel fully connected
-- remove redundant route-explainer sections now that calculator links exist in nav
+- keep calculators as standalone destinations and make guide-page CTAs carry context into them
 - continue toward WoodenStreet-level feature completeness
 
 Files:
@@ -78,6 +79,7 @@ Status: IN PROGRESS
 Needed:
 - make wardrobe tabs switch meaningfully and stop feeling like same-page reloads
 - deepen wardrobe content so it matches kitchen quality
+- keep wardrobe calculator as a standalone page while the guide pages act as high-quality entry points
 - keep wardrobe calculator routing correct and avoid contact-page leakage
 
 Files:

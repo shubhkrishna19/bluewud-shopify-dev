@@ -14,9 +14,9 @@
   assign current_path = request.path
   assign modular_kitchen_url = '/collections/kitchen-racks'
   assign modular_wardrobe_url = '/collections/wardrobe'
-  assign modular_kitchen_calculator_url = '/collections/kitchen-racks#kitchen-calculator'
-  assign modular_wardrobe_calculator_url = '/collections/wardrobe#wardrobe-calculator'
-  assign home_interiors_calculator_url = '/collections/kitchen-racks#broader-planning'
+  assign modular_kitchen_calculator_url = '/pages/modular-kitchen-cost-calculator'
+  assign modular_wardrobe_calculator_url = '/pages/modular-wardrobe-cost-calculator'
+  assign home_interiors_calculator_url = '/pages/home-interiors-cost-calculator'
   assign estimate_url = '/pages/get-free-estimate'
   assign about_url = '/pages/about-us'
   assign contact_url = '/pages/contact-us'
@@ -133,7 +133,6 @@
 
   if pages['modular-kitchen-designs'] != blank
     assign modular_kitchen_url = pages['modular-kitchen-designs'].url
-    assign modular_kitchen_calculator_url = modular_kitchen_url | append: '#kitchen-calculator'
     assign l_shape_kitchen_url = modular_kitchen_url | append: '#l-shape'
     assign u_shape_kitchen_url = modular_kitchen_url | append: '#u-shape'
     assign parallel_kitchen_url = modular_kitchen_url | append: '#parallel'
@@ -143,7 +142,6 @@
 
   if pages['modular-wardrobe-designs'] != blank
     assign modular_wardrobe_url = pages['modular-wardrobe-designs'].url
-    assign modular_wardrobe_calculator_url = modular_wardrobe_url | append: '#wardrobe-calculator'
     assign sliding_wardrobe_url = modular_wardrobe_url | append: '#sliding-wardrobe'
     assign hinged_wardrobe_url = modular_wardrobe_url | append: '#hinged-wardrobe'
     assign walk_in_wardrobe_url = modular_wardrobe_url | append: '#walk-in-wardrobe'

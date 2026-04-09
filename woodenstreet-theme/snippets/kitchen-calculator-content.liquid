@@ -7,8 +7,9 @@
   assign parallel_url = '/collections/kitchen-racks#parallel'
   assign straight_url = '/collections/kitchen-racks#straight'
   assign island_url = '/collections/kitchen-racks#island'
-  assign wardrobe_calculator_url = '/collections/wardrobe#wardrobe-calculator'
-  assign interiors_calculator_url = '/collections/kitchen-racks#broader-planning'
+  assign calculator_url = '/pages/modular-kitchen-cost-calculator'
+  assign wardrobe_calculator_url = '/pages/modular-wardrobe-cost-calculator'
+  assign interiors_calculator_url = '/pages/home-interiors-cost-calculator'
   assign estimate_url = contact_url
   assign kitchen_image_l_url = 'modular-kitchen-light-oak-l-shape.png' | asset_url
   assign kitchen_image_u_url = 'modular-kitchen-walnut-u-shape.png' | asset_url
@@ -39,14 +40,14 @@
   if pages['kitchen-island-design'] != blank
     assign island_url = pages['kitchen-island-design'].url
   endif
+  if pages['modular-kitchen-cost-calculator'] != blank
+    assign calculator_url = pages['modular-kitchen-cost-calculator'].url
+  endif
   if pages['modular-wardrobe-cost-calculator'] != blank
     assign wardrobe_calculator_url = pages['modular-wardrobe-cost-calculator'].url
   endif
   if pages['home-interiors-cost-calculator'] != blank
     assign interiors_calculator_url = pages['home-interiors-cost-calculator'].url
-  endif
-  if pages['home-interiors-cost-calculator'] == blank
-    assign interiors_calculator_url = '/collections/kitchen-racks#broader-planning'
   endif
   if pages['get-free-estimate'] != blank
     assign estimate_url = pages['get-free-estimate'].url
@@ -497,7 +498,7 @@
         <a class="bw-planning-rail__link" href="{{ parallel_url }}">Parallel</a>
         <a class="bw-planning-rail__link" href="{{ straight_url }}">Straight</a>
         <a class="bw-planning-rail__link" href="{{ island_url }}">Island</a>
-        <a class="bw-planning-rail__link bw-planning-rail__link--accent is-current" href="{{ main_url | append: '#kitchen-calculator' }}">Kitchen Calculator</a>
+        <a class="bw-planning-rail__link bw-planning-rail__link--accent is-current" href="{{ calculator_url }}">Kitchen Calculator</a>
         <a class="bw-planning-rail__link" href="{{ estimate_url }}">Get Free Estimate</a>
       </div>
     </section>
@@ -938,7 +939,7 @@
         projectType: 'Modular Kitchen',
         projectContext: 'Bluewud modular kitchen',
         referenceSource: 'Kitchen calculator',
-        projectRoute: window.location.pathname + window.location.search + '#kitchen-calculator',
+        projectRoute: window.location.pathname + window.location.search,
         selectedBrief: briefSummary(),
         selectedOptions: {
           layout: selectedRadio('kitchen_layout'),
