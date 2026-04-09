@@ -1,6 +1,6 @@
 {% liquid
-  assign section_title = section.settings.title | default: 'Featured categories'
-  assign section_copy = section.settings.copy | default: 'Browse a tight, premium edit of Bluewud furniture categories designed for the rooms that matter most.'
+  assign section_title = section.settings.title | default: 'Rooms worth upgrading first'
+  assign section_copy = section.settings.copy | default: 'Browse a concise, premium edit of Bluewud categories with the clearest day-to-day value.'
 %}
 
 <style>
@@ -240,9 +240,9 @@
             if forloop.index == 1
               assign card_url = '/collections/dressing-tables'
             elsif forloop.index == 2
-              assign card_url = '/collections/centre-tables'
+              assign card_url = '/collections/coffee-table'
             elsif forloop.index == 3
-              assign card_url = '/collections/wfh-furniture'
+              assign card_url = '/collections/smartly-designed-wfh-furniture'
             endif
 
             if block.settings.fallback_url != blank
@@ -301,7 +301,7 @@
                     Curated for live-store browsing
                   {% endif %}
                 </span>
-                <span class="bw-featured-categories__arrow">Shop now</span>
+                <span class="bw-featured-categories__arrow">Open category</span>
               </div>
             </div>
           </a>
@@ -323,19 +323,19 @@
       "type": "text",
       "id": "eyebrow",
       "label": "Eyebrow",
-      "default": "Shop the edit"
+      "default": "Upgrade the room"
     },
     {
       "type": "text",
       "id": "title",
       "label": "Heading",
-      "default": "Featured categories"
+      "default": "Rooms worth upgrading first"
     },
     {
       "type": "textarea",
       "id": "copy",
       "label": "Supporting copy",
-      "default": "Browse a tight, premium edit of Bluewud furniture categories designed for the rooms that matter most."
+      "default": "Browse a concise, premium edit of Bluewud categories with the clearest day-to-day value."
     }
   ],
   "blocks": [
@@ -347,7 +347,7 @@
           "type": "text",
           "id": "label",
           "label": "Label",
-          "default": "Featured category"
+          "default": "Room edit"
         },
         {
           "type": "text",
@@ -396,7 +396,7 @@
           "settings": {
             "title": "Centre Tables",
             "detail": "Low-profile coffee and centre tables that ground the room.",
-            "fallback_url": "/collections/centre-tables"
+            "fallback_url": "/collections/coffee-table"
           }
         },
         {
@@ -404,7 +404,7 @@
           "settings": {
             "title": "WFH Furniture",
             "detail": "Desks and compact work setups built for daily focus.",
-            "fallback_url": "/collections/wfh-furniture"
+            "fallback_url": "/collections/smartly-designed-wfh-furniture"
           }
         }
       ]

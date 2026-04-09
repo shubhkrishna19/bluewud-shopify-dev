@@ -1,13 +1,13 @@
 {% liquid
   assign brand_name = section.settings.brand_name | default: 'Bluewud'
   assign brand_wordmark = brand_name | downcase | capitalize
-  assign brand_tagline = section.settings.brand_tagline | default: 'Premium furniture for modern Indian homes'
+  assign brand_tagline = section.settings.brand_tagline | default: 'Premium furniture and room planning for modern Indian homes'
   assign brand_kicker = section.settings.brand_kicker | default: '15 years of crafted living'
   assign phone_label = section.settings.phone_label | default: '+91-8800-609-609'
   assign phone_url = section.settings.phone_url | default: 'tel:+918800609609'
   assign email_label = section.settings.email_label | default: 'care@bluewud.com'
   assign email_url = section.settings.email_url | default: 'mailto:care@bluewud.com'
-  assign cta_label = section.settings.cta_label | default: 'Buy In Bulk'
+  assign cta_label = section.settings.cta_label | default: 'Bulk Enquiries'
   assign cta_url = section.settings.cta_url
   assign brand_logo = section.settings.brand_logo
   assign brand_logo_treatment = 'tinted'
@@ -166,6 +166,10 @@
   }
 
   .bw-header-shell {
+    position: relative;
+    z-index: 9000;
+    isolation: isolate;
+    overflow: visible;
     background: rgba(248, 243, 237, 0.96);
     backdrop-filter: blur(18px);
     border-bottom: 1px solid rgba(45, 33, 27, 0.08);
@@ -250,6 +254,7 @@
     gap: 18px 28px;
     padding-top: 18px;
     padding-bottom: 14px;
+    overflow: visible;
   }
 
   .bw-header__brand {
@@ -388,6 +393,7 @@
     position: relative;
     display: flex;
     align-items: stretch;
+    z-index: 1;
   }
 
   .bw-header__nav-link {
@@ -460,7 +466,7 @@
     position: absolute;
     top: calc(100% + 2px);
     left: 50%;
-    z-index: 30;
+    z-index: 9010;
     min-width: 250px;
     padding: 14px;
     border-radius: 24px;
@@ -477,6 +483,7 @@
 
   .bw-header__nav-item:hover .bw-header__dropdown,
   .bw-header__nav-item:focus-within .bw-header__dropdown {
+    z-index: 9010;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
@@ -625,7 +632,7 @@
     opacity: 0;
     visibility: hidden;
     pointer-events: none;
-    z-index: 1100;
+    z-index: 8900;
     transition: opacity 0.28s ease, visibility 0.28s ease;
   }
 
@@ -964,7 +971,6 @@
           <span class="bw-header__cart-count">{{ cart.item_count }}</span>
         {% endif %}
       </a>
-      <a class="bw-header__cta" href="{{ cta_url }}">{{ cta_label }}</a>
     </div>
 
     <nav class="bw-header__nav" aria-label="Primary">
@@ -1325,7 +1331,7 @@
       "type": "text",
       "id": "brand_tagline",
       "label": "Brand tagline",
-      "default": "Premium furniture for modern Indian homes"
+      "default": "Premium furniture and room planning for modern Indian homes"
     },
     {
       "type": "text",
@@ -1355,7 +1361,7 @@
       "type": "text",
       "id": "cta_label",
       "label": "Primary CTA label",
-      "default": "Buy In Bulk"
+      "default": "Bulk Enquiries"
     },
     {
       "type": "url",

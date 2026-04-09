@@ -12,6 +12,7 @@
   assign contact_url = '/pages/contact-us'
   assign phone_url = 'tel:+918800609609'
   assign is_collection_context = true
+  assign calculator_cta_url = calculator_url
 
   assign spotlight_title = 'Modular wardrobes planned around format, storage, and finish clarity'
   assign spotlight_copy = "A premium wardrobe project should begin with room-fit, opening style, internals, and budget direction, not just a shutter moodboard."
@@ -88,6 +89,19 @@
     assign sliding_url = '#sliding-wardrobe'
     assign hinged_url = '#hinged-wardrobe'
     assign walk_in_url = '#walk-in-wardrobe'
+    assign calculator_cta_url = '#wardrobe-calculator'
+  else
+    assign wardrobe_source_param = 'Modular Wardrobe Guide' | url_encode
+    case wardrobe_variant
+      when 'sliding'
+        assign calculator_cta_url = calculator_url | append: '?type=Sliding&source=' | append: wardrobe_source_param
+      when 'hinged'
+        assign calculator_cta_url = calculator_url | append: '?type=Hinged&source=' | append: wardrobe_source_param
+      when 'walk-in'
+        assign calculator_cta_url = calculator_url | append: '?type=Walk-in&source=' | append: wardrobe_source_param
+      else
+        assign calculator_cta_url = calculator_url | append: '?source=' | append: wardrobe_source_param
+    endcase
   endif
 %}
 
@@ -110,18 +124,18 @@
   .bw-wardrobe-copy {
     margin: 0; color: #66554c; font-size: 15px; line-height: 1.82; max-width: 66ch;
   }
-  .bw-wardrobe-subnav, .bw-wardrobe-actions { display: flex; flex-wrap: wrap; gap: 10px; }
+  .bw-wardrobe-subnav, .bw-wardrobe-actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
   .bw-wardrobe-chip, .bw-wardrobe-button, .bw-wardrobe-button--secondary {
-    display: inline-flex; align-items: center; justify-content: center; min-height: 42px; padding: 0 16px;
+    display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 0 18px;
     border-radius: 999px; text-decoration: none; font-size: 12px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
-    cursor: pointer;
+    cursor: pointer; line-height: 1; white-space: nowrap;
   }
   .bw-wardrobe-anchor {
     scroll-margin-top: 120px;
   }
-  .bw-wardrobe-chip { background: rgba(32, 23, 19, 0.06); color: #201713; }
+  .bw-wardrobe-chip { background: rgba(32, 23, 19, 0.1); color: #201713; border: 1px solid rgba(32, 23, 19, 0.2); }
   .bw-wardrobe-chip.is-current, .bw-wardrobe-button { background: #201713; color: #fff7f1; border: 0; }
-  .bw-wardrobe-button--secondary { background: rgba(32, 23, 19, 0.05); color: #201713; border: 1px solid rgba(32, 23, 19, 0.1); }
+  .bw-wardrobe-button--secondary { background: rgba(32, 23, 19, 0.1); color: #201713; border: 1px solid rgba(32, 23, 19, 0.2); }
   .bw-wardrobe-journey {
     display: grid;
     gap: 18px;
@@ -750,7 +764,7 @@
       <a class="bw-wardrobe-chip{% if wardrobe_variant == 'sliding' %} is-current{% endif %}" href="{{ sliding_url }}" data-wardrobe-chip="sliding">Sliding</a>
       <a class="bw-wardrobe-chip{% if wardrobe_variant == 'hinged' %} is-current{% endif %}" href="{{ hinged_url }}" data-wardrobe-chip="hinged">Hinged</a>
       <a class="bw-wardrobe-chip{% if wardrobe_variant == 'walk-in' %} is-current{% endif %}" href="{{ walk_in_url }}" data-wardrobe-chip="walk-in">Walk-in</a>
-      <a class="bw-wardrobe-chip" href="{{ calculator_url }}" data-wardrobe-chip="calculator">Wardrobe Calculator</a>
+    <a class="bw-wardrobe-chip" href="{{ calculator_cta_url }}" data-wardrobe-chip="calculator">Wardrobe Calculator</a>
     </div>
   </section>
 
@@ -839,7 +853,7 @@
       {% endif %}
     </div>
     <div class="bw-wardrobe-route-actions">
-      <a class="bw-wardrobe-route-link" href="{{ calculator_url }}">Open Wardrobe Calculator</a>
+        <a class="bw-wardrobe-route-link" href="{{ calculator_cta_url }}">Open Wardrobe Calculator</a>
       <button class="bw-wardrobe-button--secondary" type="button" data-bw-wardrobe-estimate-open data-estimate-trigger="route">Get Free Estimate</button>
       <a class="bw-wardrobe-button--secondary" href="{{ contact_url }}">Talk To Bluewud</a>
     </div>
@@ -895,7 +909,7 @@
                     <p>{{ product.description | strip_html | truncatewords: 28 }}</p>
                     <div class="bw-wardrobe-gallery-actions">
                       <a class="bw-wardrobe-gallery-link" href="{{ product.url }}">View Product</a>
-                      <a class="bw-wardrobe-button--secondary" href="{{ calculator_url }}">Open Wardrobe Calculator</a>
+        <a class="bw-wardrobe-button--secondary" href="{{ calculator_cta_url }}">Open Wardrobe Calculator</a>
                     </div>
                   </div>
                   <div class="bw-wardrobe-gallery-main-media">
@@ -942,7 +956,7 @@
             <h3>Keep the wardrobe picture room-led, not catalog-led</h3>
             <p>The strongest decisions start with clearance, access, and internal storage, then move to finish and detailing once the room feels grounded.</p>
             <div class="bw-wardrobe-gallery-actions">
-              <a class="bw-wardrobe-gallery-link" href="{{ calculator_url }}">Use Calculator</a>
+          <a class="bw-wardrobe-gallery-link" href="{{ calculator_cta_url }}">Use Calculator</a>
             </div>
           </div>
         </article>
@@ -984,7 +998,7 @@
           <p>Use this when the project is wardrobe-first and this page already feels close to the right format, storage brief, and finish direction.</p>
         </div>
         <p class="bw-wardrobe-journey-meta">Best when: you want a wardrobe-specific budget direction before talking.</p>
-        <a class="bw-wardrobe-journey-link" href="{{ calculator_url }}">Open Wardrobe Calculator</a>
+        <a class="bw-wardrobe-journey-link" href="{{ calculator_cta_url }}">Open Wardrobe Calculator</a>
       </article>
       <article class="bw-wardrobe-journey-card">
         <span class="bw-wardrobe-journey-step">Step 2</span>
@@ -1054,7 +1068,7 @@
         <p class="bw-wardrobe-copy" style="margin-top:12px;">{{ spotlight_copy }}</p>
         <div class="bw-wardrobe-actions" style="margin-top:18px;">
           <button class="bw-wardrobe-button" type="button" data-bw-wardrobe-estimate-open data-estimate-trigger="hero">Get Free Estimate</button>
-          <a class="bw-wardrobe-button--secondary" href="{{ calculator_url }}">Price Calculator</a>
+          <a class="bw-wardrobe-button--secondary" href="{{ calculator_cta_url }}">Price Calculator</a>
         </div>
         <ul class="bw-wardrobe-list">
           {% for point in spotlight_points %}
@@ -1133,7 +1147,7 @@
       {% endif %}
     </div>
     <div class="bw-wardrobe-lens-actions">
-      <a class="bw-wardrobe-lens-link" href="{{ calculator_url }}">Open Wardrobe Calculator</a>
+      <a class="bw-wardrobe-lens-link" href="{{ calculator_cta_url }}">Open Wardrobe Calculator</a>
       <button class="bw-wardrobe-button--secondary" type="button" data-bw-wardrobe-estimate-open data-estimate-trigger="lens">Get Free Estimate</button>
       <a class="bw-wardrobe-button--secondary" href="{{ contact_url }}">Talk To Bluewud</a>
     </div>
@@ -1349,7 +1363,7 @@
       {% endif %}
     </div>
     <div class="bw-wardrobe-measure-actions">
-      <a class="bw-wardrobe-measure-link" href="{{ calculator_url }}">Open Wardrobe Calculator</a>
+      <a class="bw-wardrobe-measure-link" href="{{ calculator_cta_url }}">Open Wardrobe Calculator</a>
       <button class="bw-wardrobe-button--secondary" type="button" data-bw-wardrobe-estimate-open data-estimate-trigger="measure">Get Free Estimate</button>
       <a class="bw-wardrobe-button--secondary" href="{{ contact_url }}">Talk To Bluewud</a>
     </div>
@@ -1410,7 +1424,7 @@
       {% endif %}
     </div>
     <div class="bw-wardrobe-actions">
-      <a class="bw-wardrobe-button" href="{{ calculator_url }}">Open Wardrobe Calculator</a>
+      <a class="bw-wardrobe-button" href="{{ calculator_cta_url }}">Open Wardrobe Calculator</a>
       <button class="bw-wardrobe-button--secondary" type="button" data-bw-wardrobe-estimate-open data-estimate-trigger="band">Get Free Estimate</button>
       <a class="bw-wardrobe-button--secondary" href="{{ contact_url }}">Talk To Bluewud</a>
     </div>
@@ -1552,7 +1566,7 @@
     <div class="bw-wardrobe-actions">
       <button class="bw-wardrobe-button" type="button" data-bw-wardrobe-estimate-open data-estimate-trigger="cta">Get Free Estimate</button>
       <a class="bw-wardrobe-button--secondary" href="{{ phone_url }}">Call Bluewud</a>
-      <a class="bw-wardrobe-button--secondary" href="{{ calculator_url }}">Price It First</a>
+      <a class="bw-wardrobe-button--secondary" href="{{ calculator_cta_url }}">Price It First</a>
     </div>
   </section>
 </div>
@@ -1568,6 +1582,7 @@
     var summaryText = modal.querySelector('[data-bw-estimate-summary-text]');
     var summaryInput = modal.querySelector('[data-bw-estimate-summary-input]');
     var contextInput = modal.querySelector('[data-bw-estimate-context-input]');
+    var sourceInput = modal.querySelector('[data-bw-estimate-source-input]');
     var chips = Array.prototype.slice.call(root.querySelectorAll('[data-wardrobe-chip]'));
 
     function setCurrentChip(key) {
@@ -1577,11 +1592,16 @@
     }
 
     function chipFromHash() {
+      var params = new URLSearchParams(window.location.search);
       var hash = (window.location.hash || '').replace('#', '');
       if (hash === 'sliding-wardrobe') return 'sliding';
       if (hash === 'hinged-wardrobe') return 'hinged';
       if (hash === 'walk-in-wardrobe') return 'walk-in';
       if (hash === 'wardrobe-calculator') return 'calculator';
+      var type = (params.get('type') || '').toLowerCase();
+      if (type === 'sliding') return 'sliding';
+      if (type === 'hinged') return 'hinged';
+      if (type === 'walk-in' || type === 'walk in') return 'walk-in';
       return 'all';
     }
     function wardrobeTypeForCalculator() {
@@ -1610,6 +1630,7 @@
       summaryText.textContent = summary;
       summaryInput.value = summary;
       contextInput.value = 'Bluewud modular wardrobe';
+      if (sourceInput) sourceInput.value = ['Modular Wardrobe Guide', activeVariant(), trigger || 'direct'].join(' | ');
       modal.classList.add('is-open');
       document.body.classList.add('bw-header-drawer-open');
     }
@@ -1627,8 +1648,15 @@
         var target = document.querySelector(href);
         if (!target) return;
         event.preventDefault();
-        setCurrentChip(chip.getAttribute('data-wardrobe-chip'));
-        window.history.replaceState({}, '', href);
+        var chipKey = chip.getAttribute('data-wardrobe-chip');
+        var nextUrl = new URL(window.location.href);
+        if (chipKey === 'sliding') nextUrl.searchParams.set('type', 'Sliding');
+        else if (chipKey === 'hinged') nextUrl.searchParams.set('type', 'Hinged');
+        else if (chipKey === 'walk-in') nextUrl.searchParams.set('type', 'Walk-in');
+        else nextUrl.searchParams.delete('type');
+        setCurrentChip(chipKey);
+        nextUrl.hash = href.replace('#', '');
+        window.history.replaceState({}, '', nextUrl.pathname + nextUrl.search + nextUrl.hash);
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
@@ -1644,14 +1672,26 @@
             detail: { type: wardrobeTypeForCalculator() }
           }));
         }
+        var nextUrl = new URL(window.location.href);
+        var currentType = wardrobeTypeForCalculator();
+        if (currentType && currentType !== 'all') nextUrl.searchParams.set('type', currentType);
+        else nextUrl.searchParams.delete('type');
         setCurrentChip('calculator');
-        window.history.replaceState({}, '', '#wardrobe-calculator');
+        nextUrl.hash = 'wardrobe-calculator';
+        window.history.replaceState({}, '', nextUrl.pathname + nextUrl.search + nextUrl.hash);
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
 
     modal.querySelectorAll('[data-bw-estimate-close]').forEach(function (control) {
       control.addEventListener('click', closeModal);
+    });
+
+    window.addEventListener('hashchange', function () {
+      setCurrentChip(chipFromHash());
+    });
+    window.addEventListener('popstate', function () {
+      setCurrentChip(chipFromHash());
     });
 
     setCurrentChip(chipFromHash());

@@ -9,7 +9,7 @@
   assign hero_copy = collection.description | strip_html
   assign collection_eyebrow = 'Explore the collection'
   assign insight_titles = 'Pan-India delivery|Easy EMI|Refined utility' | split: '|'
-  assign insight_copies = 'Reliable support for furniture that needs smoother doorstep coordination.|Comfortable payment flexibility for larger purchases and room-by-room upgrades.|Thoughtfully designed pieces built for modern Indian homes.' | split: '|'
+  assign insight_copies = 'Reliable doorstep coordination that keeps larger furniture purchases easier to manage.|Flexible payment support that helps customers move forward with more confidence.|Furniture planned for real homes, with cleaner proportions and everyday usefulness.' | split: '|'
   assign estimate_url = '/pages/get-free-estimate'
 
   if hero_media == blank and collection.products.size > 0
@@ -31,22 +31,22 @@
   endif
 
   if hero_copy == blank
-    assign hero_copy = 'Explore thoughtfully designed furniture made to bring comfort, function, and finish to every room.'
+    assign hero_copy = 'Explore furniture that is practical to buy, comfortable to live with, and refined enough to feel intentional in every room.'
   endif
 
   case collection_handle
     when 'kitchen-racks'
       assign hero_title = 'Modular Kitchen'
       assign collection_eyebrow = 'Kitchen storage, simplified'
-      assign hero_copy = 'Organise spices, jars, microwave units, and everyday cookware with modular kitchen storage that looks cleaner and works harder in compact Indian homes.'
+      assign hero_copy = 'Organise spices, jars, cookware, and daily kitchen tools with modular storage that keeps compact Indian kitchens feeling calmer and more efficient.'
       assign insight_titles = 'Wall and floor formats|Utility-first storage|Designed for compact kitchens' | split: '|'
-      assign insight_copies = 'Browse wall-mounted cabinets, spice racks, display shelves, and floor-supported utility units in one place.|A practical mix of microwave stands, bottle racks, and modular organisers built for daily use.|Thoughtful proportions and engineered wood finishes that help busy kitchens feel calmer and more intentional.' | split: '|'
+      assign insight_copies = 'Browse wall-mounted cabinets, spice racks, display shelves, and floor-supported utility units in one place.|A practical mix of microwave stands, bottle racks, and modular organisers built for daily use.|Thoughtful proportions and engineered wood finishes that help busy kitchens feel calmer, tidier, and easier to maintain.' | split: '|'
     when 'wardrobe'
       assign hero_title = 'Wardrobes'
       assign collection_eyebrow = 'Bedroom storage with structure'
-      assign hero_copy = 'Discover 2 door, 3 door, and 4 door wardrobes designed to bring cleaner storage, stronger organisation, and a more premium bedroom feel without wasting floor space.'
+      assign hero_copy = 'Discover 2 door, 3 door, and 4 door wardrobes that bring cleaner storage, stronger organisation, and a more premium bedroom feel without wasting floor space.'
       assign insight_titles = '2, 3 and 4 door options|Storage-first bedroom planning|Made for everyday use' | split: '|'
-      assign insight_copies = 'Choose from compact to full-format wardrobes based on room size, clothing volume, and access needs.|Balanced internal layouts for folded essentials, hanging storage, and a tidier visual presence in the room.|Engineered wood finishes, dependable utility, and delivery support suited to larger furniture purchases.' | split: '|'
+      assign insight_copies = 'Choose from compact to full-format wardrobes based on room size, clothing volume, and access needs.|Balanced internal layouts for folded essentials, hanging storage, and a tidier visual presence in the room.|Engineered wood finishes, dependable utility, and delivery support that make bigger furniture purchases feel simpler.' | split: '|'
   endcase
 %}
 
@@ -384,6 +384,7 @@
     flex-wrap: wrap;
     align-items: center;
     gap: 8px;
+    display: none;
   }
 
   .bw-collection__detail {
@@ -705,19 +706,6 @@
                   <span class="bw-collection__price">{{ product.price | money }}</span>
                   {% if product.compare_at_price > product.price %}
                     <span class="bw-collection__compare">{{ product.compare_at_price | money }}</span>
-                  {% endif %}
-                </div>
-                <div class="bw-collection__details">
-                  <span class="bw-collection__detail">{% if product.available %}Ready to order{% else %}Sold out{% endif %}</span>
-                  {% if emi_from_note != blank %}
-                    <span class="bw-collection__detail">{{ emi_from_note }}</span>
-                  {% else %}
-                    <span class="bw-collection__detail">Easy EMI</span>
-                  {% endif %}
-                  {% if free_delivery_note != blank %}
-                    <span class="bw-collection__detail">{{ free_delivery_note }}</span>
-                  {% else %}
-                    <span class="bw-collection__detail">Secure checkout</span>
                   {% endif %}
                 </div>
                 <span class="bw-collection__cta">View details</span>

@@ -139,7 +139,16 @@
       ]
     },
     "banner": {
-      "type": "banner"
+      "type": "banner",
+      "settings": {
+        "eyebrow": "Planning more than one room?",
+        "title": "Bring the whole home together without losing the premium feel.",
+        "copy": "From first-room upgrades to larger furnishing decisions, Bluewud helps customers shortlist better, compare with clarity, and move forward with confidence.",
+        "primary_label": "Visit Us",
+        "primary_url": "shopify://pages/visit-us",
+        "secondary_label": "Contact Bluewud",
+        "secondary_url": "shopify://pages/contact-us"
+      }
     },
     "featured_products": {
       "type": "featured-products"

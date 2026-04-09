@@ -1,6 +1,6 @@
 {% liquid
   assign footer_brand = section.settings.footer_brand | default: 'Bluewud'
-  assign footer_copy = section.settings.footer_copy | default: 'Bluewud brings premium-value furniture, smarter storage, and room-defining pieces together in one clearer shopping journey.'
+  assign footer_copy = section.settings.footer_copy | default: 'Bluewud brings premium furniture, smarter storage, and guided room planning together for modern Indian homes.'
   assign modular_kitchen_url = '/collections/kitchen-racks'
   assign modular_wardrobe_url = '/collections/wardrobe'
   assign modular_kitchen_calculator_url = '/collections/kitchen-racks#kitchen-calculator'
@@ -98,45 +98,6 @@
 
   .bw-footer__contact-list a:hover,
   .bw-footer__links a:hover {
-    color: #ffffff;
-  }
-
-  .bw-footer__planning {
-    display: grid;
-    gap: 10px;
-    margin-top: 18px;
-    padding-top: 18px;
-    border-top: 1px solid rgba(248, 241, 235, 0.12);
-  }
-
-  .bw-footer__planning-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .bw-footer__planning-links a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 32px;
-    padding: 0 12px;
-    border-radius: 999px;
-    border: 1px solid rgba(248, 241, 235, 0.14);
-    background: rgba(255, 255, 255, 0.04);
-    color: rgba(248, 241, 235, 0.84);
-    text-decoration: none;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-  }
-
-  .bw-footer__planning-links a:hover {
-    background: rgba(255, 255, 255, 0.12);
     color: #ffffff;
   }
 
@@ -242,24 +203,12 @@
           <li><a href="/pages/visit-us">Visit Us</a></li>
         </ul>
 
-        <div class="bw-footer__planning">
-          <div class="bw-footer__heading">Plan Your Space</div>
-          <ul class="bw-footer__planning-links" aria-label="Planning links">
-            <li><a href="{{ modular_kitchen_url }}">Modular Kitchen</a></li>
-            <li><a href="{{ modular_kitchen_calculator_url }}">Kitchen Calculator</a></li>
-            <li><a href="{{ modular_wardrobe_url }}">Wardrobes</a></li>
-            <li><a href="{{ modular_wardrobe_calculator_url }}">Wardrobe Calculator</a></li>
-            <li><a href="{{ home_interiors_calculator_url }}">Home Interiors Calculator</a></li>
-            <li><a href="{{ estimate_url }}">Get Free Estimate</a></li>
-          </ul>
-        </div>
-
         <div class="bw-footer__newsletter">
-          <div class="bw-footer__heading">Stay connected</div>
+          <div class="bw-footer__heading">Get project updates</div>
           {% form 'customer', class: 'bw-footer__newsletter-form' %}
             <input type="hidden" name="contact[tags]" value="newsletter">
-            <input class="bw-footer__newsletter-field" type="email" name="contact[email]" placeholder="Email for updates" required>
-            <button class="bw-footer__newsletter-submit" type="submit">Subscribe</button>
+            <input class="bw-footer__newsletter-field" type="email" name="contact[email]" placeholder="Email for project updates" required>
+            <button class="bw-footer__newsletter-submit" type="submit">Join Updates</button>
           {% endform %}
         </div>
       </div>
@@ -285,7 +234,7 @@
           <li><a href="/pages/buy-in-bulk">Buy In Bulk</a></li>
           <li><a href="/pages/visit-us">Visit Us</a></li>
           <li><a href="/pages/award-achievment">Awards and Achievement</a></li>
-          <li><a href="/pages/offers-discount">Offers and Discount</a></li>
+          <li><a href="/pages/offers-discount">Offers & Discounts</a></li>
           <li><a href="{{ modular_kitchen_calculator_url }}">Kitchen Calculator</a></li>
           <li><a href="{{ modular_wardrobe_calculator_url }}">Wardrobe Calculator</a></li>
           <li><a href="{{ home_interiors_calculator_url }}">Home Interiors Calculator</a></li>
@@ -309,9 +258,9 @@
     <div class="bw-footer__bottom">
       <span>&copy; {{ 'now' | date: '%Y' }} {{ footer_brand }}. All rights reserved.</span>
       <div class="bw-footer__bottom-links">
-        <a href="/pages/payment-security">Payment and Security</a>
-        <a href="/pages/returns-refunds">Returns</a>
-        <a href="/pages/terms-of-use">Terms</a>
+        <a href="/pages/payment-security">Payment & Security</a>
+        <a href="/pages/returns-refunds">Returns & Refunds</a>
+        <a href="/pages/terms-of-use">Terms of Use</a>
       </div>
     </div>
   </div>
@@ -331,7 +280,7 @@
       "type": "textarea",
       "id": "footer_copy",
       "label": "Brand copy",
-      "default": "Bluewud brings premium-value furniture, smarter storage, and room-defining pieces together in one clearer shopping journey."
+      "default": "Bluewud brings premium furniture, smarter storage, and guided room planning together for modern Indian homes."
     }
   ],
   "presets": [
