@@ -18,10 +18,56 @@
   assign modular_wardrobe_calculator_url = '/collections/wardrobe#wardrobe-calculator'
   assign home_interiors_calculator_url = '/collections/kitchen-racks#broader-planning'
   assign estimate_url = '/pages/get-free-estimate'
-  assign curated_nav_labels = 'Living Room|Bedroom|Study Tables|TV Units|Bookshelves|Modular Kitchen|Wardrobes' | split: '|'
-  assign curated_nav_urls = '/collections/living-room|/collections/bed-room|/collections/study-tables|/collections/tv-unit-furniture|/collections/book-shelves|/collections/kitchen-racks|/collections/wardrobe' | split: '|'
-  assign drawer_nav_labels = 'Living Room|Bedroom|Study Tables|TV Units|Bookshelves|Modular Kitchen|Wardrobes|New Launches|Chest of Drawer' | split: '|'
-  assign drawer_nav_urls = '/collections/living-room|/collections/bed-room|/collections/study-tables|/collections/tv-unit-furniture|/collections/book-shelves|/collections/kitchen-racks|/collections/wardrobe|/collections/new_launches|/collections/chest-of-drawer' | split: '|'
+  assign living_room_url = '/collections/living-room'
+  assign bedroom_url = '/collections/bed-room'
+  assign study_room_url = '/collections/study-tables'
+  assign tv_unit_url = '/collections/tv-unit-furniture'
+  assign shoe_rack_url = '/collections/shoe-racks'
+  assign coffee_table_url = '/collections/coffee-table'
+  assign bookshelves_url = '/collections/book-shelves'
+  assign dressers_url = '/collections/dressing-tables'
+  assign wall_mount_tv_query = 'wall mount tv unit' | url_encode
+  assign floor_standing_tv_query = 'floor standing tv unit' | url_encode
+  assign two_door_shoe_rack_query = '2 door shoe rack' | url_encode
+  assign three_door_shoe_rack_query = '3 door shoe rack' | url_encode
+  assign shelves_query = 'shelves' | url_encode
+  assign wall_mount_corner_shelves_query = 'wall mount corner shelves' | url_encode
+  assign floor_standing_corner_shelves_query = 'floor standing corner shelves' | url_encode
+  assign wall_shelves_query = 'wall shelves' | url_encode
+  assign two_door_wardrobe_query = '2 door wardrobe' | url_encode
+  assign three_door_wardrobe_query = '3 door wardrobe' | url_encode
+  assign four_door_wardrobe_query = '4 door wardrobe' | url_encode
+  assign beds_query = 'beds' | url_encode
+  assign king_size_bed_query = 'king size bed' | url_encode
+  assign queen_size_bed_query = 'queen size bed' | url_encode
+  assign wall_shelf_query = 'wall shelf' | url_encode
+  assign wall_mount_tv_url = routes.search_url | append: '?type=product&q=' | append: wall_mount_tv_query
+  assign floor_standing_tv_url = routes.search_url | append: '?type=product&q=' | append: floor_standing_tv_query
+  assign two_door_shoe_rack_url = routes.search_url | append: '?type=product&q=' | append: two_door_shoe_rack_query
+  assign three_door_shoe_rack_url = routes.search_url | append: '?type=product&q=' | append: three_door_shoe_rack_query
+  assign shelves_url = routes.search_url | append: '?type=product&q=' | append: shelves_query
+  assign wall_mount_corner_shelves_url = routes.search_url | append: '?type=product&q=' | append: wall_mount_corner_shelves_query
+  assign floor_standing_corner_shelves_url = routes.search_url | append: '?type=product&q=' | append: floor_standing_corner_shelves_query
+  assign wall_shelves_url = routes.search_url | append: '?type=product&q=' | append: wall_shelves_query
+  assign two_door_wardrobe_url = routes.search_url | append: '?type=product&q=' | append: two_door_wardrobe_query
+  assign three_door_wardrobe_url = routes.search_url | append: '?type=product&q=' | append: three_door_wardrobe_query
+  assign four_door_wardrobe_url = routes.search_url | append: '?type=product&q=' | append: four_door_wardrobe_query
+  assign beds_url = routes.search_url | append: '?type=product&q=' | append: beds_query
+  assign king_size_bed_url = routes.search_url | append: '?type=product&q=' | append: king_size_bed_query
+  assign queen_size_bed_url = routes.search_url | append: '?type=product&q=' | append: queen_size_bed_query
+  assign study_table_url = '/collections/study-tables'
+  assign wall_shelf_url = routes.search_url | append: '?type=product&q=' | append: wall_shelf_query
+  assign price_calculator_url = home_interiors_calculator_url
+  assign l_shape_kitchen_url = modular_kitchen_url | append: '#l-shape'
+  assign u_shape_kitchen_url = modular_kitchen_url | append: '#u-shape'
+  assign parallel_kitchen_url = modular_kitchen_url | append: '#parallel'
+  assign straight_kitchen_url = modular_kitchen_url | append: '#straight'
+  assign island_kitchen_url = modular_kitchen_url | append: '#island'
+  assign sliding_wardrobe_url = modular_wardrobe_url | append: '#sliding-wardrobe'
+  assign hinged_wardrobe_url = modular_wardrobe_url | append: '#hinged-wardrobe'
+  assign walk_in_wardrobe_url = modular_wardrobe_url | append: '#walk-in-wardrobe'
+  assign drawer_nav_labels = 'Living Room|Bedroom|Study Room|TV Unit|Shoe Rack|Shelves|Coffee Table|Bookshelves|Modular Kitchen|Wardrobes|Price Calculator|Chest of Drawer' | split: '|'
+  assign drawer_nav_urls = '/collections/living-room|/collections/bed-room|/collections/study-tables|/collections/tv-unit-furniture|/collections/shoe-racks|/search?type=product&q=shelves|/collections/coffee-table|/collections/book-shelves|/collections/kitchen-racks|/collections/wardrobe|/pages/home-interiors-cost-calculator|/collections/chest-of-drawer' | split: '|'
   assign support_nav_labels = 'About Us|Contact Us|Visit Us|FAQs' | split: '|'
   assign support_nav_urls = '/pages/about-us|/pages/contact-us|/pages/visit-us|/pages/help-center' | split: '|'
 
@@ -36,11 +82,19 @@
   if pages['modular-kitchen-designs'] != blank
     assign modular_kitchen_url = pages['modular-kitchen-designs'].url
     assign modular_kitchen_calculator_url = modular_kitchen_url | append: '#kitchen-calculator'
+    assign l_shape_kitchen_url = modular_kitchen_url | append: '#l-shape'
+    assign u_shape_kitchen_url = modular_kitchen_url | append: '#u-shape'
+    assign parallel_kitchen_url = modular_kitchen_url | append: '#parallel'
+    assign straight_kitchen_url = modular_kitchen_url | append: '#straight'
+    assign island_kitchen_url = modular_kitchen_url | append: '#island'
   endif
 
   if pages['modular-wardrobe-designs'] != blank
     assign modular_wardrobe_url = pages['modular-wardrobe-designs'].url
     assign modular_wardrobe_calculator_url = modular_wardrobe_url | append: '#wardrobe-calculator'
+    assign sliding_wardrobe_url = modular_wardrobe_url | append: '#sliding-wardrobe'
+    assign hinged_wardrobe_url = modular_wardrobe_url | append: '#hinged-wardrobe'
+    assign walk_in_wardrobe_url = modular_wardrobe_url | append: '#walk-in-wardrobe'
   endif
 
   if pages['modular-kitchen-cost-calculator'] != blank
@@ -53,6 +107,7 @@
 
   if pages['home-interiors-cost-calculator'] != blank
     assign home_interiors_calculator_url = pages['home-interiors-cost-calculator'].url
+    assign price_calculator_url = home_interiors_calculator_url
   endif
 
   if pages['get-free-estimate'] != blank
@@ -65,6 +120,31 @@
 
   if cta_url == blank
     assign cta_url = '/pages/buy-in-bulk'
+  endif
+
+  if pages['l-shape-modular-kitchen-design'] != blank
+    assign l_shape_kitchen_url = pages['l-shape-modular-kitchen-design'].url
+  endif
+  if pages['u-shape-modular-kitchen-design'] != blank
+    assign u_shape_kitchen_url = pages['u-shape-modular-kitchen-design'].url
+  endif
+  if pages['parallel-modular-kitchen-design'] != blank
+    assign parallel_kitchen_url = pages['parallel-modular-kitchen-design'].url
+  endif
+  if pages['straight-modular-kitchen'] != blank
+    assign straight_kitchen_url = pages['straight-modular-kitchen'].url
+  endif
+  if pages['kitchen-island-design'] != blank
+    assign island_kitchen_url = pages['kitchen-island-design'].url
+  endif
+  if pages['sliding-wardrobe-designs'] != blank
+    assign sliding_wardrobe_url = pages['sliding-wardrobe-designs'].url
+  endif
+  if pages['hinged-wardrobes'] != blank
+    assign hinged_wardrobe_url = pages['hinged-wardrobes'].url
+  endif
+  if pages['walk-in-wardrobes'] != blank
+    assign walk_in_wardrobe_url = pages['walk-in-wardrobes'].url
   endif
 %}
 
@@ -163,16 +243,20 @@
   }
 
   .bw-header__main-inner {
-    min-height: 96px;
+    min-height: 110px;
     display: grid;
     grid-template-columns: minmax(250px, 320px) minmax(0, 1fr) auto;
-    align-items: center;
-    gap: 28px;
+    align-items: start;
+    gap: 18px 28px;
+    padding-top: 18px;
+    padding-bottom: 14px;
   }
 
   .bw-header__brand {
     display: block;
     min-width: 0;
+    grid-column: 1 / 2;
+    grid-row: 1 / 2;
     transition: transform 0.22s ease;
   }
 
@@ -286,49 +370,66 @@
   }
 
   .bw-header__nav {
-    justify-self: center;
+    grid-column: 1 / -1;
+    grid-row: 2 / 3;
+    justify-self: stretch;
     justify-content: center;
-    gap: 18px;
-    flex-wrap: nowrap;
+    align-items: stretch;
+    gap: 8px;
     min-width: 0;
-    width: max-content;
-    max-width: 100%;
-    padding-inline: 14px;
-    overflow-x: auto;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
+    width: 100%;
+    margin-top: 6px;
+    padding: 14px 10px 4px;
+    border-top: 1px solid rgba(45, 33, 27, 0.08);
+    overflow: visible;
   }
 
-  .bw-header__nav::-webkit-scrollbar {
-    display: none;
+  .bw-header__nav-item {
+    position: relative;
+    display: flex;
+    align-items: stretch;
   }
 
   .bw-header__nav-link {
     display: inline-flex;
     align-items: center;
+    justify-content: center;
+    gap: 8px;
     color: #241a15;
     font-size: 13px;
     font-weight: 700;
     letter-spacing: 0.01em;
     position: relative;
-    padding: 14px 0;
+    min-height: 42px;
+    padding: 0 12px 10px;
     white-space: nowrap;
     transition: color 0.2s ease, transform 0.2s ease;
   }
 
-  .bw-header__nav-link:first-child {
-    margin-left: 6px;
+  .bw-header__nav-link--has-children::before {
+    content: '';
+    order: 1;
+    width: 7px;
+    height: 7px;
+    border-right: 1.6px solid currentColor;
+    border-bottom: 1.6px solid currentColor;
+    transform: rotate(45deg) translateY(-1px);
+    flex: 0 0 auto;
+    opacity: 0.7;
+    transition: transform 0.2s ease, opacity 0.2s ease;
   }
 
-  .bw-header__nav-link:last-child {
-    margin-right: 6px;
+  .bw-header__nav-item:hover .bw-header__nav-link--has-children::before,
+  .bw-header__nav-item:focus-within .bw-header__nav-link--has-children::before {
+    transform: rotate(225deg) translateY(-1px);
+    opacity: 1;
   }
 
   .bw-header__nav-link::after {
     content: '';
     position: absolute;
     left: 50%;
-    bottom: 6px;
+    bottom: 2px;
     width: 20px;
     height: 2px;
     border-radius: 999px;
@@ -340,18 +441,103 @@
 
   .bw-header__nav-link:hover,
   .bw-header__nav-link:focus-visible,
-  .bw-header__nav-link.is-active {
+  .bw-header__nav-link.is-active,
+  .bw-header__nav-item:hover > .bw-header__nav-link,
+  .bw-header__nav-item:focus-within > .bw-header__nav-link {
     color: #355a6d;
     transform: translateY(-1px);
   }
 
   .bw-header__nav-link:hover::after,
   .bw-header__nav-link:focus-visible::after,
-  .bw-header__nav-link.is-active::after {
+  .bw-header__nav-link.is-active::after,
+  .bw-header__nav-item:hover > .bw-header__nav-link::after,
+  .bw-header__nav-item:focus-within > .bw-header__nav-link::after {
     transform: translateX(-50%) scaleX(1);
   }
 
+  .bw-header__dropdown {
+    position: absolute;
+    top: calc(100% + 2px);
+    left: 50%;
+    z-index: 30;
+    min-width: 250px;
+    padding: 14px;
+    border-radius: 24px;
+    border: 1px solid rgba(45, 33, 27, 0.1);
+    background: rgba(255, 251, 247, 0.98);
+    box-shadow: 0 18px 40px rgba(35, 24, 19, 0.12);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translate(-50%, 10px);
+    transition: opacity 0.22s ease, visibility 0.22s ease, transform 0.22s ease;
+    backdrop-filter: blur(16px);
+  }
+
+  .bw-header__nav-item:hover .bw-header__dropdown,
+  .bw-header__nav-item:focus-within .bw-header__dropdown {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translate(-50%, 0);
+  }
+
+  .bw-header__dropdown-grid {
+    display: grid;
+    gap: 12px;
+  }
+
+  .bw-header__dropdown-group {
+    display: grid;
+    gap: 8px;
+  }
+
+  .bw-header__dropdown-heading {
+    color: #8a684f;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+  }
+
+  .bw-header__dropdown-link {
+    display: inline-flex;
+    align-items: center;
+    color: #241a15;
+    font-size: 13px;
+    font-weight: 650;
+    line-height: 1.35;
+    padding: 4px 0;
+    transition: color 0.2s ease, transform 0.2s ease;
+  }
+
+  .bw-header__dropdown-link:hover,
+  .bw-header__dropdown-link:focus-visible {
+    color: #355a6d;
+    transform: translateX(2px);
+  }
+
+  .bw-header__dropdown-link--strong {
+    font-weight: 800;
+  }
+
+  .bw-header__dropdown-grid--two {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 18px;
+  }
+
+  .bw-header__nav-item--wide .bw-header__dropdown {
+    min-width: 320px;
+  }
+
+  .bw-header__nav-item--wider .bw-header__dropdown {
+    min-width: 360px;
+  }
+
   .bw-header__actions {
+    grid-column: 3 / 4;
+    grid-row: 1 / 2;
     justify-content: flex-end;
     gap: 12px;
   }
@@ -583,17 +769,29 @@
 
   @media (max-width: 1240px) {
     .bw-header__main-inner {
-      grid-template-columns: minmax(230px, 300px) minmax(0, 1fr) auto;
+      grid-template-columns: minmax(220px, 280px) minmax(0, 1fr) auto;
       gap: 22px;
     }
 
     .bw-header__nav {
-      gap: 14px;
-      padding-inline: 12px;
+      gap: 4px;
+      padding-left: 0;
+      padding-right: 0;
     }
 
     .bw-header__nav-link {
       font-size: 12px;
+      padding-left: 10px;
+      padding-right: 10px;
+    }
+
+    .bw-header__dropdown {
+      min-width: 240px;
+    }
+
+    .bw-header__nav-item--wide .bw-header__dropdown,
+    .bw-header__nav-item--wider .bw-header__dropdown {
+      min-width: 300px;
     }
   }
 
@@ -608,6 +806,9 @@
       gap: 14px;
       padding-left: 16px;
       padding-right: 16px;
+      padding-top: 12px;
+      padding-bottom: 12px;
+      align-items: center;
     }
 
     .bw-header__nav,
@@ -618,9 +819,18 @@
 
     .bw-header__menu-button {
       display: inline-flex;
+      grid-column: 1 / 2;
+      grid-row: 1 / 2;
+    }
+
+    .bw-header__brand {
+      grid-column: 2 / 3;
+      grid-row: 1 / 2;
     }
 
     .bw-header__actions {
+      grid-column: 3 / 4;
+      grid-row: 1 / 2;
       gap: 10px;
     }
 
@@ -683,6 +893,8 @@
     .bw-header__brand-wordmark,
     .bw-header__nav-link,
     .bw-header__nav-link::after,
+    .bw-header__dropdown,
+    .bw-header__dropdown-link,
     .bw-header__icon-link,
     .bw-header__menu-button,
     .bw-header__drawer-close,
@@ -729,31 +941,6 @@
       </span>
     </a>
 
-    <nav class="bw-header__nav" aria-label="Primary">
-      {% if section.settings.primary_menu != blank and section.settings.primary_menu.links.size > 0 %}
-        {% for link in section.settings.primary_menu.links %}
-          {% assign rendered_url = link.url %}
-          {% assign rendered_handle = link.title | handleize %}
-          {% if rendered_handle contains 'modular-kitchen' or rendered_handle == 'kitchen' %}
-            {% assign rendered_url = modular_kitchen_url %}
-          {% elsif rendered_handle contains 'wardrobe' %}
-            {% assign rendered_url = modular_wardrobe_url %}
-          {% endif %}
-          <a class="bw-header__nav-link{% if link.current or current_path == rendered_url %} is-active{% endif %}" href="{{ rendered_url }}"{% if link.current or current_path == rendered_url %} aria-current="page"{% endif %}>{{ link.title }}</a>
-        {% endfor %}
-      {% else %}
-        {% for nav_label in curated_nav_labels %}
-          {% assign nav_url = curated_nav_urls[forloop.index0] %}
-          {% if nav_label == 'Modular Kitchen' %}
-            {% assign nav_url = modular_kitchen_url %}
-          {% elsif nav_label == 'Wardrobes' %}
-            {% assign nav_url = modular_wardrobe_url %}
-          {% endif %}
-          <a class="bw-header__nav-link{% if current_path == nav_url %} is-active{% endif %}" href="{{ nav_url }}"{% if current_path == nav_url %} aria-current="page"{% endif %}>{{ nav_label }}</a>
-        {% endfor %}
-      {% endif %}
-    </nav>
-
     <div class="bw-header__actions">
       <a class="bw-header__icon-link" href="{{ routes.search_url }}" aria-label="Search">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
@@ -779,6 +966,153 @@
       </a>
       <a class="bw-header__cta" href="{{ cta_url }}">{{ cta_label }}</a>
     </div>
+
+    <nav class="bw-header__nav" aria-label="Primary">
+      <div class="bw-header__nav-item bw-header__nav-item--wider">
+        <a class="bw-header__nav-link bw-header__nav-link--has-children{% if current_path == living_room_url %} is-active{% endif %}" href="{{ living_room_url }}"{% if current_path == living_room_url %} aria-current="page"{% endif %}>Living Room</a>
+        <div class="bw-header__dropdown" role="presentation">
+          <div class="bw-header__dropdown-grid bw-header__dropdown-grid--two">
+            <div class="bw-header__dropdown-group">
+              <div class="bw-header__dropdown-heading">TV Unit</div>
+              <a class="bw-header__dropdown-link bw-header__dropdown-link--strong" href="{{ tv_unit_url }}">TV Unit</a>
+              <a class="bw-header__dropdown-link" href="{{ wall_mount_tv_url }}">Wall Mount TV Unit</a>
+              <a class="bw-header__dropdown-link" href="{{ floor_standing_tv_url }}">Floor Standing TV Unit</a>
+            </div>
+            <div class="bw-header__dropdown-group">
+              <div class="bw-header__dropdown-heading">Shoe Rack</div>
+              <a class="bw-header__dropdown-link bw-header__dropdown-link--strong" href="{{ shoe_rack_url }}">Shoe Rack</a>
+              <a class="bw-header__dropdown-link" href="{{ two_door_shoe_rack_url }}">2 Door</a>
+              <a class="bw-header__dropdown-link" href="{{ three_door_shoe_rack_url }}">3 Door</a>
+              <a class="bw-header__dropdown-link bw-header__dropdown-link--strong" href="{{ coffee_table_url }}">Coffee Table</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bw-header__nav-item bw-header__nav-item--wider">
+        <a class="bw-header__nav-link bw-header__nav-link--has-children{% if current_path == bedroom_url or current_path == modular_wardrobe_url %} is-active{% endif %}" href="{{ bedroom_url }}"{% if current_path == bedroom_url %} aria-current="page"{% endif %}>Bedroom</a>
+        <div class="bw-header__dropdown" role="presentation">
+          <div class="bw-header__dropdown-grid bw-header__dropdown-grid--two">
+            <div class="bw-header__dropdown-group">
+              <div class="bw-header__dropdown-heading">Wardrobe</div>
+              <a class="bw-header__dropdown-link bw-header__dropdown-link--strong" href="{{ modular_wardrobe_url }}">Wardrobe</a>
+              <a class="bw-header__dropdown-link" href="{{ two_door_wardrobe_url }}">2 Door</a>
+              <a class="bw-header__dropdown-link" href="{{ three_door_wardrobe_url }}">3 Door</a>
+              <a class="bw-header__dropdown-link" href="{{ four_door_wardrobe_url }}">4 Door</a>
+            </div>
+            <div class="bw-header__dropdown-group">
+              <div class="bw-header__dropdown-heading">Beds & Dressers</div>
+              <a class="bw-header__dropdown-link bw-header__dropdown-link--strong" href="{{ beds_url }}">Beds</a>
+              <a class="bw-header__dropdown-link" href="{{ king_size_bed_url }}">King Size</a>
+              <a class="bw-header__dropdown-link" href="{{ queen_size_bed_url }}">Queen Size</a>
+              <a class="bw-header__dropdown-link bw-header__dropdown-link--strong" href="{{ dressers_url }}">Dressers</a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="bw-header__nav-item">
+        <a class="bw-header__nav-link bw-header__nav-link--has-children{% if current_path == study_room_url %} is-active{% endif %}" href="{{ study_room_url }}"{% if current_path == study_room_url %} aria-current="page"{% endif %}>Study Room</a>
+        <div class="bw-header__dropdown" role="presentation">
+          <div class="bw-header__dropdown-grid">
+            <a class="bw-header__dropdown-link bw-header__dropdown-link--strong" href="{{ study_table_url }}">Study Table</a>
+            <a class="bw-header__dropdown-link" href="{{ bookshelves_url }}">Bookshelves</a>
+            <a class="bw-header__dropdown-link" href="{{ wall_shelf_url }}">Wall Shelf</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="bw-header__nav-item">
+        <a class="bw-header__nav-link bw-header__nav-link--has-children{% if current_path == tv_unit_url %} is-active{% endif %}" href="{{ tv_unit_url }}"{% if current_path == tv_unit_url %} aria-current="page"{% endif %}>TV Unit</a>
+        <div class="bw-header__dropdown" role="presentation">
+          <div class="bw-header__dropdown-grid">
+            <a class="bw-header__dropdown-link bw-header__dropdown-link--strong" href="{{ wall_mount_tv_url }}">Wall Mount TV Unit</a>
+            <a class="bw-header__dropdown-link" href="{{ floor_standing_tv_url }}">Floor Standing TV Unit</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="bw-header__nav-item">
+        <a class="bw-header__nav-link bw-header__nav-link--has-children{% if current_path == shoe_rack_url %} is-active{% endif %}" href="{{ shoe_rack_url }}"{% if current_path == shoe_rack_url %} aria-current="page"{% endif %}>Shoe Rack</a>
+        <div class="bw-header__dropdown" role="presentation">
+          <div class="bw-header__dropdown-grid">
+            <a class="bw-header__dropdown-link bw-header__dropdown-link--strong" href="{{ two_door_shoe_rack_url }}">2 Door Shoe Rack</a>
+            <a class="bw-header__dropdown-link" href="{{ three_door_shoe_rack_url }}">3 Door Shoe Rack</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="bw-header__nav-item">
+        <a class="bw-header__nav-link bw-header__nav-link--has-children{% if current_path == shelves_url %} is-active{% endif %}" href="{{ shelves_url }}"{% if current_path == shelves_url %} aria-current="page"{% endif %}>Shelves</a>
+        <div class="bw-header__dropdown" role="presentation">
+          <div class="bw-header__dropdown-grid">
+            <a class="bw-header__dropdown-link bw-header__dropdown-link--strong" href="{{ wall_mount_corner_shelves_url }}">Wall Mount Corner Shelves</a>
+            <a class="bw-header__dropdown-link" href="{{ floor_standing_corner_shelves_url }}">Floor Standing Corner Shelves</a>
+            <a class="bw-header__dropdown-link" href="{{ wall_shelves_url }}">Wall Shelves</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="bw-header__nav-item">
+        <a class="bw-header__nav-link bw-header__nav-link--has-children{% if current_path == coffee_table_url %} is-active{% endif %}" href="{{ coffee_table_url }}"{% if current_path == coffee_table_url %} aria-current="page"{% endif %}>Coffee Table</a>
+        <div class="bw-header__dropdown" role="presentation">
+          <div class="bw-header__dropdown-grid">
+            <a class="bw-header__dropdown-link bw-header__dropdown-link--strong" href="{{ coffee_table_url }}">Coffee Table</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="bw-header__nav-item">
+        <a class="bw-header__nav-link bw-header__nav-link--has-children{% if current_path == bookshelves_url %} is-active{% endif %}" href="{{ bookshelves_url }}"{% if current_path == bookshelves_url %} aria-current="page"{% endif %}>Bookshelves</a>
+        <div class="bw-header__dropdown" role="presentation">
+          <div class="bw-header__dropdown-grid">
+            <a class="bw-header__dropdown-link bw-header__dropdown-link--strong" href="{{ bookshelves_url }}">Bookshelves</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="bw-header__nav-item bw-header__nav-item--wide">
+        <a class="bw-header__nav-link bw-header__nav-link--has-children{% if current_path == modular_kitchen_url or current_path == modular_kitchen_calculator_url %} is-active{% endif %}" href="{{ modular_kitchen_url }}"{% if current_path == modular_kitchen_url %} aria-current="page"{% endif %}>Modular Kitchen</a>
+        <div class="bw-header__dropdown" role="presentation">
+          <div class="bw-header__dropdown-grid">
+            <a class="bw-header__dropdown-link bw-header__dropdown-link--strong" href="{{ modular_kitchen_url }}">All Layouts</a>
+            <a class="bw-header__dropdown-link" href="{{ l_shape_kitchen_url }}">L-Shape</a>
+            <a class="bw-header__dropdown-link" href="{{ u_shape_kitchen_url }}">U-Shape</a>
+            <a class="bw-header__dropdown-link" href="{{ parallel_kitchen_url }}">Parallel</a>
+            <a class="bw-header__dropdown-link" href="{{ straight_kitchen_url }}">Straight</a>
+            <a class="bw-header__dropdown-link" href="{{ island_kitchen_url }}">Island</a>
+            <a class="bw-header__dropdown-link" href="{{ modular_kitchen_calculator_url }}">Kitchen Calculator</a>
+            <a class="bw-header__dropdown-link" href="{{ estimate_url }}">Get Free Estimate</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="bw-header__nav-item bw-header__nav-item--wide">
+        <a class="bw-header__nav-link bw-header__nav-link--has-children{% if current_path == modular_wardrobe_url or current_path == modular_wardrobe_calculator_url %} is-active{% endif %}" href="{{ modular_wardrobe_url }}"{% if current_path == modular_wardrobe_url %} aria-current="page"{% endif %}>Wardrobes</a>
+        <div class="bw-header__dropdown" role="presentation">
+          <div class="bw-header__dropdown-grid">
+            <a class="bw-header__dropdown-link bw-header__dropdown-link--strong" href="{{ modular_wardrobe_url }}">All Wardrobes</a>
+            <a class="bw-header__dropdown-link" href="{{ sliding_wardrobe_url }}">Sliding Wardrobes</a>
+            <a class="bw-header__dropdown-link" href="{{ hinged_wardrobe_url }}">Hinged Wardrobes</a>
+            <a class="bw-header__dropdown-link" href="{{ walk_in_wardrobe_url }}">Walk-In Wardrobes</a>
+            <a class="bw-header__dropdown-link" href="{{ modular_wardrobe_calculator_url }}">Wardrobe Calculator</a>
+            <a class="bw-header__dropdown-link" href="{{ estimate_url }}">Get Free Estimate</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="bw-header__nav-item bw-header__nav-item--wide">
+        <a class="bw-header__nav-link bw-header__nav-link--has-children{% if current_path == home_interiors_calculator_url or current_path == modular_kitchen_calculator_url or current_path == modular_wardrobe_calculator_url %} is-active{% endif %}" href="{{ price_calculator_url }}">Price Calculator</a>
+        <div class="bw-header__dropdown" role="presentation">
+          <div class="bw-header__dropdown-grid">
+            <a class="bw-header__dropdown-link bw-header__dropdown-link--strong" href="{{ home_interiors_calculator_url }}">Home Interiors Cost Calculator</a>
+            <a class="bw-header__dropdown-link" href="{{ modular_kitchen_calculator_url }}">Modular Kitchen Cost Calculator</a>
+            <a class="bw-header__dropdown-link" href="{{ modular_wardrobe_calculator_url }}">Modular Wardrobe Cost Calculator</a>
+            <a class="bw-header__dropdown-link" href="{{ estimate_url }}">Get Free Estimate</a>
+          </div>
+        </div>
+      </div>
+    </nav>
   </div>
 </div>
 
@@ -821,6 +1155,8 @@
             {% assign rendered_url = modular_kitchen_url %}
           {% elsif rendered_handle contains 'wardrobe' %}
             {% assign rendered_url = modular_wardrobe_url %}
+          {% elsif rendered_handle contains 'calculator' %}
+            {% assign rendered_url = price_calculator_url %}
           {% endif %}
           <a class="bw-header__drawer-link" href="{{ rendered_url }}"{% if link.current or current_path == rendered_url %} aria-current="page"{% endif %}>{{ link.title }}</a>
         {% endfor %}
@@ -832,6 +1168,8 @@
             {% assign rendered_url = modular_kitchen_url %}
           {% elsif rendered_handle contains 'wardrobe' %}
             {% assign rendered_url = modular_wardrobe_url %}
+          {% elsif rendered_handle contains 'calculator' %}
+            {% assign rendered_url = price_calculator_url %}
           {% endif %}
           <a class="bw-header__drawer-link" href="{{ rendered_url }}"{% if link.current or current_path == rendered_url %} aria-current="page"{% endif %}>{{ link.title }}</a>
         {% endfor %}
@@ -842,6 +1180,8 @@
             {% assign nav_url = modular_kitchen_url %}
           {% elsif nav_label == 'Wardrobes' %}
             {% assign nav_url = modular_wardrobe_url %}
+          {% elsif nav_label == 'Price Calculator' %}
+            {% assign nav_url = price_calculator_url %}
           {% endif %}
           <a class="bw-header__drawer-link" href="{{ nav_url }}"{% if current_path == nav_url %} aria-current="page"{% endif %}>{{ nav_label }}</a>
         {% endfor %}
