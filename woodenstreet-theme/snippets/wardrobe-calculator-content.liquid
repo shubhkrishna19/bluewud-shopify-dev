@@ -9,6 +9,10 @@
   assign kitchen_calculator_url = '/pages/modular-kitchen-cost-calculator'
   assign interiors_calculator_url = '/pages/home-interiors-cost-calculator'
   assign estimate_url = '/pages/get-free-estimate'
+  assign wardrobe_collection = collections['wardrobe']
+  assign wardrobe_preview_primary = blank
+  assign wardrobe_preview_secondary = blank
+  assign wardrobe_preview_tertiary = blank
 
   if pages['modular-wardrobe-designs'] != blank
     assign wardrobe_main_url = pages['modular-wardrobe-designs'].url
@@ -36,6 +40,16 @@
   endif
   if pages['get-free-estimate'] == blank and pages['contact-us'] != blank
     assign estimate_url = pages['contact-us'].url
+  endif
+
+  if wardrobe_collection != blank
+    assign wardrobe_preview_primary = wardrobe_collection.products.first
+    if wardrobe_collection.products.size > 1
+      assign wardrobe_preview_secondary = wardrobe_collection.products[1]
+    endif
+    if wardrobe_collection.products.size > 2
+      assign wardrobe_preview_tertiary = wardrobe_collection.products[2]
+    endif
   endif
 %}
 
@@ -88,12 +102,139 @@
   }
   .bw-flow__journey {
     display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 14px;
     margin-bottom: 18px;
-    padding: 18px 20px;
+  }
+  .bw-flow__showcase,
+  .bw-flow__reference-grid {
+    display: grid;
+    gap: 12px;
+  }
+  .bw-flow__showcase-panel {
+    display: grid;
+    gap: 14px;
+    padding: 20px;
     border-radius: 24px;
-    background: linear-gradient(135deg, rgba(35, 24, 19, 0.06), rgba(79, 120, 143, 0.08));
+    background:
+      radial-gradient(circle at top left, rgba(166, 106, 67, 0.18), transparent 28%),
+      linear-gradient(135deg, #231813 0%, #3b2921 56%, #5c463c 100%);
     border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 24px 70px rgba(35, 24, 19, 0.08);
+    color: #fff7f1;
+  }
+  .bw-flow__showcase-head {
+    display: grid;
+    gap: 8px;
+    max-width: 58ch;
+  }
+  .bw-flow__showcase-title {
+    margin: 0;
+    color: inherit;
+    font-size: 22px;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+  .bw-flow__showcase-copy {
+    margin: 0;
+    color: rgba(255, 247, 241, 0.82);
+    font-size: 14px;
+    line-height: 1.7;
+  }
+  .bw-flow__showcase-image {
+    overflow: hidden;
+    border-radius: 20px;
+    min-height: 264px;
+    background: rgba(255, 247, 241, 0.08);
+  }
+  .bw-flow__showcase-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .bw-flow__preview-card {
+    display: grid;
+    grid-template-columns: 92px minmax(0, 1fr);
+    gap: 12px;
+    padding: 14px;
+    border-radius: 20px;
+    background: rgba(255, 251, 247, 0.96);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 18px 42px rgba(35, 24, 19, 0.05);
+    color: #201713;
+    text-decoration: none;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease;
+  }
+  .bw-flow__preview-card:hover,
+  .bw-flow__preview-card:focus-visible {
+    transform: translateY(-1px);
+    border-color: rgba(79, 120, 143, 0.22);
+    box-shadow: 0 22px 46px rgba(35, 24, 19, 0.08);
+  }
+  .bw-flow__preview-media {
+    overflow: hidden;
+    min-height: 92px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, rgba(35, 24, 19, 0.08), rgba(79, 120, 143, 0.1));
+  }
+  .bw-flow__preview-media img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  .bw-flow__preview-fallback {
+    display: grid;
+    place-items: center;
+    min-height: 92px;
+    padding: 10px;
+    color: #fff7f1;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-align: center;
+    background: linear-gradient(135deg, rgba(35, 24, 19, 0.92), rgba(79, 120, 143, 0.72));
+  }
+  .bw-flow__preview-copy {
+    display: grid;
+    gap: 5px;
+    align-content: start;
+  }
+  .bw-flow__preview-kicker {
+    color: #8a684f;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .bw-flow__preview-title {
+    margin: 0;
+    color: #201713;
+    font-size: 15px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  .bw-flow__preview-text {
+    margin: 0;
+    color: #66554c;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .bw-flow__reference-grid .bw-flow__preview-card:nth-child(1) { background: rgba(255, 251, 247, 0.98); }
+  .bw-flow__reference-grid .bw-flow__preview-card:nth-child(2) { background: rgba(250, 244, 239, 0.98); }
+  .bw-flow__reference-grid .bw-flow__preview-card:nth-child(3) { background: rgba(245, 239, 232, 0.98); }
+  .bw-flow__reference-grid .bw-flow__preview-card:nth-child(4) {
+    align-content: center;
+    background: linear-gradient(135deg, #241814 0%, #3a2921 100%);
+    color: #fff7f1;
+    border-color: rgba(255, 247, 241, 0.08);
+  }
+  .bw-flow__reference-grid .bw-flow__preview-card:nth-child(4) .bw-flow__preview-kicker,
+  .bw-flow__reference-grid .bw-flow__preview-card:nth-child(4) .bw-flow__preview-title,
+  .bw-flow__reference-grid .bw-flow__preview-card:nth-child(4) .bw-flow__preview-text {
+    color: inherit;
   }
   .bw-flow__journey-head {
     display: grid;
@@ -376,12 +517,15 @@
     .bw-flow__shell { grid-template-columns: 1fr; }
     .bw-flow__summary { position: static; }
     .bw-flow__progress { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .bw-flow__journey { grid-template-columns: 1fr; }
   }
   @media (max-width: 720px) {
     .bw-flow__panel,
     .bw-flow__summary { padding: 22px 20px; border-radius: 24px; }
     .bw-flow__progress,
     .bw-flow__grid { grid-template-columns: 1fr; }
+    .bw-flow__showcase-image { min-height: 220px; }
+    .bw-flow__preview-card { grid-template-columns: 1fr; }
     .bw-flow__actions { flex-direction: column-reverse; align-items: stretch; }
   }
 </style>
@@ -409,17 +553,48 @@
       </div>
 
       <div class="bw-flow__journey">
-        <div class="bw-flow__journey-head">
-          <h3 class="bw-flow__journey-title">Use the wardrobe guides only if the format still feels undecided</h3>
-          <p class="bw-flow__journey-copy">Once the room is clearly sliding, hinged, or walk-in, stay inside this calculator and finish one sharper wardrobe brief.</p>
-        </div>
-        <div class="bw-flow__journey-links">
-          <a class="bw-flow__journey-link" href="{{ wardrobe_main_url }}">Wardrobe Designs</a>
-          <a class="bw-flow__journey-link" href="{{ wardrobe_sliding_url }}">Sliding Wardrobes</a>
-          <a class="bw-flow__journey-link" href="{{ wardrobe_hinged_url }}">Hinged Wardrobes</a>
-          <a class="bw-flow__journey-link" href="{{ wardrobe_walkin_url }}">Walk-in Wardrobes</a>
-          <a class="bw-flow__journey-link" href="{{ estimate_url }}">Get Free Estimate</a>
-        </div>
+        <a class="bw-flow__preview-card" href="{{ wardrobe_sliding_url }}">
+          <div class="bw-flow__preview-media">
+            {% if wardrobe_preview_primary != blank and wardrobe_preview_primary.featured_image != blank %}
+              {{ wardrobe_preview_primary.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 460, 640, 900', sizes: '(max-width: 720px) 100vw, 25vw', alt: wardrobe_preview_primary.title }}
+            {% else %}
+              <span class="bw-flow__preview-fallback">Wardrobe reference</span>
+            {% endif %}
+          </div>
+          <div class="bw-flow__preview-copy">
+            <span class="bw-flow__preview-kicker">Reference 01</span>
+            <h3 class="bw-flow__preview-title">Sliding wardrobes</h3>
+            <p class="bw-flow__preview-text">Compact frontage, clean movement, and a room-saving door system.</p>
+          </div>
+        </a>
+        <a class="bw-flow__preview-card" href="{{ wardrobe_hinged_url }}">
+          <div class="bw-flow__preview-media">
+            {% if wardrobe_preview_secondary != blank and wardrobe_preview_secondary.featured_image != blank %}
+              {{ wardrobe_preview_secondary.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 460, 640, 900', sizes: '(max-width: 720px) 100vw, 25vw', alt: wardrobe_preview_secondary.title }}
+            {% else %}
+              <span class="bw-flow__preview-fallback">Wardrobe reference</span>
+            {% endif %}
+          </div>
+          <div class="bw-flow__preview-copy">
+            <span class="bw-flow__preview-kicker">Reference 02</span>
+            <h3 class="bw-flow__preview-title">Hinged wardrobes</h3>
+            <p class="bw-flow__preview-text">Full opening, direct access, and a classic wardrobe read.</p>
+          </div>
+        </a>
+        <a class="bw-flow__preview-card" href="{{ wardrobe_walkin_url }}">
+          <div class="bw-flow__preview-media">
+            {% if wardrobe_preview_tertiary != blank and wardrobe_preview_tertiary.featured_image != blank %}
+              {{ wardrobe_preview_tertiary.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 460, 640, 900', sizes: '(max-width: 720px) 100vw, 25vw', alt: wardrobe_preview_tertiary.title }}
+            {% else %}
+              <span class="bw-flow__preview-fallback">Wardrobe reference</span>
+            {% endif %}
+          </div>
+          <div class="bw-flow__preview-copy">
+            <span class="bw-flow__preview-kicker">Reference 03</span>
+            <h3 class="bw-flow__preview-title">Walk-in wardrobes</h3>
+            <p class="bw-flow__preview-text">Dedicated dressing flow, larger zoning, and premium storage intent.</p>
+          </div>
+        </a>
       </div>
 
       <div class="bw-flow__progress">
