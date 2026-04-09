@@ -498,16 +498,18 @@
 
 <section class="bw-page">
   <div class="bw-page__inner">
-    <div class="bw-page__hero">
-      <div class="bw-page__breadcrumbs">
-        <a href="{{ routes.root_url }}">Home</a>
-        <span>/</span>
-        <span>{{ page.title }}</span>
+    {% unless is_help_center or is_about_page or is_returns_refunds or is_offers_page or is_contact_page or is_business_support_page or is_kitchen_page or is_kitchen_calculator or is_home_interiors_calculator or is_wardrobe_page or is_wardrobe_calculator or is_estimate_page %}
+      <div class="bw-page__hero">
+        <div class="bw-page__breadcrumbs">
+          <a href="{{ routes.root_url }}">Home</a>
+          <span>/</span>
+          <span>{{ page.title }}</span>
+        </div>
+        <span class="bw-page__eyebrow">{{ page_eyebrow }}</span>
+        <h1 class="bw-page__title">{{ page.title }}</h1>
+        <p class="bw-page__intro">{{ page_intro }}</p>
       </div>
-      <span class="bw-page__eyebrow">{{ page_eyebrow }}</span>
-      <h1 class="bw-page__title">{{ page.title }}</h1>
-      <p class="bw-page__intro">{{ page_intro }}</p>
-    </div>
+    {% endunless %}
 
     <div class="{{ page_content_class }}">
       {% if is_help_center %}

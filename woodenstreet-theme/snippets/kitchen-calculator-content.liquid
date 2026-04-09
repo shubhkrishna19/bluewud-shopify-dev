@@ -98,6 +98,32 @@
     font-size: 12px;
     line-height: 1.6;
   }
+  .bw-flow__summary-cues {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 18px;
+  }
+  .bw-flow__summary-cue {
+    display: grid;
+    gap: 6px;
+    padding: 14px;
+    border-radius: 18px;
+    background: rgba(255, 247, 241, 0.08);
+    border: 1px solid rgba(255, 247, 241, 0.12);
+  }
+  .bw-flow__summary-cue span {
+    color: rgba(255, 247, 241, 0.66);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .bw-flow__summary-cue strong {
+    color: #fff7f1;
+    font-size: 14px;
+    line-height: 1.45;
+  }
   .bw-flow__head { display: grid; gap: 10px; margin-bottom: 18px; }
   .bw-flow__eyebrow {
     color: #8a684f;
@@ -455,6 +481,7 @@
     .bw-flow__summary { padding: 22px 20px; border-radius: 24px; }
     .bw-flow__progress,
     .bw-flow__grid { grid-template-columns: 1fr; }
+    .bw-flow__summary-cues { grid-template-columns: 1fr; }
     .bw-flow__actions { flex-direction: column-reverse; align-items: stretch; }
     .bw-flow__summary-visual { min-height: 180px; }
   }
@@ -486,8 +513,8 @@
 
       <section class="bw-flow__journey">
         <div class="bw-flow__stage-head">
-          <h3 class="bw-flow__stage-title">Jump between kitchen guides and planning tools</h3>
-          <p class="bw-flow__stage-copy">This calculator should sit inside the larger modular journey. Compare layouts first if needed, then come back here to submit a tighter brief.</p>
+          <h3 class="bw-flow__stage-title">Compare the layout once, then finish the brief here</h3>
+          <p class="bw-flow__stage-copy">Use the guide links only if the room still feels undecided. Once the direction is clear, stay in this calculator and send one sharper kitchen brief.</p>
         </div>
         <div class="bw-flow__journey-links" aria-label="Kitchen layout guides">
           <a class="bw-flow__button--secondary" href="{{ main_url }}">All Kitchen Guides</a>
@@ -497,10 +524,6 @@
           <a class="bw-flow__button--secondary" href="{{ straight_url }}">Straight</a>
           <a class="bw-flow__button--secondary" href="{{ island_url }}">Island</a>
         </div>
-      <div class="bw-flow__journey-links" aria-label="Connected planning tools">
-        <a class="bw-flow__button" href="{{ main_url }}">Back To Kitchen Studio</a>
-        <a class="bw-flow__button--secondary" href="{{ estimate_url }}">Get Free Estimate</a>
-      </div>
       </section>
 
       <div class="bw-flow__progress">
@@ -666,6 +689,20 @@
         <img src="{{ kitchen_image_l_url }}" alt="Selected kitchen layout preview" loading="lazy" width="900" height="675" data-kitchen-summary-image>
       </div>
       <p class="bw-flow__summary-caption" data-kitchen-summary-caption>L-shape keeps the room efficient without making the kitchen feel heavy.</p>
+      <div class="bw-flow__summary-cues">
+        <article class="bw-flow__summary-cue">
+          <span>Finish mood</span>
+          <strong data-summary-finish-cue>Warm laminate-led balance</strong>
+        </article>
+        <article class="bw-flow__summary-cue">
+          <span>Storage posture</span>
+          <strong data-summary-storage-cue>Balanced everyday storage</strong>
+        </article>
+        <article class="bw-flow__summary-cue">
+          <span>Appliance plan</span>
+          <strong data-summary-appliance-cue>Core appliance-ready setup</strong>
+        </article>
+      </div>
       <div class="bw-flow__head">
         <span class="bw-flow__eyebrow">Project summary</span>
         <h2 class="bw-flow__title">Your kitchen brief</h2>
@@ -684,7 +721,7 @@
         <div class="bw-flow__summary-line"><span>Appliances</span><strong data-summary-appliances>Hob, Chimney</strong></div>
       </div>
       <div class="bw-flow__summary-tags" data-summary-tags></div>
-      <p class="bw-flow__assist">Once you submit this, the estimate popup will carry the selected layout, measurements, material path, and add-ons so the Bluewud team receives a far more usable enquiry.</p>
+      <p class="bw-flow__assist">This brief helps Bluewud respond with a more grounded layout, material, and estimate conversation from the start.</p>
       <div class="bw-flow__actions">
         <button class="bw-flow__button" type="button" data-bw-kitchen-popup-open>Get Free Estimate</button>
         <a class="bw-flow__button--secondary" href="{{ contact_url }}">Talk To Bluewud</a>
@@ -802,6 +839,29 @@
       if (premiumSignals >= 3) return 'Balanced premium direction';
       return 'Value-led practical direction';
     }
+    function finishCue() {
+      var shutter = selectedRadio('shutter_material');
+      var countertop = selectedRadio('countertop');
+      if (shutter === 'Glass / premium' || countertop === 'Premium stone') return 'Statement premium finish';
+      if (shutter === 'Acrylic front' || countertop === 'Quartz') return 'Sharper modern finish';
+      if (shutter === 'Membrane / profile') return 'Soft profile-led finish';
+      return 'Warm laminate-led balance';
+    }
+    function storageCue() {
+      var addons = selectedChecks('addons');
+      var uppers = selectedRadio('upper_cabinets');
+      if (addons.length >= 4) return 'Storage-heavy utility brief';
+      if (uppers === 'Only on selected walls') return 'Open + closed balance';
+      if (uppers === 'No') return 'Lighter visual line';
+      return 'Balanced everyday storage';
+    }
+    function applianceCue() {
+      var appliances = selectedChecks('appliances');
+      if (appliances.length >= 4) return 'High-integration appliance plan';
+      if (appliances.length >= 2) return 'Core appliance-ready setup';
+      if (appliances.length === 1) return appliances[0] + ' integration';
+      return 'Appliance plan to be defined';
+    }
     function updateSummary() {
       toggleChoiceStates();
       var measurements = [inputValue('wall_a') + ' ft', inputValue('wall_b') + ' ft', inputValue('wall_c') + ' ft'].join(' / ');
@@ -830,6 +890,12 @@
       if (summaryCaptionNode && layoutVisual) {
         summaryCaptionNode.textContent = layoutVisual.caption;
       }
+      var finishCueNode = root.querySelector('[data-summary-finish-cue]');
+      var storageCueNode = root.querySelector('[data-summary-storage-cue]');
+      var applianceCueNode = root.querySelector('[data-summary-appliance-cue]');
+      if (finishCueNode) finishCueNode.textContent = finishCue();
+      if (storageCueNode) storageCueNode.textContent = storageCue();
+      if (applianceCueNode) applianceCueNode.textContent = applianceCue();
       var tagsNode = root.querySelector('[data-summary-tags]');
       if (tagsNode) {
         var tags = [

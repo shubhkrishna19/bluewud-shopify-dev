@@ -853,9 +853,8 @@
       {% endif %}
     </div>
     <div class="bw-wardrobe-route-actions">
-        <a class="bw-wardrobe-route-link" href="{{ calculator_cta_url }}">Open Wardrobe Calculator</a>
+      <a class="bw-wardrobe-route-link" href="{{ calculator_cta_url }}">Open Wardrobe Calculator</a>
       <button class="bw-wardrobe-button--secondary" type="button" data-bw-wardrobe-estimate-open data-estimate-trigger="route">Get Free Estimate</button>
-      <a class="bw-wardrobe-button--secondary" href="{{ contact_url }}">Talk To Bluewud</a>
     </div>
   </section>
 
@@ -909,7 +908,6 @@
                     <p>{{ product.description | strip_html | truncatewords: 28 }}</p>
                     <div class="bw-wardrobe-gallery-actions">
                       <a class="bw-wardrobe-gallery-link" href="{{ product.url }}">View Product</a>
-        <a class="bw-wardrobe-button--secondary" href="{{ calculator_cta_url }}">Open Wardrobe Calculator</a>
                     </div>
                   </div>
                   <div class="bw-wardrobe-gallery-main-media">
@@ -1149,7 +1147,6 @@
     <div class="bw-wardrobe-lens-actions">
       <a class="bw-wardrobe-lens-link" href="{{ calculator_cta_url }}">Open Wardrobe Calculator</a>
       <button class="bw-wardrobe-button--secondary" type="button" data-bw-wardrobe-estimate-open data-estimate-trigger="lens">Get Free Estimate</button>
-      <a class="bw-wardrobe-button--secondary" href="{{ contact_url }}">Talk To Bluewud</a>
     </div>
   </section>
 
@@ -1365,7 +1362,6 @@
     <div class="bw-wardrobe-measure-actions">
       <a class="bw-wardrobe-measure-link" href="{{ calculator_cta_url }}">Open Wardrobe Calculator</a>
       <button class="bw-wardrobe-button--secondary" type="button" data-bw-wardrobe-estimate-open data-estimate-trigger="measure">Get Free Estimate</button>
-      <a class="bw-wardrobe-button--secondary" href="{{ contact_url }}">Talk To Bluewud</a>
     </div>
   </section>
 
@@ -1411,24 +1407,6 @@
       </div>
     </section>
   {% endif %}
-
-  <section class="bw-wardrobe-band">
-    <div class="bw-wardrobe-head">
-      <span class="bw-wardrobe-eyebrow">Move from inspiration to planning</span>
-      {% if wardrobe_variant == 'all' %}
-        <h2 class="bw-wardrobe-title">Narrow the format, then ask for the estimate</h2>
-        <p class="bw-wardrobe-copy">The strongest next step is a directional price path once the wardrobe type, internal brief, and finish direction feel clear enough to discuss seriously.</p>
-      {% else %}
-        <h2 class="bw-wardrobe-title">Turn this wardrobe direction into a real estimate</h2>
-        <p class="bw-wardrobe-copy">Once the room fit, internal intent, and finish direction feel right, the calculator and estimate flow can move the project forward with much less confusion.</p>
-      {% endif %}
-    </div>
-    <div class="bw-wardrobe-actions">
-      <a class="bw-wardrobe-button" href="{{ calculator_cta_url }}">Open Wardrobe Calculator</a>
-      <button class="bw-wardrobe-button--secondary" type="button" data-bw-wardrobe-estimate-open data-estimate-trigger="band">Get Free Estimate</button>
-      <a class="bw-wardrobe-button--secondary" href="{{ contact_url }}">Talk To Bluewud</a>
-    </div>
-  </section>
 
   <section class="bw-wardrobe-block">
     <div class="bw-wardrobe-head">
@@ -1565,7 +1543,6 @@
     </div>
     <div class="bw-wardrobe-actions">
       <button class="bw-wardrobe-button" type="button" data-bw-wardrobe-estimate-open data-estimate-trigger="cta">Get Free Estimate</button>
-      <a class="bw-wardrobe-button--secondary" href="{{ phone_url }}">Call Bluewud</a>
       <a class="bw-wardrobe-button--secondary" href="{{ calculator_cta_url }}">Price It First</a>
     </div>
   </section>

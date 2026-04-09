@@ -161,6 +161,11 @@ Files:
 - the estimate page now visibly shows carried-forward planner selections and lets the customer clear the imported brief before sending the enquiry
 - the project brief store now has a clear/reset path and freshness guard so stale planner data is less likely to bleed into a new request
 - modular kitchen image prompting and review guidance now lives in `docs/modular-kitchen-imagery-prompt-pack.md`
+- the kitchen calculator summary now translates selections into finish, storage, and appliance cues so the right-side panel feels more visual and less form-like
+- modular kitchen imagery now runs deeper into the planner through expanded gallery coverage and image-led decision cards instead of staying only in hero positions
+- kitchen and wardrobe planner pages now ask for the next step less often by stripping duplicate estimate/contact prompts from repeated sections
+- the wardrobe calculator lost one duplicate journey block, so the actual wardrobe brief starts faster with less funnel chrome
+- modular kitchen, wardrobe, and calculator pages now suppress the generic page hero shell so customers land directly inside the real planning UI
 
 ## Current Review Routes
 

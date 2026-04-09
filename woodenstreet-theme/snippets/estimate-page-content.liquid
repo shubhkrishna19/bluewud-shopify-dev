@@ -271,6 +271,31 @@
     text-transform: uppercase;
     cursor: pointer;
   }
+  .bw-estimate__carry-visual {
+    display: grid;
+    gap: 8px;
+  }
+  .bw-estimate__carry-visual[hidden] {
+    display: none;
+  }
+  .bw-estimate__carry-media {
+    min-height: 180px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
+  }
+  .bw-estimate__carry-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bw-estimate__carry-caption {
+    margin: 0;
+    color: #66554c;
+    font-size: 13px;
+    line-height: 1.65;
+  }
   .bw-estimate__pills {
     display: flex;
     flex-wrap: wrap;
@@ -607,13 +632,19 @@
             <p class="bw-estimate__carry-title">Selections carried from your latest planner</p>
             <button class="bw-estimate__carry-reset" type="button" data-bw-carry-reset>Clear brief</button>
           </div>
-          <p class="bw-estimate__carry-copy">These options are attached to the enquiry automatically so the Bluewud team receives the actual planning brief, not just a generic contact request.</p>
+          <div class="bw-estimate__carry-visual" data-bw-carry-visual hidden>
+            <div class="bw-estimate__carry-media">
+              <img src="" alt="" loading="lazy" width="900" height="675" data-bw-carry-image>
+            </div>
+            <p class="bw-estimate__carry-caption" data-bw-carry-caption></p>
+          </div>
+          <p class="bw-estimate__carry-copy">This carried brief keeps the estimate grounded in the layout and options you already shortlisted.</p>
           <div class="bw-estimate__carry-grid" data-bw-carry-grid></div>
         </div>
       </div>
 
       <div class="bw-estimate__context">
-        <span class="bw-estimate__context-label">Conversion endpoint</span>
+        <span class="bw-estimate__context-label">Planning shortcuts</span>
         <ul class="bw-estimate__context-list">
           <li><span>Kitchen route</span><strong><a class="bw-estimate__pill" href="{{ kitchen_calculator_url }}">Open calculator</a></strong></li>
           <li><span>Wardrobe route</span><strong><a class="bw-estimate__pill" href="{{ wardrobe_calculator_url }}">Open calculator</a></strong></li>
@@ -759,7 +790,7 @@
           <a class="bw-estimate__cta" href="{{ kitchen_calculator_url }}">Kitchen calculator</a>
           <a class="bw-estimate__cta" href="{{ wardrobe_calculator_url }}">Wardrobe calculator</a>
         </div>
-        <p class="bw-estimate__helper bw-estimate__helper--strong">For faster routing, mention whether this is for a wardrobe, modular kitchen, or a larger interiors requirement. The brief summary above updates as you fill the form.</p>
+        <p class="bw-estimate__helper bw-estimate__helper--strong">Mention the room type and likely project direction so the Bluewud team can route your enquiry faster.</p>
       {% endform %}
     </section>
 
@@ -823,6 +854,9 @@
     var carrySummary = root.querySelector('[data-bw-carry-summary]');
     var carryGrid = root.querySelector('[data-bw-carry-grid]');
     var carryReset = root.querySelector('[data-bw-carry-reset]');
+    var carryVisual = root.querySelector('[data-bw-carry-visual]');
+    var carryImage = root.querySelector('[data-bw-carry-image]');
+    var carryCaption = root.querySelector('[data-bw-carry-caption]');
     var storedBrief = window.BluewudProjectBriefStore ? window.BluewudProjectBriefStore.read() : null;
     var briefFreshnessWindow = 1000 * 60 * 60 * 8;
 
@@ -872,12 +906,53 @@
         .replace(/_/g, ' ')
         .replace(/\b\w/g, function (character) { return character.toUpperCase(); });
     }
+    function normalizeKitchenLayout(value) {
+      if (!value) return '';
+      var layout = String(value).toLowerCase();
+      if (layout === 'l-shape' || layout === 'l shape') return 'l-shape';
+      if (layout === 'u-shape' || layout === 'u shape') return 'u-shape';
+      if (layout === 'parallel') return 'parallel';
+      if (layout === 'straight') return 'straight';
+      if (layout === 'island') return 'island';
+      return '';
+    }
+    function kitchenPreviewFor(layout) {
+      var previews = {
+        'l-shape': {
+          src: {{ 'modular-kitchen-light-oak-l-shape.png' | asset_url | json }},
+          alt: 'Bluewud L-shape kitchen preview',
+          caption: 'L-shape keeps the room open while still supporting a strong daily kitchen rhythm.'
+        },
+        'u-shape': {
+          src: {{ 'modular-kitchen-walnut-u-shape.png' | asset_url | json }},
+          alt: 'Bluewud U-shape kitchen preview',
+          caption: 'U-shape suits storage-heavy kitchens where prep and counter continuity matter more.'
+        },
+        'parallel': {
+          src: {{ 'modular-kitchen-galley-light-wood.png' | asset_url | json }},
+          alt: 'Bluewud parallel kitchen preview',
+          caption: 'Parallel layouts are strongest when two efficient runs need to do most of the work.'
+        },
+        'straight': {
+          src: {{ 'modular-kitchen-sage-u-shape.png' | asset_url | json }},
+          alt: 'Bluewud straight kitchen preview',
+          caption: 'Straight kitchens work best when one disciplined wall has to carry the full brief.'
+        },
+        'island': {
+          src: {{ 'modular-kitchen-navy-luxury.png' | asset_url | json }},
+          alt: 'Bluewud island kitchen preview',
+          caption: 'Island planning becomes premium when prep, hosting, and circulation all matter together.'
+        }
+      };
+      return previews[layout] || null;
+    }
     function renderStoredSelections() {
       if (!carrySummary || !carryGrid) return;
       var options = storedBrief && storedBrief.selectedOptions ? storedBrief.selectedOptions : null;
       if (!options) {
         carrySummary.hidden = true;
         carryGrid.innerHTML = '';
+        if (carryVisual) carryVisual.hidden = true;
         return;
       }
 
@@ -908,11 +983,28 @@
       if (!cards.length) {
         carrySummary.hidden = true;
         carryGrid.innerHTML = '';
+        if (carryVisual) carryVisual.hidden = true;
         return;
       }
 
       carrySummary.hidden = false;
       carryGrid.innerHTML = cards.join('');
+      if (carryVisual && carryImage && carryCaption) {
+        var projectType = storedBrief && storedBrief.projectType ? String(storedBrief.projectType).toLowerCase() : '';
+        var layoutKey = normalizeKitchenLayout(options.layout || options.kitchen_layout);
+        var preview = projectType.indexOf('kitchen') !== -1 ? kitchenPreviewFor(layoutKey) : null;
+        if (preview) {
+          carryVisual.hidden = false;
+          carryImage.src = preview.src;
+          carryImage.alt = preview.alt;
+          carryCaption.textContent = preview.caption;
+        } else {
+          carryVisual.hidden = true;
+          carryImage.removeAttribute('src');
+          carryImage.alt = '';
+          carryCaption.textContent = '';
+        }
+      }
     }
 
     function updateSummary() {

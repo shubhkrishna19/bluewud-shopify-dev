@@ -90,6 +90,30 @@
     font-size: 14px;
     line-height: 1.7;
   }
+  .bw-estimate-modal__summary-visual {
+    display: grid;
+    gap: 8px;
+  }
+  .bw-estimate-modal__summary-visual[hidden] {
+    display: none;
+  }
+  .bw-estimate-modal__summary-media {
+    min-height: 180px;
+    border-radius: 18px;
+    overflow: hidden;
+    background: linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
+  }
+  .bw-estimate-modal__summary-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bw-estimate-modal__summary-caption {
+    color: #66554c;
+    font-size: 13px;
+    line-height: 1.65;
+  }
   .bw-estimate-modal__details {
     display: grid;
     gap: 10px;
@@ -208,6 +232,12 @@
     <div class="bw-estimate-modal__summary">
       <div class="bw-estimate-modal__summary-label">Project brief</div>
       <div class="bw-estimate-modal__summary-text" data-bw-estimate-summary-text>No options selected yet.</div>
+      <div class="bw-estimate-modal__summary-visual" data-bw-estimate-preview hidden>
+        <div class="bw-estimate-modal__summary-media">
+          <img src="" alt="" loading="lazy" width="900" height="675" data-bw-estimate-preview-image>
+        </div>
+        <div class="bw-estimate-modal__summary-caption" data-bw-estimate-preview-caption></div>
+      </div>
     </div>
     <div class="bw-estimate-modal__details" data-bw-estimate-details hidden>
       <div class="bw-estimate-modal__summary-label">Selected options</div>
@@ -268,7 +298,6 @@
       <div style="margin-top:18px;">
         <button class="bw-estimate-modal__submit" type="submit">Send Project Brief</button>
       </div>
-      <p class="bw-estimate-modal__helper">Your selected options are attached automatically so Bluewud receives a cleaner, more usable enquiry from the start.</p>
     {% endform %}
   </div>
 </div>
@@ -318,6 +347,9 @@
       var payloadInput = modal.querySelector('[data-bw-estimate-payload-input]');
       var detailsWrap = modal.querySelector('[data-bw-estimate-details]');
       var detailGrid = modal.querySelector('[data-bw-estimate-detail-grid]');
+      var previewWrap = modal.querySelector('[data-bw-estimate-preview]');
+      var previewImage = modal.querySelector('[data-bw-estimate-preview-image]');
+      var previewCaption = modal.querySelector('[data-bw-estimate-preview-caption]');
 
       function optionLabel(key) {
         var map = {
@@ -357,6 +389,46 @@
         if (value && typeof value === 'object') return '';
         return value == null ? '' : String(value);
       }
+      function normalizeKitchenLayout(value) {
+        if (!value) return '';
+        var layout = String(value).toLowerCase();
+        if (layout === 'l-shape' || layout === 'l shape') return 'l-shape';
+        if (layout === 'u-shape' || layout === 'u shape') return 'u-shape';
+        if (layout === 'parallel') return 'parallel';
+        if (layout === 'straight') return 'straight';
+        if (layout === 'island') return 'island';
+        return '';
+      }
+      function kitchenPreviewFor(layout) {
+        var previews = {
+          'l-shape': {
+            src: {{ 'modular-kitchen-light-oak-l-shape.png' | asset_url | json }},
+            alt: 'Bluewud L-shape kitchen preview',
+            caption: 'L-shape keeps the room open while still supporting a strong daily kitchen rhythm.'
+          },
+          'u-shape': {
+            src: {{ 'modular-kitchen-walnut-u-shape.png' | asset_url | json }},
+            alt: 'Bluewud U-shape kitchen preview',
+            caption: 'U-shape suits storage-heavy kitchens where prep and counter continuity matter more.'
+          },
+          'parallel': {
+            src: {{ 'modular-kitchen-galley-light-wood.png' | asset_url | json }},
+            alt: 'Bluewud parallel kitchen preview',
+            caption: 'Parallel layouts are strongest when two efficient runs need to do most of the work.'
+          },
+          'straight': {
+            src: {{ 'modular-kitchen-sage-u-shape.png' | asset_url | json }},
+            alt: 'Bluewud straight kitchen preview',
+            caption: 'Straight kitchens work best when one disciplined wall has to carry the full brief.'
+          },
+          'island': {
+            src: {{ 'modular-kitchen-navy-luxury.png' | asset_url | json }},
+            alt: 'Bluewud island kitchen preview',
+            caption: 'Island planning becomes premium when prep, hosting, and circulation all matter together.'
+          }
+        };
+        return previews[layout] || null;
+      }
 
       if (summaryText && payload.selectedBrief) summaryText.textContent = payload.selectedBrief;
       if (summaryInput) summaryInput.value = payload.selectedBrief || '';
@@ -365,6 +437,21 @@
       if (typeInput) typeInput.value = payload.projectType || '';
       if (routeInput) routeInput.value = payload.projectRoute || '';
       if (payloadInput) payloadInput.value = serializeOptions(payload.selectedOptions);
+      if (previewWrap && previewImage && previewCaption) {
+        var layoutKey = normalizeKitchenLayout(payload.selectedOptions && (payload.selectedOptions.layout || payload.selectedOptions.kitchen_layout));
+        var preview = payload.projectType && String(payload.projectType).toLowerCase().indexOf('kitchen') !== -1 ? kitchenPreviewFor(layoutKey) : null;
+        if (preview) {
+          previewWrap.hidden = false;
+          previewImage.src = preview.src;
+          previewImage.alt = preview.alt;
+          previewCaption.textContent = preview.caption;
+        } else {
+          previewWrap.hidden = true;
+          previewImage.removeAttribute('src');
+          previewImage.alt = '';
+          previewCaption.textContent = '';
+        }
+      }
       if (detailsWrap && detailGrid) {
         var cards = [];
         if (payload.selectedOptions && typeof payload.selectedOptions === 'object') {
