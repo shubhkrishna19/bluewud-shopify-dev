@@ -169,6 +169,7 @@ Files:
 - header, footer, hero, category cards, featured tiles, and trust banners now resolve more of their routes through live page and collection objects instead of brittle hardcoded paths
 - the kitchen and wardrobe collection planners now surface the embedded calculators directly below the shared planning rail instead of burying them far down the page
 - the home interiors planner now opens with image-led room cards, a live visual summary, and compact recommendation logic instead of relying on abstract text alone
+- kitchen, wardrobe, and home-interiors planners now use compact preflight guidance sections directly below the calculator so useful explanation stays visible without crowding the first interaction
 
 ## Current Review Routes
 

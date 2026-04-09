@@ -109,6 +109,8 @@
   .bw-wardrobe-page { display: grid; gap: 22px; }
   .bw-wardrobe-page > .bw-planning-rail { order: -2; }
   .bw-wardrobe-page > .bw-wardrobe-calculator-anchor { order: -1; }
+  .bw-wardrobe-page > .bw-wardrobe-guide { order: 0; }
+  .bw-wardrobe-page > .bw-wardrobe-block { order: 1; }
   .bw-wardrobe-block {
     padding: 26px 28px;
     border-radius: 30px;
@@ -138,6 +140,36 @@
   .bw-wardrobe-chip { background: rgba(32, 23, 19, 0.1); color: #201713; border: 1px solid rgba(32, 23, 19, 0.2); }
   .bw-wardrobe-chip.is-current, .bw-wardrobe-button { background: #201713; color: #fff7f1; border: 0; }
   .bw-wardrobe-button--secondary { background: rgba(32, 23, 19, 0.1); color: #201713; border: 1px solid rgba(32, 23, 19, 0.2); }
+  .bw-wardrobe-guide {
+    display: grid;
+    gap: 18px;
+  }
+  .bw-wardrobe-guide-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .bw-wardrobe-guide-card {
+    display: grid;
+    gap: 10px;
+    align-content: start;
+    padding: 20px;
+    border-radius: 22px;
+    background: rgba(32, 23, 19, 0.04);
+    border: 1px solid rgba(32, 23, 19, 0.08);
+  }
+  .bw-wardrobe-guide-card strong {
+    color: #201713;
+    font-size: 16px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  .bw-wardrobe-guide-card p {
+    margin: 0;
+    color: #66554c;
+    font-size: 13px;
+    line-height: 1.7;
+  }
   .bw-wardrobe-journey {
     display: grid;
     gap: 18px;
@@ -741,7 +773,7 @@
     border-radius: 999px; background: rgba(32,23,19,0.06); color: #201713; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
   }
   @media (max-width: 1024px) {
-    .bw-wardrobe-spotlight, .bw-wardrobe-grid-4, .bw-wardrobe-grid-3, .bw-wardrobe-products, .bw-wardrobe-grid-2, .bw-wardrobe-compare-grid, .bw-wardrobe-journey-grid, .bw-wardrobe-route-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .bw-wardrobe-spotlight, .bw-wardrobe-grid-4, .bw-wardrobe-grid-3, .bw-wardrobe-products, .bw-wardrobe-grid-2, .bw-wardrobe-compare-grid, .bw-wardrobe-journey-grid, .bw-wardrobe-route-grid, .bw-wardrobe-guide-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bw-wardrobe-measure-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bw-wardrobe-lens-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bw-wardrobe-spotlight { grid-template-columns: 1fr; }
@@ -751,7 +783,7 @@
     .bw-wardrobe-subnav { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
     .bw-wardrobe-subnav::-webkit-scrollbar { display: none; }
     .bw-wardrobe-chip { flex: 0 0 auto; white-space: nowrap; }
-    .bw-wardrobe-grid-4, .bw-wardrobe-grid-3, .bw-wardrobe-grid-2, .bw-wardrobe-products, .bw-wardrobe-compare-grid, .bw-wardrobe-journey-grid, .bw-wardrobe-measure-grid, .bw-wardrobe-route-grid, .bw-wardrobe-gallery-grid, .bw-wardrobe-consult-grid, .bw-wardrobe-proof-grid { grid-template-columns: 1fr; }
+    .bw-wardrobe-grid-4, .bw-wardrobe-grid-3, .bw-wardrobe-grid-2, .bw-wardrobe-products, .bw-wardrobe-compare-grid, .bw-wardrobe-journey-grid, .bw-wardrobe-measure-grid, .bw-wardrobe-route-grid, .bw-wardrobe-gallery-grid, .bw-wardrobe-consult-grid, .bw-wardrobe-proof-grid, .bw-wardrobe-guide-grid { grid-template-columns: 1fr; }
     .bw-wardrobe-gallery-main-card, .bw-wardrobe-gallery-card { grid-template-columns: 1fr; }
     .bw-wardrobe-lens-grid { grid-template-columns: 1fr; }
     .bw-wardrobe-embedded-calculator { padding: 20px; border-radius: 24px; }
@@ -1406,6 +1438,27 @@
           <p class="bw-wardrobe-embedded-calculator__copy">Choose the wardrobe type, measurements, finish direction, and internals first. The supporting guidance below helps once the brief starts feeling real.</p>
         </div>
       {% render 'wardrobe-calculator-content', embedded: true %}
+      </div>
+    </section>
+    <section class="bw-wardrobe-block bw-wardrobe-guide" aria-label="How to use the wardrobe planner">
+      <div class="bw-wardrobe-head">
+        <span class="bw-wardrobe-eyebrow">Wardrobe preflight</span>
+        <h2 class="bw-wardrobe-title">Use the wardrobe selector first. Use the guides after.</h2>
+        <p class="bw-wardrobe-copy">The calculator above should carry the active format, measurements, and internals. The sections below are there to help the buyer compare routes, finishes, and room-fit once the shortlist starts feeling real.</p>
+      </div>
+      <div class="bw-wardrobe-guide-grid">
+        <article class="bw-wardrobe-guide-card">
+          <strong>Choose the opening style honestly</strong>
+          <p>Sliding, hinged, and walk-in should answer the room and clearance first, not just the look of the elevation.</p>
+        </article>
+        <article class="bw-wardrobe-guide-card">
+          <strong>Let internals guide the finish</strong>
+          <p>Drawers, lofts, hanging, mirrors, and accessories usually decide the real utility long before color and shutter moodboards do.</p>
+        </article>
+        <article class="bw-wardrobe-guide-card">
+          <strong>Estimate when the storage brief is clear</strong>
+          <p>A wardrobe enquiry becomes much more useful once the room size, opening type, and internal mix are already defined.</p>
+        </article>
       </div>
     </section>
   {% endif %}

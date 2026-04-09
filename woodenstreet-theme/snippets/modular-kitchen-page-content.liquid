@@ -162,6 +162,10 @@
   .bw-modular { display: grid; gap: 24px; }
   .bw-modular > .bw-planning-rail { order: -2; }
   .bw-modular > .bw-modular__tool { order: -1; }
+  .bw-modular > .bw-modular__guide { order: 0; }
+  .bw-modular > .bw-modular__panel,
+  .bw-modular > .bw-modular__block,
+  .bw-modular > .bw-modular__band { order: 1; }
   .bw-modular__block,
   .bw-modular__band {
     padding: 26px 28px;
@@ -170,6 +174,36 @@
     box-shadow: 0 24px 70px rgba(35, 24, 19, 0.08);
   }
   .bw-modular__block { background: rgba(255, 251, 247, 0.94); }
+  .bw-modular__guide {
+    display: grid;
+    gap: 18px;
+  }
+  .bw-modular__guide-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .bw-modular__guide-card {
+    display: grid;
+    gap: 10px;
+    align-content: start;
+    padding: 20px;
+    border-radius: 22px;
+    background: rgba(32, 23, 19, 0.04);
+    border: 1px solid rgba(32, 23, 19, 0.08);
+  }
+  .bw-modular__guide-card strong {
+    color: #201713;
+    font-size: 16px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  .bw-modular__guide-card p {
+    margin: 0;
+    color: #66554c;
+    font-size: 13px;
+    line-height: 1.7;
+  }
   .bw-modular__band {
     background: radial-gradient(circle at top right, rgba(79, 120, 143, 0.16), transparent 24%), linear-gradient(135deg, #231813 0%, #3b2921 56%, #5c463c 100%);
     color: #fff7f1;
@@ -638,6 +672,7 @@
     .bw-modular__process-grid,
     .bw-modular__launchpad { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bw-modular__hero { grid-template-columns: 1fr; }
+    .bw-modular__guide-grid { grid-template-columns: 1fr; }
   }
   @media (max-width: 720px) {
     .bw-modular__block,
@@ -1533,6 +1568,27 @@
   {% if show_inline_calculator %}
     <section class="bw-modular__tool" id="kitchen-calculator">
       {% render 'kitchen-calculator-content', embedded: true %}
+    </section>
+    <section class="bw-modular__block bw-modular__guide" aria-label="How to use the kitchen planner">
+      <div class="bw-modular__section-head">
+        <div class="bw-modular__eyebrow">Kitchen preflight</div>
+        <h2 class="bw-modular__title" style="font-size:clamp(22px, 3vw, 30px);">Use the calculator first. Use the reference blocks after.</h2>
+        <p class="bw-modular__copy">The selector above should carry the live brief. The sections below are there to help sharpen layout fit, finish direction, and estimate readiness once the room starts making sense.</p>
+      </div>
+      <div class="bw-modular__guide-grid">
+        <article class="bw-modular__guide-card">
+          <strong>Lock the geometry first</strong>
+          <p>L-shape, U-shape, parallel, straight, or island should be settled before finishes and accessories take over the decision.</p>
+        </article>
+        <article class="bw-modular__guide-card">
+          <strong>Use finishes to refine, not to guess</strong>
+          <p>Material, countertop, hardware, and appliance choices matter most after the room shape and storage load are clear.</p>
+        </article>
+        <article class="bw-modular__guide-card">
+          <strong>Estimate once the brief feels grounded</strong>
+          <p>A sharper kitchen brief gives Bluewud a better starting point for design and pricing than a generic style-led enquiry.</p>
+        </article>
+      </div>
     </section>
   {% endif %}
 </div>
