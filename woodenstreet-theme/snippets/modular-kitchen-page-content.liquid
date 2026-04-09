@@ -615,15 +615,15 @@
 </style>
 
 <div class="bw-modular" data-bw-modular-page data-default-variant="{{ default_variant }}">
-  <section class="bw-modular__block">
-    <div class="bw-modular__tabs" aria-label="Kitchen layouts">
-      <a class="bw-modular__tab" href="{{ main_url }}" data-variant-toggle="all">All layouts</a>
-      <a class="bw-modular__tab" href="{{ l_url }}" data-variant-toggle="l-shape">L-shape</a>
-      <a class="bw-modular__tab" href="{{ u_url }}" data-variant-toggle="u-shape">U-shape</a>
-      <a class="bw-modular__tab" href="{{ parallel_url }}" data-variant-toggle="parallel">Parallel</a>
-      <a class="bw-modular__tab" href="{{ straight_url }}" data-variant-toggle="straight">Straight</a>
-      <a class="bw-modular__tab" href="{{ island_url }}" data-variant-toggle="island">Island</a>
-      <a class="bw-modular__button--secondary" href="{{ calculator_cta_url }}">Kitchen Calculator</a>
+  <section class="bw-planning-rail">
+    <div class="bw-planning-rail__items" aria-label="Kitchen layouts">
+      <a class="bw-planning-rail__link{% if default_variant == 'all' %} is-current{% endif %}" href="{{ main_url }}" data-variant-toggle="all">All layouts</a>
+      <a class="bw-planning-rail__link{% if default_variant == 'l-shape' %} is-current{% endif %}" href="{{ l_url }}" data-variant-toggle="l-shape">L-shape</a>
+      <a class="bw-planning-rail__link{% if default_variant == 'u-shape' %} is-current{% endif %}" href="{{ u_url }}" data-variant-toggle="u-shape">U-shape</a>
+      <a class="bw-planning-rail__link{% if default_variant == 'parallel' %} is-current{% endif %}" href="{{ parallel_url }}" data-variant-toggle="parallel">Parallel</a>
+      <a class="bw-planning-rail__link{% if default_variant == 'straight' %} is-current{% endif %}" href="{{ straight_url }}" data-variant-toggle="straight">Straight</a>
+      <a class="bw-planning-rail__link{% if default_variant == 'island' %} is-current{% endif %}" href="{{ island_url }}" data-variant-toggle="island">Island</a>
+      <a class="bw-planning-rail__link bw-planning-rail__link--accent" href="{{ calculator_cta_url }}">Kitchen Calculator</a>
     </div>
   </section>
 
@@ -1534,12 +1534,15 @@
       toggles.forEach(function (toggle) {
         var isActive = toggle.getAttribute('data-variant-toggle') === variant;
         toggle.classList.toggle('is-active', isActive);
-        toggle.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        toggle.classList.toggle('is-current', isActive);
+        if (isActive) toggle.setAttribute('aria-current', 'page');
+        else toggle.removeAttribute('aria-current');
       });
       panels.forEach(function (panel) {
         var isActive = panel.getAttribute('data-variant-panel') === variant;
         panel.classList.toggle('is-active', isActive);
       });
+      persistPlanningPayload('layout-select');
     }
 
     function activeVariantLabel() {
@@ -1561,6 +1564,29 @@
       var label = activeVariantLabel();
       return ['Modular Kitchen Guide', label, trigger || 'direct'].join(' | ');
     }
+    function buildPlanningPayload(trigger) {
+      return {
+        projectType: 'Modular Kitchen',
+        projectContext: 'Bluewud modular kitchen',
+        referenceSource: activeSource(trigger),
+        projectRoute: window.location.pathname + window.location.search + (window.location.hash || ''),
+        selectedBrief: activeSummary(trigger),
+        selectedOptions: {
+          layout: activeVariantLabel(),
+          layout_key: activeVariantKey(),
+          source_trigger: trigger || 'direct',
+          page_family: 'modular-kitchen-guide'
+        },
+        trigger: trigger || 'direct'
+      };
+    }
+    function persistPlanningPayload(trigger) {
+      var payload = buildPlanningPayload(trigger);
+      if (window.BluewudProjectBriefStore) {
+        window.BluewudProjectBriefStore.save(payload);
+      }
+      return payload;
+    }
 
     function variantFromLocation() {
       var params = new URLSearchParams(window.location.search);
@@ -1574,11 +1600,15 @@
 
     function openModal(trigger) {
       if (!modal) return;
-      var summary = activeSummary(trigger);
-      if (summaryText) summaryText.textContent = summary;
-      if (summaryInput) summaryInput.value = summary;
-      if (contextInput) contextInput.value = 'Bluewud modular kitchen';
-      if (sourceInput) sourceInput.value = activeSource(trigger);
+      var payload = persistPlanningPayload(trigger);
+      if (window.BluewudProjectBriefStore) {
+        window.BluewudProjectBriefStore.fillModal(modal, payload);
+      } else {
+        if (summaryText) summaryText.textContent = payload.selectedBrief;
+        if (summaryInput) summaryInput.value = payload.selectedBrief;
+        if (contextInput) contextInput.value = payload.projectContext;
+        if (sourceInput) sourceInput.value = payload.referenceSource;
+      }
       modal.classList.add('is-open');
       document.body.classList.add('bw-header-drawer-open');
     }
@@ -1627,6 +1657,7 @@
         else nextUrl.searchParams.delete('layout');
         nextUrl.hash = 'kitchen-calculator';
         window.history.replaceState({}, '', nextUrl.pathname + nextUrl.search + nextUrl.hash);
+        persistPlanningPayload('calculator-jump');
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
@@ -1656,5 +1687,6 @@
     });
 
     activate(variantFromLocation());
+    persistPlanningPayload('landing');
   })();
 </script>

@@ -3318,3 +3318,94 @@ textarea {
 .bw-cart {
   font-family: var(--bw-font-sans);
 }
+
+.bw-planning-rail {
+  padding: 22px 24px;
+  border-radius: 30px;
+  background: rgba(255, 251, 247, 0.94);
+  border: 1px solid rgba(45, 33, 27, 0.08);
+  box-shadow: 0 24px 70px rgba(35, 24, 19, 0.08);
+}
+
+.bw-planning-rail__items {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+}
+
+.bw-planning-rail__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  padding: 0 20px;
+  border-radius: 999px;
+  border: 1px solid rgba(32, 23, 19, 0.22);
+  background: rgba(32, 23, 19, 0.1);
+  color: #201713;
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  text-transform: uppercase;
+  white-space: nowrap;
+  transition:
+    transform var(--bw-motion-base) var(--bw-motion-ease),
+    background-color var(--bw-motion-base) var(--bw-motion-ease),
+    border-color var(--bw-motion-base) var(--bw-motion-ease),
+    color var(--bw-motion-fast) ease,
+    box-shadow var(--bw-motion-base) var(--bw-motion-ease);
+}
+
+.bw-planning-rail__link:hover,
+.bw-planning-rail__link:focus-visible {
+  transform: translateY(-1px);
+  background: rgba(32, 23, 19, 0.14);
+  border-color: rgba(32, 23, 19, 0.28);
+  color: #201713;
+}
+
+.bw-planning-rail__link.is-current,
+.bw-planning-rail__link.is-active {
+  background: #201713;
+  border-color: #201713;
+  color: #fff7f1;
+  box-shadow: 0 14px 32px rgba(32, 23, 19, 0.16);
+}
+
+.bw-planning-rail__link--accent {
+  background: rgba(53, 90, 109, 0.1);
+  border-color: rgba(53, 90, 109, 0.18);
+  color: #234355;
+}
+
+.bw-planning-rail__link--accent:hover,
+.bw-planning-rail__link--accent:focus-visible {
+  background: rgba(53, 90, 109, 0.14);
+  border-color: rgba(53, 90, 109, 0.24);
+  color: #1f3d4d;
+}
+
+@media (max-width: 720px) {
+  .bw-planning-rail {
+    padding: 20px 18px;
+    border-radius: 24px;
+  }
+
+  .bw-planning-rail__items {
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scrollbar-width: none;
+  }
+
+  .bw-planning-rail__items::-webkit-scrollbar {
+    display: none;
+  }
+
+  .bw-planning-rail__link {
+    flex: 0 0 auto;
+  }
+}

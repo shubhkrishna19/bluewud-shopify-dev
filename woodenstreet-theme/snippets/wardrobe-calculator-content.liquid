@@ -620,6 +620,7 @@
     var summaryText = modal ? modal.querySelector('[data-bw-estimate-summary-text]') : null;
     var summaryInput = modal ? modal.querySelector('[data-bw-estimate-summary-input]') : null;
     var contextInput = modal ? modal.querySelector('[data-bw-estimate-context-input]') : null;
+    var sourceInput = modal ? modal.querySelector('[data-bw-estimate-source-input]') : null;
     var bandNode = root.querySelector('[data-wardrobe-band]');
 
     function selectedRadio(name) {
@@ -693,6 +694,7 @@
         if (node) node.textContent = summaryMap[key];
       });
       if (bandNode) bandNode.textContent = projectBand();
+      persistPayload('calculator-progress');
     }
 
     function briefSummary() {
@@ -712,6 +714,41 @@
         'Timeline: ' + (inputValue('timeline') || 'Immediate'),
         'Direction: ' + projectBand()
       ].join(' | ');
+    }
+    function buildPayload(trigger) {
+      return {
+        projectType: 'Modular Wardrobe',
+        projectContext: 'Bluewud modular wardrobe',
+        referenceSource: 'Wardrobe calculator',
+        projectRoute: window.location.pathname + window.location.search + '#wardrobe-calculator',
+        selectedBrief: briefSummary(),
+        selectedOptions: {
+          wardrobe_type: selectedRadio('wardrobe_type'),
+          room_type: selectedRadio('room_type'),
+          storage_intensity: selectedRadio('storage_intensity'),
+          width_ft: inputValue('width'),
+          height_ft: inputValue('height'),
+          depth_ft: inputValue('depth'),
+          loft: inputValue('loft'),
+          carcass_material: selectedRadio('wardrobe_carcass'),
+          shutter_material: selectedRadio('wardrobe_shutter_material'),
+          finish: selectedRadio('wardrobe_finish'),
+          internals: selectedChecks('internals'),
+          mirror_need: selectedRadio('mirror_need'),
+          city: inputValue('city'),
+          timeline: inputValue('timeline') || 'Immediate',
+          project_direction: projectBand(),
+          source_trigger: trigger || 'calculator-progress'
+        },
+        trigger: trigger || 'calculator-progress'
+      };
+    }
+    function persistPayload(trigger) {
+      var payload = buildPayload(trigger);
+      if (window.BluewudProjectBriefStore) {
+        window.BluewudProjectBriefStore.save(payload);
+      }
+      return payload;
     }
     function applyWardrobePreset(type) {
       var normalized = normalizeWardrobeType(type);
@@ -735,10 +772,15 @@
 
     function openPopup() {
       if (!modal) return;
-      var summary = briefSummary();
-      if (summaryText) summaryText.textContent = summary;
-      if (summaryInput) summaryInput.value = summary;
-      if (contextInput) contextInput.value = 'Bluewud modular wardrobe';
+      var payload = persistPayload('calculator-submit');
+      if (window.BluewudProjectBriefStore) {
+        window.BluewudProjectBriefStore.fillModal(modal, payload);
+      } else {
+        if (summaryText) summaryText.textContent = payload.selectedBrief;
+        if (summaryInput) summaryInput.value = payload.selectedBrief;
+        if (contextInput) contextInput.value = payload.projectContext;
+        if (sourceInput) sourceInput.value = payload.referenceSource;
+      }
       modal.classList.add('is-open');
       document.body.classList.add('bw-header-drawer-open');
     }

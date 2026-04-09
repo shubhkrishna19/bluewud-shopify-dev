@@ -758,13 +758,13 @@
 </style>
 
 <div class="bw-wardrobe-page" data-bw-wardrobe-page data-default-variant="{{ wardrobe_variant }}" id="wardrobe-overview">
-  <section class="bw-wardrobe-block">
-    <div class="bw-wardrobe-subnav" aria-label="Wardrobe types">
-      <a class="bw-wardrobe-chip{% if wardrobe_variant == 'all' %} is-current{% endif %}" href="{{ main_url }}" data-wardrobe-chip="all">All Wardrobes</a>
-      <a class="bw-wardrobe-chip{% if wardrobe_variant == 'sliding' %} is-current{% endif %}" href="{{ sliding_url }}" data-wardrobe-chip="sliding">Sliding</a>
-      <a class="bw-wardrobe-chip{% if wardrobe_variant == 'hinged' %} is-current{% endif %}" href="{{ hinged_url }}" data-wardrobe-chip="hinged">Hinged</a>
-      <a class="bw-wardrobe-chip{% if wardrobe_variant == 'walk-in' %} is-current{% endif %}" href="{{ walk_in_url }}" data-wardrobe-chip="walk-in">Walk-in</a>
-    <a class="bw-wardrobe-chip" href="{{ calculator_cta_url }}" data-wardrobe-chip="calculator">Wardrobe Calculator</a>
+  <section class="bw-planning-rail">
+    <div class="bw-planning-rail__items" aria-label="Wardrobe types">
+      <a class="bw-planning-rail__link{% if wardrobe_variant == 'all' %} is-current{% endif %}" href="{{ main_url }}" data-wardrobe-chip="all">All Wardrobes</a>
+      <a class="bw-planning-rail__link{% if wardrobe_variant == 'sliding' %} is-current{% endif %}" href="{{ sliding_url }}" data-wardrobe-chip="sliding">Sliding</a>
+      <a class="bw-planning-rail__link{% if wardrobe_variant == 'hinged' %} is-current{% endif %}" href="{{ hinged_url }}" data-wardrobe-chip="hinged">Hinged</a>
+      <a class="bw-planning-rail__link{% if wardrobe_variant == 'walk-in' %} is-current{% endif %}" href="{{ walk_in_url }}" data-wardrobe-chip="walk-in">Walk-in</a>
+      <a class="bw-planning-rail__link bw-planning-rail__link--accent" href="{{ calculator_cta_url }}" data-wardrobe-chip="calculator">Wardrobe Calculator</a>
     </div>
   </section>
 
@@ -1587,7 +1587,11 @@
 
     function setCurrentChip(key) {
       chips.forEach(function (chip) {
-        chip.classList.toggle('is-current', chip.getAttribute('data-wardrobe-chip') === key);
+        var isCurrent = chip.getAttribute('data-wardrobe-chip') === key;
+        chip.classList.toggle('is-current', isCurrent);
+        chip.classList.toggle('is-active', isCurrent);
+        if (isCurrent) chip.setAttribute('aria-current', 'page');
+        else chip.removeAttribute('aria-current');
       });
     }
 
@@ -1607,7 +1611,7 @@
     function wardrobeTypeForCalculator() {
       var chip = chipFromHash();
       if (chip === 'calculator') {
-        var activeChip = root.querySelector('.bw-wardrobe-chip.is-current');
+        var activeChip = root.querySelector('[data-wardrobe-chip].is-current');
         chip = activeChip ? activeChip.getAttribute('data-wardrobe-chip') : 'all';
       }
       return chip === 'calculator' ? 'all' : chip;
@@ -1619,18 +1623,43 @@
     }
 
     function activeVariant() {
-      var currentChip = root.querySelector('.bw-wardrobe-chip.is-current');
+      var currentChip = root.querySelector('[data-wardrobe-chip].is-current');
       return currentChip ? currentChip.textContent.trim() : 'All Wardrobes';
+    }
+    function buildPlanningPayload(trigger) {
+      return {
+        projectType: 'Modular Wardrobe',
+        projectContext: 'Bluewud modular wardrobe',
+        referenceSource: ['Modular Wardrobe Guide', activeVariant(), trigger || 'direct'].join(' | '),
+        projectRoute: window.location.pathname + window.location.search + (window.location.hash || ''),
+        selectedBrief: ['Project: Modular Wardrobe', 'Selected type: ' + activeVariant(), 'Source: ' + (trigger || 'direct')].join(' | '),
+        selectedOptions: {
+          wardrobe_type: activeVariant(),
+          wardrobe_key: chipFromHash(),
+          source_trigger: trigger || 'direct',
+          page_family: 'modular-wardrobe-guide'
+        },
+        trigger: trigger || 'direct'
+      };
+    }
+    function persistPlanningPayload(trigger) {
+      var payload = buildPlanningPayload(trigger);
+      if (window.BluewudProjectBriefStore) {
+        window.BluewudProjectBriefStore.save(payload);
+      }
+      return payload;
     }
 
     function openModal(trigger) {
-      var summary = ['Project: Modular Wardrobe', 'Selected type: ' + activeVariant()];
-      if (trigger) summary.push('Source: ' + trigger);
-      summary = summary.join(' | ');
-      summaryText.textContent = summary;
-      summaryInput.value = summary;
-      contextInput.value = 'Bluewud modular wardrobe';
-      if (sourceInput) sourceInput.value = ['Modular Wardrobe Guide', activeVariant(), trigger || 'direct'].join(' | ');
+      var payload = persistPlanningPayload(trigger);
+      if (window.BluewudProjectBriefStore) {
+        window.BluewudProjectBriefStore.fillModal(modal, payload);
+      } else {
+        summaryText.textContent = payload.selectedBrief;
+        summaryInput.value = payload.selectedBrief;
+        contextInput.value = payload.projectContext;
+        if (sourceInput) sourceInput.value = payload.referenceSource;
+      }
       modal.classList.add('is-open');
       document.body.classList.add('bw-header-drawer-open');
     }
@@ -1657,6 +1686,7 @@
         setCurrentChip(chipKey);
         nextUrl.hash = href.replace('#', '');
         window.history.replaceState({}, '', nextUrl.pathname + nextUrl.search + nextUrl.hash);
+        persistPlanningPayload('type-select');
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
@@ -1679,6 +1709,7 @@
         setCurrentChip('calculator');
         nextUrl.hash = 'wardrobe-calculator';
         window.history.replaceState({}, '', nextUrl.pathname + nextUrl.search + nextUrl.hash);
+        persistPlanningPayload('calculator-jump');
         target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
@@ -1695,5 +1726,6 @@
     });
 
     setCurrentChip(chipFromHash());
+    persistPlanningPayload('landing');
   })();
 </script>

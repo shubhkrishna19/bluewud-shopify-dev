@@ -152,6 +152,9 @@ Files:
 - search and empty-state language is being reframed as a premium shopping helper instead of generic search UI
 - shared estimate-popup copy and stacking are improved so the conversion step feels native to the theme
 - modular kitchen image masters are now part of the tracked theme asset plan, not only local preview state
+- modular kitchen and wardrobe top navigation rails are being unified into one shared planning-rail component so the experience stays visually consistent across planner pages
+- calculator selections now persist into a shared project brief store so moving from planner to estimate no longer drops the customer context
+- popup and estimate submissions now carry route and selected-options payload fields through the native Shopify contact workflow
 
 ## Current Review Routes
 

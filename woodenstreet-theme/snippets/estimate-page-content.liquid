@@ -570,8 +570,10 @@
         {{ form.errors | default_errors }}
 
         <input type="hidden" name="contact[estimate_type]" value="Bluewud Estimate Request">
-        <input type="hidden" name="contact[project_context]" value="Modular planning brief">
+        <input type="hidden" name="contact[project_context]" value="Modular planning brief" data-bw-estimate-context-field>
         <input type="hidden" name="contact[selected_brief]" value="" data-bw-estimate-brief>
+        <input type="hidden" name="contact[project_route]" value="" data-bw-estimate-route-field>
+        <input type="hidden" name="contact[selected_options_json]" value="" data-bw-estimate-options-field>
 
         <div class="bw-estimate__section" data-bw-estimate-type>
           <p class="bw-estimate__section-title">Project type</p>
@@ -722,12 +724,16 @@
     var propertyField = root.querySelector('#EstimatePropertyType');
     var spaceField = root.querySelector('#EstimateSpaceSize');
     var contactPreferenceField = root.querySelector('#EstimateContactPreference');
+    var contextField = root.querySelector('[data-bw-estimate-context-field]');
+    var routeField = root.querySelector('[data-bw-estimate-route-field]');
+    var optionsField = root.querySelector('[data-bw-estimate-options-field]');
     var projectSummary = root.querySelector('[data-bw-summary-project]');
     var propertySummary = root.querySelector('[data-bw-summary-property]');
     var spaceSummary = root.querySelector('[data-bw-summary-space]');
     var stageSummary = root.querySelector('[data-bw-summary-stage]');
     var budgetSummary = root.querySelector('[data-bw-summary-budget]');
     var referenceSummary = root.querySelector('[data-bw-summary-reference]');
+    var storedBrief = window.BluewudProjectBriefStore ? window.BluewudProjectBriefStore.read() : null;
 
     function syncProjectType(targetChoice) {
       typeChoices.forEach(function (item) {
@@ -786,6 +792,45 @@
 
         hiddenBrief.value = briefParts.join(' | ');
       }
+
+      if (contextField && storedBrief && storedBrief.projectContext) {
+        contextField.value = storedBrief.projectContext;
+      }
+      if (routeField) {
+        routeField.value = storedBrief && storedBrief.projectRoute ? storedBrief.projectRoute : (window.location.pathname + window.location.search);
+      }
+      if (optionsField) {
+        if (storedBrief && storedBrief.selectedOptions) {
+          try {
+            optionsField.value = JSON.stringify(storedBrief.selectedOptions);
+          } catch (error) {
+            optionsField.value = '';
+          }
+        } else {
+          optionsField.value = '';
+        }
+      }
+
+      if (window.BluewudProjectBriefStore && selectedProject) {
+        window.BluewudProjectBriefStore.save({
+          projectType: selectedProject.value,
+          projectContext: contextField ? contextField.value : 'Modular planning brief',
+          referenceSource: referenceField ? referenceField.value : '',
+          projectRoute: routeField ? routeField.value : (window.location.pathname + window.location.search),
+          selectedBrief: hiddenBrief ? hiddenBrief.value : '',
+          selectedOptions: Object.assign({}, storedBrief && storedBrief.selectedOptions ? storedBrief.selectedOptions : {}, {
+            estimate_form: {
+              city: cityField ? cityField.value : '',
+              property_type: propertyField ? propertyField.value : '',
+              space_size: spaceField ? spaceField.value : '',
+              timeline: timelineField ? timelineField.value : '',
+              budget_range: budgetField ? budgetField.value : '',
+              contact_preference: contactPreferenceField ? contactPreferenceField.value : '',
+              reference_source: referenceField ? referenceField.value : ''
+            }
+          })
+        });
+      }
     }
 
     typeChoices.forEach(function (choice) {
@@ -805,6 +850,45 @@
     });
 
     selectProjectType(params.get('project'));
+
+    if (storedBrief) {
+      if (storedBrief.projectType) {
+        selectProjectType(storedBrief.projectType);
+      }
+      if (referenceField && !params.get('source') && storedBrief.referenceSource) {
+        referenceField.value = storedBrief.referenceSource;
+      }
+      if (cityField && !params.get('city') && storedBrief.selectedOptions && storedBrief.selectedOptions.city) {
+        cityField.value = storedBrief.selectedOptions.city;
+      }
+      if (timelineField && !params.get('timeline') && storedBrief.selectedOptions && storedBrief.selectedOptions.timeline) {
+        timelineField.value = storedBrief.selectedOptions.timeline;
+      }
+      if (propertyField && storedBrief.selectedOptions) {
+        var storedProperty = storedBrief.selectedOptions.property_type || storedBrief.selectedOptions.propertyType;
+        if (storedProperty) propertyField.value = storedProperty;
+      }
+      if (budgetField && storedBrief.selectedOptions) {
+        var storedBudget = storedBrief.selectedOptions.budget_posture || storedBrief.selectedOptions.budget_range || storedBrief.selectedOptions.budget;
+        if (storedBudget) budgetField.value = storedBudget;
+      }
+      if (hiddenBrief && !params.get('summary') && storedBrief.selectedBrief) {
+        hiddenBrief.value = storedBrief.selectedBrief;
+      }
+      if (contextField && storedBrief.projectContext) {
+        contextField.value = storedBrief.projectContext;
+      }
+      if (routeField && storedBrief.projectRoute) {
+        routeField.value = storedBrief.projectRoute;
+      }
+      if (optionsField && storedBrief.selectedOptions) {
+        try {
+          optionsField.value = JSON.stringify(storedBrief.selectedOptions);
+        } catch (error) {
+          optionsField.value = '';
+        }
+      }
+    }
 
     if (referenceField && params.get('source')) {
       referenceField.value = params.get('source');

@@ -179,9 +179,12 @@
     </div>
 
     {% form 'contact' %}
+      <input type="hidden" name="contact[project_type]" value="" data-bw-estimate-type-input>
       <input type="hidden" name="contact[project_context]" value="{{ context_label }}" data-bw-estimate-context-input>
       <input type="hidden" name="contact[selected_brief]" value="" data-bw-estimate-summary-input>
       <input type="hidden" name="contact[reference_source]" value="" data-bw-estimate-source-input>
+      <input type="hidden" name="contact[project_route]" value="" data-bw-estimate-route-input>
+      <input type="hidden" name="contact[selected_options_json]" value="" data-bw-estimate-payload-input>
 
       <div class="bw-estimate-modal__grid">
         <div class="bw-estimate-modal__field">
@@ -233,3 +236,76 @@
     {% endform %}
   </div>
 </div>
+
+<script>
+  (function () {
+    if (window.BluewudProjectBriefStore) return;
+
+    var storageKey = 'bluewud-project-brief';
+
+    function safeRead() {
+      try {
+        var raw = window.localStorage.getItem(storageKey);
+        return raw ? JSON.parse(raw) : null;
+      } catch (error) {
+        return null;
+      }
+    }
+
+    function safeWrite(payload) {
+      try {
+        window.localStorage.setItem(storageKey, JSON.stringify(payload));
+      } catch (error) {
+        return;
+      }
+    }
+
+    function serializeOptions(options) {
+      if (!options) return '';
+      if (typeof options === 'string') return options;
+      try {
+        return JSON.stringify(options);
+      } catch (error) {
+        return '';
+      }
+    }
+
+    function fillModal(modal, payload) {
+      if (!modal || !payload) return;
+
+      var summaryText = modal.querySelector('[data-bw-estimate-summary-text]');
+      var summaryInput = modal.querySelector('[data-bw-estimate-summary-input]');
+      var contextInput = modal.querySelector('[data-bw-estimate-context-input]');
+      var sourceInput = modal.querySelector('[data-bw-estimate-source-input]');
+      var typeInput = modal.querySelector('[data-bw-estimate-type-input]');
+      var routeInput = modal.querySelector('[data-bw-estimate-route-input]');
+      var payloadInput = modal.querySelector('[data-bw-estimate-payload-input]');
+
+      if (summaryText && payload.selectedBrief) summaryText.textContent = payload.selectedBrief;
+      if (summaryInput) summaryInput.value = payload.selectedBrief || '';
+      if (contextInput) contextInput.value = payload.projectContext || modal.getAttribute('data-context-label') || '';
+      if (sourceInput) sourceInput.value = payload.referenceSource || '';
+      if (typeInput) typeInput.value = payload.projectType || '';
+      if (routeInput) routeInput.value = payload.projectRoute || '';
+      if (payloadInput) payloadInput.value = serializeOptions(payload.selectedOptions);
+    }
+
+    window.BluewudProjectBriefStore = {
+      read: safeRead,
+      save: function (payload) {
+        if (!payload) return;
+        safeWrite({
+          updatedAt: new Date().toISOString(),
+          projectType: payload.projectType || '',
+          projectContext: payload.projectContext || '',
+          referenceSource: payload.referenceSource || '',
+          projectRoute: payload.projectRoute || '',
+          selectedBrief: payload.selectedBrief || '',
+          selectedOptions: payload.selectedOptions || {},
+          trigger: payload.trigger || ''
+        });
+      },
+      fillModal: fillModal
+    };
+  })();
+</script>

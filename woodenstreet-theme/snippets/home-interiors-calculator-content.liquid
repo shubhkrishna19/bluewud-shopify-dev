@@ -641,6 +641,7 @@
     var summaryText = modal ? modal.querySelector('[data-bw-estimate-summary-text]') : null;
     var summaryInput = modal ? modal.querySelector('[data-bw-estimate-summary-input]') : null;
     var contextInput = modal ? modal.querySelector('[data-bw-estimate-context-input]') : null;
+    var sourceInput = modal ? modal.querySelector('[data-bw-estimate-source-input]') : null;
 
     function selectedRadio(name) {
       var node = root.querySelector('input[name="' + name + '"]:checked');
@@ -706,6 +707,7 @@
         }
         recommendation.innerHTML = '<strong>Recommended next move</strong>' + recommendationText;
       }
+      persistPayload('calculator-progress');
     }
 
     function briefSummary() {
@@ -719,13 +721,44 @@
         'Timeline: ' + (inputValue('timeline') || 'Immediate')
       ].join(' | ');
     }
+    function buildPayload(trigger) {
+      return {
+        projectType: 'Home Interiors',
+        projectContext: 'Bluewud home interiors',
+        referenceSource: 'Home interiors calculator',
+        projectRoute: window.location.pathname + window.location.search,
+        selectedBrief: briefSummary(),
+        selectedOptions: {
+          rooms: selectedChecks('rooms'),
+          property_type: selectedRadio('hi_property'),
+          intent: selectedRadio('hi_intent'),
+          budget_posture: selectedRadio('hi_budget'),
+          city: inputValue('city'),
+          timeline: inputValue('timeline') || 'Immediate',
+          source_trigger: trigger || 'calculator-progress'
+        },
+        trigger: trigger || 'calculator-progress'
+      };
+    }
+    function persistPayload(trigger) {
+      var payload = buildPayload(trigger);
+      if (window.BluewudProjectBriefStore) {
+        window.BluewudProjectBriefStore.save(payload);
+      }
+      return payload;
+    }
 
     function openPopup() {
       if (!modal) return;
-      var summary = briefSummary();
-      if (summaryText) summaryText.textContent = summary;
-      if (summaryInput) summaryInput.value = summary;
-      if (contextInput) contextInput.value = 'Bluewud home interiors';
+      var payload = persistPayload('calculator-submit');
+      if (window.BluewudProjectBriefStore) {
+        window.BluewudProjectBriefStore.fillModal(modal, payload);
+      } else {
+        if (summaryText) summaryText.textContent = payload.selectedBrief;
+        if (summaryInput) summaryInput.value = payload.selectedBrief;
+        if (contextInput) contextInput.value = payload.projectContext;
+        if (sourceInput) sourceInput.value = payload.referenceSource;
+      }
       modal.classList.add('is-open');
       document.body.classList.add('bw-header-drawer-open');
     }

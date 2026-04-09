@@ -658,9 +658,9 @@
 
   <section class="bw-flow__network">
     <div class="bw-flow__network-head">
-      <span class="bw-flow__eyebrow">Need a broader planning route?</span>
-      <h3 class="bw-flow__network-title">The other planners are still close by, just not crowding the calculator itself</h3>
-      <p class="bw-flow__network-copy">Use these only when the project moves beyond the kitchen brief. This keeps the main calculator focused while still making the larger modular journey easy to reach.</p>
+      <span class="bw-flow__eyebrow">Related planning paths</span>
+      <h3 class="bw-flow__network-title">Keep the next step close without pulling focus away from the kitchen brief</h3>
+      <p class="bw-flow__network-copy">Use these only when the requirement expands beyond this kitchen scope. The main calculator stays focused while wardrobe, interiors, and estimate routes remain easy to reach.</p>
     </div>
     <div class="bw-flow__network-links">
       <a class="bw-flow__button--secondary" href="{{ wardrobe_calculator_url }}">Wardrobe Calculator</a>
@@ -684,6 +684,7 @@
     var summaryText = modal ? modal.querySelector('[data-bw-estimate-summary-text]') : null;
     var summaryInput = modal ? modal.querySelector('[data-bw-estimate-summary-input]') : null;
     var contextInput = modal ? modal.querySelector('[data-bw-estimate-context-input]') : null;
+    var sourceInput = modal ? modal.querySelector('[data-bw-estimate-source-input]') : null;
     var bandNode = root.querySelector('[data-kitchen-band]');
     var summaryImageNode = root.querySelector('[data-kitchen-summary-image]');
     var summaryCaptionNode = root.querySelector('[data-kitchen-summary-caption]');
@@ -793,6 +794,7 @@
       if (summaryCaptionNode && layoutVisual) {
         summaryCaptionNode.textContent = layoutVisual.caption;
       }
+      persistPayload('calculator-progress');
     }
     function briefSummary() {
       return [
@@ -812,6 +814,42 @@
         'Timeline: ' + (inputValue('timeline') || 'Immediate'),
         'Direction: ' + projectBand()
       ].join(' | ');
+    }
+    function buildPayload(trigger) {
+      return {
+        projectType: 'Modular Kitchen',
+        projectContext: 'Bluewud modular kitchen',
+        referenceSource: 'Kitchen calculator',
+        projectRoute: window.location.pathname + window.location.search + '#kitchen-calculator',
+        selectedBrief: briefSummary(),
+        selectedOptions: {
+          layout: selectedRadio('kitchen_layout'),
+          property_type: selectedRadio('property_type'),
+          usage_level: selectedRadio('usage_level'),
+          wall_a_ft: inputValue('wall_a'),
+          wall_b_ft: inputValue('wall_b'),
+          wall_c_ft: inputValue('wall_c'),
+          ceiling_ft: inputValue('ceiling'),
+          upper_cabinets: selectedRadio('upper_cabinets'),
+          carcass_material: selectedRadio('carcass_material'),
+          shutter_material: selectedRadio('shutter_material'),
+          countertop: selectedRadio('countertop'),
+          addons: selectedChecks('addons'),
+          appliances: selectedChecks('appliances'),
+          city: inputValue('city'),
+          timeline: inputValue('timeline') || 'Immediate',
+          project_direction: projectBand(),
+          source_trigger: trigger || 'calculator-progress'
+        },
+        trigger: trigger || 'calculator-progress'
+      };
+    }
+    function persistPayload(trigger) {
+      var payload = buildPayload(trigger);
+      if (window.BluewudProjectBriefStore) {
+        window.BluewudProjectBriefStore.save(payload);
+      }
+      return payload;
     }
     function applyLayoutPreset(layout) {
       var normalized = normalizeLayout(layout);
@@ -833,10 +871,15 @@
     }
     function openPopup() {
       if (!modal) return;
-      var summary = briefSummary();
-      if (summaryText) summaryText.textContent = summary;
-      if (summaryInput) summaryInput.value = summary;
-      if (contextInput) contextInput.value = 'Bluewud modular kitchen';
+      var payload = persistPayload('calculator-submit');
+      if (window.BluewudProjectBriefStore) {
+        window.BluewudProjectBriefStore.fillModal(modal, payload);
+      } else {
+        if (summaryText) summaryText.textContent = payload.selectedBrief;
+        if (summaryInput) summaryInput.value = payload.selectedBrief;
+        if (contextInput) contextInput.value = payload.projectContext;
+        if (sourceInput) sourceInput.value = payload.referenceSource;
+      }
       modal.classList.add('is-open');
       document.body.classList.add('bw-header-drawer-open');
     }

@@ -1,6 +1,6 @@
 {% liquid
-  assign section_title = section.settings.title | default: 'Rooms worth upgrading first'
-  assign section_copy = section.settings.copy | default: 'Browse a concise, premium edit of Bluewud categories with the clearest day-to-day value.'
+  assign section_title = section.settings.title | default: 'The next categories customers usually shortlist.'
+  assign section_copy = section.settings.copy | default: 'Once the main room is done, these are the pieces people return to for function, balance, and a more finished home.'
 %}
 
 <style>
@@ -309,7 +309,7 @@
       </div>
     {% else %}
       <div class="bw-featured-categories__empty">
-        Add three category blocks to show Dressing Tables, Centre Tables, and WFH Furniture.
+        Add three category blocks to show Dressing Tables, Centre Tables, and WFH Furniture with their own images and entry links.
       </div>
     {% endif %}
   </div>
@@ -329,13 +329,13 @@
       "type": "text",
       "id": "title",
       "label": "Heading",
-      "default": "Rooms worth upgrading first"
+      "default": "The next categories customers usually shortlist."
     },
     {
       "type": "textarea",
       "id": "copy",
       "label": "Supporting copy",
-      "default": "Browse a concise, premium edit of Bluewud categories with the clearest day-to-day value."
+      "default": "Once the main room is done, these are the pieces people return to for function, balance, and a more finished home."
     }
   ],
   "blocks": [
@@ -359,7 +359,7 @@
           "type": "textarea",
           "id": "detail",
           "label": "Detail",
-          "default": "Mirror-led vanity pieces with everyday storage."
+          "default": "Mirror-led vanity pieces with storage that keeps daily routines simple."
         },
         {
           "type": "collection",
@@ -387,7 +387,7 @@
           "type": "category",
           "settings": {
             "title": "Dressing Tables",
-            "detail": "Mirror-led vanity pieces with everyday storage.",
+            "detail": "Mirror-led vanity pieces with storage that keeps daily routines simple.",
             "fallback_url": "/collections/dressing-tables"
           }
         },
@@ -395,7 +395,7 @@
           "type": "category",
           "settings": {
             "title": "Centre Tables",
-            "detail": "Low-profile coffee and centre tables that ground the room.",
+            "detail": "Low-profile coffee and centre tables that ground the living room without crowding it.",
             "fallback_url": "/collections/coffee-table"
           }
         },
@@ -403,7 +403,7 @@
           "type": "category",
           "settings": {
             "title": "WFH Furniture",
-            "detail": "Desks and compact work setups built for daily focus.",
+            "detail": "Practical desks and compact work setups for daily focus in smaller spaces.",
             "fallback_url": "/collections/smartly-designed-wfh-furniture"
           }
         }
