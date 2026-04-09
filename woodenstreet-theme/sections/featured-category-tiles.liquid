@@ -1,6 +1,29 @@
 {% liquid
   assign section_title = section.settings.title | default: 'The next categories customers usually shortlist.'
   assign section_copy = section.settings.copy | default: 'Once the main room is done, these are the pieces people return to for function, balance, and a more finished home.'
+  assign dressing_tables_url = '/collections/dressing-tables'
+  assign coffee_table_url = '/collections/coffee-table'
+  assign wfh_url = '/collections/study-tables'
+  assign dressing_tables_collection = collections['dressing-tables']
+  assign coffee_table_collection = collections['coffee-table']
+  assign wfh_collection = collections['smartly-designed-wfh-furniture']
+
+  if wfh_collection == blank
+    assign wfh_collection = collections['study-tables']
+  endif
+  if wfh_collection == blank
+    assign wfh_collection = collections['study-table']
+  endif
+
+  if dressing_tables_collection != blank and dressing_tables_collection.url != blank
+    assign dressing_tables_url = dressing_tables_collection.url
+  endif
+  if coffee_table_collection != blank and coffee_table_collection.url != blank
+    assign coffee_table_url = coffee_table_collection.url
+  endif
+  if wfh_collection != blank and wfh_collection.url != blank
+    assign wfh_url = wfh_collection.url
+  endif
 %}
 
 <style>
@@ -238,15 +261,23 @@
             assign card_url = routes.all_products_collection_url
 
             if forloop.index == 1
-              assign card_url = '/collections/dressing-tables'
+              assign card_url = dressing_tables_url
             elsif forloop.index == 2
-              assign card_url = '/collections/coffee-table'
+              assign card_url = coffee_table_url
             elsif forloop.index == 3
-              assign card_url = '/collections/smartly-designed-wfh-furniture'
+              assign card_url = wfh_url
             endif
 
             if block.settings.fallback_url != blank
               assign card_url = block.settings.fallback_url
+
+              if forloop.index == 1 and card_url contains '/collections/dressing-tables'
+                assign card_url = dressing_tables_url
+              elsif forloop.index == 2 and card_url contains '/collections/coffee-table'
+                assign card_url = coffee_table_url
+              elsif forloop.index == 3 and card_url contains '/collections/smartly-designed-wfh-furniture'
+                assign card_url = wfh_url
+              endif
             endif
 
             if collection != blank and collection.url != blank

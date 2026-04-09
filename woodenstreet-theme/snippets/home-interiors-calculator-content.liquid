@@ -5,6 +5,20 @@
   assign kitchen_calculator_url = '/collections/kitchen-racks#kitchen-calculator'
   assign wardrobe_calculator_url = '/collections/wardrobe#wardrobe-calculator'
   assign estimate_url = '/pages/get-free-estimate'
+  assign living_collection = collections['living-room']
+  assign bedroom_collection = collections['bed-room']
+  assign wardrobe_collection = collections['wardrobe']
+  assign kitchen_collection = collections['kitchen-racks']
+  assign study_collection = collections['study-tables']
+  assign dining_collection = collections['coffee-table']
+  assign living_preview = blank
+  assign bedroom_preview = blank
+  assign wardrobe_preview = blank
+  assign kitchen_preview = blank
+  assign study_preview = blank
+  assign dining_preview = blank
+  assign kitchen_preview_src = 'modular-kitchen-light-oak-l-shape.png' | asset_url
+  assign kitchen_preview_alt = 'Bluewud modular kitchen planning preview'
 
   if pages['modular-kitchen-designs'] != blank
     assign modular_kitchen_url = pages['modular-kitchen-designs'].url
@@ -21,10 +35,59 @@
   if pages['get-free-estimate'] != blank
     assign estimate_url = pages['get-free-estimate'].url
   endif
+
+  if living_collection != blank
+    if living_collection.image != blank
+      assign living_preview = living_collection.image
+    elsif living_collection.products.first.featured_image != blank
+      assign living_preview = living_collection.products.first.featured_image
+    endif
+  endif
+  if bedroom_collection != blank
+    if bedroom_collection.image != blank
+      assign bedroom_preview = bedroom_collection.image
+    elsif bedroom_collection.products.first.featured_image != blank
+      assign bedroom_preview = bedroom_collection.products.first.featured_image
+    endif
+  endif
+  if wardrobe_collection != blank
+    if wardrobe_collection.image != blank
+      assign wardrobe_preview = wardrobe_collection.image
+    elsif wardrobe_collection.products.first.featured_image != blank
+      assign wardrobe_preview = wardrobe_collection.products.first.featured_image
+    endif
+  endif
+  if kitchen_collection != blank
+    if kitchen_collection.image != blank
+      assign kitchen_preview = kitchen_collection.image
+      assign kitchen_preview_src = kitchen_collection.image | image_url: width: 1200
+      assign kitchen_preview_alt = kitchen_collection.title | default: kitchen_preview_alt
+    elsif kitchen_collection.products.first.featured_image != blank
+      assign kitchen_preview = kitchen_collection.products.first.featured_image
+      assign kitchen_preview_src = kitchen_collection.products.first.featured_image | image_url: width: 1200
+      assign kitchen_preview_alt = kitchen_collection.products.first.title | default: kitchen_preview_alt
+    endif
+  endif
+  if study_collection != blank
+    if study_collection.image != blank
+      assign study_preview = study_collection.image
+    elsif study_collection.products.first.featured_image != blank
+      assign study_preview = study_collection.products.first.featured_image
+    endif
+  endif
+  if dining_collection != blank
+    if dining_collection.image != blank
+      assign dining_preview = dining_collection.image
+    elsif dining_collection.products.first.featured_image != blank
+      assign dining_preview = dining_collection.products.first.featured_image
+    endif
+  endif
 %}
 
 <style>
   .bw-hi { display: grid; gap: 22px; }
+  .bw-hi > .bw-planning-rail { order: -2; }
+  .bw-hi__shell { order: -1; }
   .bw-hi__hero {
     padding: 28px 30px;
     border-radius: 32px;
@@ -41,6 +104,25 @@
     display: grid;
     gap: 10px;
     max-width: 80ch;
+  }
+  .bw-hi__hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
+  }
+  .bw-hi__hero-pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(255, 247, 241, 0.12);
+    color: #fff7f1;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
   }
   .bw-hi__hero-eyebrow {
     color: rgba(255, 247, 241, 0.78);
@@ -65,10 +147,13 @@
   }
   .bw-hi__hero-surface {
     display: grid;
-    grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 16px;
   }
   .bw-hi__hero-panel {
+    display: grid;
+    gap: 10px;
+    align-content: start;
     padding: 22px;
     border-radius: 24px;
     background: rgba(255, 247, 241, 0.08);
@@ -324,11 +409,54 @@
     border-color: rgba(32, 23, 19, 0.16);
     box-shadow: 0 16px 32px rgba(35, 24, 19, 0.08);
   }
+  .bw-hi__choice--visual {
+    gap: 10px;
+    min-height: 0;
+    padding: 10px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .bw-hi__choice-media {
+    min-height: 132px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
+  }
+  .bw-hi__choice-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bw-hi__choice-copy {
+    display: grid;
+    gap: 4px;
+    align-content: start;
+    text-align: left;
+  }
+  .bw-hi__choice-title {
+    color: inherit;
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+  .bw-hi__choice-note {
+    color: #66554c;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.55;
+  }
+  .bw-hi__choice.is-selected .bw-hi__choice-note {
+    color: rgba(255, 247, 241, 0.82);
+  }
   .bw-hi__choices[data-hi-group="rooms"],
   .bw-hi__choices[data-hi-group="property"],
   .bw-hi__choices[data-hi-group="intent"],
   .bw-hi__choices[data-hi-group="budget"] {
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+  .bw-hi__choices[data-hi-group="rooms"] {
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
   }
   .bw-hi__grid {
     display: grid;
@@ -375,6 +503,45 @@
     margin-bottom: 6px;
     color: #fff7f1;
     font-size: 14px;
+  }
+  .bw-hi__summary-visual {
+    min-height: 220px;
+    margin-bottom: 16px;
+    border-radius: 24px;
+    overflow: hidden;
+    background: rgba(255, 247, 241, 0.08);
+    border: 1px solid rgba(255, 247, 241, 0.12);
+  }
+  .bw-hi__summary-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bw-hi__summary-caption {
+    margin: -2px 0 14px;
+    color: rgba(255, 247, 241, 0.74);
+    font-size: 12px;
+    line-height: 1.65;
+  }
+  .bw-hi__summary-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 14px 0 4px;
+  }
+  .bw-hi__summary-tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: rgba(255, 247, 241, 0.12);
+    color: #fff7f1;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
   }
   .bw-hi__summary-line {
     display: flex;
@@ -474,95 +641,135 @@
   <section class="bw-hi__hero">
     <div class="bw-hi__hero-head">
       <span class="bw-hi__hero-eyebrow">Bluewud home interiors planning</span>
-      <h2 class="bw-hi__hero-title">Build a room-by-room interior brief before you ask for pricing.</h2>
-      <p class="bw-hi__hero-copy">This calculator is not meant to guess a final price. It is built to help the customer organize scope, room mix, property type, timing, and budget posture so the estimate call starts with something real.</p>
+      <h2 class="bw-hi__hero-title">Plan the home before you ask for pricing.</h2>
+      <p class="bw-hi__hero-copy">Choose the rooms, project type, timing, and budget direction so Bluewud starts with a real brief.</p>
     </div>
     <div class="bw-hi__hero-surface">
       <div class="bw-hi__hero-panel">
-        <p class="bw-hi__hero-panel-title">What this page does well</p>
-        <p class="bw-hi__hero-panel-copy">It helps Bluewud understand whether the request is a single-room upgrade, a modular package, or a broader home interiors project before the team reaches out.</p>
+        <p class="bw-hi__hero-panel-title">Single-room refresh</p>
+        <p class="bw-hi__hero-panel-copy">Use this when one room needs a cleaner brief before design and pricing move forward.</p>
       </div>
       <div class="bw-hi__hero-panel">
-        <p class="bw-hi__hero-panel-title">Best use case</p>
-        <p class="bw-hi__hero-panel-copy">Use this when the customer wants guidance across living, bedroom, wardrobe, kitchen, or WFH scope and needs a cleaner way to organize the brief before contacting the team.</p>
+        <p class="bw-hi__hero-panel-title">Modular package</p>
+        <p class="bw-hi__hero-panel-copy">Kitchen and wardrobe projects are easier to price once the room mix is organized together.</p>
+      </div>
+      <div class="bw-hi__hero-panel">
+        <p class="bw-hi__hero-panel-title">Whole-home phases</p>
+        <p class="bw-hi__hero-panel-copy">Use this when the home will be completed in stages and the team needs the room priority clearly.</p>
       </div>
     </div>
   </section>
 
-  <section class="bw-hi__roadmap" aria-label="Planning roadmap">
-    <article class="bw-hi__roadmap-card">
-      <span class="bw-hi__roadmap-step">Step 1</span>
-      <h3>Pick the rooms first</h3>
-      <p>Start with the spaces that need work. The planner becomes much more useful once the room mix is clear.</p>
-    </article>
-    <article class="bw-hi__roadmap-card">
-      <span class="bw-hi__roadmap-step">Step 2</span>
-      <h3>Set the project posture</h3>
-      <p>Choose whether this is a fresh setup, an upgrade, or a room-by-room furnishing pass so the brief stays grounded.</p>
-    </article>
-    <article class="bw-hi__roadmap-card">
-      <span class="bw-hi__roadmap-step">Step 3</span>
-      <h3>Open the estimate with context</h3>
-      <p>Once the scope is set, the estimate popup and contact path can carry a clearer brief to the Bluewud team.</p>
-    </article>
-  </section>
 
   <section class="bw-hi__progress" aria-label="Calculator steps">
     <article class="bw-hi__progress-card">
       <span class="bw-hi__progress-step">Step 1</span>
-      <h3>Choose the room mix</h3>
+      <h3>Choose the rooms</h3>
       <p>Pick the spaces that are actually in scope so the brief doesn’t drift into generic interiors talk.</p>
     </article>
     <article class="bw-hi__progress-card">
       <span class="bw-hi__progress-step">Step 2</span>
-      <h3>Set intent and budget posture</h3>
-      <p>Declare whether this is a fresh setup, a renovation, or a room-by-room furnishing pass.</p>
+      <h3>Set the project type</h3>
+      <p>Fresh setup, upgrade, or room-by-room improvement.</p>
     </article>
     <article class="bw-hi__progress-card">
       <span class="bw-hi__progress-step">Step 3</span>
-      <h3>Confirm city and timing</h3>
-      <p>The enquiry becomes more useful when geography and timing are attached before contact.</p>
+      <h3>Add city and timing</h3>
+      <p>Give the team enough context to scope the project properly.</p>
     </article>
     <article class="bw-hi__progress-card">
       <span class="bw-hi__progress-step">Step 4</span>
-      <h3>Open the estimate with context</h3>
-      <p>Move into the estimate popup once the project direction feels grounded enough to share.</p>
+      <h3>Send the brief</h3>
+      <p>Share it once the scope feels clear.</p>
     </article>
   </section>
 
-  <section class="bw-hi__journey" aria-label="Planning journey">
-    <div class="bw-hi__journey-head">
-      <span class="bw-hi__journey-eyebrow">Planning journey</span>
-      <h2 class="bw-hi__journey-title">Move between modular kitchen, wardrobe, calculators, and estimate flow without losing context.</h2>
-      <p class="bw-hi__journey-copy">This home interiors brief is part of the same planning system. Use the guide pages to compare layouts, open a dedicated calculator when needed, or jump straight to the estimate desk when the scope is ready.</p>
-    </div>
-    <div class="bw-hi__journey-links">
-      <a class="bw-hi__journey-link" href="{{ modular_kitchen_url }}">Modular Kitchen</a>
-      <a class="bw-hi__journey-link" href="{{ modular_wardrobe_url }}">Wardrobes</a>
-      <a class="bw-hi__journey-link" href="{{ kitchen_calculator_url }}">Kitchen Calculator</a>
-      <a class="bw-hi__journey-link" href="{{ wardrobe_calculator_url }}">Wardrobe Calculator</a>
-      <a class="bw-hi__journey-link bw-hi__journey-link--active" href="{{ request.path | default: '/pages/home-interiors-cost-calculator' }}">Home Interiors</a>
-      <a class="bw-hi__journey-link" href="{{ estimate_url }}">Get Free Estimate</a>
-    </div>
-  </section>
 
   <div class="bw-hi__shell">
     <section class="bw-hi__panel">
       <div class="bw-hi__head">
         <span class="bw-hi__eyebrow">Interiors planning workflow</span>
-        <h2 class="bw-hi__title">Home Interiors Cost Calculator</h2>
-        <p class="bw-hi__copy">This page should collect the room scope and project intent before Bluewud reaches out. It is a planning brief for interiors, not a fake instant price tool.</p>
+        <h2 class="bw-hi__title">Build Your Home Interiors Brief.</h2>
+        <p class="bw-hi__copy">Choose the rooms, project type, timing, and budget so Bluewud can price the right scope.</p>
       </div>
 
       <div class="bw-hi__section">
         <div class="bw-hi__label">Which spaces are in scope?</div>
         <div class="bw-hi__choices" data-hi-group="rooms">
-          <label class="bw-hi__choice"><input type="checkbox" value="Living Room">Living Room</label>
-          <label class="bw-hi__choice"><input type="checkbox" value="Bedroom">Bedroom</label>
-          <label class="bw-hi__choice"><input type="checkbox" value="Wardrobe">Wardrobe</label>
-          <label class="bw-hi__choice"><input type="checkbox" value="Modular Kitchen">Modular Kitchen</label>
-          <label class="bw-hi__choice"><input type="checkbox" value="Study / WFH">Study / WFH</label>
-          <label class="bw-hi__choice"><input type="checkbox" value="Dining">Dining</label>
+          <label class="bw-hi__choice bw-hi__choice--visual" data-hi-room-card data-preview-caption="Build a living room-led brief around seating, TV, storage, and social-use comfort." {% if living_preview != blank %}data-preview-src="{{ living_preview | image_url: width: 1200 }}" data-preview-alt="{{ living_collection.title | default: 'Bluewud living room planning preview' }}"{% endif %}>
+            <input type="checkbox" value="Living Room">
+            <span class="bw-hi__choice-media">
+              {% if living_preview != blank %}
+                {{ living_preview | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 540, 720, 900', sizes: '(max-width: 720px) 100vw, 33vw', alt: living_collection.title | default: 'Bluewud living room planning preview' }}
+              {% endif %}
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Living Room</span>
+              <span class="bw-hi__choice-note">Seating, TV, centre tables, and storage-led comfort.</span>
+            </span>
+          </label>
+          <label class="bw-hi__choice bw-hi__choice--visual" data-hi-room-card data-preview-caption="Shape the bedroom brief around sleep, side storage, wardrobes, and calmer daily movement." {% if bedroom_preview != blank %}data-preview-src="{{ bedroom_preview | image_url: width: 1200 }}" data-preview-alt="{{ bedroom_collection.title | default: 'Bluewud bedroom planning preview' }}"{% endif %}>
+            <input type="checkbox" value="Bedroom">
+            <span class="bw-hi__choice-media">
+              {% if bedroom_preview != blank %}
+                {{ bedroom_preview | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 540, 720, 900', sizes: '(max-width: 720px) 100vw, 33vw', alt: bedroom_collection.title | default: 'Bluewud bedroom planning preview' }}
+              {% endif %}
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Bedroom</span>
+              <span class="bw-hi__choice-note">Beds, side tables, dressers, and room-led storage.</span>
+            </span>
+          </label>
+          <label class="bw-hi__choice bw-hi__choice--visual" data-hi-room-card data-preview-caption="Wardrobe-led briefs work best when storage format, finish direction, and internals are clear early." {% if wardrobe_preview != blank %}data-preview-src="{{ wardrobe_preview | image_url: width: 1200 }}" data-preview-alt="{{ wardrobe_collection.title | default: 'Bluewud wardrobe planning preview' }}"{% endif %}>
+            <input type="checkbox" value="Wardrobe">
+            <span class="bw-hi__choice-media">
+              {% if wardrobe_preview != blank %}
+                {{ wardrobe_preview | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 540, 720, 900', sizes: '(max-width: 720px) 100vw, 33vw', alt: wardrobe_collection.title | default: 'Bluewud wardrobe planning preview' }}
+              {% endif %}
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Wardrobe</span>
+              <span class="bw-hi__choice-note">Sliding, hinged, walk-in, and internal organization.</span>
+            </span>
+          </label>
+          <label class="bw-hi__choice bw-hi__choice--visual" data-hi-room-card data-preview-src="{{ kitchen_preview_src }}" data-preview-alt="{{ kitchen_preview_alt }}" data-preview-caption="Modular kitchens need room shape, storage load, and appliance planning before finish talk starts.">
+            <input type="checkbox" value="Modular Kitchen">
+            <span class="bw-hi__choice-media">
+              {% if kitchen_preview != blank %}
+                {{ kitchen_preview | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 540, 720, 900', sizes: '(max-width: 720px) 100vw, 33vw', alt: kitchen_preview_alt }}
+              {% else %}
+                <img src="{{ kitchen_preview_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="900" height="675">
+              {% endif %}
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Modular Kitchen</span>
+              <span class="bw-hi__choice-note">Layout, storage, appliances, and material direction.</span>
+            </span>
+          </label>
+          <label class="bw-hi__choice bw-hi__choice--visual" data-hi-room-card data-preview-caption="WFH planning should balance compact footprints, storage, and long-hour comfort." {% if study_preview != blank %}data-preview-src="{{ study_preview | image_url: width: 1200 }}" data-preview-alt="{{ study_collection.title | default: 'Bluewud study planning preview' }}"{% endif %}>
+            <input type="checkbox" value="Study / WFH">
+            <span class="bw-hi__choice-media">
+              {% if study_preview != blank %}
+                {{ study_preview | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 540, 720, 900', sizes: '(max-width: 720px) 100vw, 33vw', alt: study_collection.title | default: 'Bluewud study planning preview' }}
+              {% endif %}
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Study / WFH</span>
+              <span class="bw-hi__choice-note">Tables, storage, shelving, and workday ergonomics.</span>
+            </span>
+          </label>
+          <label class="bw-hi__choice bw-hi__choice--visual" data-hi-room-card data-preview-caption="Dining-led briefs often start with social-use furniture and how the room connects to living or kitchen flow." {% if dining_preview != blank %}data-preview-src="{{ dining_preview | image_url: width: 1200 }}" data-preview-alt="{{ dining_collection.title | default: 'Bluewud dining planning preview' }}"{% endif %}>
+            <input type="checkbox" value="Dining">
+            <span class="bw-hi__choice-media">
+              {% if dining_preview != blank %}
+                {{ dining_preview | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 540, 720, 900', sizes: '(max-width: 720px) 100vw, 33vw', alt: dining_collection.title | default: 'Bluewud dining planning preview' }}
+              {% endif %}
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Dining / Hosting</span>
+              <span class="bw-hi__choice-note">Table-led social planning and linked room flow.</span>
+            </span>
+          </label>
         </div>
       </div>
 
@@ -577,7 +784,7 @@
       </div>
 
       <div class="bw-hi__section">
-        <div class="bw-hi__label">Project posture</div>
+        <div class="bw-hi__label">What kind of project is this?</div>
         <div class="bw-hi__choices" data-hi-group="intent">
           <label class="bw-hi__choice is-selected"><input type="radio" name="hi_intent" value="Fresh setup" checked>Fresh Setup</label>
           <label class="bw-hi__choice"><input type="radio" name="hi_intent" value="Upgrade / renovation">Upgrade / Renovation</label>
@@ -602,7 +809,7 @@
       </div>
 
       <div class="bw-hi__section">
-        <div class="bw-hi__label">Budget posture</div>
+        <div class="bw-hi__label">What budget feels right?</div>
         <div class="bw-hi__choices" data-hi-group="budget">
           <label class="bw-hi__choice"><input type="radio" name="hi_budget" value="Value led">Value Led</label>
           <label class="bw-hi__choice is-selected"><input type="radio" name="hi_budget" value="Balanced premium" checked>Balanced Premium</label>
@@ -613,10 +820,20 @@
     </section>
 
     <aside class="bw-hi__summary">
+      <div class="bw-hi__summary-visual">
+        {% if living_preview != blank %}
+          {{ living_preview | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480, 720, 960, 1200', sizes: '(max-width: 980px) 100vw, 40vw', alt: living_collection.title | default: 'Bluewud interiors planning preview', data-hi-summary-image: '' }}
+        {% elsif kitchen_preview != blank %}
+          {{ kitchen_preview | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480, 720, 960, 1200', sizes: '(max-width: 980px) 100vw, 40vw', alt: kitchen_preview_alt, data-hi-summary-image: '' }}
+        {% else %}
+          <img src="{{ kitchen_preview_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="1200" height="900" data-hi-summary-image>
+        {% endif %}
+      </div>
+      <p class="bw-hi__summary-caption" data-hi-summary-caption>Choose the room mix first. The lead room will preview here so the brief feels anchored to a real space instead of abstract scope.</p>
       <div class="bw-hi__head">
         <span class="bw-hi__eyebrow">Interiors brief</span>
-        <h2 class="bw-hi__title">Your project direction</h2>
-        <p class="bw-hi__copy">This should help Bluewud understand the broad interiors scope before the first real conversation.</p>
+        <h2 class="bw-hi__title">Your interiors plan</h2>
+        <p class="bw-hi__copy">A quick read on the project Bluewud needs to price.</p>
       </div>
 
       <div class="bw-hi__badge" data-hi-badge>Balanced premium direction</div>
@@ -633,10 +850,10 @@
         <div class="bw-hi__summary-line"><span>City</span><strong data-hi-summary-city>Not shared yet</strong></div>
         <div class="bw-hi__summary-line"><span>Timeline</span><strong data-hi-summary-timeline>Immediate</strong></div>
       </div>
+      <div class="bw-hi__summary-tags" data-hi-summary-tags></div>
 
       <div class="bw-hi__actions">
         <button class="bw-hi__button" type="button" data-hi-popup-open>Get Free Estimate</button>
-        <a class="bw-hi__button--secondary" href="{{ contact_url }}">Talk To Bluewud</a>
       </div>
     </aside>
   </div>
@@ -653,6 +870,9 @@
     var summaryInput = modal ? modal.querySelector('[data-bw-estimate-summary-input]') : null;
     var contextInput = modal ? modal.querySelector('[data-bw-estimate-context-input]') : null;
     var sourceInput = modal ? modal.querySelector('[data-bw-estimate-source-input]') : null;
+    var summaryImage = root.querySelector('[data-hi-summary-image]');
+    var summaryCaption = root.querySelector('[data-hi-summary-caption]');
+    var summaryTags = root.querySelector('[data-hi-summary-tags]');
 
     function selectedRadio(name) {
       var node = root.querySelector('input[name="' + name + '"]:checked');
@@ -668,6 +888,24 @@
     function inputValue(key) {
       var node = root.querySelector('[data-hi-input="' + key + '"]');
       return node ? node.value : '';
+    }
+
+    function firstSelectedRoomCard() {
+      var preferred = ['Modular Kitchen', 'Wardrobe', 'Living Room', 'Bedroom', 'Study / WFH', 'Dining'];
+      var cards = Array.prototype.slice.call(root.querySelectorAll('[data-hi-room-card]'));
+
+      for (var i = 0; i < preferred.length; i += 1) {
+        var match = cards.find(function (card) {
+          var input = card.querySelector('input');
+          return input && input.checked && input.value === preferred[i];
+        });
+        if (match) return match;
+      }
+
+      return cards.find(function (card) {
+        var input = card.querySelector('input');
+        return input && input.checked;
+      }) || null;
     }
 
     function updateStates() {
@@ -702,19 +940,43 @@
       var badge = root.querySelector('[data-hi-badge]');
       if (badge) badge.textContent = budget || 'Need guidance';
 
+      if (summaryTags) {
+        var tags = rooms.slice(0, 3);
+        if (property) tags.push(property);
+        if (budget) tags.push(budget);
+        if (timeline) tags.push(timeline);
+        summaryTags.innerHTML = tags.slice(0, 5).map(function (tag) {
+          return '<span class="bw-hi__summary-tag">' + tag + '</span>';
+        }).join('');
+      }
+
+      var featuredCard = firstSelectedRoomCard();
+      if (featuredCard) {
+        var previewSrc = featuredCard.getAttribute('data-preview-src');
+        var previewAlt = featuredCard.getAttribute('data-preview-alt');
+        var previewCaption = featuredCard.getAttribute('data-preview-caption');
+        if (summaryImage && previewSrc) summaryImage.src = previewSrc;
+        if (summaryImage && previewAlt) summaryImage.alt = previewAlt;
+        if (summaryCaption && previewCaption) summaryCaption.textContent = previewCaption;
+      } else if (summaryCaption) {
+        summaryCaption.textContent = 'Choose the room mix first. The lead room will preview here so the brief feels anchored to a real space instead of abstract scope.';
+      }
+
       var recommendation = root.querySelector('[data-hi-recommendation]');
       if (recommendation) {
-        var recommendationText = 'Select a room mix to see which planning path makes the most sense.';
-        if (rooms.indexOf('Modular Kitchen') !== -1 && rooms.length > 1) {
-          recommendationText = 'This is starting to look like a wider modular project. Keep the kitchen in scope and let the estimate capture the room combination.';
+        var recommendationText = 'Pick the lead room first.';
+        if (rooms.indexOf('Modular Kitchen') !== -1 && rooms.indexOf('Wardrobe') !== -1) {
+          recommendationText = 'This looks like a modular-core home brief.';
+        } else if (rooms.indexOf('Modular Kitchen') !== -1) {
+          recommendationText = 'Kitchen is leading this brief. Use the kitchen planner if the layout still needs work.';
         } else if (rooms.indexOf('Wardrobe') !== -1 && rooms.length === 1) {
-          recommendationText = 'Wardrobe-led projects are best scoped through the wardrobe flow first, then refined into a Bluewud estimate once the room fit is clear.';
+          recommendationText = 'Wardrobe is leading this brief. Lock the storage format before asking for numbers.';
         } else if (rooms.length > 2) {
-          recommendationText = 'This reads like a full home interiors brief. The estimate page is the right next step so the Bluewud team can map the project in phases.';
+          recommendationText = 'This reads like a broader home interiors project.';
         } else if (rooms.indexOf('Study / WFH') !== -1) {
-          recommendationText = 'Study and WFH briefs tend to benefit from layout clarity first, then materials and storage, before the estimate is requested.';
+          recommendationText = 'Study and WFH briefs work best when storage and work rhythm are clear early.';
         } else if (rooms.indexOf('Living Room') !== -1 || rooms.indexOf('Bedroom') !== -1) {
-          recommendationText = 'This is a room-led planning brief. Keep the room list compact and use the estimate to carry the context forward.';
+          recommendationText = 'This is a room-led interiors brief. Keep the scope crisp and send one clean brief.';
         }
         recommendation.innerHTML = '<strong>Recommended next move</strong>' + recommendationText;
       }
@@ -727,7 +989,7 @@
         'Rooms: ' + (selectedChecks('rooms').length ? selectedChecks('rooms').join(', ') : 'Not selected'),
         'Property: ' + selectedRadio('hi_property'),
         'Intent: ' + selectedRadio('hi_intent'),
-        'Budget posture: ' + selectedRadio('hi_budget'),
+        'Budget direction: ' + selectedRadio('hi_budget'),
         'City: ' + (inputValue('city') || 'Not shared yet'),
         'Timeline: ' + (inputValue('timeline') || 'Immediate')
       ].join(' | ');

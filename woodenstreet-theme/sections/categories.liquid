@@ -232,6 +232,11 @@
   assign bedroom_collection = collections['bed-room']
   assign study_collection = collections['study-tables']
   assign study_product = all_products['mallium-study-computer-table-office-desk']
+  assign living_room_url = '/collections/living-room'
+  assign bedroom_url = '/collections/bed-room'
+  assign study_room_url = '/collections/study-tables'
+  assign tv_unit_url = '/collections/tv-unit-furniture'
+  assign bookshelves_url = '/collections/book-shelves'
 
   if study_collection == blank
     assign study_collection = collections['study-table']
@@ -243,6 +248,22 @@
   assign tv_collection = collections['tv-unit-furniture']
   assign bookshelves_collection = collections['book-shelves']
   assign wardrobe_collection = collections['wardrobe']
+
+  if living_collection != blank and living_collection.url != blank
+    assign living_room_url = living_collection.url
+  endif
+  if bedroom_collection != blank and bedroom_collection.url != blank
+    assign bedroom_url = bedroom_collection.url
+  endif
+  if study_collection != blank and study_collection.url != blank
+    assign study_room_url = study_collection.url
+  endif
+  if tv_collection != blank and tv_collection.url != blank
+    assign tv_unit_url = tv_collection.url
+  endif
+  if bookshelves_collection != blank and bookshelves_collection.url != blank
+    assign bookshelves_url = bookshelves_collection.url
+  endif
 
   assign living_media = section.settings.living_room_image
   if living_media == blank and living_collection != blank
@@ -306,7 +327,7 @@
     </div>
 
     <div class="bw-categories__grid">
-      <a class="bw-categories__card bw-categories__card--large" href="/collections/living-room">
+      <a class="bw-categories__card bw-categories__card--large" href="{{ living_room_url }}">
         {% if living_media != blank %}
           <div class="bw-categories__media">
             {{ living_media | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480, 720, 960, 1200', sizes: '(max-width: 720px) 100vw, 50vw', alt: 'Living Room' }}
@@ -332,7 +353,7 @@
         </div>
       </a>
 
-      <a class="bw-categories__card bw-categories__card--large" href="/collections/bed-room">
+      <a class="bw-categories__card bw-categories__card--large" href="{{ bedroom_url }}">
         {% if bedroom_media != blank %}
           <div class="bw-categories__media">
             {{ bedroom_media | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480, 720, 960, 1200', sizes: '(max-width: 720px) 100vw, 50vw', alt: 'Bedroom' }}
@@ -358,7 +379,7 @@
         </div>
       </a>
 
-      <a class="bw-categories__card bw-categories__card--small" href="{{ study_collection.url | default: '/collections/study-tables' }}">
+      <a class="bw-categories__card bw-categories__card--small" href="{{ study_room_url }}">
         {% if study_media != blank %}
           <div class="bw-categories__media">
             {{ study_media | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 480, 720, 900', sizes: '(max-width: 720px) 100vw, 25vw', alt: 'Study Tables' }}
@@ -386,7 +407,7 @@
         </div>
       </a>
 
-      <a class="bw-categories__card bw-categories__card--small" href="/collections/tv-unit-furniture">
+      <a class="bw-categories__card bw-categories__card--small" href="{{ tv_unit_url }}">
         {% if tv_media != blank %}
           <div class="bw-categories__media">
             {{ tv_media | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 480, 720, 900', sizes: '(max-width: 720px) 100vw, 25vw', alt: 'TV Units' }}
@@ -412,7 +433,7 @@
         </div>
       </a>
 
-      <a class="bw-categories__card bw-categories__card--small" href="/collections/book-shelves">
+      <a class="bw-categories__card bw-categories__card--small" href="{{ bookshelves_url }}">
         {% if bookshelves_media != blank %}
           <div class="bw-categories__media">
             {{ bookshelves_media | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 480, 720, 900', sizes: '(max-width: 720px) 100vw, 25vw', alt: 'Bookshelves' }}

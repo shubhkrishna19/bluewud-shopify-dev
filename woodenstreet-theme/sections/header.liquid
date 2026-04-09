@@ -18,6 +18,17 @@
   assign modular_wardrobe_calculator_url = '/collections/wardrobe#wardrobe-calculator'
   assign home_interiors_calculator_url = '/collections/kitchen-racks#broader-planning'
   assign estimate_url = '/pages/get-free-estimate'
+  assign about_url = '/pages/about-us'
+  assign contact_url = '/pages/contact-us'
+  assign visit_url = '/pages/visit-us'
+  assign help_center_url = '/pages/help-center'
+  assign bulk_url = '/pages/buy-in-bulk'
+  assign offers_url = '/pages/offers-discount'
+  assign awards_url = '/pages/award-achievment'
+  assign policies_url = '/pages/policies'
+  assign returns_url = '/pages/returns-refunds'
+  assign payment_security_url = '/pages/payment-security'
+  assign terms_url = '/pages/terms-of-use'
   assign living_room_url = '/collections/living-room'
   assign bedroom_url = '/collections/bed-room'
   assign study_room_url = '/collections/study-tables'
@@ -26,6 +37,47 @@
   assign coffee_table_url = '/collections/coffee-table'
   assign bookshelves_url = '/collections/book-shelves'
   assign dressers_url = '/collections/dressing-tables'
+  assign living_room_collection = collections['living-room']
+  assign bedroom_collection = collections['bed-room']
+  assign study_room_collection = collections['study-tables']
+  assign tv_unit_collection = collections['tv-unit-furniture']
+  assign shoe_rack_collection = collections['shoe-racks']
+  assign coffee_table_collection = collections['coffee-table']
+  assign bookshelves_collection = collections['book-shelves']
+  assign dressers_collection = collections['dressing-tables']
+
+  if study_room_collection == blank
+    assign study_room_collection = collections['study-table']
+  endif
+
+  if study_room_collection == blank
+    assign study_room_collection = collections['smartly-designed-wfh-furniture']
+  endif
+
+  if living_room_collection != blank and living_room_collection.url != blank
+    assign living_room_url = living_room_collection.url
+  endif
+  if bedroom_collection != blank and bedroom_collection.url != blank
+    assign bedroom_url = bedroom_collection.url
+  endif
+  if study_room_collection != blank and study_room_collection.url != blank
+    assign study_room_url = study_room_collection.url
+  endif
+  if tv_unit_collection != blank and tv_unit_collection.url != blank
+    assign tv_unit_url = tv_unit_collection.url
+  endif
+  if shoe_rack_collection != blank and shoe_rack_collection.url != blank
+    assign shoe_rack_url = shoe_rack_collection.url
+  endif
+  if coffee_table_collection != blank and coffee_table_collection.url != blank
+    assign coffee_table_url = coffee_table_collection.url
+  endif
+  if bookshelves_collection != blank and bookshelves_collection.url != blank
+    assign bookshelves_url = bookshelves_collection.url
+  endif
+  if dressers_collection != blank and dressers_collection.url != blank
+    assign dressers_url = dressers_collection.url
+  endif
   assign wall_mount_tv_query = 'wall mount tv unit' | url_encode
   assign floor_standing_tv_query = 'floor standing tv unit' | url_encode
   assign two_door_shoe_rack_query = '2 door shoe rack' | url_encode
@@ -55,7 +107,7 @@
   assign beds_url = routes.search_url | append: '?type=product&q=' | append: beds_query
   assign king_size_bed_url = routes.search_url | append: '?type=product&q=' | append: king_size_bed_query
   assign queen_size_bed_url = routes.search_url | append: '?type=product&q=' | append: queen_size_bed_query
-  assign study_table_url = '/collections/study-tables'
+  assign study_table_url = study_room_url
   assign wall_shelf_url = routes.search_url | append: '?type=product&q=' | append: wall_shelf_query
   assign price_calculator_url = home_interiors_calculator_url
   assign l_shape_kitchen_url = modular_kitchen_url | append: '#l-shape'
@@ -118,9 +170,59 @@
     assign estimate_url = pages['contact-us'].url
   endif
 
-  if cta_url == blank
-    assign cta_url = '/pages/buy-in-bulk'
+  if pages['about-us'] != blank
+    assign about_url = pages['about-us'].url
   endif
+  if pages['contact-us'] != blank
+    assign contact_url = pages['contact-us'].url
+  endif
+  if pages['visit-us'] != blank
+    assign visit_url = pages['visit-us'].url
+  endif
+  if pages['help-center'] != blank
+    assign help_center_url = pages['help-center'].url
+  endif
+  if pages['buy-in-bulk'] != blank
+    assign bulk_url = pages['buy-in-bulk'].url
+  endif
+  if pages['offers-discount'] != blank
+    assign offers_url = pages['offers-discount'].url
+  endif
+  if pages['award-achievment'] != blank
+    assign awards_url = pages['award-achievment'].url
+  endif
+  if pages['policies'] != blank
+    assign policies_url = pages['policies'].url
+  endif
+  if pages['returns-refunds'] != blank
+    assign returns_url = pages['returns-refunds'].url
+  endif
+  if pages['payment-security'] != blank
+    assign payment_security_url = pages['payment-security'].url
+  endif
+  if pages['terms-of-use'] != blank
+    assign terms_url = pages['terms-of-use'].url
+  endif
+
+  if cta_url == blank
+    assign cta_url = bulk_url
+  endif
+
+  capture drawer_nav_urls_string
+    echo living_room_url | append: '|'
+    echo bedroom_url | append: '|'
+    echo study_room_url | append: '|'
+    echo tv_unit_url | append: '|'
+    echo shoe_rack_url | append: '|'
+    echo shelves_url | append: '|'
+    echo coffee_table_url | append: '|'
+    echo bookshelves_url | append: '|'
+    echo modular_kitchen_url | append: '|'
+    echo modular_wardrobe_url | append: '|'
+    echo price_calculator_url | append: '|'
+    echo '/collections/chest-of-drawer'
+  endcapture
+  assign drawer_nav_urls = drawer_nav_urls_string | split: '|'
 
   if pages['l-shape-modular-kitchen-design'] != blank
     assign l_shape_kitchen_url = pages['l-shape-modular-kitchen-design'].url
@@ -1213,14 +1315,14 @@
           <a class="bw-header__drawer-link" href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>
         {% endfor %}
       {% else %}
-        <a class="bw-header__drawer-link" href="/pages/about-us">About Us</a>
-        <a class="bw-header__drawer-link" href="/pages/contact-us">Contact Us</a>
-        <a class="bw-header__drawer-link" href="/pages/buy-in-bulk">Buy In Bulk</a>
-        <a class="bw-header__drawer-link" href="/pages/visit-us">Visit Us</a>
-        <a class="bw-header__drawer-link" href="/pages/help-center">FAQs</a>
-        <a class="bw-header__drawer-link" href="/pages/offers-discount">Offers & Discounts</a>
-        <a class="bw-header__drawer-link" href="/pages/award-achievment">Award & Achievement</a>
-        <a class="bw-header__drawer-link" href="/pages/returns-refunds">Returns & Refunds</a>
+        <a class="bw-header__drawer-link" href="{{ about_url }}">About Us</a>
+        <a class="bw-header__drawer-link" href="{{ contact_url }}">Contact Us</a>
+        <a class="bw-header__drawer-link" href="{{ bulk_url }}">Buy In Bulk</a>
+        <a class="bw-header__drawer-link" href="{{ visit_url }}">Visit Us</a>
+        <a class="bw-header__drawer-link" href="{{ help_center_url }}">FAQs</a>
+        <a class="bw-header__drawer-link" href="{{ offers_url }}">Offers & Discounts</a>
+        <a class="bw-header__drawer-link" href="{{ awards_url }}">Award & Achievement</a>
+        <a class="bw-header__drawer-link" href="{{ returns_url }}">Returns & Refunds</a>
       {% endif %}
     </div>
 
@@ -1232,10 +1334,10 @@
         {% endfor %}
       {% else %}
         <a class="bw-header__drawer-link" href="/policies/terms-of-service">Terms of Service</a>
-        <a class="bw-header__drawer-link" href="/pages/terms-of-use">Terms Of Use</a>
-        <a class="bw-header__drawer-link" href="/pages/policies">Privacy Statement</a>
-        <a class="bw-header__drawer-link" href="/pages/payment-security">Payment & Security</a>
-        <a class="bw-header__drawer-link" href="/pages/help-center">Installation & Cancellation</a>
+        <a class="bw-header__drawer-link" href="{{ terms_url }}">Terms Of Use</a>
+        <a class="bw-header__drawer-link" href="{{ policies_url }}">Privacy Statement</a>
+        <a class="bw-header__drawer-link" href="{{ payment_security_url }}">Payment & Security</a>
+        <a class="bw-header__drawer-link" href="{{ help_center_url }}">Installation & Cancellation</a>
         <a class="bw-header__drawer-link" href="{{ routes.search_url }}">Search</a>
       {% endif %}
     </div>

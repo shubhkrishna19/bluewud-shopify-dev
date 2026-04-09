@@ -1,11 +1,44 @@
 {% liquid
+  assign living_room_url = '/collections/living-room'
+  assign bedroom_url = '/collections/bed-room'
+  assign tv_unit_url = '/collections/tv-unit-furniture'
+  assign study_room_url = '/collections/study-tables'
+  assign offers_url = '/pages/offers-discount'
+  assign living_room_collection = collections['living-room']
+  assign bedroom_collection = collections['bed-room']
+  assign tv_unit_collection = collections['tv-unit-furniture']
+  assign study_room_collection = collections['study-tables']
+
+  if living_room_collection != blank and living_room_collection.url != blank
+    assign living_room_url = living_room_collection.url
+  endif
+  if bedroom_collection != blank and bedroom_collection.url != blank
+    assign bedroom_url = bedroom_collection.url
+  endif
+  if tv_unit_collection != blank and tv_unit_collection.url != blank
+    assign tv_unit_url = tv_unit_collection.url
+  endif
+  if study_room_collection != blank and study_room_collection.url != blank
+    assign study_room_url = study_room_collection.url
+  endif
+  if pages['offers-discount'] != blank
+    assign offers_url = pages['offers-discount'].url
+  endif
+
   assign default_eyebrows = 'Living Room|Bedroom|Entertainment|Study & Office|New arrivals' | split: '|'
   assign default_headings = 'Furniture that makes the|Give your bedroom|Upgrade your|Smartly designed|Fresh pieces made to' | split: '|'
   assign default_accents = 'home feel more complete|storage feel calmer|watching corner feel more ordered|WFH corner feel more focused|keep the shortlist moving' | split: '|'
   assign default_tails = '||||'
   assign default_copies = 'Explore room-defining living pieces that make the home feel balanced, polished, and easier to live with every day.|Bedroom storage and bed solutions chosen to make routines calmer, cleaner, and easier to keep in place.|Discover TV units and entertainment furniture that bring order to the setup without losing warmth or character.|Shop practical study tables, bookshelves, and WFH-ready pieces that turn a corner into a more focused, premium workspace.|Browse fresh Bluewud additions and sharper-value picks that make the next room feel easier to finish.' | split: '|'
   assign default_handles = 'living-room|bed-room|tv-unit-furniture|study-tables|new_launches' | split: '|'
-  assign default_urls = '/collections/living-room|/collections/bed-room|/collections/tv-unit-furniture|/collections/study-tables|/collections/new_launches' | split: '|'
+  capture default_urls_string
+    echo living_room_url | append: '|'
+    echo bedroom_url | append: '|'
+    echo tv_unit_url | append: '|'
+    echo study_room_url | append: '|'
+    echo offers_url
+  endcapture
+  assign default_urls = default_urls_string | split: '|'
   assign default_button_labels = 'Explore living room|Shop bedroom|Browse TV units|Shop WFH furniture|View offers' | split: '|'
   assign default_positions = 'right|left|right|right|center' | split: '|'
   assign has_configured_slides = false
@@ -454,9 +487,11 @@
               assign slide_url = default_urls[forloop.index0]
               assign slide_image = blank
 
-              if slide_collection != blank
+              if slide_url == blank and slide_collection != blank
                 assign slide_url = slide_collection.url
+              endif
 
+              if slide_collection != blank
                 if slide_collection.image != blank
                   assign slide_image = slide_collection.image
                 elsif slide_collection.products.size > 0

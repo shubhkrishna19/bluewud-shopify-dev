@@ -166,6 +166,9 @@ Files:
 - kitchen and wardrobe planner pages now ask for the next step less often by stripping duplicate estimate/contact prompts from repeated sections
 - the wardrobe calculator lost one duplicate journey block, so the actual wardrobe brief starts faster with less funnel chrome
 - modular kitchen, wardrobe, and calculator pages now suppress the generic page hero shell so customers land directly inside the real planning UI
+- header, footer, hero, category cards, featured tiles, and trust banners now resolve more of their routes through live page and collection objects instead of brittle hardcoded paths
+- the kitchen and wardrobe collection planners now surface the embedded calculators directly below the shared planning rail instead of burying them far down the page
+- the home interiors planner now opens with image-led room cards, a live visual summary, and compact recommendation logic instead of relying on abstract text alone
 
 ## Current Review Routes
 

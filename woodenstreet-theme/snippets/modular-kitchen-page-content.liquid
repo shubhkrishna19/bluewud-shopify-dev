@@ -160,6 +160,8 @@
 
 <style>
   .bw-modular { display: grid; gap: 24px; }
+  .bw-modular > .bw-planning-rail { order: -2; }
+  .bw-modular > .bw-modular__tool { order: -1; }
   .bw-modular__block,
   .bw-modular__band {
     padding: 26px 28px;
@@ -831,26 +833,41 @@
     </div>
     <div class="bw-modular__launchpad bw-modular__launchpad--five">
       <a class="bw-modular__launch-card bw-modular__launch-card--link" href="{{ l_url }}">
+        <div class="bw-modular__launch-media">
+          <img src="{{ kitchen_image_l_url }}" alt="{{ kitchen_image_l_alt }}" loading="lazy" width="900" height="675">
+        </div>
         <h3>L-shape</h3>
         <p>Balanced, open, and easy to live with when the room needs efficient movement without a heavy footprint.</p>
         <span class="bw-modular__launch-link">Open L-shape</span>
       </a>
       <a class="bw-modular__launch-card bw-modular__launch-card--link" href="{{ u_url }}">
+        <div class="bw-modular__launch-media">
+          <img src="{{ kitchen_image_u_url }}" alt="{{ kitchen_image_u_alt }}" loading="lazy" width="900" height="675">
+        </div>
         <h3>U-shape</h3>
         <p>Best when storage demand is higher and the kitchen needs more working surface and wraparound utility.</p>
         <span class="bw-modular__launch-link">Open U-shape</span>
       </a>
       <a class="bw-modular__launch-card bw-modular__launch-card--link" href="{{ parallel_url }}">
+        <div class="bw-modular__launch-media">
+          <img src="{{ kitchen_image_parallel_url }}" alt="{{ kitchen_image_parallel_alt }}" loading="lazy" width="900" height="675">
+        </div>
         <h3>Parallel</h3>
         <p>Efficient for tighter kitchens where prep, washing, and cooking can be split across two clear runs.</p>
         <span class="bw-modular__launch-link">Open Parallel</span>
       </a>
       <a class="bw-modular__launch-card bw-modular__launch-card--link" href="{{ straight_url }}">
+        <div class="bw-modular__launch-media">
+          <img src="{{ kitchen_image_straight_url }}" alt="{{ kitchen_image_straight_alt }}" loading="lazy" width="900" height="675">
+        </div>
         <h3>Straight</h3>
         <p>Minimal, disciplined, and ideal for compact homes that need clarity more than visual complexity.</p>
         <span class="bw-modular__launch-link">Open Straight</span>
       </a>
       <a class="bw-modular__launch-card bw-modular__launch-card--link" href="{{ island_url }}">
+        <div class="bw-modular__launch-media">
+          <img src="{{ kitchen_image_island_url }}" alt="{{ kitchen_image_island_alt }}" loading="lazy" width="900" height="675">
+        </div>
         <h3>Island</h3>
         <p>Premium and social, suited to homes where the kitchen also acts as a gathering and serving zone.</p>
         <span class="bw-modular__launch-link">Open Island</span>
@@ -1031,15 +1048,6 @@
         <article class="bw-modular__card"><h3>Appliance and service integration</h3><p>Built-ins, chimneys, microwaves, dishwashers, and water systems need allowances that influence both design and estimate.</p></article>
         <article class="bw-modular__card"><h3>Site readiness and timeline</h3><p>Civil work status, plumbing or electrical shifts, and delivery readiness all matter when moving from planning into execution.</p></article>
         <article class="bw-modular__card"><h3>Clarity of the brief</h3><p>A customer who already knows the preferred layout, finish direction, and utility priorities receives a better consultation and a sharper estimate.</p></article>
-      </div>
-    </section>
-
-    <section class="bw-modular__band">
-      <div class="bw-modular__eyebrow">All kitchens, one clearer next step</div>
-      <h2 class="bw-modular__title">Shortlist the right layout first, then let Bluewud shape the finish and estimate around it</h2>
-      <p class="bw-modular__copy">If you already know the room size and the broad kitchen format you prefer, you are ready to move from inspiration into a serious project brief.</p>
-      <div class="bw-modular__actions">
-      <a class="bw-modular__button" href="{{ calculator_cta_url }}">Build My Kitchen Brief</a>
       </div>
     </section>
 

@@ -1,12 +1,48 @@
 {% liquid
   assign footer_brand = section.settings.footer_brand | default: 'Bluewud'
   assign footer_copy = section.settings.footer_copy | default: 'Bluewud brings premium furniture, smarter storage, and guided room planning together for modern Indian homes.'
+  assign living_room_url = '/collections/living-room'
+  assign bedroom_url = '/collections/bed-room'
+  assign study_tables_url = '/collections/study-tables'
+  assign tv_units_url = '/collections/tv-unit-furniture'
+  assign bookshelves_url = '/collections/book-shelves'
+  assign new_launches_url = '/collections/new_launches'
   assign modular_kitchen_url = '/collections/kitchen-racks'
   assign modular_wardrobe_url = '/collections/wardrobe'
   assign modular_kitchen_calculator_url = '/collections/kitchen-racks#kitchen-calculator'
   assign modular_wardrobe_calculator_url = '/collections/wardrobe#wardrobe-calculator'
   assign home_interiors_calculator_url = '/collections/kitchen-racks#broader-planning'
   assign estimate_url = '/pages/get-free-estimate'
+  assign about_url = '/pages/about-us'
+  assign bulk_url = '/pages/buy-in-bulk'
+  assign visit_url = '/pages/visit-us'
+  assign awards_url = '/pages/award-achievment'
+  assign offers_url = '/pages/offers-discount'
+  assign help_center_url = '/pages/help-center'
+  assign contact_url = '/pages/contact-us'
+  assign policies_url = '/pages/policies'
+  assign returns_url = '/pages/returns-refunds'
+  assign payment_security_url = '/pages/payment-security'
+  assign terms_url = '/pages/terms-of-use'
+
+  if collections['living-room'] != blank and collections['living-room'].url != blank
+    assign living_room_url = collections['living-room'].url
+  endif
+  if collections['bed-room'] != blank and collections['bed-room'].url != blank
+    assign bedroom_url = collections['bed-room'].url
+  endif
+  if collections['study-tables'] != blank and collections['study-tables'].url != blank
+    assign study_tables_url = collections['study-tables'].url
+  endif
+  if collections['tv-unit-furniture'] != blank and collections['tv-unit-furniture'].url != blank
+    assign tv_units_url = collections['tv-unit-furniture'].url
+  endif
+  if collections['book-shelves'] != blank and collections['book-shelves'].url != blank
+    assign bookshelves_url = collections['book-shelves'].url
+  endif
+  if collections['new_launches'] != blank and collections['new_launches'].url != blank
+    assign new_launches_url = collections['new_launches'].url
+  endif
 
   if pages['modular-kitchen-designs'] != blank
     assign modular_kitchen_url = pages['modular-kitchen-designs'].url
@@ -27,6 +63,39 @@
     assign estimate_url = pages['get-free-estimate'].url
   elsif pages['contact-us'] != blank
     assign estimate_url = pages['contact-us'].url
+  endif
+  if pages['about-us'] != blank
+    assign about_url = pages['about-us'].url
+  endif
+  if pages['buy-in-bulk'] != blank
+    assign bulk_url = pages['buy-in-bulk'].url
+  endif
+  if pages['visit-us'] != blank
+    assign visit_url = pages['visit-us'].url
+  endif
+  if pages['award-achievment'] != blank
+    assign awards_url = pages['award-achievment'].url
+  endif
+  if pages['offers-discount'] != blank
+    assign offers_url = pages['offers-discount'].url
+  endif
+  if pages['help-center'] != blank
+    assign help_center_url = pages['help-center'].url
+  endif
+  if pages['contact-us'] != blank
+    assign contact_url = pages['contact-us'].url
+  endif
+  if pages['policies'] != blank
+    assign policies_url = pages['policies'].url
+  endif
+  if pages['returns-refunds'] != blank
+    assign returns_url = pages['returns-refunds'].url
+  endif
+  if pages['payment-security'] != blank
+    assign payment_security_url = pages['payment-security'].url
+  endif
+  if pages['terms-of-use'] != blank
+    assign terms_url = pages['terms-of-use'].url
   endif
 %}
 
@@ -199,8 +268,8 @@
         <ul class="bw-footer__contact-list">
           <li><a href="tel:+918800609609">+91-8800-609-609</a></li>
           <li><a href="mailto:care@bluewud.com">care@bluewud.com</a></li>
-          <li><a href="/pages/contact-us">Contact Us</a></li>
-          <li><a href="/pages/visit-us">Visit Us</a></li>
+          <li><a href="{{ contact_url }}">Contact Us</a></li>
+          <li><a href="{{ visit_url }}">Visit Us</a></li>
         </ul>
 
         <div class="bw-footer__newsletter">
@@ -216,41 +285,41 @@
       <div>
         <h2 class="bw-footer__heading">Shop</h2>
         <ul class="bw-footer__links">
-          <li><a href="/collections/living-room">Living Room</a></li>
-          <li><a href="/collections/bed-room">Bedroom</a></li>
-          <li><a href="/collections/study-tables">Study Tables</a></li>
-          <li><a href="/collections/tv-unit-furniture">TV Units</a></li>
-          <li><a href="/collections/book-shelves">Bookshelves</a></li>
+          <li><a href="{{ living_room_url }}">Living Room</a></li>
+          <li><a href="{{ bedroom_url }}">Bedroom</a></li>
+          <li><a href="{{ study_tables_url }}">Study Tables</a></li>
+          <li><a href="{{ tv_units_url }}">TV Units</a></li>
+          <li><a href="{{ bookshelves_url }}">Bookshelves</a></li>
           <li><a href="{{ modular_kitchen_url }}">Modular Kitchen</a></li>
           <li><a href="{{ modular_wardrobe_url }}">Wardrobes</a></li>
-          <li><a href="/collections/new_launches">New Launches</a></li>
+          <li><a href="{{ new_launches_url }}">New Launches</a></li>
         </ul>
       </div>
 
       <div>
         <h2 class="bw-footer__heading">Company</h2>
         <ul class="bw-footer__links">
-          <li><a href="/pages/about-us">About Us</a></li>
-          <li><a href="/pages/buy-in-bulk">Buy In Bulk</a></li>
-          <li><a href="/pages/visit-us">Visit Us</a></li>
-          <li><a href="/pages/award-achievment">Awards and Achievement</a></li>
-          <li><a href="/pages/offers-discount">Offers & Discounts</a></li>
+          <li><a href="{{ about_url }}">About Us</a></li>
+          <li><a href="{{ bulk_url }}">Buy In Bulk</a></li>
+          <li><a href="{{ visit_url }}">Visit Us</a></li>
+          <li><a href="{{ awards_url }}">Awards and Achievement</a></li>
+          <li><a href="{{ offers_url }}">Offers & Discounts</a></li>
           <li><a href="{{ modular_kitchen_calculator_url }}">Kitchen Calculator</a></li>
           <li><a href="{{ modular_wardrobe_calculator_url }}">Wardrobe Calculator</a></li>
           <li><a href="{{ home_interiors_calculator_url }}">Home Interiors Calculator</a></li>
           <li><a href="{{ estimate_url }}">Get Free Estimate</a></li>
-          <li><a href="/pages/help-center">Help Center</a></li>
+          <li><a href="{{ help_center_url }}">Help Center</a></li>
         </ul>
       </div>
 
       <div>
         <h2 class="bw-footer__heading">Policies</h2>
         <ul class="bw-footer__links">
-          <li><a href="/pages/policies">Policies</a></li>
-          <li><a href="/pages/returns-refunds">Returns and Refunds</a></li>
-          <li><a href="/pages/payment-security">Payment and Security</a></li>
-          <li><a href="/pages/terms-of-use">Terms of Use</a></li>
-          <li><a href="/pages/contact-us">Support</a></li>
+          <li><a href="{{ policies_url }}">Policies</a></li>
+          <li><a href="{{ returns_url }}">Returns and Refunds</a></li>
+          <li><a href="{{ payment_security_url }}">Payment and Security</a></li>
+          <li><a href="{{ terms_url }}">Terms of Use</a></li>
+          <li><a href="{{ contact_url }}">Support</a></li>
         </ul>
       </div>
     </div>
@@ -258,9 +327,9 @@
     <div class="bw-footer__bottom">
       <span>&copy; {{ 'now' | date: '%Y' }} {{ footer_brand }}. All rights reserved.</span>
       <div class="bw-footer__bottom-links">
-        <a href="/pages/payment-security">Payment & Security</a>
-        <a href="/pages/returns-refunds">Returns & Refunds</a>
-        <a href="/pages/terms-of-use">Terms of Use</a>
+        <a href="{{ payment_security_url }}">Payment & Security</a>
+        <a href="{{ returns_url }}">Returns & Refunds</a>
+        <a href="{{ terms_url }}">Terms of Use</a>
       </div>
     </div>
   </div>

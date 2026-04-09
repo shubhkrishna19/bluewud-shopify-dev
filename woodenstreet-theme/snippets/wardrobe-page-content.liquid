@@ -107,6 +107,8 @@
 
 <style>
   .bw-wardrobe-page { display: grid; gap: 22px; }
+  .bw-wardrobe-page > .bw-planning-rail { order: -2; }
+  .bw-wardrobe-page > .bw-wardrobe-calculator-anchor { order: -1; }
   .bw-wardrobe-block {
     padding: 26px 28px;
     border-radius: 30px;
@@ -1400,8 +1402,8 @@
       <div class="bw-wardrobe-embedded-calculator">
         <div class="bw-wardrobe-embedded-calculator__head">
           <span class="bw-wardrobe-embedded-calculator__eyebrow">Wardrobe calculator</span>
-          <h2 class="bw-wardrobe-embedded-calculator__title">Review the wardrobe brief here without leaving the wardrobe page</h2>
-          <p class="bw-wardrobe-embedded-calculator__copy">On the collection page, this embedded calculator keeps the wardrobe journey visible and reviewable. It is the same consultation-first wardrobe workflow, placed lower on the page so the planning context stays together.</p>
+          <h2 class="bw-wardrobe-embedded-calculator__title">Start the wardrobe brief here while the format options stay in view</h2>
+          <p class="bw-wardrobe-embedded-calculator__copy">Choose the wardrobe type, measurements, finish direction, and internals first. The supporting guidance below helps once the brief starts feeling real.</p>
         </div>
       {% render 'wardrobe-calculator-content', embedded: true %}
       </div>
@@ -1543,7 +1545,6 @@
     </div>
     <div class="bw-wardrobe-actions">
       <button class="bw-wardrobe-button" type="button" data-bw-wardrobe-estimate-open data-estimate-trigger="cta">Get Free Estimate</button>
-      <a class="bw-wardrobe-button--secondary" href="{{ calculator_cta_url }}">Price It First</a>
     </div>
   </section>
 </div>
