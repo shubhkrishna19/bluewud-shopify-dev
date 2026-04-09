@@ -14,9 +14,9 @@
   assign current_path = request.path
   assign modular_kitchen_url = '/collections/kitchen-racks'
   assign modular_wardrobe_url = '/collections/wardrobe'
-  assign modular_kitchen_calculator_url = '/pages/modular-kitchen-cost-calculator'
-  assign modular_wardrobe_calculator_url = '/pages/modular-wardrobe-cost-calculator'
-  assign home_interiors_calculator_url = '/pages/home-interiors-cost-calculator'
+  assign modular_kitchen_calculator_url = '/collections/kitchen-racks?planner=kitchen-calculator'
+  assign modular_wardrobe_calculator_url = '/collections/wardrobe?planner=wardrobe-calculator'
+  assign home_interiors_calculator_url = '/collections/kitchen-racks?planner=home-interiors'
   assign estimate_url = '/pages/get-free-estimate'
   assign about_url = '/pages/about-us'
   assign contact_url = '/pages/contact-us'
@@ -119,7 +119,7 @@
   assign hinged_wardrobe_url = modular_wardrobe_url | append: '#hinged-wardrobe'
   assign walk_in_wardrobe_url = modular_wardrobe_url | append: '#walk-in-wardrobe'
   assign drawer_nav_labels = 'Living Room|Bedroom|Study Room|TV Unit|Shoe Rack|Shelves|Coffee Table|Bookshelves|Modular Kitchen|Wardrobes|Price Calculator|Chest of Drawer' | split: '|'
-  assign drawer_nav_urls = '/collections/living-room|/collections/bed-room|/collections/study-tables|/collections/tv-unit-furniture|/collections/shoe-racks|/search?type=product&q=shelves|/collections/coffee-table|/collections/book-shelves|/collections/kitchen-racks|/collections/wardrobe|/pages/home-interiors-cost-calculator|/collections/chest-of-drawer' | split: '|'
+  assign drawer_nav_urls = '/collections/living-room|/collections/bed-room|/collections/study-tables|/collections/tv-unit-furniture|/collections/shoe-racks|/search?type=product&q=shelves|/collections/coffee-table|/collections/book-shelves|/collections/kitchen-racks|/collections/wardrobe|/collections/kitchen-racks?planner=home-interiors|/collections/chest-of-drawer' | split: '|'
   assign support_nav_labels = 'About Us|Contact Us|Visit Us|FAQs' | split: '|'
   assign support_nav_urls = '/pages/about-us|/pages/contact-us|/pages/visit-us|/pages/help-center' | split: '|'
 

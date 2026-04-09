@@ -5,9 +5,9 @@
   assign wardrobe_sliding_url = wardrobe_main_url
   assign wardrobe_hinged_url = wardrobe_main_url
   assign wardrobe_walkin_url = wardrobe_main_url
-  assign calculator_url = '/pages/modular-wardrobe-cost-calculator'
-  assign kitchen_calculator_url = '/pages/modular-kitchen-cost-calculator'
-  assign interiors_calculator_url = '/pages/home-interiors-cost-calculator'
+  assign calculator_url = '/collections/wardrobe?planner=wardrobe-calculator'
+  assign kitchen_calculator_url = '/collections/kitchen-racks?planner=kitchen-calculator'
+  assign interiors_calculator_url = '/collections/kitchen-racks?planner=home-interiors'
   assign estimate_url = '/pages/get-free-estimate'
   assign wardrobe_collection = collections['wardrobe']
   assign bedroom_collection = collections['bed-room']
@@ -403,6 +403,43 @@
     line-height: 1.75;
   }
   .bw-flow__section { display: grid; gap: 12px; }
+  .bw-flow__decision-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .bw-flow__decision-card {
+    display: grid;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(32, 23, 19, 0.08);
+  }
+  .bw-flow__decision-media {
+    display: block;
+    overflow: hidden;
+    border-radius: 16px;
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
+  }
+  .bw-flow__decision-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bw-flow__decision-card strong {
+    color: #201713;
+    font-size: 15px;
+    line-height: 1.2;
+  }
+  .bw-flow__decision-card p {
+    margin: 0;
+    color: #66554c;
+    font-size: 13px;
+    line-height: 1.6;
+  }
   .bw-flow__label {
     color: #201713;
     font-size: 16px;
@@ -590,6 +627,7 @@
     .bw-flow__panel,
     .bw-flow__summary { padding: 22px 20px; border-radius: 24px; }
     .bw-flow__progress,
+    .bw-flow__decision-grid,
     .bw-flow__grid { grid-template-columns: 1fr; }
     .bw-flow__showcase-image { min-height: 220px; }
     .bw-flow__preview-card { grid-template-columns: 1fr; }
@@ -745,6 +783,23 @@
         <div class="bw-flow__stage-head">
           <h3 class="bw-flow__stage-title">Set the material and shutter direction</h3>
           <p class="bw-flow__stage-copy">This layer changes durability, visual language, and how premium the final wardrobe feels.</p>
+        </div>
+        <div class="bw-flow__decision-grid" aria-label="Wardrobe finish direction references">
+          <article class="bw-flow__decision-card">
+            <span class="bw-flow__decision-media"><img src="{{ wardrobe_preview_primary_src }}" alt="{{ wardrobe_preview_primary_alt }}" loading="lazy" width="720" height="540"></span>
+            <strong>Warm practical storage</strong>
+            <p>Engineered wood, laminate shutters, and a calmer finish direction suit bedrooms where daily use matters more than visual drama.</p>
+          </article>
+          <article class="bw-flow__decision-card">
+            <span class="bw-flow__decision-media"><img src="{{ wardrobe_preview_secondary_src }}" alt="{{ wardrobe_preview_secondary_alt }}" loading="lazy" width="720" height="540"></span>
+            <strong>Balanced premium</strong>
+            <p>Plywood construction and cleaner shutter detailing work well when durability and a more polished wardrobe front need to meet halfway.</p>
+          </article>
+          <article class="bw-flow__decision-card">
+            <span class="bw-flow__decision-media"><img src="{{ wardrobe_preview_tertiary_src }}" alt="{{ wardrobe_preview_tertiary_alt }}" loading="lazy" width="720" height="540"></span>
+            <strong>Mirror-led statement</strong>
+            <p>Glass, mirror, and profile-led fronts make more sense when the wardrobe also needs to lift the room visually.</p>
+          </article>
         </div>
         <div class="bw-flow__section">
           <div class="bw-flow__label">Carcass material</div>

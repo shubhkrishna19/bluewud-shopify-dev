@@ -239,6 +239,14 @@
     line-height: 1.7;
   }
 
+  .bw-collection__planner-view {
+    display: none;
+  }
+
+  .bw-collection__planner-view.is-active {
+    display: block;
+  }
+
   .bw-collection__toolbar {
     display: flex;
     flex-wrap: wrap;
@@ -587,14 +595,27 @@
 
 {% if collection_handle == 'kitchen-racks' %}
   <section class="bw-collection">
-    <div class="bw-collection__shell">
-      {% render 'modular-kitchen-page-content' %}
+    <div class="bw-collection__shell" data-bw-planner-shell data-default-view="guide">
+      <div class="bw-collection__planner-view is-active" data-planner-view="guide">
+        {% render 'modular-kitchen-page-content' %}
+      </div>
+      <div class="bw-collection__planner-view" data-planner-view="kitchen-calculator">
+        {% render 'kitchen-calculator-content' %}
+      </div>
+      <div class="bw-collection__planner-view" data-planner-view="home-interiors">
+        {% render 'home-interiors-calculator-content' %}
+      </div>
     </div>
   </section>
 {% elsif collection_handle == 'wardrobe' %}
   <section class="bw-collection">
-    <div class="bw-collection__shell">
-      {% render 'wardrobe-page-content' %}
+    <div class="bw-collection__shell" data-bw-planner-shell data-default-view="guide">
+      <div class="bw-collection__planner-view is-active" data-planner-view="guide">
+        {% render 'wardrobe-page-content' %}
+      </div>
+      <div class="bw-collection__planner-view" data-planner-view="wardrobe-calculator">
+        {% render 'wardrobe-calculator-content' %}
+      </div>
     </div>
   </section>
 {% else %}
@@ -743,6 +764,32 @@
     </div>
   </section>
 {% endif %}
+
+<script>
+  (function () {
+    var plannerShells = document.querySelectorAll('[data-bw-planner-shell]');
+    if (!plannerShells.length || typeof URLSearchParams === 'undefined') return;
+
+    var searchParams = new URLSearchParams(window.location.search);
+    var requestedView = searchParams.get('planner');
+
+    plannerShells.forEach(function (shell) {
+      var defaultView = shell.getAttribute('data-default-view') || 'guide';
+      var activeView = defaultView;
+
+      if (requestedView && shell.querySelector('[data-planner-view="' + requestedView + '"]')) {
+        activeView = requestedView;
+      }
+
+      shell.querySelectorAll('[data-planner-view]').forEach(function (view) {
+        var matches = view.getAttribute('data-planner-view') === activeView;
+        view.classList.toggle('is-active', matches);
+      });
+
+      shell.setAttribute('data-active-view', activeView);
+    });
+  })();
+</script>
 
 {% schema %}
 {

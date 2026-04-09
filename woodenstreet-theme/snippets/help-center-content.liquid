@@ -411,7 +411,7 @@
       </div>
       <div class="bw-help-center__hero-links">
         <a class="bw-help-center__hero-link" href="/pages/contact-us"><strong>Talk to Bluewud</strong><span>For direct help</span></a>
-        <a class="bw-help-center__hero-link" href="/pages/get-free-estimate"><strong>Get free estimate</strong><span>For kitchen and wardrobe briefs</span></a>
+          <a class="bw-help-center__hero-link" href="{% if pages['get-free-estimate'] != blank %}{{ pages['get-free-estimate'].url }}{% elsif pages['contact-us'] != blank %}{{ pages['contact-us'].url }}{% else %}/pages/contact-us{% endif %}"><strong>Get free estimate</strong><span>For kitchen and wardrobe briefs</span></a>
         <a class="bw-help-center__hero-link" href="/pages/buy-in-bulk"><strong>Buy in bulk</strong><span>For larger project needs</span></a>
       </div>
       <div class="bw-help-center__hero-note">

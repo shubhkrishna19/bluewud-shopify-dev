@@ -5,14 +5,15 @@
   assign sliding_url = '/collections/wardrobe'
   assign hinged_url = '/collections/wardrobe'
   assign walk_in_url = '/collections/wardrobe'
-  assign calculator_url = '/pages/modular-wardrobe-cost-calculator'
-  assign kitchen_calculator_url = '/pages/modular-kitchen-cost-calculator'
-  assign interiors_calculator_url = '/pages/home-interiors-cost-calculator'
+  assign calculator_url = '/collections/wardrobe?planner=wardrobe-calculator'
+  assign kitchen_calculator_url = '/collections/kitchen-racks?planner=kitchen-calculator'
+  assign interiors_calculator_url = '/collections/kitchen-racks?planner=home-interiors'
   assign estimate_url = '/pages/get-free-estimate'
   assign contact_url = '/pages/contact-us'
   assign phone_url = 'tel:+918800609609'
   assign is_collection_context = true
   assign calculator_cta_url = calculator_url
+  assign calculator_query_joiner = '?'
 
   assign spotlight_title = 'Modular wardrobes planned around format, storage, and finish clarity'
   assign spotlight_copy = "A premium wardrobe project should begin with room-fit, opening style, internals, and budget direction, not just a shutter moodboard."
@@ -81,6 +82,9 @@
   if pages['get-free-estimate'] == blank and pages['contact-us'] != blank
     assign estimate_url = pages['contact-us'].url
   endif
+  if calculator_url contains '?'
+    assign calculator_query_joiner = '&'
+  endif
   if is_collection_context
     assign main_url = '#wardrobe-overview'
     assign sliding_url = '#sliding-wardrobe'
@@ -90,13 +94,13 @@
   assign wardrobe_source_param = 'Modular Wardrobe Guide' | url_encode
   case wardrobe_variant
     when 'sliding'
-      assign calculator_cta_url = calculator_url | append: '?type=Sliding&source=' | append: wardrobe_source_param
+      assign calculator_cta_url = calculator_url | append: calculator_query_joiner | append: 'type=Sliding&source=' | append: wardrobe_source_param
     when 'hinged'
-      assign calculator_cta_url = calculator_url | append: '?type=Hinged&source=' | append: wardrobe_source_param
+      assign calculator_cta_url = calculator_url | append: calculator_query_joiner | append: 'type=Hinged&source=' | append: wardrobe_source_param
     when 'walk-in'
-      assign calculator_cta_url = calculator_url | append: '?type=Walk-in&source=' | append: wardrobe_source_param
+      assign calculator_cta_url = calculator_url | append: calculator_query_joiner | append: 'type=Walk-in&source=' | append: wardrobe_source_param
     else
-      assign calculator_cta_url = calculator_url | append: '?source=' | append: wardrobe_source_param
+      assign calculator_cta_url = calculator_url | append: calculator_query_joiner | append: 'source=' | append: wardrobe_source_param
   endcase
 %}
 

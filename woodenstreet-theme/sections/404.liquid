@@ -5,15 +5,59 @@
   https://shopify.dev/docs/storefronts/themes/architecture/templates/404
 {% endcomment %}
 
-<h1>{{ '404.title' | t }}</h1>
+{% liquid
+  assign rescued_view = blank
 
-<p>
-  {{ '404.not_found' | t }}
-</p>
+  case request.path
+    when '/pages/modular-kitchen-cost-calculator'
+      assign rescued_view = 'kitchen-calculator'
+    when '/pages/modular-wardrobe-cost-calculator'
+      assign rescued_view = 'wardrobe-calculator'
+    when '/pages/home-interiors-cost-calculator'
+      assign rescued_view = 'home-interiors-calculator'
+    when '/pages/get-free-estimate'
+      assign rescued_view = 'estimate-page'
+  endcase
+%}
 
-<a href="{{ routes.all_products_collection_url }}">
-  {{ '404.back_to_shopping' | t }}
-</a>
+{% if rescued_view != blank %}
+  <style>
+    .bw-404-rescue {
+      padding: 28px 24px 72px;
+      background: linear-gradient(180deg, #faf6f1 0%, #fffdfb 100%);
+    }
+
+    .bw-404-rescue__shell {
+      max-width: 1440px;
+      margin: 0 auto;
+    }
+  </style>
+
+  <section class="bw-404-rescue">
+    <div class="bw-404-rescue__shell">
+      {% case rescued_view %}
+        {% when 'kitchen-calculator' %}
+          {% render 'kitchen-calculator-content' %}
+        {% when 'wardrobe-calculator' %}
+          {% render 'wardrobe-calculator-content' %}
+        {% when 'home-interiors-calculator' %}
+          {% render 'home-interiors-calculator-content' %}
+        {% when 'estimate-page' %}
+          {% render 'estimate-page-content' %}
+      {% endcase %}
+    </div>
+  </section>
+{% else %}
+  <h1>{{ '404.title' | t }}</h1>
+
+  <p>
+    {{ '404.not_found' | t }}
+  </p>
+
+  <a href="{{ routes.all_products_collection_url }}">
+    {{ '404.back_to_shopping' | t }}
+  </a>
+{% endif %}
 
 {% schema %}
 {

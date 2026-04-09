@@ -441,7 +441,7 @@
         <div class="bw-contact__quick-links">
           <a class="bw-contact__quick-link" href="tel:+918800609609"><strong>Call now</strong><span>Quickest for urgent help</span></a>
           <a class="bw-contact__quick-link" href="https://wa.me/918800609609"><strong>WhatsApp</strong><span>Best for short product questions</span></a>
-          <a class="bw-contact__quick-link" href="/pages/get-free-estimate"><strong>Get free estimate</strong><span>Best for kitchen and wardrobe briefs</span></a>
+          <a class="bw-contact__quick-link" href="{% if pages['get-free-estimate'] != blank %}{{ pages['get-free-estimate'].url }}{% else %}{{ contact_url }}{% endif %}"><strong>Get free estimate</strong><span>Best for kitchen and wardrobe briefs</span></a>
         </div>
       </div>
     </aside>

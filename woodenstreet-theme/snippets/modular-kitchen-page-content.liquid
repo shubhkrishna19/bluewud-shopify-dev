@@ -6,15 +6,16 @@
   assign parallel_url = '/collections/kitchen-racks#parallel'
   assign straight_url = '/collections/kitchen-racks#straight'
   assign island_url = '/collections/kitchen-racks#island'
-  assign calculator_url = '/pages/modular-kitchen-cost-calculator'
-  assign wardrobe_calculator_url = '/pages/modular-wardrobe-cost-calculator'
-  assign interiors_calculator_url = '/pages/home-interiors-cost-calculator'
+  assign calculator_url = '/collections/kitchen-racks?planner=kitchen-calculator'
+  assign wardrobe_calculator_url = '/collections/wardrobe?planner=wardrobe-calculator'
+  assign interiors_calculator_url = '/collections/kitchen-racks?planner=home-interiors'
   assign estimate_url = '/pages/get-free-estimate'
   assign contact_url = '/pages/contact-us'
   assign default_variant = 'all'
   assign page_handle = blank
   assign calculator_cta_url = calculator_url
   assign calculator_source_param = 'Modular Kitchen Guide' | url_encode
+  assign calculator_query_joiner = '?'
 
   if page != blank
     assign page_handle = page.handle
@@ -71,10 +72,14 @@
     assign estimate_url = pages['contact-us'].url
   endif
 
+  if calculator_url contains '?'
+    assign calculator_query_joiner = '&'
+  endif
+
   if default_variant == 'all'
-    assign calculator_cta_url = calculator_url | append: '?source=' | append: calculator_source_param
+    assign calculator_cta_url = calculator_url | append: calculator_query_joiner | append: 'source=' | append: calculator_source_param
   else
-    assign calculator_cta_url = calculator_url | append: '?layout=' | append: default_variant | append: '&source=' | append: calculator_source_param
+    assign calculator_cta_url = calculator_url | append: calculator_query_joiner | append: 'layout=' | append: default_variant | append: '&source=' | append: calculator_source_param
   endif
 
   assign hero_all = blank
