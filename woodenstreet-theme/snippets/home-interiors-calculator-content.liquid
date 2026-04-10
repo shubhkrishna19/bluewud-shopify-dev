@@ -566,6 +566,9 @@
     overflow: hidden;
     background: linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
   }
+  .bw-hi__choice-media--compact {
+    min-height: 104px;
+  }
   .bw-hi__choice-media img {
     width: 100%;
     height: 100%;
@@ -593,6 +596,26 @@
   .bw-hi__choice.is-selected .bw-hi__choice-note {
     color: rgba(255, 247, 241, 0.82);
   }
+  .bw-hi__choice--compact {
+    gap: 10px;
+    min-height: 0;
+    padding: 10px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .bw-hi__choice--compact .bw-hi__choice-copy {
+    gap: 2px;
+  }
+  .bw-hi__choice--compact .bw-hi__choice-title {
+    font-size: 14px;
+  }
+  .bw-hi__choice--compact .bw-hi__choice-note {
+    font-size: 11px;
+    line-height: 1.5;
+  }
+  .bw-hi__choice--compact .bw-hi__choice-media {
+    min-height: 110px;
+  }
   .bw-hi__choices[data-hi-group="rooms"],
   .bw-hi__choices[data-hi-group="property"],
   .bw-hi__choices[data-hi-group="intent"],
@@ -601,6 +624,11 @@
   }
   .bw-hi__choices[data-hi-group="rooms"] {
     grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  }
+  .bw-hi__choices[data-hi-group="property"] .bw-hi__choice,
+  .bw-hi__choices[data-hi-group="intent"] .bw-hi__choice,
+  .bw-hi__choices[data-hi-group="budget"] .bw-hi__choice {
+    align-content: start;
   }
   .bw-hi__grid {
     display: grid;
@@ -846,7 +874,6 @@
       <a class="bw-planning-rail__link" href="{{ kitchen_calculator_url }}">Kitchen Calculator</a>
       <a class="bw-planning-rail__link" href="{{ wardrobe_calculator_url }}">Wardrobe Calculator</a>
       <a class="bw-planning-rail__link bw-planning-rail__link--accent is-current" href="{{ home_interiors_url }}">Home Interiors</a>
-      <a class="bw-planning-rail__link" href="{{ estimate_url }}">Get Free Estimate</a>
     </div>
   </section>
 
@@ -1003,19 +1030,82 @@
       <div class="bw-hi__section">
         <div class="bw-hi__label">Property type</div>
         <div class="bw-hi__choices" data-hi-group="property">
-          <label class="bw-hi__choice is-selected"><input type="radio" name="hi_property" value="Apartment" checked>Apartment</label>
-          <label class="bw-hi__choice"><input type="radio" name="hi_property" value="Villa">Villa</label>
-          <label class="bw-hi__choice"><input type="radio" name="hi_property" value="Independent Floor">Independent Floor</label>
-          <label class="bw-hi__choice"><input type="radio" name="hi_property" value="Office / Studio">Office / Studio</label>
+          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact is-selected" data-preview-src="{{ living_preview_src }}" data-preview-alt="{{ living_preview_alt }}" data-preview-caption="Apartments usually need tighter room planning, smarter circulation, and compact storage choices.">
+            <input type="radio" name="hi_property" value="Apartment" checked>
+            <span class="bw-hi__choice-media bw-hi__choice-media--compact">
+              <img src="{{ living_preview_src }}" alt="{{ living_preview_alt }}" loading="lazy" width="900" height="675">
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Apartment</span>
+              <span class="bw-hi__choice-note">Compact room planning and efficient storage.</span>
+            </span>
+          </label>
+          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact" data-preview-src="{{ bedroom_preview_src }}" data-preview-alt="{{ bedroom_preview_alt }}" data-preview-caption="Villas usually allow broader room scope, more open layouts, and richer furnishing decisions.">
+            <input type="radio" name="hi_property" value="Villa">
+            <span class="bw-hi__choice-media bw-hi__choice-media--compact">
+              <img src="{{ bedroom_preview_src }}" alt="{{ bedroom_preview_alt }}" loading="lazy" width="900" height="675">
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Villa</span>
+              <span class="bw-hi__choice-note">Broader scope and more open planning.</span>
+            </span>
+          </label>
+          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact" data-preview-src="{{ dining_preview_src }}" data-preview-alt="{{ dining_preview_alt }}" data-preview-caption="Independent floors often mix room-by-room furnishing with a more controlled budget direction.">
+            <input type="radio" name="hi_property" value="Independent Floor">
+            <span class="bw-hi__choice-media bw-hi__choice-media--compact">
+              <img src="{{ dining_preview_src }}" alt="{{ dining_preview_alt }}" loading="lazy" width="900" height="675">
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Independent Floor</span>
+              <span class="bw-hi__choice-note">Room-by-room furnishing with tighter control.</span>
+            </span>
+          </label>
+          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact" data-preview-src="{{ study_preview_src }}" data-preview-alt="{{ study_preview_alt }}" data-preview-caption="Studio and office-style spaces need flexible storage, work surfaces, and a cleaner visual rhythm.">
+            <input type="radio" name="hi_property" value="Office / Studio">
+            <span class="bw-hi__choice-media bw-hi__choice-media--compact">
+              <img src="{{ study_preview_src }}" alt="{{ study_preview_alt }}" loading="lazy" width="900" height="675">
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Office / Studio</span>
+              <span class="bw-hi__choice-note">Flexible work-led planning and storage.</span>
+            </span>
+          </label>
         </div>
       </div>
 
       <div class="bw-hi__section">
         <div class="bw-hi__label">What kind of project is this?</div>
         <div class="bw-hi__choices" data-hi-group="intent">
-          <label class="bw-hi__choice is-selected"><input type="radio" name="hi_intent" value="Fresh setup" checked>Fresh Setup</label>
-          <label class="bw-hi__choice"><input type="radio" name="hi_intent" value="Upgrade / renovation">Upgrade / Renovation</label>
-          <label class="bw-hi__choice"><input type="radio" name="hi_intent" value="Room-by-room furnishing">Room-by-room</label>
+          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact is-selected" data-preview-src="{{ living_preview_src }}" data-preview-alt="{{ living_preview_alt }}" data-preview-caption="Fresh setup works best when the whole room language can be set from the start.">
+            <input type="radio" name="hi_intent" value="Fresh setup" checked>
+            <span class="bw-hi__choice-media bw-hi__choice-media--compact">
+              <img src="{{ living_preview_src }}" alt="{{ living_preview_alt }}" loading="lazy" width="900" height="675">
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Fresh Setup</span>
+              <span class="bw-hi__choice-note">Set the room language from scratch.</span>
+            </span>
+          </label>
+          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact" data-preview-src="{{ kitchen_preview_src }}" data-preview-alt="{{ kitchen_preview_alt }}" data-preview-caption="Upgrade or renovation briefs usually benefit from one dominant focus and clearer before/after expectations.">
+            <input type="radio" name="hi_intent" value="Upgrade / renovation">
+            <span class="bw-hi__choice-media bw-hi__choice-media--compact">
+              <img src="{{ kitchen_preview_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="900" height="675">
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Upgrade / Renovation</span>
+              <span class="bw-hi__choice-note">Refine an existing home with purpose.</span>
+            </span>
+          </label>
+          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact" data-preview-src="{{ wardrobe_preview_src }}" data-preview-alt="{{ wardrobe_preview_alt }}" data-preview-caption="Room-by-room furnishing is best when each space can move at its own pace.">
+            <input type="radio" name="hi_intent" value="Room-by-room furnishing">
+            <span class="bw-hi__choice-media bw-hi__choice-media--compact">
+              <img src="{{ wardrobe_preview_src }}" alt="{{ wardrobe_preview_alt }}" loading="lazy" width="900" height="675">
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Room-by-room</span>
+              <span class="bw-hi__choice-note">Progress space by space.</span>
+            </span>
+          </label>
         </div>
       </div>
 
@@ -1038,10 +1128,46 @@
       <div class="bw-hi__section">
         <div class="bw-hi__label">What budget feels right?</div>
         <div class="bw-hi__choices" data-hi-group="budget">
-          <label class="bw-hi__choice"><input type="radio" name="hi_budget" value="Value led">Value Led</label>
-          <label class="bw-hi__choice is-selected"><input type="radio" name="hi_budget" value="Balanced premium" checked>Balanced Premium</label>
-          <label class="bw-hi__choice"><input type="radio" name="hi_budget" value="Statement premium">Statement Premium</label>
-          <label class="bw-hi__choice"><input type="radio" name="hi_budget" value="Need guidance">Need Guidance</label>
+          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact" data-preview-src="{{ bedroom_preview_src }}" data-preview-alt="{{ bedroom_preview_alt }}" data-preview-caption="Value-led planning is best when the finish language stays simple and grounded.">
+            <input type="radio" name="hi_budget" value="Value led">
+            <span class="bw-hi__choice-media bw-hi__choice-media--compact">
+              <img src="{{ bedroom_preview_src }}" alt="{{ bedroom_preview_alt }}" loading="lazy" width="900" height="675">
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Value Led</span>
+              <span class="bw-hi__choice-note">Simple, efficient, and cost-conscious.</span>
+            </span>
+          </label>
+          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact is-selected" data-preview-src="{{ kitchen_preview_src }}" data-preview-alt="{{ kitchen_preview_alt }}" data-preview-caption="Balanced premium is the safest starting point for most Bluewud home interiors briefs.">
+            <input type="radio" name="hi_budget" value="Balanced premium" checked>
+            <span class="bw-hi__choice-media bw-hi__choice-media--compact">
+              <img src="{{ kitchen_preview_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="900" height="675">
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Balanced Premium</span>
+              <span class="bw-hi__choice-note">The most adaptable planning lane.</span>
+            </span>
+          </label>
+          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact" data-preview-src="{{ wardrobe_preview_src }}" data-preview-alt="{{ wardrobe_preview_alt }}" data-preview-caption="Statement premium is for higher visual impact, richer finishes, and more elaborate storage stories.">
+            <input type="radio" name="hi_budget" value="Statement premium">
+            <span class="bw-hi__choice-media bw-hi__choice-media--compact">
+              <img src="{{ wardrobe_preview_src }}" alt="{{ wardrobe_preview_alt }}" loading="lazy" width="900" height="675">
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Statement Premium</span>
+              <span class="bw-hi__choice-note">Richer finishes and stronger presence.</span>
+            </span>
+          </label>
+          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact" data-preview-src="{{ dining_preview_src }}" data-preview-alt="{{ dining_preview_alt }}" data-preview-caption="Need guidance works well when the budget is still being shaped by room priorities.">
+            <input type="radio" name="hi_budget" value="Need guidance">
+            <span class="bw-hi__choice-media bw-hi__choice-media--compact">
+              <img src="{{ dining_preview_src }}" alt="{{ dining_preview_alt }}" loading="lazy" width="900" height="675">
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Need Guidance</span>
+              <span class="bw-hi__choice-note">Start with room priority, not price.</span>
+            </span>
+          </label>
         </div>
       </div>
     </section>
@@ -1144,7 +1270,7 @@
       return node ? node.value : '';
     }
 
-    function firstSelectedRoomCard() {
+    function firstSelectedVisualCard() {
       var cards = Array.prototype.slice.call(root.querySelectorAll('[data-hi-room-card]'));
 
       if (lastRoomValue) {
@@ -1159,6 +1285,11 @@
         var input = card.querySelector('input');
         return input && input.checked;
       }) || null;
+    }
+
+    function selectedPreferenceCard() {
+      var cards = Array.prototype.slice.call(root.querySelectorAll('.bw-hi__choice.is-selected[data-preview-src]'));
+      return cards[0] || null;
     }
 
     function updateStates() {
@@ -1203,7 +1334,7 @@
         }).join('');
       }
 
-      var featuredCard = firstSelectedRoomCard();
+      var featuredCard = firstSelectedVisualCard() || selectedPreferenceCard();
       if (featuredCard) {
         var previewSrc = featuredCard.getAttribute('data-preview-src');
         var previewAlt = featuredCard.getAttribute('data-preview-alt');

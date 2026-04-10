@@ -566,11 +566,77 @@ Generate a photorealistic Bluewud project-planning image that communicates guide
 Generate a photorealistic Bluewud site-readiness image that suggests measurement, planning accuracy, and room verification in a tasteful interior context. It should feel trustworthy and professional, not like a construction-site stock photo. No text, no obvious hard-hat staging, no dramatic mess.
 ```
 
+### S-03 Kitchen room-mapping visual
+
+- Output: `bw-shared-kitchen-room-mapping-card-4x3-v01.webp`
+- Save to: `image-production/planner-library/outputs/07-shared-property-context/`
+- Parent references:
+  - `woodenstreet-theme/assets/modular-kitchen-light-oak-l-shape.png`
+  - `woodenstreet-theme/assets/modular-kitchen-galley-light-wood.png`
+- Use on:
+  - kitchen guide consultation path
+  - measurement / planning cards
+- Prompt:
+
+```text
+Generate a photorealistic Bluewud modular-kitchen planning visual that communicates room mapping and measurement readiness inside a believable Indian home kitchen. Show subtle measuring context, cabinetry edges, and clean spatial understanding without turning it into a construction image. No people, no text overlays, no technical blueprint graphics floating unrealistically.
+```
+
+### S-04 Kitchen layout-comparison visual
+
+- Output: `bw-shared-kitchen-layout-comparison-card-4x3-v01.webp`
+- Save to: `image-production/planner-library/outputs/07-shared-property-context/`
+- Parent references:
+  - `woodenstreet-theme/assets/modular-kitchen-light-oak-l-shape.png`
+  - `woodenstreet-theme/assets/modular-kitchen-walnut-u-shape.png`
+  - `woodenstreet-theme/assets/modular-kitchen-galley-light-wood.png`
+- Use on:
+  - kitchen guide consultation path
+  - kitchen decision / comparison cards
+- Prompt:
+
+```text
+Generate a photorealistic Bluewud modular-kitchen comparison visual that suggests choosing between layout directions like L-shape, U-shape, and parallel without looking like a split-screen brochure. It should feel like a premium decision-support image with believable cabinetry and room proportions in an Indian home context. No text, no labels embedded in the image, no collage aesthetic.
+```
+
+### S-05 Kitchen finish-direction visual
+
+- Output: `bw-shared-kitchen-finish-direction-card-4x3-v01.webp`
+- Save to: `image-production/planner-library/outputs/07-shared-property-context/`
+- Parent references:
+  - `woodenstreet-theme/assets/modular-kitchen-sage-u-shape.png`
+  - `woodenstreet-theme/assets/modular-kitchen-walnut-u-shape.png`
+  - `woodenstreet-theme/assets/modular-kitchen-navy-luxury.png`
+- Use on:
+  - kitchen guide consultation path
+  - finish/material storytelling cards
+- Prompt:
+
+```text
+Generate a photorealistic Bluewud kitchen-finish decision visual showing premium but practical material direction across shutters, counters, and hardware. Keep it rooted in the parent references and the same Indian-home realism, with enough detail to suggest quality and comparison without becoming a close-up catalog shot. No text, no unrealistic luxury styling, no showroom fantasy.
+```
+
+### S-06 Estimate-ready kitchen brief visual
+
+- Output: `bw-shared-kitchen-estimate-ready-card-4x3-v01.webp`
+- Save to: `image-production/planner-library/outputs/07-shared-property-context/`
+- Parent references:
+  - `woodenstreet-theme/assets/modular-kitchen-navy-luxury.png`
+  - `woodenstreet-theme/assets/modular-kitchen-light-oak-l-shape.png`
+- Use on:
+  - kitchen guide consultation path
+  - estimate-readiness cards
+- Prompt:
+
+```text
+Generate a photorealistic Bluewud modular-kitchen image that communicates estimate readiness and a well-formed project brief. It should suggest design confidence, chosen finishes, and planning maturity inside a real interior context, without showing people as the focal point or turning into a generic office consultation image. No text, no visible competitor cues, no cheesy sales staging.
+```
+
 ## Immediate Priority Batches
 
 Generate in this order:
 
-1. `K-05`, `K-07`, `K-08`, `K-09`, `K-10`, `K-12`, `K-14`, `K-15`, `K-16`
+1. `K-05`, `K-07`, `K-08`, `K-09`, `K-10`, `K-12`, `K-14`, `K-15`, `K-16`, `S-03`, `S-04`, `S-05`, `S-06`
 2. `W-01`, `W-02`, `W-03`, `W-04`, `W-05`, `W-06`, `W-07`, `W-08`, `W-09`
 3. `I-01`, `I-02`, `I-03`, `I-05`, `I-06`, `I-07`, `I-08`, `I-09`
 

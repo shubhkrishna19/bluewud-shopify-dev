@@ -14,6 +14,13 @@
   assign kitchen_image_parallel_url = 'modular-kitchen-galley-light-wood.png' | asset_url
   assign kitchen_image_straight_url = 'modular-kitchen-sage-u-shape.png' | asset_url
   assign kitchen_image_island_url = 'modular-kitchen-navy-luxury.png' | asset_url
+  assign kitchen_image_property_apartment_url = kitchen_image_l_url
+  assign kitchen_image_property_villa_url = kitchen_image_island_url
+  assign kitchen_image_property_floor_url = kitchen_image_parallel_url
+  assign kitchen_image_property_rental_url = kitchen_image_straight_url
+  assign kitchen_image_usage_light_url = kitchen_image_straight_url
+  assign kitchen_image_usage_daily_url = kitchen_image_l_url
+  assign kitchen_image_usage_heavy_url = kitchen_image_u_url
 
   if pages['modular-kitchen-designs'] != blank
     assign main_url = pages['modular-kitchen-designs'].url
@@ -361,6 +368,13 @@
     letter-spacing: 0;
     text-transform: none;
   }
+  .bw-flow__choice--context {
+    gap: 12px;
+    padding: 12px;
+    min-height: 0;
+    letter-spacing: 0;
+    text-transform: none;
+  }
   .bw-flow__choice-media {
     min-height: 128px;
     border-radius: 16px;
@@ -377,6 +391,24 @@
     display: grid;
     gap: 4px;
     align-content: start;
+  }
+  .bw-flow__choice--context .bw-flow__choice-media {
+    min-height: 124px;
+    border-radius: 16px;
+  }
+  .bw-flow__choice--context .bw-flow__choice-title {
+    font-size: 16px;
+    line-height: 1.18;
+  }
+  .bw-flow__choice--context .bw-flow__choice-note {
+    font-size: 12px;
+    line-height: 1.55;
+  }
+  .bw-flow__section-note {
+    margin: -4px 0 0;
+    color: #7a655a;
+    font-size: 12px;
+    line-height: 1.6;
   }
   .bw-flow__choice-title {
     color: inherit;
@@ -795,19 +827,70 @@
         </div>
         <div class="bw-flow__section">
           <div class="bw-flow__label">Property type</div>
+          <p class="bw-flow__section-note">Choose the home type first so layout, storage depth, and circulation stay realistic.</p>
           <div class="bw-flow__choices" data-flow-group="property">
-            <label class="bw-flow__choice is-selected"><input type="radio" name="property_type" value="Apartment" checked>Apartment</label>
-            <label class="bw-flow__choice"><input type="radio" name="property_type" value="Villa">Villa</label>
-            <label class="bw-flow__choice"><input type="radio" name="property_type" value="Independent Floor">Independent Floor</label>
-            <label class="bw-flow__choice"><input type="radio" name="property_type" value="Rental Upgrade">Rental Upgrade</label>
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context is-selected">
+              <input type="radio" name="property_type" value="Apartment" checked>
+              <span class="bw-flow__choice-media"><img src="{{ kitchen_image_property_apartment_url }}" alt="Apartment kitchen planning reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Apartment</span>
+                <span class="bw-flow__choice-note">Best for compact or mid-size homes that need efficient planning and smoother circulation.</span>
+              </span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context">
+              <input type="radio" name="property_type" value="Villa">
+              <span class="bw-flow__choice-media"><img src="{{ kitchen_image_property_villa_url }}" alt="Villa kitchen planning reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Villa</span>
+                <span class="bw-flow__choice-note">Works when the kitchen can breathe a little more and carry stronger material choices.</span>
+              </span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context">
+              <input type="radio" name="property_type" value="Independent Floor">
+              <span class="bw-flow__choice-media"><img src="{{ kitchen_image_property_floor_url }}" alt="Independent floor kitchen planning reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Independent Floor</span>
+                <span class="bw-flow__choice-note">Flexible footprint for a more tailored modular kitchen layout and storage mix.</span>
+              </span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context">
+              <input type="radio" name="property_type" value="Rental Upgrade">
+              <span class="bw-flow__choice-media"><img src="{{ kitchen_image_property_rental_url }}" alt="Rental upgrade kitchen planning reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Rental Upgrade</span>
+                <span class="bw-flow__choice-note">A quicker, durable refresh when the kitchen needs impact without overcomplicating the build.</span>
+              </span>
+            </label>
           </div>
         </div>
         <div class="bw-flow__section">
           <div class="bw-flow__label">How intense is daily kitchen use?</div>
+          <p class="bw-flow__section-note">Set the kitchen workload so materials, hardware, and utility choices stay honest.</p>
           <div class="bw-flow__choices" data-flow-group="usage">
-            <label class="bw-flow__choice"><input type="radio" name="usage_level" value="Light use">Light Use</label>
-            <label class="bw-flow__choice is-selected"><input type="radio" name="usage_level" value="Daily family use" checked>Daily Family Use</label>
-            <label class="bw-flow__choice"><input type="radio" name="usage_level" value="Heavy cooking">Heavy Cooking</label>
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context">
+              <input type="radio" name="usage_level" value="Light use">
+              <span class="bw-flow__choice-media"><img src="{{ kitchen_image_usage_light_url }}" alt="Light use kitchen reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Light Use</span>
+                <span class="bw-flow__choice-note">Good for lighter cooking routines where the kitchen can stay visually calm and simple.</span>
+              </span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context is-selected">
+              <input type="radio" name="usage_level" value="Daily family use" checked>
+              <span class="bw-flow__choice-media"><img src="{{ kitchen_image_usage_daily_url }}" alt="Daily family use kitchen reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Daily Family Use</span>
+                <span class="bw-flow__choice-note">The practical choice for regular cooking, family movement, and everyday storage use.</span>
+              </span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context">
+              <input type="radio" name="usage_level" value="Heavy cooking">
+              <span class="bw-flow__choice-media"><img src="{{ kitchen_image_usage_heavy_url }}" alt="Heavy cooking kitchen reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Heavy Cooking</span>
+                <span class="bw-flow__choice-note">For homes that need stronger prep space, taller storage, and a more durable working brief.</span>
+              </span>
+            </label>
           </div>
         </div>
         <div class="bw-flow__actions">

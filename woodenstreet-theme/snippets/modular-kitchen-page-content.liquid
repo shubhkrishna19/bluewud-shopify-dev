@@ -426,6 +426,7 @@
   }
   .bw-modular__product-media {
     min-height: 220px;
+    aspect-ratio: 4 / 3;
     border-radius: 18px;
     overflow: hidden;
     background: radial-gradient(circle at 24% 20%, rgba(255,255,255,.22), transparent 24%), linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
@@ -440,10 +441,67 @@
     display: grid;
     gap: 16px;
   }
+  .bw-modular__gallery-shell {
+    display: grid;
+    gap: 16px;
+  }
+  .bw-modular__gallery-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .bw-modular__gallery-hint {
+    color: #8a684f;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .bw-modular__gallery-nav {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .bw-modular__gallery-arrow {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 999px;
+    border: 1px solid rgba(32, 23, 19, 0.14);
+    background: rgba(32, 23, 19, 0.04);
+    color: #201713;
+    font-size: 18px;
+    line-height: 1;
+    cursor: pointer;
+    transition: transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+  }
+  .bw-modular__gallery-arrow:hover,
+  .bw-modular__gallery-arrow:focus-visible {
+    transform: translateY(-1px);
+    background: rgba(32, 23, 19, 0.08);
+    border-color: rgba(32, 23, 19, 0.22);
+  }
+  .bw-modular__gallery-arrow:disabled {
+    opacity: 0.4;
+    cursor: default;
+    transform: none;
+  }
   .bw-modular__gallery-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-auto-flow: column;
+    grid-auto-columns: minmax(300px, calc((100% - 32px) / 3));
     gap: 16px;
+    overflow-x: auto;
+    padding-bottom: 4px;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+    scroll-behavior: smooth;
+  }
+  .bw-modular__gallery-grid::-webkit-scrollbar {
+    display: none;
   }
   .bw-modular__gallery-card {
     display: grid;
@@ -455,6 +513,14 @@
     text-decoration: none;
     color: inherit;
     box-shadow: 0 18px 40px rgba(35, 24, 19, 0.05);
+    scroll-snap-align: start;
+    transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+  }
+  .bw-modular__gallery-card:hover,
+  .bw-modular__gallery-card:focus-visible {
+    transform: translateY(-3px);
+    border-color: rgba(45, 33, 27, 0.16);
+    box-shadow: 0 22px 48px rgba(35, 24, 19, 0.08);
   }
   .bw-modular__gallery-card h3 {
     margin: 0;
@@ -470,6 +536,7 @@
   }
   .bw-modular__gallery-media {
     min-height: 200px;
+    aspect-ratio: 4 / 3;
     border-radius: 18px;
     overflow: hidden;
     background: radial-gradient(circle at 24% 20%, rgba(255,255,255,.22), transparent 24%), linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
@@ -491,11 +558,126 @@
   }
   .bw-modular__process-card {
     display: grid;
-    gap: 10px;
+    gap: 14px;
     padding: 22px;
     border-radius: 24px;
     background: rgba(32, 23, 19, 0.04);
     border: 1px solid rgba(45, 33, 27, 0.08);
+  }
+  .bw-modular__process-visual {
+    position: relative;
+    min-height: 118px;
+    border-radius: 20px;
+    overflow: hidden;
+    background: #ffffff;
+    border: 1px solid rgba(45, 33, 27, 0.08);
+  }
+  .bw-modular__process-visual::before,
+  .bw-modular__process-visual::after {
+    content: '';
+    position: absolute;
+    border-radius: 999px;
+    background: rgba(32, 23, 19, 0.1);
+  }
+  .bw-modular__process-visual::before {
+    left: 18px;
+    top: 18px;
+    width: 72px;
+    height: 10px;
+  }
+  .bw-modular__process-visual::after {
+    right: 18px;
+    bottom: 18px;
+    width: 56px;
+    height: 10px;
+  }
+  .bw-modular__process-visual span {
+    position: absolute;
+    border-radius: 999px;
+    background: #4f788f;
+    box-shadow: 0 10px 24px rgba(79, 120, 143, 0.18);
+  }
+  .bw-modular__process-visual span:nth-child(1) {
+    left: 22px;
+    bottom: 20px;
+    width: 18px;
+    height: 18px;
+  }
+  .bw-modular__process-visual span:nth-child(2) {
+    left: 48px;
+    bottom: 28px;
+    width: 84px;
+    height: 8px;
+    box-shadow: none;
+  }
+  .bw-modular__process-visual span:nth-child(3) {
+    right: 22px;
+    top: 24px;
+    width: 24px;
+    height: 24px;
+  }
+  .bw-modular__process-visual--geometry span:nth-child(1) {
+    left: 22px;
+    top: 24px;
+    width: 34px;
+    height: 34px;
+    border-radius: 12px;
+  }
+  .bw-modular__process-visual--geometry span:nth-child(2) {
+    left: 66px;
+    top: 36px;
+    width: 82px;
+    height: 8px;
+  }
+  .bw-modular__process-visual--geometry span:nth-child(3) {
+    right: 22px;
+    bottom: 20px;
+    width: 44px;
+    height: 44px;
+    border-radius: 16px;
+  }
+  .bw-modular__process-visual--finish span:nth-child(1) {
+    left: 24px;
+    top: 28px;
+    width: 26px;
+    height: 62px;
+    border-radius: 18px;
+    background: #6e5043;
+  }
+  .bw-modular__process-visual--finish span:nth-child(2) {
+    left: 60px;
+    top: 28px;
+    width: 26px;
+    height: 62px;
+    border-radius: 18px;
+    background: #b69981;
+  }
+  .bw-modular__process-visual--finish span:nth-child(3) {
+    right: 24px;
+    top: 44px;
+    width: 64px;
+    height: 18px;
+  }
+  .bw-modular__process-visual--quote span:nth-child(1) {
+    left: 24px;
+    top: 24px;
+    width: 74px;
+    height: 74px;
+    border-radius: 24px;
+  }
+  .bw-modular__process-visual--quote span:nth-child(2) {
+    left: 110px;
+    top: 36px;
+    width: 56px;
+    height: 8px;
+  }
+  .bw-modular__process-visual--quote span:nth-child(3) {
+    left: 110px;
+    top: 56px;
+    width: 82px;
+    height: 8px;
+    background: rgba(32, 23, 19, 0.18);
+    box-shadow: none;
   }
   .bw-modular__process-index {
     display: inline-flex;
@@ -520,8 +702,8 @@
   .bw-modular__process-card p {
     margin: 0;
     color: #66554c;
-    font-size: 14px;
-    line-height: 1.7;
+    font-size: 13px;
+    line-height: 1.65;
   }
   .bw-modular__proof-strip {
     display: flex;
@@ -577,6 +759,7 @@
   }
   .bw-modular__launch-media {
     min-height: 178px;
+    aspect-ratio: 4 / 3;
     margin: -8px -8px 4px;
     border-radius: 18px;
     overflow: hidden;
@@ -653,12 +836,12 @@
     .bw-modular__cards,
     .bw-modular__blueprint,
     .bw-modular__products,
-    .bw-modular__gallery-grid,
     .bw-modular__process-grid,
     .bw-modular__launchpad,
     .bw-modular__decision-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bw-modular__hero { grid-template-columns: 1fr; }
     .bw-modular__guide-grid { grid-template-columns: 1fr; }
+    .bw-modular__gallery-grid { grid-auto-columns: minmax(280px, calc((100% - 16px) / 2)); }
   }
   @media (max-width: 720px) {
     .bw-modular__block,
@@ -669,10 +852,14 @@
     .bw-modular__cards,
     .bw-modular__blueprint,
     .bw-modular__decision-grid,
-    .bw-modular__gallery-grid,
     .bw-modular__process-grid,
     .bw-modular__products,
     .bw-modular__launchpad { grid-template-columns: 1fr; }
+    .bw-modular__gallery-toolbar {
+      align-items: flex-start;
+      flex-direction: column;
+    }
+    .bw-modular__gallery-grid { grid-auto-columns: minmax(260px, 86vw); }
   }
 </style>
 
@@ -691,26 +878,38 @@
 
   <section class="bw-modular__block">
     <div class="bw-modular__section-head">
-      <div class="bw-modular__eyebrow">Project blueprint</div>
-      <h2 class="bw-modular__title" style="font-size:clamp(22px, 3vw, 30px);">Use the planning steps to turn a layout into a kitchen brief Bluewud can actually price</h2>
-      <p class="bw-modular__copy">The page works better when the customer understands what to measure, what to shortlist, and what to send into the estimate workflow next.</p>
+      <div class="bw-modular__eyebrow">Kitchen planning made clear</div>
+      <h2 class="bw-modular__title" style="font-size:clamp(22px, 3vw, 30px);">Choose the kitchen direction first, then refine the finish and storage details</h2>
+      <p class="bw-modular__copy">Bluewud kitchens feel easier to choose when the layout, build quality, and daily-use needs are already visible in one place.</p>
     </div>
     <div class="bw-modular__blueprint">
       <article class="bw-modular__blueprint-card">
-        <h3>1. Confirm the room</h3>
-        <p>Measure walls, openings, service points, and movement paths so the layout choice is based on the real room instead of just inspiration.</p>
+        <div class="bw-modular__product-media">
+          <img src="{{ kitchen_image_all_url }}" alt="{{ kitchen_image_all_alt }}" loading="lazy" width="900" height="675">
+        </div>
+        <h3>A kitchen that feels complete</h3>
+        <p>Start with a full view of the modular kitchen language before narrowing into the detail that suits your home.</p>
       </article>
       <article class="bw-modular__blueprint-card">
-        <h3>2. Shortlist the format</h3>
-        <p>Pick L-shape, U-shape, parallel, straight, or island before you worry about handles, shutters, or countertop style.</p>
+        <div class="bw-modular__product-media">
+          <img src="{{ kitchen_image_l_url }}" alt="{{ kitchen_image_l_alt }}" loading="lazy" width="900" height="675">
+        </div>
+        <h3>Match the layout to the room</h3>
+        <p>L-shape, U-shape, parallel, straight, and island kitchens each solve a different space and movement problem.</p>
       </article>
       <article class="bw-modular__blueprint-card">
-        <h3>3. Collect the planning details</h3>
-        <p>Storage needs, appliances, finish preference, and budget direction should all sit together before the estimate conversation starts.</p>
+        <div class="bw-modular__product-media">
+          <img src="{{ kitchen_image_parallel_url }}" alt="{{ kitchen_image_parallel_alt }}" loading="lazy" width="900" height="675">
+        </div>
+        <h3>Compare build and finish direction</h3>
+        <p>Material quality, hardware, countertop, and appliance fit are the details that make the kitchen feel premium every day.</p>
       </article>
       <article class="bw-modular__blueprint-card bw-modular__blueprint-card--accent">
-        <h3>4. Move into a sharper next step</h3>
-        <p>The more complete the brief, the more useful the calculator and estimate become.</p>
+        <div class="bw-modular__product-media">
+          <img src="{{ kitchen_image_island_url }}" alt="{{ kitchen_image_island_alt }}" loading="lazy" width="900" height="675">
+        </div>
+        <h3>Move toward a clear estimate</h3>
+        <p>Once the layout and finish direction feel right, the calculator can turn that choice into a more useful conversation.</p>
         <div class="bw-modular__blueprint-actions">
           <a class="bw-modular__button" href="{{ calculator_cta_url }}" data-calculator-link>Open Kitchen Calculator</a>
         </div>
@@ -721,81 +920,110 @@
   <section class="bw-modular__block">
     <div class="bw-modular__section-head">
       <div class="bw-modular__eyebrow">Inspiration gallery</div>
-      <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">See the layout language before refining the brief</h2>
-      <p class="bw-modular__copy">This visual layer keeps the page grounded in real kitchen imagery. Each card connects a room mood to a layout choice so the next step feels more concrete.</p>
+      <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">Browse kitchen directions like an inspiration rail, not a static checklist</h2>
+      <p class="bw-modular__copy">Move through the key layouts the way a customer naturally browses design ideas. Each slide keeps the mood, scale, and planning direction visible before the calculator takes over.</p>
     </div>
-    <div class="bw-modular__gallery-grid">
-      <a class="bw-modular__gallery-card" href="{{ main_url }}" data-variant-toggle="all">
-        <div class="bw-modular__gallery-media">
-          <img src="{{ kitchen_image_all_url }}" alt="{{ kitchen_image_all_alt }}" loading="lazy" width="900" height="675">
+    <div class="bw-modular__gallery-shell" data-gallery-shell>
+      <div class="bw-modular__gallery-toolbar">
+        <span class="bw-modular__gallery-hint">Swipe or browse through the kitchen styles</span>
+        <div class="bw-modular__gallery-nav" aria-label="Inspiration gallery controls">
+          <button class="bw-modular__gallery-arrow" type="button" data-gallery-prev aria-label="Show previous kitchen inspiration">&#8592;</button>
+          <button class="bw-modular__gallery-arrow" type="button" data-gallery-next aria-label="Show next kitchen inspiration">&#8594;</button>
         </div>
-        <h3>All layouts</h3>
-        <p>Start from the main planning hub, then move into the layout that best matches the room and cooking pattern.</p>
-      </a>
-      <a class="bw-modular__gallery-card" href="{{ l_url }}" data-variant-toggle="l-shape">
-        <div class="bw-modular__gallery-media">
-          <img src="{{ kitchen_image_l_url }}" alt="{{ kitchen_image_l_alt }}" loading="lazy" width="900" height="675">
-        </div>
-        <h3>L-shape</h3>
-        <p>Open, balanced, and easy to live with when the kitchen needs an efficient corner-led rhythm.</p>
-      </a>
-      <a class="bw-modular__gallery-card" href="{{ u_url }}" data-variant-toggle="u-shape">
-        <div class="bw-modular__gallery-media">
-          <img src="{{ kitchen_image_u_url }}" alt="{{ kitchen_image_u_alt }}" loading="lazy" width="900" height="675">
-        </div>
-        <h3>U-shape</h3>
-        <p>More storage and counter depth for homes that want the kitchen to feel fully equipped and serious.</p>
-      </a>
-      <a class="bw-modular__gallery-card" href="{{ parallel_url }}" data-variant-toggle="parallel">
-        <div class="bw-modular__gallery-media">
-          <img src="{{ kitchen_image_parallel_url }}" alt="{{ kitchen_image_parallel_alt }}" loading="lazy" width="900" height="675">
-        </div>
-        <h3>Parallel</h3>
-        <p>Efficient for tighter homes where prep and cooking need two disciplined runs instead of one overloaded wall.</p>
-      </a>
-      <a class="bw-modular__gallery-card" href="{{ straight_url }}" data-variant-toggle="straight">
-        <div class="bw-modular__gallery-media">
-          <img src="{{ kitchen_image_straight_url }}" alt="{{ kitchen_image_straight_alt }}" loading="lazy" width="900" height="675">
-        </div>
-        <h3>Straight</h3>
-        <p>Minimal and clean when one calm wall has to carry the whole kitchen without visual clutter.</p>
-      </a>
-      <a class="bw-modular__gallery-card" href="{{ island_url }}" data-variant-toggle="island">
-        <div class="bw-modular__gallery-media">
-          <img src="{{ kitchen_image_island_url }}" alt="{{ kitchen_image_island_alt }}" loading="lazy" width="900" height="675">
-        </div>
-        <h3>Island</h3>
-        <p>Premium planning for larger homes where prep, serving, and social use all need to coexist gracefully.</p>
-      </a>
+      </div>
+      <div class="bw-modular__gallery-grid" data-gallery-track>
+        <a class="bw-modular__gallery-card" href="{{ main_url }}" data-variant-toggle="all">
+          <div class="bw-modular__gallery-media">
+            <img src="{{ kitchen_image_all_url }}" alt="{{ kitchen_image_all_alt }}" loading="lazy" width="900" height="675">
+          </div>
+          <h3>All layouts</h3>
+          <p>Start broad, compare the overall mood, and then move into the geometry that matches the room and cooking style.</p>
+        </a>
+        <a class="bw-modular__gallery-card" href="{{ l_url }}" data-variant-toggle="l-shape">
+          <div class="bw-modular__gallery-media">
+            <img src="{{ kitchen_image_l_url }}" alt="{{ kitchen_image_l_alt }}" loading="lazy" width="900" height="675">
+          </div>
+          <h3>L-shape</h3>
+          <p>Warm, efficient, and easy to live with when the room needs an open corner-led flow that stays premium.</p>
+        </a>
+        <a class="bw-modular__gallery-card" href="{{ u_url }}" data-variant-toggle="u-shape">
+          <div class="bw-modular__gallery-media">
+            <img src="{{ kitchen_image_u_url }}" alt="{{ kitchen_image_u_alt }}" loading="lazy" width="900" height="675">
+          </div>
+          <h3>U-shape</h3>
+          <p>More surface, more storage, and a stronger sense of a fully equipped kitchen for serious daily use.</p>
+        </a>
+        <a class="bw-modular__gallery-card" href="{{ parallel_url }}" data-variant-toggle="parallel">
+          <div class="bw-modular__gallery-media">
+            <img src="{{ kitchen_image_parallel_url }}" alt="{{ kitchen_image_parallel_alt }}" loading="lazy" width="900" height="675">
+          </div>
+          <h3>Parallel</h3>
+          <p>Disciplined and practical for tighter homes where prep and cooking need two clear working runs.</p>
+        </a>
+        <a class="bw-modular__gallery-card" href="{{ straight_url }}" data-variant-toggle="straight">
+          <div class="bw-modular__gallery-media">
+            <img src="{{ kitchen_image_straight_url }}" alt="{{ kitchen_image_straight_alt }}" loading="lazy" width="900" height="675">
+          </div>
+          <h3>Straight</h3>
+          <p>Linear and calm when one wall needs to carry the whole kitchen without visual clutter or wasted movement.</p>
+        </a>
+        <a class="bw-modular__gallery-card" href="{{ island_url }}" data-variant-toggle="island">
+          <div class="bw-modular__gallery-media">
+            <img src="{{ kitchen_image_island_url }}" alt="{{ kitchen_image_island_alt }}" loading="lazy" width="900" height="675">
+          </div>
+          <h3>Island</h3>
+          <p>Statement-led planning for larger homes where prep, serving, and social life should all coexist gracefully.</p>
+        </a>
+      </div>
     </div>
   </section>
 
   <section class="bw-modular__block">
     <div class="bw-modular__section-head">
       <div class="bw-modular__eyebrow">Consultation path</div>
-      <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">A clearer brief makes the consultation and estimate more useful</h2>
-      <p class="bw-modular__copy">The kitchen becomes easier to design and easier to estimate when the brief develops in the right order. This flow keeps the customer moving without losing context.</p>
+      <h2 class="bw-modular__title" style="font-size:clamp(24px, 3vw, 34px);">See how the kitchen brief comes together before you ever ask for pricing</h2>
+      <p class="bw-modular__copy">This should feel more like a visual journey than a lecture. The customer only needs to understand the sequence clearly enough to move forward with confidence.</p>
     </div>
     <div class="bw-modular__process-grid">
       <article class="bw-modular__process-card">
+        <div class="bw-modular__process-visual">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
         <span class="bw-modular__process-index">01</span>
-        <h3>Measure the room</h3>
-        <p>Confirm walls, openings, service points, and movement paths before the layout discussion gets too abstract.</p>
+        <h3>Map the room</h3>
+        <p>Capture the walls, openings, and service points so the kitchen starts from reality, not guesswork.</p>
       </article>
       <article class="bw-modular__process-card">
+        <div class="bw-modular__process-visual bw-modular__process-visual--geometry">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
         <span class="bw-modular__process-index">02</span>
-        <h3>Shortlist the geometry</h3>
-        <p>Choose the layout family first so the kitchen’s circulation and storage balance are already clear.</p>
+        <h3>Pick the geometry</h3>
+        <p>Choose the layout that gives the home the right mix of movement, storage, and prep continuity.</p>
       </article>
       <article class="bw-modular__process-card">
+        <div class="bw-modular__process-visual bw-modular__process-visual--finish">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
         <span class="bw-modular__process-index">03</span>
-        <h3>Choose finish direction</h3>
-        <p>Once the shape is fixed, material and hardware decisions become sharper, calmer, and easier to compare.</p>
+        <h3>Shape the finish story</h3>
+        <p>Once the plan is clear, shutters, counters, hardware, and appliances become easier to shortlist.</p>
       </article>
       <article class="bw-modular__process-card">
+        <div class="bw-modular__process-visual bw-modular__process-visual--quote">
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
         <span class="bw-modular__process-index">04</span>
-        <h3>Move into estimate</h3>
-        <p>At that point the brief is specific enough to send into a real Bluewud consultation rather than a loose style request.</p>
+        <h3>Send a stronger brief</h3>
+        <p>That gives Bluewud enough context to move into a sharper consultation instead of a generic enquiry.</p>
       </article>
     </div>
     <div class="bw-modular__proof-strip" aria-label="Kitchen reassurance">
@@ -839,10 +1067,7 @@
           <img src="{{ kitchen_image_all_url }}" alt="{{ kitchen_image_all_alt }}" loading="lazy" width="900" height="675">
         </div>
         <h3>Estimate readiness</h3>
-        <p>By the time the customer knows the layout, finish family, storage priorities, and appliance expectations, the Bluewud team can have a much more serious pricing conversation.</p>
-        <div class="bw-modular__actions">
-          <button class="bw-modular__button" type="button" data-bw-estimate-open data-estimate-context="Modular Kitchen" data-estimate-trigger="estimate-readiness">Get Free Estimate</button>
-        </div>
+        <p>By the time the customer knows the layout, finish family, storage priorities, and appliance expectations, the Bluewud team can move into a much more serious pricing conversation.</p>
       </article>
     </div>
   </section>
@@ -1540,30 +1765,7 @@
     {{ product_grid }}
   </section>
 
-  <section class="bw-modular__block bw-modular__guide" aria-label="How to use the kitchen planner">
-    <div class="bw-modular__section-head">
-      <div class="bw-modular__eyebrow">Kitchen preflight</div>
-      <h2 class="bw-modular__title" style="font-size:clamp(22px, 3vw, 30px);">Use the calculator as its own page. Use this guide to sharpen the brief first.</h2>
-      <p class="bw-modular__copy">This page should help the customer choose the right layout, finish direction, and estimate timing. The calculator now lives on its own page so the actual brief-building flow stays cleaner.</p>
-    </div>
-    <div class="bw-modular__guide-grid">
-      <article class="bw-modular__guide-card">
-        <strong>Lock the geometry first</strong>
-        <p>L-shape, U-shape, parallel, straight, or island should be settled before finishes and accessories take over the decision.</p>
-      </article>
-      <article class="bw-modular__guide-card">
-        <strong>Use finishes to refine, not to guess</strong>
-        <p>Material, countertop, hardware, and appliance choices matter most after the room shape and storage load are clear.</p>
-      </article>
-      <article class="bw-modular__guide-card">
-        <strong>Move to the calculator when the room makes sense</strong>
-        <p>Once the layout feels right, open the standalone kitchen calculator and send one stronger brief into the estimate flow.</p>
-        <div class="bw-modular__actions">
-          <a class="bw-modular__button" href="{{ calculator_cta_url }}" data-calculator-link>Open Kitchen Calculator</a>
-        </div>
-      </article>
-    </div>
-  </section>
+
 </div>
 
 {% render 'modular-estimate-popup', modal_id: 'bw-kitchen-estimate-popup', modal_title: 'Get a modular kitchen estimate', context_label: 'Bluewud modular kitchen' %}
@@ -1582,6 +1784,41 @@
     var summaryInput = modal ? modal.querySelector('[data-bw-estimate-summary-input]') : null;
     var contextInput = modal ? modal.querySelector('[data-bw-estimate-context-input]') : null;
     var sourceInput = modal ? modal.querySelector('[data-bw-estimate-source-input]') : null;
+    var galleryTrack = root.querySelector('[data-gallery-track]');
+    var galleryPrev = root.querySelector('[data-gallery-prev]');
+    var galleryNext = root.querySelector('[data-gallery-next]');
+    var galleryTimer = null;
+
+    function syncGalleryControls() {
+      if (!galleryTrack || !galleryPrev || !galleryNext) return;
+      galleryPrev.disabled = galleryTrack.scrollLeft <= 8;
+      galleryNext.disabled = galleryTrack.scrollLeft + galleryTrack.clientWidth >= galleryTrack.scrollWidth - 8;
+    }
+
+    function moveGallery(direction) {
+      if (!galleryTrack) return;
+      var card = galleryTrack.querySelector('.bw-modular__gallery-card');
+      var delta = card ? card.getBoundingClientRect().width + 16 : galleryTrack.clientWidth * 0.85;
+      galleryTrack.scrollBy({ left: delta * direction, behavior: 'smooth' });
+    }
+
+    function startGalleryAutoAdvance() {
+      if (!galleryTrack || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      stopGalleryAutoAdvance();
+      galleryTimer = window.setInterval(function () {
+        if (galleryTrack.scrollLeft + galleryTrack.clientWidth >= galleryTrack.scrollWidth - 8) {
+          galleryTrack.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          moveGallery(1);
+        }
+      }, 4800);
+    }
+
+    function stopGalleryAutoAdvance() {
+      if (!galleryTimer) return;
+      window.clearInterval(galleryTimer);
+      galleryTimer = null;
+    }
 
     function activate(variant) {
       toggles.forEach(function (toggle) {
@@ -1724,6 +1961,18 @@
       modal.addEventListener('click', function (event) {
         if (event.target === modal) closeModal();
       });
+    }
+
+    if (galleryPrev && galleryNext && galleryTrack) {
+      galleryPrev.addEventListener('click', function () { moveGallery(-1); });
+      galleryNext.addEventListener('click', function () { moveGallery(1); });
+      galleryTrack.addEventListener('scroll', syncGalleryControls, { passive: true });
+      galleryTrack.addEventListener('mouseenter', stopGalleryAutoAdvance);
+      galleryTrack.addEventListener('mouseleave', startGalleryAutoAdvance);
+      galleryTrack.addEventListener('focusin', stopGalleryAutoAdvance);
+      galleryTrack.addEventListener('focusout', startGalleryAutoAdvance);
+      syncGalleryControls();
+      startGalleryAutoAdvance();
     }
 
     window.addEventListener('hashchange', function () {

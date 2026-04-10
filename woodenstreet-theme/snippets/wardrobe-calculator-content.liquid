@@ -496,12 +496,72 @@
     transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease;
   }
   .bw-flow__choice input { display: none; }
+  .bw-flow__choice--image {
+    position: relative;
+    overflow: hidden;
+    min-height: 134px;
+    padding: 16px;
+    gap: 10px;
+    letter-spacing: 0;
+    text-transform: none;
+    color: #fff7f1;
+    background:
+      linear-gradient(180deg, rgba(21, 14, 10, 0.06), rgba(21, 14, 10, 0.58)),
+      var(--choice-image, linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%));
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 18px 36px rgba(35, 24, 19, 0.08);
+  }
+  .bw-flow__choice--image::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(20, 14, 10, 0.04), rgba(20, 14, 10, 0.16) 42%, rgba(20, 14, 10, 0.58) 100%);
+    pointer-events: none;
+  }
+  .bw-flow__choice--image .bw-flow__choice-media,
+  .bw-flow__choice--image .bw-flow__choice-copy {
+    position: relative;
+    z-index: 1;
+  }
+  .bw-flow__choice--image .bw-flow__choice-media {
+    min-height: 92px;
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 247, 241, 0.08);
+    background: rgba(255, 247, 241, 0.08);
+  }
+  .bw-flow__choice--image .bw-flow__choice-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bw-flow__choice--image .bw-flow__choice-title,
+  .bw-flow__choice--image .bw-flow__choice-note {
+    color: inherit;
+  }
+  .bw-flow__choice--image .bw-flow__choice-note {
+    color: rgba(255, 247, 241, 0.82);
+  }
+  .bw-flow__choice--image:hover,
+  .bw-flow__choice--image:focus-visible {
+    transform: translateY(-2px);
+    box-shadow: 0 22px 44px rgba(35, 24, 19, 0.12);
+  }
   .bw-flow__choice.is-selected {
     background:
       linear-gradient(180deg, #241814 0%, #3a2921 100%);
     color: #fff7f1;
     border-color: #241814;
     box-shadow: 0 16px 34px rgba(35, 24, 19, 0.16);
+  }
+  .bw-flow__choice--image.is-selected {
+    background:
+      linear-gradient(180deg, rgba(21, 14, 10, 0.12), rgba(21, 14, 10, 0.68)),
+      var(--choice-image, linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%));
+    border-color: #241814;
+    box-shadow: 0 20px 40px rgba(35, 24, 19, 0.16);
   }
   .bw-flow__choice:hover,
   .bw-flow__choice:focus-visible {
@@ -521,6 +581,9 @@
   .bw-flow__choices[data-flow-group="internals"] {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
+  .bw-flow__choices[data-flow-group="internals"] .bw-flow__choice {
+    min-height: 98px;
+  }
   .bw-flow__choices[data-flow-group="type"] {
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
   }
@@ -531,11 +594,20 @@
     letter-spacing: 0;
     text-transform: none;
   }
+  .bw-flow__choice--visual.bw-flow__choice--image {
+    padding: 16px;
+    min-height: 134px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
   .bw-flow__choice-media {
     min-height: 128px;
     border-radius: 16px;
     overflow: hidden;
     background: linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
+  }
+  .bw-flow__choice--visual.bw-flow__choice--image .bw-flow__choice-media {
+    min-height: 92px;
   }
   .bw-flow__choice-media img {
     width: 100%;
@@ -725,7 +797,6 @@
         <a class="bw-planning-rail__link" href="{{ wardrobe_hinged_url }}">Hinged</a>
         <a class="bw-planning-rail__link" href="{{ wardrobe_walkin_url }}">Walk-in</a>
         <a class="bw-planning-rail__link bw-planning-rail__link--accent is-current" href="{{ calculator_url }}">Wardrobe Calculator</a>
-        <a class="bw-planning-rail__link" href="{{ estimate_url }}">Get Free Estimate</a>
       </div>
     </section>
   {% endunless %}
@@ -822,17 +893,35 @@
         <div class="bw-flow__section">
           <div class="bw-flow__label">Bedroom type</div>
           <div class="bw-flow__choices" data-flow-group="room">
-            <label class="bw-flow__choice is-selected"><input type="radio" name="room_type" value="Master bedroom" checked>Master Bedroom</label>
-            <label class="bw-flow__choice"><input type="radio" name="room_type" value="Guest bedroom">Guest Bedroom</label>
-            <label class="bw-flow__choice"><input type="radio" name="room_type" value="Kids bedroom">Kids Bedroom</label>
+            <label class="bw-flow__choice bw-flow__choice--image is-selected"><input type="radio" name="room_type" value="Master bedroom" checked>
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_primary_src }}" alt="{{ wardrobe_preview_primary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Master Bedroom</span><span class="bw-flow__choice-note">Primary suite planning with calmer storage balance and daily-use comfort.</span></span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--image"><input type="radio" name="room_type" value="Guest bedroom">
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_secondary_src }}" alt="{{ wardrobe_preview_secondary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Guest Bedroom</span><span class="bw-flow__choice-note">Cleaner storage depth for a lighter-use room that still needs to look polished.</span></span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--image"><input type="radio" name="room_type" value="Kids bedroom">
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_tertiary_src }}" alt="{{ wardrobe_preview_tertiary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Kids Bedroom</span><span class="bw-flow__choice-note">Flexible storage that can handle changing needs without making the room feel heavy.</span></span>
+            </label>
           </div>
         </div>
         <div class="bw-flow__section">
           <div class="bw-flow__label">Storage intensity</div>
           <div class="bw-flow__choices" data-flow-group="storage">
-            <label class="bw-flow__choice"><input type="radio" name="storage_intensity" value="Light use">Light Use</label>
-            <label class="bw-flow__choice is-selected"><input type="radio" name="storage_intensity" value="Balanced daily use" checked>Balanced Daily Use</label>
-            <label class="bw-flow__choice"><input type="radio" name="storage_intensity" value="High storage demand">High Storage Demand</label>
+            <label class="bw-flow__choice bw-flow__choice--image"><input type="radio" name="storage_intensity" value="Light use">
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_secondary_src }}" alt="{{ wardrobe_preview_secondary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Light Use</span><span class="bw-flow__choice-note">For simpler storage needs, fewer modules, and a lighter visual footprint.</span></span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--image is-selected"><input type="radio" name="storage_intensity" value="Balanced daily use" checked>
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_primary_src }}" alt="{{ wardrobe_preview_primary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Balanced Daily Use</span><span class="bw-flow__choice-note">The practical middle ground for most bedrooms and family wardrobe briefs.</span></span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--image"><input type="radio" name="storage_intensity" value="High storage demand">
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_quaternary_src }}" alt="{{ wardrobe_preview_quaternary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">High Storage Demand</span><span class="bw-flow__choice-note">Use when the wardrobe must carry more clothing, seasonal items, and boxed storage.</span></span>
+            </label>
           </div>
         </div>
         <div class="bw-flow__actions">
@@ -899,27 +988,60 @@
         <div class="bw-flow__section">
           <div class="bw-flow__label">Carcass material</div>
           <div class="bw-flow__choices" data-flow-group="carcass">
-            <label class="bw-flow__choice is-selected"><input type="radio" name="wardrobe_carcass" value="Engineered wood" checked>Engineered Wood</label>
-            <label class="bw-flow__choice"><input type="radio" name="wardrobe_carcass" value="Plywood">Plywood</label>
-            <label class="bw-flow__choice"><input type="radio" name="wardrobe_carcass" value="Need guidance">Need Guidance</label>
+            <label class="bw-flow__choice bw-flow__choice--image is-selected"><input type="radio" name="wardrobe_carcass" value="Engineered wood" checked>
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_primary_src }}" alt="{{ wardrobe_preview_primary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Engineered Wood</span><span class="bw-flow__choice-note">A balanced practical base for value-led briefs and everyday use.</span></span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--image"><input type="radio" name="wardrobe_carcass" value="Plywood">
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_secondary_src }}" alt="{{ wardrobe_preview_secondary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Plywood</span><span class="bw-flow__choice-note">A stronger structural direction for customers who want a more durable cabinet feel.</span></span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--image"><input type="radio" name="wardrobe_carcass" value="Need guidance">
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_tertiary_src }}" alt="{{ wardrobe_preview_tertiary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Need Guidance</span><span class="bw-flow__choice-note">Use this when you want Bluewud to guide the material decision with the brief.</span></span>
+            </label>
           </div>
         </div>
         <div class="bw-flow__section">
           <div class="bw-flow__label">Shutter material</div>
           <div class="bw-flow__choices" data-flow-group="shutter_material">
-            <label class="bw-flow__choice is-selected"><input type="radio" name="wardrobe_shutter_material" value="Laminate panel" checked>Laminate Panel</label>
-            <label class="bw-flow__choice"><input type="radio" name="wardrobe_shutter_material" value="Acrylic panel">Acrylic Panel</label>
-            <label class="bw-flow__choice"><input type="radio" name="wardrobe_shutter_material" value="Mirror / glass">Mirror / Glass</label>
-            <label class="bw-flow__choice"><input type="radio" name="wardrobe_shutter_material" value="Profile / mixed finish">Profile / Mixed</label>
+            <label class="bw-flow__choice bw-flow__choice--image is-selected"><input type="radio" name="wardrobe_shutter_material" value="Laminate panel" checked>
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_primary_src }}" alt="{{ wardrobe_preview_primary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Laminate Panel</span><span class="bw-flow__choice-note">A reliable, easy-to-maintain shutter direction for most wardrobes.</span></span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--image"><input type="radio" name="wardrobe_shutter_material" value="Acrylic panel">
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_secondary_src }}" alt="{{ wardrobe_preview_secondary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Acrylic Panel</span><span class="bw-flow__choice-note">For a more polished finish with a crisp, reflective wardrobe front.</span></span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--image"><input type="radio" name="wardrobe_shutter_material" value="Mirror / glass">
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_quaternary_src }}" alt="{{ wardrobe_preview_quaternary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Mirror / Glass</span><span class="bw-flow__choice-note">Use when the wardrobe should enlarge the room visually and feel more premium.</span></span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--image"><input type="radio" name="wardrobe_shutter_material" value="Profile / mixed finish">
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_tertiary_src }}" alt="{{ wardrobe_preview_tertiary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Profile / Mixed</span><span class="bw-flow__choice-note">A layered front style for wardrobes that need more design detail.</span></span>
+            </label>
           </div>
         </div>
         <div class="bw-flow__section">
           <div class="bw-flow__label">Finish mood</div>
           <div class="bw-flow__choices" data-flow-group="finish">
-            <label class="bw-flow__choice is-selected"><input type="radio" name="wardrobe_finish" value="Warm wood + solid shutters" checked>Warm Wood</label>
-            <label class="bw-flow__choice"><input type="radio" name="wardrobe_finish" value="Light modern matte">Light Matte</label>
-            <label class="bw-flow__choice"><input type="radio" name="wardrobe_finish" value="Mirror-led premium">Mirror-led Premium</label>
-            <label class="bw-flow__choice"><input type="radio" name="wardrobe_finish" value="Need guidance">Need Guidance</label>
+            <label class="bw-flow__choice bw-flow__choice--image is-selected"><input type="radio" name="wardrobe_finish" value="Warm wood + solid shutters" checked>
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_primary_src }}" alt="{{ wardrobe_preview_primary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Warm Wood</span><span class="bw-flow__choice-note">A grounded, familiar direction that feels premium without becoming overly formal.</span></span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--image"><input type="radio" name="wardrobe_finish" value="Light modern matte">
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_secondary_src }}" alt="{{ wardrobe_preview_secondary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Light Matte</span><span class="bw-flow__choice-note">For brighter rooms that need a quieter, more contemporary surface.</span></span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--image"><input type="radio" name="wardrobe_finish" value="Mirror-led premium">
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_quaternary_src }}" alt="{{ wardrobe_preview_quaternary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Mirror-led Premium</span><span class="bw-flow__choice-note">A more reflective finish direction when the wardrobe should visually open the room.</span></span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--image"><input type="radio" name="wardrobe_finish" value="Need guidance">
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_tertiary_src }}" alt="{{ wardrobe_preview_tertiary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Need Guidance</span><span class="bw-flow__choice-note">Choose this if you want Bluewud to recommend the finish direction.</span></span>
+            </label>
           </div>
         </div>
         <div class="bw-flow__actions">
@@ -936,21 +1058,51 @@
         <div class="bw-flow__section">
           <div class="bw-flow__label">Internal requirements</div>
           <div class="bw-flow__choices" data-flow-group="internals">
-            <label class="bw-flow__choice"><input type="checkbox" value="Long hanging">Long Hanging</label>
-            <label class="bw-flow__choice"><input type="checkbox" value="Short hanging">Short Hanging</label>
-            <label class="bw-flow__choice"><input type="checkbox" value="Drawer stack">Drawer Stack</label>
-            <label class="bw-flow__choice"><input type="checkbox" value="Pull-out accessories">Pull-out Accessories</label>
-            <label class="bw-flow__choice"><input type="checkbox" value="Digital locker">Digital Locker</label>
-            <label class="bw-flow__choice"><input type="checkbox" value="Shoe or linen zone">Shoe / Linen Zone</label>
+            <label class="bw-flow__choice bw-flow__choice--image"><input type="checkbox" value="Long hanging">
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_primary_src }}" alt="{{ wardrobe_preview_primary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Long Hanging</span><span class="bw-flow__choice-note">For dresses, coats, and taller garments that need uninterrupted vertical space.</span></span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--image"><input type="checkbox" value="Short hanging">
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_secondary_src }}" alt="{{ wardrobe_preview_secondary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Short Hanging</span><span class="bw-flow__choice-note">Helpful when folded storage and shorter clothing both need a clean split.</span></span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--image"><input type="checkbox" value="Drawer stack">
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_tertiary_src }}" alt="{{ wardrobe_preview_tertiary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Drawer Stack</span><span class="bw-flow__choice-note">Ideal for accessories, folded clothing, and visually tidy lower storage.</span></span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--image"><input type="checkbox" value="Pull-out accessories">
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_quaternary_src }}" alt="{{ wardrobe_preview_quaternary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Pull-out Accessories</span><span class="bw-flow__choice-note">For trays, organisers, and a more tailored storage experience.</span></span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--image"><input type="checkbox" value="Digital locker">
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_primary_src }}" alt="{{ wardrobe_preview_primary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Digital Locker</span><span class="bw-flow__choice-note">A compact security-led option for valuables and private storage.</span></span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--image"><input type="checkbox" value="Shoe or linen zone">
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_secondary_src }}" alt="{{ wardrobe_preview_secondary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Shoe / Linen Zone</span><span class="bw-flow__choice-note">Useful when the wardrobe should absorb everyday overflow and utility storage.</span></span>
+            </label>
           </div>
         </div>
         <div class="bw-flow__section">
           <div class="bw-flow__label">Mirror requirement</div>
           <div class="bw-flow__choices" data-flow-group="mirror">
-            <label class="bw-flow__choice is-selected"><input type="radio" name="mirror_need" value="No mirror" checked>No Mirror</label>
-            <label class="bw-flow__choice"><input type="radio" name="mirror_need" value="One mirror panel">One Mirror Panel</label>
-            <label class="bw-flow__choice"><input type="radio" name="mirror_need" value="Multiple mirror panels">Multiple Mirror Panels</label>
-            <label class="bw-flow__choice"><input type="radio" name="mirror_need" value="Need guidance">Need Guidance</label>
+            <label class="bw-flow__choice bw-flow__choice--image is-selected"><input type="radio" name="mirror_need" value="No mirror" checked>
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_primary_src }}" alt="{{ wardrobe_preview_primary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">No Mirror</span><span class="bw-flow__choice-note">Choose when the wardrobe should stay quieter and more storage-first.</span></span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--image"><input type="radio" name="mirror_need" value="One mirror panel">
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_secondary_src }}" alt="{{ wardrobe_preview_secondary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">One Mirror Panel</span><span class="bw-flow__choice-note">A practical dressing aid that still keeps the wardrobe face balanced.</span></span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--image"><input type="radio" name="mirror_need" value="Multiple mirror panels">
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_quaternary_src }}" alt="{{ wardrobe_preview_quaternary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Multiple Mirror Panels</span><span class="bw-flow__choice-note">Best when the wardrobe should act as part storage, part room-expanding surface.</span></span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--image"><input type="radio" name="mirror_need" value="Need guidance">
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_tertiary_src }}" alt="{{ wardrobe_preview_tertiary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Need Guidance</span><span class="bw-flow__choice-note">Use this when the mirror direction should be set by the overall room brief.</span></span>
+            </label>
           </div>
         </div>
         <div class="bw-flow__actions">
@@ -1081,6 +1233,71 @@
     function selectedChecks(group) {
       return Array.prototype.slice.call(root.querySelectorAll('[data-flow-group="' + group + '"] input[type="checkbox"]:checked')).map(function (input) {
         return input.value;
+      });
+    }
+
+    function applyChoiceVisuals() {
+      var visualMap = {
+        type: {
+          Sliding: {{ wardrobe_preview_primary_src | json }},
+          Hinged: {{ wardrobe_preview_secondary_src | json }},
+          'Walk-in': {{ wardrobe_preview_tertiary_src | json }},
+          'Floor to ceiling': {{ wardrobe_preview_quaternary_src | json }}
+        },
+        room: {
+          'Master bedroom': {{ wardrobe_preview_primary_src | json }},
+          'Guest bedroom': {{ wardrobe_preview_secondary_src | json }},
+          'Kids bedroom': {{ wardrobe_preview_tertiary_src | json }}
+        },
+        storage: {
+          'Light use': {{ wardrobe_preview_secondary_src | json }},
+          'Balanced daily use': {{ wardrobe_preview_primary_src | json }},
+          'High storage demand': {{ wardrobe_preview_quaternary_src | json }}
+        },
+        carcass: {
+          'Engineered wood': {{ wardrobe_preview_primary_src | json }},
+          Plywood: {{ wardrobe_preview_secondary_src | json }},
+          'Need guidance': {{ wardrobe_preview_tertiary_src | json }}
+        },
+        shutter_material: {
+          'Laminate panel': {{ wardrobe_preview_primary_src | json }},
+          'Acrylic panel': {{ wardrobe_preview_secondary_src | json }},
+          'Mirror / glass': {{ wardrobe_preview_quaternary_src | json }},
+          'Profile / mixed finish': {{ wardrobe_preview_tertiary_src | json }}
+        },
+        finish: {
+          'Warm wood + solid shutters': {{ wardrobe_preview_primary_src | json }},
+          'Light modern matte': {{ wardrobe_preview_secondary_src | json }},
+          'Mirror-led premium': {{ wardrobe_preview_quaternary_src | json }},
+          'Need guidance': {{ wardrobe_preview_tertiary_src | json }}
+        },
+        mirror: {
+          'No mirror': {{ wardrobe_preview_primary_src | json }},
+          'One mirror panel': {{ wardrobe_preview_secondary_src | json }},
+          'Multiple mirror panels': {{ wardrobe_preview_quaternary_src | json }},
+          'Need guidance': {{ wardrobe_preview_tertiary_src | json }}
+        },
+        internals: {
+          'Long hanging': {{ wardrobe_preview_primary_src | json }},
+          'Short hanging': {{ wardrobe_preview_secondary_src | json }},
+          'Drawer stack': {{ wardrobe_preview_tertiary_src | json }},
+          'Pull-out accessories': {{ wardrobe_preview_quaternary_src | json }},
+          'Digital locker': {{ wardrobe_preview_primary_src | json }},
+          'Shoe or linen zone': {{ wardrobe_preview_secondary_src | json }}
+        }
+      };
+
+      Object.keys(visualMap).forEach(function (group) {
+        var cards = root.querySelectorAll('[data-flow-group="' + group + '"] .bw-flow__choice');
+        cards.forEach(function (choice) {
+          var input = choice.querySelector('input');
+          if (!input) return;
+          var src = visualMap[group][input.value];
+          if (src) {
+            choice.classList.add('bw-flow__choice--image');
+            choice.style.setProperty('--choice-image', 'url(' + src + ')');
+          }
+        });
       });
     }
 
@@ -1304,6 +1521,7 @@
       });
     }
 
+    applyChoiceVisuals();
     updateSummary();
     var params = new URLSearchParams(window.location.search);
     applyWardrobePreset(params.get('type'));
