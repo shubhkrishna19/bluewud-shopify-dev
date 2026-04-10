@@ -390,6 +390,56 @@
   .bw-flow__choice.is-selected .bw-flow__choice-note {
     color: rgba(255, 247, 241, 0.84);
   }
+  .bw-flow__utility-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .bw-flow__utility-card {
+    display: grid;
+    gap: 14px;
+    padding: 14px;
+    border-radius: 24px;
+    background: rgba(32, 23, 19, 0.03);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+  }
+  .bw-flow__utility-media {
+    min-height: 148px;
+    border-radius: 18px;
+    overflow: hidden;
+    background: linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
+  }
+  .bw-flow__utility-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bw-flow__utility-title {
+    margin: 0;
+    color: #201713;
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.25;
+  }
+  .bw-flow__utility-copy {
+    margin: 0;
+    color: #66554c;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .bw-flow__utility-choices {
+    display: grid;
+    gap: 10px;
+  }
+  .bw-flow__utility-choices .bw-flow__choice {
+    min-height: 0;
+    padding: 12px 14px;
+    text-transform: none;
+    letter-spacing: 0;
+    font-size: 13px;
+    line-height: 1.5;
+  }
   .bw-flow__grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -540,23 +590,32 @@
   }
   .bw-flow__network-links {
     display: grid;
-    grid-template-columns: repeat(5, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 12px;
   }
   .bw-flow__network-card {
     display: grid;
-    gap: 10px;
+    gap: 12px;
     padding: 12px;
     border-radius: 20px;
     background: rgba(255, 255, 255, 0.7);
     border: 1px solid rgba(32, 23, 19, 0.08);
     color: inherit;
     text-decoration: none;
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+  }
+  .bw-flow__network-card:hover,
+  .bw-flow__network-card:focus-visible {
+    transform: translateY(-1px);
+    border-color: rgba(32, 23, 19, 0.16);
+    box-shadow: 0 16px 36px rgba(35, 24, 19, 0.08);
   }
   .bw-flow__network-card-media {
     display: block;
     overflow: hidden;
-    aspect-ratio: 4 / 3;
+    aspect-ratio: 4 / 3.2;
     border-radius: 16px;
     background: linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
   }
@@ -579,6 +638,38 @@
     font-size: 13px;
     line-height: 1.6;
   }
+  .bw-flow__network-card-cues {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .bw-flow__network-card-cue {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 0 10px;
+    border-radius: 999px;
+    background: rgba(32, 23, 19, 0.06);
+    color: #6b584c;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .bw-flow__network-card-action {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    min-height: 34px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: #201713;
+    color: #fff7f1;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
   @media (max-width: 980px) {
     .bw-flow__shell { grid-template-columns: 1fr; }
     .bw-flow__summary { position: static; }
@@ -595,9 +686,10 @@
     .bw-flow__summary-cues { grid-template-columns: 1fr; }
     .bw-flow__journey-grid,
     .bw-flow__network-links { grid-template-columns: 1fr; }
-    .bw-flow__actions { flex-direction: column-reverse; align-items: stretch; }
-    .bw-flow__summary-visual { min-height: 180px; }
-  }
+  .bw-flow__actions { flex-direction: column-reverse; align-items: stretch; }
+  .bw-flow__summary-visual { min-height: 180px; }
+  .bw-flow__utility-grid { grid-template-columns: 1fr; }
+}
 </style>
 
 <div class="bw-flow" data-bw-kitchen-flow>
@@ -788,30 +880,55 @@
       <div class="bw-flow__stage" data-step-panel="4">
         <div class="bw-flow__stage-head">
           <h3 class="bw-flow__stage-title">Add the utility details that change the brief</h3>
-          <p class="bw-flow__stage-copy">This is where the enquiry starts feeling like a real kitchen project instead of only a style reference.</p>
+          <p class="bw-flow__stage-copy">Use these selections to show how much storage support, appliance integration, and daily utility the kitchen really needs.</p>
         </div>
-        <div class="bw-flow__section">
-          <div class="bw-flow__label">Storage and hardware</div>
-          <div class="bw-flow__choices" data-flow-group="addons">
-            <label class="bw-flow__choice"><input type="checkbox" value="Tall unit">Tall Unit</label>
-            <label class="bw-flow__choice"><input type="checkbox" value="Pantry pull-out">Pantry Pull-out</label>
-            <label class="bw-flow__choice"><input type="checkbox" value="Corner accessory">Corner Accessory</label>
-            <label class="bw-flow__choice"><input type="checkbox" value="Tandem drawers">Tandem Drawers</label>
-            <label class="bw-flow__choice"><input type="checkbox" value="Premium hardware">Premium Hardware</label>
-            <label class="bw-flow__choice"><input type="checkbox" value="Appliance tower">Appliance Tower</label>
-          </div>
-        </div>
-        <div class="bw-flow__section">
-          <div class="bw-flow__label">Appliance integration</div>
-          <div class="bw-flow__choices" data-flow-group="appliances">
-            <label class="bw-flow__choice is-selected"><input type="checkbox" value="Hob" checked>Hob</label>
-            <label class="bw-flow__choice is-selected"><input type="checkbox" value="Chimney" checked>Chimney</label>
-            <label class="bw-flow__choice"><input type="checkbox" value="Microwave">Microwave</label>
-            <label class="bw-flow__choice"><input type="checkbox" value="Built-in oven">Built-in Oven</label>
-            <label class="bw-flow__choice"><input type="checkbox" value="Dishwasher">Dishwasher</label>
-            <label class="bw-flow__choice"><input type="checkbox" value="Refrigerator housing">Refrigerator Housing</label>
-            <label class="bw-flow__choice"><input type="checkbox" value="Water purifier provision">Water Purifier Provision</label>
-            <label class="bw-flow__choice"><input type="checkbox" value="Need guidance">Need Guidance</label>
+        <div class="bw-flow__utility-grid">
+          <article class="bw-flow__utility-card">
+            <div class="bw-flow__utility-media">
+              <img src="{{ kitchen_image_u_url }}" alt="Tall storage and pantry modular kitchen reference" loading="lazy" width="900" height="675">
+            </div>
+            <div class="bw-flow__section">
+              <h4 class="bw-flow__utility-title">Tall storage and pantry planning</h4>
+              <p class="bw-flow__utility-copy">Choose these when the kitchen has to hold heavier dry storage, vertical units, or utility-led tower planning.</p>
+            </div>
+            <div class="bw-flow__utility-choices" data-flow-group="addons">
+              <label class="bw-flow__choice"><input type="checkbox" value="Tall unit">Tall Unit</label>
+              <label class="bw-flow__choice"><input type="checkbox" value="Pantry pull-out">Pantry Pull-out</label>
+              <label class="bw-flow__choice"><input type="checkbox" value="Appliance tower">Appliance Tower</label>
+            </div>
+          </article>
+          <article class="bw-flow__utility-card">
+            <div class="bw-flow__utility-media">
+              <img src="{{ kitchen_image_l_url }}" alt="Drawer and corner storage modular kitchen reference" loading="lazy" width="900" height="675">
+            </div>
+            <div class="bw-flow__section">
+              <h4 class="bw-flow__utility-title">Corner efficiency and drawer access</h4>
+              <p class="bw-flow__utility-copy">Select these when everyday access, corner recovery, and faster kitchen movement matter more than raw cabinet count.</p>
+            </div>
+            <div class="bw-flow__utility-choices" data-flow-group="addons">
+              <label class="bw-flow__choice"><input type="checkbox" value="Corner accessory">Corner Accessory</label>
+              <label class="bw-flow__choice"><input type="checkbox" value="Tandem drawers">Tandem Drawers</label>
+              <label class="bw-flow__choice"><input type="checkbox" value="Premium hardware">Premium Hardware</label>
+            </div>
+          </article>
+          <article class="bw-flow__utility-card">
+            <div class="bw-flow__utility-media">
+              <img src="{{ kitchen_image_island_url }}" alt="Integrated appliance modular kitchen reference" loading="lazy" width="900" height="675">
+            </div>
+            <div class="bw-flow__section">
+              <h4 class="bw-flow__utility-title">Appliance and utility integration</h4>
+              <p class="bw-flow__utility-copy">Customers often need more than one appliance planned in. Select every integration point you want Bluewud to account for.</p>
+            </div>
+            <div class="bw-flow__utility-choices" data-flow-group="appliances">
+              <label class="bw-flow__choice is-selected"><input type="checkbox" value="Hob" checked>Hob</label>
+              <label class="bw-flow__choice is-selected"><input type="checkbox" value="Chimney" checked>Chimney</label>
+              <label class="bw-flow__choice"><input type="checkbox" value="Microwave">Microwave</label>
+              <label class="bw-flow__choice"><input type="checkbox" value="Built-in oven">Built-in Oven</label>
+              <label class="bw-flow__choice"><input type="checkbox" value="Dishwasher">Dishwasher</label>
+              <label class="bw-flow__choice"><input type="checkbox" value="Refrigerator housing">Refrigerator Housing</label>
+              <label class="bw-flow__choice"><input type="checkbox" value="Water purifier provision">Water Purifier Provision</label>
+              <label class="bw-flow__choice"><input type="checkbox" value="Need guidance">Need Guidance</label>
+            </div>
           </div>
         </div>
         <div class="bw-flow__actions">
@@ -823,7 +940,7 @@
       <div class="bw-flow__stage" data-step-panel="5">
         <div class="bw-flow__stage-head">
           <h3 class="bw-flow__stage-title">Review the kitchen brief and send it to Bluewud</h3>
-          <p class="bw-flow__stage-copy">Instead of a misleading auto-price, this step packages the requirement set into a cleaner consultation brief.</p>
+          <p class="bw-flow__stage-copy">Review the kitchen direction once, then share the brief so the team can respond with a more relevant estimate and planning callback.</p>
         </div>
         <div class="bw-flow__grid">
           <div class="bw-flow__field"><label for="bw-kitchen-city">Preferred city</label><input id="bw-kitchen-city" type="text" placeholder="Noida, Delhi, Bengaluru..." data-flow-input="city"></div>
@@ -858,7 +975,7 @@
       <div class="bw-flow__head">
         <span class="bw-flow__eyebrow">Project summary</span>
         <h2 class="bw-flow__title">Your kitchen brief</h2>
-        <p class="bw-flow__copy">This should read like a project direction, not a fake final quote.</p>
+        <p class="bw-flow__copy">This is a fast snapshot of the kitchen you want Bluewud to plan around.</p>
       </div>
       <div class="bw-flow__badge" data-kitchen-band>Balanced premium direction</div>
       <div class="bw-flow__summary-list">
@@ -876,43 +993,62 @@
       <p class="bw-flow__assist">This brief helps Bluewud respond with a more grounded layout, material, and estimate conversation from the start.</p>
       <div class="bw-flow__actions">
         <button class="bw-flow__button" type="button" data-bw-kitchen-popup-open>Get Free Estimate</button>
-        <a class="bw-flow__button--secondary" href="{{ contact_url }}">Talk To Bluewud</a>
+        <a class="bw-flow__button--secondary" href="{{ contact_url }}">Talk to a Kitchen Expert</a>
       </div>
     </aside>
   </div>
 
   <section class="bw-flow__network">
     <div class="bw-flow__network-head">
-      <span class="bw-flow__eyebrow">Visual layout library</span>
-      <h3 class="bw-flow__network-title">Use these references to compare the main kitchen directions visually</h3>
-      <p class="bw-flow__network-copy">The page stays calculator-first, but these image cards keep the most useful layout references close enough to browse without losing focus.</p>
+      <span class="bw-flow__eyebrow">Kitchen direction library</span>
+      <h3 class="bw-flow__network-title">Pick the kitchen direction that feels closest to how you want to live</h3>
+      <p class="bw-flow__network-copy">Use one of these as a shortcut if you already know the kind of kitchen you want Bluewud to design around.</p>
     </div>
-    <div class="bw-flow__network-links" aria-label="Kitchen layout image references">
-      <a class="bw-flow__network-card" href="{{ l_url }}">
-        <span class="bw-flow__network-card-media"><img src="{{ kitchen_image_l_url }}" alt="L-shape modular kitchen reference" loading="lazy" width="720" height="540"></span>
-        <span class="bw-flow__network-card-title">L-shape</span>
-        <span class="bw-flow__network-card-copy">Clean corner flow for everyday kitchens.</span>
-      </a>
-      <a class="bw-flow__network-card" href="{{ u_url }}">
-        <span class="bw-flow__network-card-media"><img src="{{ kitchen_image_u_url }}" alt="U-shape modular kitchen reference" loading="lazy" width="720" height="540"></span>
-        <span class="bw-flow__network-card-title">U-shape</span>
-        <span class="bw-flow__network-card-copy">More wraparound storage and prep volume.</span>
-      </a>
-      <a class="bw-flow__network-card" href="{{ parallel_url }}">
-        <span class="bw-flow__network-card-media"><img src="{{ kitchen_image_parallel_url }}" alt="Parallel modular kitchen reference" loading="lazy" width="720" height="540"></span>
-        <span class="bw-flow__network-card-title">Parallel</span>
-        <span class="bw-flow__network-card-copy">Efficient two-run planning for tighter rooms.</span>
-      </a>
-      <a class="bw-flow__network-card" href="{{ straight_url }}">
-        <span class="bw-flow__network-card-media"><img src="{{ kitchen_image_straight_url }}" alt="Straight modular kitchen reference" loading="lazy" width="720" height="540"></span>
-        <span class="bw-flow__network-card-title">Straight</span>
-        <span class="bw-flow__network-card-copy">Single-wall layout with a calmer visual read.</span>
-      </a>
-      <a class="bw-flow__network-card" href="{{ island_url }}">
-        <span class="bw-flow__network-card-media"><img src="{{ kitchen_image_island_url }}" alt="Island modular kitchen reference" loading="lazy" width="720" height="540"></span>
-        <span class="bw-flow__network-card-title">Island</span>
-        <span class="bw-flow__network-card-copy">Best when the room can support a premium centrepiece.</span>
-      </a>
+    <div class="bw-flow__network-links" aria-label="Kitchen direction presets">
+      <button class="bw-flow__network-card" type="button" data-kitchen-direction="everyday-family">
+        <span class="bw-flow__network-card-media"><img src="{{ kitchen_image_l_url }}" alt="Everyday family modular kitchen reference" loading="lazy" width="720" height="540"></span>
+        <span class="bw-flow__network-card-title">Everyday family kitchen</span>
+        <span class="bw-flow__network-card-copy">For homes that need one clear layout, reliable storage, and easy maintenance before anything else.</span>
+        <span class="bw-flow__network-card-cues">
+          <span class="bw-flow__network-card-cue">L-shape</span>
+          <span class="bw-flow__network-card-cue">Laminate + Granite</span>
+          <span class="bw-flow__network-card-cue">Core appliances</span>
+        </span>
+        <span class="bw-flow__network-card-action">Use this direction</span>
+      </button>
+      <button class="bw-flow__network-card" type="button" data-kitchen-direction="storage-heavy">
+        <span class="bw-flow__network-card-media"><img src="{{ kitchen_image_u_url }}" alt="Storage-heavy modular kitchen reference" loading="lazy" width="720" height="540"></span>
+        <span class="bw-flow__network-card-title">Storage-heavy utility kitchen</span>
+        <span class="bw-flow__network-card-copy">For busy kitchens that need more tall storage, better prep depth, and stronger day-to-day utility.</span>
+        <span class="bw-flow__network-card-cues">
+          <span class="bw-flow__network-card-cue">U-shape</span>
+          <span class="bw-flow__network-card-cue">Tall unit + Pantry</span>
+          <span class="bw-flow__network-card-cue">Tandem drawers</span>
+        </span>
+        <span class="bw-flow__network-card-action">Use this direction</span>
+      </button>
+      <button class="bw-flow__network-card" type="button" data-kitchen-direction="clean-modern">
+        <span class="bw-flow__network-card-media"><img src="{{ kitchen_image_parallel_url }}" alt="Clean modern modular kitchen reference" loading="lazy" width="720" height="540"></span>
+        <span class="bw-flow__network-card-title">Clean modern kitchen</span>
+        <span class="bw-flow__network-card-copy">For sharper contemporary homes where visual lightness, cleaner fronts, and disciplined zoning matter more.</span>
+        <span class="bw-flow__network-card-cues">
+          <span class="bw-flow__network-card-cue">Parallel</span>
+          <span class="bw-flow__network-card-cue">Acrylic + Quartz</span>
+          <span class="bw-flow__network-card-cue">Selective uppers</span>
+        </span>
+        <span class="bw-flow__network-card-action">Use this direction</span>
+      </button>
+      <button class="bw-flow__network-card" type="button" data-kitchen-direction="hosting-premium">
+        <span class="bw-flow__network-card-media"><img src="{{ kitchen_image_island_url }}" alt="Premium statement modular kitchen reference" loading="lazy" width="720" height="540"></span>
+        <span class="bw-flow__network-card-title">Hosting / premium statement kitchen</span>
+        <span class="bw-flow__network-card-copy">For larger homes where entertaining, appliance integration, and a stronger material impression all belong in the same brief.</span>
+        <span class="bw-flow__network-card-cues">
+          <span class="bw-flow__network-card-cue">Island</span>
+          <span class="bw-flow__network-card-cue">Premium stone</span>
+          <span class="bw-flow__network-card-cue">Appliance tower</span>
+        </span>
+        <span class="bw-flow__network-card-action">Use this direction</span>
+      </button>
     </div>
   </section>
 </div>
@@ -990,6 +1126,12 @@
     function selectedAppliances() {
       var appliances = selectedChecks('appliances');
       return appliances.length ? appliances.join(', ') : 'Not specified';
+    }
+    function setCheckboxValues(group, values) {
+      var valueMap = Array.isArray(values) ? values : [];
+      root.querySelectorAll('[data-flow-group="' + group + '"] input[type="checkbox"]').forEach(function (input) {
+        input.checked = valueMap.indexOf(input.value) > -1;
+      });
     }
     function inputValue(key) {
       var node = root.querySelector('[data-flow-input="' + key + '"]');
@@ -1151,6 +1293,70 @@
       updateSummary();
       paintSteps();
     }
+    function applyDirectionPreset(direction) {
+      if (!direction) return;
+      var presets = {
+        'everyday-family': {
+          layout: 'L-shape',
+          property: 'Apartment',
+          usage: 'Daily family use',
+          uppers: 'Yes',
+          carcass: 'Engineered wood',
+          shutter: 'Laminate front',
+          countertop: 'Granite',
+          addons: ['Tandem drawers'],
+          appliances: ['Hob', 'Chimney']
+        },
+        'storage-heavy': {
+          layout: 'U-shape',
+          property: 'Apartment',
+          usage: 'Heavy cooking',
+          uppers: 'Yes',
+          carcass: 'Engineered wood',
+          shutter: 'Laminate front',
+          countertop: 'Granite',
+          addons: ['Tall unit', 'Pantry pull-out', 'Tandem drawers'],
+          appliances: ['Hob', 'Chimney', 'Microwave']
+        },
+        'clean-modern': {
+          layout: 'Parallel',
+          property: 'Apartment',
+          usage: 'Daily family use',
+          uppers: 'Only on selected walls',
+          carcass: 'Plywood',
+          shutter: 'Acrylic front',
+          countertop: 'Quartz',
+          addons: ['Premium hardware', 'Refrigerator housing'],
+          appliances: ['Hob', 'Chimney', 'Water purifier provision']
+        },
+        'hosting-premium': {
+          layout: 'Island',
+          property: 'Villa',
+          usage: 'Heavy cooking',
+          uppers: 'Yes',
+          carcass: 'Plywood',
+          shutter: 'Glass / premium',
+          countertop: 'Premium stone',
+          addons: ['Tall unit', 'Premium hardware', 'Appliance tower'],
+          appliances: ['Hob', 'Chimney', 'Built-in oven', 'Dishwasher']
+        }
+      };
+      var preset = presets[direction];
+      if (!preset) return;
+      setRadioValue('kitchen_layout', preset.layout);
+      setRadioValue('property_type', preset.property);
+      setRadioValue('usage_level', preset.usage);
+      setRadioValue('upper_cabinets', preset.uppers);
+      setRadioValue('carcass_material', preset.carcass);
+      setRadioValue('shutter_material', preset.shutter);
+      setRadioValue('countertop', preset.countertop);
+      setCheckboxValues('addons', preset.addons);
+      setCheckboxValues('appliances', preset.appliances);
+      step = 3;
+      updateSummary();
+      paintSteps();
+      root.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
     function paintSteps() {
       stageNodes.forEach(function (panel) {
         panel.classList.toggle('is-active', Number(panel.getAttribute('data-step-panel')) === step);
@@ -1204,6 +1410,11 @@
       }
       if (event.target.closest('[data-bw-kitchen-popup-open]')) {
         openPopup();
+        return;
+      }
+      var directionCard = event.target.closest('[data-kitchen-direction]');
+      if (directionCard) {
+        applyDirectionPreset(directionCard.getAttribute('data-kitchen-direction'));
       }
     });
 

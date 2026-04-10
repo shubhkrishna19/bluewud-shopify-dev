@@ -136,6 +136,9 @@
   if dining_preview != blank
     assign dining_preview_src = dining_preview | image_url: width: 1200
     assign dining_preview_alt = dining_collection.title | default: dining_preview_alt
+  elsif kitchen_preview != blank
+    assign dining_preview_src = kitchen_preview | image_url: width: 1200
+    assign dining_preview_alt = kitchen_preview_alt
   elsif living_preview != blank
     assign dining_preview_src = living_preview | image_url: width: 1200
     assign dining_preview_alt = living_collection.title | default: dining_preview_alt
@@ -221,6 +224,18 @@
     border-radius: 24px;
     background: rgba(255, 247, 241, 0.08);
     border: 1px solid rgba(255, 247, 241, 0.12);
+  }
+  .bw-hi__hero-panel-media {
+    min-height: 148px;
+    border-radius: 18px;
+    overflow: hidden;
+    background: linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
+  }
+  .bw-hi__hero-panel-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
   .bw-hi__hero-panel-title {
     margin: 0 0 8px;
@@ -361,7 +376,7 @@
   }
   .bw-hi__progress {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(4, minmax(0, 1fr));
     gap: 12px;
   }
   .bw-hi__progress-card {
@@ -403,6 +418,18 @@
     color: #66554c;
     font-size: 13px;
     line-height: 1.7;
+  }
+  .bw-hi__progress-media {
+    min-height: 120px;
+    border-radius: 18px;
+    overflow: hidden;
+    background: linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
+  }
+  .bw-hi__progress-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
   .bw-hi__journey-link,
   .bw-hi__journey-link--active {
@@ -730,7 +757,7 @@
   }
   .bw-hi__guide-grid {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 14px;
   }
   .bw-hi__guide-card {
@@ -741,6 +768,18 @@
     border-radius: 22px;
     background: rgba(32, 23, 19, 0.04);
     border: 1px solid rgba(32, 23, 19, 0.08);
+  }
+  .bw-hi__guide-media {
+    min-height: 138px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
+  }
+  .bw-hi__guide-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
   }
   .bw-hi__guide-card--accent {
     background:
@@ -809,6 +848,9 @@
     </div>
     <div class="bw-hi__hero-surface">
       <div class="bw-hi__hero-panel">
+        <div class="bw-hi__hero-panel-media">
+          <img src="{{ bedroom_preview_src }}" alt="{{ bedroom_preview_alt }}" loading="lazy" width="900" height="675">
+        </div>
         <p class="bw-hi__hero-panel-title">Single-room refresh</p>
         <p class="bw-hi__hero-panel-copy">Use this when one room needs a cleaner brief before design and pricing move forward.</p>
       </div>
@@ -831,24 +873,36 @@
 
   <section class="bw-hi__progress" aria-label="Calculator steps">
     <article class="bw-hi__progress-card bw-hi__progress-card--visual">
+      <div class="bw-hi__progress-media">
+        <img src="{{ living_preview_src }}" alt="{{ living_preview_alt }}" loading="lazy" width="900" height="675">
+      </div>
       <span class="bw-hi__progress-step">Step 1</span>
       <h3>Choose the rooms</h3>
       <p>Pick the spaces that are actually in scope so the brief doesn’t drift into generic interiors talk.</p>
     </article>
     <article class="bw-hi__progress-card bw-hi__progress-card--visual">
+      <div class="bw-hi__progress-media">
+        <img src="{{ bedroom_preview_src }}" alt="{{ bedroom_preview_alt }}" loading="lazy" width="900" height="675">
+      </div>
       <span class="bw-hi__progress-step">Step 2</span>
-      <h3>Set the project type</h3>
+      <h3>Set the home direction</h3>
       <p>Fresh setup, upgrade, or room-by-room improvement.</p>
     </article>
     <article class="bw-hi__progress-card bw-hi__progress-card--visual">
+      <div class="bw-hi__progress-media">
+        <img src="{{ kitchen_preview_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="900" height="675">
+      </div>
       <span class="bw-hi__progress-step">Step 3</span>
-      <h3>Add city and timing</h3>
+      <h3>Set timing and city</h3>
       <p>Give the team enough context to scope the project properly.</p>
     </article>
     <article class="bw-hi__progress-card bw-hi__progress-card--visual">
+      <div class="bw-hi__progress-media">
+        <img src="{{ wardrobe_preview_src }}" alt="{{ wardrobe_preview_alt }}" loading="lazy" width="900" height="675">
+      </div>
       <span class="bw-hi__progress-step">Step 4</span>
-      <h3>Send the brief</h3>
-      <p>Share it once the scope feels clear.</p>
+      <h3>Share the project brief</h3>
+      <p>Send it once the scope feels clear.</p>
     </article>
   </section>
 
@@ -981,11 +1035,11 @@
       <div class="bw-hi__summary-visual">
         <img src="{{ living_preview_src }}" alt="{{ living_preview_alt }}" loading="lazy" width="1200" height="900" data-hi-summary-image>
       </div>
-      <p class="bw-hi__summary-caption" data-hi-summary-caption>Choose the room mix first. The lead room will preview here so the brief feels anchored to a real space instead of abstract scope.</p>
+      <p class="bw-hi__summary-caption" data-hi-summary-caption>Choose the room mix first. One selected room will preview here so the brief feels anchored to a real home context.</p>
       <div class="bw-hi__head">
         <span class="bw-hi__eyebrow">Interiors brief</span>
         <h2 class="bw-hi__title">Your interiors plan</h2>
-        <p class="bw-hi__copy">A quick read on the project Bluewud needs to price.</p>
+        <p class="bw-hi__copy">A quick snapshot of the rooms, budget direction, and timing Bluewud will plan around.</p>
       </div>
 
       <div class="bw-hi__badge" data-hi-badge>Balanced premium direction</div>
@@ -1011,23 +1065,32 @@
     </aside>
   </div>
 
-  <section class="bw-hi__guide" aria-label="How Bluewud reads this brief">
+  <section class="bw-hi__guide" aria-label="What this brief helps Bluewud solve">
     <div class="bw-hi__head">
-      <span class="bw-hi__eyebrow">How Bluewud reads this brief</span>
-      <h2 class="bw-hi__title">Use the planner first. Use the guidance after.</h2>
-      <p class="bw-hi__copy">The calculator above should carry the active decisions. The blocks below are there to help sharpen room scope, budget direction, and consultation readiness.</p>
+      <span class="bw-hi__eyebrow">What happens next</span>
+      <h2 class="bw-hi__title">Use the planner first. Use these cues to sharpen the estimate.</h2>
+      <p class="bw-hi__copy">Once the room mix feels right, the cards below help you understand how the first estimate will be shaped.</p>
     </div>
     <div class="bw-hi__guide-grid">
       <article class="bw-hi__guide-card">
-        <strong>Room scope first</strong>
-        <p>Keep the selected rooms honest. Fewer, clearer spaces usually lead to a better first estimate than a vague whole-home request.</p>
+        <div class="bw-hi__guide-media">
+          <img src="{{ living_preview_src }}" alt="{{ living_preview_alt }}" loading="lazy" width="900" height="675">
+        </div>
+        <strong>Keep the scope focused</strong>
+        <p>Fewer, clearer spaces usually lead to a better first estimate than a vague whole-home request.</p>
       </article>
       <article class="bw-hi__guide-card">
-        <strong>Budget as direction</strong>
-        <p>Balanced premium and statement premium are not fixed prices. They help the team pitch the right finish, hardware, and room priority.</p>
+        <div class="bw-hi__guide-media">
+          <img src="{{ kitchen_preview_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="900" height="675">
+        </div>
+        <strong>Use budget as a finish lane</strong>
+        <p>Balanced premium and statement premium are not fixed prices. They help the team pitch the right finish level and room priority.</p>
       </article>
       <article class="bw-hi__guide-card bw-hi__guide-card--accent">
-        <strong>Move into the estimate</strong>
+        <div class="bw-hi__guide-media">
+          <img src="{{ bedroom_preview_src }}" alt="{{ bedroom_preview_alt }}" loading="lazy" width="900" height="675">
+        </div>
+        <strong>Move into a guided estimate</strong>
         <p>Once the room mix, timeline, and project type feel settled, send the brief and let the team respond with a grounded next step.</p>
       </article>
     </div>
@@ -1048,6 +1111,7 @@
     var summaryImage = root.querySelector('[data-hi-summary-image]');
     var summaryCaption = root.querySelector('[data-hi-summary-caption]');
     var summaryTags = root.querySelector('[data-hi-summary-tags]');
+    var lastRoomValue = '';
 
     function selectedRadio(name) {
       var node = root.querySelector('input[name="' + name + '"]:checked');
@@ -1066,15 +1130,14 @@
     }
 
     function firstSelectedRoomCard() {
-      var preferred = ['Modular Kitchen', 'Wardrobe', 'Living Room', 'Bedroom', 'Study / WFH', 'Dining'];
       var cards = Array.prototype.slice.call(root.querySelectorAll('[data-hi-room-card]'));
 
-      for (var i = 0; i < preferred.length; i += 1) {
-        var match = cards.find(function (card) {
+      if (lastRoomValue) {
+        var activeCard = cards.find(function (card) {
           var input = card.querySelector('input');
-          return input && input.checked && input.value === preferred[i];
+          return input && input.checked && input.value === lastRoomValue;
         });
-        if (match) return match;
+        if (activeCard) return activeCard;
       }
 
       return cards.find(function (card) {
@@ -1134,24 +1197,24 @@
         if (summaryImage && previewAlt) summaryImage.alt = previewAlt;
         if (summaryCaption && previewCaption) summaryCaption.textContent = previewCaption;
       } else if (summaryCaption) {
-        summaryCaption.textContent = 'Choose the room mix first. The lead room will preview here so the brief feels anchored to a real space instead of abstract scope.';
+        summaryCaption.textContent = 'Choose the room mix first. One selected room will preview here so the brief feels anchored to a real home context.';
       }
 
       var recommendation = root.querySelector('[data-hi-recommendation]');
       if (recommendation) {
-        var recommendationText = 'Pick the lead room first.';
+        var recommendationText = 'Pick the rooms you want Bluewud to price first.';
         if (rooms.indexOf('Modular Kitchen') !== -1 && rooms.indexOf('Wardrobe') !== -1) {
-          recommendationText = 'This looks like a modular-core home brief.';
+          recommendationText = 'You are planning the two biggest modular zones together. A guided estimate call will help lock the right scope faster.';
         } else if (rooms.indexOf('Modular Kitchen') !== -1) {
-          recommendationText = 'Kitchen is leading this brief. Use the kitchen planner if the layout still needs work.';
+          recommendationText = 'Kitchen looks like the lead room. If the layout still feels open, refine it once in the kitchen planner before sharing the brief.';
         } else if (rooms.indexOf('Wardrobe') !== -1 && rooms.length === 1) {
-          recommendationText = 'Wardrobe is leading this brief. Lock the storage format before asking for numbers.';
+          recommendationText = 'Wardrobe is leading this project. Keep the storage type clear so the first estimate is more useful.';
         } else if (rooms.length > 2) {
-          recommendationText = 'This reads like a broader home interiors project.';
+          recommendationText = 'This looks like a broader home refresh. Keep only the spaces you truly want priced right now.';
         } else if (rooms.indexOf('Study / WFH') !== -1) {
-          recommendationText = 'Study and WFH briefs work best when storage and work rhythm are clear early.';
+          recommendationText = 'WFH-led projects work best when storage and long-hour comfort are both clear early.';
         } else if (rooms.indexOf('Living Room') !== -1 || rooms.indexOf('Bedroom') !== -1) {
-          recommendationText = 'This is a room-led interiors brief. Keep the scope crisp and send one clean brief.';
+          recommendationText = 'This looks like a room-led furnishing brief. Keep the scope focused and send one clean estimate request.';
         }
         recommendation.innerHTML = '<strong>Recommended next move</strong>' + recommendationText;
       }
@@ -1224,6 +1287,9 @@
         if (input) {
           if (input.type === 'checkbox') input.checked = !input.checked;
           else input.checked = true;
+          if (choice.hasAttribute('data-hi-room-card')) {
+            lastRoomValue = input.checked ? input.value : '';
+          }
           updateStates();
         }
         return;

@@ -14,13 +14,16 @@
   assign wardrobe_preview_primary = blank
   assign wardrobe_preview_secondary = blank
   assign wardrobe_preview_tertiary = blank
+  assign wardrobe_preview_quaternary = blank
   assign wardrobe_preview_fallback = blank
   assign wardrobe_preview_primary_src = blank
   assign wardrobe_preview_secondary_src = blank
   assign wardrobe_preview_tertiary_src = blank
+  assign wardrobe_preview_quaternary_src = blank
   assign wardrobe_preview_primary_alt = 'Bluewud wardrobe planning reference'
   assign wardrobe_preview_secondary_alt = 'Bluewud wardrobe planning reference'
   assign wardrobe_preview_tertiary_alt = 'Bluewud wardrobe planning reference'
+  assign wardrobe_preview_quaternary_alt = 'Bluewud wardrobe planning reference'
 
   if pages['modular-wardrobe-designs'] != blank
     assign wardrobe_main_url = pages['modular-wardrobe-designs'].url
@@ -61,6 +64,9 @@
     if wardrobe_collection.products.size > 2
       assign wardrobe_preview_tertiary = wardrobe_collection.products[2]
     endif
+    if wardrobe_collection.products.size > 3
+      assign wardrobe_preview_quaternary = wardrobe_collection.products[3]
+    endif
   endif
 
   if wardrobe_preview_fallback == blank and bedroom_collection != blank
@@ -77,6 +83,8 @@
   elsif wardrobe_preview_fallback != blank
     assign wardrobe_preview_primary_src = wardrobe_preview_fallback | image_url: width: 900
     assign wardrobe_preview_primary_alt = wardrobe_collection.title | default: wardrobe_preview_primary_alt
+  else
+    assign wardrobe_preview_primary_src = 'modular-kitchen-light-oak-l-shape.png' | asset_url
   endif
 
   if wardrobe_preview_secondary != blank and wardrobe_preview_secondary.featured_image != blank
@@ -97,6 +105,19 @@
     assign wardrobe_preview_tertiary_src = wardrobe_preview_fallback | image_url: width: 900
   else
     assign wardrobe_preview_tertiary_src = 'modular-kitchen-navy-luxury.png' | asset_url
+  endif
+
+  if wardrobe_preview_secondary_src == blank
+    assign wardrobe_preview_secondary_src = wardrobe_preview_primary_src
+    assign wardrobe_preview_secondary_alt = wardrobe_preview_primary_alt
+  endif
+
+  if wardrobe_preview_quaternary != blank and wardrobe_preview_quaternary.featured_image != blank
+    assign wardrobe_preview_quaternary_src = wardrobe_preview_quaternary.featured_image | image_url: width: 900
+    assign wardrobe_preview_quaternary_alt = wardrobe_preview_quaternary.title | default: wardrobe_preview_quaternary_alt
+  elsif wardrobe_preview_primary_src != blank
+    assign wardrobe_preview_quaternary_src = wardrobe_preview_primary_src
+    assign wardrobe_preview_quaternary_alt = wardrobe_preview_primary_alt
   endif
 %}
 
@@ -169,7 +190,7 @@
   }
   .bw-flow__journey {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
     gap: 14px;
     margin-bottom: 18px;
   }
@@ -496,6 +517,49 @@
   .bw-flow__choices[data-flow-group="internals"] {
     grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   }
+  .bw-flow__choices[data-flow-group="type"] {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+  .bw-flow__choice--visual {
+    gap: 10px;
+    padding: 10px;
+    min-height: 0;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .bw-flow__choice-media {
+    min-height: 128px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
+  }
+  .bw-flow__choice-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bw-flow__choice-copy {
+    display: grid;
+    gap: 4px;
+    align-content: start;
+  }
+  .bw-flow__choice-title {
+    color: inherit;
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+  .bw-flow__choice-note {
+    color: #66554c;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.55;
+    text-transform: none;
+  }
+  .bw-flow__choice.is-selected .bw-flow__choice-note {
+    color: rgba(255, 247, 241, 0.84);
+  }
   .bw-flow__grid {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -654,50 +718,48 @@
       <div class="bw-flow__head">
         <span class="bw-flow__eyebrow">Wardrobe planning workflow</span>
         <h2 class="bw-flow__title">Wardrobe Cost Calculator</h2>
-        <p class="bw-flow__copy">This is now a consultation-first workflow. Instead of pretending to give a final quote, it helps the customer build a wardrobe brief that Bluewud can actually respond to properly.</p>
+        <p class="bw-flow__copy">Build the wardrobe brief first so Bluewud can respond with the right storage format, finish direction, and estimate conversation.</p>
       </div>
 
       <div class="bw-flow__journey">
         <a class="bw-flow__preview-card" href="{{ wardrobe_sliding_url }}">
           <div class="bw-flow__preview-media">
-            {% if wardrobe_preview_primary_src != blank %}
-              <img src="{{ wardrobe_preview_primary_src }}" alt="{{ wardrobe_preview_primary_alt }}" loading="lazy" width="900" height="675">
-            {% else %}
-              <span class="bw-flow__preview-fallback">Wardrobe reference</span>
-            {% endif %}
+            <img src="{{ wardrobe_preview_primary_src }}" alt="{{ wardrobe_preview_primary_alt }}" loading="lazy" width="900" height="675">
           </div>
           <div class="bw-flow__preview-copy">
-            <span class="bw-flow__preview-kicker">Reference 01</span>
+            <span class="bw-flow__preview-kicker">Space-saving format</span>
             <h3 class="bw-flow__preview-title">Sliding wardrobes</h3>
             <p class="bw-flow__preview-text">Compact frontage, clean movement, and a room-saving door system.</p>
           </div>
         </a>
         <a class="bw-flow__preview-card" href="{{ wardrobe_hinged_url }}">
           <div class="bw-flow__preview-media">
-            {% if wardrobe_preview_secondary_src != blank %}
-              <img src="{{ wardrobe_preview_secondary_src }}" alt="{{ wardrobe_preview_secondary_alt }}" loading="lazy" width="900" height="675">
-            {% else %}
-              <span class="bw-flow__preview-fallback">Wardrobe reference</span>
-            {% endif %}
+            <img src="{{ wardrobe_preview_secondary_src }}" alt="{{ wardrobe_preview_secondary_alt }}" loading="lazy" width="900" height="675">
           </div>
           <div class="bw-flow__preview-copy">
-            <span class="bw-flow__preview-kicker">Reference 02</span>
+            <span class="bw-flow__preview-kicker">Full-access format</span>
             <h3 class="bw-flow__preview-title">Hinged wardrobes</h3>
             <p class="bw-flow__preview-text">Full opening, direct access, and a classic wardrobe read.</p>
           </div>
         </a>
         <a class="bw-flow__preview-card" href="{{ wardrobe_walkin_url }}">
           <div class="bw-flow__preview-media">
-            {% if wardrobe_preview_tertiary_src != blank %}
-              <img src="{{ wardrobe_preview_tertiary_src }}" alt="{{ wardrobe_preview_tertiary_alt }}" loading="lazy" width="900" height="675">
-            {% else %}
-              <span class="bw-flow__preview-fallback">Wardrobe reference</span>
-            {% endif %}
+            <img src="{{ wardrobe_preview_tertiary_src }}" alt="{{ wardrobe_preview_tertiary_alt }}" loading="lazy" width="900" height="675">
           </div>
           <div class="bw-flow__preview-copy">
-            <span class="bw-flow__preview-kicker">Reference 03</span>
+            <span class="bw-flow__preview-kicker">Suite-led format</span>
             <h3 class="bw-flow__preview-title">Walk-in wardrobes</h3>
             <p class="bw-flow__preview-text">Dedicated dressing flow, larger zoning, and premium storage intent.</p>
+          </div>
+        </a>
+        <a class="bw-flow__preview-card" href="{{ wardrobe_main_url }}#floor-to-ceiling">
+          <div class="bw-flow__preview-media">
+            <img src="{{ wardrobe_preview_quaternary_src }}" alt="{{ wardrobe_preview_quaternary_alt }}" loading="lazy" width="900" height="675">
+          </div>
+          <div class="bw-flow__preview-copy">
+            <span class="bw-flow__preview-kicker">Built-in format</span>
+            <h3 class="bw-flow__preview-title">Floor-to-ceiling wardrobes</h3>
+            <p class="bw-flow__preview-text">Full-height storage, loft-ready planning, and a more seamless built-in room line.</p>
           </div>
         </a>
       </div>
@@ -718,10 +780,26 @@
         <div class="bw-flow__section">
           <div class="bw-flow__label">Wardrobe type</div>
           <div class="bw-flow__choices" data-flow-group="type">
-            <label class="bw-flow__choice is-selected"><input type="radio" name="wardrobe_type" value="Sliding" checked>Sliding</label>
-            <label class="bw-flow__choice"><input type="radio" name="wardrobe_type" value="Hinged">Hinged</label>
-            <label class="bw-flow__choice"><input type="radio" name="wardrobe_type" value="Walk-in">Walk-in</label>
-            <label class="bw-flow__choice"><input type="radio" name="wardrobe_type" value="Floor to ceiling">Floor To Ceiling</label>
+            <label class="bw-flow__choice bw-flow__choice--visual is-selected">
+              <input type="radio" name="wardrobe_type" value="Sliding" checked>
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_primary_src }}" alt="{{ wardrobe_preview_primary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Sliding</span><span class="bw-flow__choice-note">Best when the room needs cleaner movement and tighter frontage clearance.</span></span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--visual">
+              <input type="radio" name="wardrobe_type" value="Hinged">
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_secondary_src }}" alt="{{ wardrobe_preview_secondary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Hinged</span><span class="bw-flow__choice-note">Great for full-bay access and more familiar daily use in larger bedrooms.</span></span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--visual">
+              <input type="radio" name="wardrobe_type" value="Walk-in">
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_tertiary_src }}" alt="{{ wardrobe_preview_tertiary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Walk-in</span><span class="bw-flow__choice-note">For premium suites that need dressing flow, open access, and broader zoning.</span></span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--visual">
+              <input type="radio" name="wardrobe_type" value="Floor to ceiling">
+              <span class="bw-flow__choice-media"><img src="{{ wardrobe_preview_quaternary_src }}" alt="{{ wardrobe_preview_quaternary_alt }}" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Floor to ceiling</span><span class="bw-flow__choice-note">Use when the brief prioritizes full-height storage, loft integration, and a built-in look.</span></span>
+            </label>
           </div>
         </div>
         <div class="bw-flow__section">
@@ -899,7 +977,7 @@
       <div class="bw-flow__head">
         <span class="bw-flow__eyebrow">Project summary</span>
         <h2 class="bw-flow__title">Your wardrobe brief</h2>
-        <p class="bw-flow__copy">This should read like a real room-led wardrobe direction, not a fake quote box.</p>
+        <p class="bw-flow__copy">This is a quick wardrobe snapshot so Bluewud can respond with a more relevant storage and estimate conversation.</p>
       </div>
 
       <div class="bw-flow__badge" data-wardrobe-band>Balanced premium direction</div>
@@ -921,7 +999,7 @@
       <p class="bw-flow__assist">This brief helps Bluewud respond with a clearer wardrobe plan, material direction, and estimate conversation from the start.</p>
       <div class="bw-flow__actions">
         <button class="bw-flow__button" type="button" data-bw-wardrobe-popup-open>Get Free Estimate</button>
-        <a class="bw-flow__button--secondary" href="{{ contact_url }}">Talk To Bluewud</a>
+        <a class="bw-flow__button--secondary" href="{{ contact_url }}">Talk to a Wardrobe Expert</a>
       </div>
     </aside>
   </div>
@@ -963,8 +1041,8 @@
         caption: 'Walk-in wardrobes need calmer zoning and a stronger dressing flow before the estimate conversation begins.'
       },
       'floor to ceiling': {
-        src: {{ wardrobe_preview_secondary_src | json }},
-        alt: {{ wardrobe_preview_secondary_alt | json }},
+        src: {{ wardrobe_preview_quaternary_src | json }},
+        alt: {{ wardrobe_preview_quaternary_alt | json }},
         caption: 'Floor-to-ceiling wardrobes turn height into cleaner storage volume and reduce visual clutter across the room.'
       }
     };

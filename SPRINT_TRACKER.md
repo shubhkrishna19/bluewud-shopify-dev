@@ -172,6 +172,10 @@ Files:
 - the kitchen and wardrobe collection planners now surface the embedded calculators directly below the shared planning rail instead of burying them far down the page
 - the home interiors planner now opens with image-led room cards, a live visual summary, and compact recommendation logic instead of relying on abstract text alone
 - kitchen, wardrobe, and home-interiors planners now use compact preflight guidance sections directly below the calculator so useful explanation stays visible without crowding the first interaction
+- kitchen calculator utility selections now render as image-led decision cards instead of plain checkbox walls, while appliance selection remains multi-select
+- wardrobe calculator now exposes a fourth full-height wardrobe format lane and stops collapsing that state into the same secondary preview
+- home interiors planner now uses more customer-facing copy, clearer room-led preview behavior, and less internal workflow language in the summary and lower guidance blocks
+- planner imagery audit is now explicit: wardrobe and interiors mostly inherit Shopify collection/product media already, while kitchen planner visuals remain the main hardcoded asset surface to wire into GUI later
 
 ## Current Review Routes
 
