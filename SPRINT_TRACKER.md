@@ -176,6 +176,7 @@ Files:
 - wardrobe calculator now exposes a fourth full-height wardrobe format lane and stops collapsing that state into the same secondary preview
 - home interiors planner now uses more customer-facing copy, clearer room-led preview behavior, and less internal workflow language in the summary and lower guidance blocks
 - planner imagery audit is now explicit: wardrobe and interiors mostly inherit Shopify collection/product media already, while kitchen planner visuals remain the main hardcoded asset surface to wire into GUI later
+- added a structured external image-production pipeline under `image-production/planner-library/` plus new planner image generation docs and prompt catalog for kitchen, wardrobe, interiors, and shared estimate/process visuals
 
 ## Current Review Routes
 
