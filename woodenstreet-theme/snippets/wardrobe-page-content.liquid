@@ -732,14 +732,55 @@
     .bw-wardrobe-gallery-main-card, .bw-wardrobe-gallery-card { grid-template-columns: 1fr; }
   }
   @media (max-width: 720px) {
-    .bw-wardrobe-block, .bw-wardrobe-band { padding: 22px 20px; border-radius: 24px; }
+    .bw-planning-rail__items {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 8px;
+      margin-inline: -20px;
+      padding: 0 20px 6px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x proximity;
+    }
+    .bw-planning-rail__items::-webkit-scrollbar { display: none; }
+    .bw-planning-rail__link {
+      flex: 0 0 auto;
+      min-height: 40px;
+      padding: 0 14px;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+    }
+    .bw-wardrobe-block, .bw-wardrobe-band { padding: 18px 16px; border-radius: 22px; }
     .bw-wardrobe-subnav { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
     .bw-wardrobe-subnav::-webkit-scrollbar { display: none; }
     .bw-wardrobe-chip { flex: 0 0 auto; white-space: nowrap; }
     .bw-wardrobe-grid-4, .bw-wardrobe-grid-3, .bw-wardrobe-grid-2, .bw-wardrobe-products, .bw-wardrobe-compare-grid, .bw-wardrobe-journey-grid, .bw-wardrobe-measure-grid, .bw-wardrobe-route-grid, .bw-wardrobe-gallery-grid, .bw-wardrobe-consult-grid, .bw-wardrobe-proof-grid, .bw-wardrobe-guide-grid { grid-template-columns: 1fr; }
     .bw-wardrobe-gallery-main-card, .bw-wardrobe-gallery-card { grid-template-columns: 1fr; }
     .bw-wardrobe-lens-grid { grid-template-columns: 1fr; }
-    .bw-wardrobe-product-media { min-height: 220px; }
+    .bw-wardrobe-route-card,
+    .bw-wardrobe-measure-card,
+    .bw-wardrobe-journey-card,
+    .bw-wardrobe-consult-card,
+    .bw-wardrobe-proof-card,
+    .bw-wardrobe-guide-card,
+    .bw-wardrobe-faq,
+    .bw-wardrobe-card { padding: 16px; gap: 8px; }
+    .bw-wardrobe-gallery-main-copy,
+    .bw-wardrobe-gallery-card-body { padding: 16px; gap: 8px; }
+    .bw-wardrobe-gallery-main-card { min-height: 0; }
+    .bw-wardrobe-gallery-main-media,
+    .bw-wardrobe-gallery-media,
+    .bw-wardrobe-product-media { min-height: 170px; }
+    .bw-wardrobe-gallery-actions,
+    .bw-wardrobe-journey-link,
+    .bw-wardrobe-gallery-link,
+    .bw-wardrobe-button,
+    .bw-wardrobe-button--secondary {
+      width: 100%;
+      justify-content: center;
+    }
+    .bw-wardrobe-gallery-actions { flex-direction: column; align-items: stretch; }
   }
 </style>
 

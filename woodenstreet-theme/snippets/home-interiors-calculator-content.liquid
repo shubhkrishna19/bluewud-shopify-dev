@@ -848,21 +848,63 @@
     .bw-hi__summary { position: static; }
   }
   @media (max-width: 720px) {
+    .bw-planning-rail__items {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 8px;
+      margin-inline: -20px;
+      padding: 0 20px 6px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x proximity;
+    }
+    .bw-planning-rail__items::-webkit-scrollbar { display: none; }
+    .bw-planning-rail__link {
+      flex: 0 0 auto;
+      min-height: 40px;
+      padding: 0 14px;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+    }
     .bw-hi__hero,
-    .bw-hi__journey { padding: 20px 18px; border-radius: 22px; }
+    .bw-hi__journey { padding: 18px 16px; border-radius: 22px; }
     .bw-hi__hero-title { font-size: clamp(24px, 7vw, 34px); }
     .bw-hi__hero-surface { gap: 12px; }
-    .bw-hi__journey-links { gap: 8px; }
+    .bw-hi__hero-visual-strip { grid-template-columns: 1fr; }
+    .bw-hi__journey-links { gap: 8px; flex-wrap: wrap; }
     .bw-hi__panel,
-    .bw-hi__summary { padding: 22px 20px; border-radius: 24px; }
-    .bw-hi__grid { grid-template-columns: 1fr; }
-    .bw-hi__progress { grid-template-columns: 1fr; }
+    .bw-hi__summary { padding: 18px 16px; border-radius: 22px; }
+    .bw-hi__roadmap-card,
+    .bw-hi__progress-card,
+    .bw-hi__guide-card { padding: 16px; }
+    .bw-hi__grid { grid-template-columns: 1fr; gap: 12px; }
+    .bw-hi__progress { grid-template-columns: 1fr; gap: 12px; }
+    .bw-hi__choices,
+    .bw-hi__choices[data-hi-group="rooms"],
+    .bw-hi__choices[data-hi-group="property"],
+    .bw-hi__choices[data-hi-group="intent"],
+    .bw-hi__choices[data-hi-group="budget"] { grid-template-columns: 1fr; }
+    .bw-hi__choice { padding: 10px; gap: 8px; }
+    .bw-hi__choice--compact { padding: 10px; }
+    .bw-hi__choice-media,
+    .bw-hi__choice-media--compact { min-height: 84px; }
+    .bw-hi__hero-panel-media,
+    .bw-hi__hero-visual-card,
+    .bw-hi__progress-media,
+    .bw-hi__summary-visual { min-height: 128px; }
+    .bw-hi__progress-card--visual { gap: 8px; }
     .bw-hi__summary-line {
       display: grid;
       gap: 4px;
       justify-content: stretch;
     }
     .bw-hi__summary-line strong { text-align: left; }
+    .bw-hi__summary-tags,
+    .bw-hi__summary-list { gap: 8px; }
+    .bw-hi__summary .bw-hi__actions { flex-direction: column; }
+    .bw-hi__button,
+    .bw-hi__button--secondary { width: 100%; justify-content: center; }
   }
 </style>
 

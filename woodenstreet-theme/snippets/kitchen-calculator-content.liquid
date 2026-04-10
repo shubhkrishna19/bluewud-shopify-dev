@@ -725,19 +725,61 @@
     .bw-flow__network-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   @media (max-width: 720px) {
+    .bw-planning-rail__items {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 8px;
+      margin-inline: -20px;
+      padding: 0 20px 6px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x proximity;
+    }
+    .bw-planning-rail__items::-webkit-scrollbar { display: none; }
+    .bw-planning-rail__link {
+      flex: 0 0 auto;
+      min-height: 40px;
+      padding: 0 14px;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+    }
     .bw-flow__panel,
-    .bw-flow__summary { padding: 22px 20px; border-radius: 24px; }
+    .bw-flow__summary { padding: 18px 16px; border-radius: 22px; }
     .bw-flow__progress,
     .bw-flow__grid { grid-template-columns: 1fr; }
+    .bw-flow__progress { gap: 8px; }
     .bw-flow__decision-grid,
     .bw-flow__summary-cues,
-    .bw-flow__summary-list { grid-template-columns: 1fr; }
+    .bw-flow__summary-list { grid-template-columns: 1fr; gap: 8px; }
     .bw-flow__journey-grid,
     .bw-flow__network-links { grid-template-columns: 1fr; }
-    .bw-flow__actions { flex-direction: column-reverse; align-items: stretch; }
+    .bw-flow__choices,
+    .bw-flow__choices[data-flow-group="layout"],
+    .bw-flow__choices[data-flow-group="property"],
+    .bw-flow__choices[data-flow-group="usage"],
+    .bw-flow__choices[data-flow-group="uppers"],
+    .bw-flow__choices[data-flow-group="carcass"],
+    .bw-flow__choices[data-flow-group="countertop"],
+    .bw-flow__choices[data-flow-group="appliances"],
+    .bw-flow__choices[data-flow-group="addons"] { grid-template-columns: 1fr; }
+    .bw-flow__choice { padding: 12px 14px; min-height: 0; }
+    .bw-flow__choice--visual,
+    .bw-flow__choice--context { padding: 10px; }
+    .bw-flow__choice-media { min-height: 108px; }
+    .bw-flow__choice--image { min-height: 0; }
+    .bw-flow__choice--image .bw-flow__choice-media { min-height: 82px; }
+    .bw-flow__decision-card,
+    .bw-flow__journey-card,
+    .bw-flow__utility-card { padding: 12px; }
+    .bw-flow__summary .bw-flow__actions,
+    .bw-flow__actions { flex-direction: column-reverse; align-items: stretch; gap: 8px; }
     .bw-flow__summary .bw-flow__actions { flex-direction: column; }
-    .bw-flow__summary-visual { min-height: 148px; }
-    .bw-flow__utility-grid { grid-template-columns: 1fr; }
+    .bw-flow__summary-visual { min-height: 128px; }
+    .bw-flow__summary-cue { padding: 10px 12px; }
+    .bw-flow__summary-line { gap: 3px; }
+    .bw-flow__button,
+    .bw-flow__button--secondary { width: 100%; justify-content: center; }
   }
 </style>
 

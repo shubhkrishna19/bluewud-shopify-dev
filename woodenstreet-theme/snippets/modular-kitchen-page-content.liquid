@@ -844,8 +844,27 @@
     .bw-modular__gallery-grid { grid-auto-columns: minmax(280px, calc((100% - 16px) / 2)); }
   }
   @media (max-width: 720px) {
+    .bw-planning-rail__items {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 8px;
+      margin-inline: -20px;
+      padding: 0 20px 6px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x proximity;
+    }
+    .bw-planning-rail__items::-webkit-scrollbar { display: none; }
+    .bw-planning-rail__link {
+      flex: 0 0 auto;
+      min-height: 40px;
+      padding: 0 14px;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+    }
     .bw-modular__block,
-    .bw-modular__band { padding: 22px 20px; border-radius: 24px; }
+    .bw-modular__band { padding: 18px 16px; border-radius: 22px; }
     .bw-modular__tabs { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; scrollbar-width: none; }
     .bw-modular__tabs::-webkit-scrollbar { display: none; }
     .bw-modular__tab { flex: 0 0 auto; white-space: nowrap; }
@@ -855,11 +874,32 @@
     .bw-modular__process-grid,
     .bw-modular__products,
     .bw-modular__launchpad { grid-template-columns: 1fr; }
+    .bw-modular__blueprint-card,
+    .bw-modular__decision-card,
+    .bw-modular__gallery-card,
+    .bw-modular__launch-card { padding: 16px; gap: 10px; }
+    .bw-modular__blueprint-card h3,
+    .bw-modular__decision-card h3,
+    .bw-modular__gallery-card h3,
+    .bw-modular__launch-card h3 { font-size: 16px; }
+    .bw-modular__product-media,
+    .bw-modular__gallery-media,
+    .bw-modular__launch-media { min-height: 164px; }
     .bw-modular__gallery-toolbar {
       align-items: flex-start;
       flex-direction: column;
+      gap: 8px;
     }
-    .bw-modular__gallery-grid { grid-auto-columns: minmax(260px, 86vw); }
+    .bw-modular__gallery-grid { grid-auto-columns: minmax(84vw, 84vw); }
+    .bw-modular__blueprint-actions {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .bw-modular__blueprint-actions .bw-modular__button,
+    .bw-modular__blueprint-actions .bw-modular__button--secondary {
+      width: 100%;
+      justify-content: center;
+    }
   }
 </style>
 
