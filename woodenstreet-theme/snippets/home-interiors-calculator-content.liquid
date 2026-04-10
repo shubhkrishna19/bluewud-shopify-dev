@@ -939,6 +939,207 @@
     .bw-hi__summary-tags,
     .bw-hi__summary-list { gap: 6px; }
   }
+  @media (max-width: 720px) {
+    .bw-planning-rail__items {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 6px;
+      margin-inline: -16px;
+      padding: 0 16px 6px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x proximity;
+    }
+    .bw-planning-rail__items::-webkit-scrollbar { display: none; }
+    .bw-planning-rail__link {
+      flex: 0 0 auto;
+      min-height: 38px;
+      padding: 0 12px;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+    .bw-hi { gap: 14px; }
+    .bw-hi__hero,
+    .bw-hi__journey,
+    .bw-hi__panel,
+    .bw-hi__summary,
+    .bw-hi__guide {
+      padding: 16px 14px;
+      border-radius: 20px;
+    }
+    .bw-hi__hero-title {
+      font-size: clamp(24px, 8vw, 32px);
+      line-height: 1.08;
+    }
+    .bw-hi__hero-copy,
+    .bw-hi__journey-copy,
+    .bw-hi__copy {
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .bw-hi__hero-pills {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 8px;
+      margin-inline: -14px;
+      padding: 0 14px 2px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .bw-hi__hero-pills::-webkit-scrollbar { display: none; }
+    .bw-hi__hero-surface,
+    .bw-hi__roadmap,
+    .bw-hi__progress,
+    .bw-hi__guide-grid {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .bw-hi__hero-visual-strip {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .bw-hi__hero-panel,
+    .bw-hi__hero-visual,
+    .bw-hi__roadmap-card,
+    .bw-hi__progress-card,
+    .bw-hi__guide-card {
+      padding: 14px;
+      gap: 8px;
+    }
+    .bw-hi__hero-panel-media,
+    .bw-hi__hero-visual-card,
+    .bw-hi__progress-media,
+    .bw-hi__guide-media,
+    .bw-hi__summary-visual {
+      min-height: 108px;
+    }
+    .bw-hi__progress-card--visual {
+      gap: 8px;
+    }
+    .bw-hi__choices,
+    .bw-hi__choices[data-hi-group="rooms"],
+    .bw-hi__choices[data-hi-group="property"],
+    .bw-hi__choices[data-hi-group="intent"],
+    .bw-hi__choices[data-hi-group="budget"] {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .bw-hi__choice {
+      padding: 10px;
+      gap: 6px;
+      min-height: 0;
+    }
+    .bw-hi__choice-media,
+    .bw-hi__choice-media--compact {
+      min-height: 88px;
+    }
+    .bw-hi__choice--compact .bw-hi__choice-media,
+    .bw-hi__choice--visual .bw-hi__choice-media {
+      min-height: 76px;
+    }
+    .bw-hi__choice-title {
+      font-size: 13px;
+    }
+    .bw-hi__choice-note {
+      font-size: 11px;
+      line-height: 1.45;
+    }
+    .bw-hi__grid {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .bw-hi__field input,
+    .bw-hi__field select {
+      min-height: 44px;
+      border-radius: 16px;
+    }
+    .bw-hi__summary-visual {
+      min-height: 116px;
+      margin-bottom: 10px;
+    }
+    .bw-hi__summary-caption {
+      margin-bottom: 10px;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+    .bw-hi__summary-list {
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .bw-hi__summary-line {
+      display: grid;
+      gap: 3px;
+      padding-bottom: 8px;
+      font-size: 12px;
+    }
+    .bw-hi__summary-tags {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .bw-hi__summary-tag {
+      flex: 0 0 auto;
+    }
+    .bw-hi__actions,
+    .bw-hi__summary .bw-hi__actions {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 8px;
+    }
+    .bw-hi__button,
+    .bw-hi__button--secondary {
+      width: 100%;
+      justify-content: center;
+      min-height: 42px;
+      padding-inline: 14px;
+    }
+    .bw-hi__recommendation {
+      padding: 14px;
+      font-size: 12px;
+      line-height: 1.65;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .bw-hi { gap: 12px; }
+    .bw-hi__hero,
+    .bw-hi__journey,
+    .bw-hi__panel,
+    .bw-hi__summary,
+    .bw-hi__guide {
+      padding: 14px 12px;
+    }
+    .bw-hi__hero-title {
+      font-size: clamp(22px, 8.5vw, 28px);
+    }
+    .bw-hi__hero-panel-media,
+    .bw-hi__hero-visual-card,
+    .bw-hi__progress-media,
+    .bw-hi__guide-media,
+    .bw-hi__summary-visual {
+      min-height: 96px;
+    }
+    .bw-hi__choice-media,
+    .bw-hi__choice-media--compact {
+      min-height: 80px;
+    }
+    .bw-hi__choice--compact .bw-hi__choice-media,
+    .bw-hi__choice--visual .bw-hi__choice-media {
+      min-height: 72px;
+    }
+    .bw-hi__summary-visual {
+      min-height: 104px;
+    }
+    .bw-hi__summary-line {
+      gap: 2px;
+    }
+    .bw-hi__recommendation {
+      padding: 12px;
+    }
+  }
 </style>
 
 <div class="bw-hi" data-bw-home-interiors-flow>

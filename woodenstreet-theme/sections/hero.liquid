@@ -367,11 +367,11 @@
     }
 
     .bw-hero__viewport {
-      min-height: 440px;
+      min-height: 380px;
     }
 
     .bw-hero__content {
-      padding: 18px 18px 60px;
+      padding: 16px 16px 44px;
       justify-content: flex-start !important;
       align-items: flex-end;
       text-align: left !important;
@@ -379,35 +379,82 @@
 
     .bw-hero__card {
       max-width: 100%;
-      padding: 20px 18px 22px;
-      border-radius: 24px;
+      padding: 18px 16px 20px;
+      border-radius: 22px;
       background: rgba(255, 250, 246, 0.88);
     }
 
+    .bw-hero__eyebrow {
+      margin-bottom: 10px;
+      font-size: 10px;
+    }
+
+    .bw-hero__heading {
+      font-size: clamp(26px, 8.5vw, 40px);
+    }
+
+    .bw-hero__tail {
+      font-size: clamp(18px, 5vw, 28px);
+    }
+
     .bw-hero__copy {
-      font-size: 14px;
-      line-height: 1.65;
+      margin-top: 12px;
+      font-size: 13px;
+      line-height: 1.55;
     }
 
-    .bw-hero__nav-button {
-      width: 42px;
-      height: 42px;
-      margin-top: -21px;
+    .bw-hero__actions {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 8px;
+      margin-top: 18px;
     }
 
-    .bw-hero__nav-button--prev {
-      left: 12px;
-    }
-
-    .bw-hero__nav-button--next {
-      right: 12px;
+    .bw-hero__content--right .bw-hero__actions,
+    .bw-hero__content--center .bw-hero__actions {
+      justify-content: flex-start;
     }
 
     .bw-hero__button,
     .bw-hero__secondary {
-      min-height: 44px;
-      padding: 0 16px;
-      font-size: 11px;
+      width: 100%;
+      min-height: 42px;
+      padding: 0 14px;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+    }
+
+    .bw-hero__content--right,
+    .bw-hero__content--center {
+      justify-content: flex-start;
+      text-align: left;
+    }
+
+    .bw-hero__nav-button {
+      width: 38px;
+      height: 38px;
+      margin-top: -19px;
+    }
+
+    .bw-hero__nav-button--prev {
+      left: 10px;
+    }
+
+    .bw-hero__nav-button--next {
+      right: 10px;
+    }
+  }
+
+  @media (max-width: 460px) {
+    .bw-hero__nav-button {
+      width: 34px;
+      height: 34px;
+      margin-top: -17px;
+    }
+
+    .bw-hero__button,
+    .bw-hero__secondary {
+      min-height: 40px;
     }
   }
 </style>

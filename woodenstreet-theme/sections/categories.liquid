@@ -207,31 +207,37 @@
     }
 
     .bw-categories__grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 14px;
+      grid-template-columns: 1fr;
+      gap: 12px;
     }
 
     .bw-categories__card--large {
       grid-column: 1 / -1;
-      min-height: 244px;
+      min-height: 220px;
     }
 
     .bw-categories__card--small {
       grid-column: auto;
-      min-height: 204px;
+      min-height: 196px;
     }
 
     .bw-categories__content {
       box-sizing: border-box;
-      padding: 16px 16px 26px;
+      padding: 14px 14px 20px;
+      gap: 6px;
     }
 
     .bw-categories__name {
-      font-size: 21px;
+      font-size: 19px;
+      line-height: 1.08;
     }
 
     .bw-categories__meta {
-      font-size: 13px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+      font-size: 12px;
+      line-height: 1.5;
     }
   }
 
@@ -241,7 +247,11 @@
     }
 
     .bw-categories__card--small {
-      min-height: 236px;
+      min-height: 206px;
+    }
+
+    .bw-categories__card--large {
+      min-height: 206px;
     }
   }
 </style>

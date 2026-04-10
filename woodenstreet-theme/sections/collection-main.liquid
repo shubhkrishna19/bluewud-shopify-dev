@@ -527,12 +527,12 @@
     }
 
     .bw-collection__hero {
-      min-height: 280px;
+      min-height: 240px;
     }
 
     .bw-collection__hero-content,
     .bw-collection__toolbar {
-      padding: 18px 18px;
+      padding: 16px;
     }
 
     .bw-collection__chips {
@@ -591,7 +591,7 @@
     }
 
     .bw-collection__grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+      grid-template-columns: 1fr;
       gap: 12px;
     }
 
@@ -601,12 +601,12 @@
     }
 
     .bw-collection__image-wrap {
-      min-height: 164px;
+      min-height: 190px;
       border-radius: 16px;
     }
 
     .bw-collection__card-title {
-      font-size: 16px;
+      font-size: 17px;
       line-height: 1.2;
       display: -webkit-box;
       -webkit-box-orient: vertical;
@@ -615,8 +615,8 @@
     }
 
     .bw-collection__card-meta {
-      font-size: 12px;
-      line-height: 1.55;
+      font-size: 11px;
+      line-height: 1.5;
       display: -webkit-box;
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 2;
@@ -634,16 +634,21 @@
     }
 
     .bw-collection__hero-actions {
-      gap: 10px;
+      gap: 8px;
+      flex-direction: column;
+      align-items: stretch;
     }
 
     .bw-collection__hero-button {
       min-height: 44px;
       font-size: 11px;
+      width: 100%;
     }
 
     .bw-collection__hero-button.is-secondary {
       min-height: auto;
+      width: auto;
+      align-self: flex-start;
       padding: 0;
       background: transparent;
       border: none;
@@ -654,7 +659,7 @@
     }
 
     .bw-collection__hero-trust {
-      gap: 8px;
+      display: none;
     }
 
     .bw-collection__hero-badge {
@@ -670,7 +675,7 @@
     }
 
     .bw-collection__image-wrap {
-      min-height: 220px;
+      min-height: 180px;
     }
   }
 </style>
