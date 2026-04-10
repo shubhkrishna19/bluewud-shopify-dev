@@ -75,38 +75,36 @@
         >
           {% if has_subnav %}
             <details data-navmenu-details>
-            <summary
-              data-href="{{ menu_item.url }}"
+              <summary
+                data-href="{{ menu_item.url }}"
+                class="
+                  navmenu-item-text
+                  navmenu-link
+                  navmenu-link-parent
+                  navmenu-meganav-sidenav__item-text
+                "
+                aria-haspopup="true"
+                aria-expanded="false"
+              >
+                <span class="navmenu-meganav-sidenav__submenu-wrapper">
+                  <span>{{ menu_item.title }}</span>
+                  <span class="navmenu-icon navmenu-icon-depth-2">
+                    {% render 'icon-chevron-down-small' %}
+                  </span>
+                </span>
+              </summary>
           {% else %}
             <a
               href="{{ menu_item.url }}"
-          {% endif %}
-            class="
-              navmenu-item-text
-              navmenu-link
-              {% if has_subnav %}
-                navmenu-link-parent
-              {% endif %}
-              navmenu-meganav-sidenav__item-text
-            "
-            {% if has_subnav %}
-              aria-haspopup="true"
-              aria-expanded="false"
-          {% endif %}
-          >
-            <span class="navmenu-meganav-sidenav__submenu-wrapper">
-              <span>{{ menu_item.title }}</span>
-              {% if has_subnav %}
-                <span
-                  class="navmenu-icon navmenu-icon-depth-2"
-                >
-                  {% render 'icon-chevron-down-small' %}
-                </span>
-              {% endif %}
-            </span>
-          {% if has_subnav %}
-            </summary>
-          {% else %}
+              class="
+                navmenu-item-text
+                navmenu-link
+                navmenu-meganav-sidenav__item-text
+              "
+            >
+              <span class="navmenu-meganav-sidenav__submenu-wrapper">
+                <span>{{ menu_item.title }}</span>
+              </span>
             </a>
           {% endif %}
 
@@ -117,16 +115,16 @@
               {% assign show_images_for = 'collection_link' %}
           {% endcase %}
 
-          {%
-            render 'navlist',
-            menu_list: linklists[menu_item.handle].links,
-            depth: 3,
-            max_depth: 3,
-            aria_expanded: true,
-            is_mobile: false,
-            show_images_for: show_images_for,
-          %}
           {% if has_subnav %}
+            {%
+              render 'navlist',
+              menu_list: linklists[menu_item.handle].links,
+              depth: 3,
+              max_depth: 3,
+              aria_expanded: true,
+              is_mobile: false,
+              show_images_for: show_images_for,
+            %}
             </details>
           {% endif %}
         </li>

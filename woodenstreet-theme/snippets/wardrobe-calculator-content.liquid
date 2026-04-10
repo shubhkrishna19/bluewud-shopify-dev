@@ -138,14 +138,18 @@
   }
   .bw-flow__summary {
     position: sticky;
-    top: 110px;
+    top: 92px;
     background: linear-gradient(135deg, #231813 0%, #3b2921 56%, #5c463c 100%);
     color: #fff7f1;
     height: fit-content;
+    max-height: calc(100vh - 120px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
   }
   .bw-flow__summary-visual {
-    min-height: 220px;
-    margin-bottom: 18px;
+    min-height: 168px;
+    margin-bottom: 14px;
     border-radius: 24px;
     overflow: hidden;
     background: rgba(255, 255, 255, 0.08);
@@ -629,19 +633,26 @@
   }
   .bw-flow__summary-list {
     display: grid;
-    gap: 12px;
-    margin-top: 18px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 14px;
+    margin-top: 16px;
   }
   .bw-flow__summary-line {
-    display: flex;
-    justify-content: space-between;
-    gap: 16px;
-    padding-bottom: 12px;
+    display: grid;
+    gap: 4px;
+    align-content: start;
+    min-width: 0;
+    padding-bottom: 10px;
     border-bottom: 1px solid rgba(255, 247, 241, 0.12);
     color: rgba(255, 247, 241, 0.88);
     font-size: 14px;
   }
-  .bw-flow__summary-line strong { color: #fff7f1; text-align: right; }
+  .bw-flow__summary-line strong {
+    color: #fff7f1;
+    text-align: left;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
   .bw-flow__summary-tags {
     display: flex;
     flex-wrap: wrap;
@@ -683,7 +694,11 @@
   }
   @media (max-width: 980px) {
     .bw-flow__shell { grid-template-columns: 1fr; }
-    .bw-flow__summary { position: static; }
+    .bw-flow__summary {
+      position: static;
+      max-height: none;
+      overflow: visible;
+    }
     .bw-flow__progress { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bw-flow__journey { grid-template-columns: 1fr; }
   }
@@ -696,6 +711,8 @@
     .bw-flow__showcase-image { min-height: 220px; }
     .bw-flow__preview-card { grid-template-columns: 1fr; }
     .bw-flow__actions { flex-direction: column-reverse; align-items: stretch; }
+    .bw-flow__summary .bw-flow__actions { flex-direction: column; }
+    .bw-flow__summary-list { grid-template-columns: 1fr; }
   }
 </style>
 
@@ -984,14 +1001,10 @@
 
       <div class="bw-flow__summary-list">
         <div class="bw-flow__summary-line"><span>Type</span><strong data-summary-type>Sliding</strong></div>
-        <div class="bw-flow__summary-line"><span>Room</span><strong data-summary-room>Master bedroom</strong></div>
-        <div class="bw-flow__summary-line"><span>Storage</span><strong data-summary-storage>Balanced daily use</strong></div>
+        <div class="bw-flow__summary-line"><span>Room</span><strong data-summary-room>Master bedroom • Balanced daily use</strong></div>
         <div class="bw-flow__summary-line"><span>Measurements</span><strong data-summary-measurements>7 ft / 8 ft / 2 ft</strong></div>
-        <div class="bw-flow__summary-line"><span>Loft</span><strong data-summary-loft>Yes</strong></div>
-        <div class="bw-flow__summary-line"><span>Carcass</span><strong data-summary-carcass>Engineered wood</strong></div>
-        <div class="bw-flow__summary-line"><span>Shutter</span><strong data-summary-shutter>Laminate panel</strong></div>
-        <div class="bw-flow__summary-line"><span>Finish</span><strong data-summary-finish>Warm wood + solid shutters</strong></div>
-        <div class="bw-flow__summary-line"><span>Internals</span><strong data-summary-internals>None selected</strong></div>
+        <div class="bw-flow__summary-line"><span>Build</span><strong data-summary-build>Engineered wood / Laminate panel / Warm wood + solid shutters</strong></div>
+        <div class="bw-flow__summary-line"><span>Features</span><strong data-summary-features>Loft included • None selected</strong></div>
         <div class="bw-flow__summary-line"><span>Mirror</span><strong data-summary-mirror>No mirror</strong></div>
       </div>
       <div class="bw-flow__summary-tags" data-summary-tags></div>
@@ -1100,16 +1113,20 @@
       toggleChoiceStates();
       var measurements = [inputValue('width') + ' ft', inputValue('height') + ' ft', inputValue('depth') + ' ft'].join(' / ');
       var internals = selectedChecks('internals');
+      var loftValue = inputValue('loft');
       var summaryMap = {
         type: selectedRadio('wardrobe_type'),
-        room: selectedRadio('room_type'),
-        storage: selectedRadio('storage_intensity'),
+        room: [selectedRadio('room_type'), selectedRadio('storage_intensity')].filter(Boolean).join(' • '),
         measurements: measurements,
-        loft: inputValue('loft'),
-        carcass: selectedRadio('wardrobe_carcass'),
-        shutter: selectedRadio('wardrobe_shutter_material'),
-        finish: selectedRadio('wardrobe_finish'),
-        internals: internals.length ? internals.join(', ') : 'None selected',
+        build: [
+          selectedRadio('wardrobe_carcass'),
+          selectedRadio('wardrobe_shutter_material'),
+          selectedRadio('wardrobe_finish')
+        ].filter(Boolean).join(' / '),
+        features: [
+          loftValue === 'No' ? 'No loft' : 'Loft included',
+          internals.length ? internals.join(', ') : 'Core storage only'
+        ].filter(Boolean).join(' • '),
         mirror: selectedRadio('mirror_need')
       };
 
@@ -1131,15 +1148,17 @@
       if (tagsNode) {
         var tags = [
           summaryMap.type,
-          summaryMap.carcass,
-          summaryMap.shutter,
-          summaryMap.finish,
+          selectedRadio('room_type'),
+          selectedRadio('storage_intensity'),
+          selectedRadio('wardrobe_carcass'),
+          selectedRadio('wardrobe_shutter_material'),
+          selectedRadio('wardrobe_finish'),
           summaryMap.mirror
         ];
-        internals.slice(0, 4).forEach(function (item) { tags.push(item); });
+        internals.slice(0, 2).forEach(function (item) { tags.push(item); });
         tagsNode.innerHTML = tags
           .filter(Boolean)
-          .slice(0, 9)
+          .slice(0, 7)
           .map(function (item) { return '<span class="bw-flow__summary-tag">' + item + '</span>'; })
           .join('');
       }

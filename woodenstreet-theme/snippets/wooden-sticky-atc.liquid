@@ -23,7 +23,7 @@
       </div>
       
       <div class="sticky-atc__actions">
-        <form action="/cart/add" method="post" class="sticky-atc__form">
+        <form action="{{ routes.cart_add_url }}" method="post" class="sticky-atc__form">
           <input type="hidden" name="id" value="{{ product.selected_or_first_available_variant.id }}">
           <div class="sticky-atc__qty-wrapper">
              <label for="StickyQty" class="visually-hidden">Quantity</label>

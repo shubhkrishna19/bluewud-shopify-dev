@@ -2,12 +2,13 @@
   Wooden Sticky Add-To-Cart Bar (E-01)
 {% endcomment %}
 
+{% assign sticky_atc_image_alt = product.title | escape %}
 
 <div class="ws-sticky-atc" data-ws-sticky-atc>
   <div class="ws-sticky-atc__inner page-width">
     <div class="ws-sticky-atc__product">
       {% if product.featured_image %}
-        <img class="ws-sticky-atc__image" src="{{ product.featured_image | img_url: '100x' }}" alt="{{ product.title | escape }}">
+        {{ product.featured_image | image_url: width: 100, height: 100 | image_tag: class: 'ws-sticky-atc__image', alt: sticky_atc_image_alt, width: 100, height: 100, loading: 'lazy' }}
       {% endif %}
       <div class="ws-sticky-atc__info">
         <span class="ws-sticky-atc__title">{{ product.title }}</span>
@@ -59,7 +60,7 @@
     addBtn.addEventListener('click', () => {
       // Find the main form's add to cart button and click it
       // or submit the form via AJAX
-      const mainForm = document.querySelector('form[action="/cart/add"]');
+      const mainForm = document.querySelector('form[action="{{ routes.cart_add_url }}"]');
       if (mainForm) {
         // Update hidden Quantity input in main form
         const qty = document.getElementById('ws-sticky-qty').value;

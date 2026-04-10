@@ -1,0 +1,15 @@
+<div class="slideshow {{ class }}" data-slideshow {% if ref != blank %}data-slideshow-ref="{{ ref }}"{% endif %}>
+  <div class="slideshow__track">
+    {{ slides }}
+  </div>
+  {%- if slideshow_arrows != blank -%}
+    <div class="slideshow__arrows slideshow__arrows--{{ arrows_position | default: 'center' }}">
+      {{ slideshow_arrows }}
+    </div>
+  {%- endif -%}
+  {%- if controls != blank -%}
+    <div class="slideshow__controls">
+      {{ controls }}
+    </div>
+  {%- endif -%}
+</div>

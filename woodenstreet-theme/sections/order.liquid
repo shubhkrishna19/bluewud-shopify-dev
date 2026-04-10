@@ -1,0 +1,43 @@
+<section class="account-page page-width">
+  <header class="section-header">
+    <h1 class="section-title">Order {{ order.name }}</h1>
+    <a href="{{ routes.account_url }}" class="button-secondary">{{ 'actions.back' | t }}</a>
+  </header>
+
+  <div class="account-page__grid">
+    <div class="account-page__card">
+      <h2 class="account-page__subtitle">Items</h2>
+      <table class="account-page__table">
+        <thead>
+          <tr>
+            <th>Product</th>
+            <th>Qty</th>
+            <th>Total</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for line_item in order.line_items %}
+            <tr>
+              <td>{{ line_item.title }}</td>
+              <td>{{ line_item.quantity }}</td>
+              <td>{{ line_item.final_line_price | money }}</td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+    <div class="account-page__card">
+      <h2 class="account-page__subtitle">Summary</h2>
+      <p><strong>Placed:</strong> {{ order.created_at | date: '%b %d, %Y' }}</p>
+      <p><strong>Payment:</strong> {{ order.financial_status_label }}</p>
+      <p><strong>Fulfillment:</strong> {{ order.fulfillment_status_label }}</p>
+      <p><strong>Total:</strong> {{ order.total_price | money }}</p>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Order"
+}
+{% endschema %}

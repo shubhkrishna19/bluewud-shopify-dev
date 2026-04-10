@@ -1,0 +1,22 @@
+{%- liquid
+  assign featured_image = blank
+
+  if link.type == 'collection_link' and link.object
+    assign featured_image = link.object.featured_image | default: link.object.image
+  elsif link.type == 'product_link' and link.object
+    assign featured_image = link.object.featured_media.preview_image | default: link.object.featured_image
+  endif
+-%}
+
+{%- if featured_image != blank -%}
+  {{
+    featured_image
+    | image_url: width: 960
+    | image_tag:
+      class: class,
+      loading: 'lazy',
+      widths: '240,360,480,720,960',
+      sizes: sizes,
+      alt: link.title
+  }}
+{%- endif -%}

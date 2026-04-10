@@ -70,36 +70,35 @@
     >
       {% if show_subnav %}
         <details data-navmenu-details>
-        <summary
+          <summary
+            class="
+              navmenu-link
+              navmenu-link-depth-1
+              navmenu-link-parent
+              {% if menu_item.active %}navmenu-link-active{% endif %}
+            "
+            aria-haspopup="true"
+            aria-expanded="false"
+            data-href="{{ menu_item.url }}"
+          >
+            {{ menu_item.title }}
+            <span
+              class="navmenu-icon navmenu-icon-depth-1"
+              data-navmenu-trigger
+            >
+              {% render 'icon-chevron-down-small' %}
+            </span>
+          </summary>
       {% else %}
         <a
-      {% endif %}
-        class="
-          navmenu-link
-          navmenu-link-depth-1
-          {% if show_subnav %}navmenu-link-parent{% endif %}
-          {% if menu_item.active %}navmenu-link-active{% endif %}
-        "
-        {% if show_subnav %}
-          aria-haspopup="true"
-          aria-expanded="false"
-          data-href="{{ menu_item.url }}"
-        {% else %}
+          class="
+            navmenu-link
+            navmenu-link-depth-1
+            {% if menu_item.active %}navmenu-link-active{% endif %}
+          "
           href="{{ menu_item.url }}"
-        {% endif %}
-      >
-        {{ menu_item.title }}
-        {% if show_subnav %}
-          <span
-            class="navmenu-icon navmenu-icon-depth-1"
-            data-navmenu-trigger
-          >
-            {% render 'icon-chevron-down-small' %}
-          </span>
-        {% endif %}
-      {% if show_subnav %}
-        </summary>
-      {% else %}
+        >
+          {{ menu_item.title }}
         </a>
       {% endif %}
 
@@ -136,7 +135,10 @@
           is_mobile: false,
         %}
       {% endif %}
-      </details>
+
+      {% if show_subnav %}
+        </details>
+      {% endif %}
     </li>
   {% endfor %}
 </ul>

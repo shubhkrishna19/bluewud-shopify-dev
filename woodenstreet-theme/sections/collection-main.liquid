@@ -1,8 +1,16 @@
 {% liquid
   assign current_sort = collection.sort_by | default: collection.default_sort_by
   assign current_path = request.path
-  assign modular_kitchen_url = '/collections/kitchen-racks'
-  assign modular_wardrobe_url = '/collections/wardrobe'
+  assign collections_base_url = routes.collections_url
+  assign modular_kitchen_url = collections_base_url | append: '/kitchen-racks'
+  assign modular_wardrobe_url = collections_base_url | append: '/wardrobe'
+  assign living_room_url = collections_base_url | append: '/living-room'
+  assign bedroom_url = collections_base_url | append: '/bed-room'
+  assign study_tables_url = collections_base_url | append: '/study-tables'
+  assign tv_units_url = collections_base_url | append: '/tv-unit-furniture'
+  assign bookshelves_url = collections_base_url | append: '/book-shelves'
+  assign new_launches_url = collections_base_url | append: '/new_launches'
+  assign bestsellers_url = collections_base_url | append: '/hp-bluewuds-bestseller'
   assign hero_media = collection.image
   assign collection_handle = collection.handle
   assign hero_title = collection.title
@@ -637,7 +645,7 @@
         <h1 class="bw-collection__title">{{ hero_title }}</h1>
         <p class="bw-collection__copy">{{ hero_copy }}</p>
         <div class="bw-collection__hero-actions">
-          <a class="bw-collection__hero-button" href="/collections/hp-bluewuds-bestseller">Shop bestsellers</a>
+          <a class="bw-collection__hero-button" href="{{ bestsellers_url }}">Shop bestsellers</a>
           <a class="bw-collection__hero-button is-secondary" href="{{ estimate_url }}">Talk to Bluewud</a>
         </div>
         <div class="bw-collection__hero-trust" aria-label="Collection trust cues">
@@ -649,15 +657,15 @@
     </div>
 
     <div class="bw-collection__chips">
-      <a class="bw-collection__chip{% if collection_handle == 'living-room' %} is-current{% endif %}" href="/collections/living-room">Living Room</a>
-      <a class="bw-collection__chip{% if collection_handle == 'bed-room' %} is-current{% endif %}" href="/collections/bed-room">Bedroom</a>
-      <a class="bw-collection__chip{% if collection_handle == 'study-tables' %} is-current{% endif %}" href="/collections/study-tables">Study Tables</a>
-      <a class="bw-collection__chip{% if collection_handle == 'tv-unit-furniture' %} is-current{% endif %}" href="/collections/tv-unit-furniture">TV Units</a>
-      <a class="bw-collection__chip{% if collection_handle == 'book-shelves' %} is-current{% endif %}" href="/collections/book-shelves">Bookshelves</a>
+      <a class="bw-collection__chip{% if collection_handle == 'living-room' %} is-current{% endif %}" href="{{ living_room_url }}">Living Room</a>
+      <a class="bw-collection__chip{% if collection_handle == 'bed-room' %} is-current{% endif %}" href="{{ bedroom_url }}">Bedroom</a>
+      <a class="bw-collection__chip{% if collection_handle == 'study-tables' %} is-current{% endif %}" href="{{ study_tables_url }}">Study Tables</a>
+      <a class="bw-collection__chip{% if collection_handle == 'tv-unit-furniture' %} is-current{% endif %}" href="{{ tv_units_url }}">TV Units</a>
+      <a class="bw-collection__chip{% if collection_handle == 'book-shelves' %} is-current{% endif %}" href="{{ bookshelves_url }}">Bookshelves</a>
       <a class="bw-collection__chip{% if current_path == modular_kitchen_url %} is-current{% endif %}" href="{{ modular_kitchen_url }}">Modular Kitchen</a>
       <a class="bw-collection__chip{% if current_path == modular_wardrobe_url %} is-current{% endif %}" href="{{ modular_wardrobe_url }}">Wardrobes</a>
-      <a class="bw-collection__chip{% if collection_handle == 'new_launches' %} is-current{% endif %}" href="/collections/new_launches">New Launches</a>
-      <a class="bw-collection__chip" href="/collections/hp-bluewuds-bestseller">Bestsellers</a>
+      <a class="bw-collection__chip{% if collection_handle == 'new_launches' %} is-current{% endif %}" href="{{ new_launches_url }}">New Launches</a>
+      <a class="bw-collection__chip" href="{{ bestsellers_url }}">Bestsellers</a>
     </div>
 
     <div class="bw-collection__insights">

@@ -288,7 +288,7 @@
                     <div class="featureicons-col">
                       {% if block.settings[blk_url] != blank %}<a href="{{ block.settings[blk_url] }}">{% endif %}
                       {% if block.settings[blk_icon] != blank %}
-                      <img src="{{ block.settings[blk_icon] }}" alt="">
+                      <img src="{{ block.settings[blk_icon] }}" alt="" width="48" height="48">
                       {% endif %}
                       {% if block.settings[blk_text] != blank %}
                       <span>{{ block.settings[blk_text] }}</span>
@@ -318,7 +318,7 @@
                         {% endif %}
                         <span>
                       {% if block.settings[blk_icon] != blank %}
-                      <img src="{{ block.settings[blk_icon] | img_url: 'master' }}" alt="">
+                      <img src="{{ block.settings[blk_icon] | img_url: 'master' }}" alt="" width="48" height="48">
                       {% endif %}
                       {% if block.settings[blk_text] != blank %}
                       <span>{{ block.settings[blk_text] }}</span>

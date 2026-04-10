@@ -1,0 +1,54 @@
+{%- liquid
+  assign show_country_selector = false
+  assign show_language_selector = false
+
+  if localization.available_countries.size > 1
+    assign show_country_selector = true
+  endif
+
+  if localization.available_languages.size > 1
+    assign show_language_selector = true
+  endif
+-%}
+
+{%- if show_country_selector or show_language_selector -%}
+  {% form 'localization', class: 'shopify-localization-form localization-form' %}
+    <div class="localization-form__row">
+      {%- if show_country_selector -%}
+        <label class="visually-hidden" for="LocalizationCountry-{{ form.id }}">
+          {{ 'general.language.dropdown_label' | t }}
+        </label>
+        <select
+          id="LocalizationCountry-{{ form.id }}"
+          name="country_code"
+          class="localization-form__select"
+          onchange="this.form.submit()"
+        >
+          {%- for country in localization.available_countries -%}
+            <option value="{{ country.iso_code }}" {% if country.iso_code == localization.country.iso_code %}selected{% endif %}>
+              {{ country.name }}{% if country.currency.iso_code %} ({{ country.currency.iso_code }}){% endif %}
+            </option>
+          {%- endfor -%}
+        </select>
+      {%- endif -%}
+
+      {%- if show_language_selector -%}
+        <label class="visually-hidden" for="LocalizationLanguage-{{ form.id }}">
+          {{ 'general.language.dropdown_label' | t }}
+        </label>
+        <select
+          id="LocalizationLanguage-{{ form.id }}"
+          name="locale_code"
+          class="localization-form__select"
+          onchange="this.form.submit()"
+        >
+          {%- for language in localization.available_languages -%}
+            <option value="{{ language.iso_code }}" {% if language.iso_code == localization.language.iso_code %}selected{% endif %}>
+              {{ language.endonym_name | capitalize }}
+            </option>
+          {%- endfor -%}
+        </select>
+      {%- endif -%}
+    </div>
+  {% endform %}
+{%- endif -%}

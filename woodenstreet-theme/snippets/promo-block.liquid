@@ -54,7 +54,13 @@
 {% endstyle %}
 
 
-<{% if block.settings.title != blank and block.settings.text != blank %}article{% else %}div{% endif %}
+{% if block.settings.title != blank and block.settings.text != blank %}
+  {% assign promo_block_tag = 'article' %}
+{% else %}
+  {% assign promo_block_tag = 'div' %}
+{% endif %}
+
+<{{ promo_block_tag }}
   class="{{ classes | replace: '  ', ' ' | strip_newlines }} {% if block.settings.image == blank %}onboarding-image{% endif %}"
   {{ block.shopify_attributes }}
   {% if block.settings.image %}
@@ -126,4 +132,4 @@
   {% else %}
     </div>
   {% endif %}
-</{% if block.settings.title != blank and block.settings.text != blank %}article{% else %}div{% endif %}>
+</{{ promo_block_tag }}>

@@ -1,14 +1,39 @@
 {
   "content": {
     "your_cart_is_empty": "Your cart is empty",
-    "cart_title": "Shopping Cart"
+    "cart_title": "Shopping Cart",
+    "cart_estimated_total": "Estimated total",
+    "cart_subtotal": "Subtotal",
+    "checkout": "Check out",
+    "discount": "Discount",
+    "discount_code": "Discount code",
+    "discount_code_error": "Enter a valid discount code",
+    "discounts": "Discounts",
+    "localization_region_and_language": "Region and language",
+    "no_products_found": "No products found",
+    "price_range": "Price range",
+    "price_regular": "Regular price",
+    "price_sale": "Sale price",
+    "recently_viewed_products": "Recently viewed products",
+    "search": "Search",
+    "search_input_label": "Search products",
+    "search_input_placeholder": "Enter a search term to find products",
+    "search_results_resource_products": "Products",
+    "search_results_resource_products_count": "{{ count }} products",
+    "search_results_view_all": "View all results",
+    "seller_note": "Seller note",
+    "shipping_discount_error": "Shipping discount could not be applied",
+    "volume_pricing_available": "Volume pricing available"
   },
   "404": {
     "general": {
       "title": "Page not found",
       "text": "The page you were looking for does not exist.",
       "continue_shopping": "Continue Shopping"
-    }
+    },
+    "title": "Page not found",
+    "not_found": "The page you were looking for does not exist.",
+    "back_to_shopping": "Continue Shopping"
   },
   "product": {
     "variants": {
@@ -46,6 +71,21 @@
         "one": "{{ count }} color available",
         "other": "{{ count }} colors available"
       }
+    },
+    "price": {
+      "original": "Original price",
+      "current": "Current price",
+      "range_html": "<span class=\"price--label\">from</span> {{ price }}",
+      "price_per_unit_html": "{{ total_quantity }} | {{ unit_price }} / {{ unit_measure }}",
+      "tax_line_html": " "
+    },
+    "badge": {
+      "sale_percentage_range_html": "Save up to <span data-price-percent-saved>{{ savings }}</span>%",
+      "sale_percentage_single_html": "Save <span data-price-percent-saved>{{ savings }}</span>%",
+      "sale_money_range_html": "Save up to <span class=\"money\" data-price-money-saved>{{ savings }}</span>",
+      "sale_money_single_html": "Save <span class=\"money\" data-price-money-saved>{{ savings }}</span>",
+      "sale": "Sale",
+      "sold_out": "Sold out"
     }
   },
   "store_availability": {
@@ -87,6 +127,11 @@
       "sale_money_single_html": "Save <span class=\"money\" data-price-money-saved>{{ savings }}</span>",
       "sold_out": "Sold out",
       "sale": "Sale"
+    },
+    "item": {
+      "price": {
+        "range_html": "<span class=\"price--label\">from</span> {{ price }}"
+      }
     }
   },
   "general": {
@@ -228,7 +273,14 @@
       "email_label": "Email",
       "submit": "Subscribe",
       "success": "Thanks for subscribing!"
-    }
+    },
+    "article_comments": "Comments",
+    "article_metadata_html": "{{ author }} ? {{ date }}",
+    "comment_form_body": "Message",
+    "comment_form_email": "Email",
+    "comment_form_name": "Your name",
+    "comment_form_submit": "Post comment",
+    "comment_form_title": "Leave a comment"
   },
   "cart": {
     "general": {
@@ -247,7 +299,9 @@
       "taxes_and_shipping_policy_at_checkout_html": "Taxes and <a href=\"{{ link }}\">shipping</a> calculated at checkout",
       "taxes_included_but_shipping_at_checkout": "Tax included and shipping calculated at checkout",
       "taxes_included_and_shipping_policy_html": "Tax included. <a href=\"{{ link }}\">Shipping</a> calculated at checkout.",
-      "cart_empty": "Your cart is empty"
+      "cart_empty": "Your cart is empty",
+      "total_line_price": "Total",
+      "taxes_at_checkout": "Taxes calculated at checkout"
     },
     "shipping": {
       "calculate_shipping": "Calculate Shipping",
@@ -263,7 +317,11 @@
       "no_shipping_required": "Your cart does not require shipping.",
       "shipment_too_heavy": "Sorry, but this shipment is too heavy to ship.",
       "error_general": "Sorry, we're not able to calculate your shipping at this time."
-    }
+    },
+    "checkout": "Check out",
+    "remove": "Remove",
+    "title": "Shopping Cart",
+    "update": "Update cart"
   },
   "contact": {
     "form": {
@@ -311,7 +369,11 @@
     "activate_account": {
       "title": "Activate account",
       "submit": "Activate account",
-      "decline_activation": "Decline invitation"
+      "decline_activation": "Decline invitation",
+      "subtext": "Create your password to finish activating your account.",
+      "password": "Password",
+      "password_confirm": "Confirm password",
+      "cancel": "Decline invitation"
     },
     "addresses": {
       "title": "My Addresses",
@@ -324,7 +386,8 @@
       "submit": "Add address",
       "update": "Update address",
       "add_new_title": "Add a new Address",
-      "edit_existing_title": "Edit address"
+      "edit_existing_title": "Edit address",
+      "default": "Default"
     },
     "guest_login": {
       "title": "Continue as a guest",
@@ -333,7 +396,8 @@
     "login": {
       "title": "Login",
       "forgot_password": "Forgot your password?",
-      "sign_in": "Sign in"
+      "sign_in": "Sign in",
+      "submit": "Sign in"
     },
     "new_customer": {
       "title": "New Customer?",
@@ -367,7 +431,8 @@
       "title": "Reset your password",
       "cancel": "Cancel",
       "subtitle": "We will send you an email to reset your password.",
-      "success": "We've sent you an email with a link to update your password."
+      "success": "We've sent you an email with a link to update your password.",
+      "submit": "Send reset link"
     },
     "register": {
       "title": "Create account",
@@ -378,7 +443,10 @@
     "reset_password": {
       "title": "Reset password",
       "subtitle": "Reset password for {{ user }}",
-      "submit": "Recover password"
+      "submit": "Recover password",
+      "subtext": "Enter a new password for {{ email }}.",
+      "password": "New password",
+      "password_confirm": "Confirm new password"
     }
   },
   "date_formats": {
@@ -416,7 +484,10 @@
     },
     "social": {
       "follow_us": "Follow us out there"
-    }
+    },
+    "title": "Enter store using password",
+    "password": "Password",
+    "enter": "Enter"
   },
   "product_grid": {
     "filters": {
@@ -512,7 +583,8 @@
     },
     "page": {
       "title": "Page title"
-    }
+    },
+    "collection_title": "Collection title"
   },
   "shopify": {
     "checkout": {
@@ -520,5 +592,30 @@
         "company_label": "Company Name (GST No)"
       }
     }
+  },
+  "accessibility": {
+    "close_dialog": "Close",
+    "discount": "Discount",
+    "discount_applied": "Discount applied",
+    "discount_menu": "Discount code menu",
+    "menu": "Menu",
+    "play_model": "Play 3D model",
+    "reset_search": "Reset search",
+    "scroll_to": "Scroll to {{ title }}"
+  },
+  "actions": {
+    "add_to_cart": "Add to cart",
+    "apply": "Apply",
+    "back": "Back",
+    "clear": "Clear",
+    "close": "Close",
+    "open": "Open",
+    "open_image_in_full_screen": "Open image in full screen",
+    "remove_discount": "Remove discount",
+    "view_in_your_space": "View in your space",
+    "zoom": "Click to expand"
+  },
+  "collections": {
+    "title": "Collections"
   }
 }

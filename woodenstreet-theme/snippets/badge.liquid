@@ -33,7 +33,8 @@
         {% if sales_badge_style == 'percent' %}
           {{ 'product_price.badge.sale_percentage_single_html' | t: savings: savings_percentage | strip_newlines }}
         {% elsif sales_badge_style == 'money' %}
-          {{ 'product_price.badge.sale_money_single_html' | t: savings: (savings_money | money) | strip_newlines }}
+          {% assign savings_money_formatted = savings_money | money %}
+          {{ 'product_price.badge.sale_money_single_html' | t: savings: savings_money_formatted | strip_newlines }}
         {% else %}
           {{ 'product_price.badge.sale' | t }}
         {% endif %}

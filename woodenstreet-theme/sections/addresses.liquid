@@ -1,0 +1,35 @@
+<section class="account-page page-width">
+  <header class="section-header">
+    <h1 class="section-title">{{ 'customers.addresses.title' | t }}</h1>
+    <a href="{{ routes.account_url }}" class="button-secondary">{{ 'actions.back' | t }}</a>
+  </header>
+
+  <div class="account-page__grid">
+    <div class="account-page__card">
+      {% render 'account-address-form', address: customer.new_address, visible: true %}
+    </div>
+
+    {% for address in customer.addresses %}
+      <div class="account-page__card">
+        {% if address == customer.default_address %}
+          <strong>{{ 'customers.addresses.default' | t }}</strong>
+        {% endif %}
+        {% render 'account-address-list', address: address %}
+        <div class="form-action-row">
+          <button class="button-secondary" type="button" onclick="document.querySelector('[data-address-id=&quot;{{ address.id }}&quot;]').classList.toggle('visible')">{{ 'customers.addresses.edit' | t }}</button>
+          <form method="post" action="{{ address.url }}">
+            <input type="hidden" name="_method" value="delete">
+            <button class="button-secondary" type="submit">{{ 'customers.addresses.delete' | t }}</button>
+          </form>
+        </div>
+        {% render 'account-address-form', address: address %}
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Addresses"
+}
+{% endschema %}

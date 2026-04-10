@@ -107,7 +107,7 @@
 <style>
   .bw-wardrobe-page { display: grid; gap: 22px; }
   .bw-wardrobe-page > .bw-planning-rail { order: -2; }
-  .bw-wardrobe-page > .bw-wardrobe-guide { order: -1; }
+  .bw-wardrobe-page > .bw-wardrobe-guide { order: 2; }
   .bw-wardrobe-page > .bw-wardrobe-block { order: 1; }
   .bw-wardrobe-block {
     padding: 26px 28px;
@@ -733,10 +733,12 @@
     border-radius: 999px; background: rgba(32,23,19,0.06); color: #201713; font-size: 11px; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase;
   }
   @media (max-width: 1024px) {
-    .bw-wardrobe-spotlight, .bw-wardrobe-grid-4, .bw-wardrobe-grid-3, .bw-wardrobe-products, .bw-wardrobe-grid-2, .bw-wardrobe-compare-grid, .bw-wardrobe-journey-grid, .bw-wardrobe-route-grid, .bw-wardrobe-guide-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .bw-wardrobe-spotlight, .bw-wardrobe-grid-4, .bw-wardrobe-grid-3, .bw-wardrobe-products, .bw-wardrobe-grid-2, .bw-wardrobe-compare-grid, .bw-wardrobe-route-grid, .bw-wardrobe-guide-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .bw-wardrobe-journey-grid, .bw-wardrobe-gallery-grid, .bw-wardrobe-consult-grid, .bw-wardrobe-proof-grid { grid-template-columns: 1fr; }
     .bw-wardrobe-measure-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bw-wardrobe-lens-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bw-wardrobe-spotlight { grid-template-columns: 1fr; }
+    .bw-wardrobe-gallery-main-card, .bw-wardrobe-gallery-card { grid-template-columns: 1fr; }
   }
   @media (max-width: 720px) {
     .bw-wardrobe-block, .bw-wardrobe-band { padding: 22px 20px; border-radius: 24px; }
@@ -933,6 +935,25 @@
             {% endif %}
           {% endfor %}
         {% endif %}
+        {% if gallery_count == 0 %}
+          <article class="bw-wardrobe-gallery-main-card">
+            <div class="bw-wardrobe-gallery-main-copy">
+              <span class="bw-wardrobe-gallery-badge">Featured direction</span>
+              <h3>{{ spotlight_tag }}</h3>
+              <p>{{ spotlight_copy }}</p>
+              <div class="bw-wardrobe-gallery-actions">
+                <a class="bw-wardrobe-gallery-link" href="{{ calculator_cta_url }}" data-wardrobe-calculator-link>Use Calculator</a>
+              </div>
+            </div>
+            <div class="bw-wardrobe-gallery-main-media">
+              {% if wardrobe_collection != blank and wardrobe_collection.products.first and wardrobe_collection.products.first.featured_image %}
+                {{ wardrobe_collection.products.first.featured_image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '540, 720, 960, 1200, 1400', sizes: '(max-width: 1024px) 100vw, 44vw', alt: spotlight_tag }}
+              {% elsif wardrobe_collection != blank and wardrobe_collection.image != blank %}
+                {{ wardrobe_collection.image | image_url: width: 1400 | image_tag: loading: 'lazy', widths: '540, 720, 960, 1200, 1400', sizes: '(max-width: 1024px) 100vw, 44vw', alt: spotlight_tag }}
+              {% endif %}
+            </div>
+          </article>
+        {% endif %}
       </div>
 
       <div class="bw-wardrobe-gallery-stack">
@@ -940,6 +961,8 @@
           <div class="bw-wardrobe-gallery-media">
             {% if wardrobe_collection != blank and wardrobe_collection.products.first and wardrobe_collection.products.first.featured_image %}
               {{ wardrobe_collection.products.first.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 460, 640, 900', sizes: '(max-width: 1024px) 100vw, 18vw', alt: wardrobe_collection.products.first.title }}
+            {% elsif wardrobe_collection != blank and wardrobe_collection.image != blank %}
+              {{ wardrobe_collection.image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 460, 640, 900', sizes: '(max-width: 1024px) 100vw, 18vw', alt: spotlight_tag }}
             {% endif %}
           </div>
           <div class="bw-wardrobe-gallery-card-body">
@@ -955,6 +978,10 @@
           <div class="bw-wardrobe-gallery-media">
             {% if wardrobe_collection != blank and wardrobe_collection.products.size > 1 and wardrobe_collection.products[1].featured_image %}
               {{ wardrobe_collection.products[1].featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 460, 640, 900', sizes: '(max-width: 1024px) 100vw, 18vw', alt: wardrobe_collection.products[1].title }}
+            {% elsif wardrobe_collection != blank and wardrobe_collection.products.first and wardrobe_collection.products.first.featured_image %}
+              {{ wardrobe_collection.products.first.featured_image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 460, 640, 900', sizes: '(max-width: 1024px) 100vw, 18vw', alt: spotlight_tag }}
+            {% elsif wardrobe_collection != blank and wardrobe_collection.image != blank %}
+              {{ wardrobe_collection.image | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 460, 640, 900', sizes: '(max-width: 1024px) 100vw, 18vw', alt: spotlight_tag }}
             {% endif %}
           </div>
           <div class="bw-wardrobe-gallery-card-body">

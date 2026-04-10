@@ -1,0 +1,41 @@
+<section class="account-page page-width">
+  <header class="section-header">
+    <h1 class="section-title">{{ 'customers.register.title' | t }}</h1>
+  </header>
+
+  <div class="account-page__card account-page__card--narrow">
+    {% form 'create_customer' %}
+      {% if form.errors %}
+        <div class="form-message form-message--error">{{ form.errors | default_errors }}</div>
+      {% endif %}
+      <div class="form-fields-columns">
+        <div class="form-field form-field--half">
+          <label for="RegisterFirstName">{{ 'customers.forms.first_name' | t }}</label>
+          <input id="RegisterFirstName" type="text" name="customer[first_name]" autocomplete="given-name">
+        </div>
+        <div class="form-field form-field--half">
+          <label for="RegisterLastName">{{ 'customers.forms.last_name' | t }}</label>
+          <input id="RegisterLastName" type="text" name="customer[last_name]" autocomplete="family-name">
+        </div>
+      </div>
+      <div class="form-field">
+        <label for="RegisterEmail">{{ 'customers.forms.email' | t }}</label>
+        <input id="RegisterEmail" type="email" name="customer[email]" autocomplete="email">
+      </div>
+      <div class="form-field">
+        <label for="RegisterPassword">{{ 'customers.forms.password' | t }}</label>
+        <input id="RegisterPassword" type="password" name="customer[password]" autocomplete="new-password">
+      </div>
+      <div class="form-action-row">
+        <button class="button-primary" type="submit">{{ 'customers.register.submit' | t }}</button>
+        <a class="button-secondary" href="{{ routes.account_login_url }}">{{ 'customers.login.title' | t }}</a>
+      </div>
+    {% endform %}
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Register"
+}
+{% endschema %}

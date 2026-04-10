@@ -971,6 +971,8 @@
               alt="{{ featured_image.alt | default: product.title | escape }}"
               loading="eager"
               data-product-main-image
+              width="{{ featured_image.width | default: 1200 }}"
+              height="{{ featured_image.height | default: 1200 }}"
             >
           {% else %}
             <div class="bw-product__viewer-empty">

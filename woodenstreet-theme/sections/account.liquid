@@ -1,0 +1,54 @@
+<section class="account-page page-width">
+  <header class="section-header">
+    <h1 class="section-title">{{ customer.name | default: 'My Account' }}</h1>
+    <a href="{{ routes.account_logout_url }}" class="button-secondary">{{ 'header.account.logout' | t }}</a>
+  </header>
+
+  <div class="account-page__grid">
+    <div class="account-page__card">
+      <h2 class="account-page__subtitle">Order history</h2>
+      {% if customer.orders.size > 0 %}
+        <table class="account-page__table">
+          <thead>
+            <tr>
+              <th>Order</th>
+              <th>Date</th>
+              <th>Payment</th>
+              <th>Fulfillment</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order in customer.orders %}
+              <tr>
+                <td><a href="{{ order.customer_url }}">{{ order.name }}</a></td>
+                <td>{{ order.created_at | date: '%b %d, %Y' }}</td>
+                <td>{{ order.financial_status_label }}</td>
+                <td>{{ order.fulfillment_status_label }}</td>
+                <td>{{ order.total_price | money }}</td>
+              </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      {% else %}
+        <p>No orders yet.</p>
+      {% endif %}
+    </div>
+
+    <div class="account-page__card">
+      <h2 class="account-page__subtitle">Default address</h2>
+      {% if customer.default_address %}
+        {% render 'account-address-list', address: customer.default_address %}
+      {% else %}
+        <p>No default address saved.</p>
+      {% endif %}
+      <a class="button-secondary" href="{{ routes.account_addresses_url }}">Manage addresses</a>
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Account"
+}
+{% endschema %}

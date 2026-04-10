@@ -381,6 +381,7 @@
 
 <section class="bw-cart">
   <div class="bw-cart__shell">
+  {% assign bestsellers_url = routes.collections_url | append: '/hp-bluewuds-bestseller' %}
   <div class="bw-cart__header">
     <div class="bw-cart__eyebrow">Before checkout</div>
     <h1 class="bw-cart__title">Your cart, ready for checkout.</h1>
@@ -391,7 +392,7 @@
       <div class="bw-cart__empty">
         <h2>Your cart is empty</h2>
         <p>Start with Bluewud bestsellers and build your cart from there.</p>
-        <a href="/collections/hp-bluewuds-bestseller">Shop bestsellers</a>
+        <a href="{{ bestsellers_url }}">Shop bestsellers</a>
       </div>
     {% else %}
       <form action="{{ routes.cart_url }}" method="post">

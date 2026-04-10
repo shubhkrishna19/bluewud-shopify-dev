@@ -1,0 +1,17 @@
+{%- liquid
+  assign stock_product = product | default: closest.product
+  assign stock_variant = stock_product.selected_or_first_available_variant
+  assign inventory = stock_variant.inventory_quantity | default: 0
+-%}
+
+{%- if stock_product != blank -%}
+  <div class="whisper-stock-indicator" data-whisper-stock-indicator>
+    {%- if stock_product.available == false -%}
+      <span class="whisper-stock-indicator__pill whisper-stock-indicator__pill--sold-out">Sold out</span>
+    {%- elsif inventory > 0 and inventory < 6 -%}
+      <span class="whisper-stock-indicator__pill whisper-stock-indicator__pill--low">Only {{ inventory }} left</span>
+    {%- else -%}
+      <span class="whisper-stock-indicator__pill whisper-stock-indicator__pill--ready">Ready to order</span>
+    {%- endif -%}
+  </div>
+{%- endif -%}

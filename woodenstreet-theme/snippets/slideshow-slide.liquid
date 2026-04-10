@@ -190,43 +190,53 @@
       </a>
     {%- endif -%}
 
-    {%- if block_button_label != blank -%}
-      {% if block_button_link != blank %}
-        <a href="{{ block_button_link }}"
-      {% else %}
-        <span
-      {% endif %}
-        class="
-          slideshow-slide__button
-          {{ block_button_1_class }}
-        "
-      >
-        {{ block_button_label }}
-      {%- if block_button_link != blank -%}
-        </a>
-      {%- else -%}
-        </span>
+    <div class="slideshow-slide__buttons">
+      {%- if block_button_label != blank -%}
+        {% if block_button_link != blank %}
+          <a
+            href="{{ block_button_link }}"
+            class="
+              slideshow-slide__button
+              {{ block_button_1_class }}
+            "
+          >
+            {{ block_button_label }}
+          </a>
+        {% else %}
+          <span
+            class="
+              slideshow-slide__button
+              {{ block_button_1_class }}
+            "
+          >
+            {{ block_button_label }}
+          </span>
+        {% endif %}
       {%- endif -%}
-    {%- endif -%}
 
-    {%- if block_button_label_2 != blank -%}
-      {% if block_button_link_2 != blank %}
-        <a href="{{ block_button_link_2 }}"
-      {% else %}
-        <span
-      {% endif %}
-        class="
-          slideshow-slide__button
-          {{ block_button_2_class }}
-        "
-      >
-        {{ block_button_label_2 }}
-      {%- if block_button_link_2 != blank -%}
-        </a>
-      {%- else -%}
-        </span>
+      {%- if block_button_label_2 != blank -%}
+        {% if block_button_link_2 != blank %}
+          <a
+            href="{{ block_button_link_2 }}"
+            class="
+              slideshow-slide__button
+              {{ block_button_2_class }}
+            "
+          >
+            {{ block_button_label_2 }}
+          </a>
+        {% else %}
+          <span
+            class="
+              slideshow-slide__button
+              {{ block_button_2_class }}
+            "
+          >
+            {{ block_button_label_2 }}
+          </span>
+        {% endif %}
       {%- endif -%}
-    {%- endif -%}
+    </div>
   </div>
 </div>
 {% comment %}Inject @pixelunion/pxs-slideshow/slideshow-slide end{% endcomment %}

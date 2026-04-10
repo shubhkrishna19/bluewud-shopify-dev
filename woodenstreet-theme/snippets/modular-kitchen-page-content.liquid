@@ -96,8 +96,8 @@
   assign kitchen_image_u_alt = 'Bluewud walnut U-shape modular kitchen'
   assign kitchen_image_parallel_url = 'modular-kitchen-galley-light-wood.png' | asset_url
   assign kitchen_image_parallel_alt = 'Bluewud parallel modular kitchen'
-  assign kitchen_image_straight_url = 'modular-kitchen-sage-u-shape.png' | asset_url
-  assign kitchen_image_straight_alt = 'Bluewud modular kitchen finish and storage detailing'
+  assign kitchen_image_straight_url = 'modular-kitchen-galley-light-wood.png' | asset_url
+  assign kitchen_image_straight_alt = 'Bluewud straight modular kitchen concept'
   assign kitchen_image_island_url = 'modular-kitchen-navy-luxury.png' | asset_url
   assign kitchen_image_island_alt = 'Bluewud premium modular kitchen concept'
 
@@ -138,12 +138,16 @@
   if hero_island == blank
     assign hero_island = hero_all
   endif
+  if hero_straight != blank and hero_straight.featured_image != blank
+    assign kitchen_image_straight_url = hero_straight.featured_image | image_url: width: 1200
+    assign kitchen_image_straight_alt = hero_straight.title | default: kitchen_image_straight_alt
+  endif
 %}
 
 <style>
   .bw-modular { display: grid; gap: 24px; }
   .bw-modular > .bw-planning-rail { order: -2; }
-  .bw-modular > .bw-modular__guide { order: -1; }
+  .bw-modular > .bw-modular__guide { order: 2; }
   .bw-modular > .bw-modular__panel,
   .bw-modular > .bw-modular__block,
   .bw-modular > .bw-modular__band { order: 1; }
@@ -651,7 +655,8 @@
     .bw-modular__products,
     .bw-modular__gallery-grid,
     .bw-modular__process-grid,
-    .bw-modular__launchpad { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .bw-modular__launchpad,
+    .bw-modular__decision-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .bw-modular__hero { grid-template-columns: 1fr; }
     .bw-modular__guide-grid { grid-template-columns: 1fr; }
   }
@@ -663,6 +668,7 @@
     .bw-modular__tab { flex: 0 0 auto; white-space: nowrap; }
     .bw-modular__cards,
     .bw-modular__blueprint,
+    .bw-modular__decision-grid,
     .bw-modular__gallery-grid,
     .bw-modular__process-grid,
     .bw-modular__products,
@@ -1684,6 +1690,10 @@
         event.preventDefault();
         activate(variant);
         updateLocationForVariant(variant);
+        var activePanel = root.querySelector('[data-variant-panel="' + variant + '"]');
+        if (activePanel) {
+          activePanel.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
       });
     });
 

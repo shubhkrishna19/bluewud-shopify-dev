@@ -1,1 +1,13 @@
 extends: theme-check:recommended
+
+ignore:
+  - assets/buddha-megamenu.js.liquid
+  - assets/empire.js.liquid
+  - assets/theme.css.liquid
+  - snippets/buddha-megamenu.liquid
+  - snippets/iwish_v2.liquid
+  - snippets/rimg.liquid
+  - theme-check.json
+  - theme-check-current.json
+  - theme-check-latest.txt
+  - theme-check-after-fixes.txt

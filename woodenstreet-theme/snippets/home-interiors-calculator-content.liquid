@@ -4,6 +4,7 @@
   assign modular_wardrobe_url = '/collections/wardrobe'
   assign kitchen_calculator_url = '/collections/kitchen-racks?planner=kitchen-calculator'
   assign wardrobe_calculator_url = '/collections/wardrobe?planner=wardrobe-calculator'
+  assign home_interiors_url = '/collections/kitchen-racks?planner=home-interiors'
   assign estimate_url = '/pages/get-free-estimate'
   assign living_collection = collections['living-room']
   assign bedroom_collection = collections['bed-room']
@@ -41,6 +42,9 @@
   endif
   if pages['modular-wardrobe-cost-calculator'] != blank
     assign wardrobe_calculator_url = pages['modular-wardrobe-cost-calculator'].url
+  endif
+  if pages['home-interiors-cost-calculator'] != blank
+    assign home_interiors_url = pages['home-interiors-cost-calculator'].url
   endif
   if pages['get-free-estimate'] != blank
     assign estimate_url = pages['get-free-estimate'].url
@@ -692,7 +696,12 @@
     color: rgba(255, 247, 241, 0.88);
     font-size: 14px;
   }
-  .bw-hi__summary-line strong { color: #fff7f1; text-align: right; }
+  .bw-hi__summary-line strong {
+    color: #fff7f1;
+    text-align: right;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
   .bw-hi__badge {
     display: inline-flex;
     align-items: center;
@@ -820,6 +829,12 @@
     .bw-hi__summary { padding: 22px 20px; border-radius: 24px; }
     .bw-hi__grid { grid-template-columns: 1fr; }
     .bw-hi__progress { grid-template-columns: 1fr; }
+    .bw-hi__summary-line {
+      display: grid;
+      gap: 4px;
+      justify-content: stretch;
+    }
+    .bw-hi__summary-line strong { text-align: left; }
   }
 </style>
 
@@ -830,7 +845,7 @@
       <a class="bw-planning-rail__link" href="{{ modular_wardrobe_url }}">Wardrobes</a>
       <a class="bw-planning-rail__link" href="{{ kitchen_calculator_url }}">Kitchen Calculator</a>
       <a class="bw-planning-rail__link" href="{{ wardrobe_calculator_url }}">Wardrobe Calculator</a>
-      <a class="bw-planning-rail__link bw-planning-rail__link--accent is-current" href="{{ request.path }}">Home Interiors</a>
+      <a class="bw-planning-rail__link bw-planning-rail__link--accent is-current" href="{{ home_interiors_url }}">Home Interiors</a>
       <a class="bw-planning-rail__link" href="{{ estimate_url }}">Get Free Estimate</a>
     </div>
   </section>

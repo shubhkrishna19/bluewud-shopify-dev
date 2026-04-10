@@ -1,3 +1,13 @@
+{% liquid
+  assign collections_base_url = routes.collections_url
+  assign about_living_room_url = collections_base_url | append: '/living-room'
+  assign about_study_tables_url = collections_base_url | append: '/study-tables'
+  assign about_shoe_racks_url = collections_base_url | append: '/shoe-racks'
+  assign about_wall_shelves_url = collections_base_url | append: '/wall-shelves'
+  assign about_bookshelves_url = collections_base_url | append: '/book-shelves'
+  assign about_new_arrivals_url = collections_base_url | append: '/newest-products-1'
+%}
+
 <style>
   .bw-about {
     position: relative;
@@ -532,16 +542,16 @@
       <p class="bw-about__copy">What began in 2015 with laptop tables has grown into a broader range across living, study, storage, display, and modular planning categories.</p>
 
       <div class="bw-about__chips" aria-label="Bluewud product range">
-        <a class="bw-about__chip" href="/collections/living-room">Living room</a>
-        <a class="bw-about__chip" href="/collections/study-tables">Study tables</a>
-        <a class="bw-about__chip" href="/collections/shoe-racks">Storage</a>
-        <a class="bw-about__chip" href="/collections/wall-shelves">Wall shelves</a>
-        <a class="bw-about__chip" href="/collections/book-shelves">Display units</a>
-        <a class="bw-about__chip" href="/collections/newest-products-1">New arrivals</a>
+          <a class="bw-about__chip" href="{{ about_living_room_url }}">Living room</a>
+          <a class="bw-about__chip" href="{{ about_study_tables_url }}">Study tables</a>
+          <a class="bw-about__chip" href="{{ about_shoe_racks_url }}">Storage</a>
+          <a class="bw-about__chip" href="{{ about_wall_shelves_url }}">Wall shelves</a>
+          <a class="bw-about__chip" href="{{ about_bookshelves_url }}">Display units</a>
+          <a class="bw-about__chip" href="{{ about_new_arrivals_url }}">New arrivals</a>
       </div>
 
       <div class="bw-about__cta">
-        <a class="bw-about__button" href="/collections/newest-products-1">Browse collections</a>
+        <a class="bw-about__button" href="{{ about_new_arrivals_url }}">Browse collections</a>
         <a class="bw-about__button bw-about__button--ghost" href="/pages/contact-us">Talk to the team</a>
       </div>
     </div>

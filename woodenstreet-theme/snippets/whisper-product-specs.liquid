@@ -1,0 +1,20 @@
+{%- liquid
+  assign specs_product = product | default: closest.product
+-%}
+
+{%- if specs_product != blank -%}
+  <div class="whisper-product-specs">
+    <ul class="whisper-product-specs__list">
+      {%- if specs_product.vendor != blank -%}
+        <li><strong>Brand:</strong> {{ specs_product.vendor }}</li>
+      {%- endif -%}
+      {%- if specs_product.type != blank -%}
+        <li><strong>Category:</strong> {{ specs_product.type }}</li>
+      {%- endif -%}
+      {%- if specs_product.collections.first != blank -%}
+        <li><strong>Collection:</strong> {{ specs_product.collections.first.title }}</li>
+      {%- endif -%}
+      <li><strong>Status:</strong> {% if specs_product.available %}Available{% else %}Sold out{% endif %}</li>
+    </ul>
+  </div>
+{%- endif -%}

@@ -1,0 +1,22 @@
+{%- liquid
+  assign controls_style = style | default: 'dots'
+-%}
+<div class="slideshow-controls slideshow-controls--{{ controls_style }} {{ class }}">
+  {%- if controls_style == 'counter' -%}
+    <span class="slideshow-controls__counter">{{ 'sections.slideshow.slide_counter' | t: count: 1, total: item_count }}</span>
+  {%- elsif controls_style == 'thumbnails' and thumbnails != blank -%}
+    <div class="slideshow-controls__thumbnails">
+      {%- for media in thumbnails limit: item_count -%}
+        <button type="button" class="slideshow-controls__thumbnail" aria-label="{{ media.alt | default: 'Slide' }}">
+          {{ media.preview_image | image_url: width: 120 | image_tag: loading: 'lazy', widths: '80,120', sizes: '80px', alt: media.alt }}
+        </button>
+      {%- endfor -%}
+    </div>
+  {%- else -%}
+    <div class="slideshow-controls__dots" role="tablist">
+      {%- for _ in (1..item_count) -%}
+        <button type="button" class="slideshow-controls__dot" aria-label="{{ 'sections.slideshow.slide_index' | t: count: forloop.index }}"></button>
+      {%- endfor -%}
+    </div>
+  {%- endif -%}
+</div>

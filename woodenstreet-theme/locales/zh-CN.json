@@ -4,7 +4,10 @@
       "title": "无法找到该页",
       "text": "您搜索的页面不存在。",
       "continue_shopping": "继续购物"
-    }
+    },
+    "title": "Page not found",
+    "back_to_shopping": "Continue Shopping",
+    "not_found": "The page you were looking for does not exist."
   },
   "product": {
     "variants": {
@@ -169,6 +172,13 @@
         "product": "产品",
         "tooltip_link": "查看商品"
       }
+    },
+    "pxs-newsletter": {
+      "form": {
+        "placeholder": "Email address",
+        "submit": "Subscribe",
+        "success": "Thanks for subscribing!"
+      }
     }
   },
   "header": {
@@ -207,7 +217,22 @@
       "author_html": "{{ author }} - {{ date }}",
       "leave_comment": "发表评论",
       "required_fields": "*必填栏"
-    }
+    },
+    "comment_form_name": "Your name",
+    "newsletter": {
+      "success": "Thanks for subscribing!",
+      "title": "Subscribe to our blog",
+      "email_label": "Email",
+      "email_placeholder": "Enter your email",
+      "description": "Get the latest articles delivered to your inbox.",
+      "submit": "Subscribe"
+    },
+    "comment_form_submit": "Post comment",
+    "comment_form_email": "Email",
+    "article_metadata_html": "{{ author }} ? {{ date }}",
+    "comment_form_body": "Message",
+    "article_comments": "Comments",
+    "comment_form_title": "Leave a comment"
   },
   "cart": {
     "general": {
@@ -225,7 +250,10 @@
       "taxes_included_but_shipping_at_checkout": "结账时计算的税金（包含）和运费",
       "taxes_included_and_shipping_policy_html": "税金（包含）。结账时计算的<a href=\"{{ link }}\">运费</a>。",
       "total_line_price": "总线价",
-      "cart_empty": "您的购物车是空的"
+      "cart_empty": "您的购物车是空的",
+      "taxes_at_checkout": "Taxes calculated at checkout",
+      "your_cart_is_empty": "Your cart is empty",
+      "cart_title": "Shopping Cart"
     },
     "shipping": {
       "calculate_shipping": "计算运费",
@@ -241,7 +269,11 @@
       "no_shipping_required": "您的购物车不需要送货。",
       "shipment_too_heavy": "抱歉，此单货品超重，无法运送。",
       "error_general": "抱歉，我们暂时无法计算您的运费。"
-    }
+    },
+    "update": "Update cart",
+    "checkout": "Check out",
+    "remove": "Remove",
+    "title": "Shopping Cart"
   },
   "contact": {
     "form": {
@@ -288,7 +320,11 @@
     "activate_account": {
       "title": "激活账户",
       "submit": "激活账户",
-      "decline_activation": "拒绝邀请"
+      "decline_activation": "拒绝邀请",
+      "subtext": "Create your password to finish activating your account.",
+      "password": "Password",
+      "password_confirm": "Confirm password",
+      "cancel": "Decline invitation"
     },
     "addresses": {
       "title": "我的地址",
@@ -301,7 +337,8 @@
       "submit": "添加地址",
       "update": "更新地址",
       "add_new_title": "添加一个新地址",
-      "edit_existing_title": "编辑地址"
+      "edit_existing_title": "编辑地址",
+      "default": "Default"
     },
     "guest_login": {
       "title": "以游客身份继续",
@@ -310,7 +347,8 @@
     "login": {
       "title": "登录",
       "forgot_password": "您忘记密码了？",
-      "sign_in": "登录"
+      "sign_in": "登录",
+      "submit": "Sign in"
     },
     "new_customer": {
       "title": "新顾客？",
@@ -344,7 +382,8 @@
       "title": "重设您的密码",
       "cancel": "取消",
       "subtitle": "我们会向您发送邮件，帮助您重设密码。",
-      "success": "我们已向您发送了一封邮件，当中包含更新密码的链接。"
+      "success": "我们已向您发送了一封邮件，当中包含更新密码的链接。",
+      "submit": "Send reset link"
     },
     "register": {
       "title": "创建账户",
@@ -355,7 +394,10 @@
     "reset_password": {
       "title": "重设密码",
       "subtitle": "为 {{ user }}重设密码",
-      "submit": "恢复密码"
+      "submit": "恢复密码",
+      "subtext": "Enter a new password for {{ email }}.",
+      "password": "New password",
+      "password_confirm": "Confirm new password"
     }
   },
   "date_formats": {
@@ -393,7 +435,10 @@
     },
     "social": {
       "follow_us": "关注我们"
-    }
+    },
+    "title": "Enter store using password",
+    "enter": "Enter",
+    "password": "Password"
   },
   "product_grid": {
     "filters": {
@@ -456,7 +501,8 @@
       "pages_and_posts_no_results": "没有相关结果。",
       "pages_and_posts_title": "帖子和页面",
       "pages_title": "页面",
-      "posts_title": "帖子"
+      "posts_title": "帖子",
+      "search_placeholder": "Enter a search term to find products"
     }
   },
   "onboarding": {
@@ -488,6 +534,80 @@
     },
     "page": {
       "title": "页面标题"
+    },
+    "collection_title": "Collection title"
+  },
+  "product_price": {
+    "badge": {
+      "sold_out": "Sold out",
+      "sale": "Sale",
+      "sale_percentage_range_html": "Save up to <span data-price-percent-saved>{{ savings }}</span>%",
+      "sale_percentage_single_html": "Save <span data-price-percent-saved>{{ savings }}</span>%",
+      "sale_money_range_html": "Save up to <span class=\"money\" data-price-money-saved>{{ savings }}</span>",
+      "sale_money_single_html": "Save <span class=\"money\" data-price-money-saved>{{ savings }}</span>"
+    },
+    "price": {
+      "price_per_unit_html": "{{ total_quantity }} | {{ unit_price }} / {{ unit_measure }}",
+      "original": "Original price",
+      "tax_line_html": " ",
+      "current": "Current price",
+      "range_html": "<span class=\"price--label\">from</span> {{ price }}"
+    },
+    "item": {
+      "price": {
+        "range_html": "<span class=\"price--label\">from</span> {{ price }}"
+      }
     }
+  },
+  "actions": {
+    "clear": "Clear",
+    "apply": "Apply",
+    "add_to_cart": "Add to cart",
+    "view_in_your_space": "View in your space",
+    "open": "Open",
+    "zoom": "Click to expand",
+    "close": "Close",
+    "remove_discount": "Remove discount",
+    "open_image_in_full_screen": "Open image in full screen",
+    "back": "Back"
+  },
+  "content": {
+    "search_results_view_all": "View all results",
+    "no_products_found": "No products found",
+    "seller_note": "Seller note",
+    "cart_title": "Shopping Cart",
+    "localization_region_and_language": "Region and language",
+    "search_results_resource_products": "Products",
+    "volume_pricing_available": "Volume pricing available",
+    "cart_subtotal": "Subtotal",
+    "discount_code": "Discount code",
+    "search": "Search",
+    "search_results_resource_products_count": "{{ count }} products",
+    "recently_viewed_products": "Recently viewed products",
+    "discount": "Discount",
+    "your_cart_is_empty": "Your cart is empty",
+    "discounts": "Discounts",
+    "search_input_placeholder": "Enter a search term to find products",
+    "cart_estimated_total": "Estimated total",
+    "shipping_discount_error": "Shipping discount could not be applied",
+    "checkout": "Check out",
+    "price_regular": "Regular price",
+    "price_range": "Price range",
+    "price_sale": "Sale price",
+    "discount_code_error": "Enter a valid discount code",
+    "search_input_label": "Search products"
+  },
+  "accessibility": {
+    "scroll_to": "Scroll to {{ title }}",
+    "close_dialog": "Close",
+    "reset_search": "Reset search",
+    "discount": "Discount",
+    "play_model": "Play 3D model",
+    "discount_applied": "Discount applied",
+    "discount_menu": "Discount code menu",
+    "menu": "Menu"
+  },
+  "collections": {
+    "title": "Collections"
   }
 }

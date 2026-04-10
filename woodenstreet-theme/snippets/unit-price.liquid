@@ -1,0 +1,5 @@
+{%- if price != blank and measurement != blank -%}
+  <small class="unit-price caption">
+    {{ 'product_price.price.price_per_unit_html' | t: total_quantity: measurement.reference_value, unit_price: price, unit_measure: measurement.reference_unit }}
+  </small>
+{%- endif -%}

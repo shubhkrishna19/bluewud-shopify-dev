@@ -1,0 +1,51 @@
+<section class="account-page page-width">
+  <header class="section-header">
+    <h1 class="section-title">{{ 'customers.login.title' | t }}</h1>
+  </header>
+
+  <div class="account-page__grid account-page__grid--forms">
+    <div class="account-page__card">
+      {% form 'customer_login' %}
+        {% if form.errors %}
+          <div class="form-message form-message--error">{{ form.errors | default_errors }}</div>
+        {% endif %}
+        <div class="form-field">
+          <label for="CustomerEmail">{{ 'customers.forms.email' | t }}</label>
+          <input id="CustomerEmail" type="email" name="customer[email]" autocomplete="email">
+        </div>
+        <div class="form-field">
+          <label for="CustomerPassword">{{ 'customers.forms.password' | t }}</label>
+          <input id="CustomerPassword" type="password" name="customer[password]" autocomplete="current-password">
+        </div>
+        <div class="form-action-row">
+          <button class="button-primary" type="submit">{{ 'customers.login.submit' | t }}</button>
+          <a class="button-secondary" href="{{ routes.account_register_url }}">{{ 'customers.register.title' | t }}</a>
+        </div>
+        <p><a href="#recover">{{ 'customers.login.forgot_password' | t }}</a></p>
+      {% endform %}
+    </div>
+
+    <div class="account-page__card" id="recover">
+      {% form 'recover_customer_password' %}
+        {% if form.errors %}
+          <div class="form-message form-message--error">{{ form.errors | default_errors }}</div>
+        {% endif %}
+        {% if form.posted_successfully? %}
+          <div class="form-message form-message--success">{{ 'customers.recover_password.success' | t }}</div>
+        {% endif %}
+        <h2 class="account-page__subtitle">{{ 'customers.recover_password.title' | t }}</h2>
+        <div class="form-field">
+          <label for="RecoverEmail">{{ 'customers.forms.email' | t }}</label>
+          <input id="RecoverEmail" type="email" name="email" autocomplete="email">
+        </div>
+        <button class="button-primary" type="submit">{{ 'customers.recover_password.submit' | t }}</button>
+      {% endform %}
+    </div>
+  </div>
+</section>
+
+{% schema %}
+{
+  "name": "Login"
+}
+{% endschema %}

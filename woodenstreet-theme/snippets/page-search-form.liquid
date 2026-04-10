@@ -43,7 +43,10 @@
         {% endif %}
         data-live-search-input>
 
-      {% assign has_search_query = search.terms | strip | size > 0 %}
+      {% assign has_search_query = false %}
+      {% if search.terms != blank %}
+        {% assign has_search_query = true %}
+      {% endif %}
       {% if search.performed and has_search_query %}
         <a
           href="{{ routes.search_url }}?type={{ search_type | replace: '  ', '' | strip_newlines }}&q="

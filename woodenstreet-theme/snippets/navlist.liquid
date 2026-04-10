@@ -79,7 +79,7 @@
         {% capture product_count %}
           ({{ menu_item.object.products_count }})
         {% endcapture %}
-      {% else if menu_item.type == 'catalog_link' %}
+      {% elsif menu_item.type == 'catalog_link' %}
         {% capture product_count %}
           ({{ shop.products_count }})
         {% endcapture %}
@@ -114,16 +114,14 @@
     {% endif %}
 
     {% unless show_subnav %}
-      <li
-        class="navmenu-item navmenu-id-{{ menu_item.handle }}"
-      >
+      <li class="navmenu-item navmenu-id-{{ menu_item.handle }}">
         <a
-        class="
-          navmenu-link
-          navmenu-link-depth-{{ depth }}
-          {% if menu_item.active %}navmenu-link-active{% endif %}
-        "
-        href="{{ menu_item.url }}"
+          class="
+            navmenu-link
+            navmenu-link-depth-{{ depth }}
+            {% if menu_item.active %}navmenu-link-active{% endif %}
+          "
+          href="{{ menu_item.url }}"
         >
           {{ menu_item_image_markup }}
           {{ menu_item.title }}
@@ -145,37 +143,47 @@
       >
         {% if is_mobile != true %}
           <details data-navmenu-details>
-          <summary
-            data-href="{{ menu_item.url }}"
+            <summary
+              class="navmenu-link navmenu-link-parent {% if menu_item.active %}navmenu-link-active{% endif %}"
+              data-href="{{ menu_item.url }}"
+              {% if aria_expanded %}
+                aria-expanded="true"
+              {% else %}
+                aria-haspopup="true"
+                aria-expanded="false"
+              {% endif %}
+            >
+              {{ menu_item_image_markup }}
+              {{ menu_item.title }}
+              {%- if product_count -%}
+                {{ product_count }}
+              {%- endif -%}
+
+              {% if show_arrows %}
+                <span
+                  class="navmenu-icon navmenu-icon-depth-{{ depth }}"
+                  data-navmenu-trigger
+                >
+                  {% render 'icon-chevron-down-small' %}
+                </span>
+              {% endif %}
+            </summary>
         {% else %}
           <a
+            class="navmenu-link navmenu-link-parent {% if menu_item.active %}navmenu-link-active{% endif %}"
             href="{{ menu_item.url }}"
-        {% endif %}
-          class="navmenu-link navmenu-link-parent {% if menu_item.active %}navmenu-link-active{% endif %}"
-          {% if aria_expanded %}
-            aria-expanded="true"
-          {% else %}
-            aria-haspopup="true"
-            aria-expanded="false"
-          {% endif %}
-        >
-          {{ menu_item_image_markup }}
-          {{ menu_item.title }}
-          {%- if product_count -%}
-            {{ product_count }}
-          {%- endif -%}
-
-          {% if show_arrows and is_mobile != true %}
-            <span
-              class="navmenu-icon navmenu-icon-depth-{{ depth }}"
-              data-navmenu-trigger
-            >
-              {% render 'icon-chevron-down-small' %}
-            </span>
-          {% endif %}
-        {% if is_mobile != true %}
-          </summary>
-        {% else %}
+            {% if aria_expanded %}
+              aria-expanded="true"
+            {% else %}
+              aria-haspopup="true"
+              aria-expanded="false"
+            {% endif %}
+          >
+            {{ menu_item_image_markup }}
+            {{ menu_item.title }}
+            {%- if product_count -%}
+              {{ product_count }}
+            {%- endif -%}
           </a>
         {% endif %}
 
@@ -202,6 +210,7 @@
             show_item_images: show_item_images,
           %}
         {% endunless %}
+
         {% if is_mobile != true %}
           </details>
         {% endif %}

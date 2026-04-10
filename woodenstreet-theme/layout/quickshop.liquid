@@ -388,6 +388,7 @@
       data-shopify-common="{{ 'shopify_common.js' | shopify_asset_url }}"
       data-shopify-cart="{{ 'jquery.cart.js' | asset_url }}"
       data-pxu-polyfills="{{ 'polyfills.js' | asset_url }}"
+      defer
     >
     </script>
 
@@ -412,6 +413,6 @@
       defer
     >
     </script>
-    {{ 'component-cart-toast.js' | asset_url | script_tag }}
+    <script src="{{ 'component-cart-toast.js' | asset_url }}" defer></script>
   <link rel="stylesheet" href="https://gravity-software.com/js/shopify/rondell/jquery.rondellf85.css?v=123"/></body>
 </html>

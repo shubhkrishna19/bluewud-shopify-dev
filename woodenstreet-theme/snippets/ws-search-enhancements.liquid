@@ -3,12 +3,18 @@
 {% endcomment %}
 
 <div class="ws-search-suggestions">
+  {% assign collections_base_url = routes.collections_url %}
+  {% assign sofa_search_query = 'Sofa' | url_encode %}
+  {% assign double_bed_search_query = 'Double Bed' | url_encode %}
+  {% assign dining_table_search_query = 'Dining Table' | url_encode %}
+  {% assign wardrobe_search_query = 'Wardrobe' | url_encode %}
+  {% assign tv_unit_search_query = 'TV Unit' | url_encode %}
   <div class="ws-search-section">
     <span class="ws-search-title">Shop by Category</span>
     <div class="ws-search-categories">
        {% assign search_cats = 'Sofas,Beds,Dining,Study,Storage,Decor' | split: ',' %}
        {% for cat in search_cats %}
-         <a href="/collections/{{ cat | handleize }}" class="ws-search-cat">
+         <a href="{{ collections_base_url | append: '/' | append: cat | handleize }}" class="ws-search-cat">
            <div class="ws-search-cat__icon">
              {% capture placeholder_name %}product-{{ forloop.index | plus: 1 }}{% endcapture %}
              {{ placeholder_name | placeholder_svg_tag: 'ws-search-cat__img' }}
@@ -22,14 +28,14 @@
   <div class="ws-search-section">
     <span class="ws-search-title">Trending Searches</span>
     <div class="ws-trending-tags">
-      <a href="/search?q=Sofa" class="ws-trending-tag">
+      <a href="{{ routes.search_url }}?q={{ sofa_search_query }}" class="ws-trending-tag">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg>
         Sofa Sets
       </a>
-      <a href="/search?q=Double Bed" class="ws-trending-tag">Double Beds</a>
-      <a href="/search?q=Dining Table" class="ws-trending-tag">Dining Tables</a>
-      <a href="/search?q=Office Chair" class="ws-trending-tag">Office Chairs</a>
-      <a href="/search?q=TV Unit" class="ws-trending-tag">TV Units</a>
+      <a href="{{ routes.search_url }}?q={{ double_bed_search_query }}" class="ws-trending-tag">Double Beds</a>
+      <a href="{{ routes.search_url }}?q={{ dining_table_search_query }}" class="ws-trending-tag">Dining Tables</a>
+      <a href="{{ routes.search_url }}?q={{ wardrobe_search_query }}" class="ws-trending-tag">Wardrobes</a>
+      <a href="{{ routes.search_url }}?q={{ tv_unit_search_query }}" class="ws-trending-tag">TV Units</a>
     </div>
   </div>
 
@@ -39,7 +45,7 @@
       {% for product in collections['all'].products limit: 3 %}
         <a href="{{ product.url }}" class="ws-pop-product">
           <div class="ws-pop-product__media">
-            <img class="ws-pop-product__image" src="{{ product.featured_image | img_url: '240x240', crop: 'center' }}" alt="{{ product.title }}">
+            {{ product.featured_image | image_url: width: 240, height: 240, crop: 'center' | image_tag: class: 'ws-pop-product__image', alt: product.title, width: 240, height: 240, loading: 'lazy' }}
           </div>
           <div class="ws-pop-product__info">
             <div class="ws-pop-product__title">{{ product.title }}</div>

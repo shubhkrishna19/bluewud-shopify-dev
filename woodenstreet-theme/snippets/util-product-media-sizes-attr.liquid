@@ -1,0 +1,14 @@
+{%- liquid
+  assign size_value = '100vw'
+
+  if is_single_column
+    assign size_value = '(min-width: 990px) 50vw, 100vw'
+  elsif settings.page_width
+    assign size_value = '(min-width: 990px) 42vw, 100vw'
+  endif
+
+  if needs_both_sizes and is_first_image
+    assign size_value = '(min-width: 990px) 50vw, 100vw'
+  endif
+-%}
+{{ size_value }}
