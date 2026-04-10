@@ -1,5 +1,9 @@
 {% liquid
+  assign modular_kitchen_url = '/collections/kitchen-racks'
   assign modular_wardrobe_url = '/collections/wardrobe'
+  if pages['modular-kitchen-designs'] != blank
+    assign modular_kitchen_url = pages['modular-kitchen-designs'].url
+  endif
   if pages['modular-wardrobe-designs'] != blank
     assign modular_wardrobe_url = pages['modular-wardrobe-designs'].url
   endif
@@ -131,6 +135,30 @@
       linear-gradient(145deg, #d7ccc4 0%, #aa8b7a 44%, #58433a 100%);
   }
 
+  .bw-categories__media--kitchen {
+    background:
+      radial-gradient(circle at 24% 18%, rgba(255, 255, 255, 0.18), transparent 24%),
+      linear-gradient(145deg, #d8d1c7 0%, #aa907f 42%, #5b4338 100%);
+  }
+
+  .bw-categories__media--dressing {
+    background:
+      radial-gradient(circle at 80% 18%, rgba(255, 255, 255, 0.2), transparent 22%),
+      linear-gradient(145deg, #decabf 0%, #b48f81 44%, #65483d 100%);
+  }
+
+  .bw-categories__media--centre {
+    background:
+      radial-gradient(circle at 18% 18%, rgba(255, 255, 255, 0.18), transparent 24%),
+      linear-gradient(145deg, #d9cec3 0%, #a88872 44%, #5d4437 100%);
+  }
+
+  .bw-categories__media--wfh {
+    background:
+      radial-gradient(circle at 78% 18%, rgba(255, 255, 255, 0.18), transparent 24%),
+      linear-gradient(145deg, #ced3d6 0%, #8b979d 42%, #434b52 100%);
+  }
+
   .bw-categories__placeholder {
     display: inline-flex;
     align-items: center;
@@ -260,12 +288,18 @@
   assign living_collection = collections['living-room']
   assign bedroom_collection = collections['bed-room']
   assign study_collection = collections['study-tables']
-  assign study_product = all_products['mallium-study-computer-table-office-desk']
+  assign modular_kitchen_collection = collections['kitchen-racks']
+  assign dressing_collection = collections['dressing-tables']
+  assign centre_collection = collections['coffee-table']
+  assign wfh_collection = collections['smartly-designed-wfh-furniture']
   assign living_room_url = '/collections/living-room'
   assign bedroom_url = '/collections/bed-room'
   assign study_room_url = '/collections/study-tables'
   assign tv_unit_url = '/collections/tv-unit-furniture'
   assign bookshelves_url = '/collections/book-shelves'
+  assign dressing_tables_url = '/collections/dressing-tables'
+  assign centre_tables_url = '/collections/coffee-table'
+  assign wfh_furniture_url = '/collections/smartly-designed-wfh-furniture'
 
   if study_collection == blank
     assign study_collection = collections['study-table']
@@ -293,57 +327,67 @@
   if bookshelves_collection != blank and bookshelves_collection.url != blank
     assign bookshelves_url = bookshelves_collection.url
   endif
+  if modular_kitchen_collection != blank and modular_kitchen_collection.url != blank
+    assign modular_kitchen_url = modular_kitchen_collection.url
+  endif
+  if dressing_collection != blank and dressing_collection.url != blank
+    assign dressing_tables_url = dressing_collection.url
+  endif
+  if centre_collection != blank and centre_collection.url != blank
+    assign centre_tables_url = centre_collection.url
+  endif
+  if wfh_collection != blank and wfh_collection.url != blank
+    assign wfh_furniture_url = wfh_collection.url
+  endif
 
   assign living_media = section.settings.living_room_image
   if living_media == blank and living_collection != blank
     assign living_media = living_collection.image
-    if living_media == blank and living_collection.products.size > 0
-      assign living_media = living_collection.products.first.featured_image
-    endif
   endif
 
   assign bedroom_media = section.settings.bedroom_image
   if bedroom_media == blank and bedroom_collection != blank
     assign bedroom_media = bedroom_collection.image
-    if bedroom_media == blank and bedroom_collection.products.size > 0
-      assign bedroom_media = bedroom_collection.products.first.featured_image
-    endif
   endif
 
   assign study_media = section.settings.study_tables_image
   if study_media == blank and study_collection != blank
     assign study_media = study_collection.image
-    if study_media == blank and study_collection.products.size > 0
-      assign study_media = study_collection.products.first.featured_image
-    endif
-  endif
-
-  if study_media == blank and study_product != blank and study_product.featured_image != blank
-    assign study_media = study_product.featured_image
   endif
 
   assign tv_media = section.settings.tv_units_image
   if tv_media == blank and tv_collection != blank
     assign tv_media = tv_collection.image
-    if tv_media == blank and tv_collection.products.size > 0
-      assign tv_media = tv_collection.products.first.featured_image
-    endif
   endif
 
   assign bookshelves_media = section.settings.bookshelves_image
   if bookshelves_media == blank and bookshelves_collection != blank
     assign bookshelves_media = bookshelves_collection.image
-    if bookshelves_media == blank and bookshelves_collection.products.size > 0
-      assign bookshelves_media = bookshelves_collection.products.first.featured_image
-    endif
   endif
 
   assign wardrobe_media = section.settings.wardrobe_image
   if wardrobe_media == blank and wardrobe_collection != blank
     assign wardrobe_media = wardrobe_collection.image
-    if wardrobe_media == blank and wardrobe_collection.products.size > 0
-      assign wardrobe_media = wardrobe_collection.products.first.featured_image
-    endif
+  endif
+
+  assign modular_kitchen_media = section.settings.modular_kitchen_image
+  if modular_kitchen_media == blank and modular_kitchen_collection != blank
+    assign modular_kitchen_media = modular_kitchen_collection.image
+  endif
+
+  assign dressing_media = section.settings.dressing_tables_image
+  if dressing_media == blank and dressing_collection != blank
+    assign dressing_media = dressing_collection.image
+  endif
+
+  assign centre_media = section.settings.centre_tables_image
+  if centre_media == blank and centre_collection != blank
+    assign centre_media = centre_collection.image
+  endif
+
+  assign wfh_media = section.settings.wfh_furniture_image
+  if wfh_media == blank and wfh_collection != blank
+    assign wfh_media = wfh_collection.image
   endif
 %}
 
@@ -486,7 +530,7 @@
         </div>
       </a>
 
-    <a class="bw-categories__card bw-categories__card--small" href="{{ modular_wardrobe_url }}">
+      <a class="bw-categories__card bw-categories__card--small" href="{{ modular_wardrobe_url }}">
         {% if wardrobe_media != blank %}
           <div class="bw-categories__media">
             {{ wardrobe_media | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 480, 720, 900', sizes: '(max-width: 720px) 100vw, 25vw', alt: 'Wardrobes' }}
@@ -506,6 +550,110 @@
                 {{ wardrobe_collection.all_products_count }} products
               {% else %}
                 Order, elegance, everyday utility
+              {% endif %}
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a class="bw-categories__card bw-categories__card--small" href="{{ modular_kitchen_url }}">
+        {% if modular_kitchen_media != blank %}
+          <div class="bw-categories__media">
+            {{ modular_kitchen_media | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 480, 720, 900', sizes: '(max-width: 720px) 100vw, 25vw', alt: 'Modular Kitchen' }}
+          </div>
+        {% else %}
+          <div class="bw-categories__media">
+            <img src="{{ 'modular-kitchen-light-oak-l-shape.png' | asset_url }}" alt="Modular Kitchen" loading="lazy" width="900" height="675">
+          </div>
+        {% endif %}
+        <div class="bw-categories__overlay"></div>
+        <div class="bw-categories__content">
+          <span class="bw-categories__kicker">Room planning</span>
+          <h3 class="bw-categories__name">{{ modular_kitchen_collection.title | default: 'Modular Kitchen' }}</h3>
+          <div class="bw-categories__meta">
+            <span>
+              {% if modular_kitchen_collection != blank and modular_kitchen_collection.all_products_count > 0 %}
+                {{ modular_kitchen_collection.all_products_count }} products
+              {% else %}
+                Layout-led kitchen planning and finishes
+              {% endif %}
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a class="bw-categories__card bw-categories__card--small" href="{{ dressing_tables_url }}">
+        {% if dressing_media != blank %}
+          <div class="bw-categories__media">
+            {{ dressing_media | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 480, 720, 900', sizes: '(max-width: 720px) 100vw, 25vw', alt: 'Dressing Tables' }}
+          </div>
+        {% else %}
+          <div class="bw-categories__media bw-categories__media--placeholder bw-categories__media--dressing" role="img" aria-label="Dressing Tables placeholder until a Bluewud image is added">
+            <span class="bw-categories__placeholder">Add Bluewud image</span>
+          </div>
+        {% endif %}
+        <div class="bw-categories__overlay"></div>
+        <div class="bw-categories__content">
+          <span class="bw-categories__kicker">Bedroom finishing layer</span>
+          <h3 class="bw-categories__name">{{ dressing_collection.title | default: 'Dressing Tables' }}</h3>
+          <div class="bw-categories__meta">
+            <span>
+              {% if dressing_collection != blank and dressing_collection.all_products_count > 0 %}
+                {{ dressing_collection.all_products_count }} products
+              {% else %}
+                Vanity-led storage and mirrors
+              {% endif %}
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a class="bw-categories__card bw-categories__card--small" href="{{ centre_tables_url }}">
+        {% if centre_media != blank %}
+          <div class="bw-categories__media">
+            {{ centre_media | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 480, 720, 900', sizes: '(max-width: 720px) 100vw, 25vw', alt: 'Centre Tables' }}
+          </div>
+        {% else %}
+          <div class="bw-categories__media bw-categories__media--placeholder bw-categories__media--centre" role="img" aria-label="Centre Tables placeholder until a Bluewud image is added">
+            <span class="bw-categories__placeholder">Add Bluewud image</span>
+          </div>
+        {% endif %}
+        <div class="bw-categories__overlay"></div>
+        <div class="bw-categories__content">
+          <span class="bw-categories__kicker">Living room anchor</span>
+          <h3 class="bw-categories__name">{{ centre_collection.title | default: 'Centre Tables' }}</h3>
+          <div class="bw-categories__meta">
+            <span>
+              {% if centre_collection != blank and centre_collection.all_products_count > 0 %}
+                {{ centre_collection.all_products_count }} products
+              {% else %}
+                Coffee and centre tables with presence
+              {% endif %}
+            </span>
+          </div>
+        </div>
+      </a>
+
+      <a class="bw-categories__card bw-categories__card--small" href="{{ wfh_furniture_url }}">
+        {% if wfh_media != blank %}
+          <div class="bw-categories__media">
+            {{ wfh_media | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 480, 720, 900', sizes: '(max-width: 720px) 100vw, 25vw', alt: 'WFH Furniture' }}
+          </div>
+        {% else %}
+          <div class="bw-categories__media bw-categories__media--placeholder bw-categories__media--wfh" role="img" aria-label="WFH Furniture placeholder until a Bluewud image is added">
+            <span class="bw-categories__placeholder">Add Bluewud image</span>
+          </div>
+        {% endif %}
+        <div class="bw-categories__overlay"></div>
+        <div class="bw-categories__content">
+          <span class="bw-categories__kicker">Focus-ready setups</span>
+          <h3 class="bw-categories__name">{{ wfh_collection.title | default: 'WFH Furniture' }}</h3>
+          <div class="bw-categories__meta">
+            <span>
+              {% if wfh_collection != blank and wfh_collection.all_products_count > 0 %}
+                {{ wfh_collection.all_products_count }} products
+              {% else %}
+                Home office and study planning
               {% endif %}
             </span>
           </div>
@@ -548,6 +696,26 @@
       "type": "image_picker",
       "id": "wardrobe_image",
       "label": "Wardrobe image"
+    },
+    {
+      "type": "image_picker",
+      "id": "modular_kitchen_image",
+      "label": "Modular kitchen image"
+    },
+    {
+      "type": "image_picker",
+      "id": "dressing_tables_image",
+      "label": "Dressing tables image"
+    },
+    {
+      "type": "image_picker",
+      "id": "centre_tables_image",
+      "label": "Centre tables image"
+    },
+    {
+      "type": "image_picker",
+      "id": "wfh_furniture_image",
+      "label": "WFH furniture image"
     }
   ],
   "presets": [
