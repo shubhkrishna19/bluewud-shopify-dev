@@ -239,6 +239,34 @@
     #featured-category-tiles-{{ section.id }} .bw-featured-categories__grid {
       grid-template-columns: 1fr;
     }
+
+    #featured-category-tiles-{{ section.id }} .bw-featured-categories__copy {
+      font-size: 14px;
+      line-height: 1.65;
+      max-width: 40ch;
+    }
+
+    #featured-category-tiles-{{ section.id }} .bw-featured-categories__body {
+      gap: 8px;
+      padding: 18px 18px 20px;
+    }
+
+    #featured-category-tiles-{{ section.id }} .bw-featured-categories__label,
+    #featured-category-tiles-{{ section.id }} .bw-featured-categories__arrow {
+      display: none;
+    }
+
+    #featured-category-tiles-{{ section.id }} .bw-featured-categories__meta {
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    #featured-category-tiles-{{ section.id }} .bw-featured-categories__meta > span:first-child {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
   }
 </style>
 

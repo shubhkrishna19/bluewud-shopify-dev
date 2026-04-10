@@ -539,18 +539,21 @@
     }
 
     .bw-testimonials__toolbar {
-      justify-content: space-between;
+      justify-content: flex-start;
     }
 
     .bw-testimonials__actions,
     .bw-testimonials__live-actions {
       width: 100%;
-      justify-content: space-between;
+      justify-content: flex-start;
+      gap: 12px;
     }
 
-    .bw-testimonials__nav-button {
-      width: 44px;
-      height: 44px;
+    .bw-testimonials__nav,
+    .bw-testimonials__dots,
+    .bw-testimonials__live-widget,
+    .bw-testimonials__live-text {
+      display: none;
     }
 
     .bw-testimonials__quote {
@@ -561,6 +564,11 @@
     .bw-testimonials__live {
       padding: 20px 20px 2px;
       border-radius: 22px;
+    }
+
+    .bw-testimonials__all-link,
+    .bw-testimonials__reviews-summary {
+      min-height: 44px;
     }
   }
 </style>

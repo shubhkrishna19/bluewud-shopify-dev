@@ -372,9 +372,13 @@
 
     .bw-hero__content {
       padding: 18px 18px 60px;
+      justify-content: flex-start !important;
+      align-items: flex-end;
+      text-align: left !important;
     }
 
     .bw-hero__card {
+      max-width: 100%;
       padding: 20px 18px 22px;
       border-radius: 24px;
       background: rgba(255, 250, 246, 0.88);
@@ -615,16 +619,18 @@
     slides.forEach(function (slide) {
       slide.addEventListener('click', function (event) {
         var slideUrl = slide.getAttribute('data-bw-slide-url');
+        var touchLikeViewport = window.matchMedia && window.matchMedia('(pointer: coarse), (max-width: 720px)').matches;
 
-        if (!slideUrl || pointerMoved || isInteractiveTarget(event.target)) return;
+        if (!slideUrl || pointerMoved || isInteractiveTarget(event.target) || touchLikeViewport) return;
 
         window.location.assign(slideUrl);
       });
 
       slide.addEventListener('keydown', function (event) {
         var slideUrl = slide.getAttribute('data-bw-slide-url');
+        var touchLikeViewport = window.matchMedia && window.matchMedia('(pointer: coarse), (max-width: 720px)').matches;
 
-        if (!slideUrl || isInteractiveTarget(event.target)) return;
+        if (!slideUrl || isInteractiveTarget(event.target) || touchLikeViewport) return;
 
         if (event.key === 'Enter' || event.key === ' ') {
           event.preventDefault();

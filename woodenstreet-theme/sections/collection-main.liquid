@@ -527,12 +527,12 @@
     }
 
     .bw-collection__hero {
-      min-height: 320px;
+      min-height: 280px;
     }
 
     .bw-collection__hero-content,
     .bw-collection__toolbar {
-      padding: 22px 20px;
+      padding: 18px 18px;
     }
 
     .bw-collection__chips {
@@ -540,6 +540,8 @@
       overflow-x: auto;
       margin-bottom: 18px;
       padding-bottom: 4px;
+      scroll-snap-type: x proximity;
+      scroll-padding-left: 16px;
       scrollbar-width: none;
     }
 
@@ -550,6 +552,7 @@
     .bw-collection__chip {
       flex: 0 0 auto;
       white-space: nowrap;
+      scroll-snap-align: start;
     }
 
     .bw-collection__toolbar {
@@ -558,13 +561,24 @@
     }
 
     .bw-collection__insights {
-      grid-template-columns: 1fr;
-      gap: 14px;
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(240px, 84vw);
+      overflow-x: auto;
+      gap: 12px;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+    }
+
+    .bw-collection__insights::-webkit-scrollbar {
+      display: none;
     }
 
     .bw-collection__insight {
-      padding: 18px 18px 16px;
+      padding: 16px;
       border-radius: 20px;
+      scroll-snap-align: start;
     }
 
     .bw-collection__sort {
@@ -577,26 +591,86 @@
     }
 
     .bw-collection__grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
     }
 
     .bw-collection__card {
-      padding: 14px;
-      border-radius: 22px;
+      padding: 12px;
+      border-radius: 20px;
     }
 
     .bw-collection__image-wrap {
-      min-height: 240px;
-      border-radius: 18px;
+      min-height: 164px;
+      border-radius: 16px;
     }
 
-    .bw-collection__details {
-      gap: 7px;
+    .bw-collection__card-title {
+      font-size: 16px;
+      line-height: 1.2;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
     }
 
-    .bw-collection__detail {
-      font-size: 9px;
+    .bw-collection__card-meta {
+      font-size: 12px;
+      line-height: 1.55;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+    }
+
+    .bw-collection__price-row {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 4px;
+    }
+
+    .bw-collection__cta {
+      display: none;
+    }
+
+    .bw-collection__hero-actions {
+      gap: 10px;
+    }
+
+    .bw-collection__hero-button {
+      min-height: 44px;
+      font-size: 11px;
+    }
+
+    .bw-collection__hero-button.is-secondary {
+      min-height: auto;
+      padding: 0;
+      background: transparent;
+      border: none;
+      color: #f8f1eb;
+      box-shadow: none;
+      text-decoration: underline;
+      text-underline-offset: 0.18em;
+    }
+
+    .bw-collection__hero-trust {
+      gap: 8px;
+    }
+
+    .bw-collection__hero-badge {
+      min-height: 26px;
       padding: 0 10px;
+      font-size: 9px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .bw-collection__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .bw-collection__image-wrap {
+      min-height: 220px;
     }
   }
 </style>
@@ -665,7 +739,7 @@
       <a class="bw-collection__chip{% if current_path == modular_kitchen_url %} is-current{% endif %}" href="{{ modular_kitchen_url }}">Modular Kitchen</a>
       <a class="bw-collection__chip{% if current_path == modular_wardrobe_url %} is-current{% endif %}" href="{{ modular_wardrobe_url }}">Wardrobes</a>
       <a class="bw-collection__chip{% if collection_handle == 'new_launches' %} is-current{% endif %}" href="{{ new_launches_url }}">New Launches</a>
-      <a class="bw-collection__chip" href="{{ bestsellers_url }}">Bestsellers</a>
+      <a class="bw-collection__chip{% if collection_handle == 'hp-bluewuds-bestseller' %} is-current{% endif %}" href="{{ bestsellers_url }}">Bestsellers</a>
     </div>
 
     <div class="bw-collection__insights">
@@ -697,11 +771,7 @@
       {% if paginate.items > 0 %}
         <div class="bw-collection__grid">
           {% for product in collection.products %}
-            {% liquid
-              assign product_subtitle = product.metafields.my_fields.product_subtitle
-              assign free_delivery_note = product.metafields.my_fields.free_delivery
-              assign emi_from_note = product.metafields.my_fields.emi_from
-            %}
+            {% assign product_subtitle = product.metafields.my_fields.product_subtitle %}
             <a class="bw-collection__card" href="{{ product.url | within: collection }}">
               <div class="bw-collection__image-wrap">
                 {% if product.featured_image %}

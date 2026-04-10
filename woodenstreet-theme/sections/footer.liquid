@@ -159,10 +159,15 @@
 
   .bw-footer__contact-list a,
   .bw-footer__links a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 44px;
     color: rgba(248, 241, 235, 0.74);
     text-decoration: none;
     font-size: 14px;
     line-height: 1.6;
+    overflow-wrap: anywhere;
   }
 
   .bw-footer__contact-list a:hover,
@@ -223,8 +228,12 @@
   }
 
   .bw-footer__bottom-links a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
     color: rgba(248, 241, 235, 0.58);
     text-decoration: none;
+    overflow-wrap: anywhere;
   }
 
   .bw-footer__bottom-links a:hover {
@@ -243,7 +252,7 @@
     }
 
     .bw-footer__inner {
-      padding: 28px 22px;
+      padding: 24px 16px;
       border-radius: 24px;
     }
 

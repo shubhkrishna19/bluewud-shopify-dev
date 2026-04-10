@@ -207,22 +207,41 @@
     }
 
     .bw-categories__grid {
-      grid-template-columns: 1fr;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
     }
 
-    .bw-categories__card--large,
+    .bw-categories__card--large {
+      grid-column: 1 / -1;
+      min-height: 244px;
+    }
+
     .bw-categories__card--small {
       grid-column: auto;
-      min-height: 268px;
+      min-height: 204px;
     }
 
     .bw-categories__content {
       box-sizing: border-box;
-      padding: 18px 20px 30px;
+      padding: 16px 16px 26px;
     }
 
     .bw-categories__name {
-      font-size: 24px;
+      font-size: 21px;
+    }
+
+    .bw-categories__meta {
+      font-size: 13px;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .bw-categories__grid {
+      grid-template-columns: 1fr;
+    }
+
+    .bw-categories__card--small {
+      min-height: 236px;
     }
   }
 </style>
@@ -397,8 +416,6 @@
             <span>
               {% if study_collection != blank and study_collection.all_products_count > 0 %}
                 {{ study_collection.all_products_count }} products
-              {% elsif study_product != blank %}
-                {{ study_product.title }}
               {% else %}
                 Work-ready desks and compact setups
               {% endif %}

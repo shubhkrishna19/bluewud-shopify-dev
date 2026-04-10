@@ -365,12 +365,22 @@
   .bw-product__option-label {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+    gap: 12px;
     min-height: 46px;
-    white-space: nowrap;
     color: #201713;
     font-size: 15px;
     font-weight: 700;
     line-height: 1.35;
+  }
+
+  .bw-product__option-current {
+    color: #7a5e4d;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    white-space: nowrap;
   }
 
   .bw-product__option-values {
@@ -858,8 +868,23 @@
     }
 
     .bw-product__thumbs {
-      grid-template-columns: repeat(4, minmax(0, 1fr));
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: 76px;
+      overflow-x: auto;
       gap: 8px;
+      padding-bottom: 4px;
+      scrollbar-width: none;
+      scroll-snap-type: x proximity;
+    }
+
+    .bw-product__thumbs::-webkit-scrollbar {
+      display: none;
+    }
+
+    .bw-product__thumb {
+      min-height: 76px;
+      scroll-snap-align: start;
     }
 
     .bw-product__panel {
@@ -887,10 +912,22 @@
       min-height: auto;
     }
 
+    .bw-product__option-values {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
+    }
+
+    .bw-product__option-values::-webkit-scrollbar {
+      display: none;
+    }
+
     .bw-product__option-chip {
       min-height: 42px;
       padding: 0 14px;
       font-size: 12px;
+      white-space: nowrap;
     }
 
     .bw-product__form {
@@ -900,6 +937,16 @@
     .bw-product__purchase {
       padding: 18px;
       border-radius: 20px;
+    }
+
+    .bw-product__actions {
+      gap: 10px;
+    }
+
+    .bw-product__buy-now {
+      min-height: 46px;
+      font-size: 12px;
+      letter-spacing: 0.06em;
     }
 
     .bw-product__reviews {
@@ -968,6 +1015,8 @@
           {% if featured_image %}
             <img
               src="{{ featured_image | image_url: width: 1200 }}"
+              srcset="{{ featured_image | image_url: width: 480 }} 480w, {{ featured_image | image_url: width: 720 }} 720w, {{ featured_image | image_url: width: 960 }} 960w, {{ featured_image | image_url: width: 1200 }} 1200w"
+              sizes="(max-width: 1024px) 100vw, 50vw"
               alt="{{ featured_image.alt | default: product.title | escape }}"
               loading="eager"
               data-product-main-image
@@ -989,6 +1038,11 @@
                 type="button"
                 data-product-thumb
                 data-image-url="{{ image | image_url: width: 1200 }}"
+                data-image-srcset="{{ image | image_url: width: 480 }} 480w, {{ image | image_url: width: 720 }} 720w, {{ image | image_url: width: 960 }} 960w, {{ image | image_url: width: 1200 }} 1200w"
+                data-image-sizes="(max-width: 1024px) 100vw, 50vw"
+                data-image-alt="{{ image.alt | default: product.title | escape }}"
+                data-image-width="{{ image.width | default: 1200 }}"
+                data-image-height="{{ image.height | default: 1200 }}"
                 aria-label="View image {{ forloop.index }}"
               >
                 {{ image | image_url: width: 220 | image_tag: loading: 'lazy', widths: '120, 180, 220', sizes: '88px', alt: image.alt | default: product.title }}
@@ -1077,7 +1131,7 @@
             %}
             {% unless is_default_title_option %}
               <div class="bw-product__option" data-option-index="{{ forloop.index0 }}">
-                <div class="bw-product__option-label">{{ option.name }}</div>
+                <div class="bw-product__option-label"><span>{{ option.name }}</span><span class="bw-product__option-current" data-option-current>{{ option.selected_value }}</span></div>
                 <div class="bw-product__option-values">
                   {% for value in option.values %}
                     {% capture option_input_id %}bw-product-{{ section.id }}-{{ option.position }}-{{ forloop.index0 }}{% endcapture %}
@@ -1355,6 +1409,11 @@
         var imageUrl = thumb.getAttribute('data-image-url');
         if (mainImage && imageUrl) {
           mainImage.setAttribute('src', imageUrl);
+          mainImage.setAttribute('srcset', thumb.getAttribute('data-image-srcset') || imageUrl);
+          mainImage.setAttribute('sizes', thumb.getAttribute('data-image-sizes') || '(max-width: 1024px) 100vw, 50vw');
+          mainImage.setAttribute('alt', thumb.getAttribute('data-image-alt') || '{{ product.title | escape }}');
+          mainImage.setAttribute('width', thumb.getAttribute('data-image-width') || '1200');
+          mainImage.setAttribute('height', thumb.getAttribute('data-image-height') || '1200');
         }
 
         section.querySelectorAll('[data-product-thumb]').forEach(function (item) {

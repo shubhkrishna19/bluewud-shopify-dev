@@ -120,9 +120,6 @@
   assign walk_in_wardrobe_url = modular_wardrobe_url | append: '#walk-in-wardrobe'
   assign drawer_nav_labels = 'Living Room|Bedroom|Study Room|TV Unit|Shoe Rack|Shelves|Coffee Table|Bookshelves|Modular Kitchen|Wardrobes|Price Calculator|Chest of Drawer' | split: '|'
   assign drawer_nav_urls = '/collections/living-room|/collections/bed-room|/collections/study-tables|/collections/tv-unit-furniture|/collections/shoe-racks|/search?type=product&q=shelves|/collections/coffee-table|/collections/book-shelves|/collections/kitchen-racks|/collections/wardrobe|/collections/kitchen-racks?planner=home-interiors|/collections/chest-of-drawer' | split: '|'
-  assign support_nav_labels = 'About Us|Contact Us|Visit Us|FAQs' | split: '|'
-  assign support_nav_urls = '/pages/about-us|/pages/contact-us|/pages/visit-us|/pages/help-center' | split: '|'
-
   if brand_logo == blank and settings.checkout_logo_image != blank
     assign brand_logo = settings.checkout_logo_image
   endif
@@ -263,13 +260,12 @@
 
   body.bw-header-drawer-open {
     overflow: hidden;
-    touch-action: none;
+    overscroll-behavior: none;
   }
 
   .bw-header-shell {
     position: relative;
     z-index: 9200;
-    isolation: isolate;
     overflow: visible;
     background: rgba(248, 243, 237, 0.96);
     backdrop-filter: blur(18px);
@@ -851,8 +847,8 @@
   .bw-header__drawer-pill {
     display: inline-flex;
     align-items: center;
-    min-height: 34px;
-    padding: 0 12px;
+    min-height: 40px;
+    padding: 0 14px;
     border-radius: 999px;
     border: 1px solid rgba(35, 24, 19, 0.09);
     background: rgba(255, 255, 255, 0.74);
@@ -891,6 +887,10 @@
   }
 
   .bw-header__drawer-link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 44px;
     color: #231813;
     font-size: 16px;
     font-weight: 700;
@@ -915,9 +915,13 @@
   }
 
   .bw-header__drawer-contact a {
+    display: flex;
+    align-items: center;
+    min-height: 44px;
     color: #231813;
     font-size: 14px;
     font-weight: 700;
+    text-decoration: none;
   }
 
   @media (max-width: 1240px) {
@@ -1274,7 +1278,7 @@
   <div class="bw-header__drawer-backdrop" data-bw-header-close></div>
   <div class="bw-header__drawer-panel">
     <div class="bw-header__drawer-top">
-      <div class="bw-header__brand">
+      <a class="bw-header__brand" href="{{ routes.root_url }}">
         <span class="bw-header__brand-copy{% if brand_logo != blank %} bw-header__brand-copy--with-logo{% endif %}">
           <span class="bw-header__brand-kicker">{{ brand_kicker }}</span>
           {% if brand_logo != blank %}
@@ -1292,7 +1296,7 @@
             <span class="bw-header__brand-wordmark">{{ brand_wordmark }}</span>
           {% endif %}
         </span>
-      </div>
+      </a>
       <button class="bw-header__drawer-close" type="button" aria-label="Close navigation" data-bw-header-close>
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true">
           <path d="M6 6l12 12"></path>
@@ -1358,6 +1362,7 @@
 
     <div class="bw-header__drawer-links">
       <div class="bw-header__drawer-heading">Support</div>
+      <a class="bw-header__drawer-link" href="{{ routes.account_url }}">Account</a>
       {% if section.settings.support_menu != blank and section.settings.support_menu.links.size > 0 %}
         {% for link in section.settings.support_menu.links %}
           <a class="bw-header__drawer-link" href="{{ link.url }}"{% if link.current %} aria-current="page"{% endif %}>{{ link.title }}</a>

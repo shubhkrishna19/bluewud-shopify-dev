@@ -1,6 +1,4 @@
 {% liquid
-  assign wardrobe_page_url = '/collections/wardrobe'
-  assign kitchen_page_url = '/collections/kitchen-racks'
   assign wardrobe_calculator_url = '/collections/wardrobe?planner=wardrobe-calculator'
   assign kitchen_calculator_url = '/collections/kitchen-racks?planner=kitchen-calculator'
   assign interiors_calculator_url = '/collections/kitchen-racks?planner=home-interiors'
@@ -9,12 +7,6 @@
   assign estimate_url = '/pages/contact-us'
   assign contact_url = '/pages/contact-us'
 
-  if pages['modular-wardrobe-designs'] != blank
-    assign wardrobe_page_url = pages['modular-wardrobe-designs'].url
-  endif
-  if pages['modular-kitchen-designs'] != blank
-    assign kitchen_page_url = pages['modular-kitchen-designs'].url
-  endif
   if pages['modular-wardrobe-cost-calculator'] != blank
     assign wardrobe_calculator_url = pages['modular-wardrobe-cost-calculator'].url
   endif
