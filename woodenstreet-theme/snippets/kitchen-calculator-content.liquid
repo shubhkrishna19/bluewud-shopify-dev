@@ -1,4 +1,4 @@
-﻿{% liquid
+{% liquid
   assign is_embedded = embedded | default: false
   assign contact_url = '/pages/contact-us'
   assign main_url = '/collections/kitchen-racks'
@@ -14,13 +14,63 @@
   assign kitchen_image_parallel_url = 'modular-kitchen-galley-light-wood.png' | asset_url
   assign kitchen_image_straight_url = 'modular-kitchen-sage-u-shape.png' | asset_url
   assign kitchen_image_island_url = 'modular-kitchen-navy-luxury.png' | asset_url
+  assign kitchen_collection = collections['kitchen-racks']
+  assign kitchen_collection_image_url = kitchen_image_l_url
+  assign kitchen_collection_image_alt = 'Bluewud modular kitchen reference'
+  assign kitchen_collection_product_one = kitchen_collection.products.first
+  assign kitchen_collection_product_two = kitchen_collection.products[1]
+  assign kitchen_collection_product_three = kitchen_collection.products[2]
+  assign kitchen_collection_product_four = kitchen_collection.products[3]
+  assign kitchen_collection_product_one_image_url = kitchen_image_u_url
+  assign kitchen_collection_product_one_image_alt = 'Bluewud modular kitchen reference'
+  assign kitchen_collection_product_two_image_url = kitchen_image_parallel_url
+  assign kitchen_collection_product_two_image_alt = 'Bluewud modular kitchen reference'
+  assign kitchen_collection_product_three_image_url = kitchen_image_straight_url
+  assign kitchen_collection_product_three_image_alt = 'Bluewud modular kitchen reference'
+  assign kitchen_collection_product_four_image_url = kitchen_image_island_url
+  assign kitchen_collection_product_four_image_alt = 'Bluewud modular kitchen reference'
+  if kitchen_collection != blank
+    if kitchen_collection.image != blank
+      assign kitchen_collection_image_url = kitchen_collection.image | image_url: width: 900
+      assign kitchen_collection_image_alt = kitchen_collection.title | default: 'Bluewud modular kitchen'
+    endif
+    if kitchen_collection_product_one != blank and kitchen_collection_product_one.featured_image != blank
+      assign kitchen_collection_product_one_image_url = kitchen_collection_product_one.featured_image | image_url: width: 900
+      assign kitchen_collection_product_one_image_alt = kitchen_collection_product_one.title | default: 'Bluewud kitchen reference'
+    endif
+    if kitchen_collection_product_two != blank and kitchen_collection_product_two.featured_image != blank
+      assign kitchen_collection_product_two_image_url = kitchen_collection_product_two.featured_image | image_url: width: 900
+      assign kitchen_collection_product_two_image_alt = kitchen_collection_product_two.title | default: 'Bluewud kitchen reference'
+    endif
+    if kitchen_collection_product_three != blank and kitchen_collection_product_three.featured_image != blank
+      assign kitchen_collection_product_three_image_url = kitchen_collection_product_three.featured_image | image_url: width: 900
+      assign kitchen_collection_product_three_image_alt = kitchen_collection_product_three.title | default: 'Bluewud kitchen reference'
+    endif
+    if kitchen_collection_product_four != blank and kitchen_collection_product_four.featured_image != blank
+      assign kitchen_collection_product_four_image_url = kitchen_collection_product_four.featured_image | image_url: width: 900
+      assign kitchen_collection_product_four_image_alt = kitchen_collection_product_four.title | default: 'Bluewud kitchen reference'
+    endif
+  endif
   assign kitchen_image_property_apartment_url = kitchen_image_l_url
-  assign kitchen_image_property_villa_url = kitchen_image_island_url
-  assign kitchen_image_property_floor_url = kitchen_image_parallel_url
-  assign kitchen_image_property_rental_url = kitchen_image_straight_url
-  assign kitchen_image_usage_light_url = kitchen_image_straight_url
-  assign kitchen_image_usage_daily_url = kitchen_image_l_url
-  assign kitchen_image_usage_heavy_url = kitchen_image_u_url
+  assign kitchen_image_property_villa_url = kitchen_collection_image_url
+  assign kitchen_image_property_floor_url = kitchen_collection_product_one_image_url
+  assign kitchen_image_property_rental_url = kitchen_collection_product_two_image_url
+  assign kitchen_image_usage_light_url = kitchen_image_parallel_url
+  assign kitchen_image_usage_daily_url = kitchen_collection_image_url
+  assign kitchen_image_usage_heavy_url = kitchen_collection_product_four_image_url
+  assign kitchen_image_upper_yes_url = kitchen_collection_image_url
+  assign kitchen_image_upper_selected_url = kitchen_collection_product_one_image_url
+  assign kitchen_image_upper_no_url = kitchen_collection_product_two_image_url
+  assign kitchen_image_carcass_engineered_url = kitchen_collection_product_one_image_url
+  assign kitchen_image_carcass_plywood_url = kitchen_collection_product_three_image_url
+  assign kitchen_image_carcass_guidance_url = kitchen_collection_image_url
+  assign kitchen_image_shutter_laminate_url = kitchen_image_straight_url
+  assign kitchen_image_shutter_acrylic_url = kitchen_collection_product_two_image_url
+  assign kitchen_image_shutter_membrane_url = kitchen_image_parallel_url
+  assign kitchen_image_shutter_glass_url = kitchen_collection_product_four_image_url
+  assign kitchen_image_countertop_granite_url = kitchen_collection_image_url
+  assign kitchen_image_countertop_quartz_url = kitchen_collection_product_one_image_url
+  assign kitchen_image_countertop_stone_url = kitchen_collection_product_four_image_url
 
   if pages['modular-kitchen-designs'] != blank
     assign main_url = pages['modular-kitchen-designs'].url
@@ -351,6 +401,7 @@
   .bw-flow__choices[data-flow-group="usage"],
   .bw-flow__choices[data-flow-group="uppers"],
   .bw-flow__choices[data-flow-group="carcass"],
+  .bw-flow__choices[data-flow-group="shutter"],
   .bw-flow__choices[data-flow-group="countertop"],
   .bw-flow__choices[data-flow-group="appliances"] {
     grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
@@ -469,12 +520,37 @@
     gap: 10px;
   }
   .bw-flow__utility-choices .bw-flow__choice {
+    display: grid;
+    grid-template-columns: 80px minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
     min-height: 0;
-    padding: 12px 14px;
+    padding: 10px 12px;
+    border-radius: 18px;
     text-transform: none;
     letter-spacing: 0;
+  }
+  .bw-flow__utility-choices .bw-flow__choice-media {
+    min-height: 80px;
+    border-radius: 14px;
+  }
+  .bw-flow__utility-choices .bw-flow__choice-copy {
+    gap: 3px;
+  }
+  .bw-flow__utility-choices .bw-flow__choice-title {
     font-size: 13px;
-    line-height: 1.5;
+    line-height: 1.2;
+  }
+  .bw-flow__utility-choices .bw-flow__choice-note {
+    font-size: 11px;
+    line-height: 1.45;
+  }
+  .bw-flow__utility-choices .bw-flow__choice.is-selected {
+    box-shadow: 0 18px 32px rgba(35, 24, 19, 0.12);
+  }
+  .bw-flow__utility-choices .bw-flow__choice.is-selected .bw-flow__choice-media img {
+    transform: scale(1.02);
+    transition: transform 0.18s ease;
   }
   .bw-flow__grid {
     display: grid;
@@ -763,6 +839,7 @@
     .bw-flow__choices[data-flow-group="usage"],
     .bw-flow__choices[data-flow-group="uppers"],
     .bw-flow__choices[data-flow-group="carcass"],
+    .bw-flow__choices[data-flow-group="shutter"],
     .bw-flow__choices[data-flow-group="countertop"],
     .bw-flow__choices[data-flow-group="appliances"],
     .bw-flow__choices[data-flow-group="addons"] { grid-template-columns: 1fr; }
@@ -922,7 +999,9 @@
     .bw-flow__choices[data-flow-group="property"],
     .bw-flow__choices[data-flow-group="usage"],
     .bw-flow__choices[data-flow-group="uppers"],
-    .bw-flow__choices[data-flow-group="carcass"] {
+    .bw-flow__choices[data-flow-group="carcass"],
+    .bw-flow__choices[data-flow-group="shutter"],
+    .bw-flow__choices[data-flow-group="countertop"] {
       grid-template-columns: 1fr;
       gap: 8px;
     }
@@ -1153,12 +1232,33 @@
           <div class="bw-flow__field"><label for="bw-kitchen-wall-c">Wall C length (ft)</label><input id="bw-kitchen-wall-c" type="number" min="0" max="40" step="0.5" value="0" data-flow-input="wall_c"></div>
           <div class="bw-flow__field"><label for="bw-kitchen-ceiling">Ceiling height (ft)</label><input id="bw-kitchen-ceiling" type="number" min="7" max="14" step="0.5" value="9" data-flow-input="ceiling"></div>
         </div>
-        <div class="bw-flow__section">
+                <div class="bw-flow__section">
           <div class="bw-flow__label">Need upper cabinets?</div>
           <div class="bw-flow__choices" data-flow-group="uppers">
-            <label class="bw-flow__choice is-selected"><input type="radio" name="upper_cabinets" value="Yes" checked>Yes</label>
-            <label class="bw-flow__choice"><input type="radio" name="upper_cabinets" value="Only on selected walls">Selected Walls</label>
-            <label class="bw-flow__choice"><input type="radio" name="upper_cabinets" value="No">No</label>
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context is-selected">
+              <input type="radio" name="upper_cabinets" value="Yes" checked>
+              <span class="bw-flow__choice-media"><img src="{{ kitchen_image_upper_yes_url }}" alt="Full upper cabinet kitchen reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Yes</span>
+                <span class="bw-flow__choice-note">Use overhead storage across the kitchen where the brief needs the most closed storage.</span>
+              </span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context">
+              <input type="radio" name="upper_cabinets" value="Only on selected walls">
+              <span class="bw-flow__choice-media"><img src="{{ kitchen_image_upper_selected_url }}" alt="Selective upper cabinet kitchen reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Selected Walls</span>
+                <span class="bw-flow__choice-note">Keep the upper run only where storage or working height really needs it.</span>
+              </span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context">
+              <input type="radio" name="upper_cabinets" value="No">
+              <span class="bw-flow__choice-media"><img src="{{ kitchen_image_upper_no_url }}" alt="Open wall kitchen reference without upper cabinets" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">No</span>
+                <span class="bw-flow__choice-note">Choose this when the kitchen should stay visually open and lighter above the counter line.</span>
+              </span>
+            </label>
           </div>
         </div>
         <div class="bw-flow__actions">
@@ -1189,29 +1289,99 @@
             <p>Glass-led shutters, premium stone, and heavier appliance planning suit larger kitchens aiming for a stronger visual impression.</p>
           </article>
         </div>
-        <div class="bw-flow__section">
+                <div class="bw-flow__section">
           <div class="bw-flow__label">Carcass material</div>
           <div class="bw-flow__choices" data-flow-group="carcass">
-            <label class="bw-flow__choice is-selected"><input type="radio" name="carcass_material" value="Engineered wood" checked>Engineered Wood</label>
-            <label class="bw-flow__choice"><input type="radio" name="carcass_material" value="Plywood">Plywood</label>
-            <label class="bw-flow__choice"><input type="radio" name="carcass_material" value="Need guidance">Need Guidance</label>
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context is-selected">
+              <input type="radio" name="carcass_material" value="Engineered wood" checked>
+              <span class="bw-flow__choice-media"><img src="{{ kitchen_image_carcass_engineered_url }}" alt="Engineered wood kitchen carcass reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Engineered Wood</span>
+                <span class="bw-flow__choice-note">A practical starting point for a balanced kitchen brief with straightforward upkeep.</span>
+              </span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context">
+              <input type="radio" name="carcass_material" value="Plywood">
+              <span class="bw-flow__choice-media"><img src="{{ kitchen_image_carcass_plywood_url }}" alt="Plywood kitchen carcass reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Plywood</span>
+                <span class="bw-flow__choice-note">Use this when the build needs a stronger long-term structural direction.</span>
+              </span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context">
+              <input type="radio" name="carcass_material" value="Need guidance">
+              <span class="bw-flow__choice-media"><img src="{{ kitchen_image_carcass_guidance_url }}" alt="Kitchen planning guidance reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Need Guidance</span>
+                <span class="bw-flow__choice-note">Leave the material choice open if the site visit should settle the final build detail.</span>
+              </span>
+            </label>
           </div>
         </div>
-        <div class="bw-flow__section">
+                <div class="bw-flow__section">
           <div class="bw-flow__label">Shutter material</div>
           <div class="bw-flow__choices" data-flow-group="shutter_material">
-            <label class="bw-flow__choice is-selected"><input type="radio" name="shutter_material" value="Laminate front" checked>Laminate Front</label>
-            <label class="bw-flow__choice"><input type="radio" name="shutter_material" value="Acrylic front">Acrylic Front</label>
-            <label class="bw-flow__choice"><input type="radio" name="shutter_material" value="Membrane / profile">Membrane / Profile</label>
-            <label class="bw-flow__choice"><input type="radio" name="shutter_material" value="Glass / premium">Glass / Premium</label>
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context is-selected">
+              <input type="radio" name="shutter_material" value="Laminate front" checked>
+              <span class="bw-flow__choice-media"><img src="{{ kitchen_image_shutter_laminate_url }}" alt="Laminate shutter kitchen reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Laminate Front</span>
+                <span class="bw-flow__choice-note">Best when the kitchen needs durable surface comfort without unnecessary visual risk.</span>
+              </span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context">
+              <input type="radio" name="shutter_material" value="Acrylic front">
+              <span class="bw-flow__choice-media"><img src="{{ kitchen_image_shutter_acrylic_url }}" alt="Acrylic shutter kitchen reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Acrylic Front</span>
+                <span class="bw-flow__choice-note">Choose this for a sharper, more polished front surface.</span>
+              </span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context">
+              <input type="radio" name="shutter_material" value="Membrane / profile">
+              <span class="bw-flow__choice-media"><img src="{{ kitchen_image_shutter_membrane_url }}" alt="Membrane shutter kitchen reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Membrane / Profile</span>
+                <span class="bw-flow__choice-note">Good when the design language needs softer edges and a more tailored front finish.</span>
+              </span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context">
+              <input type="radio" name="shutter_material" value="Glass / premium">
+              <span class="bw-flow__choice-media"><img src="{{ kitchen_image_shutter_glass_url }}" alt="Premium glass shutter kitchen reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Glass / Premium</span>
+                <span class="bw-flow__choice-note">Select this when the kitchen should feel visibly premium and more statement-led.</span>
+              </span>
+            </label>
           </div>
         </div>
-        <div class="bw-flow__section">
+                <div class="bw-flow__section">
           <div class="bw-flow__label">Countertop</div>
           <div class="bw-flow__choices" data-flow-group="countertop">
-            <label class="bw-flow__choice is-selected"><input type="radio" name="countertop" value="Granite" checked>Granite</label>
-            <label class="bw-flow__choice"><input type="radio" name="countertop" value="Quartz">Quartz</label>
-            <label class="bw-flow__choice"><input type="radio" name="countertop" value="Premium stone">Premium Stone</label>
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context is-selected">
+              <input type="radio" name="countertop" value="Granite" checked>
+              <span class="bw-flow__choice-media"><img src="{{ kitchen_image_countertop_granite_url }}" alt="Granite countertop kitchen reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Granite</span>
+                <span class="bw-flow__choice-note">The grounded choice when the kitchen needs toughness and everyday reliability.</span>
+              </span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context">
+              <input type="radio" name="countertop" value="Quartz">
+              <span class="bw-flow__choice-media"><img src="{{ kitchen_image_countertop_quartz_url }}" alt="Quartz countertop kitchen reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Quartz</span>
+                <span class="bw-flow__choice-note">Use this when a cleaner, brighter surface tone matters more.</span>
+              </span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context">
+              <input type="radio" name="countertop" value="Premium stone">
+              <span class="bw-flow__choice-media"><img src="{{ kitchen_image_countertop_stone_url }}" alt="Premium stone countertop kitchen reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Premium Stone</span>
+                <span class="bw-flow__choice-note">Best for a more elevated countertop impression and a stronger visual finish.</span>
+              </span>
+            </label>
           </div>
         </div>
         <div class="bw-flow__actions">
@@ -1540,7 +1710,7 @@
         appliances: 'Add appliances or leave blank'
       } : {
         layout: layout || 'L-shape',
-        property: property ? property + ' • ' + usage : 'Apartment • Daily family use',
+        property: property ? property + ' � ' + usage : 'Apartment � Daily family use',
         measurements: [wallA + ' ft', wallB + ' ft', wallC + ' ft'].join(' / '),
         build: [selectedRadio('carcass_material'), selectedRadio('shutter_material'), selectedRadio('countertop')].filter(Boolean).join(' / ') || 'Engineered wood / Laminate front / Granite',
         utility: selectedChecks('addons').length ? selectedChecks('addons').slice(0, 3).join(', ') : 'Core cabinetry only',
