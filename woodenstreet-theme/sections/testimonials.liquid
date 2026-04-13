@@ -1,7 +1,7 @@
 {% liquid
   assign testimonials_eyebrow = section.settings.eyebrow | default: 'Loved by Bluewud homes'
-  assign testimonials_title = section.settings.title | default: 'What buyers say after the room starts working better.'
-  assign testimonials_copy = section.settings.copy | default: 'Customers return when the furniture feels easy to place, easy to use, and easy to trust.'
+  assign testimonials_title = section.settings.title | default: 'What buyers say before they decide.'
+  assign testimonials_copy = section.settings.copy | default: 'Short reviews that help shoppers move from comparison to confidence.'
   assign stat_one = section.settings.stat_one | default: '20 Lakh+ Customers'
   assign stat_two = section.settings.stat_two | default: '15+ Years'
   assign stat_three = section.settings.stat_three | default: 'Pan-India Reach'
@@ -791,7 +791,7 @@
           <div class="bw-testimonials__live-copy">
             <span class="bw-testimonials__live-kicker">More customer voices</span>
             <h3 class="bw-testimonials__live-title">Browse more real Bluewud reviews.</h3>
-            <p class="bw-testimonials__live-text">The curated stories above create fast confidence. This section opens the deeper review base already collected on the store for shoppers who want a little more proof before purchase.</p>
+            <p class="bw-testimonials__live-text">Open the fuller review base when you want extra proof before purchase.</p>
           </div>
           <div class="bw-testimonials__live-actions">
             {% render 'judgeme_widgets', widget_type: 'judgeme_all_reviews_text', concierge_install: true %}
@@ -893,13 +893,13 @@
       "type": "text",
       "id": "title",
       "label": "Heading",
-      "default": "What buyers say after the room starts working better."
+      "default": "What buyers say before they decide."
     },
     {
       "type": "textarea",
       "id": "copy",
       "label": "Description",
-      "default": "Customers return when the furniture feels easy to place, easy to use, and easy to trust."
+      "default": "Short reviews that help shoppers move from comparison to confidence."
     },
     {
       "type": "text",

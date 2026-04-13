@@ -97,8 +97,8 @@
       "type": "featured-category-tiles",
       "settings": {
         "eyebrow": "More to explore",
-        "title": "The next categories customers usually shortlist.",
-        "copy": "Bring in the categories customers usually shortlist next: vanity-led storage, living room anchors, and work-from-home setups that still feel premium."
+        "title": "Finishing pieces customers shortlist after the main room.",
+        "copy": "Vanity-led storage, centre tables, and work-friendly setups that help a room feel complete without adding clutter."
       },
       "blocks": {
         "dressing_tables": {
@@ -141,13 +141,13 @@
     "banner": {
       "type": "banner",
       "settings": {
-        "eyebrow": "Planning more than one room?",
-        "title": "Bluewud helps customers shortlist room by room.",
-        "copy": "From a first apartment to a fuller home project, Bluewud is built to help people compare faster, ask better questions, and move forward with confidence.",
+        "eyebrow": "Need a guided quote?",
+        "title": "Move from browsing into a clearer project brief.",
+        "copy": "When the room and format are mostly chosen, Bluewud can capture layout, budget, and contact details in one step.",
         "primary_label": "Get Free Estimate",
         "primary_url": "shopify://pages/get-free-estimate",
-        "secondary_label": "Visit Us",
-        "secondary_url": "shopify://pages/visit-us"
+        "secondary_label": "Talk to Bluewud",
+        "secondary_url": "shopify://pages/contact-us"
       }
     },
     "featured_products": {
@@ -162,9 +162,9 @@
   },
   "order": [
     "hero",
-    "trust_banners",
     "categories",
     "featured_products",
+    "trust_banners",
     "featured_category_tiles",
     "banner",
     "testimonials",
