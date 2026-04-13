@@ -1,4 +1,4 @@
-{% liquid
+﻿{% liquid
   assign is_embedded = embedded | default: false
   assign contact_url = '/pages/contact-us'
   assign wardrobe_main_url = '/collections/wardrobe'
@@ -824,7 +824,7 @@
     .bw-flow__summary .bw-flow__actions,
     .bw-flow__actions { flex-direction: column-reverse; align-items: stretch; gap: 8px; }
     .bw-flow__summary .bw-flow__actions { flex-direction: column; }
-    .bw-flow__summary-visual { min-height: 128px; }
+    .bw-flow__summary-visual { min-height: 112px; }
     .bw-flow__summary-list { grid-template-columns: 1fr; gap: 8px; }
     .bw-flow__summary-cues { grid-template-columns: 1fr; gap: 8px; }
     .bw-flow__button,
@@ -851,7 +851,7 @@
     .bw-flow__choice-media { min-height: 92px; }
     .bw-flow__choice--image .bw-flow__choice-media { min-height: 72px; }
     .bw-flow__decision-card { padding: 10px; }
-    .bw-flow__summary-visual { min-height: 112px; }
+    .bw-flow__summary-visual { min-height: 96px; }
     .bw-flow__summary-line { gap: 2px; }
     .bw-flow__button,
     .bw-flow__button--secondary { min-height: 42px; padding-inline: 14px; }
@@ -1033,7 +1033,7 @@
       <div class="bw-flow__head">
         <span class="bw-flow__eyebrow">Wardrobe planning workflow</span>
         <h2 class="bw-flow__title">Wardrobe Cost Calculator</h2>
-        <p class="bw-flow__copy">Build the wardrobe brief first so Bluewud can respond with the right storage format, finish direction, and estimate conversation.</p>
+        <p class="bw-flow__copy">Choose the wardrobe format, capture the room basics, and keep the brief focused enough for Bluewud to respond well.</p>
       </div>
 
       <div class="bw-flow__journey">
@@ -1090,7 +1090,7 @@
       <div class="bw-flow__stage is-active" data-step-panel="1">
         <div class="bw-flow__stage-head">
           <h3 class="bw-flow__stage-title">Start with the wardrobe format and room intent</h3>
-          <p class="bw-flow__stage-copy">The first step should settle access style and room context so the rest of the discussion does not stay generic.</p>
+          <p class="bw-flow__stage-copy">Set the access style and room context first so the rest of the discussion stays specific.</p>
         </div>
         <div class="bw-flow__section">
           <div class="bw-flow__label">Wardrobe type</div>
@@ -1279,8 +1279,8 @@
 
       <div class="bw-flow__stage" data-step-panel="4">
         <div class="bw-flow__stage-head">
-          <h3 class="bw-flow__stage-title">Choose the internals and accessories that matter</h3>
-          <p class="bw-flow__stage-copy">This step makes the brief practical, because a wardrobe is defined by its internals as much as by its shutter style.</p>
+          <h3 class="bw-flow__stage-title">Choose the internals that matter most</h3>
+          <p class="bw-flow__stage-copy">Use only the internals that genuinely change the wardrobe brief.</p>
         </div>
         <div class="bw-flow__section">
           <div class="bw-flow__label">Internal requirements</div>
@@ -1372,26 +1372,26 @@
       <p class="bw-flow__summary-caption" data-summary-visual-caption>Sliding wardrobes work best when frontage is compact but storage still needs to feel premium and efficient.</p>
       <div class="bw-flow__head">
         <span class="bw-flow__eyebrow">Project summary</span>
-        <h2 class="bw-flow__title">Your wardrobe brief</h2>
-        <p class="bw-flow__copy">This is a quick wardrobe snapshot so Bluewud can respond with a more relevant storage and estimate conversation.</p>
+        <h2 class="bw-flow__title">Your brief snapshot</h2>
+        <p class="bw-flow__copy">Only the selected details appear here once you start choosing.</p>
       </div>
 
-      <div class="bw-flow__badge" data-wardrobe-band>Balanced premium direction</div>
+      <div class="bw-flow__badge" data-wardrobe-band>Ready for your brief</div>
 
       <div class="bw-flow__summary-list">
-        <div class="bw-flow__summary-line"><span>Type</span><strong data-summary-type>Sliding</strong></div>
-        <div class="bw-flow__summary-line"><span>Room</span><strong data-summary-room>Master bedroom • Balanced daily use</strong></div>
-        <div class="bw-flow__summary-line"><span>Measurements</span><strong data-summary-measurements>7 ft / 8 ft / 2 ft</strong></div>
-        <div class="bw-flow__summary-line"><span>Build</span><strong data-summary-build>Engineered wood / Laminate panel / Warm wood + solid shutters</strong></div>
-        <div class="bw-flow__summary-line"><span>Features</span><strong data-summary-features>Loft included • None selected</strong></div>
-        <div class="bw-flow__summary-line"><span>Mirror</span><strong data-summary-mirror>No mirror</strong></div>
+        <div class="bw-flow__summary-line"><span>Type</span><strong data-summary-type>Choose a type</strong></div>
+        <div class="bw-flow__summary-line"><span>Room</span><strong data-summary-room>Add room type</strong></div>
+        <div class="bw-flow__summary-line"><span>Measurements</span><strong data-summary-measurements>Enter width, height, depth</strong></div>
+        <div class="bw-flow__summary-line"><span>Build</span><strong data-summary-build>Pick materials and finish</strong></div>
+        <div class="bw-flow__summary-line"><span>Features</span><strong data-summary-features>Set storage features</strong></div>
+        <div class="bw-flow__summary-line"><span>Mirror</span><strong data-summary-mirror>Choose mirror direction</strong></div>
       </div>
       <div class="bw-flow__summary-tags" data-summary-tags></div>
 
-      <p class="bw-flow__assist">This brief helps Bluewud respond with a clearer wardrobe plan, material direction, and estimate conversation from the start.</p>
+      <p class="bw-flow__assist">The brief stays compact so the estimate request reads cleanly on mobile too.</p>
       <div class="bw-flow__actions">
         <button class="bw-flow__button" type="button" data-bw-wardrobe-popup-open>Get Free Estimate</button>
-        <a class="bw-flow__button--secondary" href="{{ contact_url }}">Talk to a Wardrobe Expert</a>
+
       </div>
     </aside>
   </div>
@@ -1406,6 +1406,7 @@
 
     var step = 1;
     var maxStep = 5;
+    var hasInteracted = false;
     var stageNodes = Array.prototype.slice.call(root.querySelectorAll('[data-step-panel]'));
     var indicatorNodes = Array.prototype.slice.call(root.querySelectorAll('[data-step-indicator]'));
     var modal = document.getElementById('bw-wardrobe-calc-popup');
@@ -1540,6 +1541,9 @@
         choice.classList.toggle('is-selected', !!input.checked);
       });
     }
+    function markInteracted() {
+      hasInteracted = true;
+    }
 
     function projectBand() {
       var premiumSignals = 0;
@@ -1555,57 +1559,54 @@
 
     function updateSummary() {
       toggleChoiceStates();
+      var neutralState = !hasInteracted;
+      var typeKey = (selectedRadio('wardrobe_type') || '').toLowerCase();
+      var room = selectedRadio('room_type');
       var measurements = [inputValue('width') + ' ft', inputValue('height') + ' ft', inputValue('depth') + ' ft'].join(' / ');
       var internals = selectedChecks('internals');
       var loftValue = inputValue('loft');
-      var summaryMap = {
-        type: selectedRadio('wardrobe_type'),
-        room: [selectedRadio('room_type'), selectedRadio('storage_intensity')].filter(Boolean).join(' • '),
+      var summaryMap = neutralState ? {
+        type: 'Choose a type',
+        room: 'Add room type',
+        measurements: 'Enter width, height, depth',
+        build: 'Pick materials and finish',
+        features: 'Set storage features',
+        mirror: 'Choose mirror direction'
+      } : {
+        type: selectedRadio('wardrobe_type') || 'Sliding',
+        room: room ? room + ' • ' + selectedRadio('storage_intensity') : 'Master bedroom • Balanced daily use',
         measurements: measurements,
-        build: [
-          selectedRadio('wardrobe_carcass'),
-          selectedRadio('wardrobe_shutter_material'),
-          selectedRadio('wardrobe_finish')
-        ].filter(Boolean).join(' / '),
-        features: [
-          loftValue === 'No' ? 'No loft' : 'Loft included',
-          internals.length ? internals.join(', ') : 'Core storage only'
-        ].filter(Boolean).join(' • '),
-        mirror: selectedRadio('mirror_need')
+        build: [selectedRadio('wardrobe_carcass'), selectedRadio('wardrobe_shutter_material'), selectedRadio('wardrobe_finish')].filter(Boolean).join(' / ') || 'Engineered wood / Laminate panel / Warm wood + solid shutters',
+        features: [loftValue, internals.length ? internals.slice(0, 3).join(', ') : 'None selected'].join(' • '),
+        mirror: selectedRadio('mirror_need') || 'No mirror'
       };
-
       Object.keys(summaryMap).forEach(function (key) {
         var node = root.querySelector('[data-summary-' + key + ']');
         if (node) node.textContent = summaryMap[key];
       });
-      if (bandNode) bandNode.textContent = projectBand();
-      var typeKey = (summaryMap.type || '').toLowerCase();
-      var visual = wardrobeVisuals[typeKey] || wardrobeVisuals['sliding'];
+      var visual = wardrobeVisuals[neutralState ? 'sliding' : typeKey] || wardrobeVisuals['sliding'];
       if (summaryImage && visual && visual.src) {
         summaryImage.src = visual.src;
         summaryImage.alt = visual.alt || summaryMap.type;
       }
       if (summaryCaption && visual && visual.caption) {
-        summaryCaption.textContent = visual.caption;
+        summaryCaption.textContent = neutralState ? 'Start with the wardrobe type. The rest of the brief stays neutral until you make selections.' : visual.caption;
       }
       var tagsNode = root.querySelector('[data-summary-tags]');
       if (tagsNode) {
-        var tags = [
+        var tags = neutralState ? [] : [
           summaryMap.type,
-          selectedRadio('room_type'),
-          selectedRadio('storage_intensity'),
-          selectedRadio('wardrobe_carcass'),
-          selectedRadio('wardrobe_shutter_material'),
-          selectedRadio('wardrobe_finish'),
+          summaryMap.room,
+          summaryMap.build.split(' / ')[1] || selectedRadio('wardrobe_shutter_material'),
+          summaryMap.features,
           summaryMap.mirror
-        ];
-        internals.slice(0, 2).forEach(function (item) { tags.push(item); });
-        tagsNode.innerHTML = tags
-          .filter(Boolean)
-          .slice(0, 7)
-          .map(function (item) { return '<span class="bw-flow__summary-tag">' + item + '</span>'; })
-          .join('');
+        ].filter(Boolean).slice(0, 5);
+        tagsNode.innerHTML = tags.length ? tags.map(function (tag) {
+          return '<span class="bw-flow__summary-tag">' + tag + '</span>';
+        }).join('') : '';
       }
+      var bandText = projectBand();
+      if (bandNode) bandNode.textContent = neutralState ? 'Ready for your brief' : bandText;
       persistPayload('calculator-progress');
     }
 
@@ -1732,7 +1733,14 @@
       }
     });
 
-    root.addEventListener('change', updateSummary);
+    root.addEventListener('change', function () {
+      markInteracted();
+      updateSummary();
+    });
+    root.addEventListener('input', function () {
+      markInteracted();
+      updateSummary();
+    });
     root.addEventListener('bw:wardrobe-type-select', function (event) {
       if (event.detail && event.detail.type) {
         applyWardrobePreset(event.detail.type);

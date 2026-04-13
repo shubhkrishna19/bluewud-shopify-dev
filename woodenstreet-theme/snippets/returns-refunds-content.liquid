@@ -1,7 +1,6 @@
 {% liquid
   assign contact_url = '/pages/contact-us'
   assign help_center_url = '/pages/help-center'
-  assign estimate_url = '/pages/get-free-estimate'
 %}
 
 <style>
@@ -450,34 +449,17 @@
         <div class="bw-returns__actions">
           <a class="bw-returns__action bw-returns__action--solid" href="{{ contact_url }}">Talk to Bluewud</a>
           <a class="bw-returns__action" href="{{ help_center_url }}">Open Help Center</a>
-          <a class="bw-returns__action" href="{{ estimate_url }}">Open Estimate Desk</a>
         </div>
       </div>
     </div>
 
     <div class="bw-returns__hero-side">
-      <div class="bw-returns__quick">
-        <div class="bw-returns__quick-item">
-        <span class="bw-returns__quick-label">Raise a request</span>
-        <span class="bw-returns__quick-value">Within 10 days</span>
-        <span class="bw-returns__quick-copy">Share the issue quickly so the team can review it against the delivery and inspection timeline.</span>
-        </div>
-
-        <div class="bw-returns__quick-item">
-        <span class="bw-returns__quick-label">Refund timing</span>
-        <span class="bw-returns__quick-value">After inspection</span>
-        <span class="bw-returns__quick-copy">Approved refunds are processed after verification.</span>
-        </div>
-
-        <div class="bw-returns__quick-item">
-        <span class="bw-returns__quick-label">Large-item support</span>
-        <span class="bw-returns__quick-value">Replacement-first handling</span>
-        <span class="bw-returns__quick-copy">Volumetric products such as beds, wardrobes, and larger TV units are usually handled through replacement support.</span>
-        </div>
-      </div>
-
       <div class="bw-returns__note">
-        If an item is not eligible for pickup, support will guide the next step and any applicable shipping credit or replacement path.
+        If you are not sure which path applies, contact support with the order ID and photos so the team can guide the next step once.
+      </div>
+      <div class="bw-returns__aside-actions">
+        <a class="bw-returns__aside-link" href="{{ contact_url }}">Contact support</a>
+        <a class="bw-returns__cta" href="{{ help_center_url }}">Open help center</a>
       </div>
     </div>
   </section>
@@ -528,7 +510,6 @@
       <ul class="bw-returns__aside-list">
         <li>Call or WhatsApp: <a href="tel:+918800609609">+91-8800-609-609</a></li>
         <li>Email: <a href="mailto:care@bluewud.com">care@bluewud.com</a></li>
-        <li>Open the help center for related shipping and installation questions</li>
       </ul>
       <div class="bw-returns__aside-actions">
         <a class="bw-returns__aside-link" href="{{ contact_url }}">Contact support</a>

@@ -224,34 +224,6 @@
     border: 1px solid rgba(45, 33, 27, 0.08);
   }
 
-  .bw-product__proofs {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 12px;
-  }
-
-  .bw-product__proof {
-    padding: 14px 16px;
-    border-radius: 18px;
-    background: rgba(255, 255, 255, 0.8);
-    border: 1px solid rgba(45, 33, 27, 0.08);
-  }
-
-  .bw-product__proof-label {
-    display: block;
-    color: #201713;
-    font-size: 14px;
-    font-weight: 700;
-  }
-
-  .bw-product__proof-copy {
-    display: block;
-    margin-top: 4px;
-    color: #6b5b53;
-    font-size: 12px;
-    line-height: 1.5;
-  }
-
   .bw-product__pricing {
     display: grid;
     gap: 10px;
@@ -314,27 +286,6 @@
     color: #6b5b53;
     font-size: 13px;
     line-height: 1.6;
-  }
-
-  .bw-product__trustline {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-    margin-top: -2px;
-  }
-
-  .bw-product__trustchip {
-    display: inline-flex;
-    align-items: center;
-    min-height: 30px;
-    padding: 0 12px;
-    border-radius: 999px;
-    background: rgba(32, 23, 19, 0.06);
-    color: #201713;
-    font-size: 11px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
   }
 
   .bw-product__meta {
@@ -523,7 +474,7 @@
 
   .bw-product__support {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px;
     margin-top: -6px;
   }
@@ -892,23 +843,16 @@
       border-radius: 22px;
     }
 
-    .bw-product__proofs,
     .bw-product__support,
     .bw-product__actions {
       grid-template-columns: 1fr;
     }
 
-    .bw-product__proof,
     .bw-product__support-card {
       padding: 12px 14px;
       border-radius: 16px;
     }
 
-    .bw-product__proof-label {
-      font-size: 13px;
-    }
-
-    .bw-product__proof-copy,
     .bw-product__support-card span,
     .bw-product__support-card a,
     .bw-product__pricing-note,
@@ -1014,10 +958,6 @@
       flex: 1 1 0;
     }
 
-    .bw-product__trustline {
-      display: none;
-    }
-
     .bw-product__support {
       gap: 8px;
     }
@@ -1114,17 +1054,6 @@
           {% endif %}
         </div>
 
-        <div class="bw-product__proofs">
-          <div class="bw-product__proof">
-            <span class="bw-product__proof-label">15+ years</span>
-            <span class="bw-product__proof-copy">Crafting furniture for homes across India.</span>
-          </div>
-          <div class="bw-product__proof">
-            <span class="bw-product__proof-label">7 year warranty</span>
-            <span class="bw-product__proof-copy">Added assurance for long-term everyday use.</span>
-          </div>
-        </div>
-
         <div class="bw-product__pricing">
           <div class="bw-product__price-row">
             <span class="bw-product__price-current" data-product-price-current>{{ current_variant.price | money }}</span>
@@ -1141,15 +1070,10 @@
           </div>
           <div class="bw-product__pricing-note">
             {% if emi_from_note != blank %}
-              {{ emi_from_note }} with secure payment options and Bluewud support before and after purchase.
+              {{ emi_from_note }}. Final delivery timing is confirmed after serviceability checks.
             {% else %}
-              Easy EMI on eligible orders, secure payment options, and Bluewud support before and after purchase.
+              Easy EMI on eligible orders. Final delivery timing is confirmed after serviceability checks.
             {% endif %}
-          </div>
-          <div class="bw-product__trustline" aria-label="Product trust cues">
-            <span class="bw-product__trustchip">{{ brand_reviews_count }}+ reviews</span>
-            <span class="bw-product__trustchip">Easy EMI</span>
-            <span class="bw-product__trustchip">Secure checkout</span>
           </div>
         </div>
 
@@ -1213,7 +1137,7 @@
             </div>
 
             <div class="bw-product__buy-note">
-              Need help before you place your order? Explore <a href="/pages/payment-security">payment security</a>, <a href="/pages/returns-refunds">returns</a>, or speak with the <a href="/pages/contact-us">Bluewud team</a>.
+              Need help before ordering? Use the support cards below or open the details to review delivery, payment, and returns guidance.
             </div>
 
             {% render 'wooden-delivery-estimator' %}
@@ -1221,18 +1145,14 @@
         {% endform %}
 
         <div class="bw-product__support">
-        <div class="bw-product__support-card">
-          <strong>Payment confidence</strong>
-          <a href="/pages/payment-security">Secure payment options and clear checkout guidance.</a>
-        </div>
-        <div class="bw-product__support-card">
-          <strong>Need project pricing?</strong>
-          <a href="/pages/buy-in-bulk">Project and bulk purchase support for larger furnishing requirements.</a>
-        </div>
-        <div class="bw-product__support-card">
-          <strong>Talk to Bluewud</strong>
-          <a href="/pages/contact-us">Ask the Bluewud team about fit, finish, delivery, or orders.</a>
-        </div>
+          <div class="bw-product__support-card">
+            <strong>Need fit guidance?</strong>
+            <a href="/pages/help-center">Check the help center or speak with the Bluewud team before ordering.</a>
+          </div>
+          <div class="bw-product__support-card">
+            <strong>Need project pricing?</strong>
+            <a href="/pages/buy-in-bulk">Share larger furnishing requirements for a project-friendly quote.</a>
+          </div>
         </div>
 
         <div class="bw-product__details">
@@ -1265,12 +1185,6 @@
             </div>
           </details>
 
-          <details class="bw-product__details-item">
-            <summary>Bulk and business orders</summary>
-            <div class="bw-product__details-body">
-              <p>For office, hospitality, or larger furnishing requirements, Bluewud also supports project and volume enquiries through the <a href="/pages/buy-in-bulk">Buy In Bulk</a> page.</p>
-            </div>
-          </details>
         </div>
       </div>
     </div>

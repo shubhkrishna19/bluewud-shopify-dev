@@ -23,12 +23,12 @@
   .bw-estimate-modal__dialog {
     position: relative;
     z-index: 1;
-    width: min(760px, calc(100vw - 32px));
-    margin: 4vh auto;
+    width: min(700px, calc(100vw - 24px));
+    margin: 3vh auto;
     max-height: 92vh;
     overflow: auto;
-    padding: 26px 28px;
-    border-radius: 30px;
+    padding: 22px 22px 24px;
+    border-radius: 26px;
     background: rgba(255, 251, 247, 0.98);
     border: 1px solid rgba(45, 33, 27, 0.08);
     box-shadow: 0 28px 90px rgba(23, 17, 14, 0.24);
@@ -50,16 +50,16 @@
   .bw-estimate-modal__title {
     margin: 8px 0 0;
     color: #201713;
-    font-size: clamp(28px, 4vw, 38px);
+    font-size: clamp(26px, 4vw, 34px);
     line-height: 1.08;
     letter-spacing: -0.04em;
   }
   .bw-estimate-modal__copy {
-    margin: 10px 0 0;
+    margin: 8px 0 0;
     color: #66554c;
-    font-size: 15px;
-    line-height: 1.75;
-    max-width: 60ch;
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 54ch;
   }
   .bw-estimate-modal__close {
     width: 42px;
@@ -73,8 +73,8 @@
   .bw-estimate-modal__summary {
     display: grid;
     gap: 8px;
-    padding: 18px 20px;
-    border-radius: 22px;
+    padding: 14px 16px;
+    border-radius: 20px;
     background: rgba(32, 23, 19, 0.04);
     margin-bottom: 18px;
   }
@@ -98,7 +98,7 @@
     display: none;
   }
   .bw-estimate-modal__summary-media {
-    min-height: 180px;
+    min-height: 150px;
     border-radius: 18px;
     overflow: hidden;
     background: linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
@@ -117,7 +117,7 @@
   .bw-estimate-modal__details {
     display: grid;
     gap: 10px;
-    margin-bottom: 18px;
+    margin-bottom: 14px;
   }
   .bw-estimate-modal__details[hidden] {
     display: none;
@@ -160,7 +160,7 @@
   }
   .bw-estimate-modal__field label {
     color: #201713;
-    font-size: 13px;
+    font-size: 12px;
     font-weight: 700;
     letter-spacing: 0.04em;
   }
@@ -168,16 +168,16 @@
   .bw-estimate-modal__field select,
   .bw-estimate-modal__field textarea {
     width: 100%;
-    min-height: 50px;
-    padding: 0 16px;
-    border-radius: 18px;
+    min-height: 46px;
+    padding: 0 14px;
+    border-radius: 16px;
     border: 1px solid rgba(45, 33, 27, 0.12);
     background: #fffdfb;
     color: #201713;
     font-size: 14px;
   }
   .bw-estimate-modal__field textarea {
-    min-height: 120px;
+    min-height: 110px;
     padding-top: 14px;
     padding-bottom: 14px;
     resize: vertical;
@@ -196,17 +196,17 @@
     cursor: pointer;
   }
   .bw-estimate-modal__helper {
-    margin: 12px 0 0;
+    margin: 10px 0 0;
     color: #7b6659;
-    font-size: 13px;
-    line-height: 1.7;
+    font-size: 12px;
+    line-height: 1.65;
   }
   @media (max-width: 720px) {
     .bw-estimate-modal__dialog {
       width: min(100vw - 20px, 760px);
-      margin: 10px auto;
-      padding: 22px 20px;
-      border-radius: 24px;
+      margin: 8px auto;
+      padding: 18px 16px 20px;
+      border-radius: 22px;
     }
     .bw-estimate-modal__detail-grid,
     .bw-estimate-modal__grid {
@@ -225,7 +225,7 @@
       <div>
         <div class="bw-estimate-modal__eyebrow">{{ context_label }}</div>
         <h2 class="bw-estimate-modal__title" id="{{ modal_id }}-title">{{ modal_title }}</h2>
-        <p class="bw-estimate-modal__copy">Share your details and the Bluewud team will follow up with the right next step based on the layout, materials, and options you selected.</p>
+        <p class="bw-estimate-modal__copy">Share the basics and the team will follow up with the next step based on the layout and options you already picked.</p>
       </div>
       <button class="bw-estimate-modal__close" type="button" aria-label="Close estimate popup" data-bw-estimate-close>&times;</button>
     </div>
@@ -260,15 +260,15 @@
         </div>
         <div class="bw-estimate-modal__field">
           <label for="{{ modal_id }}-phone">Phone number</label>
-          <input id="{{ modal_id }}-phone" type="tel" name="contact[phone]" required>
+          <input id="{{ modal_id }}-phone" type="tel" name="contact[phone]" inputmode="tel" autocomplete="tel" required>
         </div>
         <div class="bw-estimate-modal__field">
           <label for="{{ modal_id }}-email">Email</label>
-          <input id="{{ modal_id }}-email" type="email" name="contact[email]">
+          <input id="{{ modal_id }}-email" type="email" name="contact[email]" autocomplete="email">
         </div>
         <div class="bw-estimate-modal__field">
           <label for="{{ modal_id }}-city">City</label>
-          <input id="{{ modal_id }}-city" type="text" name="contact[city]">
+          <input id="{{ modal_id }}-city" type="text" name="contact[city]" autocomplete="address-level2">
         </div>
         <div class="bw-estimate-modal__field">
           <label for="{{ modal_id }}-timeline">Project timeline</label>

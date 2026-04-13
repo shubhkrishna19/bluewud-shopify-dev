@@ -1,4 +1,4 @@
-{% liquid
+﻿{% liquid
   assign is_embedded = embedded | default: false
   assign contact_url = '/pages/contact-us'
   assign main_url = '/collections/kitchen-racks'
@@ -778,7 +778,7 @@
     .bw-flow__summary .bw-flow__actions,
     .bw-flow__actions { flex-direction: column-reverse; align-items: stretch; gap: 8px; }
     .bw-flow__summary .bw-flow__actions { flex-direction: column; }
-    .bw-flow__summary-visual { min-height: 128px; }
+    .bw-flow__summary-visual { min-height: 112px; }
     .bw-flow__summary-cue { padding: 10px 12px; }
     .bw-flow__summary-line { gap: 3px; }
     .bw-flow__button,
@@ -805,7 +805,7 @@
     .bw-flow__choice { padding: 10px 12px; }
     .bw-flow__choice-media { min-height: 92px; }
     .bw-flow__choice--image .bw-flow__choice-media { min-height: 72px; }
-    .bw-flow__summary-visual { min-height: 112px; }
+    .bw-flow__summary-visual { min-height: 96px; }
     .bw-flow__summary-cue { padding: 8px 10px; }
     .bw-flow__summary-list { gap: 6px; }
     .bw-flow__button,
@@ -1008,17 +1008,14 @@
       <div class="bw-flow__head">
         <span class="bw-flow__eyebrow">Kitchen planning workflow</span>
         <h2 class="bw-flow__title">Modular Kitchen Cost Calculator</h2>
-        <p class="bw-flow__copy">This is a consultation-first workflow, not a fake instant quote. Complete the brief properly and Bluewud gets the exact layout, measurements, materials, and add-ons you want to discuss.</p>
+        <p class="bw-flow__copy">Choose the layout, capture the room basics, and keep the brief focused enough for Bluewud to respond well.</p>
       </div>
 
       <section class="bw-flow__journey">
         <div class="bw-flow__stage-head">
-          <h3 class="bw-flow__stage-title">Compare the layout once, then finish the brief here</h3>
-          <p class="bw-flow__stage-copy">Use the guide links only if the room still feels undecided. Once the direction is clear, stay in this calculator and send one sharper kitchen brief.</p>
+          <h3 class="bw-flow__stage-title">Pick a direction, then keep moving</h3>
+          <p class="bw-flow__stage-copy">The layout cards stay nearby as quick references, but the first real choices should happen here.</p>
         </div>
-      <div class="bw-flow__journey-links" aria-label="Kitchen layout guides">
-        <a class="bw-flow__button--secondary" href="{{ main_url }}">Open All Kitchen Guides</a>
-      </div>
       <div class="bw-flow__journey-grid" aria-label="Kitchen layout previews">
         <a class="bw-flow__journey-card" href="{{ l_url }}">
           <span class="bw-flow__journey-card-media"><img src="{{ kitchen_image_l_url }}" alt="L-shape modular kitchen preview" loading="lazy" width="720" height="540"></span>
@@ -1307,36 +1304,36 @@
       <div class="bw-flow__summary-cues">
         <article class="bw-flow__summary-cue">
           <span>Finish mood</span>
-          <strong data-summary-finish-cue>Warm laminate-led balance</strong>
+          <strong data-summary-finish-cue>Choose a finish direction</strong>
         </article>
         <article class="bw-flow__summary-cue">
           <span>Storage posture</span>
-          <strong data-summary-storage-cue>Balanced everyday storage</strong>
+          <strong data-summary-storage-cue>Set the storage need</strong>
         </article>
         <article class="bw-flow__summary-cue">
           <span>Appliance plan</span>
-          <strong data-summary-appliance-cue>Core appliance-ready setup</strong>
+          <strong data-summary-appliance-cue>Select appliance integrations</strong>
         </article>
       </div>
       <div class="bw-flow__head">
         <span class="bw-flow__eyebrow">Project summary</span>
-        <h2 class="bw-flow__title">Your kitchen brief</h2>
-        <p class="bw-flow__copy">This is a fast snapshot of the kitchen you want Bluewud to plan around.</p>
+        <h2 class="bw-flow__title">Your brief snapshot</h2>
+        <p class="bw-flow__copy">Only the selected details appear here once you start choosing.</p>
       </div>
-      <div class="bw-flow__badge" data-kitchen-band>Balanced premium direction</div>
+      <div class="bw-flow__badge" data-kitchen-band>Ready for your brief</div>
       <div class="bw-flow__summary-list">
-        <div class="bw-flow__summary-line"><span>Layout</span><strong data-summary-layout>L-shape</strong></div>
-        <div class="bw-flow__summary-line"><span>Property</span><strong data-summary-property>Apartment • Daily family use</strong></div>
-        <div class="bw-flow__summary-line"><span>Measurements</span><strong data-summary-measurements>10 ft / 8 ft / 0 ft</strong></div>
-        <div class="bw-flow__summary-line"><span>Build</span><strong data-summary-build>Engineered wood / Laminate front / Granite</strong></div>
-        <div class="bw-flow__summary-line"><span>Utility</span><strong data-summary-utility>Core cabinetry only</strong></div>
-        <div class="bw-flow__summary-line"><span>Appliances</span><strong data-summary-appliances>Hob, Chimney</strong></div>
+        <div class="bw-flow__summary-line"><span>Layout</span><strong data-summary-layout>Choose a layout</strong></div>
+        <div class="bw-flow__summary-line"><span>Property</span><strong data-summary-property>Add property type</strong></div>
+        <div class="bw-flow__summary-line"><span>Measurements</span><strong data-summary-measurements>Enter wall lengths</strong></div>
+        <div class="bw-flow__summary-line"><span>Build</span><strong data-summary-build>Pick materials and finish</strong></div>
+        <div class="bw-flow__summary-line"><span>Utility</span><strong data-summary-utility>Set storage needs</strong></div>
+        <div class="bw-flow__summary-line"><span>Appliances</span><strong data-summary-appliances>Add appliances or leave blank</strong></div>
       </div>
       <div class="bw-flow__summary-tags" data-summary-tags></div>
-      <p class="bw-flow__assist">This brief helps Bluewud respond with a more grounded layout, material, and estimate conversation from the start.</p>
+      <p class="bw-flow__assist">The brief stays compact so the estimate request reads cleanly on mobile too.</p>
       <div class="bw-flow__actions">
         <button class="bw-flow__button" type="button" data-bw-kitchen-popup-open>Get Free Estimate</button>
-        <a class="bw-flow__button--secondary" href="{{ contact_url }}">Talk to a Kitchen Expert</a>
+
       </div>
     </aside>
   </div>
@@ -1344,8 +1341,8 @@
   <section class="bw-flow__network">
     <div class="bw-flow__network-head">
       <span class="bw-flow__eyebrow">Kitchen direction library</span>
-      <h3 class="bw-flow__network-title">Pick the kitchen direction that feels closest to how you want to live</h3>
-      <p class="bw-flow__network-copy">Use one of these as a shortcut if you already know the kind of kitchen you want Bluewud to design around.</p>
+      <h3 class="bw-flow__network-title">Shortcuts for the main kitchen directions</h3>
+      <p class="bw-flow__network-copy">Use these only when a layout is already obvious and you want a faster path.</p>
     </div>
     <div class="bw-flow__network-links" aria-label="Kitchen direction presets">
       <button class="bw-flow__network-card" type="button" data-kitchen-direction="everyday-family">
@@ -1404,6 +1401,7 @@
     if (!root) return;
     var step = 1;
     var maxStep = 5;
+    var hasInteracted = false;
     var stageNodes = Array.prototype.slice.call(root.querySelectorAll('[data-step-panel]'));
     var indicatorNodes = Array.prototype.slice.call(root.querySelectorAll('[data-step-indicator]'));
     var modal = document.getElementById('bw-kitchen-calc-popup');
@@ -1487,6 +1485,9 @@
         choice.classList.toggle('is-selected', !!input.checked);
       });
     }
+    function markInteracted() {
+      hasInteracted = true;
+    }
     function projectBand() {
       var premiumSignals = 0;
       if (selectedRadio('kitchen_layout') === 'Island') premiumSignals += 2;
@@ -1523,56 +1524,59 @@
     }
     function updateSummary() {
       toggleChoiceStates();
-      var measurements = [inputValue('wall_a') + ' ft', inputValue('wall_b') + ' ft', inputValue('wall_c') + ' ft'].join(' / ');
-      var addons = selectedChecks('addons');
-      var summaryMap = {
-        layout: selectedRadio('kitchen_layout'),
-        property: [selectedRadio('property_type'), selectedRadio('usage_level')].filter(Boolean).join(' • '),
-        measurements: measurements,
-        build: [
-          selectedRadio('carcass_material'),
-          selectedRadio('shutter_material'),
-          selectedRadio('countertop')
-        ].filter(Boolean).join(' / '),
-        utility: addons.length ? addons.join(', ') : 'Core cabinetry only',
+      var neutralState = !hasInteracted;
+      var layout = selectedRadio('kitchen_layout');
+      var property = selectedRadio('property_type');
+      var usage = selectedRadio('usage_level');
+      var wallA = inputValue('wall_a') || '0';
+      var wallB = inputValue('wall_b') || '0';
+      var wallC = inputValue('wall_c') || '0';
+      var summaryMap = neutralState ? {
+        layout: 'Choose a layout',
+        property: 'Add property type',
+        measurements: 'Enter wall lengths',
+        build: 'Pick materials and finish',
+        utility: 'Set storage needs',
+        appliances: 'Add appliances or leave blank'
+      } : {
+        layout: layout || 'L-shape',
+        property: property ? property + ' • ' + usage : 'Apartment • Daily family use',
+        measurements: [wallA + ' ft', wallB + ' ft', wallC + ' ft'].join(' / '),
+        build: [selectedRadio('carcass_material'), selectedRadio('shutter_material'), selectedRadio('countertop')].filter(Boolean).join(' / ') || 'Engineered wood / Laminate front / Granite',
+        utility: selectedChecks('addons').length ? selectedChecks('addons').slice(0, 3).join(', ') : 'Core cabinetry only',
         appliances: selectedAppliances()
       };
       Object.keys(summaryMap).forEach(function (key) {
         var node = root.querySelector('[data-summary-' + key + ']');
         if (node) node.textContent = summaryMap[key];
       });
-      if (bandNode) bandNode.textContent = projectBand();
-      var layoutVisual = layoutVisualMap[summaryMap.layout] || layoutVisualMap['L-shape'];
+      var layoutVisual = layoutVisualMap[neutralState ? 'L-shape' : (summaryMap.layout || 'L-shape')] || layoutVisualMap['L-shape'];
       if (summaryImageNode && layoutVisual) {
         summaryImageNode.src = layoutVisual.src;
         summaryImageNode.alt = layoutVisual.alt;
       }
-      if (summaryCaptionNode && layoutVisual) {
-        summaryCaptionNode.textContent = layoutVisual.caption;
+      if (summaryCaptionNode) {
+        summaryCaptionNode.textContent = neutralState ? 'Start with the layout choice. The rest of the brief stays neutral until you make selections.' : layoutVisual.caption;
       }
       var finishCueNode = root.querySelector('[data-summary-finish-cue]');
       var storageCueNode = root.querySelector('[data-summary-storage-cue]');
       var applianceCueNode = root.querySelector('[data-summary-appliance-cue]');
-      if (finishCueNode) finishCueNode.textContent = finishCue();
-      if (storageCueNode) storageCueNode.textContent = storageCue();
-      if (applianceCueNode) applianceCueNode.textContent = applianceCue();
+      if (finishCueNode) finishCueNode.textContent = neutralState ? 'Choose a finish direction' : finishCue();
+      if (storageCueNode) storageCueNode.textContent = neutralState ? 'Set the storage need' : storageCue();
+      if (applianceCueNode) applianceCueNode.textContent = neutralState ? 'Select appliance integrations' : applianceCue();
+      if (bandNode) bandNode.textContent = neutralState ? 'Ready for your brief' : projectBand();
       var tagsNode = root.querySelector('[data-summary-tags]');
       if (tagsNode) {
-        var tags = [
+        var tags = neutralState ? [] : [
           summaryMap.layout,
-          selectedRadio('property_type'),
-          selectedRadio('usage_level'),
-          selectedRadio('carcass_material'),
-          selectedRadio('shutter_material'),
-          selectedRadio('countertop')
-        ];
-        addons.slice(0, 3).forEach(function (item) { tags.push(item); });
-        selectedChecks('appliances').slice(0, 2).forEach(function (item) { tags.push(item); });
-        tagsNode.innerHTML = tags
-          .filter(Boolean)
-          .slice(0, 7)
+          summaryMap.property,
+          summaryMap.build.split(' / ')[1] || selectedRadio('countertop'),
+          summaryMap.utility,
+          summaryMap.appliances
+        ].filter(Boolean).slice(0, 5);
+        tagsNode.innerHTML = tags.length ? tags
           .map(function (item) { return '<span class="bw-flow__summary-tag">' + item + '</span>'; })
-          .join('');
+          .join('') : '';
       }
       persistPayload('calculator-progress');
     }
@@ -1764,7 +1768,14 @@
       }
     });
 
-    root.addEventListener('change', updateSummary);
+    root.addEventListener('change', function () {
+      markInteracted();
+      updateSummary();
+    });
+    root.addEventListener('input', function () {
+      markInteracted();
+      updateSummary();
+    });
     root.addEventListener('bw:kitchen-layout-select', function (event) {
       if (event.detail && event.detail.layout) {
         applyLayoutPreset(event.detail.layout);

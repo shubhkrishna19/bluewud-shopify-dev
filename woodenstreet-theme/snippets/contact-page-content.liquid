@@ -128,7 +128,7 @@
 
   .bw-contact__cards {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 16px;
   }
 
@@ -441,7 +441,6 @@
         <div class="bw-contact__quick-links">
           <a class="bw-contact__quick-link" href="tel:+918800609609"><strong>Call now</strong><span>Quickest for urgent help</span></a>
           <a class="bw-contact__quick-link" href="https://wa.me/918800609609"><strong>WhatsApp</strong><span>Best for short product questions</span></a>
-          <a class="bw-contact__quick-link" href="{% if pages['get-free-estimate'] != blank %}{{ pages['get-free-estimate'].url }}{% else %}{{ contact_url }}{% endif %}"><strong>Get free estimate</strong><span>Best for kitchen and wardrobe briefs</span></a>
         </div>
       </div>
     </aside>
@@ -453,13 +452,6 @@
         <h2 class="bw-contact__card-title">Need a quick answer?</h2>
         <p class="bw-contact__card-copy">For quick help, call or WhatsApp us at +91-8800-609-609 during weekday support hours.</p>
       <a class="bw-contact__card-link" href="tel:+918800609609">Call +91-8800-609-609</a>
-    </article>
-
-    <article class="bw-contact__card">
-      <span class="bw-contact__card-eyebrow">Installation support</span>
-      <h2 class="bw-contact__card-title">Need installation guidance?</h2>
-      <p class="bw-contact__card-copy">For installation support, call or WhatsApp us on the same number and the team will guide the next step.</p>
-      <a class="bw-contact__card-link" href="https://wa.me/918800609609">Open WhatsApp</a>
     </article>
 
     <article class="bw-contact__card">

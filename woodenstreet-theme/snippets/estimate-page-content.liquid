@@ -1,18 +1,10 @@
 {% liquid
-  assign wardrobe_calculator_url = '/collections/wardrobe?planner=wardrobe-calculator'
-  assign kitchen_calculator_url = '/collections/kitchen-racks?planner=kitchen-calculator'
   assign interiors_calculator_url = '/collections/kitchen-racks?planner=home-interiors'
   assign wardrobe_design_url = '/collections/wardrobe'
   assign kitchen_design_url = '/collections/kitchen-racks'
   assign estimate_url = '/pages/contact-us'
   assign contact_url = '/pages/contact-us'
 
-  if pages['modular-wardrobe-cost-calculator'] != blank
-    assign wardrobe_calculator_url = pages['modular-wardrobe-cost-calculator'].url
-  endif
-  if pages['modular-kitchen-cost-calculator'] != blank
-    assign kitchen_calculator_url = pages['modular-kitchen-cost-calculator'].url
-  endif
   if pages['home-interiors-cost-calculator'] != blank
     assign interiors_calculator_url = pages['home-interiors-cost-calculator'].url
   endif
@@ -30,53 +22,13 @@
   endif
 
   assign estimate_context_title = 'Project brief'
-  assign estimate_context_copy = 'Share the basics first. We will use these details to understand whether you need a modular kitchen, wardrobe plan, or a broader interior discussion.'
+  assign estimate_context_copy = 'Share the basics once. We will use the details to route your enquiry to the right Bluewud team without extra back and forth.'
 %}
 
 <style>
   .bw-estimate {
     display: grid;
     gap: 22px;
-  }
-  .bw-estimate__workflow {
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 16px;
-  }
-  .bw-estimate__workflow-card {
-    display: grid;
-    gap: 10px;
-    padding: 20px 22px;
-    border-radius: 24px;
-    background: rgba(255, 251, 247, 0.94);
-    border: 1px solid rgba(45, 33, 27, 0.08);
-    box-shadow: 0 18px 42px rgba(35, 24, 19, 0.05);
-  }
-  .bw-estimate__workflow-step {
-    display: inline-flex;
-    width: fit-content;
-    min-height: 30px;
-    align-items: center;
-    padding: 0 12px;
-    border-radius: 999px;
-    background: rgba(32, 23, 19, 0.08);
-    color: #6f584c;
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-  .bw-estimate__workflow-card h3 {
-    margin: 0;
-    color: #201713;
-    font-size: 18px;
-    line-height: 1.18;
-  }
-  .bw-estimate__workflow-card p {
-    margin: 0;
-    color: #66554c;
-    font-size: 14px;
-    line-height: 1.75;
   }
   .bw-estimate__hero,
   .bw-estimate__form,
@@ -547,7 +499,6 @@
     border-color: #201713;
   }
   @media (max-width: 980px) {
-    .bw-estimate__workflow,
     .bw-estimate__hero-grid,
     .bw-estimate__layout {
       grid-template-columns: 1fr;
@@ -583,11 +534,10 @@
     <div class="bw-estimate__hero-grid">
       <div class="bw-estimate__brief">
         <p class="bw-estimate__brief-title">Choose the project direction first</p>
-        <p class="bw-estimate__brief-copy">Use the standalone planners below if you want to shape the brief first. If the scope is already clear, submit the estimate directly and we will take it forward from there.</p>
+        <p class="bw-estimate__brief-copy">Use the standalone planners below only if you still need to shape the brief. If the scope is already clear, move straight into the estimate form.</p>
         <ul class="bw-estimate__brief-list">
-          <li>Pick the right planning route only if you still need to shape the brief.</li>
+          <li>Use the planner chips only if you still need to shape the brief.</li>
           <li>Keep the room context and priorities clear enough for the team to respond well.</li>
-          <li>Use this estimate form when you are ready to move into a real quote conversation.</li>
         </ul>
         <div class="bw-estimate__pills">
           <a class="bw-estimate__pill bw-estimate__pill--highlight" href="{{ kitchen_design_url }}">Modular Kitchen</a>
@@ -623,24 +573,6 @@
       </div>
 
     </div>
-  </section>
-
-  <section class="bw-estimate__workflow" aria-label="Estimate workflow">
-    <article class="bw-estimate__workflow-card">
-      <span class="bw-estimate__workflow-step">1. Scope</span>
-      <h3>Define the room or layout family</h3>
-      <p>Tell us whether this is kitchen-led, wardrobe-led, or a bigger home interiors brief so the next response stays relevant.</p>
-    </article>
-    <article class="bw-estimate__workflow-card">
-      <span class="bw-estimate__workflow-step">2. Context</span>
-      <h3>Share city, timing, and budget posture</h3>
-      <p>Those basics let Bluewud respond with a more grounded next step instead of a generic callback.</p>
-    </article>
-    <article class="bw-estimate__workflow-card">
-      <span class="bw-estimate__workflow-step">3. Follow-up</span>
-      <h3>Move into a clearer project conversation</h3>
-      <p>Once the brief is captured, the team can discuss material direction, finish levels, and execution in a much cleaner way.</p>
-    </article>
   </section>
 
   <div class="bw-estimate__layout">
@@ -758,8 +690,6 @@
 
         <div style="margin-top:18px; display:flex; flex-wrap:wrap; gap:10px; align-items:center;">
           <button class="bw-estimate__submit" type="submit">Request Estimate</button>
-          <a class="bw-estimate__cta" href="{{ kitchen_calculator_url }}">Kitchen calculator</a>
-          <a class="bw-estimate__cta" href="{{ wardrobe_calculator_url }}">Wardrobe calculator</a>
         </div>
         <p class="bw-estimate__helper bw-estimate__helper--strong">Mention the room type and likely project direction so the Bluewud team can route your enquiry faster.</p>
       {% endform %}

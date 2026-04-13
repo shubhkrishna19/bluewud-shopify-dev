@@ -16,24 +16,24 @@
     </button>
   </div>
   <div class="wooden-delivery__result" data-delivery-result aria-live="polite">
-    Enter your pincode for a directional delivery check.
+    Enter your pincode to check delivery guidance.
   </div>
 </div>
 
 <style>
 .wooden-delivery {
   margin-top: 0;
-  padding: 16px;
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-  border-radius: 12px;
-  border: 1px solid #e9ecef;
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 16px;
+  border: 1px solid rgba(32, 23, 19, 0.08);
 }
 
 .wooden-delivery__title {
-  font-weight: 600;
-  font-size: 14px;
-  color: #212529;
-  margin-bottom: 12px;
+  font-weight: 700;
+  font-size: 13px;
+  color: #201713;
+  margin-bottom: 10px;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -57,16 +57,16 @@
 .wooden-delivery__input {
   flex: 1;
   padding: 10px 14px;
-  border: 1px solid #ced4da;
-  border-radius: 8px;
+  border: 1px solid rgba(32, 23, 19, 0.14);
+  border-radius: 12px;
   font-size: 14px;
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
 
 .wooden-delivery__input:focus {
-  border-color: #28a745;
-  box-shadow: 0 0 0 3px rgba(40, 167, 69, 0.15);
+  border-color: #201713;
+  box-shadow: 0 0 0 3px rgba(32, 23, 19, 0.08);
 }
 
 .wooden-delivery__input::placeholder {
@@ -75,10 +75,10 @@
 
 .wooden-delivery__button {
   padding: 10px 20px;
-  background: linear-gradient(135deg, #28a745 0%, #20c997 100%);
-  color: white;
+  background: #201713;
+  color: #fff7f1;
   border: none;
-  border-radius: 8px;
+  border-radius: 12px;
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
@@ -87,7 +87,7 @@
 
 .wooden-delivery__button:hover {
   transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+  box-shadow: 0 4px 12px rgba(32, 23, 19, 0.18);
 }
 
 .wooden-delivery__button:active {
@@ -103,9 +103,9 @@
 }
 
 @media (max-width: 768px) {
-  .wooden-delivery {
-    padding: 12px;
-  }
+    .wooden-delivery {
+      padding: 12px;
+    }
 
   .wooden-delivery__form {
     flex-direction: column;
@@ -120,12 +120,12 @@
     font-size: 13px;
   }
 
-  .wooden-delivery__button {
-    width: 100%;
-    padding: 10px 16px;
-    font-size: 13px;
+    .wooden-delivery__button {
+      width: 100%;
+      padding: 10px 16px;
+      font-size: 13px;
+    }
   }
-}
 </style>
 
 <script>
@@ -139,10 +139,10 @@
 
     const renderEstimate = (result, pincode) => {
       if (!pincode || pincode.length < 5) {
-      result.textContent = 'Enter a valid pincode for a directional delivery check.';
-      return;
-    }
-      result.textContent = `Pincode ${pincode} noted. Final delivery timing depends on product readiness and serviceability confirmation from the Bluewud team.`;
+        result.textContent = 'Enter a valid pincode for delivery guidance.';
+        return;
+      }
+      result.textContent = `Pincode ${pincode} noted. Final timing is confirmed after product readiness and serviceability checks.`;
     };
 
     containers.forEach((container) => {

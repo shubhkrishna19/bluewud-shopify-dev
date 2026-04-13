@@ -3,7 +3,6 @@
   assign bulk_url = '/pages/buy-in-bulk'
   assign help_center_url = '/pages/help-center'
   assign products_url = routes.all_products_collection_url
-  assign estimate_url = '/pages/get-free-estimate'
   assign payment_security_url = '/pages/payment-security'
   assign returns_url = '/pages/returns-refunds'
 %}
@@ -305,19 +304,9 @@
     text-transform: uppercase;
   }
 
-  .bw-offers__card-link {
-    color: #8a684f;
-    text-decoration: none;
-    font-size: 12px;
-    font-weight: 700;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    width: fit-content;
-  }
-
   .bw-offers__utility-grid {
     display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 14px;
   }
 
@@ -550,8 +539,7 @@
       </div>
       <div class="bw-offers__action-row">
         <a class="bw-offers__action bw-offers__action--solid" href="{{ products_url }}">Browse products</a>
-        <a class="bw-offers__action" href="{{ estimate_url }}">Get free estimate</a>
-        <a class="bw-offers__action" href="{{ bulk_url }}">Bulk support</a>
+        <a class="bw-offers__action" href="{{ contact_url }}">Talk to Bluewud</a>
       </div>
     </article>
 
@@ -562,7 +550,7 @@
         <li><span><strong>Apply the offer correctly at checkout.</strong> If a code is needed, enter it during checkout. If it is a payment offer, use the eligible provider.</span></li>
         <li><span><strong>Use support if anything looks unclear.</strong> Reach out before placing the order if the discount or cashback rule is not obvious.</span></li>
       </ol>
-      <a class="bw-offers__cta" href="{{ products_url }}">Shop eligible products</a>
+      <p class="bw-offers__details-copy">The offer page should keep the rules visible and then send the shopper back to products, support, or bulk help only when needed.</p>
     </article>
   </div>
 
@@ -590,7 +578,7 @@
 
     <article class="bw-offers__utility-card">
       <span class="bw-offers__utility-label">Need a fallback?</span>
-      <h3 class="bw-offers__utility-title">Use help center or estimate when the offer question is tied to a real order.</h3>
+      <h3 class="bw-offers__utility-title">Use help center when the offer question is tied to a real order.</h3>
       <p class="bw-offers__utility-copy">Support works best when the order or project context is already clear enough to discuss.</p>
       <a class="bw-offers__utility-link" href="{{ help_center_url }}">Open help center</a>
     </article>
@@ -615,16 +603,6 @@
       <h3 class="bw-offers__card-title">Apply the right offer in the right place.</h3>
       <p class="bw-offers__card-copy">Some savings need a code, some apply automatically, and some are linked to the payment method.</p>
       <a class="bw-offers__card-link" href="{{ products_url }}">Browse eligible products</a>
-    </article>
-
-    <article class="bw-offers__card">
-      <div class="bw-offers__card-top">
-        <span class="bw-offers__card-badge">Bulk order</span>
-        <span class="bw-offers__card-badge">Team help</span>
-      </div>
-      <h3 class="bw-offers__card-title">For larger furnishing requirements.</h3>
-      <p class="bw-offers__card-copy">Office, hospitality, GST-led, and multi-piece orders can follow a different buying path.</p>
-      <a class="bw-offers__card-link" href="{{ bulk_url }}">Open bulk path</a>
     </article>
   </div>
 
@@ -651,12 +629,6 @@
         <h3>Planning a larger order?</h3>
         <p>For office, hospitality, GST-led, or multi-piece furnishing requirements, Bluewud can support you beyond standard retail offers.</p>
         <a href="{{ bulk_url }}">Open Buy In Bulk</a>
-      </article>
-
-      <article class="bw-offers__sidebar-card">
-        <h3>Want upcoming offer alerts?</h3>
-        <p>Stay close to launches, campaigns, and seasonal savings through the Bluewud newsletter and help pages.</p>
-        <a href="{{ help_center_url }}">Visit help center</a>
       </article>
     </aside>
   </div>

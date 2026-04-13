@@ -19,9 +19,9 @@
     <div class="ws-sticky-atc__actions">
       <!-- Quantity Selector (Desktop Only) -->
       <div class="ws-sticky-atc__qty">
-        <button type="button" class="ws-sticky-atc__qty-btn" onclick="document.getElementById('ws-sticky-qty').stepDown()">-</button>
-        <input id="ws-sticky-qty" type="number" class="ws-sticky-atc__qty-input" value="1" min="1" readonly>
-        <button type="button" class="ws-sticky-atc__qty-btn" onclick="document.getElementById('ws-sticky-qty').stepUp()">+</button>
+        <button type="button" class="ws-sticky-atc__qty-btn" data-ws-sticky-qty-change="-1" aria-label="Decrease quantity">-</button>
+        <input type="number" class="ws-sticky-atc__qty-input" value="1" min="1" readonly data-ws-sticky-qty aria-label="Quantity">
+        <button type="button" class="ws-sticky-atc__qty-btn" data-ws-sticky-qty-change="1" aria-label="Increase quantity">+</button>
       </div>
 
       <button type="button" class="ws-sticky-atc__btn" data-ws-sticky-add>
@@ -35,22 +35,45 @@
   document.addEventListener('DOMContentLoaded', () => {
     const stickyBar = document.querySelector('[data-ws-sticky-atc]');
     const trigger = document.querySelector('[data-product-form-area]'); // Observe main buy button area
+    const mainForm = document.querySelector('form[data-product-form]');
+    const mainQuantity = mainForm ? mainForm.querySelector('[data-product-quantity]') : null;
+    const mainAddButton = mainForm ? mainForm.querySelector('[data-product-atc]') : null;
     const addBtn = document.querySelector('[data-ws-sticky-add]');
+    const stickyQuantity = stickyBar ? stickyBar.querySelector('[data-ws-sticky-qty]') : null;
+    const quantityControls = stickyBar ? stickyBar.querySelectorAll('[data-ws-sticky-qty-change]') : [];
     
-    if (!trigger || !stickyBar) return;
+    if (!trigger || !stickyBar || !mainForm) return;
+
+    const syncQuantities = (value) => {
+      const nextValue = Math.max(1, parseInt(value, 10) || 1);
+      if (stickyQuantity) stickyQuantity.value = String(nextValue);
+      if (mainQuantity) mainQuantity.value = String(nextValue);
+      return nextValue;
+    };
+
+    syncQuantities(mainQuantity ? mainQuantity.value : stickyQuantity ? stickyQuantity.value : 1);
+
+    if (mainQuantity) {
+      mainQuantity.addEventListener('input', () => {
+        syncQuantities(mainQuantity.value);
+      });
+
+      mainQuantity.addEventListener('change', () => {
+        syncQuantities(mainQuantity.value);
+      });
+    }
+
+    quantityControls.forEach((button) => {
+      button.addEventListener('click', () => {
+        const delta = parseInt(button.getAttribute('data-ws-sticky-qty-change'), 10) || 0;
+        const currentValue = stickyQuantity ? parseInt(stickyQuantity.value || '1', 10) : 1;
+        syncQuantities(currentValue + delta);
+      });
+    });
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
-        // If trigger (main buy button) IS visible, Hide sticky bar
-        // If trigger IS NOT visible (scrolled past), Show sticky bar
-        if (entry.isIntersecting) {
-          stickyBar.classList.remove('is-visible');
-        } else {
-          // Only show if we've scrolled PAST it, not before it
-          if (entry.boundingClientRect.top < 0) {
-            stickyBar.classList.add('is-visible');
-          }
-        }
+        stickyBar.classList.toggle('is-visible', !entry.isIntersecting && entry.boundingClientRect.top < 0);
       });
     }, { threshold: 0 });
 
@@ -58,19 +81,16 @@
 
     // Sync Add to Cart
     addBtn.addEventListener('click', () => {
-      // Find the main form's add to cart button and click it
-      // or submit the form via AJAX
-      const mainForm = document.querySelector('form[action="{{ routes.cart_add_url }}"]');
-      if (mainForm) {
-        // Update hidden Quantity input in main form
-        const qty = document.getElementById('ws-sticky-qty').value;
-        const mainQty = mainForm.querySelector('[name="quantity"]');
-        if (mainQty) mainQty.value = qty;
+      if (mainQuantity && stickyQuantity) {
+        mainQuantity.value = stickyQuantity.value || '1';
+      }
 
-        mainForm.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
-        // Or find the submit button and click it
-        const submitBtn = mainForm.querySelector('[type="submit"]');
-        if (submitBtn) submitBtn.click();
+      if (typeof mainForm.requestSubmit === 'function') {
+        mainForm.requestSubmit(mainAddButton || undefined);
+      } else if (mainAddButton) {
+        mainAddButton.click();
+      } else {
+        mainForm.submit();
       }
     });
   });
