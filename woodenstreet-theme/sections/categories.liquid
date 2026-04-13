@@ -160,7 +160,7 @@
   }
 
   .bw-categories__placeholder {
-    display: inline-flex;
+    display: none;
     align-items: center;
     padding: 10px 14px;
     border-radius: 999px;
@@ -344,50 +344,89 @@
   if living_media == blank and living_collection != blank
     assign living_media = living_collection.image
   endif
+  if living_media == blank and living_collection != blank and living_collection.products.first.featured_image != blank
+    assign living_media = living_collection.products.first.featured_image
+  endif
 
   assign bedroom_media = section.settings.bedroom_image
   if bedroom_media == blank and bedroom_collection != blank
     assign bedroom_media = bedroom_collection.image
+  endif
+  if bedroom_media == blank and bedroom_collection != blank and bedroom_collection.products.first.featured_image != blank
+    assign bedroom_media = bedroom_collection.products.first.featured_image
   endif
 
   assign study_media = section.settings.study_tables_image
   if study_media == blank and study_collection != blank
     assign study_media = study_collection.image
   endif
+  if study_media == blank and study_collection != blank and study_collection.products.first.featured_image != blank
+    assign study_media = study_collection.products.first.featured_image
+  endif
 
   assign tv_media = section.settings.tv_units_image
   if tv_media == blank and tv_collection != blank
     assign tv_media = tv_collection.image
+  endif
+  if tv_media == blank and tv_collection != blank and tv_collection.products.first.featured_image != blank
+    assign tv_media = tv_collection.products.first.featured_image
   endif
 
   assign bookshelves_media = section.settings.bookshelves_image
   if bookshelves_media == blank and bookshelves_collection != blank
     assign bookshelves_media = bookshelves_collection.image
   endif
+  if bookshelves_media == blank and bookshelves_collection != blank and bookshelves_collection.products.first.featured_image != blank
+    assign bookshelves_media = bookshelves_collection.products.first.featured_image
+  endif
 
   assign wardrobe_media = section.settings.wardrobe_image
   if wardrobe_media == blank and wardrobe_collection != blank
     assign wardrobe_media = wardrobe_collection.image
+  endif
+  if wardrobe_media == blank and wardrobe_collection != blank and wardrobe_collection.products.first.featured_image != blank
+    assign wardrobe_media = wardrobe_collection.products.first.featured_image
+  endif
+  if wardrobe_media == blank and bedroom_collection != blank
+    assign wardrobe_media = bedroom_collection.image
+  endif
+  if wardrobe_media == blank and bedroom_collection != blank and bedroom_collection.products.first.featured_image != blank
+    assign wardrobe_media = bedroom_collection.products.first.featured_image
   endif
 
   assign modular_kitchen_media = section.settings.modular_kitchen_image
   if modular_kitchen_media == blank and modular_kitchen_collection != blank
     assign modular_kitchen_media = modular_kitchen_collection.image
   endif
+  if modular_kitchen_media == blank and modular_kitchen_collection != blank and modular_kitchen_collection.products.first.featured_image != blank
+    assign modular_kitchen_media = modular_kitchen_collection.products.first.featured_image
+  endif
+  if modular_kitchen_media == blank
+    assign modular_kitchen_media = 'modular-kitchen-light-oak-l-shape.png'
+  endif
 
   assign dressing_media = section.settings.dressing_tables_image
   if dressing_media == blank and dressing_collection != blank
     assign dressing_media = dressing_collection.image
+  endif
+  if dressing_media == blank and dressing_collection != blank and dressing_collection.products.first.featured_image != blank
+    assign dressing_media = dressing_collection.products.first.featured_image
   endif
 
   assign centre_media = section.settings.centre_tables_image
   if centre_media == blank and centre_collection != blank
     assign centre_media = centre_collection.image
   endif
+  if centre_media == blank and centre_collection != blank and centre_collection.products.first.featured_image != blank
+    assign centre_media = centre_collection.products.first.featured_image
+  endif
 
   assign wfh_media = section.settings.wfh_furniture_image
   if wfh_media == blank and wfh_collection != blank
     assign wfh_media = wfh_collection.image
+  endif
+  if wfh_media == blank and wfh_collection != blank and wfh_collection.products.first.featured_image != blank
+    assign wfh_media = wfh_collection.products.first.featured_image
   endif
 %}
 
@@ -395,8 +434,8 @@
   <div class="bw-categories__inner">
     <div class="bw-categories__header">
       <span class="bw-categories__eyebrow">Shop by room</span>
-      <h2 class="bw-categories__title">Start with the room that shapes daily life.</h2>
-      <p class="bw-categories__copy">From statement pieces to everyday storage, Bluewud categories are arranged so customers can move from inspiration to the right room faster.</p>
+      <h2 class="bw-categories__title">Start with the room you want to make feel right first.</h2>
+      <p class="bw-categories__copy">Choose the room, then narrow the shortlist through storage, finish, and function instead of guessing across the whole catalog.</p>
     </div>
 
     <div class="bw-categories__grid">
@@ -406,7 +445,7 @@
             {{ living_media | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480, 720, 960, 1200', sizes: '(max-width: 720px) 100vw, 50vw', alt: 'Living Room' }}
           </div>
         {% else %}
-          <div class="bw-categories__media bw-categories__media--placeholder bw-categories__media--living" role="img" aria-label="Living Room placeholder until a Bluewud image is added">
+          <div class="bw-categories__media bw-categories__media--placeholder bw-categories__media--living" role="img" aria-label="Living Room collection preview">
             <span class="bw-categories__placeholder">Add Bluewud image</span>
           </div>
         {% endif %}
@@ -432,7 +471,7 @@
             {{ bedroom_media | image_url: width: 1200 | image_tag: loading: 'lazy', widths: '480, 720, 960, 1200', sizes: '(max-width: 720px) 100vw, 50vw', alt: 'Bedroom' }}
           </div>
         {% else %}
-          <div class="bw-categories__media bw-categories__media--placeholder bw-categories__media--bedroom" role="img" aria-label="Bedroom placeholder until a Bluewud image is added">
+          <div class="bw-categories__media bw-categories__media--placeholder bw-categories__media--bedroom" role="img" aria-label="Bedroom collection preview">
             <span class="bw-categories__placeholder">Add Bluewud image</span>
           </div>
         {% endif %}
@@ -458,7 +497,7 @@
             {{ study_media | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 480, 720, 900', sizes: '(max-width: 720px) 100vw, 25vw', alt: 'Study Tables' }}
           </div>
         {% else %}
-          <div class="bw-categories__media bw-categories__media--placeholder bw-categories__media--study" role="img" aria-label="Study Tables placeholder until a Bluewud image is added">
+          <div class="bw-categories__media bw-categories__media--placeholder bw-categories__media--study" role="img" aria-label="Study Tables collection preview">
             <span class="bw-categories__placeholder">Add Bluewud image</span>
           </div>
         {% endif %}
@@ -484,7 +523,7 @@
             {{ tv_media | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 480, 720, 900', sizes: '(max-width: 720px) 100vw, 25vw', alt: 'TV Units' }}
           </div>
         {% else %}
-          <div class="bw-categories__media bw-categories__media--placeholder bw-categories__media--tv" role="img" aria-label="TV Units placeholder until a Bluewud image is added">
+          <div class="bw-categories__media bw-categories__media--placeholder bw-categories__media--tv" role="img" aria-label="TV Units collection preview">
             <span class="bw-categories__placeholder">Add Bluewud image</span>
           </div>
         {% endif %}
@@ -510,7 +549,7 @@
             {{ bookshelves_media | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 480, 720, 900', sizes: '(max-width: 720px) 100vw, 25vw', alt: 'Bookshelves' }}
           </div>
         {% else %}
-          <div class="bw-categories__media bw-categories__media--placeholder bw-categories__media--bookshelves" role="img" aria-label="Bookshelves placeholder until a Bluewud image is added">
+          <div class="bw-categories__media bw-categories__media--placeholder bw-categories__media--bookshelves" role="img" aria-label="Bookshelves collection preview">
             <span class="bw-categories__placeholder">Add Bluewud image</span>
           </div>
         {% endif %}
@@ -536,7 +575,7 @@
             {{ wardrobe_media | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 480, 720, 900', sizes: '(max-width: 720px) 100vw, 25vw', alt: 'Wardrobes' }}
           </div>
         {% else %}
-          <div class="bw-categories__media bw-categories__media--placeholder bw-categories__media--wardrobe" role="img" aria-label="Wardrobes placeholder until a Bluewud image is added">
+          <div class="bw-categories__media bw-categories__media--placeholder bw-categories__media--wardrobe" role="img" aria-label="Wardrobes collection preview">
             <span class="bw-categories__placeholder">Add Bluewud image</span>
           </div>
         {% endif %}
@@ -563,7 +602,7 @@
           </div>
         {% else %}
           <div class="bw-categories__media">
-            <img src="{{ 'modular-kitchen-light-oak-l-shape.png' | asset_url }}" alt="Modular Kitchen" loading="lazy" width="900" height="675">
+            {{ modular_kitchen_media | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 480, 720, 900', sizes: '(max-width: 720px) 100vw, 25vw', alt: 'Modular Kitchen' }}
           </div>
         {% endif %}
         <div class="bw-categories__overlay"></div>
@@ -588,7 +627,7 @@
             {{ dressing_media | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 480, 720, 900', sizes: '(max-width: 720px) 100vw, 25vw', alt: 'Dressing Tables' }}
           </div>
         {% else %}
-          <div class="bw-categories__media bw-categories__media--placeholder bw-categories__media--dressing" role="img" aria-label="Dressing Tables placeholder until a Bluewud image is added">
+          <div class="bw-categories__media bw-categories__media--placeholder bw-categories__media--dressing" role="img" aria-label="Dressing Tables collection preview">
             <span class="bw-categories__placeholder">Add Bluewud image</span>
           </div>
         {% endif %}
@@ -614,7 +653,7 @@
             {{ centre_media | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 480, 720, 900', sizes: '(max-width: 720px) 100vw, 25vw', alt: 'Centre Tables' }}
           </div>
         {% else %}
-          <div class="bw-categories__media bw-categories__media--placeholder bw-categories__media--centre" role="img" aria-label="Centre Tables placeholder until a Bluewud image is added">
+          <div class="bw-categories__media bw-categories__media--placeholder bw-categories__media--centre" role="img" aria-label="Centre Tables collection preview">
             <span class="bw-categories__placeholder">Add Bluewud image</span>
           </div>
         {% endif %}
@@ -640,7 +679,7 @@
             {{ wfh_media | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 480, 720, 900', sizes: '(max-width: 720px) 100vw, 25vw', alt: 'WFH Furniture' }}
           </div>
         {% else %}
-          <div class="bw-categories__media bw-categories__media--placeholder bw-categories__media--wfh" role="img" aria-label="WFH Furniture placeholder until a Bluewud image is added">
+          <div class="bw-categories__media bw-categories__media--placeholder bw-categories__media--wfh" role="img" aria-label="WFH Furniture collection preview">
             <span class="bw-categories__placeholder">Add Bluewud image</span>
           </div>
         {% endif %}

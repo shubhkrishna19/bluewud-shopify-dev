@@ -77,14 +77,14 @@
     background: linear-gradient(135deg, #231813 0%, #3b2921 56%, #5c463c 100%);
     color: #fff7f1;
     height: fit-content;
-    max-height: calc(100vh - 120px);
+    max-height: calc(100vh - 160px);
     overflow-y: auto;
     overscroll-behavior: contain;
     scrollbar-width: thin;
   }
   .bw-flow__summary-visual {
-    min-height: 168px;
-    margin-bottom: 14px;
+    min-height: 132px;
+    margin-bottom: 10px;
     border-radius: 24px;
     overflow: hidden;
     background: rgba(255,255,255,0.08);
@@ -97,21 +97,21 @@
     display: block;
   }
   .bw-flow__summary-caption {
-    margin: -2px 0 16px;
+    margin: -2px 0 10px;
     color: rgba(255, 247, 241, 0.72);
     font-size: 12px;
     line-height: 1.6;
   }
   .bw-flow__summary-cues {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 10px;
-    margin-bottom: 18px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-bottom: 12px;
   }
   .bw-flow__summary-cue {
     display: grid;
-    gap: 6px;
-    padding: 14px;
+    gap: 4px;
+    padding: 10px 12px;
     border-radius: 18px;
     background: rgba(255, 247, 241, 0.08);
     border: 1px solid rgba(255, 247, 241, 0.12);
@@ -125,7 +125,7 @@
   }
   .bw-flow__summary-cue strong {
     color: #fff7f1;
-    font-size: 14px;
+    font-size: 13px;
     line-height: 1.45;
   }
   .bw-flow__head { display: grid; gap: 10px; margin-bottom: 18px; }
@@ -548,6 +548,9 @@
     grid-template-columns: repeat(2, minmax(0, 1fr));
     gap: 12px 14px;
     margin-top: 16px;
+  }
+  .bw-flow__summary-line:nth-child(n + 5) {
+    display: none;
   }
   .bw-flow__summary-line {
     display: grid;

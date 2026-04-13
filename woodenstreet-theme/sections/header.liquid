@@ -12,6 +12,8 @@
   assign brand_logo = section.settings.brand_logo
   assign brand_logo_treatment = 'tinted'
   assign current_path = request.path
+  assign page_handle = blank
+  assign collection_handle = blank
   assign modular_kitchen_url = '/collections/kitchen-racks'
   assign modular_wardrobe_url = '/collections/wardrobe'
   assign modular_kitchen_calculator_url = '/collections/kitchen-racks?planner=kitchen-calculator'
@@ -22,6 +24,7 @@
   assign contact_url = '/pages/contact-us'
   assign visit_url = '/pages/visit-us'
   assign help_center_url = '/pages/help-center'
+  assign installation_cancellation_url = help_center_url
   assign bulk_url = '/pages/buy-in-bulk'
   assign offers_url = '/pages/offers-discount'
   assign awards_url = '/pages/award-achievment'
@@ -45,6 +48,14 @@
   assign coffee_table_collection = collections['coffee-table']
   assign bookshelves_collection = collections['book-shelves']
   assign dressers_collection = collections['dressing-tables']
+
+  if page != blank and page.handle != blank
+    assign page_handle = page.handle
+  endif
+
+  if collection != blank and collection.handle != blank
+    assign collection_handle = collection.handle
+  endif
 
   if study_room_collection == blank
     assign study_room_collection = collections['study-table']
@@ -176,6 +187,10 @@
   endif
   if pages['help-center'] != blank
     assign help_center_url = pages['help-center'].url
+    assign installation_cancellation_url = help_center_url
+  endif
+  if pages['installation-cancellation'] != blank
+    assign installation_cancellation_url = pages['installation-cancellation'].url
   endif
   if pages['buy-in-bulk'] != blank
     assign bulk_url = pages['buy-in-bulk'].url
@@ -201,6 +216,37 @@
 
   if cta_url == blank
     assign cta_url = bulk_url
+  endif
+
+  assign is_modular_kitchen_active = false
+  assign is_modular_wardrobe_active = false
+  assign is_price_calculator_active = false
+
+  if collection_handle == 'kitchen-racks'
+    assign is_modular_kitchen_active = true
+  endif
+  if page_handle == 'modular-kitchen-designs' or page_handle == 'l-shape-modular-kitchen-design' or page_handle == 'u-shape-modular-kitchen-design' or page_handle == 'parallel-modular-kitchen-design' or page_handle == 'straight-modular-kitchen' or page_handle == 'kitchen-island-design'
+    assign is_modular_kitchen_active = true
+  endif
+  if current_path == modular_kitchen_url or current_path == modular_kitchen_calculator_url
+    assign is_modular_kitchen_active = true
+  endif
+
+  if collection_handle == 'wardrobe'
+    assign is_modular_wardrobe_active = true
+  endif
+  if page_handle == 'modular-wardrobe-designs' or page_handle == 'sliding-wardrobe-designs' or page_handle == 'hinged-wardrobes' or page_handle == 'walk-in-wardrobes'
+    assign is_modular_wardrobe_active = true
+  endif
+  if current_path == modular_wardrobe_url or current_path == modular_wardrobe_calculator_url
+    assign is_modular_wardrobe_active = true
+  endif
+
+  if page_handle == 'home-interiors-cost-calculator' or page_handle == 'modular-kitchen-cost-calculator' or page_handle == 'modular-wardrobe-cost-calculator'
+    assign is_price_calculator_active = true
+  endif
+  if current_path == home_interiors_calculator_url or current_path == modular_kitchen_calculator_url or current_path == modular_wardrobe_calculator_url
+    assign is_price_calculator_active = true
   endif
 
   capture drawer_nav_urls_string
@@ -344,13 +390,13 @@
   }
 
   .bw-header__main-inner {
-    min-height: 110px;
+    min-height: 96px;
     display: grid;
-    grid-template-columns: minmax(250px, 320px) minmax(0, 1fr) auto;
+    grid-template-columns: minmax(220px, 288px) minmax(0, 1fr) auto;
     align-items: start;
-    gap: 18px 28px;
-    padding-top: 18px;
-    padding-bottom: 14px;
+    gap: 14px 24px;
+    padding-top: 14px;
+    padding-bottom: 10px;
     overflow: visible;
   }
 
@@ -393,20 +439,16 @@
   .bw-header__brand-copy {
     display: flex;
     flex-direction: column;
-    gap: 3px;
+    gap: 2px;
     min-width: 0;
   }
 
   .bw-header__brand-copy--with-logo {
-    gap: 5px;
+    gap: 4px;
   }
 
   .bw-header__brand-kicker {
-    color: #8a7465;
-    font-size: 10px;
-    font-weight: 700;
-    letter-spacing: 0.2em;
-    text-transform: uppercase;
+    display: none;
   }
 
   .bw-header__brand-wordmark {
@@ -462,9 +504,9 @@
 
   .bw-header__brand-tagline {
     color: #6c5b51;
-    font-size: 10px;
+    font-size: 9px;
     font-weight: 600;
-    letter-spacing: 0.14em;
+    letter-spacing: 0.12em;
     text-transform: uppercase;
     white-space: nowrap;
     overflow: hidden;
@@ -480,8 +522,8 @@
     gap: 8px;
     min-width: 0;
     width: 100%;
-    margin-top: 6px;
-    padding: 14px 10px 4px;
+    margin-top: 2px;
+    padding: 10px 10px 2px;
     border-top: 1px solid rgba(45, 33, 27, 0.08);
     overflow: visible;
   }
@@ -499,12 +541,12 @@
     justify-content: center;
     gap: 8px;
     color: #241a15;
-    font-size: 13px;
+    font-size: 12.5px;
     font-weight: 700;
     letter-spacing: 0.01em;
     position: relative;
-    min-height: 42px;
-    padding: 0 12px 10px;
+    min-height: 40px;
+    padding: 0 11px 8px;
     white-space: nowrap;
     transition: color 0.2s ease, transform 0.2s ease;
   }
@@ -559,14 +601,24 @@
     transform: translateX(-50%) scaleX(1);
   }
 
+  .bw-header__nav-link:focus-visible,
+  .bw-header__dropdown-link:focus-visible,
+  .bw-header__icon-link:focus-visible,
+  .bw-header__cta:focus-visible,
+  .bw-header__drawer-link:focus-visible,
+  .bw-header__drawer-pill:focus-visible {
+    outline: 2px solid rgba(53, 90, 109, 0.42);
+    outline-offset: 3px;
+  }
+
   .bw-header__dropdown {
     position: absolute;
-    top: calc(100% - 6px);
+    top: calc(100% - 4px);
     left: 50%;
     z-index: 9400;
     min-width: 250px;
     max-width: min(360px, calc(100vw - 24px));
-    padding: 14px;
+    padding: 12px;
     border-radius: 24px;
     border: 1px solid rgba(45, 33, 27, 0.1);
     background: rgba(255, 251, 247, 0.98);
@@ -616,7 +668,7 @@
 
   .bw-header__dropdown-group {
     display: grid;
-    gap: 8px;
+    gap: 6px;
   }
 
   .bw-header__dropdown-heading {
@@ -1230,7 +1282,7 @@
       </div>
 
       <div class="bw-header__nav-item bw-header__nav-item--wide">
-        <a class="bw-header__nav-link bw-header__nav-link--has-children{% if current_path == modular_kitchen_url or current_path == modular_kitchen_calculator_url %} is-active{% endif %}" href="{{ modular_kitchen_url }}"{% if current_path == modular_kitchen_url %} aria-current="page"{% endif %}>Modular Kitchen</a>
+        <a class="bw-header__nav-link bw-header__nav-link--has-children{% if is_modular_kitchen_active %} is-active{% endif %}" href="{{ modular_kitchen_url }}"{% if is_modular_kitchen_active %} aria-current="page"{% endif %}>Modular Kitchen</a>
         <div class="bw-header__dropdown" role="presentation">
           <div class="bw-header__dropdown-grid">
             <a class="bw-header__dropdown-link bw-header__dropdown-link--strong" href="{{ modular_kitchen_url }}">All Layouts</a>
@@ -1246,7 +1298,7 @@
       </div>
 
       <div class="bw-header__nav-item bw-header__nav-item--wide">
-        <a class="bw-header__nav-link bw-header__nav-link--has-children{% if current_path == modular_wardrobe_url or current_path == modular_wardrobe_calculator_url %} is-active{% endif %}" href="{{ modular_wardrobe_url }}"{% if current_path == modular_wardrobe_url %} aria-current="page"{% endif %}>Wardrobes</a>
+        <a class="bw-header__nav-link bw-header__nav-link--has-children{% if is_modular_wardrobe_active %} is-active{% endif %}" href="{{ modular_wardrobe_url }}"{% if is_modular_wardrobe_active %} aria-current="page"{% endif %}>Wardrobes</a>
         <div class="bw-header__dropdown" role="presentation">
           <div class="bw-header__dropdown-grid">
             <a class="bw-header__dropdown-link bw-header__dropdown-link--strong" href="{{ modular_wardrobe_url }}">All Wardrobes</a>
@@ -1260,7 +1312,7 @@
       </div>
 
       <div class="bw-header__nav-item bw-header__nav-item--wide">
-        <a class="bw-header__nav-link bw-header__nav-link--has-children{% if current_path == home_interiors_calculator_url or current_path == modular_kitchen_calculator_url or current_path == modular_wardrobe_calculator_url %} is-active{% endif %}" href="{{ price_calculator_url }}">Price Calculator</a>
+        <a class="bw-header__nav-link bw-header__nav-link--has-children{% if is_price_calculator_active %} is-active{% endif %}" href="{{ price_calculator_url }}"{% if is_price_calculator_active %} aria-current="page"{% endif %}>Price Calculator</a>
         <div class="bw-header__dropdown" role="presentation">
           <div class="bw-header__dropdown-grid">
             <a class="bw-header__dropdown-link bw-header__dropdown-link--strong" href="{{ home_interiors_calculator_url }}">Home Interiors Cost Calculator</a>
@@ -1390,7 +1442,7 @@
         <a class="bw-header__drawer-link" href="{{ terms_url }}">Terms Of Use</a>
         <a class="bw-header__drawer-link" href="{{ policies_url }}">Privacy Statement</a>
         <a class="bw-header__drawer-link" href="{{ payment_security_url }}">Payment & Security</a>
-        <a class="bw-header__drawer-link" href="{{ help_center_url }}">Installation & Cancellation</a>
+        <a class="bw-header__drawer-link" href="{{ installation_cancellation_url }}">Installation & Cancellation</a>
         <a class="bw-header__drawer-link" href="{{ routes.search_url }}">Search</a>
       {% endif %}
     </div>

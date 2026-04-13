@@ -1,5 +1,5 @@
 <div class="wooden-delivery" data-delivery-estimator>
-  <div class="wooden-delivery__title">Check delivery availability</div>
+  <div class="wooden-delivery__title">Delivery guidance</div>
   <div class="wooden-delivery__form">
     <input
       class="wooden-delivery__input"
@@ -16,7 +16,7 @@
     </button>
   </div>
   <div class="wooden-delivery__result" data-delivery-result aria-live="polite">
-    Enter your pincode to see delivery estimates.
+    Enter your pincode for a directional delivery check.
   </div>
 </div>
 
@@ -139,10 +139,10 @@
 
     const renderEstimate = (result, pincode) => {
       if (!pincode || pincode.length < 5) {
-        result.textContent = 'Enter a valid pincode to see delivery estimates.';
-        return;
-      }
-      result.textContent = `Delivery available. Estimated dispatch in 2-4 days for ${pincode}.`;
+      result.textContent = 'Enter a valid pincode for a directional delivery check.';
+      return;
+    }
+      result.textContent = `Pincode ${pincode} noted. Final delivery timing depends on product readiness and serviceability confirmation from the Bluewud team.`;
     };
 
     containers.forEach((container) => {

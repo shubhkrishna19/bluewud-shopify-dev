@@ -521,9 +521,6 @@
                       {% if block.settings.button_label != blank %}
                         <a class="bw-hero__button" href="{{ slide_url }}">{{ block.settings.button_label }}</a>
                       {% endif %}
-                      {% if slide_collection != blank %}
-                        <a class="bw-hero__secondary" href="{{ slide_collection.url }}">View collection</a>
-                      {% endif %}
                     </div>
                   </div>
                 </div>
@@ -571,9 +568,6 @@
                   <p class="bw-hero__copy">{{ default_copies[forloop.index0] }}</p>
                   <div class="bw-hero__actions">
                     <a class="bw-hero__button" href="{{ slide_url }}">{{ default_button_labels[forloop.index0] }}</a>
-                    {% if slide_collection != blank %}
-                      <a class="bw-hero__secondary" href="{{ slide_collection.url }}">View collection</a>
-                    {% endif %}
                   </div>
                 </div>
               </div>

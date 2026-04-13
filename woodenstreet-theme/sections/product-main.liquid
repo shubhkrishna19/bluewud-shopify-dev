@@ -1105,9 +1105,9 @@
         </p>
         <div class="bw-product__rating">
           {% if show_rating_fallback %}
-            <a class="bw-product__rating-fallback" href="/pages/reviews" aria-label="Bluewud rated {{ brand_reviews_rating }} out of 5 across {{ brand_reviews_count }} customer reviews">
+            <a class="bw-product__rating-fallback" href="/pages/reviews" aria-label="Bluewud brand rating {{ brand_reviews_rating }} out of 5 across {{ brand_reviews_count }} customer reviews">
               <span class="bw-product__rating-stars" aria-hidden="true">★★★★★</span>
-              <span class="bw-product__rating-text">{{ brand_reviews_rating }}/5 across {{ brand_reviews_count }} Bluewud reviews</span>
+              <span class="bw-product__rating-text">Bluewud brand rating · {{ brand_reviews_rating }}/5 across {{ brand_reviews_count }} reviews</span>
             </a>
           {% else %}
             {% render 'judgeme_widgets', widget_type: 'judgeme_preview_badge', concierge_install: true, product: product %}
@@ -1193,7 +1193,7 @@
             {% endunless %}
           {% endfor %}
 
-          <div class="bw-product__purchase">
+          <div class="bw-product__purchase" data-product-form-area>
             <div class="bw-product__quantity">
               <span class="bw-product__quantity-label">Quantity</span>
               <div class="bw-product__quantity-control">
