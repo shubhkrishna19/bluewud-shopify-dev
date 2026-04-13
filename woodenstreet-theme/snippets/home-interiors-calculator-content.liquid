@@ -28,7 +28,12 @@
   assign wardrobe_preview_alt = 'Bluewud wardrobe planning preview'
   assign study_preview_alt = 'Bluewud study planning preview'
   assign dining_preview_alt = 'Bluewud dining planning preview'
-  assign kitchen_preview_src = 'modular-kitchen-light-oak-l-shape.png' | asset_url
+  assign kitchen_preview_primary_src = 'modular-kitchen-light-oak-l-shape.png' | asset_url
+  assign kitchen_preview_secondary_src = 'modular-kitchen-sage-u-shape.png' | asset_url
+  assign kitchen_preview_tertiary_src = 'modular-kitchen-galley-light-wood.png' | asset_url
+  assign kitchen_preview_quaternary_src = 'modular-kitchen-navy-luxury.png' | asset_url
+  assign kitchen_preview_quinary_src = 'modular-kitchen-walnut-u-shape.png' | asset_url
+  assign kitchen_preview_src = kitchen_preview_primary_src
   assign kitchen_preview_alt = 'Bluewud modular kitchen planning preview'
 
   if pages['modular-kitchen-designs'] != blank
@@ -520,6 +525,7 @@
     gap: 10px;
   }
   .bw-hi__choice {
+    position: relative;
     display: grid;
     align-content: start;
     gap: 6px;
@@ -539,19 +545,61 @@
     text-align: left;
     transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease;
   }
+  .bw-hi__choice::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(202, 138, 4, 0.08), rgba(255, 255, 255, 0));
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s ease;
+  }
+  .bw-hi__choice::after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    width: 18px;
+    height: 18px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(32, 23, 19, 0.14);
+    box-shadow: 0 6px 14px rgba(35, 24, 19, 0.08);
+    opacity: 0;
+    transform: scale(0.85);
+    transition: opacity 0.18s ease, transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+    pointer-events: none;
+  }
   .bw-hi__choice input { display: none; }
   .bw-hi__choice.is-selected {
     background:
-      linear-gradient(180deg, #241814 0%, #3a2921 100%);
-    color: #fff7f1;
-    border-color: #241814;
-    box-shadow: 0 16px 34px rgba(35, 24, 19, 0.16);
+      linear-gradient(180deg, rgba(255, 249, 239, 0.98), rgba(251, 242, 228, 0.98));
+    border-color: rgba(202, 138, 4, 0.7);
+    box-shadow:
+      0 20px 42px rgba(35, 24, 19, 0.16),
+      inset 0 0 0 1px rgba(202, 138, 4, 0.18);
+    transform: translateY(-1px);
+  }
+  .bw-hi__choice.is-selected::before {
+    opacity: 1;
+    background: linear-gradient(135deg, rgba(202, 138, 4, 0.14), rgba(255, 255, 255, 0));
+  }
+  .bw-hi__choice.is-selected::after {
+    opacity: 1;
+    transform: scale(1);
+    background: linear-gradient(180deg, #201713 0%, #5c463c 100%);
+    border-color: rgba(202, 138, 4, 0.45);
+    box-shadow: 0 10px 18px rgba(35, 24, 19, 0.18);
   }
   .bw-hi__choice:hover,
   .bw-hi__choice:focus-visible {
     transform: translateY(-1px);
     border-color: rgba(32, 23, 19, 0.16);
     box-shadow: 0 16px 32px rgba(35, 24, 19, 0.08);
+  }
+  .bw-hi__choice.is-selected .bw-hi__choice-title {
+    color: #201713;
   }
   .bw-hi__choice--visual {
     gap: 10px;
@@ -594,7 +642,7 @@
     line-height: 1.55;
   }
   .bw-hi__choice.is-selected .bw-hi__choice-note {
-    color: rgba(255, 247, 241, 0.82);
+    color: #5d4a42;
   }
   .bw-hi__choice--compact {
     gap: 10px;
@@ -602,6 +650,12 @@
     padding: 10px;
     letter-spacing: 0;
     text-transform: none;
+  }
+  .bw-hi__choice--compact.is-selected::after {
+    width: 16px;
+    height: 16px;
+    top: 10px;
+    right: 10px;
   }
   .bw-hi__choice--compact .bw-hi__choice-copy {
     gap: 2px;
@@ -612,6 +666,17 @@
   .bw-hi__choice--compact .bw-hi__choice-note {
     font-size: 11px;
     line-height: 1.5;
+  }
+  .bw-hi__choices[data-hi-group="rooms"] .bw-hi__choice {
+    padding: 14px;
+  }
+  .bw-hi__choices[data-hi-group="rooms"] .bw-hi__choice-media {
+    min-height: 148px;
+  }
+  .bw-hi__choices[data-hi-group="property"] .bw-hi__choice-media--compact,
+  .bw-hi__choices[data-hi-group="intent"] .bw-hi__choice-media--compact,
+  .bw-hi__choices[data-hi-group="budget"] .bw-hi__choice-media--compact {
+    min-height: 100px;
   }
   .bw-hi__choice--compact .bw-hi__choice-media {
     min-height: 110px;
@@ -1211,7 +1276,7 @@
     </article>
     <article class="bw-hi__progress-card bw-hi__progress-card--visual">
       <div class="bw-hi__progress-media">
-        <img src="{{ kitchen_preview_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="900" height="675">
+        <img src="{{ kitchen_preview_secondary_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="900" height="675">
       </div>
       <span class="bw-hi__progress-step">Step 3</span>
       <h3>Set timing and city</h3>
@@ -1219,7 +1284,7 @@
     </article>
     <article class="bw-hi__progress-card bw-hi__progress-card--visual">
       <div class="bw-hi__progress-media">
-        <img src="{{ wardrobe_preview_src }}" alt="{{ wardrobe_preview_alt }}" loading="lazy" width="900" height="675">
+        <img src="{{ kitchen_preview_quaternary_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="900" height="675">
       </div>
       <span class="bw-hi__progress-step">Step 4</span>
       <h3>Share the project brief</h3>
@@ -1365,10 +1430,10 @@
               <span class="bw-hi__choice-note">Set the room language from scratch.</span>
             </span>
           </label>
-          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact" data-preview-src="{{ kitchen_preview_src }}" data-preview-alt="{{ kitchen_preview_alt }}" data-preview-caption="Upgrade or renovation briefs usually benefit from one dominant focus and clearer before/after expectations.">
+          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact" data-preview-src="{{ kitchen_preview_secondary_src }}" data-preview-alt="{{ kitchen_preview_alt }}" data-preview-caption="Upgrade or renovation briefs usually benefit from one dominant focus and clearer before/after expectations.">
             <input type="radio" name="hi_intent" value="Upgrade / renovation">
             <span class="bw-hi__choice-media bw-hi__choice-media--compact">
-              <img src="{{ kitchen_preview_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="900" height="675">
+              <img src="{{ kitchen_preview_secondary_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="900" height="675">
             </span>
             <span class="bw-hi__choice-copy">
               <span class="bw-hi__choice-title">Upgrade / Renovation</span>
@@ -1410,17 +1475,17 @@
           <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact" data-preview-src="{{ bedroom_preview_src }}" data-preview-alt="{{ bedroom_preview_alt }}" data-preview-caption="Value-led planning is best when the finish language stays simple and grounded.">
             <input type="radio" name="hi_budget" value="Value led">
             <span class="bw-hi__choice-media bw-hi__choice-media--compact">
-              <img src="{{ bedroom_preview_src }}" alt="{{ bedroom_preview_alt }}" loading="lazy" width="900" height="675">
+              <img src="{{ kitchen_preview_tertiary_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="900" height="675">
             </span>
             <span class="bw-hi__choice-copy">
               <span class="bw-hi__choice-title">Value Led</span>
               <span class="bw-hi__choice-note">Simple, efficient, and cost-conscious.</span>
             </span>
           </label>
-          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact is-selected" data-preview-src="{{ kitchen_preview_src }}" data-preview-alt="{{ kitchen_preview_alt }}" data-preview-caption="Balanced premium is the safest starting point for most Bluewud home interiors briefs.">
+          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact is-selected" data-preview-src="{{ kitchen_preview_quaternary_src }}" data-preview-alt="{{ kitchen_preview_alt }}" data-preview-caption="Balanced premium is the safest starting point for most Bluewud home interiors briefs.">
             <input type="radio" name="hi_budget" value="Balanced premium" checked>
             <span class="bw-hi__choice-media bw-hi__choice-media--compact">
-              <img src="{{ kitchen_preview_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="900" height="675">
+              <img src="{{ kitchen_preview_quaternary_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="900" height="675">
             </span>
             <span class="bw-hi__choice-copy">
               <span class="bw-hi__choice-title">Balanced Premium</span>
@@ -1437,10 +1502,10 @@
               <span class="bw-hi__choice-note">Richer finishes and stronger presence.</span>
             </span>
           </label>
-          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact" data-preview-src="{{ dining_preview_src }}" data-preview-alt="{{ dining_preview_alt }}" data-preview-caption="Need guidance works well when the budget is still being shaped by room priorities.">
+          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact" data-preview-src="{{ kitchen_preview_quinary_src }}" data-preview-alt="{{ kitchen_preview_alt }}" data-preview-caption="Need guidance works well when the budget is still being shaped by room priorities.">
             <input type="radio" name="hi_budget" value="Need guidance">
             <span class="bw-hi__choice-media bw-hi__choice-media--compact">
-              <img src="{{ dining_preview_src }}" alt="{{ dining_preview_alt }}" loading="lazy" width="900" height="675">
+              <img src="{{ kitchen_preview_quinary_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="900" height="675">
             </span>
             <span class="bw-hi__choice-copy">
               <span class="bw-hi__choice-title">Need Guidance</span>
@@ -1499,15 +1564,15 @@
         <p>Clear room choices help the estimate feel grounded.</p>
       </article>
       <article class="bw-hi__guide-card">
-        <div class="bw-hi__guide-media">
-          <img src="{{ kitchen_preview_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="900" height="675">
+      <div class="bw-hi__guide-media">
+          <img src="{{ kitchen_preview_secondary_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="900" height="675">
         </div>
         <strong>Use budget as a finish lane</strong>
         <p>Budget should guide finish level, not repeat the planner.</p>
       </article>
       <article class="bw-hi__guide-card bw-hi__guide-card--accent">
-        <div class="bw-hi__guide-media">
-          <img src="{{ bedroom_preview_src }}" alt="{{ bedroom_preview_alt }}" loading="lazy" width="900" height="675">
+      <div class="bw-hi__guide-media">
+          <img src="{{ kitchen_preview_quaternary_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="900" height="675">
         </div>
         <strong>Move into a guided estimate</strong>
         <p>Send the brief when the room mix feels settled.</p>
