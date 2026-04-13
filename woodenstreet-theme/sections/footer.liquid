@@ -1,21 +1,12 @@
 {% liquid
   assign footer_brand = section.settings.footer_brand | default: 'Bluewud'
-  assign footer_copy = section.settings.footer_copy | default: 'Bluewud brings premium furniture, smarter storage, and guided room planning together for modern Indian homes.'
+  assign footer_copy = section.settings.footer_copy | default: 'Premium furniture, smarter storage, and guided room planning for modern Indian homes.'
   assign living_room_url = '/collections/living-room'
   assign bedroom_url = '/collections/bed-room'
-  assign study_tables_url = '/collections/study-tables'
-  assign tv_units_url = '/collections/tv-unit-furniture'
-  assign bookshelves_url = '/collections/book-shelves'
-  assign new_launches_url = '/collections/new_launches'
   assign modular_kitchen_url = '/collections/kitchen-racks'
   assign modular_wardrobe_url = '/collections/wardrobe'
-  assign modular_kitchen_calculator_url = '/collections/kitchen-racks?planner=kitchen-calculator'
-  assign modular_wardrobe_calculator_url = '/collections/wardrobe?planner=wardrobe-calculator'
-  assign home_interiors_calculator_url = '/collections/kitchen-racks?planner=home-interiors'
-  assign estimate_url = '/pages/get-free-estimate'
   assign about_url = '/pages/about-us'
   assign bulk_url = '/pages/buy-in-bulk'
-  assign visit_url = '/pages/visit-us'
   assign awards_url = '/pages/award-achievment'
   assign offers_url = '/pages/offers-discount'
   assign help_center_url = '/pages/help-center'
@@ -31,18 +22,6 @@
   if collections['bed-room'] != blank and collections['bed-room'].url != blank
     assign bedroom_url = collections['bed-room'].url
   endif
-  if collections['study-tables'] != blank and collections['study-tables'].url != blank
-    assign study_tables_url = collections['study-tables'].url
-  endif
-  if collections['tv-unit-furniture'] != blank and collections['tv-unit-furniture'].url != blank
-    assign tv_units_url = collections['tv-unit-furniture'].url
-  endif
-  if collections['book-shelves'] != blank and collections['book-shelves'].url != blank
-    assign bookshelves_url = collections['book-shelves'].url
-  endif
-  if collections['new_launches'] != blank and collections['new_launches'].url != blank
-    assign new_launches_url = collections['new_launches'].url
-  endif
 
   if pages['modular-kitchen-designs'] != blank
     assign modular_kitchen_url = pages['modular-kitchen-designs'].url
@@ -50,28 +29,11 @@
   if pages['modular-wardrobe-designs'] != blank
     assign modular_wardrobe_url = pages['modular-wardrobe-designs'].url
   endif
-  if pages['modular-kitchen-cost-calculator'] != blank
-    assign modular_kitchen_calculator_url = pages['modular-kitchen-cost-calculator'].url
-  endif
-  if pages['modular-wardrobe-cost-calculator'] != blank
-    assign modular_wardrobe_calculator_url = pages['modular-wardrobe-cost-calculator'].url
-  endif
-  if pages['home-interiors-cost-calculator'] != blank
-    assign home_interiors_calculator_url = pages['home-interiors-cost-calculator'].url
-  endif
-  if pages['get-free-estimate'] != blank
-    assign estimate_url = pages['get-free-estimate'].url
-  elsif pages['contact-us'] != blank
-    assign estimate_url = pages['contact-us'].url
-  endif
   if pages['about-us'] != blank
     assign about_url = pages['about-us'].url
   endif
   if pages['buy-in-bulk'] != blank
     assign bulk_url = pages['buy-in-bulk'].url
-  endif
-  if pages['visit-us'] != blank
-    assign visit_url = pages['visit-us'].url
   endif
   if pages['award-achievment'] != blank
     assign awards_url = pages['award-achievment'].url
@@ -101,14 +63,14 @@
 
 <style>
   .bw-footer {
-    padding: 0 18px 12px;
+    padding: 0 14px 10px;
     background: #faf6f1;
   }
 
   .bw-footer__inner {
     max-width: 1440px;
     margin: 0 auto;
-    padding: 14px 18px 12px;
+    padding: 12px 14px 10px;
     border-radius: 18px;
     background: #201713;
     color: #f8f1eb;
@@ -117,8 +79,8 @@
   .bw-footer__top {
     display: grid;
     grid-template-columns: minmax(0, 1.2fr) repeat(3, minmax(0, 1fr));
-    gap: 8px;
-    padding-bottom: 8px;
+    gap: 6px;
+    padding-bottom: 7px;
     border-bottom: 1px solid rgba(248, 241, 235, 0.12);
   }
 
@@ -132,11 +94,11 @@
   }
 
   .bw-footer__copy {
-    margin: 0 0 4px;
+    margin: 0 0 3px;
     color: rgba(248, 241, 235, 0.72);
-    font-size: 12px;
-    line-height: 1.3;
-    max-width: 34ch;
+    font-size: 11px;
+    line-height: 1.35;
+    max-width: 32ch;
   }
 
   .bw-footer__contact-list,
@@ -150,11 +112,11 @@
 
   .bw-footer__links--split {
     grid-template-columns: repeat(2, minmax(0, 1fr));
-    column-gap: 10px;
+    column-gap: 8px;
   }
 
   .bw-footer__heading {
-    margin: 0 0 2px;
+    margin: 0 0 1px;
     color: #f8f1eb;
     font-size: 9px;
     font-weight: 700;
@@ -167,10 +129,10 @@
     display: flex;
     align-items: center;
     width: 100%;
-    min-height: 22px;
+    min-height: 20px;
     color: rgba(248, 241, 235, 0.74);
     text-decoration: none;
-    font-size: 11px;
+    font-size: 10.5px;
     line-height: 1.2;
     overflow-wrap: anywhere;
   }
@@ -185,51 +147,32 @@
     align-items: center;
     justify-content: space-between;
     gap: 5px;
-    padding-top: 5px;
+    padding-top: 4px;
     color: rgba(248, 241, 235, 0.58);
     font-size: 10px;
-  }
-
-  .bw-footer__bottom-links {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 5px;
-  }
-
-  .bw-footer__bottom-links a {
-    display: flex;
-    align-items: center;
-    min-height: 22px;
-    color: rgba(248, 241, 235, 0.58);
-    text-decoration: none;
-    overflow-wrap: anywhere;
-  }
-
-  .bw-footer__bottom-links a:hover {
-    color: #ffffff;
   }
 
   @media (max-width: 1080px) {
     .bw-footer__top {
       grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      gap: 8px;
     }
   }
 
   @media (max-width: 720px) {
     .bw-footer {
-      padding: 0 10px 8px;
+      padding: 0 8px 6px;
     }
 
     .bw-footer__inner {
-      padding: 10px 9px 9px;
+      padding: 9px 8px 8px;
       border-radius: 14px;
     }
 
     .bw-footer__top {
       grid-template-columns: 1fr;
-      gap: 6px;
-      padding-bottom: 7px;
+      gap: 5px;
+      padding-bottom: 6px;
     }
 
     .bw-footer__links--split {
@@ -246,7 +189,7 @@
     .bw-footer__contact-list a,
     .bw-footer__links a,
     .bw-footer__bottom-links a {
-      min-height: 30px;
+      min-height: 28px;
     }
   }
 </style>
@@ -262,22 +205,17 @@
           <li><a href="tel:+918800609609">+91-8800-609-609</a></li>
           <li><a href="mailto:care@bluewud.com">care@bluewud.com</a></li>
           <li><a href="{{ contact_url }}">Contact Us</a></li>
-          <li><a href="{{ visit_url }}">Visit Us</a></li>
         </ul>
 
       </div>
 
       <div>
-        <h2 class="bw-footer__heading">Shop</h2>
+        <h2 class="bw-footer__heading">Explore</h2>
         <ul class="bw-footer__links bw-footer__links--split">
           <li><a href="{{ living_room_url }}">Living Room</a></li>
           <li><a href="{{ bedroom_url }}">Bedroom</a></li>
-          <li><a href="{{ study_tables_url }}">Study Tables</a></li>
-          <li><a href="{{ tv_units_url }}">TV Units</a></li>
-          <li><a href="{{ bookshelves_url }}">Bookshelves</a></li>
           <li><a href="{{ modular_kitchen_url }}">Modular Kitchen</a></li>
           <li><a href="{{ modular_wardrobe_url }}">Wardrobes</a></li>
-          <li><a href="{{ new_launches_url }}">New Launches</a></li>
         </ul>
       </div>
 
@@ -286,13 +224,8 @@
         <ul class="bw-footer__links bw-footer__links--split">
           <li><a href="{{ about_url }}">About Us</a></li>
           <li><a href="{{ bulk_url }}">Buy In Bulk</a></li>
-          <li><a href="{{ visit_url }}">Visit Us</a></li>
           <li><a href="{{ awards_url }}">Awards and Achievement</a></li>
           <li><a href="{{ offers_url }}">Offers & Discounts</a></li>
-          <li><a href="{{ modular_kitchen_calculator_url }}">Kitchen Calculator</a></li>
-          <li><a href="{{ modular_wardrobe_calculator_url }}">Wardrobe Calculator</a></li>
-          <li><a href="{{ home_interiors_calculator_url }}">Home Interiors Calculator</a></li>
-          <li><a href="{{ estimate_url }}">Get Free Estimate</a></li>
           <li><a href="{{ help_center_url }}">Help Center</a></li>
         </ul>
       </div>
@@ -300,22 +233,16 @@
       <div>
         <h2 class="bw-footer__heading">Policies</h2>
         <ul class="bw-footer__links">
-          <li><a href="{{ policies_url }}">Policies</a></li>
           <li><a href="{{ returns_url }}">Returns and Refunds</a></li>
           <li><a href="{{ payment_security_url }}">Payment and Security</a></li>
           <li><a href="{{ terms_url }}">Terms of Use</a></li>
-          <li><a href="{{ contact_url }}">Support</a></li>
+          <li><a href="{{ policies_url }}">Policies</a></li>
         </ul>
       </div>
     </div>
 
     <div class="bw-footer__bottom">
       <span>&copy; {{ 'now' | date: '%Y' }} {{ footer_brand }}. All rights reserved.</span>
-      <div class="bw-footer__bottom-links">
-        <a href="{{ payment_security_url }}">Payment & Security</a>
-        <a href="{{ returns_url }}">Returns & Refunds</a>
-        <a href="{{ terms_url }}">Terms of Use</a>
-      </div>
     </div>
   </div>
 </footer>
@@ -334,7 +261,7 @@
       "type": "textarea",
       "id": "footer_copy",
       "label": "Brand copy",
-      "default": "Bluewud brings premium furniture, smarter storage, and guided room planning together for modern Indian homes."
+      "default": "Premium furniture, smarter storage, and guided room planning for modern Indian homes."
     }
   ],
   "presets": [
