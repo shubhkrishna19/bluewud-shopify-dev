@@ -1,0 +1,2351 @@
+{% liquid
+  assign is_embedded = embedded | default: false
+  assign contact_url = '/pages/contact-us'
+  assign main_url = '/collections/kitchen-racks'
+  assign l_url = '/collections/kitchen-racks#l-shape'
+  assign u_url = '/collections/kitchen-racks#u-shape'
+  assign parallel_url = '/collections/kitchen-racks#parallel'
+  assign straight_url = '/collections/kitchen-racks#straight'
+  assign island_url = '/collections/kitchen-racks#island'
+  assign calculator_url = '/collections/kitchen-racks?planner=kitchen-calculator'
+  assign estimate_url = contact_url
+  assign kitchen_image_l_url = 'modular-kitchen-light-oak-l-shape.png' | asset_url
+  assign kitchen_image_u_url = 'modular-kitchen-walnut-u-shape.png' | asset_url
+  assign kitchen_image_parallel_url = 'modular-kitchen-galley-light-wood.png' | asset_url
+  assign kitchen_image_straight_url = 'modular-kitchen-sage-u-shape.png' | asset_url
+  assign kitchen_image_island_url = 'modular-kitchen-navy-luxury.png' | asset_url
+  assign kitchen_collection = collections['kitchen-racks']
+  assign kitchen_collection_image_url = kitchen_image_l_url
+  assign kitchen_collection_image_alt = 'Bluewud modular kitchen reference'
+  assign kitchen_collection_product_one = kitchen_collection.products.first
+  assign kitchen_collection_product_two = kitchen_collection.products[1]
+  assign kitchen_collection_product_three = kitchen_collection.products[2]
+  assign kitchen_collection_product_four = kitchen_collection.products[3]
+  assign kitchen_collection_product_one_image_url = kitchen_image_u_url
+  assign kitchen_collection_product_one_image_alt = 'Bluewud modular kitchen reference'
+  assign kitchen_collection_product_two_image_url = kitchen_image_parallel_url
+  assign kitchen_collection_product_two_image_alt = 'Bluewud modular kitchen reference'
+  assign kitchen_collection_product_three_image_url = kitchen_image_straight_url
+  assign kitchen_collection_product_three_image_alt = 'Bluewud modular kitchen reference'
+  assign kitchen_collection_product_four_image_url = kitchen_image_island_url
+  assign kitchen_collection_product_four_image_alt = 'Bluewud modular kitchen reference'
+  if kitchen_collection != blank
+    if kitchen_collection.image != blank
+      assign kitchen_collection_image_url = kitchen_collection.image | image_url: width: 900
+      assign kitchen_collection_image_alt = kitchen_collection.title | default: 'Bluewud modular kitchen'
+    endif
+    if kitchen_collection_product_one != blank and kitchen_collection_product_one.featured_image != blank
+      assign kitchen_collection_product_one_image_url = kitchen_collection_product_one.featured_image | image_url: width: 900
+      assign kitchen_collection_product_one_image_alt = kitchen_collection_product_one.title | default: 'Bluewud kitchen reference'
+    endif
+    if kitchen_collection_product_two != blank and kitchen_collection_product_two.featured_image != blank
+      assign kitchen_collection_product_two_image_url = kitchen_collection_product_two.featured_image | image_url: width: 900
+      assign kitchen_collection_product_two_image_alt = kitchen_collection_product_two.title | default: 'Bluewud kitchen reference'
+    endif
+    if kitchen_collection_product_three != blank and kitchen_collection_product_three.featured_image != blank
+      assign kitchen_collection_product_three_image_url = kitchen_collection_product_three.featured_image | image_url: width: 900
+      assign kitchen_collection_product_three_image_alt = kitchen_collection_product_three.title | default: 'Bluewud kitchen reference'
+    endif
+    if kitchen_collection_product_four != blank and kitchen_collection_product_four.featured_image != blank
+      assign kitchen_collection_product_four_image_url = kitchen_collection_product_four.featured_image | image_url: width: 900
+      assign kitchen_collection_product_four_image_alt = kitchen_collection_product_four.title | default: 'Bluewud kitchen reference'
+    endif
+  endif
+  assign kitchen_image_upper_yes_url = kitchen_collection_image_url
+  assign kitchen_image_upper_selected_url = kitchen_collection_product_one_image_url
+  assign kitchen_image_upper_no_url = kitchen_collection_product_two_image_url
+  assign kitchen_image_carcass_engineered_url = kitchen_collection_product_one_image_url
+  assign kitchen_image_carcass_plywood_url = kitchen_collection_product_three_image_url
+  assign kitchen_image_carcass_guidance_url = kitchen_collection_image_url
+  assign kitchen_image_shutter_laminate_url = kitchen_image_straight_url
+  assign kitchen_image_shutter_acrylic_url = kitchen_collection_product_two_image_url
+  assign kitchen_image_shutter_membrane_url = kitchen_image_parallel_url
+  assign kitchen_image_shutter_glass_url = kitchen_collection_product_four_image_url
+
+  if pages['modular-kitchen-designs'] != blank
+    assign main_url = pages['modular-kitchen-designs'].url
+    assign l_url = main_url | append: '#l-shape'
+    assign u_url = main_url | append: '#u-shape'
+    assign parallel_url = main_url | append: '#parallel'
+    assign straight_url = main_url | append: '#straight'
+    assign island_url = main_url | append: '#island'
+  endif
+  if pages['l-shape-modular-kitchen-design'] != blank
+    assign l_url = pages['l-shape-modular-kitchen-design'].url
+  endif
+  if pages['u-shape-modular-kitchen-design'] != blank
+    assign u_url = pages['u-shape-modular-kitchen-design'].url
+  endif
+  if pages['parallel-modular-kitchen-design'] != blank
+    assign parallel_url = pages['parallel-modular-kitchen-design'].url
+  endif
+  if pages['straight-modular-kitchen'] != blank
+    assign straight_url = pages['straight-modular-kitchen'].url
+  endif
+  if pages['kitchen-island-design'] != blank
+    assign island_url = pages['kitchen-island-design'].url
+  endif
+  if pages['modular-kitchen-cost-calculator'] != blank
+    assign calculator_url = pages['modular-kitchen-cost-calculator'].url
+  endif
+  if pages['get-free-estimate'] != blank
+    assign estimate_url = pages['get-free-estimate'].url
+  endif
+  if pages['get-free-estimate'] == blank and pages['contact-us'] != blank
+    assign estimate_url = pages['contact-us'].url
+  endif
+%}
+
+<style>
+  .bw-flow {
+    --bw-flow-font-display: var(--font-display, 'Barlow', sans-serif);
+    --bw-flow-font-body: var(--font-body, 'Inter', sans-serif);
+    --bw-flow-color-bg: var(--bw-cream-page, #fafaf8);
+    --bw-flow-color-surface: var(--bw-cream-surface, #fffaf6);
+    --bw-flow-color-surface-soft: var(--bw-cream-soft, #f7efe7);
+    --bw-flow-color-card: var(--bw-cream-card, #fffdfb);
+    --bw-flow-color-text: var(--bw-text-rich, #201713);
+    --bw-flow-color-copy: var(--bw-text-warm, #66554c);
+    --bw-flow-color-muted: var(--bw-text-mid, #7f604d);
+    --bw-flow-color-on-dark: var(--bw-text-on-dark, #fff7f1);
+    --bw-flow-color-border: var(--bw-border-soft, rgba(32, 23, 19, 0.1));
+    --bw-flow-color-border-strong: var(--bw-border-mid, rgba(32, 23, 19, 0.16));
+    --bw-flow-color-accent: var(--bw-red, #C7431A);
+    --bw-flow-color-accent-deep: var(--bw-red-dark, #b1272c);
+    --bw-flow-color-accent-soft: rgba(199, 67, 26, 0.1);
+    --bw-flow-color-selected-border: var(--bw-gold-mid, rgba(202, 138, 4, 0.25));
+    --bw-flow-summary-gradient: var(--bw-espresso-gradient, linear-gradient(135deg, #231813 0%, #3b2921 60%, #5c463c 100%));
+    --bw-flow-shadow-panel: var(--shadow-panel, 0 24px 70px rgba(35, 24, 19, 0.08));
+    display: grid;
+    gap: 22px;
+    font-family: var(--bw-flow-font-body);
+    color: var(--bw-flow-color-text);
+  }
+  .bw-flow, .bw-flow * , .bw-flow *::before, .bw-flow *::after { box-sizing: border-box; }
+  .bw-flow input,
+  .bw-flow select,
+  .bw-flow button,
+  .bw-flow textarea {
+    font-family: var(--bw-flow-font-body);
+  }
+  .bw-flow__shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(320px, 0.9fr);
+    gap: 20px;
+  }
+  .bw-flow__panel,
+  .bw-flow__summary {
+    padding: 26px 28px;
+    border-radius: 30px;
+    background: rgba(255, 250, 246, 0.94);
+    border: 1px solid var(--bw-flow-color-border);
+    box-shadow: var(--bw-flow-shadow-panel);
+  }
+  .bw-flow__summary {
+    position: sticky;
+    top: 92px;
+    background: var(--bw-flow-summary-gradient);
+    color: var(--bw-flow-color-on-dark);
+    height: fit-content;
+    max-height: calc(100vh - 160px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    scrollbar-width: thin;
+  }
+  .bw-flow__summary-visual {
+    min-height: 132px;
+    margin-bottom: 10px;
+    border-radius: 24px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,247,241,0.1);
+  }
+  .bw-flow__summary-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bw-flow__summary-caption {
+    margin: -2px 0 10px;
+    color: rgba(255, 247, 241, 0.72);
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .bw-flow__summary-cues {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+  .bw-flow__summary-cue {
+    display: grid;
+    gap: 4px;
+    padding: 10px 12px;
+    border-radius: 18px;
+    background: rgba(255, 247, 241, 0.08);
+    border: 1px solid rgba(255, 247, 241, 0.12);
+  }
+  .bw-flow__summary-cue span {
+    color: rgba(255, 247, 241, 0.66);
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .bw-flow__summary-cue strong {
+    color: var(--bw-flow-color-on-dark);
+    font-size: 13px;
+    line-height: 1.45;
+  }
+  .bw-flow__head { display: grid; gap: 10px; margin-bottom: 18px; }
+  .bw-flow__eyebrow {
+    color: var(--bw-flow-color-muted);
+    font-family: var(--bw-flow-font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .bw-flow__summary .bw-flow__eyebrow,
+  .bw-flow__summary .bw-flow__title,
+  .bw-flow__summary .bw-flow__copy { color: inherit; }
+  .bw-flow__title {
+    margin: 0;
+    color: var(--bw-flow-color-text);
+    font-family: var(--bw-flow-font-display);
+    font-weight: 700;
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+  }
+  .bw-flow__copy {
+    margin: 0;
+    max-width: 62ch;
+    color: var(--bw-flow-color-copy);
+    font-size: 15px;
+    line-height: 1.8;
+  }
+  .bw-flow__journey {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 22px;
+    padding: 18px;
+    border-radius: 24px;
+    background: linear-gradient(180deg, var(--bw-flow-color-surface) 0%, var(--bw-flow-color-surface-soft) 100%);
+    border: 1px solid var(--bw-flow-color-border);
+  }
+  .bw-flow__journey-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .bw-flow__journey-grid {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 12px;
+    margin-top: 4px;
+  }
+  .bw-flow__journey-card {
+    display: grid;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(32, 23, 19, 0.08);
+    text-decoration: none;
+    color: inherit;
+  }
+  .bw-flow__journey-card-media {
+    display: block;
+    overflow: hidden;
+    border-radius: 16px;
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
+  }
+  .bw-flow__journey-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bw-flow__journey-card-title {
+    margin: 0;
+    color: var(--bw-flow-color-text);
+    font-family: var(--bw-flow-font-display);
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+  .bw-flow__journey-card-copy {
+    margin: 0;
+    color: var(--bw-flow-color-copy);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .bw-flow__progress {
+    display: grid;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  .bw-flow__step {
+    display: grid;
+    gap: 6px;
+    padding: 14px;
+    border-radius: 20px;
+    background: rgba(32, 23, 19, 0.04);
+    border: 1px solid transparent;
+  }
+  .bw-flow__step.is-active {
+    background: var(--bw-flow-color-accent-soft);
+    border-color: var(--bw-flow-color-selected-border);
+  }
+  .bw-flow__step.is-complete { background: rgba(32, 23, 19, 0.08); }
+  .bw-flow__step-index {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 999px;
+    background: var(--bw-flow-color-text);
+    color: var(--bw-flow-color-on-dark);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+  }
+  .bw-flow__step-label {
+    color: var(--bw-flow-color-text);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .bw-flow__stage { display: none; gap: 16px; }
+  .bw-flow__stage.is-active { display: grid; }
+  .bw-flow__stage-head { display: grid; gap: 8px; }
+  .bw-flow__stage-title {
+    margin: 0;
+    color: var(--bw-flow-color-text);
+    font-family: var(--bw-flow-font-display);
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+  }
+  .bw-flow__stage-copy {
+    margin: 0;
+    color: var(--bw-flow-color-copy);
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .bw-flow__section { display: grid; gap: 12px; }
+  .bw-flow__decision-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .bw-flow__decision-card {
+    display: grid;
+    gap: 10px;
+    padding: 12px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(32, 23, 19, 0.08);
+    cursor: pointer;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+  }
+  .bw-flow__decision-card:hover,
+  .bw-flow__decision-card:focus-visible {
+    transform: translateY(-1px);
+    border-color: rgba(32, 23, 19, 0.16);
+    box-shadow: 0 16px 36px rgba(35, 24, 19, 0.08);
+  }
+  .bw-flow__decision-card.is-selected {
+    background: linear-gradient(180deg, rgba(35, 24, 19, 0.98) 0%, rgba(59, 41, 33, 0.98) 100%);
+    border-color: var(--bw-flow-color-selected-border);
+    box-shadow: 0 20px 42px rgba(35, 24, 19, 0.14);
+  }
+  .bw-flow__decision-media {
+    display: block;
+    overflow: hidden;
+    border-radius: 16px;
+    aspect-ratio: 4 / 3;
+    background: linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
+  }
+  .bw-flow__decision-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bw-flow__decision-card strong {
+    color: var(--bw-flow-color-text);
+    font-family: var(--bw-flow-font-display);
+    font-size: 15px;
+    line-height: 1.2;
+  }
+  .bw-flow__decision-card.is-selected strong {
+    color: var(--bw-flow-color-on-dark);
+  }
+  .bw-flow__decision-card p {
+    margin: 0;
+    color: var(--bw-flow-color-copy);
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .bw-flow__decision-card.is-selected p {
+    color: rgba(255, 247, 241, 0.84);
+  }
+  .bw-flow__label {
+    color: var(--bw-flow-color-text);
+    font-family: var(--bw-flow-font-display);
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .bw-flow__choices {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+    gap: 10px;
+  }
+  .bw-flow__choice {
+    display: grid;
+    align-content: start;
+    gap: 6px;
+    min-height: 72px;
+    padding: 14px 16px;
+    border-radius: 20px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 250, 246, 0.94));
+    border: 1px solid var(--bw-flow-color-border);
+    box-shadow: 0 12px 26px rgba(35, 24, 19, 0.05);
+    color: var(--bw-flow-color-text);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: left;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+  }
+  .bw-flow__choice input { display: none; }
+  .bw-flow__choice.is-selected {
+    background:
+      linear-gradient(180deg, #241814 0%, #3a2921 100%);
+    color: #fff7f1;
+    border-color: var(--bw-flow-color-selected-border);
+    box-shadow: 0 16px 34px rgba(35, 24, 19, 0.16);
+  }
+  .bw-flow__choice:hover,
+  .bw-flow__choice:focus-visible {
+    transform: translateY(-1px);
+    border-color: rgba(32, 23, 19, 0.16);
+    box-shadow: 0 16px 32px rgba(35, 24, 19, 0.08);
+  }
+  .bw-flow__choices[data-flow-group="layout"],
+  .bw-flow__choices[data-flow-group="uppers"],
+  .bw-flow__choices[data-flow-group="carcass"],
+  .bw-flow__choices[data-flow-group="shutter"],
+  .bw-flow__choices[data-flow-group="appliances"] {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+  .bw-flow__choices[data-flow-group="addons"] {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  }
+  .bw-flow__choices[data-flow-group="layout"] {
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  }
+  .bw-flow__choice--visual {
+    gap: 10px;
+    padding: 10px;
+    min-height: 0;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .bw-flow__choice--context {
+    gap: 12px;
+    padding: 12px;
+    min-height: 0;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .bw-flow__choice-media {
+    min-height: 128px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
+  }
+  .bw-flow__choice-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bw-flow__choice-copy {
+    display: grid;
+    gap: 4px;
+    align-content: start;
+  }
+  .bw-flow__choice--context .bw-flow__choice-media {
+    min-height: 124px;
+    border-radius: 16px;
+  }
+  .bw-flow__choice--context .bw-flow__choice-title {
+    font-size: 16px;
+    line-height: 1.18;
+  }
+  .bw-flow__choice--context .bw-flow__choice-note {
+    font-size: 12px;
+    line-height: 1.55;
+  }
+  .bw-flow__section-note {
+    margin: -4px 0 0;
+    color: #7a655a;
+    font-size: 12px;
+    line-height: 1.6;
+  }
+  .bw-flow__choice-title {
+    color: inherit;
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+  .bw-flow__choice-note {
+    color: var(--bw-flow-color-copy);
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.55;
+    text-transform: none;
+  }
+  .bw-flow__choice.is-selected .bw-flow__choice-note {
+    color: rgba(255, 247, 241, 0.84);
+  }
+  .bw-flow__utility-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .bw-flow__utility-card {
+    display: grid;
+    gap: 14px;
+    padding: 14px;
+    border-radius: 24px;
+    background: rgba(32, 23, 19, 0.03);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+  }
+  .bw-flow__utility-media {
+    min-height: 148px;
+    border-radius: 18px;
+    overflow: hidden;
+    background: linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
+  }
+  .bw-flow__utility-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bw-flow__utility-title {
+    margin: 0;
+    color: var(--bw-flow-color-text);
+    font-family: var(--bw-flow-font-display);
+    font-size: 16px;
+    font-weight: 800;
+    line-height: 1.25;
+  }
+  .bw-flow__utility-copy {
+    margin: 0;
+    color: var(--bw-flow-color-copy);
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .bw-flow__utility-choices {
+    display: grid;
+    gap: 10px;
+  }
+  .bw-flow__choice--utility {
+    display: grid;
+    grid-template-columns: 84px minmax(0, 1fr);
+    align-items: center;
+    gap: 12px;
+    min-height: 0;
+    padding: 10px 12px;
+    border-radius: 18px;
+    text-transform: none;
+    letter-spacing: 0;
+  }
+  .bw-flow__choice--utility .bw-flow__choice-media {
+    min-height: 84px;
+    border-radius: 14px;
+    position: relative;
+    isolation: isolate;
+  }
+  .bw-flow__choice-media--option {
+    background:
+      var(--choice-image, linear-gradient(155deg, rgba(186, 154, 132, 0.92) 0%, rgba(120, 91, 74, 0.96) 100%));
+    background-size: cover;
+    background-position: center;
+  }
+  .bw-flow__choice-media--option::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(32, 23, 19, 0.04) 0%, rgba(32, 23, 19, 0.4) 100%);
+    z-index: 0;
+  }
+  .bw-flow__choice--utility[data-option-family="appliance"] .bw-flow__choice-media--option {
+    background:
+      var(--choice-image, linear-gradient(155deg, rgba(171, 171, 176, 0.92) 0%, rgba(78, 84, 91, 0.96) 100%));
+  }
+  .bw-flow__choice--utility[data-option-family="storage"] .bw-flow__choice-media--option {
+    background:
+      var(--choice-image, linear-gradient(155deg, rgba(198, 175, 145, 0.94) 0%, rgba(118, 84, 60, 0.98) 100%));
+  }
+  .bw-flow__choice-media-label {
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    z-index: 1;
+    color: #fff7f1;
+    font-size: 11px;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .bw-flow__choice--utility .bw-flow__choice-copy {
+    gap: 3px;
+  }
+  .bw-flow__choice--utility .bw-flow__choice-title {
+    font-size: 13px;
+    line-height: 1.2;
+  }
+  .bw-flow__choice--utility .bw-flow__choice-note {
+    font-size: 11px;
+    line-height: 1.45;
+  }
+  .bw-flow__choice--utility.is-selected {
+    box-shadow: 0 18px 32px rgba(35, 24, 19, 0.12);
+  }
+  .bw-flow__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .bw-flow__field {
+    display: grid;
+    gap: 8px;
+  }
+  .bw-flow__field label {
+    color: var(--bw-flow-color-text);
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .bw-flow__field input,
+  .bw-flow__field select {
+    width: 100%;
+    min-height: 48px;
+    padding: 0 16px;
+    border-radius: 18px;
+    border: 1px solid rgba(45, 33, 27, 0.12);
+    background: var(--bw-flow-color-card);
+    color: var(--bw-flow-color-text);
+    font-size: 14px;
+  }
+  .bw-flow__field--measure > label {
+    margin-bottom: 2px;
+  }
+  .bw-flow__measure {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    align-items: start;
+    gap: 12px;
+  }
+  .bw-flow__measure--single {
+    grid-template-columns: minmax(0, 1fr);
+  }
+  .bw-flow__measure-part {
+    display: grid;
+    gap: 6px;
+    min-width: 0;
+  }
+  .bw-flow__measure-caption {
+    color: rgba(32, 23, 19, 0.7);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+  }
+  .bw-flow__measure-control {
+    min-width: 0;
+    width: 100%;
+  }
+  .bw-flow__actions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    margin-top: 6px;
+  }
+  .bw-flow__button,
+  .bw-flow__button--secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 18px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .bw-flow__button {
+    border: 0;
+    background: #201713;
+    color: #fff7f1;
+  }
+  .bw-flow__button--secondary {
+    border: 1px solid rgba(32, 23, 19, 0.14);
+    background: rgba(32, 23, 19, 0.04);
+    color: #201713;
+  }
+  .bw-flow__summary .bw-flow__button--secondary {
+    border-color: rgba(255, 247, 241, 0.26);
+    background: rgba(255, 247, 241, 0.14);
+    color: #fff7f1;
+  }
+  .bw-flow__summary .bw-flow__button--secondary:hover,
+  .bw-flow__summary .bw-flow__button--secondary:focus-visible {
+    background: rgba(255, 247, 241, 0.22);
+    border-color: rgba(255, 247, 241, 0.38);
+  }
+  .bw-flow__summary-list {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px 14px;
+    margin-top: 16px;
+  }
+  .bw-flow__summary-line:nth-child(n + 5) {
+    display: none;
+  }
+  .bw-flow__summary-line {
+    display: grid;
+    gap: 4px;
+    align-content: start;
+    min-width: 0;
+    padding-bottom: 10px;
+    border-bottom: 1px solid rgba(255, 247, 241, 0.12);
+    color: rgba(255, 247, 241, 0.88);
+    font-size: 14px;
+  }
+  .bw-flow__summary-line strong {
+    color: #fff7f1;
+    text-align: left;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .bw-flow__summary-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 4px;
+  }
+  .bw-flow__summary-tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 32px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: rgba(255, 247, 241, 0.12);
+    color: #fff7f1;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .bw-flow__badge {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    min-height: 34px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(255, 247, 241, 0.08);
+    color: #fff7f1;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .bw-flow__assist {
+    margin-top: 16px;
+    color: rgba(255, 247, 241, 0.76);
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .bw-flow__network {
+    display: grid;
+    gap: 14px;
+    padding: 22px 24px;
+    border-radius: 28px;
+    background: rgba(255, 251, 247, 0.94);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 24px 70px rgba(35, 24, 19, 0.08);
+  }
+  .bw-flow__network-head {
+    display: grid;
+    gap: 8px;
+  }
+  .bw-flow__network-title {
+    margin: 0;
+    color: #201713;
+    font-size: 22px;
+    line-height: 1.15;
+    letter-spacing: -0.03em;
+  }
+  .bw-flow__network-copy {
+    margin: 0;
+    color: #66554c;
+    font-size: 14px;
+    line-height: 1.7;
+    max-width: 68ch;
+  }
+  .bw-flow__network-links {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .bw-flow__network-card {
+    display: grid;
+    gap: 12px;
+    padding: 12px;
+    border-radius: 20px;
+    background: rgba(255, 255, 255, 0.7);
+    border: 1px solid rgba(32, 23, 19, 0.08);
+    color: inherit;
+    text-decoration: none;
+    text-align: left;
+    cursor: pointer;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+  }
+  .bw-flow__network-card:hover,
+  .bw-flow__network-card:focus-visible {
+    transform: translateY(-1px);
+    border-color: rgba(32, 23, 19, 0.16);
+    box-shadow: 0 16px 36px rgba(35, 24, 19, 0.08);
+  }
+  .bw-flow__network-card.is-selected {
+    background: linear-gradient(180deg, rgba(36, 24, 20, 0.98) 0%, rgba(58, 41, 33, 0.98) 100%);
+    border-color: #241814;
+    box-shadow: 0 20px 42px rgba(35, 24, 19, 0.14);
+  }
+  .bw-flow__network-card.is-selected .bw-flow__network-card-title,
+  .bw-flow__network-card.is-selected .bw-flow__network-card-copy,
+  .bw-flow__network-card.is-selected .bw-flow__network-card-action {
+    color: #fff7f1;
+  }
+  .bw-flow__network-card.is-selected .bw-flow__network-card-cue {
+    background: rgba(255, 247, 241, 0.12);
+    color: rgba(255, 247, 241, 0.84);
+  }
+  .bw-flow__network-card.is-selected .bw-flow__network-card-action {
+    background: rgba(255, 247, 241, 0.14);
+  }
+  .bw-flow__network-card-media {
+    display: block;
+    overflow: hidden;
+    aspect-ratio: 4 / 3.2;
+    border-radius: 16px;
+    background: linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
+  }
+  .bw-flow__network-card-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bw-flow__network-card-title {
+    margin: 0;
+    color: #201713;
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+  .bw-flow__network-card-copy {
+    margin: 0;
+    color: #66554c;
+    font-size: 13px;
+    line-height: 1.6;
+  }
+  .bw-flow__network-card-cues {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+  .bw-flow__network-card-cue {
+    display: inline-flex;
+    align-items: center;
+    min-height: 28px;
+    padding: 0 10px;
+    border-radius: 999px;
+    background: rgba(32, 23, 19, 0.06);
+    color: #6b584c;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .bw-flow__network-card-action {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    min-height: 34px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: #201713;
+    color: #fff7f1;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  @media (max-width: 980px) {
+    .bw-flow__shell { grid-template-columns: 1fr; }
+    .bw-flow__summary {
+      position: static;
+      max-height: none;
+      overflow: visible;
+    }
+    .bw-flow__progress { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .bw-flow__journey-grid,
+    .bw-flow__network-links { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .bw-flow__utility-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  }
+  @media (max-width: 720px) {
+    .bw-planning-rail__items {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 8px;
+      margin-inline: -20px;
+      padding: 0 20px 6px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x proximity;
+    }
+    .bw-planning-rail__items::-webkit-scrollbar { display: none; }
+    .bw-planning-rail__link {
+      flex: 0 0 auto;
+      min-height: 40px;
+      padding: 0 14px;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+    }
+    .bw-flow__panel,
+    .bw-flow__summary { padding: 18px 16px; border-radius: 22px; }
+    .bw-flow__progress,
+    .bw-flow__grid { grid-template-columns: 1fr; }
+    .bw-flow__progress { gap: 8px; }
+    .bw-flow__decision-grid,
+    .bw-flow__summary-cues,
+    .bw-flow__summary-list { grid-template-columns: 1fr; gap: 8px; }
+    .bw-flow__journey-grid,
+    .bw-flow__network-links { grid-template-columns: 1fr; }
+    .bw-flow__utility-grid { grid-template-columns: 1fr; }
+    .bw-flow__choices,
+    .bw-flow__choices[data-flow-group="layout"],
+    .bw-flow__choices[data-flow-group="uppers"],
+    .bw-flow__choices[data-flow-group="carcass"],
+    .bw-flow__choices[data-flow-group="shutter"],
+    .bw-flow__choices[data-flow-group="appliances"],
+    .bw-flow__choices[data-flow-group="addons"] { grid-template-columns: 1fr; }
+    .bw-flow__choice { padding: 12px 14px; min-height: 0; }
+    .bw-flow__choice--visual,
+    .bw-flow__choice--context { padding: 10px; }
+    .bw-flow__choice-media { min-height: 108px; }
+    .bw-flow__choice--image { min-height: 0; }
+    .bw-flow__choice--image .bw-flow__choice-media { min-height: 82px; }
+    .bw-flow__choice--utility {
+      grid-template-columns: 76px minmax(0, 1fr);
+      padding: 10px;
+    }
+    .bw-flow__choice--utility .bw-flow__choice-media {
+      min-height: 76px;
+    }
+    .bw-flow__decision-card,
+    .bw-flow__journey-card,
+    .bw-flow__utility-card { padding: 12px; }
+    .bw-flow__summary .bw-flow__actions,
+    .bw-flow__actions { flex-direction: column-reverse; align-items: stretch; gap: 8px; }
+    .bw-flow__summary .bw-flow__actions { flex-direction: column; }
+    .bw-flow__summary-visual { min-height: 112px; }
+    .bw-flow__summary-cue { padding: 10px 12px; }
+    .bw-flow__summary-line { gap: 3px; }
+    .bw-flow__button,
+    .bw-flow__button--secondary { width: 100%; justify-content: center; }
+  }
+  @media (max-width: 520px) {
+    .bw-planning-rail__items {
+      gap: 6px;
+      margin-inline: -16px;
+      padding: 0 16px 6px;
+    }
+    .bw-planning-rail__link {
+      min-height: 38px;
+      padding: 0 12px;
+      font-size: 10px;
+    }
+    .bw-flow__panel,
+    .bw-flow__summary { padding: 16px 14px; border-radius: 20px; }
+    .bw-flow__progress { gap: 6px; }
+    .bw-flow__decision-card,
+    .bw-flow__journey-card,
+    .bw-flow__utility-card { padding: 10px; }
+    .bw-flow__decision-media { aspect-ratio: 5 / 4; }
+    .bw-flow__measure { grid-template-columns: 1fr; gap: 10px; }
+    .bw-flow__choice { padding: 10px 12px; }
+    .bw-flow__choice-media { min-height: 92px; }
+    .bw-flow__choice--image .bw-flow__choice-media { min-height: 72px; }
+    .bw-flow__choice--utility {
+      grid-template-columns: 72px minmax(0, 1fr);
+      gap: 10px;
+    }
+    .bw-flow__choice--utility .bw-flow__choice-media {
+      min-height: 72px;
+    }
+    .bw-flow__choice-media-label {
+      left: 8px;
+      right: 8px;
+      bottom: 8px;
+      font-size: 10px;
+    }
+    .bw-flow__summary-visual { min-height: 96px; }
+    .bw-flow__summary-cue { padding: 8px 10px; }
+    .bw-flow__summary-list { gap: 6px; }
+    .bw-flow__button,
+    .bw-flow__button--secondary { min-height: 42px; padding-inline: 14px; }
+  }
+  @media (max-width: 720px) {
+    .bw-planning-rail__items {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 6px;
+      margin-inline: -16px;
+      padding: 0 16px 6px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x proximity;
+    }
+    .bw-planning-rail__items::-webkit-scrollbar { display: none; }
+    .bw-planning-rail__link {
+      flex: 0 0 auto;
+      min-height: 38px;
+      padding: 0 12px;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+    .bw-flow__panel,
+    .bw-flow__summary {
+      padding: 16px 14px;
+      border-radius: 20px;
+    }
+    .bw-flow__summary-visual {
+      min-height: 116px;
+      margin-bottom: 10px;
+    }
+    .bw-flow__summary-caption {
+      margin-bottom: 10px;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+    .bw-flow__summary-cues {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 8px;
+      margin-bottom: 12px;
+    }
+    .bw-flow__summary-cue {
+      padding: 10px 11px;
+    }
+    .bw-flow__summary-list {
+      gap: 6px;
+      margin-top: 12px;
+    }
+    .bw-flow__summary-line {
+      gap: 2px;
+      padding-bottom: 8px;
+      font-size: 12px;
+    }
+    .bw-flow__summary-tags {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .bw-flow__summary-tag {
+      flex: 0 0 auto;
+    }
+    .bw-flow__actions,
+    .bw-flow__summary .bw-flow__actions {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 8px;
+    }
+    .bw-flow__button,
+    .bw-flow__button--secondary {
+      width: 100%;
+      justify-content: center;
+      min-height: 42px;
+      padding-inline: 14px;
+    }
+    .bw-flow__journey {
+      padding: 14px;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .bw-flow__journey-links {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      margin-inline: -14px;
+      padding-inline: 14px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .bw-flow__journey-links::-webkit-scrollbar { display: none; }
+    .bw-flow__journey-grid,
+    .bw-flow__network-links,
+    .bw-flow__decision-grid,
+    .bw-flow__grid {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .bw-flow__journey-card,
+    .bw-flow__decision-card,
+    .bw-flow__network-card,
+    .bw-flow__utility-card {
+      padding: 10px;
+      gap: 8px;
+    }
+    .bw-flow__journey-card-media,
+    .bw-flow__decision-media {
+      aspect-ratio: 5 / 4;
+    }
+    .bw-flow__choices,
+    .bw-flow__choices[data-flow-group="layout"],
+    .bw-flow__choices[data-flow-group="uppers"],
+    .bw-flow__choices[data-flow-group="carcass"],
+    .bw-flow__choices[data-flow-group="shutter"] {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .bw-flow__choice {
+      min-height: 0;
+      padding: 10px 11px;
+      gap: 4px;
+    }
+    .bw-flow__choice-media {
+      min-height: 88px;
+    }
+    .bw-flow__choice--image {
+      min-height: 112px;
+      padding: 12px;
+    }
+    .bw-flow__choice--image .bw-flow__choice-media {
+      min-height: 80px;
+    }
+    .bw-flow__choice--context .bw-flow__choice-title,
+    .bw-flow__choice-title {
+      font-size: 13px;
+      line-height: 1.25;
+    }
+    .bw-flow__choice-note {
+      font-size: 11px;
+      line-height: 1.45;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .bw-flow__panel,
+    .bw-flow__summary {
+      padding: 14px 12px;
+    }
+    .bw-flow__summary-visual {
+      min-height: 104px;
+    }
+    .bw-flow__summary-cues {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+    .bw-flow__choice-media {
+      min-height: 82px;
+    }
+    .bw-flow__choice--image {
+      min-height: 0;
+      padding: 10px;
+    }
+    .bw-flow__choice--image .bw-flow__choice-media {
+      min-height: 72px;
+    }
+    .bw-flow__decision-card,
+    .bw-flow__journey-card,
+    .bw-flow__utility-card,
+    .bw-flow__network-card {
+      padding: 10px;
+    }
+    .bw-flow__network-card-title,
+    .bw-flow__journey-card-title {
+      font-size: 14px;
+    }
+  }
+</style>
+
+<div class="bw-flow" data-bw-kitchen-flow>
+  {% unless is_embedded %}
+    <section class="bw-planning-rail">
+      <div class="bw-planning-rail__items" aria-label="Kitchen planning navigation">
+        <a class="bw-planning-rail__link" href="{{ main_url }}">All layouts</a>
+        <a class="bw-planning-rail__link" href="{{ l_url }}">L-shape</a>
+        <a class="bw-planning-rail__link" href="{{ u_url }}">U-shape</a>
+        <a class="bw-planning-rail__link" href="{{ parallel_url }}">Parallel</a>
+        <a class="bw-planning-rail__link" href="{{ straight_url }}">Straight</a>
+        <a class="bw-planning-rail__link" href="{{ island_url }}">Island</a>
+        <a class="bw-planning-rail__link bw-planning-rail__link--accent is-current" href="{{ calculator_url }}">Kitchen Calculator</a>
+        <a class="bw-planning-rail__link" href="{{ estimate_url }}">Get Free Estimate</a>
+      </div>
+    </section>
+  {% endunless %}
+
+  <div class="bw-flow__shell">
+    <section class="bw-flow__panel">
+      <div class="bw-flow__head">
+        <span class="bw-flow__eyebrow">Kitchen planning workflow</span>
+        <h2 class="bw-flow__title">Modular Kitchen Cost Calculator</h2>
+        <p class="bw-flow__copy">Choose the layout, capture the room basics, and keep the brief focused enough for Bluewud to respond well.</p>
+      </div>
+
+      <div class="bw-flow__progress">
+        <div class="bw-flow__step is-active" data-step-indicator="1"><span class="bw-flow__step-index">01</span><span class="bw-flow__step-label">Layout</span></div>
+        <div class="bw-flow__step" data-step-indicator="2"><span class="bw-flow__step-index">02</span><span class="bw-flow__step-label">Basics</span></div>
+        <div class="bw-flow__step" data-step-indicator="3"><span class="bw-flow__step-index">03</span><span class="bw-flow__step-label">Materials</span></div>
+        <div class="bw-flow__step" data-step-indicator="4"><span class="bw-flow__step-index">04</span><span class="bw-flow__step-label">Accessories</span></div>
+        <div class="bw-flow__step" data-step-indicator="5"><span class="bw-flow__step-index">05</span><span class="bw-flow__step-label">Quote</span></div>
+      </div>
+
+      <div class="bw-flow__stage is-active" data-step-panel="1">
+        <div class="bw-flow__stage-head">
+          <h3 class="bw-flow__stage-title">Start with the kitchen layout</h3>
+          <p class="bw-flow__stage-copy">Choose the layout first. The calculator will adapt the next form around that build direction.</p>
+        </div>
+        <div class="bw-flow__section">
+          <div class="bw-flow__label">Kitchen layout</div>
+          <div class="bw-flow__choices" data-flow-group="layout">
+            <label class="bw-flow__choice bw-flow__choice--visual is-selected"><input type="radio" name="kitchen_layout" value="L-shape" checked><span class="bw-flow__choice-media"><img src="{{ kitchen_image_l_url }}" alt="L-shape modular kitchen" loading="lazy" width="720" height="540"></span><span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">L-shape</span><span class="bw-flow__choice-note">Balanced for most homes with clean corner-led workflow.</span></span></label>
+            <label class="bw-flow__choice bw-flow__choice--visual"><input type="radio" name="kitchen_layout" value="U-shape"><span class="bw-flow__choice-media"><img src="{{ kitchen_image_u_url }}" alt="U-shape modular kitchen" loading="lazy" width="720" height="540"></span><span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">U-shape</span><span class="bw-flow__choice-note">Best when you want stronger storage and deeper prep support.</span></span></label>
+            <label class="bw-flow__choice bw-flow__choice--visual"><input type="radio" name="kitchen_layout" value="Parallel"><span class="bw-flow__choice-media"><img src="{{ kitchen_image_parallel_url }}" alt="Parallel modular kitchen" loading="lazy" width="720" height="540"></span><span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Parallel</span><span class="bw-flow__choice-note">Efficient for tighter floorplates and utility-conscious planning.</span></span></label>
+            <label class="bw-flow__choice bw-flow__choice--visual"><input type="radio" name="kitchen_layout" value="Straight"><span class="bw-flow__choice-media"><img src="{{ kitchen_image_straight_url }}" alt="Straight modular kitchen direction" loading="lazy" width="720" height="540"></span><span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Straight</span><span class="bw-flow__choice-note">Best when one clean wall needs to carry the full kitchen line.</span></span></label>
+            <label class="bw-flow__choice bw-flow__choice--visual"><input type="radio" name="kitchen_layout" value="Island"><span class="bw-flow__choice-media"><img src="{{ kitchen_image_island_url }}" alt="Island modular kitchen concept" loading="lazy" width="720" height="540"></span><span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Island</span><span class="bw-flow__choice-note">Premium option for larger homes with hosting and prep overlap.</span></span></label>
+          </div>
+        </div>
+        <div class="bw-flow__actions">
+          <span></span>
+          <button class="bw-flow__button" type="button" data-flow-next>Continue</button>
+        </div>
+      </div>
+
+      <div class="bw-flow__stage" data-step-panel="2">
+        <div class="bw-flow__stage-head">
+          <h3 class="bw-flow__stage-title" data-kitchen-step2-title="true">Capture the wall lengths and upper cabinet plan</h3>
+          <p class="bw-flow__stage-copy" data-kitchen-step2-copy="true">These measurements do not replace site validation, but they make the enquiry much more usable from the start.</p>
+        </div>
+        <div class="bw-flow__grid">
+          <div class="bw-flow__field bw-flow__field--measure" data-layout-field="wall_a">
+            <label for="bw-kitchen-wall-a-ft" data-layout-label="wall_a">Wall A length (ft)</label>
+            <div class="bw-flow__measure">
+              <div class="bw-flow__measure-part">
+                <span class="bw-flow__measure-caption">Feet</span>
+                <select id="bw-kitchen-wall-a-ft" class="bw-flow__measure-control" data-measure-feet="wall_a" aria-label="Wall A length feet">
+                  <option value="">Feet</option>
+                  <option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
+                  <option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
+                  <option value="__custom__">Custom</option>
+                </select>
+              </div>
+              <div class="bw-flow__measure-part">
+                <span class="bw-flow__measure-caption">Inch</span>
+                <select id="bw-kitchen-wall-a-in" class="bw-flow__measure-control" data-measure-inch="wall_a" aria-label="Wall A length inches">
+                  <option value="">Inch</option>
+                  <option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
+                  <option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
+                </select>
+              </div>
+            </div>
+            <input type="hidden" value="10" data-flow-input="wall_a">
+          </div>
+          <div class="bw-flow__field bw-flow__field--measure" data-layout-field="wall_b">
+            <label for="bw-kitchen-wall-b-ft" data-layout-label="wall_b">Wall B length (ft)</label>
+            <div class="bw-flow__measure">
+              <div class="bw-flow__measure-part">
+                <span class="bw-flow__measure-caption">Feet</span>
+                <select id="bw-kitchen-wall-b-ft" class="bw-flow__measure-control" data-measure-feet="wall_b" aria-label="Wall B length feet">
+                  <option value="">Feet</option>
+                  <option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
+                  <option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
+                  <option value="__custom__">Custom</option>
+                </select>
+              </div>
+              <div class="bw-flow__measure-part">
+                <span class="bw-flow__measure-caption">Inch</span>
+                <select id="bw-kitchen-wall-b-in" class="bw-flow__measure-control" data-measure-inch="wall_b" aria-label="Wall B length inches">
+                  <option value="">Inch</option>
+                  <option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
+                  <option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
+                </select>
+              </div>
+            </div>
+            <input type="hidden" value="8" data-flow-input="wall_b">
+          </div>
+          <div class="bw-flow__field bw-flow__field--measure" data-layout-field="wall_c">
+            <label for="bw-kitchen-wall-c-ft" data-layout-label="wall_c">Wall C length (ft)</label>
+            <div class="bw-flow__measure">
+              <div class="bw-flow__measure-part">
+                <span class="bw-flow__measure-caption">Feet</span>
+                <select id="bw-kitchen-wall-c-ft" class="bw-flow__measure-control" data-measure-feet="wall_c" aria-label="Wall C length feet">
+                  <option value="">Feet</option>
+                  <option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option>
+                  <option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
+                  <option value="__custom__">Custom</option>
+                </select>
+              </div>
+              <div class="bw-flow__measure-part">
+                <span class="bw-flow__measure-caption">Inch</span>
+                <select id="bw-kitchen-wall-c-in" class="bw-flow__measure-control" data-measure-inch="wall_c" aria-label="Wall C length inches">
+                  <option value="">Inch</option>
+                  <option value="0">0</option><option value="1">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option>
+                  <option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option>
+                </select>
+              </div>
+            </div>
+            <input type="hidden" value="0" data-flow-input="wall_c">
+          </div>
+          <div class="bw-flow__field bw-flow__field--measure">
+            <label for="bw-kitchen-ceiling-ft">Ceiling height</label>
+            <div class="bw-flow__measure bw-flow__measure--single">
+              <div class="bw-flow__measure-part">
+                <span class="bw-flow__measure-caption">Feet</span>
+                <select id="bw-kitchen-ceiling-ft" class="bw-flow__measure-control" data-measure-feet="ceiling" aria-label="Ceiling height feet">
+                  <option value="">Feet</option>
+                  <option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10">10</option><option value="11">11</option><option value="12">12</option><option value="13">13</option>
+                  <option value="__custom__">Custom</option>
+                </select>
+              </div>
+            </div>
+            <input type="hidden" value="9" data-flow-input="ceiling">
+          </div>
+        </div>
+                <div class="bw-flow__section">
+          <div class="bw-flow__label">Need upper cabinets?</div>
+          <div class="bw-flow__choices" data-flow-group="uppers">
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context is-selected" data-option-family="upper-cabinets" data-option-key="uppers-yes">
+              <input type="radio" name="upper_cabinets" value="Yes" checked>
+              <span class="bw-flow__choice-media" data-option-visual="uppers-yes"><img src="{{ kitchen_image_upper_yes_url }}" alt="Full upper cabinet kitchen reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Yes</span>
+                <span class="bw-flow__choice-note">Use overhead storage across the kitchen where the brief needs the most closed storage.</span>
+              </span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context" data-option-family="upper-cabinets" data-option-key="uppers-selected-walls">
+              <input type="radio" name="upper_cabinets" value="Selected walls only">
+              <span class="bw-flow__choice-media" data-option-visual="uppers-selected-walls"><img src="{{ kitchen_image_upper_selected_url }}" alt="Selective upper cabinet kitchen reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Selected walls only</span>
+                <span class="bw-flow__choice-note">Keep the upper run only where storage or working height really needs it.</span>
+              </span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context" data-option-family="upper-cabinets" data-option-key="uppers-no">
+              <input type="radio" name="upper_cabinets" value="No">
+              <span class="bw-flow__choice-media" data-option-visual="uppers-no"><img src="{{ kitchen_image_upper_no_url }}" alt="Open wall kitchen reference without upper cabinets" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">No</span>
+                <span class="bw-flow__choice-note">Choose this when the kitchen should stay visually open and lighter above the counter line.</span>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="bw-flow__grid" data-upper-height-field hidden>
+          <div class="bw-flow__field">
+            <label for="bw-kitchen-upper-height">Upper cabinet height</label>
+            <select id="bw-kitchen-upper-height" data-flow-input="upper_height_in">
+              <option value="12">12 inches</option>
+              <option value="15" selected>15 inches</option>
+              <option value="18">18 inches</option>
+              <option value="21">21 inches</option>
+              <option value="24">24 inches</option>
+            </select>
+          </div>
+          <span></span>
+        </div>
+        <div class="bw-flow__actions">
+          <button class="bw-flow__button--secondary" type="button" data-flow-back>Back</button>
+          <button class="bw-flow__button" type="button" data-flow-next>Continue</button>
+        </div>
+      </div>
+
+      <div class="bw-flow__stage" data-step-panel="3">
+        <div class="bw-flow__stage-head">
+          <h3 class="bw-flow__stage-title">Choose the cabinet and shutter materials</h3>
+          <p class="bw-flow__stage-copy">This is the core build layer that shapes durability, finish tone, and the quote direction.</p>
+        </div>
+        <div class="bw-flow__decision-grid" aria-label="Kitchen build direction references">
+          <article class="bw-flow__decision-card" role="button" tabindex="0" data-kitchen-direction="everyday-family">
+            <span class="bw-flow__decision-media"><img src="{{ kitchen_image_l_url }}" alt="Warm engineered wood kitchen reference" loading="lazy" width="720" height="540"></span>
+            <strong>Warm everyday build</strong>
+            <p>Engineered wood, laminate shutters, and granite work best when durability and practical upkeep matter most.</p>
+          </article>
+          <article class="bw-flow__decision-card" role="button" tabindex="0" data-kitchen-direction="clean-modern">
+            <span class="bw-flow__decision-media"><img src="{{ kitchen_image_parallel_url }}" alt="Balanced premium kitchen reference" loading="lazy" width="720" height="540"></span>
+            <strong>Balanced premium</strong>
+            <p>Plywood, cleaner shutter finishes, and quartz start making sense when the kitchen needs stronger long-term polish.</p>
+          </article>
+          <article class="bw-flow__decision-card" role="button" tabindex="0" data-kitchen-direction="hosting-premium">
+            <span class="bw-flow__decision-media"><img src="{{ kitchen_image_island_url }}" alt="Statement modular kitchen reference" loading="lazy" width="720" height="540"></span>
+            <strong>Statement finish</strong>
+            <p>Glass-led shutters, premium stone, and heavier appliance planning suit larger kitchens aiming for a stronger visual impression.</p>
+          </article>
+        </div>
+                <div class="bw-flow__section">
+          <div class="bw-flow__label">Carcass material</div>
+          <div class="bw-flow__choices" data-flow-group="carcass">
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context is-selected" data-option-family="carcass" data-option-key="engineered-wood">
+              <input type="radio" name="carcass_material" value="Engineered wood" checked>
+              <span class="bw-flow__choice-media" data-option-visual="engineered-wood"><img src="{{ kitchen_image_carcass_engineered_url }}" alt="Engineered wood kitchen carcass reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Engineered Wood</span>
+                <span class="bw-flow__choice-note">A practical starting point for a balanced kitchen brief with straightforward upkeep.</span>
+              </span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context" data-option-family="carcass" data-option-key="plywood">
+              <input type="radio" name="carcass_material" value="Plywood">
+              <span class="bw-flow__choice-media" data-option-visual="plywood"><img src="{{ kitchen_image_carcass_plywood_url }}" alt="Plywood kitchen carcass reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Plywood</span>
+                <span class="bw-flow__choice-note">Use this when the build needs a stronger long-term structural direction.</span>
+              </span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context" data-option-family="carcass" data-option-key="carcass-guidance">
+              <input type="radio" name="carcass_material" value="Need guidance">
+              <span class="bw-flow__choice-media" data-option-visual="carcass-guidance"><img src="{{ kitchen_image_carcass_guidance_url }}" alt="Kitchen planning guidance reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Need Guidance</span>
+                <span class="bw-flow__choice-note">Leave the material choice open if the site visit should settle the final build detail.</span>
+              </span>
+            </label>
+          </div>
+        </div>
+                <div class="bw-flow__section">
+          <div class="bw-flow__label">Shutter material</div>
+          <div class="bw-flow__choices" data-flow-group="shutter_material">
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context is-selected" data-option-family="shutter" data-option-key="laminate-front">
+              <input type="radio" name="shutter_material" value="Laminate front" checked>
+              <span class="bw-flow__choice-media" data-option-visual="laminate-front"><img src="{{ kitchen_image_shutter_laminate_url }}" alt="Laminate shutter kitchen reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Laminate Front</span>
+                <span class="bw-flow__choice-note">Best when the kitchen needs durable surface comfort without unnecessary visual risk.</span>
+              </span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context" data-option-family="shutter" data-option-key="acrylic-front">
+              <input type="radio" name="shutter_material" value="Acrylic front">
+              <span class="bw-flow__choice-media" data-option-visual="acrylic-front"><img src="{{ kitchen_image_shutter_acrylic_url }}" alt="Acrylic shutter kitchen reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Acrylic Front</span>
+                <span class="bw-flow__choice-note">Choose this for a sharper, more polished front surface.</span>
+              </span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context" data-option-family="shutter" data-option-key="membrane-profile">
+              <input type="radio" name="shutter_material" value="Membrane / profile">
+              <span class="bw-flow__choice-media" data-option-visual="membrane-profile"><img src="{{ kitchen_image_shutter_membrane_url }}" alt="Membrane shutter kitchen reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Membrane / Profile</span>
+                <span class="bw-flow__choice-note">Good when the design language needs softer edges and a more tailored front finish.</span>
+              </span>
+            </label>
+            <label class="bw-flow__choice bw-flow__choice--visual bw-flow__choice--context" data-option-family="shutter" data-option-key="glass-premium">
+              <input type="radio" name="shutter_material" value="Glass / premium">
+              <span class="bw-flow__choice-media" data-option-visual="glass-premium"><img src="{{ kitchen_image_shutter_glass_url }}" alt="Premium glass shutter kitchen reference" loading="lazy" width="720" height="540"></span>
+              <span class="bw-flow__choice-copy">
+                <span class="bw-flow__choice-title">Glass / Premium</span>
+                <span class="bw-flow__choice-note">Select this when the kitchen should feel visibly premium and more statement-led.</span>
+              </span>
+            </label>
+          </div>
+        </div>
+        <div class="bw-flow__actions">
+          <button class="bw-flow__button--secondary" type="button" data-flow-back>Back</button>
+          <button class="bw-flow__button" type="button" data-flow-next>Continue</button>
+        </div>
+      </div>
+
+      <div class="bw-flow__stage" data-step-panel="4">
+        <div class="bw-flow__stage-head">
+          <h3 class="bw-flow__stage-title">Add the accessories and integrations</h3>
+          <p class="bw-flow__stage-copy">Use these selections to show how much storage support, appliance integration, and daily utility the kitchen really needs.</p>
+        </div>
+        <div class="bw-flow__utility-grid">
+          <article class="bw-flow__utility-card">
+            <div class="bw-flow__utility-media">
+              <img src="{{ kitchen_image_u_url }}" alt="Tall storage and pantry modular kitchen reference" loading="lazy" width="900" height="675">
+            </div>
+            <div class="bw-flow__section">
+              <h4 class="bw-flow__utility-title">Tall storage and pantry planning</h4>
+              <p class="bw-flow__utility-copy">Choose these when the kitchen has to hold heavier dry storage, vertical units, or utility-led tower planning.</p>
+            </div>
+            <div class="bw-flow__utility-choices" data-flow-group="addons">
+              <label class="bw-flow__choice bw-flow__choice--utility" data-option-family="storage" data-option-key="tall-unit">
+                <input type="checkbox" value="Tall unit">
+                <span class="bw-flow__choice-media bw-flow__choice-media--option" data-option-visual="tall-unit" aria-hidden="true"><span class="bw-flow__choice-media-label">Tall Unit</span></span>
+                <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Tall Unit</span><span class="bw-flow__choice-note">Full-height vertical storage for pantry-heavy or utility-led kitchen briefs.</span></span>
+              </label>
+              <label class="bw-flow__choice bw-flow__choice--utility" data-option-family="storage" data-option-key="pantry-pull-out">
+                <input type="checkbox" value="Pantry pull-out">
+                <span class="bw-flow__choice-media bw-flow__choice-media--option" data-option-visual="pantry-pull-out" aria-hidden="true"><span class="bw-flow__choice-media-label">Pantry Pull-out</span></span>
+                <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Pantry Pull-out</span><span class="bw-flow__choice-note">Layered dry-storage access that keeps groceries visible and easier to reach.</span></span>
+              </label>
+              <label class="bw-flow__choice bw-flow__choice--utility" data-option-family="storage" data-option-key="appliance-tower">
+                <input type="checkbox" value="Appliance tower">
+                <span class="bw-flow__choice-media bw-flow__choice-media--option" data-option-visual="appliance-tower" aria-hidden="true"><span class="bw-flow__choice-media-label">Appliance Tower</span></span>
+                <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Appliance Tower</span><span class="bw-flow__choice-note">Stacks key utility appliances vertically when countertop space has to stay clearer.</span></span>
+              </label>
+            </div>
+          </article>
+          <article class="bw-flow__utility-card">
+            <div class="bw-flow__utility-media">
+              <img src="{{ kitchen_image_l_url }}" alt="Drawer and corner storage modular kitchen reference" loading="lazy" width="900" height="675">
+            </div>
+            <div class="bw-flow__section">
+              <h4 class="bw-flow__utility-title">Corner efficiency and drawer access</h4>
+              <p class="bw-flow__utility-copy">Select these when everyday access, corner recovery, and faster kitchen movement matter more than raw cabinet count.</p>
+            </div>
+            <div class="bw-flow__utility-choices" data-flow-group="addons">
+              <label class="bw-flow__choice bw-flow__choice--utility" data-option-family="storage" data-option-key="corner-accessory">
+                <input type="checkbox" value="Corner accessory">
+                <span class="bw-flow__choice-media bw-flow__choice-media--option" data-option-visual="corner-accessory" aria-hidden="true"><span class="bw-flow__choice-media-label">Corner Accessory</span></span>
+                <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Corner Accessory</span><span class="bw-flow__choice-note">Improves corner recovery so awkward cabinet depth is not wasted.</span></span>
+              </label>
+              <label class="bw-flow__choice bw-flow__choice--utility" data-option-family="storage" data-option-key="tandem-drawers">
+                <input type="checkbox" value="Tandem drawers">
+                <span class="bw-flow__choice-media bw-flow__choice-media--option" data-option-visual="tandem-drawers" aria-hidden="true"><span class="bw-flow__choice-media-label">Tandem Drawers</span></span>
+                <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Tandem Drawers</span><span class="bw-flow__choice-note">Faster everyday access for cookware, cutlery, and high-frequency kitchen tools.</span></span>
+              </label>
+              <label class="bw-flow__choice bw-flow__choice--utility" data-option-family="storage" data-option-key="premium-hardware">
+                <input type="checkbox" value="Premium hardware">
+                <span class="bw-flow__choice-media bw-flow__choice-media--option" data-option-visual="premium-hardware" aria-hidden="true"><span class="bw-flow__choice-media-label">Premium Hardware</span></span>
+                <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Premium Hardware</span><span class="bw-flow__choice-note">Upgrades hinges, channels, and movement quality for a more refined experience.</span></span>
+              </label>
+            </div>
+          </article>
+          <article class="bw-flow__utility-card">
+            <div class="bw-flow__utility-media">
+              <img src="{{ kitchen_image_island_url }}" alt="Integrated appliance modular kitchen reference" loading="lazy" width="900" height="675">
+            </div>
+            <div class="bw-flow__section">
+              <h4 class="bw-flow__utility-title">Appliance and utility integration</h4>
+              <p class="bw-flow__utility-copy">Customers often need more than one appliance planned in. Select every integration point you want Bluewud to account for.</p>
+            </div>
+            <div class="bw-flow__utility-choices" data-flow-group="appliances">
+              <label class="bw-flow__choice bw-flow__choice--utility is-selected" data-option-family="appliance" data-option-key="hob">
+                <input type="checkbox" value="Hob" checked>
+                <span class="bw-flow__choice-media bw-flow__choice-media--option" data-option-visual="hob" aria-hidden="true"><span class="bw-flow__choice-media-label">Hob</span></span>
+                <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Hob</span><span class="bw-flow__choice-note">Base cooking surface layout with the right counter and gas planning allowances.</span></span>
+              </label>
+              <label class="bw-flow__choice bw-flow__choice--utility is-selected" data-option-family="appliance" data-option-key="chimney">
+                <input type="checkbox" value="Chimney" checked>
+                <span class="bw-flow__choice-media bw-flow__choice-media--option" data-option-visual="chimney" aria-hidden="true"><span class="bw-flow__choice-media-label">Chimney</span></span>
+                <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Chimney</span><span class="bw-flow__choice-note">Allows for hood depth, ducting logic, and upper-cabinet interruption if required.</span></span>
+              </label>
+              <label class="bw-flow__choice bw-flow__choice--utility" data-option-family="appliance" data-option-key="microwave">
+                <input type="checkbox" value="Microwave">
+                <span class="bw-flow__choice-media bw-flow__choice-media--option" data-option-visual="microwave" aria-hidden="true"><span class="bw-flow__choice-media-label">Microwave</span></span>
+                <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Microwave</span><span class="bw-flow__choice-note">Keeps provision for a dedicated niche or an elevated appliance stack.</span></span>
+              </label>
+              <label class="bw-flow__choice bw-flow__choice--utility" data-option-family="appliance" data-option-key="built-in-oven">
+                <input type="checkbox" value="Built-in oven">
+                <span class="bw-flow__choice-media bw-flow__choice-media--option" data-option-visual="built-in-oven" aria-hidden="true"><span class="bw-flow__choice-media-label">Built-in Oven</span></span>
+                <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Built-in Oven</span><span class="bw-flow__choice-note">Signals a taller premium appliance stack and different cabinetry clearances.</span></span>
+              </label>
+              <label class="bw-flow__choice bw-flow__choice--utility" data-option-family="appliance" data-option-key="dishwasher">
+                <input type="checkbox" value="Dishwasher">
+                <span class="bw-flow__choice-media bw-flow__choice-media--option" data-option-visual="dishwasher" aria-hidden="true"><span class="bw-flow__choice-media-label">Dishwasher</span></span>
+                <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Dishwasher</span><span class="bw-flow__choice-note">Adds service access, sink-adjacent planning, and under-counter appliance width.</span></span>
+              </label>
+              <label class="bw-flow__choice bw-flow__choice--utility" data-option-family="appliance" data-option-key="refrigerator-housing">
+                <input type="checkbox" value="Refrigerator housing">
+                <span class="bw-flow__choice-media bw-flow__choice-media--option" data-option-visual="refrigerator-housing" aria-hidden="true"><span class="bw-flow__choice-media-label">Refrigerator Housing</span></span>
+                <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Refrigerator Housing</span><span class="bw-flow__choice-note">Wraps the fridge in a cleaner enclosure when the kitchen has to look more integrated.</span></span>
+              </label>
+              <label class="bw-flow__choice bw-flow__choice--utility" data-option-family="appliance" data-option-key="water-purifier-provision">
+                <input type="checkbox" value="Water purifier provision">
+                <span class="bw-flow__choice-media bw-flow__choice-media--option" data-option-visual="water-purifier-provision" aria-hidden="true"><span class="bw-flow__choice-media-label">Water Purifier</span></span>
+                <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Water Purifier Provision</span><span class="bw-flow__choice-note">Reserves location and service access for purifier placement near the sink run.</span></span>
+              </label>
+              <label class="bw-flow__choice bw-flow__choice--utility" data-option-family="appliance" data-option-key="need-guidance">
+                <input type="checkbox" value="Need guidance">
+                <span class="bw-flow__choice-media bw-flow__choice-media--option" data-option-visual="need-guidance" aria-hidden="true"><span class="bw-flow__choice-media-label">Need Guidance</span></span>
+                <span class="bw-flow__choice-copy"><span class="bw-flow__choice-title">Need Guidance</span><span class="bw-flow__choice-note">Leaves the appliance mix open when the site visit should settle the final integration plan.</span></span>
+              </label>
+            </div>
+          </article>
+        </div>
+        <div class="bw-flow__actions">
+          <button class="bw-flow__button--secondary" type="button" data-flow-back>Back</button>
+          <button class="bw-flow__button" type="button" data-flow-next>Continue</button>
+        </div>
+      </div>
+
+      <div class="bw-flow__stage" data-step-panel="5">
+        <div class="bw-flow__stage-head">
+          <h3 class="bw-flow__stage-title">Get your custom quote</h3>
+          <p class="bw-flow__stage-copy">Review the kitchen direction once, then share the brief so the team can respond with a more relevant estimate and planning callback.</p>
+        </div>
+        <div class="bw-flow__grid">
+          <div class="bw-flow__field"><label for="bw-kitchen-city">Preferred city</label><input id="bw-kitchen-city" type="text" placeholder="Noida, Delhi, Bengaluru..." data-flow-input="city"></div>
+          <div class="bw-flow__field"><label for="bw-kitchen-timeline">Project stage</label><select id="bw-kitchen-timeline" data-flow-input="timeline"><option value="Immediate">Immediate</option><option value="Within 1 month">Within 1 month</option><option value="1 to 3 months">1 to 3 months</option><option value="Just exploring">Just exploring</option></select></div>
+        </div>
+        <div class="bw-flow__actions">
+          <button class="bw-flow__button--secondary" type="button" data-flow-back>Back</button>
+          <button class="bw-flow__button" type="button" data-bw-kitchen-popup-open>Get Your Custom Quote</button>
+        </div>
+      </div>
+    </section>
+
+    <aside class="bw-flow__summary">
+      <div class="bw-flow__summary-visual">
+        <img src="{{ kitchen_image_l_url }}" alt="Selected kitchen layout preview" loading="lazy" width="900" height="675" data-kitchen-summary-image>
+      </div>
+      <p class="bw-flow__summary-caption" data-kitchen-summary-caption>L-shape keeps the room efficient without making the kitchen feel heavy.</p>
+      <div class="bw-flow__summary-cues">
+        <article class="bw-flow__summary-cue">
+          <span>Finish mood</span>
+          <strong data-summary-finish-cue>Choose a finish direction</strong>
+        </article>
+        <article class="bw-flow__summary-cue">
+          <span>Storage posture</span>
+          <strong data-summary-storage-cue>Set the storage need</strong>
+        </article>
+        <article class="bw-flow__summary-cue">
+          <span>Appliance plan</span>
+          <strong data-summary-appliance-cue>Select appliance integrations</strong>
+        </article>
+      </div>
+      <div class="bw-flow__head">
+        <span class="bw-flow__eyebrow">Project summary</span>
+        <h2 class="bw-flow__title">Your brief snapshot</h2>
+        <p class="bw-flow__copy">Only the selected details appear here once you start choosing.</p>
+      </div>
+      <div class="bw-flow__badge" data-kitchen-band>Ready for your brief</div>
+      <div class="bw-flow__summary-list">
+        <div class="bw-flow__summary-line"><span>Layout</span><strong data-summary-layout>Choose a layout</strong></div>
+        <div class="bw-flow__summary-line"><span>Cabinets</span><strong data-summary-property>Set the upper cabinet plan</strong></div>
+        <div class="bw-flow__summary-line"><span>Measurements</span><strong data-summary-measurements>Enter wall lengths</strong></div>
+        <div class="bw-flow__summary-line"><span>Build</span><strong data-summary-build>Pick materials and finish</strong></div>
+        <div class="bw-flow__summary-line"><span>Utility</span><strong data-summary-utility>Set storage needs</strong></div>
+        <div class="bw-flow__summary-line"><span>Appliances</span><strong data-summary-appliances>Add appliances or leave blank</strong></div>
+      </div>
+      <div class="bw-flow__summary-tags" data-summary-tags></div>
+      <p class="bw-flow__assist">The brief stays compact so the estimate request reads cleanly on mobile too.</p>
+      <div class="bw-flow__actions">
+        <button class="bw-flow__button" type="button" data-bw-kitchen-popup-open>Get Your Custom Quote</button>
+
+      </div>
+    </aside>
+  </div>
+
+  <section class="bw-flow__network">
+    <div class="bw-flow__network-head">
+      <span class="bw-flow__eyebrow">Compare the layouts once</span>
+      <h3 class="bw-flow__network-title">Kitchen layout references</h3>
+      <p class="bw-flow__network-copy">Use these only as a reference section when you want to compare layout directions. The working calculator stays above.</p>
+    </div>
+    <div class="bw-flow__network-links" aria-label="Kitchen direction presets">
+      <button class="bw-flow__network-card" type="button" data-kitchen-direction="everyday-family">
+        <span class="bw-flow__network-card-media"><img src="{{ kitchen_image_l_url }}" alt="Everyday family modular kitchen reference" loading="lazy" width="720" height="540"></span>
+        <span class="bw-flow__network-card-title">Everyday family kitchen</span>
+        <span class="bw-flow__network-card-copy">For homes that need one clear layout, reliable storage, and easy maintenance before anything else.</span>
+        <span class="bw-flow__network-card-cues">
+          <span class="bw-flow__network-card-cue">L-shape</span>
+          <span class="bw-flow__network-card-cue">Laminate + Granite</span>
+          <span class="bw-flow__network-card-cue">Core appliances</span>
+        </span>
+        <span class="bw-flow__network-card-action">Use this direction</span>
+      </button>
+      <button class="bw-flow__network-card" type="button" data-kitchen-direction="storage-heavy">
+        <span class="bw-flow__network-card-media"><img src="{{ kitchen_image_u_url }}" alt="Storage-heavy modular kitchen reference" loading="lazy" width="720" height="540"></span>
+        <span class="bw-flow__network-card-title">Storage-heavy utility kitchen</span>
+        <span class="bw-flow__network-card-copy">For busy kitchens that need more tall storage, better prep depth, and stronger day-to-day utility.</span>
+        <span class="bw-flow__network-card-cues">
+          <span class="bw-flow__network-card-cue">U-shape</span>
+          <span class="bw-flow__network-card-cue">Tall unit + Pantry</span>
+          <span class="bw-flow__network-card-cue">Tandem drawers</span>
+        </span>
+        <span class="bw-flow__network-card-action">Use this direction</span>
+      </button>
+      <button class="bw-flow__network-card" type="button" data-kitchen-direction="clean-modern">
+        <span class="bw-flow__network-card-media"><img src="{{ kitchen_image_parallel_url }}" alt="Clean modern modular kitchen reference" loading="lazy" width="720" height="540"></span>
+        <span class="bw-flow__network-card-title">Clean modern kitchen</span>
+        <span class="bw-flow__network-card-copy">For sharper contemporary homes where visual lightness, cleaner fronts, and disciplined zoning matter more.</span>
+        <span class="bw-flow__network-card-cues">
+          <span class="bw-flow__network-card-cue">Parallel</span>
+          <span class="bw-flow__network-card-cue">Acrylic + Quartz</span>
+          <span class="bw-flow__network-card-cue">Selective uppers</span>
+        </span>
+        <span class="bw-flow__network-card-action">Use this direction</span>
+      </button>
+      <button class="bw-flow__network-card" type="button" data-kitchen-direction="hosting-premium">
+        <span class="bw-flow__network-card-media"><img src="{{ kitchen_image_island_url }}" alt="Premium statement modular kitchen reference" loading="lazy" width="720" height="540"></span>
+        <span class="bw-flow__network-card-title">Hosting / premium statement kitchen</span>
+        <span class="bw-flow__network-card-copy">For larger homes where entertaining, appliance integration, and a stronger material impression all belong in the same brief.</span>
+        <span class="bw-flow__network-card-cues">
+          <span class="bw-flow__network-card-cue">Island</span>
+          <span class="bw-flow__network-card-cue">Premium stone</span>
+          <span class="bw-flow__network-card-cue">Appliance tower</span>
+        </span>
+        <span class="bw-flow__network-card-action">Use this direction</span>
+      </button>
+    </div>
+  </section>
+</div>
+
+{% render 'modular-estimate-popup', modal_id: 'bw-kitchen-calc-popup', modal_title: 'Get a kitchen estimate', context_label: 'Bluewud modular kitchen' %}
+
+<script>
+  (function () {
+    var root = document.querySelector('[data-bw-kitchen-flow]');
+    if (!root) return;
+    var step = 1;
+    var maxStep = 5;
+    var hasInteracted = false;
+    var stageNodes = Array.prototype.slice.call(root.querySelectorAll('[data-step-panel]'));
+    var indicatorNodes = Array.prototype.slice.call(root.querySelectorAll('[data-step-indicator]'));
+    var modal = document.getElementById('bw-kitchen-calc-popup');
+    var summaryText = modal ? modal.querySelector('[data-bw-estimate-summary-text]') : null;
+    var summaryInput = modal ? modal.querySelector('[data-bw-estimate-summary-input]') : null;
+    var contextInput = modal ? modal.querySelector('[data-bw-estimate-context-input]') : null;
+    var sourceInput = modal ? modal.querySelector('[data-bw-estimate-source-input]') : null;
+    var bandNode = root.querySelector('[data-kitchen-band]');
+    var summaryImageNode = root.querySelector('[data-kitchen-summary-image]');
+    var summaryCaptionNode = root.querySelector('[data-kitchen-summary-caption]');
+    var step2TitleNode = root.querySelector('[data-kitchen-step2-title]');
+    var step2CopyNode = root.querySelector('[data-kitchen-step2-copy]');
+    var layoutVisualMap = {
+      'L-shape': {
+        src: {{ kitchen_image_l_url | json }},
+        alt: 'Bluewud L-shape modular kitchen preview',
+        caption: 'L-shape keeps the room efficient without making the kitchen feel heavy.'
+      },
+      'U-shape': {
+        src: {{ kitchen_image_u_url | json }},
+        alt: 'Bluewud U-shape modular kitchen preview',
+        caption: 'U-shape adds stronger storage and prep depth for more serious daily cooking.'
+      },
+      'Parallel': {
+        src: {{ kitchen_image_parallel_url | json }},
+        alt: 'Bluewud parallel modular kitchen preview',
+        caption: 'Parallel layouts work well when two clean runs need to carry the kitchen efficiently.'
+      },
+      'Straight': {
+        src: {{ kitchen_image_straight_url | json }},
+        alt: 'Bluewud straight modular kitchen preview',
+        caption: 'Straight kitchens suit compact homes that need one disciplined, visually calm run.'
+      },
+      'Island': {
+        src: {{ kitchen_image_island_url | json }},
+        alt: 'Bluewud island modular kitchen preview',
+        caption: 'Island planning is strongest when prep, hosting, and movement all matter together.'
+      }
+    };
+    var measurementMap = {
+      'L-shape': {
+        title: 'Capture the L-shape wall lengths and upper cabinet plan',
+        copy: 'Add the two working wall lengths that shape the L-run, then set how much upper storage the kitchen needs.',
+        fields: {
+          wall_a: { label: 'Wall A length (ft)', visible: true },
+          wall_b: { label: 'Wall B length (ft)', visible: true },
+          wall_c: { label: 'Wall C length (ft)', visible: false }
+        }
+      },
+      'U-shape': {
+        title: 'Capture the U-shape wall lengths and upper cabinet plan',
+        copy: 'Add all three working wall lengths so the quote reflects the full wraparound kitchen.',
+        fields: {
+          wall_a: { label: 'Wall A length (ft)', visible: true },
+          wall_b: { label: 'Wall B length (ft)', visible: true },
+          wall_c: { label: 'Wall C length (ft)', visible: true }
+        }
+      },
+      'Parallel': {
+        title: 'Capture the two parallel runs and upper cabinet plan',
+        copy: 'Add both working runs so the quote reflects the real galley layout and movement width.',
+        fields: {
+          wall_a: { label: 'Run 1 length (ft)', visible: true },
+          wall_b: { label: 'Run 2 length (ft)', visible: true },
+          wall_c: { label: 'Utility wall / niche (ft)', visible: false }
+        }
+      },
+      'Straight': {
+        title: 'Capture the main run and upper cabinet plan',
+        copy: 'Add the single working wall length for this straight kitchen, then set the upper cabinet direction.',
+        fields: {
+          wall_a: { label: 'Main run length (ft)', visible: true },
+          wall_b: { label: 'Secondary run (ft)', visible: false },
+          wall_c: { label: 'Return wall (ft)', visible: false }
+        }
+      },
+      'Island': {
+        title: 'Capture the main run, support run, and island size',
+        copy: 'Add the main kitchen run and island size so the quote reflects both the working line and the centrepiece.',
+        fields: {
+          wall_a: { label: 'Main run length (ft)', visible: true },
+          wall_b: { label: 'Support run length (ft)', visible: true },
+          wall_c: { label: 'Island length (ft)', visible: true }
+        }
+      }
+    };
+    var directionPresets = {
+      'everyday-family': {
+        layout: 'L-shape',
+        uppers: 'Yes',
+        carcass: 'Engineered wood',
+        shutter: 'Laminate front',
+        addons: ['Tandem drawers'],
+        appliances: ['Hob', 'Chimney']
+      },
+      'storage-heavy': {
+        layout: 'U-shape',
+        uppers: 'Yes',
+        carcass: 'Engineered wood',
+        shutter: 'Laminate front',
+        addons: ['Tall unit', 'Pantry pull-out', 'Tandem drawers'],
+        appliances: ['Hob', 'Chimney', 'Microwave']
+      },
+      'clean-modern': {
+        layout: 'Parallel',
+        uppers: 'Selected walls only',
+        carcass: 'Plywood',
+        shutter: 'Acrylic front',
+        addons: ['Premium hardware'],
+        appliances: ['Hob', 'Chimney', 'Water purifier provision', 'Refrigerator housing']
+      },
+      'hosting-premium': {
+        layout: 'Island',
+        uppers: 'Yes',
+        carcass: 'Plywood',
+        shutter: 'Glass / premium',
+        addons: ['Tall unit', 'Premium hardware', 'Appliance tower'],
+        appliances: ['Hob', 'Chimney', 'Built-in oven', 'Dishwasher']
+      }
+    };
+
+    function sameListValues(left, right) {
+      var leftList = Array.isArray(left) ? left.slice().sort() : [];
+      var rightList = Array.isArray(right) ? right.slice().sort() : [];
+      if (leftList.length !== rightList.length) return false;
+      return leftList.every(function (value, index) {
+        return value === rightList[index];
+      });
+    }
+
+    function selectedRadio(name) {
+      var node = root.querySelector('input[name="' + name + '"]:checked');
+      return node ? node.value : '';
+    }
+    function setRadioValue(name, value) {
+      var node = root.querySelector('input[name="' + name + '"][value="' + value + '"]');
+      if (node) node.checked = true;
+    }
+    function normalizeLayout(layout) {
+      if (!layout) return '';
+      var key = String(layout).toLowerCase();
+      if (key === 'all') return 'L-shape';
+      if (key === 'l-shape' || key === 'l shape') return 'L-shape';
+      if (key === 'u-shape' || key === 'u shape') return 'U-shape';
+      if (key === 'parallel') return 'Parallel';
+      if (key === 'straight') return 'Straight';
+      if (key === 'island') return 'Island';
+      return '';
+    }
+    function selectedChecks(group) {
+      return Array.prototype.slice.call(root.querySelectorAll('[data-flow-group="' + group + '"] input[type="checkbox"]:checked')).map(function (input) {
+        return input.value;
+      });
+    }
+    function activeLayoutConfig() {
+      return measurementMap[selectedRadio('kitchen_layout')] || measurementMap['L-shape'];
+    }
+    function activeMeasurementParts() {
+      var config = activeLayoutConfig();
+      return ['wall_a', 'wall_b', 'wall_c'].reduce(function (items, key) {
+        var field = config.fields[key];
+        if (!field || !field.visible) return items;
+        var value = inputValue(key);
+        if (value && value !== '0') items.push(field.label.replace(' length (ft)', '').replace(' (ft)', '') + ': ' + value + ' ft');
+        return items;
+      }, []);
+    }
+    function syncLayoutFields() {
+      var config = activeLayoutConfig();
+      if (step2TitleNode) step2TitleNode.textContent = config.title;
+      if (step2CopyNode) step2CopyNode.textContent = config.copy;
+      ['wall_a', 'wall_b', 'wall_c'].forEach(function (key) {
+        var fieldNode = root.querySelector('[data-layout-field="' + key + '"]');
+        var labelNode = root.querySelector('[data-layout-label="' + key + '"]');
+        var inputNode = root.querySelector('[data-flow-input="' + key + '"]');
+        var fieldConfig = config.fields[key];
+        if (!fieldNode || !labelNode || !inputNode || !fieldConfig) return;
+        fieldNode.hidden = !fieldConfig.visible;
+        setMeasureDisabled(key, !fieldConfig.visible);
+        labelNode.textContent = fieldConfig.label;
+        if (!fieldConfig.visible) inputNode.value = '0';
+      });
+    }
+    function selectedAppliances() {
+      var appliances = selectedChecks('appliances');
+      return appliances.length ? appliances.join(', ') : 'Not specified';
+    }
+    function setCheckboxValues(group, values) {
+      var valueMap = Array.isArray(values) ? values : [];
+      root.querySelectorAll('[data-flow-group="' + group + '"] input[type="checkbox"]').forEach(function (input) {
+        input.checked = valueMap.indexOf(input.value) > -1;
+      });
+    }
+    function inputValue(key) {
+      var node = root.querySelector('[data-flow-input="' + key + '"]');
+      return node ? node.value : '';
+    }
+    function numberOrZero(value) {
+      var parsed = Number(value);
+      return Number.isFinite(parsed) ? parsed : 0;
+    }
+    function clamp(value, min, max) {
+      return Math.min(max, Math.max(min, value));
+    }
+    function parseFeetValue(value) {
+      if (!value) return 0;
+      var parsed = Number(value);
+      return Number.isFinite(parsed) ? parsed : 0;
+    }
+    function swapFeetSelectToInput(key, initialValue) {
+      var node = root.querySelector('[data-measure-feet="' + key + '"]');
+      if (!node || node.tagName !== 'SELECT') return node;
+
+      var parent = node.parentNode;
+      if (!parent) return node;
+
+      var input = document.createElement('input');
+      input.type = 'text';
+      input.inputMode = 'numeric';
+      input.pattern = '[0-9]*';
+      input.placeholder = 'Feet';
+      input.id = node.id;
+      input.className = node.className;
+      input.disabled = node.disabled;
+      input.setAttribute('data-measure-feet', key);
+      input.setAttribute('aria-label', node.getAttribute('aria-label') || (key + ' feet'));
+      input.value = typeof initialValue === 'string' ? initialValue : (initialValue ? String(initialValue) : '');
+
+      parent.replaceChild(input, node);
+
+      input.addEventListener('input', function () {
+        hasInteracted = true;
+        syncMeasureField(key);
+        updateSummary();
+      });
+      input.addEventListener('blur', function () {
+        syncMeasureField(key);
+        updateSummary();
+      });
+
+      return input;
+    }
+    function hydrateMeasureField(key) {
+      var hidden = root.querySelector('[data-flow-input="' + key + '"]');
+      var feetSelect = root.querySelector('[data-measure-feet="' + key + '"]');
+      if (!hidden || !feetSelect) return;
+      var inchSelect = root.querySelector('[data-measure-inch="' + key + '"]');
+      var stored = parseFeetValue(hidden.value);
+      if (!stored) {
+        feetSelect.value = '';
+        if (inchSelect) inchSelect.value = '';
+        return;
+      }
+
+      var baseFt = Math.floor(stored);
+      var inch = Math.round((stored - baseFt) * 12);
+      if (inch === 12) {
+        baseFt += 1;
+        inch = 0;
+      }
+      var baseFtValue = String(baseFt);
+      if (feetSelect.tagName === 'SELECT') {
+        var option = feetSelect.querySelector('option[value="' + baseFtValue + '"]');
+        if (option) {
+          feetSelect.value = baseFtValue;
+        } else {
+          feetSelect.value = '__custom__';
+          feetSelect = swapFeetSelectToInput(key, baseFtValue);
+        }
+      } else {
+        feetSelect.value = baseFtValue;
+      }
+      if (inchSelect) {
+        var inchValue = String(clamp(inch, 0, 11));
+        inchSelect.value = inchSelect.querySelector('option[value="' + inchValue + '"]') ? inchValue : '';
+      }
+    }
+    function syncMeasureField(key) {
+      var hidden = root.querySelector('[data-flow-input="' + key + '"]');
+      var feetSelect = root.querySelector('[data-measure-feet="' + key + '"]');
+      if (!hidden || !feetSelect) return;
+      var inchSelect = root.querySelector('[data-measure-inch="' + key + '"]');
+
+      var rawFeet = String(feetSelect.value || '').trim();
+      var baseFeet = Math.round(numberOrZero(rawFeet));
+      var inches = inchSelect ? clamp(Math.round(numberOrZero(inchSelect.value)), 0, 11) : 0;
+      if (!baseFeet || baseFeet < 0) {
+        hidden.value = '';
+        return;
+      }
+      var normalized = baseFeet + inches / 12;
+      hidden.value = normalized.toFixed(2).replace(/\.00$/, '').replace(/(\.\d)0$/, '$1');
+    }
+    function setMeasureDisabled(key, disabled) {
+      var hidden = root.querySelector('[data-flow-input="' + key + '"]');
+      var feetSelect = root.querySelector('[data-measure-feet="' + key + '"]');
+      var inchSelect = root.querySelector('[data-measure-inch="' + key + '"]');
+      if (hidden) hidden.disabled = !!disabled;
+      if (feetSelect) feetSelect.disabled = !!disabled;
+      if (inchSelect) inchSelect.disabled = !!disabled;
+      if (disabled && hidden) hidden.value = '0';
+      if (disabled && feetSelect) feetSelect.value = '';
+      if (disabled && inchSelect) inchSelect.value = '';
+    }
+    function syncAllMeasures() {
+      syncMeasureField('wall_a');
+      syncMeasureField('wall_b');
+      syncMeasureField('wall_c');
+      syncMeasureField('ceiling');
+    }
+    function toggleChoiceStates() {
+      root.querySelectorAll('.bw-flow__choice').forEach(function (choice) {
+        var input = choice.querySelector('input');
+        if (!input) return;
+        choice.classList.toggle('is-selected', !!input.checked);
+      });
+    }
+    function activeDirectionPreset() {
+      var layout = selectedRadio('kitchen_layout');
+      var uppers = selectedRadio('upper_cabinets');
+      var carcass = selectedRadio('carcass_material');
+      var shutter = selectedRadio('shutter_material');
+      var addons = selectedChecks('addons');
+      var appliances = selectedChecks('appliances');
+      return Object.keys(directionPresets).find(function (key) {
+        var preset = directionPresets[key];
+        return preset.layout === layout
+          && preset.uppers === uppers
+          && preset.carcass === carcass
+          && preset.shutter === shutter
+          && sameListValues(preset.addons, addons)
+          && sameListValues(preset.appliances, appliances);
+      }) || '';
+    }
+    function syncDirectionCards() {
+      var activeKey = activeDirectionPreset();
+      root.querySelectorAll('[data-kitchen-direction]').forEach(function (node) {
+        var isActive = !!activeKey && node.getAttribute('data-kitchen-direction') === activeKey;
+        node.classList.toggle('is-selected', isActive);
+        if (node.getAttribute('role') === 'button') {
+          node.setAttribute('aria-pressed', isActive ? 'true' : 'false');
+        }
+      });
+    }
+    function markInteracted() {
+      hasInteracted = true;
+    }
+    function projectBand() {
+      var premiumSignals = 0;
+      if (selectedRadio('kitchen_layout') === 'Island') premiumSignals += 2;
+      if (selectedRadio('carcass_material') === 'Plywood') premiumSignals += 1;
+      if (selectedRadio('shutter_material') === 'Glass / premium') premiumSignals += 2;
+      premiumSignals += selectedChecks('addons').length;
+      if (premiumSignals >= 5) return 'Statement premium direction';
+      if (premiumSignals >= 3) return 'Balanced premium direction';
+      return 'Value-led practical direction';
+    }
+    function finishCue() {
+      var shutter = selectedRadio('shutter_material');
+      if (shutter === 'Glass / premium') return 'Statement premium finish';
+      if (shutter === 'Acrylic front') return 'Sharper modern finish';
+      if (shutter === 'Membrane / profile') return 'Soft profile-led finish';
+      return 'Warm laminate-led balance';
+    }
+    function storageCue() {
+      var addons = selectedChecks('addons');
+      var uppers = selectedRadio('upper_cabinets');
+      if (addons.length >= 4) return 'Storage-heavy utility brief';
+      if (uppers === 'Selected walls only') return 'Open + closed balance';
+      if (uppers === 'No') return 'Lighter visual line';
+      return 'Balanced everyday storage';
+    }
+    function applianceCue() {
+      var appliances = selectedChecks('appliances');
+      if (appliances.length >= 4) return 'High-integration appliance plan';
+      if (appliances.length >= 2) return 'Core appliance-ready setup';
+      if (appliances.length === 1) return appliances[0] + ' integration';
+      return 'Appliance plan to be defined';
+    }
+    function updateSummary() {
+      toggleChoiceStates();
+      syncDirectionCards();
+      syncAllMeasures();
+      syncLayoutFields();
+      var neutralState = !hasInteracted;
+      var layout = selectedRadio('kitchen_layout');
+      var measurementParts = activeMeasurementParts();
+      var summaryMap = neutralState ? {
+        layout: 'Choose a layout',
+        property: 'Set the upper cabinet plan',
+        measurements: 'Enter wall lengths',
+        build: 'Pick cabinet and shutter materials',
+        utility: 'Set storage needs',
+        appliances: 'Add appliances or leave blank'
+      } : {
+        layout: layout || 'L-shape',
+        property: selectedRadio('upper_cabinets') || 'Yes',
+        measurements: measurementParts.length ? measurementParts.join(' / ') : 'Enter wall lengths',
+        build: [selectedRadio('carcass_material'), selectedRadio('shutter_material')].filter(Boolean).join(' / ') || 'Engineered wood / Laminate front',
+        utility: selectedChecks('addons').length ? selectedChecks('addons').slice(0, 3).join(', ') : 'Core cabinetry only',
+        appliances: selectedAppliances()
+      };
+      Object.keys(summaryMap).forEach(function (key) {
+        var node = root.querySelector('[data-summary-' + key + ']');
+        if (node) node.textContent = summaryMap[key];
+      });
+      var layoutVisual = layoutVisualMap[neutralState ? 'L-shape' : (summaryMap.layout || 'L-shape')] || layoutVisualMap['L-shape'];
+      if (summaryImageNode && layoutVisual) {
+        summaryImageNode.src = layoutVisual.src;
+        summaryImageNode.alt = layoutVisual.alt;
+      }
+      if (summaryCaptionNode) {
+        summaryCaptionNode.textContent = neutralState ? 'Start with the layout choice. The rest of the brief stays neutral until you make selections.' : layoutVisual.caption;
+      }
+      var finishCueNode = root.querySelector('[data-summary-finish-cue]');
+      var storageCueNode = root.querySelector('[data-summary-storage-cue]');
+      var applianceCueNode = root.querySelector('[data-summary-appliance-cue]');
+      if (finishCueNode) finishCueNode.textContent = neutralState ? 'Choose a finish direction' : finishCue();
+      if (storageCueNode) storageCueNode.textContent = neutralState ? 'Set the storage need' : storageCue();
+      if (applianceCueNode) applianceCueNode.textContent = neutralState ? 'Select appliance integrations' : applianceCue();
+      if (bandNode) bandNode.textContent = neutralState ? 'Ready for your brief' : projectBand();
+      var tagsNode = root.querySelector('[data-summary-tags]');
+      if (tagsNode) {
+        var tags = neutralState ? [] : [
+          summaryMap.layout,
+          'Uppers: ' + summaryMap.property,
+          summaryMap.build.split(' / ')[1],
+          summaryMap.utility,
+          summaryMap.appliances
+        ].filter(Boolean).slice(0, 5);
+        tagsNode.innerHTML = tags.length ? tags
+          .map(function (item) { return '<span class="bw-flow__summary-tag">' + item + '</span>'; })
+          .join('') : '';
+      }
+      persistPayload('calculator-progress');
+    }
+    function briefSummary() {
+      return [
+        'Project: Modular Kitchen',
+        'Layout: ' + selectedRadio('kitchen_layout'),
+        'Wall lengths: ' + (activeMeasurementParts().length ? activeMeasurementParts().join(' / ') : 'Not shared yet'),
+        'Ceiling: ' + inputValue('ceiling') + 'ft',
+        'Upper cabinets: ' + selectedRadio('upper_cabinets'),
+        'Carcass: ' + selectedRadio('carcass_material'),
+        'Shutter: ' + selectedRadio('shutter_material'),
+        'Add-ons: ' + (selectedChecks('addons').length ? selectedChecks('addons').join(', ') : 'None'),
+        'Appliances: ' + selectedAppliances(),
+        'City: ' + (inputValue('city') || 'Not shared yet'),
+        'Timeline: ' + (inputValue('timeline') || 'Immediate'),
+        'Direction: ' + projectBand()
+      ].join(' | ');
+    }
+    function buildPayload(trigger) {
+      return {
+        projectType: 'Modular Kitchen',
+        projectContext: 'Bluewud modular kitchen',
+        referenceSource: 'Kitchen calculator',
+        projectRoute: window.location.pathname + window.location.search,
+        selectedBrief: briefSummary(),
+        selectedOptions: {
+          layout: selectedRadio('kitchen_layout'),
+          wall_a_ft: inputValue('wall_a'),
+          wall_b_ft: inputValue('wall_b'),
+          wall_c_ft: inputValue('wall_c'),
+          ceiling_ft: inputValue('ceiling'),
+          upper_cabinets: selectedRadio('upper_cabinets'),
+          carcass_material: selectedRadio('carcass_material'),
+          shutter_material: selectedRadio('shutter_material'),
+          addons: selectedChecks('addons'),
+          appliances: selectedChecks('appliances'),
+          city: inputValue('city'),
+          timeline: inputValue('timeline') || 'Immediate',
+          project_direction: projectBand(),
+          source_trigger: trigger || 'calculator-progress'
+        },
+        trigger: trigger || 'calculator-progress'
+      };
+    }
+    function persistPayload(trigger) {
+      var payload = buildPayload(trigger);
+      if (window.BluewudProjectBriefStore) {
+        window.BluewudProjectBriefStore.save(payload);
+      }
+      return payload;
+    }
+    function applyLayoutPreset(layout) {
+      var normalized = normalizeLayout(layout);
+      if (!normalized) return;
+      setRadioValue('kitchen_layout', normalized);
+      step = 1;
+      updateSummary();
+      paintSteps();
+    }
+    function applyDirectionPreset(direction) {
+      if (!direction) return;
+      var preset = directionPresets[direction];
+      if (!preset) return;
+      setRadioValue('kitchen_layout', preset.layout);
+      setRadioValue('upper_cabinets', preset.uppers);
+      setRadioValue('carcass_material', preset.carcass);
+      setRadioValue('shutter_material', preset.shutter);
+      setCheckboxValues('addons', preset.addons);
+      setCheckboxValues('appliances', preset.appliances);
+      updateSummary();
+      paintSteps();
+    }
+    function paintSteps() {
+      stageNodes.forEach(function (panel) {
+        panel.classList.toggle('is-active', Number(panel.getAttribute('data-step-panel')) === step);
+      });
+      indicatorNodes.forEach(function (indicator) {
+        var indicatorStep = Number(indicator.getAttribute('data-step-indicator'));
+        indicator.classList.toggle('is-active', indicatorStep === step);
+        indicator.classList.toggle('is-complete', indicatorStep < step);
+      });
+    }
+    function openPopup() {
+      if (!modal) return;
+      var payload = persistPayload('calculator-submit');
+      if (window.BluewudProjectBriefStore) {
+        window.BluewudProjectBriefStore.fillModal(modal, payload);
+      } else {
+        if (summaryText) summaryText.textContent = payload.selectedBrief;
+        if (summaryInput) summaryInput.value = payload.selectedBrief;
+        if (contextInput) contextInput.value = payload.projectContext;
+        if (sourceInput) sourceInput.value = payload.referenceSource;
+      }
+      modal.classList.add('is-open');
+      document.body.classList.add('bw-header-drawer-open');
+    }
+    function closePopup() {
+      if (!modal) return;
+      modal.classList.remove('is-open');
+      document.body.classList.remove('bw-header-drawer-open');
+    }
+
+    root.addEventListener('click', function (event) {
+      var choice = event.target.closest('.bw-flow__choice');
+      if (choice) {
+        var input = choice.querySelector('input');
+        if (input) {
+          if (input.type === 'checkbox') input.checked = !input.checked;
+          else input.checked = true;
+          updateSummary();
+        }
+        return;
+      }
+      if (event.target.closest('[data-flow-next]')) {
+        if (step < maxStep) step += 1;
+        paintSteps();
+        return;
+      }
+      if (event.target.closest('[data-flow-back]')) {
+        if (step > 1) step -= 1;
+        paintSteps();
+        return;
+      }
+      if (event.target.closest('[data-bw-kitchen-popup-open]')) {
+        openPopup();
+        return;
+      }
+      var directionCard = event.target.closest('[data-kitchen-direction]');
+      if (directionCard) {
+        applyDirectionPreset(directionCard.getAttribute('data-kitchen-direction'));
+      }
+    });
+    root.addEventListener('keydown', function (event) {
+      if (!event || (event.key !== 'Enter' && event.key !== ' ')) return;
+      var directionCard = event.target && event.target.closest ? event.target.closest('[data-kitchen-direction]') : null;
+      if (!directionCard) return;
+      event.preventDefault();
+      applyDirectionPreset(directionCard.getAttribute('data-kitchen-direction'));
+    });
+
+    root.addEventListener('change', function (event) {
+      markInteracted();
+
+      if (event && event.target && event.target.matches && event.target.matches('select[data-measure-feet]')) {
+        if (event.target.value === '__custom__') {
+          var key = event.target.getAttribute('data-measure-feet');
+          var input = swapFeetSelectToInput(key, '');
+          if (input && input.focus) input.focus();
+          return;
+        }
+      }
+
+      var upperField = root.querySelector('[data-upper-height-field]');
+      if (upperField) upperField.hidden = selectedRadio('upper_cabinets') === 'No';
+      updateSummary();
+    });
+    root.addEventListener('input', function () {
+      markInteracted();
+      updateSummary();
+    });
+    root.addEventListener('bw:kitchen-layout-select', function (event) {
+      if (event.detail && event.detail.layout) {
+        applyLayoutPreset(event.detail.layout);
+      }
+    });
+
+    if (modal) {
+      modal.querySelectorAll('[data-bw-estimate-close]').forEach(function (control) {
+        control.addEventListener('click', closePopup);
+      });
+      modal.addEventListener('click', function (event) {
+        if (event.target === modal) closePopup();
+      });
+    }
+
+    hydrateMeasureField('wall_a');
+    hydrateMeasureField('wall_b');
+    hydrateMeasureField('wall_c');
+    hydrateMeasureField('ceiling');
+    syncLayoutFields();
+    var upperField = root.querySelector('[data-upper-height-field]');
+    if (upperField) upperField.hidden = selectedRadio('upper_cabinets') === 'No';
+    updateSummary();
+    var params = new URLSearchParams(window.location.search);
+    applyLayoutPreset(params.get('layout'));
+    paintSteps();
+  })();
+</script>

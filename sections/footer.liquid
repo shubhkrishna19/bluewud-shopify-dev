@@ -1,0 +1,277 @@
+{% liquid
+  assign footer_brand = section.settings.footer_brand | default: 'Bluewud'
+  assign footer_copy = section.settings.footer_copy | default: 'Premium furniture, smarter storage, and guided room planning for modern Indian homes.'
+  assign living_room_url = '/collections/living-room'
+  assign bedroom_url = '/collections/bed-room'
+  assign modular_kitchen_url = '/collections/kitchen-racks'
+  assign modular_wardrobe_url = '/collections/wardrobe'
+  assign about_url = '/pages/about-us'
+  assign bulk_url = '/pages/buy-in-bulk'
+  assign awards_url = '/pages/award-achievment'
+  assign offers_url = '/pages/offers-discount'
+  assign help_center_url = '/pages/help-center'
+  assign contact_url = '/pages/contact-us'
+  assign policies_url = '/pages/policies'
+  assign returns_url = '/pages/returns-refunds'
+  assign payment_security_url = '/pages/payment-security'
+  assign terms_url = '/pages/terms-of-use'
+
+  if collections['living-room'] != blank and collections['living-room'].url != blank
+    assign living_room_url = collections['living-room'].url
+  endif
+  if collections['bed-room'] != blank and collections['bed-room'].url != blank
+    assign bedroom_url = collections['bed-room'].url
+  endif
+
+  if pages['modular-kitchen-designs'] != blank
+    assign modular_kitchen_url = pages['modular-kitchen-designs'].url
+  endif
+  if pages['modular-wardrobe-designs'] != blank
+    assign modular_wardrobe_url = pages['modular-wardrobe-designs'].url
+  endif
+  if pages['about-us'] != blank
+    assign about_url = pages['about-us'].url
+  endif
+  if pages['buy-in-bulk'] != blank
+    assign bulk_url = pages['buy-in-bulk'].url
+  endif
+  if pages['award-achievment'] != blank
+    assign awards_url = pages['award-achievment'].url
+  endif
+  if pages['offers-discount'] != blank
+    assign offers_url = pages['offers-discount'].url
+  endif
+  if pages['help-center'] != blank
+    assign help_center_url = pages['help-center'].url
+  endif
+  if pages['contact-us'] != blank
+    assign contact_url = pages['contact-us'].url
+  endif
+  if pages['policies'] != blank
+    assign policies_url = pages['policies'].url
+  endif
+  if pages['returns-refunds'] != blank
+    assign returns_url = pages['returns-refunds'].url
+  endif
+  if pages['payment-security'] != blank
+    assign payment_security_url = pages['payment-security'].url
+  endif
+  if pages['terms-of-use'] != blank
+    assign terms_url = pages['terms-of-use'].url
+  endif
+%}
+
+<style>
+  .bw-footer {
+    padding: 0 24px 24px;
+    background: var(--bw-cream-footer, #f5f3ed);
+  }
+
+  .bw-footer__inner {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 34px 34px 22px;
+    border-radius: 30px;
+    background: linear-gradient(180deg, var(--bw-espresso-1, #231813) 0%, var(--bw-espresso-2, #201713) 100%);
+    color: var(--bw-text-on-dark, #f8f1eb);
+    box-shadow: 0 24px 54px rgba(35, 24, 19, 0.14);
+  }
+
+  .bw-footer__top {
+    display: grid;
+    grid-template-columns: minmax(22rem, 1.5fr) repeat(3, minmax(12rem, 1fr));
+    gap: 24px 40px;
+    padding-bottom: 22px;
+    border-bottom: 1px solid rgba(248, 241, 235, 0.12);
+  }
+
+  .bw-footer__brand-name {
+    display: inline-block;
+    margin-bottom: 8px;
+    color: var(--bw-text-on-dark, #f8f1eb);
+    font-family: var(--font-display, 'Barlow', sans-serif);
+    font-size: clamp(24px, 2vw, 28px);
+    line-height: 1;
+    font-weight: 700;
+    letter-spacing: -0.03em;
+  }
+
+  .bw-footer__copy {
+    margin: 0 0 18px;
+    color: rgba(248, 241, 235, 0.76);
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 15px;
+    line-height: 1.65;
+    max-width: 34ch;
+  }
+
+  .bw-footer__contact-list,
+  .bw-footer__links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 10px;
+  }
+
+  .bw-footer__links--split {
+    grid-template-columns: 1fr;
+  }
+
+  .bw-footer__heading {
+    margin: 0 0 12px;
+    color: var(--bw-text-on-dark, #f8f1eb);
+    font-family: var(--font-display, 'Barlow', sans-serif);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .bw-footer__contact-list a,
+  .bw-footer__links a {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    min-height: 28px;
+    color: rgba(248, 241, 235, 0.76);
+    text-decoration: none;
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 15px;
+    line-height: 1.5;
+    white-space: normal;
+  }
+
+  .bw-footer__contact-list a:hover,
+  .bw-footer__links a:hover {
+    color: #ffffff;
+  }
+
+  .bw-footer__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding-top: 18px;
+    color: rgba(248, 241, 235, 0.62);
+    font-family: var(--font-body, 'Inter', sans-serif);
+    font-size: 13px;
+    line-height: 1.4;
+  }
+
+  @media (max-width: 1080px) {
+    .bw-footer__top {
+      grid-template-columns: 1fr 1fr;
+      gap: 18px 24px;
+    }
+  }
+
+  @media (max-width: 720px) {
+    .bw-footer {
+      padding: 0 14px 14px;
+    }
+
+    .bw-footer__inner {
+      padding: 24px 20px 18px;
+      border-radius: 22px;
+    }
+
+    .bw-footer__top {
+      grid-template-columns: 1fr;
+      gap: 18px;
+      padding-bottom: 16px;
+    }
+
+    .bw-footer__bottom {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 6px;
+      padding-top: 14px;
+    }
+
+    .bw-footer__contact-list a,
+    .bw-footer__links a,
+    .bw-footer__bottom-links a {
+      min-height: 32px;
+      white-space: normal;
+    }
+  }
+</style>
+
+<footer class="bw-footer">
+  <div class="bw-footer__inner">
+    <div class="bw-footer__top">
+      <div>
+        <span class="bw-footer__brand-name">{{ footer_brand }}</span>
+        <p class="bw-footer__copy">{{ footer_copy }}</p>
+
+        <ul class="bw-footer__contact-list">
+          <li><a href="tel:+918800609609">+91-8800-609-609</a></li>
+          <li><a href="mailto:care@bluewud.com">care@bluewud.com</a></li>
+          <li><a href="{{ contact_url }}">Contact Us</a></li>
+        </ul>
+
+      </div>
+
+      <div>
+        <h2 class="bw-footer__heading">Explore</h2>
+        <ul class="bw-footer__links bw-footer__links--split">
+          <li><a href="{{ living_room_url }}">Living Room</a></li>
+          <li><a href="{{ bedroom_url }}">Bedroom</a></li>
+          <li><a href="{{ modular_kitchen_url }}">Modular Kitchen</a></li>
+          <li><a href="{{ modular_wardrobe_url }}">Wardrobes</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="bw-footer__heading">Company</h2>
+        <ul class="bw-footer__links bw-footer__links--split">
+          <li><a href="{{ about_url }}">About Us</a></li>
+          <li><a href="{{ bulk_url }}">Buy In Bulk</a></li>
+          <li><a href="{{ awards_url }}">Awards and Achievement</a></li>
+          <li><a href="{{ offers_url }}">Offers & Discounts</a></li>
+          <li><a href="{{ help_center_url }}">Help Center</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h2 class="bw-footer__heading">Policies</h2>
+        <ul class="bw-footer__links">
+          <li><a href="{{ returns_url }}">Returns and Refunds</a></li>
+          <li><a href="{{ payment_security_url }}">Payment and Security</a></li>
+          <li><a href="{{ terms_url }}">Terms of Use</a></li>
+          <li><a href="{{ policies_url }}">Policies</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="bw-footer__bottom">
+      <span>&copy; {{ 'now' | date: '%Y' }} {{ footer_brand }}. All rights reserved.</span>
+    </div>
+  </div>
+</footer>
+
+{% schema %}
+{
+  "name": "Footer",
+  "settings": [
+    {
+      "type": "text",
+      "id": "footer_brand",
+      "label": "Brand name",
+      "default": "Bluewud"
+    },
+    {
+      "type": "textarea",
+      "id": "footer_copy",
+      "label": "Brand copy",
+      "default": "Premium furniture, smarter storage, and guided room planning for modern Indian homes."
+    }
+  ],
+  "presets": [
+    {
+      "name": "Footer"
+    }
+  ]
+}
+{% endschema %}

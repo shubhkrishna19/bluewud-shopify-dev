@@ -1,0 +1,1865 @@
+{% liquid
+  assign contact_url = '/pages/contact-us'
+  assign modular_kitchen_url = '/collections/kitchen-racks'
+  assign modular_wardrobe_url = '/collections/wardrobe'
+  assign kitchen_calculator_url = '/collections/kitchen-racks?planner=kitchen-calculator'
+  assign wardrobe_calculator_url = '/collections/wardrobe?planner=wardrobe-calculator'
+  assign home_interiors_url = '/collections/kitchen-racks?planner=home-interiors'
+  assign estimate_url = '/pages/get-free-estimate'
+  assign living_collection = collections['living-room']
+  assign bedroom_collection = collections['bed-room']
+  assign wardrobe_collection = collections['wardrobe']
+  assign kitchen_collection = collections['kitchen-racks']
+  assign study_collection = collections['study-tables']
+  assign dining_collection = collections['coffee-table']
+  assign living_preview = blank
+  assign bedroom_preview = blank
+  assign wardrobe_preview = blank
+  assign kitchen_preview = blank
+  assign study_preview = blank
+  assign dining_preview = blank
+  assign living_preview_src = blank
+  assign bedroom_preview_src = blank
+  assign wardrobe_preview_src = blank
+  assign study_preview_src = blank
+  assign dining_preview_src = blank
+  assign living_preview_alt = 'Bluewud living room planning preview'
+  assign bedroom_preview_alt = 'Bluewud bedroom planning preview'
+  assign wardrobe_preview_alt = 'Bluewud wardrobe planning preview'
+  assign study_preview_alt = 'Bluewud study planning preview'
+  assign dining_preview_alt = 'Bluewud dining planning preview'
+  assign kitchen_preview_primary_src = 'modular-kitchen-light-oak-l-shape.png' | asset_url
+  assign kitchen_preview_secondary_src = 'modular-kitchen-sage-u-shape.png' | asset_url
+  assign kitchen_preview_tertiary_src = 'modular-kitchen-galley-light-wood.png' | asset_url
+  assign kitchen_preview_quaternary_src = 'modular-kitchen-navy-luxury.png' | asset_url
+  assign kitchen_preview_quinary_src = 'modular-kitchen-walnut-u-shape.png' | asset_url
+  assign kitchen_preview_src = kitchen_preview_primary_src
+  assign kitchen_preview_alt = 'Bluewud modular kitchen planning preview'
+
+  if pages['modular-kitchen-designs'] != blank
+    assign modular_kitchen_url = pages['modular-kitchen-designs'].url
+  endif
+  if pages['modular-wardrobe-designs'] != blank
+    assign modular_wardrobe_url = pages['modular-wardrobe-designs'].url
+  endif
+  if pages['modular-kitchen-cost-calculator'] != blank
+    assign kitchen_calculator_url = pages['modular-kitchen-cost-calculator'].url
+  endif
+  if pages['modular-wardrobe-cost-calculator'] != blank
+    assign wardrobe_calculator_url = pages['modular-wardrobe-cost-calculator'].url
+  endif
+  if pages['home-interiors-cost-calculator'] != blank
+    assign home_interiors_url = pages['home-interiors-cost-calculator'].url
+  endif
+  if pages['get-free-estimate'] != blank
+    assign estimate_url = pages['get-free-estimate'].url
+  endif
+
+  if living_collection != blank
+    if living_collection.image != blank
+      assign living_preview = living_collection.image
+    elsif living_collection.products.first.featured_image != blank
+      assign living_preview = living_collection.products.first.featured_image
+    endif
+  endif
+  if bedroom_collection != blank
+    if bedroom_collection.image != blank
+      assign bedroom_preview = bedroom_collection.image
+    elsif bedroom_collection.products.first.featured_image != blank
+      assign bedroom_preview = bedroom_collection.products.first.featured_image
+    endif
+  endif
+  if wardrobe_collection != blank
+    if wardrobe_collection.image != blank
+      assign wardrobe_preview = wardrobe_collection.image
+    elsif wardrobe_collection.products.first.featured_image != blank
+      assign wardrobe_preview = wardrobe_collection.products.first.featured_image
+    endif
+  endif
+  if kitchen_collection != blank
+    if kitchen_collection.image != blank
+      assign kitchen_preview = kitchen_collection.image
+      assign kitchen_preview_src = kitchen_collection.image | image_url: width: 1200
+      assign kitchen_preview_alt = kitchen_collection.title | default: kitchen_preview_alt
+    elsif kitchen_collection.products.first.featured_image != blank
+      assign kitchen_preview = kitchen_collection.products.first.featured_image
+      assign kitchen_preview_src = kitchen_collection.products.first.featured_image | image_url: width: 1200
+      assign kitchen_preview_alt = kitchen_collection.products.first.title | default: kitchen_preview_alt
+    endif
+  endif
+  if study_collection != blank
+    if study_collection.image != blank
+      assign study_preview = study_collection.image
+    elsif study_collection.products.first.featured_image != blank
+      assign study_preview = study_collection.products.first.featured_image
+    endif
+  endif
+  if dining_collection != blank
+    if dining_collection.image != blank
+      assign dining_preview = dining_collection.image
+    elsif dining_collection.products.first.featured_image != blank
+      assign dining_preview = dining_collection.products.first.featured_image
+    endif
+  endif
+
+  if living_preview != blank
+    assign living_preview_src = living_preview | image_url: width: 1200
+    assign living_preview_alt = living_collection.title | default: living_preview_alt
+  elsif bedroom_preview != blank
+    assign living_preview_src = bedroom_preview | image_url: width: 1200
+    assign living_preview_alt = bedroom_collection.title | default: living_preview_alt
+  else
+    assign living_preview_src = kitchen_preview_src
+  endif
+
+  if bedroom_preview != blank
+    assign bedroom_preview_src = bedroom_preview | image_url: width: 1200
+    assign bedroom_preview_alt = bedroom_collection.title | default: bedroom_preview_alt
+  elsif living_preview != blank
+    assign bedroom_preview_src = living_preview | image_url: width: 1200
+    assign bedroom_preview_alt = living_collection.title | default: bedroom_preview_alt
+  else
+    assign bedroom_preview_src = kitchen_preview_src
+  endif
+
+  if wardrobe_preview != blank
+    assign wardrobe_preview_src = wardrobe_preview | image_url: width: 1200
+    assign wardrobe_preview_alt = wardrobe_collection.title | default: wardrobe_preview_alt
+  elsif bedroom_preview != blank
+    assign wardrobe_preview_src = bedroom_preview | image_url: width: 1200
+    assign wardrobe_preview_alt = bedroom_collection.title | default: wardrobe_preview_alt
+  else
+    assign wardrobe_preview_src = kitchen_preview_src
+  endif
+
+  if study_preview != blank
+    assign study_preview_src = study_preview | image_url: width: 1200
+    assign study_preview_alt = study_collection.title | default: study_preview_alt
+  elsif living_preview != blank
+    assign study_preview_src = living_preview | image_url: width: 1200
+    assign study_preview_alt = living_collection.title | default: study_preview_alt
+  else
+    assign study_preview_src = kitchen_preview_src
+  endif
+
+  if dining_preview != blank
+    assign dining_preview_src = dining_preview | image_url: width: 1200
+    assign dining_preview_alt = dining_collection.title | default: dining_preview_alt
+  elsif kitchen_preview != blank
+    assign dining_preview_src = kitchen_preview | image_url: width: 1200
+    assign dining_preview_alt = kitchen_preview_alt
+  elsif living_preview != blank
+    assign dining_preview_src = living_preview | image_url: width: 1200
+    assign dining_preview_alt = living_collection.title | default: dining_preview_alt
+  else
+    assign dining_preview_src = kitchen_preview_src
+  endif
+%}
+
+<style>
+  .bw-hi,
+  .bw-hi *,
+  .bw-hi *::before,
+  .bw-hi *::after { box-sizing: border-box; }
+  .bw-hi {
+    --bw-hi-font-display: var(--font-display, 'Barlow', sans-serif);
+    --bw-hi-font-body: var(--font-body, 'Inter', sans-serif);
+    --bw-hi-color-surface: var(--bw-cream-surface, #fffaf6);
+    --bw-hi-color-card: var(--bw-cream-card, #fffdfb);
+    --bw-hi-color-surface-soft: var(--bw-cream-soft, #f7efe7);
+    --bw-hi-color-text: var(--bw-text-rich, #201713);
+    --bw-hi-color-copy: var(--bw-text-warm, #66554c);
+    --bw-hi-color-muted: var(--bw-text-mid, #7f604d);
+    --bw-hi-color-on-dark: var(--bw-text-on-dark, #fff7f1);
+    --bw-hi-color-border: var(--bw-border-soft, rgba(32, 23, 19, 0.1));
+    --bw-hi-color-selected-border: var(--bw-gold-mid, rgba(202, 138, 4, 0.25));
+    --bw-hi-summary-gradient: var(--bw-espresso-gradient, linear-gradient(135deg, #231813 0%, #3b2921 60%, #5c463c 100%));
+    --bw-hi-shadow-panel: var(--shadow-panel, 0 24px 70px rgba(35, 24, 19, 0.08));
+    display: grid;
+    gap: 22px;
+    font-family: var(--bw-hi-font-body);
+    color: var(--bw-hi-color-text);
+  }
+  .bw-hi input,
+  .bw-hi select,
+  .bw-hi button,
+  .bw-hi textarea {
+    font-family: var(--bw-hi-font-body);
+  }
+  .bw-hi > .bw-planning-rail { order: -2; }
+  .bw-hi__shell { order: -1; }
+  .bw-hi__guide { order: 0; }
+  .bw-hi__hero,
+  .bw-hi__progress { order: 1; }
+  .bw-hi__hero {
+    padding: 28px 30px;
+    border-radius: 32px;
+    background:
+      radial-gradient(circle at top left, rgba(166, 106, 67, 0.16), transparent 28%),
+      var(--bw-hi-summary-gradient);
+    color: var(--bw-hi-color-on-dark);
+    border: 1px solid var(--bw-hi-color-border);
+    box-shadow: var(--bw-hi-shadow-panel);
+    display: grid;
+    gap: 18px;
+  }
+  .bw-hi__hero-head {
+    display: grid;
+    gap: 10px;
+    max-width: 80ch;
+  }
+  .bw-hi__hero-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 4px;
+  }
+  .bw-hi__hero-pill {
+    display: inline-flex;
+    align-items: center;
+    min-height: 34px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(255, 247, 241, 0.12);
+    color: #fff7f1;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .bw-hi__hero-eyebrow {
+    color: rgba(255, 247, 241, 0.78);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .bw-hi__hero-title {
+    margin: 0;
+    color: var(--bw-hi-color-on-dark);
+    font-family: var(--bw-hi-font-display);
+    font-weight: 700;
+    font-size: clamp(28px, 4vw, 46px);
+    line-height: 1.04;
+    letter-spacing: -0.04em;
+  }
+  .bw-hi__hero-copy {
+    margin: 0;
+    color: rgba(255, 247, 241, 0.84);
+    font-size: 15px;
+    line-height: 1.8;
+    max-width: 70ch;
+  }
+  .bw-hi__hero-surface {
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+    gap: 16px;
+  }
+  .bw-hi__hero-panel {
+    display: grid;
+    gap: 10px;
+    align-content: start;
+    padding: 22px;
+    border-radius: 24px;
+    background: rgba(255, 247, 241, 0.08);
+    border: 1px solid rgba(255, 247, 241, 0.12);
+  }
+  .bw-hi__hero-panel-media {
+    min-height: 148px;
+    border-radius: 18px;
+    overflow: hidden;
+    background: linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
+  }
+  .bw-hi__hero-panel-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bw-hi__hero-panel-title {
+    margin: 0 0 8px;
+    color: #fff7f1;
+    font-size: 18px;
+    font-weight: 700;
+  }
+  .bw-hi__hero-panel-copy {
+    margin: 0;
+    color: rgba(255, 247, 241, 0.82);
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .bw-hi__hero-visual {
+    display: grid;
+    gap: 12px;
+    padding: 18px;
+    border-radius: 24px;
+    background: rgba(255, 247, 241, 0.08);
+    border: 1px solid rgba(255, 247, 241, 0.12);
+  }
+  .bw-hi__hero-visual-strip {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+  }
+  .bw-hi__hero-visual-card {
+    min-height: 126px;
+    border-radius: 18px;
+    overflow: hidden;
+    position: relative;
+    background: linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
+  }
+  .bw-hi__hero-visual-card img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bw-hi__hero-visual-card span {
+    position: absolute;
+    left: 12px;
+    bottom: 12px;
+    padding: 6px 10px;
+    border-radius: 999px;
+    background: rgba(32, 23, 19, 0.78);
+    color: #fff7f1;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+  .bw-hi__hero-visual-copy {
+    margin: 0;
+    color: rgba(255, 247, 241, 0.84);
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .bw-hi__roadmap {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 16px;
+  }
+  .bw-hi__roadmap-card {
+    display: grid;
+    gap: 10px;
+    padding: 20px 22px;
+    border-radius: 24px;
+    background: rgba(255, 250, 246, 0.94);
+    border: 1px solid var(--bw-hi-color-border);
+    box-shadow: 0 18px 42px rgba(35, 24, 19, 0.05);
+  }
+  .bw-hi__roadmap-step {
+    display: inline-flex;
+    width: fit-content;
+    min-height: 30px;
+    align-items: center;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: rgba(32, 23, 19, 0.08);
+    color: #6f584c;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .bw-hi__roadmap-card h3 {
+    margin: 0;
+    color: var(--bw-hi-color-text);
+    font-family: var(--bw-hi-font-display);
+    font-size: 18px;
+    line-height: 1.18;
+  }
+  .bw-hi__roadmap-card p {
+    margin: 0;
+    color: var(--bw-hi-color-copy);
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .bw-hi__journey {
+    padding: 22px 24px;
+    border-radius: 28px;
+    background: var(--bw-hi-summary-gradient);
+    color: var(--bw-hi-color-on-dark);
+    border: 1px solid var(--bw-hi-color-border);
+    box-shadow: var(--bw-hi-shadow-panel);
+    display: grid;
+    gap: 16px;
+  }
+  .bw-hi__journey-head {
+    display: grid;
+    gap: 8px;
+    max-width: 78ch;
+  }
+  .bw-hi__journey-eyebrow {
+    color: rgba(255, 247, 241, 0.78);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .bw-hi__journey-title {
+    margin: 0;
+    color: var(--bw-hi-color-on-dark);
+    font-family: var(--bw-hi-font-display);
+    font-weight: 700;
+    font-size: clamp(22px, 3vw, 32px);
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+  }
+  .bw-hi__journey-copy {
+    margin: 0;
+    color: rgba(255, 247, 241, 0.82);
+    font-size: 14px;
+    line-height: 1.75;
+  }
+  .bw-hi__journey-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+  .bw-hi__progress {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 12px;
+  }
+  .bw-hi__progress-card {
+    display: grid;
+    gap: 8px;
+    padding: 18px 18px 16px;
+    border-radius: 22px;
+    background: rgba(255, 250, 246, 0.94);
+    border: 1px solid var(--bw-hi-color-border);
+    box-shadow: 0 18px 42px rgba(35, 24, 19, 0.05);
+  }
+  .bw-hi__progress-card--visual {
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.76), rgba(255, 251, 247, 0.96)),
+      radial-gradient(circle at top right, rgba(166, 106, 67, 0.08), transparent 26%);
+  }
+  .bw-hi__progress-step {
+    display: inline-flex;
+    width: fit-content;
+    min-height: 30px;
+    align-items: center;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: rgba(32, 23, 19, 0.08);
+    color: #6f584c;
+    font-size: 10px;
+    font-weight: 800;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .bw-hi__progress-card h3 {
+    margin: 0;
+    color: var(--bw-hi-color-text);
+    font-family: var(--bw-hi-font-display);
+    font-size: 16px;
+    line-height: 1.2;
+  }
+  .bw-hi__progress-card p {
+    margin: 0;
+    color: var(--bw-hi-color-copy);
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  .bw-hi__progress-media {
+    min-height: 120px;
+    border-radius: 18px;
+    overflow: hidden;
+    background: linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
+  }
+  .bw-hi__progress-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bw-hi__journey-link,
+  .bw-hi__journey-link--active {
+    display: inline-flex;
+    align-items: center;
+    min-height: 42px;
+    padding: 0 16px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+  }
+  .bw-hi__journey-link {
+    border: 1px solid rgba(255, 247, 241, 0.18);
+    background: rgba(255, 247, 241, 0.08);
+    color: #fff7f1;
+  }
+  .bw-hi__journey-link:hover {
+    transform: translateY(-1px);
+    background: rgba(255, 247, 241, 0.14);
+  }
+  .bw-hi__journey-link--active {
+    border: 1px solid #fff7f1;
+    background: #fff7f1;
+    color: #201713;
+  }
+  .bw-hi__panel,
+  .bw-hi__summary {
+    padding: 26px 28px;
+    border-radius: 30px;
+    background: rgba(255, 250, 246, 0.94);
+    border: 1px solid var(--bw-hi-color-border);
+    box-shadow: var(--bw-hi-shadow-panel);
+  }
+  .bw-hi__shell {
+    display: grid;
+    grid-template-columns: minmax(0, 1.08fr) minmax(320px, 0.92fr);
+    gap: 20px;
+  }
+  .bw-hi__summary {
+    position: sticky;
+    top: 110px;
+    height: fit-content;
+    background: var(--bw-hi-summary-gradient);
+    color: var(--bw-hi-color-on-dark);
+  }
+  .bw-hi__head { display: grid; gap: 10px; margin-bottom: 18px; }
+  .bw-hi__eyebrow {
+    color: var(--bw-hi-color-muted);
+    font-family: var(--bw-hi-font-body);
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+  .bw-hi__summary .bw-hi__eyebrow,
+  .bw-hi__summary .bw-hi__title,
+  .bw-hi__summary .bw-hi__copy { color: inherit; }
+  .bw-hi__title {
+    margin: 0;
+    color: var(--bw-hi-color-text);
+    font-family: var(--bw-hi-font-display);
+    font-weight: 700;
+    font-size: clamp(28px, 4vw, 42px);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+  }
+  .bw-hi__copy {
+    margin: 0;
+    color: var(--bw-hi-color-copy);
+    font-size: 15px;
+    line-height: 1.8;
+    max-width: 62ch;
+  }
+  .bw-hi__section { display: grid; gap: 12px; }
+  .bw-hi__label {
+    color: var(--bw-hi-color-text);
+    font-family: var(--bw-hi-font-display);
+    font-size: 16px;
+    font-weight: 700;
+  }
+  .bw-hi__choices {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(170px, 1fr));
+    gap: 10px;
+  }
+  .bw-hi__choice {
+    position: relative;
+    display: grid;
+    align-content: start;
+    gap: 6px;
+    min-height: 72px;
+    padding: 14px 16px;
+    border-radius: 20px;
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.9), rgba(255, 251, 247, 0.94));
+    border: 1px solid rgba(32, 23, 19, 0.08);
+    box-shadow: 0 12px 26px rgba(35, 24, 19, 0.05);
+    color: var(--bw-hi-color-text);
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    cursor: pointer;
+    text-align: left;
+    overflow: hidden;
+    transition: transform 0.18s ease, box-shadow 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+  }
+  .bw-hi__choice::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(135deg, rgba(202, 138, 4, 0.08), rgba(255, 255, 255, 0));
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.18s ease;
+  }
+  .bw-hi__choice::after {
+    content: '';
+    position: absolute;
+    top: 14px;
+    right: 14px;
+    width: 14px;
+    height: 14px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.92);
+    border: 1px solid rgba(32, 23, 19, 0.12);
+    box-shadow: 0 4px 10px rgba(35, 24, 19, 0.06);
+    opacity: 0;
+    transform: scale(0.94);
+    transition: opacity 0.18s ease, transform 0.18s ease, background 0.18s ease, border-color 0.18s ease;
+    pointer-events: none;
+  }
+  .bw-hi__choice input { display: none; }
+  .bw-hi__choice.is-selected {
+    background:
+      linear-gradient(180deg, rgba(255, 249, 239, 0.98), rgba(251, 242, 228, 0.98));
+    border-color: var(--bw-hi-color-selected-border);
+    box-shadow:
+      0 16px 30px rgba(35, 24, 19, 0.1),
+      inset 0 0 0 1px rgba(202, 138, 4, 0.12);
+    transform: none;
+  }
+  .bw-hi__choice.is-selected::before {
+    opacity: 1;
+    background: linear-gradient(135deg, rgba(202, 138, 4, 0.1), rgba(255, 255, 255, 0));
+  }
+  .bw-hi__choice.is-selected::after {
+    opacity: 1;
+    transform: scale(1);
+    background: #5c463c;
+    border-color: rgba(202, 138, 4, 0.3);
+    box-shadow:
+      0 0 0 3px rgba(255, 248, 238, 0.88),
+      0 6px 14px rgba(35, 24, 19, 0.1);
+  }
+  .bw-hi__choice:hover,
+  .bw-hi__choice:focus-visible {
+    transform: translateY(-1px);
+    border-color: rgba(32, 23, 19, 0.16);
+    box-shadow: 0 16px 32px rgba(35, 24, 19, 0.08);
+  }
+  .bw-hi__choice.is-selected:hover,
+  .bw-hi__choice.is-selected:focus-visible {
+    transform: none;
+    border-color: var(--bw-hi-color-selected-border);
+    box-shadow:
+      0 18px 32px rgba(35, 24, 19, 0.11),
+      inset 0 0 0 1px rgba(202, 138, 4, 0.14);
+  }
+  .bw-hi__choice.is-selected .bw-hi__choice-title {
+    color: #201713;
+  }
+  .bw-hi__choice.is-selected .bw-hi__choice-media {
+    box-shadow: inset 0 0 0 1px rgba(255, 248, 238, 0.7);
+  }
+  .bw-hi__choice--visual {
+    gap: 10px;
+    min-height: 0;
+    padding: 10px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .bw-hi__choice-media {
+    min-height: 132px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
+  }
+  .bw-hi__choice-media--compact {
+    min-height: 104px;
+  }
+  .bw-hi__choice-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bw-hi__choice-copy {
+    display: grid;
+    gap: 4px;
+    align-content: start;
+    text-align: left;
+  }
+  .bw-hi__choice-title {
+    color: inherit;
+    font-size: 15px;
+    font-weight: 800;
+    line-height: 1.2;
+  }
+  .bw-hi__choice-note {
+    color: #66554c;
+    font-size: 12px;
+    font-weight: 600;
+    line-height: 1.55;
+  }
+  .bw-hi__choice.is-selected .bw-hi__choice-note {
+    color: #5d4a42;
+  }
+  .bw-hi__choice--compact {
+    gap: 10px;
+    min-height: 0;
+    padding: 10px;
+    letter-spacing: 0;
+    text-transform: none;
+  }
+  .bw-hi__choice--compact.is-selected::after {
+    width: 12px;
+    height: 12px;
+    top: 12px;
+    right: 12px;
+  }
+  .bw-hi__choice--compact .bw-hi__choice-copy {
+    gap: 2px;
+  }
+  .bw-hi__choice--compact .bw-hi__choice-title {
+    font-size: 14px;
+  }
+  .bw-hi__choice--compact .bw-hi__choice-note {
+    font-size: 11px;
+    line-height: 1.5;
+  }
+  .bw-hi__choices[data-hi-group="rooms"] .bw-hi__choice {
+    padding: 14px;
+  }
+  .bw-hi__choices[data-hi-group="rooms"] .bw-hi__choice-media {
+    min-height: 148px;
+  }
+  .bw-hi__choices[data-hi-group="property"] .bw-hi__choice-media--compact,
+  .bw-hi__choices[data-hi-group="intent"] .bw-hi__choice-media--compact,
+  .bw-hi__choices[data-hi-group="budget"] .bw-hi__choice-media--compact {
+    min-height: 100px;
+  }
+  .bw-hi__choice--compact .bw-hi__choice-media {
+    min-height: 110px;
+  }
+  .bw-hi__choices[data-hi-group="rooms"],
+  .bw-hi__choices[data-hi-group="property"],
+  .bw-hi__choices[data-hi-group="intent"],
+  .bw-hi__choices[data-hi-group="budget"] {
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  }
+  .bw-hi__choices[data-hi-group="rooms"] {
+    grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+  }
+  .bw-hi__choices[data-hi-group="property"] .bw-hi__choice,
+  .bw-hi__choices[data-hi-group="intent"] .bw-hi__choice,
+  .bw-hi__choices[data-hi-group="budget"] .bw-hi__choice {
+    align-content: start;
+  }
+  .bw-hi__grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .bw-hi__field {
+    display: grid;
+    gap: 8px;
+  }
+  .bw-hi__field label {
+    color: var(--bw-hi-color-text);
+    font-size: 13px;
+    font-weight: 700;
+  }
+  .bw-hi__field input,
+  .bw-hi__field select {
+    width: 100%;
+    min-height: 48px;
+    padding: 0 16px;
+    border-radius: 18px;
+    border: 1px solid rgba(45, 33, 27, 0.12);
+    background: var(--bw-hi-color-card);
+    color: var(--bw-hi-color-text);
+    font-size: 14px;
+  }
+  .bw-hi__summary-list {
+    display: grid;
+    gap: 12px;
+    margin-top: 18px;
+  }
+  .bw-hi__summary-line:nth-child(n + 5) {
+    display: none;
+  }
+  .bw-hi__recommendation {
+    margin-top: 16px;
+    padding: 18px;
+    border-radius: 22px;
+    background: rgba(255, 247, 241, 0.08);
+    border: 1px solid rgba(255, 247, 241, 0.12);
+    color: rgba(255, 247, 241, 0.86);
+    font-size: 13px;
+    line-height: 1.75;
+  }
+  .bw-hi__recommendation strong {
+    display: block;
+    margin-bottom: 6px;
+    color: #fff7f1;
+    font-size: 14px;
+  }
+  .bw-hi__summary-visual {
+    min-height: 150px;
+    margin-bottom: 10px;
+    border-radius: 24px;
+    overflow: hidden;
+    background: rgba(255, 247, 241, 0.08);
+    border: 1px solid rgba(255, 247, 241, 0.12);
+  }
+  .bw-hi__summary-visual img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bw-hi__summary-caption {
+    margin: -2px 0 14px;
+    color: rgba(255, 247, 241, 0.74);
+    font-size: 12px;
+    line-height: 1.65;
+  }
+  .bw-hi__summary-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 14px 0 4px;
+  }
+  .bw-hi__summary-tag {
+    display: inline-flex;
+    align-items: center;
+    min-height: 30px;
+    padding: 0 12px;
+    border-radius: 999px;
+    background: rgba(255, 247, 241, 0.12);
+    color: #fff7f1;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+  }
+  .bw-hi__summary-line {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    padding-bottom: 12px;
+    border-bottom: 1px solid rgba(255, 247, 241, 0.12);
+    color: rgba(255, 247, 241, 0.88);
+    font-size: 14px;
+  }
+  .bw-hi__summary-line strong {
+    color: #fff7f1;
+    text-align: right;
+    min-width: 0;
+    overflow-wrap: anywhere;
+  }
+  .bw-hi__badge {
+    display: inline-flex;
+    align-items: center;
+    width: fit-content;
+    min-height: 34px;
+    padding: 0 14px;
+    border-radius: 999px;
+    background: rgba(255, 247, 241, 0.08);
+    color: #fff7f1;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .bw-hi__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 18px;
+  }
+  .bw-hi__button,
+  .bw-hi__button--secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 44px;
+    padding: 0 18px;
+    border-radius: 999px;
+    text-decoration: none;
+    font-size: 12px;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+  .bw-hi__button {
+    border: 0;
+    background: #fff7f1;
+    color: #201713;
+  }
+  .bw-hi__button--secondary {
+    border: 1px solid rgba(255, 247, 241, 0.22);
+    background: rgba(255, 247, 241, 0.08);
+    color: #fff7f1;
+  }
+  .bw-hi__summary .bw-hi__button--secondary {
+    border-color: rgba(255, 247, 241, 0.28);
+    background: rgba(255, 247, 241, 0.14);
+    color: #fff7f1;
+  }
+  .bw-hi__summary .bw-hi__button--secondary:hover,
+  .bw-hi__summary .bw-hi__button--secondary:focus-visible {
+    background: rgba(255, 247, 241, 0.22);
+    border-color: rgba(255, 247, 241, 0.38);
+  }
+  .bw-hi__guide {
+    padding: 24px 28px;
+    border-radius: 28px;
+    background: rgba(255, 251, 247, 0.94);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 20px 54px rgba(35, 24, 19, 0.06);
+  }
+  .bw-hi__guide-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 14px;
+  }
+  .bw-hi__guide-card {
+    display: grid;
+    gap: 10px;
+    align-content: start;
+    padding: 18px;
+    border-radius: 22px;
+    background: rgba(32, 23, 19, 0.04);
+    border: 1px solid rgba(32, 23, 19, 0.08);
+  }
+  .bw-hi__guide-media {
+    min-height: 138px;
+    border-radius: 16px;
+    overflow: hidden;
+    background: linear-gradient(145deg, #e5d8cd 0%, #b69981 42%, #6e5043 100%);
+  }
+  .bw-hi__guide-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+  .bw-hi__guide-card--accent {
+    background:
+      linear-gradient(135deg, rgba(35, 24, 19, 0.94), rgba(91, 70, 60, 0.92)),
+      rgba(32, 23, 19, 0.04);
+    color: #fff7f1;
+  }
+  .bw-hi__guide-card--accent strong,
+  .bw-hi__guide-card--accent p {
+    color: inherit;
+  }
+  .bw-hi__guide-card strong {
+    color: #201713;
+    font-size: 16px;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  .bw-hi__guide-card p {
+    margin: 0;
+    color: #66554c;
+    font-size: 13px;
+    line-height: 1.7;
+  }
+  @media (max-width: 980px) {
+    .bw-hi__hero-surface,
+    .bw-hi__shell,
+    .bw-hi__roadmap,
+    .bw-hi__guide-grid { grid-template-columns: 1fr; }
+    .bw-hi__summary { position: static; }
+  }
+  @media (max-width: 720px) {
+    .bw-planning-rail__items {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 8px;
+      margin-inline: -20px;
+      padding: 0 20px 6px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x proximity;
+    }
+    .bw-planning-rail__items::-webkit-scrollbar { display: none; }
+    .bw-planning-rail__link {
+      flex: 0 0 auto;
+      min-height: 40px;
+      padding: 0 14px;
+      font-size: 11px;
+      letter-spacing: 0.06em;
+    }
+    .bw-hi__hero,
+    .bw-hi__journey { padding: 18px 16px; border-radius: 22px; }
+    .bw-hi__hero-title { font-size: clamp(24px, 7vw, 34px); }
+    .bw-hi__hero-surface { gap: 12px; }
+    .bw-hi__hero-visual-strip { grid-template-columns: 1fr; }
+    .bw-hi__journey-links { gap: 8px; flex-wrap: wrap; }
+    .bw-hi__panel,
+    .bw-hi__summary { padding: 18px 16px; border-radius: 22px; }
+    .bw-hi__roadmap-card,
+    .bw-hi__progress-card,
+    .bw-hi__guide-card { padding: 16px; }
+    .bw-hi__grid { grid-template-columns: 1fr; gap: 12px; }
+    .bw-hi__progress { grid-template-columns: 1fr; gap: 12px; }
+    .bw-hi__choices,
+    .bw-hi__choices[data-hi-group="rooms"],
+    .bw-hi__choices[data-hi-group="property"],
+    .bw-hi__choices[data-hi-group="intent"],
+    .bw-hi__choices[data-hi-group="budget"] { grid-template-columns: 1fr; }
+    .bw-hi__choice { padding: 10px; gap: 8px; }
+    .bw-hi__choice--compact { padding: 10px; }
+    .bw-hi__choice-media,
+    .bw-hi__choice-media--compact { min-height: 84px; }
+    .bw-hi__hero-panel-media,
+    .bw-hi__hero-visual-card,
+    .bw-hi__progress-media,
+    .bw-hi__summary-visual { min-height: 112px; }
+    .bw-hi__progress-card--visual { gap: 8px; }
+    .bw-hi__summary-line {
+      display: grid;
+      gap: 4px;
+      justify-content: stretch;
+    }
+    .bw-hi__summary-line strong { text-align: left; }
+    .bw-hi__summary-tags,
+    .bw-hi__summary-list { gap: 8px; }
+    .bw-hi__summary .bw-hi__actions { flex-direction: column; }
+    .bw-hi__button,
+    .bw-hi__button--secondary { width: 100%; justify-content: center; }
+  }
+  @media (max-width: 520px) {
+    .bw-planning-rail__items {
+      gap: 6px;
+      margin-inline: -16px;
+      padding: 0 16px 6px;
+    }
+    .bw-planning-rail__link {
+      min-height: 38px;
+      padding: 0 12px;
+      font-size: 10px;
+    }
+    .bw-hi__hero,
+    .bw-hi__journey { padding: 16px 14px; border-radius: 20px; }
+    .bw-hi__hero-title { font-size: clamp(23px, 8vw, 32px); }
+    .bw-hi__hero-panel,
+    .bw-hi__hero-visual,
+    .bw-hi__summary { padding: 14px; border-radius: 20px; }
+    .bw-hi__hero-panel-media,
+    .bw-hi__hero-visual-card,
+    .bw-hi__progress-media,
+    .bw-hi__summary-visual { min-height: 96px; }
+    .bw-hi__roadmap-card,
+    .bw-hi__progress-card,
+    .bw-hi__guide-card { padding: 14px; }
+    .bw-hi__choice,
+    .bw-hi__choice--compact { padding: 10px; }
+    .bw-hi__choice-media,
+    .bw-hi__choice-media--compact { min-height: 76px; }
+    .bw-hi__progress-card--visual { gap: 8px; }
+    .bw-hi__summary-line { gap: 2px; }
+    .bw-hi__summary-tags,
+    .bw-hi__summary-list { gap: 6px; }
+  }
+  @media (max-width: 720px) {
+    .bw-planning-rail__items {
+      display: flex;
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 6px;
+      margin-inline: -16px;
+      padding: 0 16px 6px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+      scroll-snap-type: x proximity;
+    }
+    .bw-planning-rail__items::-webkit-scrollbar { display: none; }
+    .bw-planning-rail__link {
+      flex: 0 0 auto;
+      min-height: 38px;
+      padding: 0 12px;
+      font-size: 10px;
+      letter-spacing: 0.06em;
+      white-space: nowrap;
+    }
+    .bw-hi { gap: 14px; }
+    .bw-hi__hero,
+    .bw-hi__journey,
+    .bw-hi__panel,
+    .bw-hi__summary,
+    .bw-hi__guide {
+      padding: 16px 14px;
+      border-radius: 20px;
+    }
+    .bw-hi__hero-title {
+      font-size: clamp(24px, 8vw, 32px);
+      line-height: 1.08;
+    }
+    .bw-hi__hero-copy,
+    .bw-hi__journey-copy,
+    .bw-hi__copy {
+      font-size: 13px;
+      line-height: 1.65;
+    }
+    .bw-hi__hero-pills {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      gap: 8px;
+      margin-inline: -14px;
+      padding: 0 14px 2px;
+      scrollbar-width: none;
+      -webkit-overflow-scrolling: touch;
+    }
+    .bw-hi__hero-pills::-webkit-scrollbar { display: none; }
+    .bw-hi__hero-surface,
+    .bw-hi__roadmap,
+    .bw-hi__progress,
+    .bw-hi__guide-grid {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .bw-hi__hero-visual-strip {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .bw-hi__hero-panel,
+    .bw-hi__hero-visual,
+    .bw-hi__roadmap-card,
+    .bw-hi__progress-card,
+    .bw-hi__guide-card {
+      padding: 14px;
+      gap: 8px;
+    }
+    .bw-hi__hero-panel-media,
+    .bw-hi__hero-visual-card,
+    .bw-hi__progress-media,
+    .bw-hi__guide-media,
+    .bw-hi__summary-visual {
+      min-height: 108px;
+    }
+    .bw-hi__progress-card--visual {
+      gap: 8px;
+    }
+    .bw-hi__choices,
+    .bw-hi__choices[data-hi-group="rooms"],
+    .bw-hi__choices[data-hi-group="property"],
+    .bw-hi__choices[data-hi-group="intent"],
+    .bw-hi__choices[data-hi-group="budget"] {
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+    .bw-hi__choice {
+      padding: 10px;
+      gap: 6px;
+      min-height: 0;
+    }
+    .bw-hi__choice-media,
+    .bw-hi__choice-media--compact {
+      min-height: 88px;
+    }
+    .bw-hi__choice--compact .bw-hi__choice-media,
+    .bw-hi__choice--visual .bw-hi__choice-media {
+      min-height: 76px;
+    }
+    .bw-hi__choice-title {
+      font-size: 13px;
+    }
+    .bw-hi__choice-note {
+      font-size: 11px;
+      line-height: 1.45;
+    }
+    .bw-hi__grid {
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+    .bw-hi__field input,
+    .bw-hi__field select {
+      min-height: 44px;
+      border-radius: 16px;
+    }
+    .bw-hi__summary-visual {
+      min-height: 116px;
+      margin-bottom: 10px;
+    }
+    .bw-hi__summary-caption {
+      margin-bottom: 10px;
+      font-size: 11px;
+      line-height: 1.5;
+    }
+    .bw-hi__summary-list {
+      gap: 8px;
+      margin-top: 14px;
+    }
+    .bw-hi__summary-line {
+      display: grid;
+      gap: 3px;
+      padding-bottom: 8px;
+      font-size: 12px;
+    }
+    .bw-hi__summary-tags {
+      flex-wrap: nowrap;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      -webkit-overflow-scrolling: touch;
+    }
+    .bw-hi__summary-tag {
+      flex: 0 0 auto;
+    }
+    .bw-hi__actions,
+    .bw-hi__summary .bw-hi__actions {
+      flex-direction: column;
+      align-items: stretch;
+      gap: 8px;
+    }
+    .bw-hi__button,
+    .bw-hi__button--secondary {
+      width: 100%;
+      justify-content: center;
+      min-height: 42px;
+      padding-inline: 14px;
+    }
+    .bw-hi__recommendation {
+      padding: 14px;
+      font-size: 12px;
+      line-height: 1.65;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .bw-hi { gap: 12px; }
+    .bw-hi__hero,
+    .bw-hi__journey,
+    .bw-hi__panel,
+    .bw-hi__summary,
+    .bw-hi__guide {
+      padding: 14px 12px;
+    }
+    .bw-hi__hero-title {
+      font-size: clamp(22px, 8.5vw, 28px);
+    }
+    .bw-hi__hero-panel-media,
+    .bw-hi__hero-visual-card,
+    .bw-hi__progress-media,
+    .bw-hi__guide-media,
+    .bw-hi__summary-visual {
+      min-height: 96px;
+    }
+    .bw-hi__choice-media,
+    .bw-hi__choice-media--compact {
+      min-height: 80px;
+    }
+    .bw-hi__choice--compact .bw-hi__choice-media,
+    .bw-hi__choice--visual .bw-hi__choice-media {
+      min-height: 72px;
+    }
+    .bw-hi__summary-visual {
+      min-height: 104px;
+    }
+    .bw-hi__summary-line {
+      gap: 2px;
+    }
+    .bw-hi__recommendation {
+      padding: 12px;
+    }
+  }
+</style>
+
+<div class="bw-hi" data-bw-home-interiors-flow>
+  <section class="bw-planning-rail">
+    <div class="bw-planning-rail__items" aria-label="Interiors planning navigation">
+      <a class="bw-planning-rail__link" href="{{ modular_kitchen_url }}">Modular Kitchen</a>
+      <a class="bw-planning-rail__link" href="{{ modular_wardrobe_url }}">Wardrobes</a>
+      <a class="bw-planning-rail__link" href="{{ kitchen_calculator_url }}">Kitchen Calculator</a>
+      <a class="bw-planning-rail__link" href="{{ wardrobe_calculator_url }}">Wardrobe Calculator</a>
+      <a class="bw-planning-rail__link bw-planning-rail__link--accent is-current" href="{{ home_interiors_url }}">Home Interiors</a>
+    </div>
+  </section>
+
+  <section class="bw-hi__hero">
+    <div class="bw-hi__hero-head">
+      <span class="bw-hi__hero-eyebrow">Bluewud home interiors planning</span>
+      <h2 class="bw-hi__hero-title">Plan the brief before pricing.</h2>
+      <p class="bw-hi__hero-copy">Choose only the rooms and scope that matter, then move the brief forward.</p>
+      <div class="bw-hi__hero-pills" aria-label="Home interiors planning cues">
+        <span class="bw-hi__hero-pill">Room-first brief</span>
+        <span class="bw-hi__hero-pill">Modular-ready scope</span>
+        <span class="bw-hi__hero-pill">Estimate-backed intake</span>
+      </div>
+    </div>
+    <div class="bw-hi__hero-surface">
+      <div class="bw-hi__hero-panel">
+        <div class="bw-hi__hero-panel-media">
+          <img src="{{ bedroom_preview_src }}" alt="{{ bedroom_preview_alt }}" loading="lazy" width="900" height="675">
+        </div>
+        <p class="bw-hi__hero-panel-title">Single-room refresh</p>
+        <p class="bw-hi__hero-panel-copy">Use this when one room needs a cleaner brief before design and pricing move forward.</p>
+      </div>
+      <div class="bw-hi__hero-visual">
+        <div class="bw-hi__hero-visual-strip">
+          <div class="bw-hi__hero-visual-card">
+            <img src="{{ living_preview_src }}" alt="{{ living_preview_alt }}" loading="lazy" width="640" height="480">
+            <span>Living</span>
+          </div>
+          <div class="bw-hi__hero-visual-card">
+            <img src="{{ kitchen_preview_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="640" height="480">
+            <span>Kitchen</span>
+          </div>
+        </div>
+        <p class="bw-hi__hero-visual-copy">Start with the first room cue and add more only when the brief truly expands.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section class="bw-hi__progress" aria-label="Calculator steps">
+    <article class="bw-hi__progress-card bw-hi__progress-card--visual">
+      <div class="bw-hi__progress-media">
+        <img src="{{ living_preview_src }}" alt="{{ living_preview_alt }}" loading="lazy" width="900" height="675">
+      </div>
+      <span class="bw-hi__progress-step">Step 1</span>
+      <h3>Choose the rooms</h3>
+      <p>Pick the spaces that are actually in scope so the brief doesn’t drift into generic interiors talk.</p>
+    </article>
+    <article class="bw-hi__progress-card bw-hi__progress-card--visual">
+      <div class="bw-hi__progress-media">
+        <img src="{{ bedroom_preview_src }}" alt="{{ bedroom_preview_alt }}" loading="lazy" width="900" height="675">
+      </div>
+      <span class="bw-hi__progress-step">Step 2</span>
+      <h3>Set the home direction</h3>
+      <p>Choose the direction that fits the project stage.</p>
+    </article>
+    <article class="bw-hi__progress-card bw-hi__progress-card--visual">
+      <div class="bw-hi__progress-media">
+        <img src="{{ kitchen_preview_secondary_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="900" height="675">
+      </div>
+      <span class="bw-hi__progress-step">Step 3</span>
+      <h3>Set timing and city</h3>
+      <p>Give the team enough context to scope the project.</p>
+    </article>
+    <article class="bw-hi__progress-card bw-hi__progress-card--visual">
+      <div class="bw-hi__progress-media">
+        <img src="{{ kitchen_preview_quaternary_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="900" height="675">
+      </div>
+      <span class="bw-hi__progress-step">Step 4</span>
+      <h3>Share the project brief</h3>
+      <p>Send it once the scope feels clear.</p>
+    </article>
+  </section>
+
+
+  <div class="bw-hi__shell">
+    <section class="bw-hi__panel">
+      <div class="bw-hi__head">
+        <span class="bw-hi__eyebrow">Interiors planning workflow</span>
+        <h2 class="bw-hi__title">Build Your Home Interiors Brief.</h2>
+        <p class="bw-hi__copy">Choose the rooms, scope, and timing so Bluewud can price the right brief.</p>
+      </div>
+
+      <div class="bw-hi__section">
+        <div class="bw-hi__label">Which spaces are in scope?</div>
+        <div class="bw-hi__choices" data-hi-group="rooms">
+          <label class="bw-hi__choice bw-hi__choice--visual" data-hi-room-card data-preview-caption="Build a living room-led brief around seating, TV, storage, and social-use comfort." data-preview-src="{{ living_preview_src }}" data-preview-alt="{{ living_preview_alt }}">
+            <input type="checkbox" value="Living Room">
+            <span class="bw-hi__choice-media">
+              <img src="{{ living_preview_src }}" alt="{{ living_preview_alt }}" loading="lazy" width="900" height="675">
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Living Room</span>
+              <span class="bw-hi__choice-note">Seating, TV, centre tables, and storage-led comfort.</span>
+            </span>
+          </label>
+          <label class="bw-hi__choice bw-hi__choice--visual" data-hi-room-card data-preview-caption="Shape the bedroom brief around sleep, side storage, wardrobes, and calmer daily movement." data-preview-src="{{ bedroom_preview_src }}" data-preview-alt="{{ bedroom_preview_alt }}">
+            <input type="checkbox" value="Bedroom">
+            <span class="bw-hi__choice-media">
+              <img src="{{ bedroom_preview_src }}" alt="{{ bedroom_preview_alt }}" loading="lazy" width="900" height="675">
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Bedroom</span>
+              <span class="bw-hi__choice-note">Beds, side tables, dressers, and room-led storage.</span>
+            </span>
+          </label>
+          <label class="bw-hi__choice bw-hi__choice--visual" data-hi-room-card data-preview-caption="Wardrobe-led briefs work best when storage format, finish direction, and internals are clear early." data-preview-src="{{ wardrobe_preview_src }}" data-preview-alt="{{ wardrobe_preview_alt }}">
+            <input type="checkbox" value="Wardrobe">
+            <span class="bw-hi__choice-media">
+              <img src="{{ wardrobe_preview_src }}" alt="{{ wardrobe_preview_alt }}" loading="lazy" width="900" height="675">
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Wardrobe</span>
+              <span class="bw-hi__choice-note">Sliding, hinged, walk-in, and internal organization.</span>
+            </span>
+          </label>
+          <label class="bw-hi__choice bw-hi__choice--visual" data-hi-room-card data-preview-src="{{ kitchen_preview_src }}" data-preview-alt="{{ kitchen_preview_alt }}" data-preview-caption="Modular kitchens need room shape, storage load, and appliance planning before finish talk starts.">
+            <input type="checkbox" value="Modular Kitchen">
+            <span class="bw-hi__choice-media">
+              {% if kitchen_preview != blank %}
+                {{ kitchen_preview | image_url: width: 900 | image_tag: loading: 'lazy', widths: '320, 540, 720, 900', sizes: '(max-width: 720px) 100vw, 33vw', alt: kitchen_preview_alt }}
+              {% else %}
+                <img src="{{ kitchen_preview_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="900" height="675">
+              {% endif %}
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Modular Kitchen</span>
+              <span class="bw-hi__choice-note">Layout, storage, appliances, and material direction.</span>
+            </span>
+          </label>
+          <label class="bw-hi__choice bw-hi__choice--visual" data-hi-room-card data-preview-caption="WFH planning should balance compact footprints, storage, and long-hour comfort." data-preview-src="{{ study_preview_src }}" data-preview-alt="{{ study_preview_alt }}">
+            <input type="checkbox" value="Study / WFH">
+            <span class="bw-hi__choice-media">
+              <img src="{{ study_preview_src }}" alt="{{ study_preview_alt }}" loading="lazy" width="900" height="675">
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Study / WFH</span>
+              <span class="bw-hi__choice-note">Tables, storage, shelving, and workday ergonomics.</span>
+            </span>
+          </label>
+          <label class="bw-hi__choice bw-hi__choice--visual" data-hi-room-card data-preview-caption="Dining-led briefs often start with social-use furniture and how the room connects to living or kitchen flow." data-preview-src="{{ dining_preview_src }}" data-preview-alt="{{ dining_preview_alt }}">
+            <input type="checkbox" value="Dining">
+            <span class="bw-hi__choice-media">
+              <img src="{{ dining_preview_src }}" alt="{{ dining_preview_alt }}" loading="lazy" width="900" height="675">
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Dining / Hosting</span>
+              <span class="bw-hi__choice-note">Table-led social planning and linked room flow.</span>
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <div class="bw-hi__section">
+        <div class="bw-hi__label">Property type</div>
+        <div class="bw-hi__choices" data-hi-group="property">
+          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact is-selected" data-preview-src="{{ living_preview_src }}" data-preview-alt="{{ living_preview_alt }}" data-preview-caption="Apartments usually need tighter room planning, smarter circulation, and compact storage choices.">
+            <input type="radio" name="hi_property" value="Apartment" checked>
+            <span class="bw-hi__choice-media bw-hi__choice-media--compact">
+              <img src="{{ living_preview_src }}" alt="{{ living_preview_alt }}" loading="lazy" width="900" height="675">
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Apartment</span>
+              <span class="bw-hi__choice-note">Compact room planning and efficient storage.</span>
+            </span>
+          </label>
+          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact" data-preview-src="{{ bedroom_preview_src }}" data-preview-alt="{{ bedroom_preview_alt }}" data-preview-caption="Villas usually allow broader room scope, more open layouts, and richer furnishing decisions.">
+            <input type="radio" name="hi_property" value="Villa">
+            <span class="bw-hi__choice-media bw-hi__choice-media--compact">
+              <img src="{{ bedroom_preview_src }}" alt="{{ bedroom_preview_alt }}" loading="lazy" width="900" height="675">
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Villa</span>
+              <span class="bw-hi__choice-note">Broader scope and more open planning.</span>
+            </span>
+          </label>
+          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact" data-preview-src="{{ dining_preview_src }}" data-preview-alt="{{ dining_preview_alt }}" data-preview-caption="Independent floors often mix room-by-room furnishing with a more controlled budget direction.">
+            <input type="radio" name="hi_property" value="Independent Floor">
+            <span class="bw-hi__choice-media bw-hi__choice-media--compact">
+              <img src="{{ dining_preview_src }}" alt="{{ dining_preview_alt }}" loading="lazy" width="900" height="675">
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Independent Floor</span>
+              <span class="bw-hi__choice-note">Room-by-room furnishing with tighter control.</span>
+            </span>
+          </label>
+          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact" data-preview-src="{{ study_preview_src }}" data-preview-alt="{{ study_preview_alt }}" data-preview-caption="Studio and office-style spaces need flexible storage, work surfaces, and a cleaner visual rhythm.">
+            <input type="radio" name="hi_property" value="Office / Studio">
+            <span class="bw-hi__choice-media bw-hi__choice-media--compact">
+              <img src="{{ study_preview_src }}" alt="{{ study_preview_alt }}" loading="lazy" width="900" height="675">
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Office / Studio</span>
+              <span class="bw-hi__choice-note">Flexible work-led planning and storage.</span>
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <div class="bw-hi__section">
+        <div class="bw-hi__label">What kind of project is this?</div>
+        <div class="bw-hi__choices" data-hi-group="intent">
+          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact is-selected" data-preview-src="{{ living_preview_src }}" data-preview-alt="{{ living_preview_alt }}" data-preview-caption="Fresh setup works best when the whole room language can be set from the start.">
+            <input type="radio" name="hi_intent" value="Fresh setup" checked>
+            <span class="bw-hi__choice-media bw-hi__choice-media--compact">
+              <img src="{{ living_preview_src }}" alt="{{ living_preview_alt }}" loading="lazy" width="900" height="675">
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Fresh Setup</span>
+              <span class="bw-hi__choice-note">Set the room language from scratch.</span>
+            </span>
+          </label>
+          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact" data-preview-src="{{ kitchen_preview_secondary_src }}" data-preview-alt="{{ kitchen_preview_alt }}" data-preview-caption="Upgrade or renovation briefs usually benefit from one dominant focus and clearer before/after expectations.">
+            <input type="radio" name="hi_intent" value="Upgrade / renovation">
+            <span class="bw-hi__choice-media bw-hi__choice-media--compact">
+              <img src="{{ kitchen_preview_secondary_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="900" height="675">
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Upgrade / Renovation</span>
+              <span class="bw-hi__choice-note">Refine an existing home with purpose.</span>
+            </span>
+          </label>
+          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact" data-preview-src="{{ wardrobe_preview_src }}" data-preview-alt="{{ wardrobe_preview_alt }}" data-preview-caption="Room-by-room furnishing is best when each space can move at its own pace.">
+            <input type="radio" name="hi_intent" value="Room-by-room furnishing">
+            <span class="bw-hi__choice-media bw-hi__choice-media--compact">
+              <img src="{{ wardrobe_preview_src }}" alt="{{ wardrobe_preview_alt }}" loading="lazy" width="900" height="675">
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Room-by-room</span>
+              <span class="bw-hi__choice-note">Progress space by space.</span>
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <div class="bw-hi__grid">
+        <div class="bw-hi__field">
+          <label for="bw-hi-city">City</label>
+          <input id="bw-hi-city" type="text" placeholder="Noida, Delhi, Bengaluru..." data-hi-input="city">
+        </div>
+        <div class="bw-hi__field">
+          <label for="bw-hi-timeline">Timeline</label>
+          <select id="bw-hi-timeline" data-hi-input="timeline">
+            <option value="Immediate">Immediate</option>
+            <option value="Within 1 month">Within 1 month</option>
+            <option value="1 to 3 months">1 to 3 months</option>
+            <option value="Just exploring">Just exploring</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="bw-hi__section">
+        <div class="bw-hi__label">What budget feels right?</div>
+        <div class="bw-hi__choices" data-hi-group="budget">
+          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact" data-preview-src="{{ bedroom_preview_src }}" data-preview-alt="{{ bedroom_preview_alt }}" data-preview-caption="Value-led planning is best when the finish language stays simple and grounded.">
+            <input type="radio" name="hi_budget" value="Value led">
+            <span class="bw-hi__choice-media bw-hi__choice-media--compact">
+              <img src="{{ kitchen_preview_tertiary_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="900" height="675">
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Value Led</span>
+              <span class="bw-hi__choice-note">Simple, efficient, and cost-conscious.</span>
+            </span>
+          </label>
+          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact is-selected" data-preview-src="{{ kitchen_preview_quaternary_src }}" data-preview-alt="{{ kitchen_preview_alt }}" data-preview-caption="Balanced premium is the safest starting point for most Bluewud home interiors briefs.">
+            <input type="radio" name="hi_budget" value="Balanced premium" checked>
+            <span class="bw-hi__choice-media bw-hi__choice-media--compact">
+              <img src="{{ kitchen_preview_quaternary_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="900" height="675">
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Balanced Premium</span>
+              <span class="bw-hi__choice-note">The most adaptable planning lane.</span>
+            </span>
+          </label>
+          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact" data-preview-src="{{ wardrobe_preview_src }}" data-preview-alt="{{ wardrobe_preview_alt }}" data-preview-caption="Statement premium is for higher visual impact, richer finishes, and more elaborate storage stories.">
+            <input type="radio" name="hi_budget" value="Statement premium">
+            <span class="bw-hi__choice-media bw-hi__choice-media--compact">
+              <img src="{{ wardrobe_preview_src }}" alt="{{ wardrobe_preview_alt }}" loading="lazy" width="900" height="675">
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Statement Premium</span>
+              <span class="bw-hi__choice-note">Richer finishes and stronger presence.</span>
+            </span>
+          </label>
+          <label class="bw-hi__choice bw-hi__choice--visual bw-hi__choice--compact" data-preview-src="{{ kitchen_preview_quinary_src }}" data-preview-alt="{{ kitchen_preview_alt }}" data-preview-caption="Need guidance works well when the budget is still being shaped by room priorities.">
+            <input type="radio" name="hi_budget" value="Need guidance">
+            <span class="bw-hi__choice-media bw-hi__choice-media--compact">
+              <img src="{{ kitchen_preview_quinary_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="900" height="675">
+            </span>
+            <span class="bw-hi__choice-copy">
+              <span class="bw-hi__choice-title">Need Guidance</span>
+              <span class="bw-hi__choice-note">Start with room priority, not price.</span>
+            </span>
+          </label>
+        </div>
+      </div>
+    </section>
+
+    <aside class="bw-hi__summary">
+      <div class="bw-hi__summary-visual">
+        <img src="{{ living_preview_src }}" alt="{{ living_preview_alt }}" loading="lazy" width="1200" height="900" data-hi-summary-image>
+      </div>
+      <p class="bw-hi__summary-caption" data-hi-summary-caption>Start with the room mix. The rest of the brief stays neutral until you choose.</p>
+      <div class="bw-hi__head">
+        <span class="bw-hi__eyebrow">Interiors brief</span>
+        <h2 class="bw-hi__title">Your brief snapshot</h2>
+        <p class="bw-hi__copy">Only the selected details appear here once you start choosing.</p>
+      </div>
+
+      <div class="bw-hi__badge" data-hi-badge>Ready for your brief</div>
+      <div class="bw-hi__recommendation" data-hi-recommendation>
+        <strong>Recommended next move</strong>
+        Start with a room mix to see the lightest planning path.
+      </div>
+
+      <div class="bw-hi__summary-list">
+        <div class="bw-hi__summary-line"><span>Rooms</span><strong data-hi-summary-rooms>Pick rooms</strong></div>
+        <div class="bw-hi__summary-line"><span>Property</span><strong data-hi-summary-property>Choose property</strong></div>
+        <div class="bw-hi__summary-line"><span>Intent</span><strong data-hi-summary-intent>Choose project type</strong></div>
+        <div class="bw-hi__summary-line"><span>Budget</span><strong data-hi-summary-budget>Choose budget lane</strong></div>
+        <div class="bw-hi__summary-line"><span>City</span><strong data-hi-summary-city>Add city</strong></div>
+        <div class="bw-hi__summary-line"><span>Timeline</span><strong data-hi-summary-timeline>Choose timeline</strong></div>
+      </div>
+      <div class="bw-hi__summary-tags" data-hi-summary-tags></div>
+
+      <div class="bw-hi__actions">
+        <button class="bw-hi__button" type="button" data-hi-popup-open>Get Free Estimate</button>
+      </div>
+    </aside>
+  </div>
+
+  <section class="bw-hi__guide" aria-label="What this brief helps Bluewud solve">
+    <div class="bw-hi__head">
+      <span class="bw-hi__eyebrow">Estimate cues</span>
+      <h2 class="bw-hi__title">Use these only if the scope still needs a nudge.</h2>
+      <p class="bw-hi__copy">They stay below the planner so they support the brief instead of repeating it.</p>
+    </div>
+    <div class="bw-hi__guide-grid">
+      <article class="bw-hi__guide-card">
+        <div class="bw-hi__guide-media">
+          <img src="{{ living_preview_src }}" alt="{{ living_preview_alt }}" loading="lazy" width="900" height="675">
+        </div>
+        <strong>Keep the scope focused</strong>
+        <p>Clear room choices help the estimate feel grounded.</p>
+      </article>
+      <article class="bw-hi__guide-card">
+      <div class="bw-hi__guide-media">
+          <img src="{{ kitchen_preview_secondary_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="900" height="675">
+        </div>
+        <strong>Use budget as a finish lane</strong>
+        <p>Budget should guide finish level, not repeat the planner.</p>
+      </article>
+      <article class="bw-hi__guide-card bw-hi__guide-card--accent">
+      <div class="bw-hi__guide-media">
+          <img src="{{ kitchen_preview_quaternary_src }}" alt="{{ kitchen_preview_alt }}" loading="lazy" width="900" height="675">
+        </div>
+        <strong>Move into a guided estimate</strong>
+        <p>Send the brief when the room mix feels settled.</p>
+      </article>
+    </div>
+  </section>
+</div>
+
+{% render 'modular-estimate-popup', modal_id: 'bw-home-interiors-popup', modal_title: 'Get a home interiors estimate', context_label: 'Bluewud home interiors' %}
+
+<script>
+  (function () {
+    var root = document.querySelector('[data-bw-home-interiors-flow]');
+    if (!root) return;
+    var modal = document.getElementById('bw-home-interiors-popup');
+    var summaryText = modal ? modal.querySelector('[data-bw-estimate-summary-text]') : null;
+    var summaryInput = modal ? modal.querySelector('[data-bw-estimate-summary-input]') : null;
+    var contextInput = modal ? modal.querySelector('[data-bw-estimate-context-input]') : null;
+    var sourceInput = modal ? modal.querySelector('[data-bw-estimate-source-input]') : null;
+    var summaryImage = root.querySelector('[data-hi-summary-image]');
+    var summaryCaption = root.querySelector('[data-hi-summary-caption]');
+    var summaryTags = root.querySelector('[data-hi-summary-tags]');
+    var lastRoomValue = '';
+    var hasInteracted = false;
+
+    function selectedRadio(name) {
+      var node = root.querySelector('input[name="' + name + '"]:checked');
+      return node ? node.value : '';
+    }
+
+    function selectedChecks(group) {
+      return Array.prototype.slice.call(root.querySelectorAll('[data-hi-group="' + group + '"] input[type="checkbox"]:checked')).map(function (input) {
+        return input.value;
+      });
+    }
+
+    function markInteracted() {
+      hasInteracted = true;
+    }
+    function inputValue(key) {
+      var node = root.querySelector('[data-hi-input="' + key + '"]');
+      return node ? node.value : '';
+    }
+
+    function firstSelectedVisualCard() {
+      var cards = Array.prototype.slice.call(root.querySelectorAll('[data-hi-room-card]'));
+
+      if (lastRoomValue) {
+        var activeCard = cards.find(function (card) {
+          var input = card.querySelector('input');
+          return input && input.checked && input.value === lastRoomValue;
+        });
+        if (activeCard) return activeCard;
+      }
+
+      return cards.find(function (card) {
+        var input = card.querySelector('input');
+        return input && input.checked;
+      }) || null;
+    }
+
+    function selectedPreferenceCard() {
+      var cards = Array.prototype.slice.call(root.querySelectorAll('.bw-hi__choice.is-selected[data-preview-src]'));
+      return cards[0] || null;
+    }
+
+    function updateStates() {
+      root.querySelectorAll('.bw-hi__choice').forEach(function (choice) {
+        var input = choice.querySelector('input');
+        if (!input) return;
+        choice.classList.toggle('is-selected', !!input.checked);
+      });
+
+      var neutralState = !hasInteracted;
+      var rooms = selectedChecks('rooms');
+      var roomText = rooms.length ? rooms.join(', ') : 'Pick rooms';
+      var city = inputValue('city') || 'Add city';
+      var timeline = inputValue('timeline') || 'Choose timeline';
+      var property = selectedRadio('hi_property');
+      var intent = selectedRadio('hi_intent');
+      var budget = selectedRadio('hi_budget');
+
+      var map = neutralState ? {
+        rooms: roomText,
+        property: 'Choose property',
+        intent: 'Choose project type',
+        budget: 'Choose budget lane',
+        city: city,
+        timeline: timeline
+      } : {
+        rooms: roomText,
+        property: property,
+        intent: intent,
+        budget: budget,
+        city: city,
+        timeline: timeline
+      };
+
+      Object.keys(map).forEach(function (key) {
+        var node = root.querySelector('[data-hi-summary-' + key + ']');
+        if (node) node.textContent = map[key];
+      });
+
+      var badge = root.querySelector('[data-hi-badge]');
+      if (badge) badge.textContent = neutralState ? 'Ready for your brief' : (budget || 'Need guidance');
+
+      if (summaryTags) {
+        var tags = neutralState ? [] : rooms.slice(0, 3);
+        if (!neutralState) {
+          if (property) tags.push(property);
+          if (budget) tags.push(budget);
+          if (timeline) tags.push(timeline);
+        }
+        summaryTags.innerHTML = tags.slice(0, 5).map(function (tag) {
+          return '<span class="bw-hi__summary-tag">' + tag + '</span>';
+        }).join('');
+      }
+
+      var featuredCard = firstSelectedVisualCard() || selectedPreferenceCard();
+      if (featuredCard) {
+        var previewSrc = featuredCard.getAttribute('data-preview-src');
+        var previewAlt = featuredCard.getAttribute('data-preview-alt');
+        var previewCaption = featuredCard.getAttribute('data-preview-caption');
+        if (summaryImage && previewSrc) summaryImage.src = previewSrc;
+        if (summaryImage && previewAlt) summaryImage.alt = previewAlt;
+        if (summaryCaption && previewCaption) summaryCaption.textContent = neutralState ? 'Start with the room mix. The rest of the brief stays neutral until you choose.' : previewCaption;
+      } else if (summaryCaption) {
+        summaryCaption.textContent = 'Start with the room mix. The rest of the brief stays neutral until you choose.';
+      }
+
+      var recommendation = root.querySelector('[data-hi-recommendation]');
+      if (recommendation) {
+        var recommendationText = neutralState ? 'Select a room mix to see which planning path makes the most sense.' : 'Keep the scope focused and send the brief when the room mix feels settled.';
+        recommendation.innerHTML = '<strong>Recommended next move</strong><span> ' + recommendationText + '</span>';
+      }
+
+      persistPayload('calculator-progress');
+    }
+
+    function briefSummary() {
+      return [
+        'Project: Home Interiors',
+        'Rooms: ' + (selectedChecks('rooms').length ? selectedChecks('rooms').join(', ') : 'Not selected'),
+        'Property: ' + selectedRadio('hi_property'),
+        'Intent: ' + selectedRadio('hi_intent'),
+        'Budget direction: ' + selectedRadio('hi_budget'),
+        'City: ' + (inputValue('city') || 'Not shared yet'),
+        'Timeline: ' + (inputValue('timeline') || 'Immediate')
+      ].join(' | ');
+    }
+    function buildPayload(trigger) {
+      return {
+        projectType: 'Home Interiors',
+        projectContext: 'Bluewud home interiors',
+        referenceSource: 'Home interiors calculator',
+        projectRoute: window.location.pathname + window.location.search,
+        selectedBrief: briefSummary(),
+        selectedOptions: {
+          rooms: selectedChecks('rooms'),
+          property_type: selectedRadio('hi_property'),
+          intent: selectedRadio('hi_intent'),
+          budget_posture: selectedRadio('hi_budget'),
+          city: inputValue('city'),
+          timeline: inputValue('timeline') || 'Immediate',
+          source_trigger: trigger || 'calculator-progress'
+        },
+        trigger: trigger || 'calculator-progress'
+      };
+    }
+    function persistPayload(trigger) {
+      var payload = buildPayload(trigger);
+      if (window.BluewudProjectBriefStore) {
+        window.BluewudProjectBriefStore.save(payload);
+      }
+      return payload;
+    }
+
+    function openPopup() {
+      if (!modal) return;
+      var payload = persistPayload('calculator-submit');
+      if (window.BluewudProjectBriefStore) {
+        window.BluewudProjectBriefStore.fillModal(modal, payload);
+      } else {
+        if (summaryText) summaryText.textContent = payload.selectedBrief;
+        if (summaryInput) summaryInput.value = payload.selectedBrief;
+        if (contextInput) contextInput.value = payload.projectContext;
+        if (sourceInput) sourceInput.value = payload.referenceSource;
+      }
+      modal.classList.add('is-open');
+      document.body.classList.add('bw-header-drawer-open');
+    }
+
+    function closePopup() {
+      if (!modal) return;
+      modal.classList.remove('is-open');
+      document.body.classList.remove('bw-header-drawer-open');
+    }
+
+    root.addEventListener('click', function (event) {
+      var choice = event.target.closest('.bw-hi__choice');
+      if (choice) {
+        var input = choice.querySelector('input');
+        if (input) {
+          if (input.type === 'checkbox') input.checked = !input.checked;
+          else input.checked = true;
+          if (choice.hasAttribute('data-hi-room-card')) {
+            lastRoomValue = input.checked ? input.value : '';
+          }
+          updateStates();
+        }
+        return;
+      }
+      if (event.target.closest('[data-hi-popup-open]')) {
+        openPopup();
+      }
+    });
+
+    root.addEventListener('change', function () {
+      markInteracted();
+      updateStates();
+    });
+    root.addEventListener('input', function () {
+      markInteracted();
+      updateStates();
+    });
+
+    if (modal) {
+      modal.querySelectorAll('[data-bw-estimate-close]').forEach(function (control) {
+        control.addEventListener('click', closePopup);
+      });
+      modal.addEventListener('click', function (event) {
+        if (event.target === modal) closePopup();
+      });
+    }
+
+    updateStates();
+  })();
+</script>

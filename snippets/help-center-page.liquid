@@ -1,0 +1,531 @@
+<style>
+  .bw-help {
+    background:
+      radial-gradient(circle at top left, rgba(79, 120, 143, 0.1), transparent 28%),
+      linear-gradient(180deg, #f8f2ec 0%, #faf6f1 100%);
+    padding: 24px 24px 72px;
+  }
+
+  .bw-help__inner {
+    max-width: 1240px;
+    margin: 0 auto;
+    display: grid;
+    gap: 24px;
+  }
+
+  .bw-help__hero,
+  .bw-help__topics,
+  .bw-help__panel,
+  .bw-help__support {
+    border-radius: 32px;
+    background: rgba(255, 251, 247, 0.94);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    box-shadow: 0 24px 70px rgba(35, 24, 19, 0.08);
+  }
+
+  .bw-help__hero {
+    padding: 28px 32px;
+    display: grid;
+    gap: 14px;
+  }
+
+  .bw-help__breadcrumbs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    color: #7b6659;
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  .bw-help__breadcrumbs a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .bw-help__eyebrow {
+    display: inline-block;
+    color: #8a684f;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+  }
+
+  .bw-help__title {
+    margin: 0;
+    color: #201713;
+    font-size: clamp(34px, 5vw, 56px);
+    line-height: 1.03;
+    letter-spacing: -0.04em;
+  }
+
+  .bw-help__intro {
+    margin: 0;
+    color: #64544a;
+    font-size: 16px;
+    line-height: 1.8;
+    max-width: 64ch;
+  }
+
+  .bw-help__topics {
+    padding: 22px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+  }
+
+  .bw-help__topic {
+    padding: 18px;
+    border-radius: 22px;
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    background: rgba(255, 255, 255, 0.75);
+    text-align: left;
+    cursor: pointer;
+    display: grid;
+    gap: 8px;
+    transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+  }
+
+  .bw-help__topic:hover,
+  .bw-help__topic:focus-visible {
+    transform: translateY(-2px);
+    border-color: rgba(79, 120, 143, 0.28);
+    box-shadow: 0 16px 34px rgba(35, 24, 19, 0.08);
+  }
+
+  .bw-help__topic.is-active {
+    background: linear-gradient(145deg, rgba(79, 120, 143, 0.1) 0%, rgba(255, 251, 247, 0.96) 100%);
+    border-color: rgba(79, 120, 143, 0.24);
+  }
+
+  .bw-help__topic-kicker {
+    color: #8a684f;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+
+  .bw-help__topic-title {
+    color: #201713;
+    font-size: 22px;
+    line-height: 1.05;
+    letter-spacing: -0.03em;
+  }
+
+  .bw-help__topic-copy {
+    color: #67574d;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  .bw-help__panel {
+    padding: 22px 24px;
+    display: none;
+    gap: 18px;
+  }
+
+  .bw-help__panel.is-active {
+    display: grid;
+  }
+
+  .bw-help__panel-head {
+    display: grid;
+    gap: 8px;
+  }
+
+  .bw-help__panel-title {
+    margin: 0;
+    color: #201713;
+    font-size: clamp(28px, 4vw, 40px);
+    line-height: 1.05;
+    letter-spacing: -0.04em;
+  }
+
+  .bw-help__panel-copy {
+    margin: 0;
+    color: #65554c;
+    font-size: 15px;
+    line-height: 1.8;
+    max-width: 72ch;
+  }
+
+  .bw-help__faq-list {
+    display: grid;
+    gap: 12px;
+  }
+
+  .bw-help__faq {
+    border-radius: 22px;
+    background: rgba(255, 255, 255, 0.82);
+    border: 1px solid rgba(45, 33, 27, 0.08);
+    overflow: hidden;
+  }
+
+  .bw-help__faq summary {
+    list-style: none;
+    cursor: pointer;
+    padding: 18px 20px;
+    color: #201713;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1.6;
+    position: relative;
+    padding-right: 54px;
+  }
+
+  .bw-help__faq summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .bw-help__faq summary::after {
+    content: '+';
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    color: #8a684f;
+    font-size: 22px;
+    font-weight: 500;
+  }
+
+  .bw-help__faq[open] summary::after {
+    content: '−';
+  }
+
+  .bw-help__faq-body {
+    padding: 0 20px 20px;
+    color: #54463e;
+    font-size: 15px;
+    line-height: 1.8;
+  }
+
+  .bw-help__faq-body p,
+  .bw-help__faq-body ul {
+    margin: 0 0 1em;
+  }
+
+  .bw-help__faq-body ul {
+    padding-left: 1.2em;
+  }
+
+  .bw-help__faq-body a {
+    color: #8a684f;
+    font-weight: 700;
+    text-decoration: none;
+  }
+
+  .bw-help__support {
+    padding: 24px 28px;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 16px;
+  }
+
+  .bw-help__support-card {
+    padding: 22px;
+    border-radius: 22px;
+    background: rgba(32, 23, 19, 0.04);
+    display: grid;
+    gap: 10px;
+  }
+
+  .bw-help__support-card h2 {
+    margin: 0;
+    color: #201713;
+    font-size: 18px;
+  }
+
+  .bw-help__support-card p {
+    margin: 0;
+    color: #66554c;
+    font-size: 14px;
+    line-height: 1.7;
+  }
+
+  .bw-help__support-card a {
+    color: #8a684f;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+  }
+
+  @media (max-width: 1040px) {
+    .bw-help__topics,
+    .bw-help__support {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+  }
+
+  @media (max-width: 760px) {
+    .bw-help {
+      padding: 18px 16px 54px;
+    }
+
+    .bw-help__hero,
+    .bw-help__topics,
+    .bw-help__panel,
+    .bw-help__support {
+      padding: 20px;
+      border-radius: 24px;
+    }
+
+    .bw-help__topics,
+    .bw-help__support {
+      grid-template-columns: 1fr;
+    }
+
+    .bw-help__topic-title {
+      font-size: 20px;
+    }
+  }
+</style>
+
+<section class="bw-help" id="bw-help-center">
+  <div class="bw-help__inner">
+    <div class="bw-help__hero">
+      <div class="bw-help__breadcrumbs">
+        <a href="{{ routes.root_url }}">Home</a>
+        <span>/</span>
+        <span>{{ page.title }}</span>
+      </div>
+      <span class="bw-help__eyebrow">Bluewud support</span>
+      <h1 class="bw-help__title">{{ page.title }}</h1>
+      <p class="bw-help__intro">Find answers in a cleaner way. Explore order help, shipping, cancellations, and installation support without scrolling through one long wall of text.</p>
+    </div>
+
+    <div class="bw-help__topics" role="tablist" aria-label="Help center categories">
+      <button class="bw-help__topic is-active" type="button" data-help-tab="orders" role="tab" aria-selected="true" aria-controls="bw-help-panel-orders" id="bw-help-tab-orders">
+        <span class="bw-help__topic-kicker">Start here</span>
+        <span class="bw-help__topic-title">My Order</span>
+        <span class="bw-help__topic-copy">Ordering, sizing, confirmations, payment issues, and post-order changes.</span>
+      </button>
+      <button class="bw-help__topic" type="button" data-help-tab="shipping" role="tab" aria-selected="false" aria-controls="bw-help-panel-shipping" id="bw-help-tab-shipping">
+        <span class="bw-help__topic-kicker">Delivery clarity</span>
+        <span class="bw-help__topic-title">Shipping & Delivery</span>
+        <span class="bw-help__topic-copy">Dispatch times, transit mode, tracking, shipping charges, and coverage.</span>
+      </button>
+      <button class="bw-help__topic" type="button" data-help-tab="cancellations" role="tab" aria-selected="false" aria-controls="bw-help-panel-cancellations" id="bw-help-tab-cancellations">
+        <span class="bw-help__topic-kicker">Order changes</span>
+        <span class="bw-help__topic-title">Cancellations</span>
+        <span class="bw-help__topic-copy">COD and prepaid cancellations, shipped orders, and change requests.</span>
+      </button>
+      <button class="bw-help__topic" type="button" data-help-tab="installation" role="tab" aria-selected="false" aria-controls="bw-help-panel-installation" id="bw-help-tab-installation">
+        <span class="bw-help__topic-kicker">After delivery</span>
+        <span class="bw-help__topic-title">Installation</span>
+        <span class="bw-help__topic-copy">Self-installation expectations, assistance, and when to involve a local carpenter.</span>
+      </button>
+    </div>
+
+    <section class="bw-help__panel is-active" id="bw-help-panel-orders" role="tabpanel" aria-labelledby="bw-help-tab-orders">
+      <div class="bw-help__panel-head">
+        <h2 class="bw-help__panel-title">My Order</h2>
+        <p class="bw-help__panel-copy">Use this section for the full ordering flow, from product selection to payment confirmation and edit limitations after checkout.</p>
+      </div>
+      <div class="bw-help__faq-list">
+        <details class="bw-help__faq" open>
+          <summary>How do I place my order?</summary>
+          <div class="bw-help__faq-body">
+            <p>Browse the furniture range, open the product you want, review the size and variant options, and add it to the cart. You can continue shopping or move to checkout from the cart at the top of the page.</p>
+          </div>
+        </details>
+        <details class="bw-help__faq">
+          <summary>How do I determine the size of the product?</summary>
+          <div class="bw-help__faq-body">
+            <p>Bluewud provides dimension details within the product information, along with size-reference visuals to help you judge fit before placing the order.</p>
+          </div>
+        </details>
+        <details class="bw-help__faq">
+          <summary>How will I receive my order?</summary>
+          <div class="bw-help__faq-body">
+            <p>Your order is packed with layered protection and shipped through Bluewud’s courier partners so it reaches you safely and on time.</p>
+          </div>
+        </details>
+        <details class="bw-help__faq">
+          <summary>How will I get confirmation of my order?</summary>
+          <div class="bw-help__faq-body">
+            <p>You should receive both email and SMS communication soon after placing the order. Final confirmation follows payment verification.</p>
+          </div>
+        </details>
+        <details class="bw-help__faq">
+          <summary>My payment failed but money was deducted. What should I do?</summary>
+          <div class="bw-help__faq-body">
+            <ul>
+              <li>First verify the debit in your bank or card account.</li>
+              <li>If an amount was debited after a failed attempt, banks usually reverse it within about 10 business days.</li>
+              <li>If you still need help, contact <a href="mailto:care@bluewud.com">care@bluewud.com</a>.</li>
+            </ul>
+          </div>
+        </details>
+        <details class="bw-help__faq">
+          <summary>Can I add an item after placing an order?</summary>
+          <div class="bw-help__faq-body">
+            <p>Bluewud currently does not support adding items to an existing confirmed order.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="bw-help__panel" id="bw-help-panel-shipping" role="tabpanel" aria-labelledby="bw-help-tab-shipping">
+      <div class="bw-help__panel-head">
+        <h2 class="bw-help__panel-title">Shipping & Delivery</h2>
+        <p class="bw-help__panel-copy">This section groups dispatch timing, delivery expectations, shipping mode, tracking, and charge-related questions in one place.</p>
+      </div>
+      <div class="bw-help__faq-list">
+        <details class="bw-help__faq" open>
+          <summary>What is the shipping approach at Bluewud?</summary>
+          <div class="bw-help__faq-body">
+            <p>Products go through multiple quality checks before dispatch, and Bluewud aims to deliver them with dependable service and careful packaging.</p>
+          </div>
+        </details>
+        <details class="bw-help__faq">
+          <summary>When is my order shipped?</summary>
+          <div class="bw-help__faq-body">
+            <p>Most orders are generally shipped within one to two days. If there is a delay, the team shares an update.</p>
+          </div>
+        </details>
+        <details class="bw-help__faq">
+          <summary>When is the order delivered?</summary>
+          <div class="bw-help__faq-body">
+            <p>Delivery can take around 10 to 12 working days in some cases, though many shipments reach customers within a week from dispatch.</p>
+          </div>
+        </details>
+        <details class="bw-help__faq">
+          <summary>What is the difference between air shipping and surface shipping?</summary>
+          <div class="bw-help__faq-body">
+            <p>Items under roughly 1.5 kg are generally shipped by air and may arrive in 2 to 4 working days. Larger volumetric products are usually shipped by surface mode and can take around 10 to 12 working days.</p>
+          </div>
+        </details>
+        <details class="bw-help__faq">
+          <summary>How do I track my order?</summary>
+          <div class="bw-help__faq-body">
+            <p>Once your shipment leaves the warehouse, Bluewud shares a tracking ID so you can follow delivery status.</p>
+          </div>
+        </details>
+        <details class="bw-help__faq">
+          <summary>Do you apply shipping charges?</summary>
+          <div class="bw-help__faq-body">
+            <p>Most products are shipped free, but some cases may include a small shipping charge depending on the order.</p>
+          </div>
+        </details>
+        <details class="bw-help__faq">
+          <summary>What happens to shipping charges if I return a product?</summary>
+          <div class="bw-help__faq-body">
+            <p>If shipping charges were applied, those charges are not refunded when a return is processed for a product you decide not to keep.</p>
+          </div>
+        </details>
+        <details class="bw-help__faq">
+          <summary>Do you ship internationally?</summary>
+          <div class="bw-help__faq-body">
+            <p>International ordering is not currently accepted through the website.</p>
+          </div>
+        </details>
+        <details class="bw-help__faq">
+          <summary>Can I expect delivery on all days of the week?</summary>
+          <div class="bw-help__faq-body">
+            <p>Deliveries are generally available on all seven days, except national and state holidays.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="bw-help__panel" id="bw-help-panel-cancellations" role="tabpanel" aria-labelledby="bw-help-tab-cancellations">
+      <div class="bw-help__panel-head">
+        <h2 class="bw-help__panel-title">Cancellations & Order Changes</h2>
+        <p class="bw-help__panel-copy">Use this section when you need to cancel, refuse delivery, or request a change after the order is already placed.</p>
+      </div>
+      <div class="bw-help__faq-list">
+        <details class="bw-help__faq" open>
+          <summary>How do I cancel my order?</summary>
+          <div class="bw-help__faq-body">
+            <p>COD orders can usually be cancelled from the registered account before shipment. For prepaid orders, contact <a href="mailto:care@bluewud.com">care@bluewud.com</a> so the Bluewud team can guide the cancellation and refund process.</p>
+          </div>
+        </details>
+        <details class="bw-help__faq">
+          <summary>Can I cancel after the order has already shipped?</summary>
+          <div class="bw-help__faq-body">
+            <p>Once shipped, the order usually cannot be cancelled in transit. You can refuse delivery and inform the team, or if already accepted, proceed through the return or exchange route where applicable.</p>
+          </div>
+        </details>
+        <details class="bw-help__faq">
+          <summary>Can I request changes or edits to an order?</summary>
+          <div class="bw-help__faq-body">
+            <p>If you need changes after ordering, write to <a href="mailto:care@bluewud.com">care@bluewud.com</a>. The customer care team can suggest solutions where possible.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <section class="bw-help__panel" id="bw-help-panel-installation" role="tabpanel" aria-labelledby="bw-help-tab-installation">
+      <div class="bw-help__panel-head">
+        <h2 class="bw-help__panel-title">Installation</h2>
+        <p class="bw-help__panel-copy">This section explains the self-installation expectation and the support available if you need help after delivery.</p>
+      </div>
+      <div class="bw-help__faq-list">
+        <details class="bw-help__faq" open>
+          <summary>Do you provide free installation of the product?</summary>
+          <div class="bw-help__faq-body">
+            <p>Many Bluewud products are designed for self-installation. The package typically includes the required hardware and an instruction guide, with pre-drilled parts to make assembly easier.</p>
+            <p>If you are comfortable with DIY assembly, you can install it yourself. Otherwise, you can hire a local carpenter. For assistance, call <a href="tel:+918800609609">+91-8800-609-609</a> for on-call support.</p>
+          </div>
+        </details>
+      </div>
+    </section>
+
+    <div class="bw-help__support">
+      <div class="bw-help__support-card">
+        <h2>Need direct help?</h2>
+        <p>Speak with the Bluewud team for order support, payment questions, or shipment help.</p>
+        <a href="tel:+918800609609">Call +91-8800-609-609</a>
+      </div>
+      <div class="bw-help__support-card">
+        <h2>Return & refund</h2>
+        <p>Open the returns page for policy clarity before or after placing your order.</p>
+        <a href="/pages/returns-refunds">Open returns page</a>
+      </div>
+      <div class="bw-help__support-card">
+        <h2>Payment & security</h2>
+        <p>Review payment methods, checkout confidence, and security-related information.</p>
+        <a href="/pages/payment-security">Open payment page</a>
+      </div>
+      <div class="bw-help__support-card">
+        <h2>Bulk requirement?</h2>
+        <p>For office, hospitality, or larger purchase requirements, reach the bulk team directly.</p>
+        <a href="/pages/buy-in-bulk">Open Buy In Bulk</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<script>
+  (function () {
+    var root = document.getElementById('bw-help-center');
+    if (!root) return;
+
+    var tabs = Array.prototype.slice.call(root.querySelectorAll('[data-help-tab]'));
+    var panels = Array.prototype.slice.call(root.querySelectorAll('.bw-help__panel'));
+
+    function activateTab(targetId) {
+      tabs.forEach(function (tab) {
+        var isActive = tab.getAttribute('data-help-tab') === targetId;
+        tab.classList.toggle('is-active', isActive);
+        tab.setAttribute('aria-selected', isActive ? 'true' : 'false');
+      });
+
+      panels.forEach(function (panel) {
+        var isActive = panel.id === 'bw-help-panel-' + targetId;
+        panel.classList.toggle('is-active', isActive);
+      });
+    }
+
+    tabs.forEach(function (tab) {
+      tab.addEventListener('click', function () {
+        activateTab(tab.getAttribute('data-help-tab'));
+      });
+    });
+  })();
+</script>
